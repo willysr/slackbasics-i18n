@@ -1,4 +1,4 @@
-<!-- $Id: usermgmt.xml,v 1.9 2005/01/23 01:03:33 daniel Exp $ -->
+<!-- $Id: usermgmt.xml,v 1.10 2005/01/29 22:16:48 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="usermgmt.html"?>
   <title>User management</title>
@@ -246,7 +246,7 @@ Account setup complete.
   </sect1>
 
   <sect1>
-    <title>Avoiding root usage</title>
+    <title>Avoiding root usage with su</title>
 
     <para>
       It is a good idea to avoid logging in as
@@ -309,6 +309,24 @@ $ <command>su -c lilo</command>
       determine whether the parameters should be used by the specified
       command, or by <command>su</command> itself.
     </para>
+
+    <sect2>
+      <title>Restricting su access</title>
+
+      <para>
+        You can refine access to <command>su</command> with suauth(5).
+	It is a good security practice to only allow members of a special
+	group to <command>su</command> to <emphasis>root</emphasis>. For
+	instance, you can restrict root <command>su</command>-ing in
+	a BSD fashion to members of the <emphasis>wheel</emphasis>
+	group:
+      </para>
+
+      <screen>
+root:ALL EXCEPT GROUP wheel:DENY
+      </screen>
+      
+    </sect2>
 
   </sect1>
 
