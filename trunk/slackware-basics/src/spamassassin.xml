@@ -96,7 +96,7 @@
     <title>Using spamassassin with procmail</title>
 
     <para>
-      Sendmail will use procmail automatically on the default Slackware 
+      Sendmail will use procmail automatically on the default &Distribution; 
       installation if procmail is installed. Procmail is a program which 
       processes e-mails and allows you to apply filters. At first we are 
       going to have a look at how to add spamassassin headers to a 
