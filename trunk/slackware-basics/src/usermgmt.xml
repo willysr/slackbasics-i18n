@@ -1,4 +1,4 @@
-<!-- $Id: usermgmt.xml,v 1.8 2004/12/24 18:36:42 daniel Exp $ -->
+<!-- $Id: usermgmt.xml,v 1.9 2005/01/23 01:03:33 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="usermgmt.html"?>
   <title>User management</title>
@@ -440,6 +440,38 @@ Disk quotas for user joe (uid 1143):
         The new quota settings for this user will be active after
         saving the file, and quitting <command>vi</command>.
       </para>
+
+    </sect2>
+
+    <sect2>
+      <title>Getting information about quota</title>
+
+      <para> 
+        It is often useful to get statistics about the current
+        quota usage.  The <command>repquota</command> command can be
+        used to get information about what quotas are set for every
+        user, and how much of each quota is used. You can see the
+        quota settings for a specific partition by giving the name of
+        the partition as a parameter. The <parameter
+        class="command">-a</parameter> parameter will show quota
+        information for all partitions with quota enabled. Suppose
+        that you would like to see quota information for
+        <filename>/dev/hda5</filename>, you can use the following
+        command:
+      </para>
+
+      <screen>
+repquota /dev/hda5
+*** Report for user quotas on device /dev/hda5
+Block grace time: 7days; Inode grace time: 7days
+                        Block limits                File limits
+User            used    soft    hard  grace    used  soft  hard  grace
+----------------------------------------------------------------------
+root      --       0       0       0              3     0     0       
+[..]
+joe       --    2136  250000  300000             64     0     0       
+[..]
+      </screen>
 
     </sect2>
 

@@ -1,3 +1,6 @@
+Sun Jan 23 02:02:43 CET 2005
+- Add a section about repquota.
+
 Fri Dec 24 19:28:21 CET 2004
 - Add the first bits of a section about disk quotas to
   usermgmt.xml.
