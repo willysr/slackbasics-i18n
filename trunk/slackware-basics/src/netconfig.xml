@@ -1,4 +1,4 @@
-<!-- $Id: netconfig.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<!-- $Id: netconfig.xml,v 1.2 2004/12/18 21:17:16 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="netconfig.html"?>
 <title>Networking configuration</title>
@@ -117,16 +117,16 @@ by rebooting the system or by executing <command>/etc/rc.d/rc.inet1</command>.
 <title>Introduction</title>
 
 <para>
-IPv6 is the next generation internet protocol. One of the advantages is
-that it has a much larger address space. In IPv4 (the internet protocol
-that is commonly used today) addresses are 32-bit, this address space
-is almost completely used right now, and there is a lack of IPv4 addresses.
-IPv6 uses 128-bit addresses, which provides an unimaginable huge address
-space (2^128 addresses). IPv6 uses another address notation, first of
-all hex numbers are used instead of decimal numbers, and the address is
-noted in pairs of 16-bits, separated by a colon (<quote>:</quote>).
-Let's have a look at an example address:
-</para>
+<acronym>IPv6</acronym> is the next generation internet protocol. One
+of  the advantages is that it has a much larger address space. In IPv4
+(the internet protocol that is commonly used today) addresses are
+32-bit, this address space is almost completely used right now, and
+there is a lack of IPv4 addresses.  IPv6 uses 128-bit addresses, which
+provides an unimaginable huge address space (2^128 addresses). IPv6
+uses another address notation, first of all hex numbers are used
+instead of decimal numbers, and the address is noted in pairs of
+16-bits, separated by a colon (<quote>:</quote>).  Let's have a look
+at an example address: </para>
 
 <screen>
 fec0:ffff:a300:2312:0:0:0:1

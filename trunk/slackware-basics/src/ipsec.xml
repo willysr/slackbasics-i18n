@@ -1,4 +1,4 @@
-<!-- $Id: ipsec.xml,v 1.2 2004/11/28 18:53:43 daniel Exp $ -->
+<!-- $Id: ipsec.xml,v 1.3 2004/12/18 21:17:16 daniel Exp $ -->
 
 <chapter id="ipsec"> <?dbhtml filename="ipsec.html"?>
 <title>IPsec</title>
@@ -7,15 +7,16 @@
 <title>Theory</title>
 
 <para>
-IPsec is a standard for securing IP communication through authentication,
-and encryption. Besides that it can compress packets, reducing traffic.
-The following protocols are part of the IPsec standard:
+<acronym>IPsec</acronym> is a standard for securing IP communication
+through authentication, and encryption. Besides that it can compress
+packets, reducing traffic.  The following protocols are part of the
+IPsec standard:
 </para>
 
 <itemizedlist>
 <listitem>
 <para>
-<emphasis>AH</emphasis> (Authentication Header) provides authenticity
+<acronym>AH</acronym> (Authentication Header) provides authenticity
 guarantee for transported packets. This is done by checksumming the
 packages using a cryptographic algorithm. If the checksum is found to
 be correct by the receiver, the receiver can be assured that the packet
@@ -26,21 +27,21 @@ receiver).
 </listitem>
 <listitem>
 <para>
-<emphasis>ESP</emphasis> (Encapsulating Security Payload) is used to
+<acronym>ESP</acronym> (Encapsulating Security Payload) is used to
 encrypt packets. This makes the data of the packet confident, and only
 readable by the host with the right decryption key.
 </para>
 </listitem>
 <listitem>
 <para>
-<emphasis>IPcomp</emphasis> (IP payload compression) provides compression 
+<acronym>IPcomp</acronym> (IP payload compression) provides compression 
 before a packet is encrypted. This is useful, because encrypted data
 generally compresses worse than unencrypted data.
 </para>
 </listitem>
 <listitem>
 <para>
-<emphasis>IKE</emphasis> (Internet Key Exchange) provides the means to
+<acronym>IKE</acronym> (Internet Key Exchange) provides the means to
 negotiate keys in secrecy. Please note that IKE is optional, keys can
 be configured manually.
 </para>

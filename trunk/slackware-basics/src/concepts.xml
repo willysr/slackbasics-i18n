@@ -1,4 +1,4 @@
-<!-- $Id: concepts.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<!-- $Id: concepts.xml,v 1.2 2004/12/18 21:17:16 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="concepts.html"?>
 <title>General concepts</title>
@@ -154,11 +154,12 @@ process is described in detail in <xref linkend="mounting"/>.
 <title>Common directories</title>
 
 <para>
-The Filesystem Hierarchy Standard Group has attempted to create a standard
-that describes which directories should be available on a GNU/Linux system.
-Nowadays most major distributions use the Filesystem Hierarchy Standard as a
-guideline. This section describes some mandatory directories on GNU/Linux
-systems.
+The Filesystem Hierarchy Standard Group has attempted to create a
+standard that describes which directories should be available on a
+GNU/Linux system.  Nowadays most major distributions use the
+Filesystem Hierarchy Standard (<acronym>FHS</acronym>) as a
+guideline. This section describes some mandatory directories on
+GNU/Linux systems.
 </para>
 
 <para>

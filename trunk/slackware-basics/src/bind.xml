@@ -1,4 +1,4 @@
-<!-- $Id: bind.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<!-- $Id: bind.xml,v 1.2 2004/12/18 21:17:16 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="bind.html"?>
 <title>BIND</title>
@@ -7,9 +7,10 @@
 <title>Introduction</title>
 
 <para>
-The domain name system (DNS) is used to convert human-friendly host names
-(for example www.slackware.com) to IP addresses. BIND is the most widely
-used DNS daemon, and will be covered in this chapter.
+The domain name system (<acronym>DNS</acronym>) is used to convert
+human-friendly host names (for example www.slackware.com) to IP
+addresses. <acronym>BIND</acronym> (Berkeley Internet Name Domain) is
+the most widely used DNS daemon, and will be covered in this chapter.
 </para>
 
 <sect2>

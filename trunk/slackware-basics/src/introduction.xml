@@ -1,4 +1,4 @@
-<!-- $Id: introduction.xml,v 1.2 2004/11/30 17:40:21 daniel Exp $ -->
+<!-- $Id: introduction.xml,v 1.3 2004/12/18 21:17:16 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="introduction.html"?>
 <title>An introduction to Slackware Linux</title>
@@ -30,24 +30,22 @@ section for a more detailed explanation of GNU/Linux.
 <para>
 At the beginning of the eighties Richard Stallman started an ambitious
 project with the goal to write a free Unix-like operating system. The
-name of this system is GNU (GNU is Not Unix). At the beginning of the
-nineties most important components of the GNU oparating system were
-written, except for the kernel, which is still under development under
-the name HURD. HURD consists of some servers which provide Unix-like
-kernel functionality. In turn these servers run under the Mach microkernel.
-At the beginning at the nineties the HURD team still had to wait till
-the Mach sources were released as free software. In the meanwhile Linus
-started filling the gap with the Linux kernel. GNU/Linux thus refers
-to the GNU system running on the Linux kernel. Right now the HURD
-kernel is also in a usable state and can be downloaded in the form
-of the GNU/HURD operating system. The
+name of this system is <acronym>GNU</acronym> (GNU is Not Unix). At
+the  beginning of the nineties most important components of the GNU
+oparating system were written, except for the kernel, which is still
+under development under the name HURD. HURD consists of some servers
+which provide Unix-like kernel functionality. In turn these servers
+run under the Mach microkernel.  At the beginning at the nineties the
+HURD team still had to wait till the Mach sources were released as
+free software. In the meanwhile Linus started filling the gap with the
+Linux kernel. GNU/Linux thus refers to the GNU system running on the
+Linux kernel. Right now the HURD kernel is also in a usable state and
+can be downloaded in the form of the GNU/HURD operating system. The
 <ulink url="http://www.debian.org/">Debian</ulink> project has even
 developed a version of the GNU operating system which works with the
 <ulink url="http://www.netbsd.org/">NetBSD</ulink> kernel. We should
-call "Linux distributions" "GNU/Linux distributions", because GNU
-is a substantial part of most distributions. 
-</para>
-</sect1>
+call "Linux distributions" "GNU/Linux distributions", because GNU is a
+substantial part of most distributions.  </para> </sect1>
 
 <sect1>
 <title>What is Slackware Linux?</title>
