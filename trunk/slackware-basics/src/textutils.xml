@@ -1,4 +1,4 @@
-<!-- $Id: textutils.xml,v 1.1 2004/12/01 13:56:28 daniel Exp $ -->
+<!-- $Id: textutils.xml,v 1.2 2004/12/01 15:37:59 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="textutils.html"?>
   <title>Text Utilities</title>
@@ -100,6 +100,136 @@ $ <command>wc -l essay.txt</command>
       <screen>
 $ <command> wc -l &lt; essay.txt</command>
 174
+      </screen>
+    </sect2>
+    
+    <sect2>
+      <title>tr</title>
+      
+      <para>
+        The <command>tr</command> is used to translate or delete
+	characters. All uses of <command>tr</command> require one or
+	two sets. A set is a string of characters. You can specify
+	most characters in a set. The <command>tr</command>(1)
+	manual page provides an overview of some character sequences
+	with a special meaning. <xref linkend="tr-special-sequences" /> 
+	describes some of the fequently used special character sequences.
+      </para>
+      
+      <table id="tr-special-sequences">
+        <title>Special tr character sequences</title>
+        <tgroup cols="2">
+	  <thead>
+	    <row>
+	      <entry>Sequence</entry><entry>Meaning</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>\\</entry>
+	      <entry>backslash (\)</entry>
+	    </row>
+	    <row>
+	      <entry>\n</entry>
+	      <entry>new line</entry>
+	    </row>
+	    <row>
+	      <entry>char1-char2</entry>
+	      <entry>
+	        All characters from <emphasis>char1</emphasis> to 
+		<emphasis>char2</emphasis> (e.g. <quote>a-z</quote>)
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>[:alnum:]</entry>
+	      <entry>All alphanumeric characters</entry>
+	    </row>
+	    <row>
+	      <entry>
+	        [:alpha:]
+	      </entry>
+	      <entry>
+	        All letters in the alphabet
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+	        [:punct:]
+	      </entry>
+	      <entry>
+	        Punctuation characters
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+      
+      <para>
+        Characters can be deleted from one text with the 
+	<parameter>-d</parameter>, and a set that specifies the characters
+	that should be deleted. Let's start with an easy example: suppose
+	that you want to remove all the new line characters from a text
+	stored in <filename>text</filename>, and that you would like to
+	redirect the output to a file named 
+	<filename>text-continuous</filename>. Obviously, we need a set
+	with only one character, namely the new line character, which
+	is specified with <quote>\n</quote>. This can be accomplished
+	with the following command:
+      </para>
+      
+      <screen>
+$ <command>cat text | tr -d "\n" > text-continuous</command>
+      </screen>
+      
+      <para>
+        It happens quite often that you want to delete everything, but
+	the characters that are specified in a set. You can do this by
+	using the <parameter>-c</parameter>, which automatically complements
+	the specified set. For example, if you'd like to remove every
+	character from a text, except for alphabetical characters, new
+	lines, and spaces, you can use the <parameter>-c</parameter>,
+	and the following set:
+	<emphasis><quote>[:alpha:]\n </quote></emphasis>. Combined
+	in a command it would look like this:
+      </para>
+      
+      <screen>
+$ <command>cat text | tr -c -d "[:alpha:]\n "</command>
+      </screen>
+      
+      <para>
+        Using <command>tr</command> for translating characters does not
+	require any extra parameters, but two sets. In the two sets
+	the first character of the first set is replaced with the first
+	character of the second set, etc. Suppose that we use these
+	two sets: <quote>abc</quote> and <quote>def</quote>. With these
+	sets the following translations occur: <quote>a -> d</quote>,
+	<quote>b -> e</quote>, and <quote>c -> f</quote>. If the first
+	set is longer than the second set, then the second set is
+	expanded by repeating the last character of the second set. If
+	the second set is longer than the first set, extra characters
+	in the second set are ignored.
+      </para>
+      
+      <para>
+        Translations can be useful for many purposes. For example, it
+	can be used to make a wordlist from a text. This can be done
+	by replacing all spaces with a newline:
+      </para>
+      
+      <screen>
+$ <command>cat essay.txt | tr " " "\n" | less</command>
+      </screen>
+      
+      <para>
+        As you can imagine the output might still contain non-alphabetic
+	characters. We can combine the command above with the delete
+	functionality of <command>tr</command> to make a wordlist without
+	unwanted characters:
+      </para>
+      
+      <screen>
+$ <command>cat essay.txt | tr " " "\n" | tr -c -d "[:alpha:]\n" > wordlist</command>
       </screen>
     </sect2>
   </sect1>
