@@ -1,9 +1,9 @@
-<!-- $Id: printing.xml,v 1.6 2005/03/04 15:58:12 daniel Exp $ -->
+<!-- $Id: printing.xml,v 1.7 2005/03/04 16:23:32 daniel Exp $ -->
 
-<chapter> <?dbhtml filename="printer.html"?>
+<chapter id="printing"> <?dbhtml filename="printer.html"?>
   <title>Printer configuration</title>
 
-  <sect1>
+  <sect1 id="printing-intro">
     <title>Introduction</title>
 
     <para>
@@ -41,7 +41,7 @@ ifhp
 
   </sect1>
 
-  <sect1>
+  <sect1 id="printing-preparations">
     <title>Preparations</title>
 
     <para>
@@ -68,7 +68,7 @@ ifhp
 
   </sect1>
 
-  <sect1>
+  <sect1 id="printing-configuration">
     <title>Configuration</title>
 
     <para>
@@ -125,6 +125,75 @@ ifhp
       can be used to check the printer configuration by printing a test
       page.
     </para>
+
+  </sect1>
+  
+  <sect1 id="printing-accesscontrol">
+    <title>Access control</title>
+    
+    <para>
+      The CUPS printing system provides a web configuration interface, and
+      remote printer access through the Internet Printing Protocol 
+      (<acronym>IPP</acronym>). The CUPS configuration files allow you
+      to configure fine-grained access control to printers. By default access 
+      to printers is limited to <emphasis>localhost</emphasis>
+      (<emphasis>127.0.0.1</emphasis>).
+    </para>
+    
+    <para>
+      You can refine access control in the central CUPS daemon configuration
+      file, <filename>/etc/cups/cupsd.conf</filename>, which has a syntax
+      that is comparable to the Apache configuration file. Access control
+      is configured through <emphasis>Location</emphasis> sections. For
+      example, the default global (IPP root directory) section looks like
+      this:
+    </para>
+    
+    <screen>
+&lt;Location /&gt;
+Order Deny,Allow
+Deny From All
+Allow From 127.0.0.1
+&lt;/Location&gt;
+    </screen>
+
+    <para>
+      As you can see deny statements are handled first, and then allow
+      statements. In the default configuration access is denied from
+      all hosts, except for <emphasis>127.0.0.1</emphasis>, 
+      <emphasis>localhost</emphasis>. Suppose that you would like to
+      allow hosts from the local network, which uses the 
+      <emphasis>192.168.1.0/24</emphasis> address space, to use the
+      printers on the system you are configuring CUPS on. In this
+      case you could add the line that is bold:
+    </para>
+
+    <screen>
+&lt;Location /&gt;
+Order Deny,Allow
+Deny From All
+Allow From 127.0.0.1
+<emphasis role="bold">Allow From 192.168.1.0/24</emphasis>
+&lt;/Location&gt;
+    </screen>
+
+    <para>
+      You can refine other locations in the address space by adding
+      additional location sections. Settings for sub-directories override
+      global settings. For example, you could restrict access to the
+      <emphasis>epson</emphasis> printer to the hosts with IP addresses
+      <emphasis>127.0.0.1</emphasis> and <emphasis>192.168.1.203</emphasis>
+      by adding the following section:
+    </para>
+
+    <screen>
+&lt;Location /printers/epson&gt;
+Order Deny,Allow
+Deny From All
+Allow From 127.0.0.1
+Allow From 192.168.1.203
+&lt;/Location&gt;
+    </screen>
 
   </sect1>
 
