@@ -1,4 +1,4 @@
-<!-- $Id: introduction.xml,v 1.8 2004/12/19 11:43:50 daniel Exp $ -->
+<!-- $Id: introduction.xml,v 1.9 2004/12/19 13:50:27 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="introduction.html"?>
   <title>An introduction to &Distribution;</title>
@@ -86,6 +86,67 @@
       modifications as possible. This means you can use most general
       &OS; documentation.
     </para>
+  </sect1>
+
+  <sect1>
+    <title>&Distribution; 10.0 features</title>
+
+    <para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <emphasis role="bold">&Kernel; 2.4.26</emphasis> -
+            &Distribution; uses the proven 2.4 Linux kernel as the
+            default kernel.  &Distribution; 10.0 provides &Kernel;
+            2.6.7 as an option. When a 2.6 kernel is booted,
+            &Distribution; will automatically use
+            <emphasis>udev</emphasis>, which is a daemon that
+            automatically generates <filename>/dev</filename> device
+            entries.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">X11R6.7.0</emphasis> - This is
+            the first &Distribution; to provide the X Window System
+            provided by the X.org Foundation. X11R6.7.0 is based on
+            XFree86 4.4.0RC2, and is expanded with additional hardware
+            support, enhancements, and bug fixes.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">GCC 3.3.4</emphasis> - Version 3.3.4
+            of the GNU Compiler Collection is provided. GCC provides
+            C, C++, Objective-C, Fortran-77, and Ada 95 compilers.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">The K Desktop Environment (KDE)
+            3.2.3</emphasis> - The full KDE environment is provided, 
+            which includes KOffice, the Konqueror web browser, 
+            multimedia programs, development tools, and many more 
+            useful applications.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">The GNU Network Object Model 
+            Environment (GNOME) 2.6.1</emphasis> - GNOME is a popular
+            GTK2 based desktop environment.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">Improved wireless support</emphasis> -
+            &Distribution; 10.0 features a new initialization script for
+            WLAN network cards. These cards can now be configured through
+            <filename>/etc/rc.d/rc.wireless</filename>.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para> 
   </sect1>
 
   <sect1>
