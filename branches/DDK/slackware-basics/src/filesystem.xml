@@ -1,0 +1,713 @@
+<!-- $Id: filesystem.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+
+<chapter> <?dbhtml filename="filesystem.html"?>
+<title>Files and directories</title>
+
+<sect1>
+<title>Introduction</title>
+
+<para>
+Unix-like operating systems use a hierarchical filesystem to store files and 
+directories. Directories can contain files and other directories, the top
+directory (<filename>/</filename>) is named the root directory (not to be 
+confused with the <filename>/root</filename> directory). Most filesystems
+also support file links (which provide alternative names for a file) and soft 
+links. Other filesystems can be <quote>connected</quote> to an arbitrary
+directory. This process is named <quote>mounting</quote>, and the directory
+in which the filesystem is mounted is named the <quote>mount point</quote>.
+</para>
+
+<para>
+This chapter covers the basic navigation of the filesystem, commands which
+are used to remove and create directories, filesystem permissions, links
+and mounting.
+</para>
+</sect1>
+
+<sect1>
+<title>The basics</title>
+
+<bridgehead>pwd</bridgehead>
+
+<para>
+<command>pwd</command>(1) is a simple utility which shows the directory
+you are currently working in. The <command>pwd</command> does not require
+any parameters. This is an example output of <command>pwd</command>:
+</para>
+
+<screen>
+$ <command>pwd</command>
+/home/danieldk
+</screen>
+
+<bridgehead>ls</bridgehead>
+
+<para>
+<command>ls</command> is similar to the <command>dir</command> command in
+DOS and Windows. <command>ls</command> can be used to display files and
+directories located in specific directories. Running the 
+<command>ls</command> command without any parameters shows the
+contents of the current directory: 
+</para>
+
+<screen>
+$ <command>ls</command>
+COPYING  CVS  Makefile  README  html  images  pdf  src  tex
+</screen>
+
+<para>
+Naturally it is also possible to show the contents of other directories.
+You can do this by specifying the path as a parameter tot the
+<command>ls</command> command:
+</para>
+
+<screen>
+$ <command>ls /</command>
+bin   cdrom   dev  floppy  initrd  lost+found  opt   root  sys  usr  windows
+boot  cdrom1  etc  home    lib     mnt         proc  sbin  tmp  var
+</screen>
+
+<para>
+A disadvantage of the default output is that it provides little information
+about files and directories. For example, it is not possible to see whether
+some entry is a file or directory, what size a file is, or who the owner
+of the file is. The <command>ls</command> has the "-l" parameter to show
+more information:
+</para>
+
+<screen>
+$ <command>ls -l</command>
+total 52
+-rw-r--r--    1 daniel   daniel      20398 Jul 16 14:28 COPYING
+drwxr-xr-x    2 daniel   daniel       4096 Jul 16 14:28 CVS
+-rw-r--r--    1 daniel   daniel        768 Jul 16 14:28 Makefile
+-rw-r--r--    1 daniel   daniel        408 Jul 16 14:28 README
+drwxr-xr-x    3 daniel   daniel       4096 Jul 16 14:28 html
+drwxr-xr-x    3 daniel   daniel       4096 Jul 16 14:28 images
+drwxr-xr-x    3 daniel   daniel       4096 Jul 16 14:28 pdf
+drwxr-xr-x    3 daniel   daniel       4096 Jul 20 00:11 src
+drwxr-xr-x    3 daniel   daniel       4096 Jul 16 14:28 tex
+</screen>
+
+<bridgehead>cd</bridgehead>
+
+<para>
+Another important command is the <command>cd</command> command.
+It can be used to change the current working directory:
+</para>
+
+<screen>
+$ <command>cd /home/danieldk/</command>
+</screen>
+
+<para>
+With the <command>pwd</command> command you can see it worked:
+</para>
+
+<screen>
+$ <command>pwd</command>
+/home/danieldk
+</screen>
+
+<bridgehead>mkdir</bridgehead>
+
+<para>
+As you might have guessed, the <command>mkdir</command>(1) command
+can be used to create directories. For example: 
+</para>
+
+<screen>
+$ <command>pwd</command>
+/home/danieldk
+$ <command>mkdir test</command>
+$ <command>cd test</command>
+$ <command>pwd</command>
+/home/danieldk/test
+</screen>
+
+<para>
+It might happen that you want to create a directory in a
+parent directory which does not exist yet. For example,
+if you want to create the <filename>test2/hello/</filename> directory,
+but the <filename>test2</filename> directory does not yet exist.
+In this case you can make both directories with only one 
+<command>mkdir</command> command:
+</para>
+
+<screen>
+$ <command>mkdir -p test2/hello</command>
+</screen>
+
+<bridgehead>cp</bridgehead>
+
+<para>
+Files can be copied with the <command>cp</command>(1) command, the basic syntax
+is <command>cp source destination</command>. For example, suppose that we have 
+a file named <filename>memo</filename> which we would like to copy to the 
+<filename>writings</filename> directory. You can do this with the following
+command:
+</para>
+
+<screen>
+$ <command>cp memo writings/</command>
+</screen>
+
+<para>
+It is also possible to copy a file in the same directory. For example, if
+we would like to make a new memo based on <filename>memo</filename>, named
+<filename>memo2</filename>, we could execute the following command:
+</para>
+
+<screen>
+$ <command>cp memo memo2</command>
+</screen>
+
+<para>
+It is also possible to copy directories recursively, this can be done by
+adding the <emphasis>-r</emphasis>. The following command copies the
+<filename>memos</filename> directory, and all subdirectories, and (sub)files 
+to the <filename>writings</filename> directory:
+</para>
+
+<screen>
+$ <command>cp -r memos writings/</command>
+</screen>
+
+<bridgehead>mv</bridgehead>
+
+<para>
+The <command>mv</command>(1) command is comparable to <command>cp</command>, 
+but it is used to move files. Suppose that we have the same situation as in
+the first <command>cp</command> example, but you would rather like to move
+<filename>memo</filename> to the <filename>writings</filename> directory.
+The following command would do that:
+</para>
+
+<screen>
+$ <command>mv memo writings/</command>
+</screen>
+
+<para>
+It is also possible to move directories. But, <command>mv</command> always
+works recursively. For example, the following command will move the
+<filename>memos</filename> directory to the <filename>writings</filename>
+directory:
+</para>
+
+<screen>
+$ <command>mv memos writings/</command>
+</screen>
+
+<bridgehead>rm</bridgehead>
+
+<para>
+The <command>rm</command>(1) command is used to remove files and directories.
+Let's look at a simple example:
+</para>
+
+<screen>
+$ <command>rm hello.c</command>
+</screen>
+
+<para>
+This commands removes the file <filename>hello.c</filename>. Sometimes
+the <command>rm</command> asks for a confirmation. You can ignore this
+with the '-f' parameter:
+</para>
+
+<screen>
+$ <command>rm -f *</command>
+</screen>
+
+<para>
+This command removes all files in the current directory without asking
+for confirmation. It is also possible to delete directories or even
+whole directory trees. <command>rm</command> provides the '-r'
+parameter to do this. Suppose we want to delete the
+<filename>ogle</filename> directory and all subdirectories and files
+in that directory, this can be done in the following way: 
+</para>
+
+<screen>
+$ <command>rm -r -f ogle/</command>
+</screen>
+
+<para>
+Many commands allow you to combine parameters. The following example
+is equivalent to the last one:
+</para>
+
+<screen>
+$ <command>rm -rf ogle/</command>
+</screen>
+
+</sect1>
+
+<sect1>
+<title>Permissions</title>
+
+<bridgehead>A short introduction</bridgehead>
+<para>
+Every file in GNU/Linux has permissions. As you might have noticed,
+file permissions can be shown with the <command>ls -l</command> command:
+</para>
+
+<screen>
+$ <command>ls -l logo.jpg</command>
+-rw-r--r--    1 danieldk users        9253 Dec 23 19:12 logo.jpg
+</screen>
+
+<para>
+The permissions are shown in the first column. Permissions that
+can be set are read(r), write(w) and execute(x). These permissions
+can we set for three classes: owner(u), group(g) and others(o).
+The permissions are visible in the second to ninth character
+in the first column. These nine characters are divided in three
+groups. The first three characters represent the permissions
+for the owner, the next three characters represent the permissions
+for the group, finally the last three characters represent the
+permissions for other users. Thus, the example file shown above
+can be written to by the owner and can be read by all three
+classes of users (owner, group and others). 
+</para>
+
+<para>
+Each GNU/Linux system has many distinct users (a list of users
+can be found in <filename>/etc/passwd</filename>), and a user
+can be a member of certain groups. This kind of user management
+provides makes it possible to manage detailed permissions for
+each file. In the example shown above <emphasis>danieldk</emphasis>
+is the owner of the file and group permissions apply to the
+group <emphasis>users</emphasis>. In this example groups rights
+do not differ from the rights of other users. 
+</para>
+
+<bridgehead>chown</bridgehead>
+
+<para>
+The <command>chown</command>(1) command is used to set the file
+owner and to which group group permissions should apply to.
+Suppose we want to make <emphasis>danieldk</emphasis> the owner
+of the file <filename>logo2.jpg</filename>, this can be done with
+the <command>chown</command>:
+</para>
+
+<screen>
+$ <command>chown danieldk logo2.jpg</command>
+</screen>
+
+<para>
+Using the <command>ls</command> we can see that the owner
+is now <emphasis>danieldk</emphasis>:
+</para>
+
+<screen>
+$ <command>ls -l logo2.jpg</command> 
+-rw-r--r--    1 root     root        9253 Dec 29 11:35 logo2.jpg
+$ <command>chown danieldk logo2.jpg</command>
+$ <command>ls -l logo2.jpg</command> 
+-rw-r--r--    1 danieldk root        9253 Dec 29 11:35 logo2.jpg
+</screen>
+
+<para>
+But group permissions still apply for the <emphasis>root</emphasis>
+group. This group can be changed by adding a dot after the owner,
+followed by the name of the group (in this example the group
+is nedslackers):
+</para>
+
+<screen>
+$ <command>chown danieldk.nedslackers logo2.jpg</command>
+$ <command>ls -l logo2.jpg</command>
+-rw-r--r--    1 danieldk nedslackers        9253 Dec 29 11:35 logo2.jpg
+</screen>
+
+<para>
+It is also possible to change ownership recursively, this can be
+done with the recursive (-R) parameter:
+</para>
+
+<screen>
+$ <command>chown -R danieldk.users oggs/</command>
+</screen>
+
+<bridgehead>chmod</bridgehead>
+
+<para>
+File permissions can be manipulated using the <command>chmod</command>(1)
+command. The most basic syntax of chmod is <command>chmod [u,g,o][+/-][r,w,x]
+filename</command>. The first parameter consists of the following elements:
+1. which classes this manipulation permission applies to, 2. if the permissions
+should be added (+) or removed (-), and 3. which permissions should be
+manipulated. Suppose we want to make the file <filename>memo</filename>
+writable for the owner of the file and the groups for which the group
+permissions apply. This can be done with the following command:
+</para>
+
+<screen>
+$ <command>chmod ug+w memo</command>
+</screen>
+
+<para>
+As you can see below the <filename>memo</filename> is now writable
+for the file owner and group:
+</para>
+
+<screen>
+$ <command>ls -l notes</command> 
+-r--r--r--    1 daniel   users          12 Mar  9 16:28 memo 
+bash-2.05b$ <command>chmod ug+w memo</command>
+bash-2.05b$ <command>ls -l notes</command> 
+-rw-rw-r--    1 daniel   users          12 Mar  9 16:28 momo 
+</screen>
+
+<para>
+Just like the <command>chown</command> command it is also possible
+to do recursive (-R) operations. In the following example the
+<filename>secret/</filename>, including subdirectories and files in this
+directory, is made unreadable for the group set for
+this directory and other users:
+</para>
+
+<screen>
+$ <command>chmod -R go-r secret/</command>
+</screen>
+</sect1>
+
+<sect1><title>Extended attributes</title>
+
+<sect2>
+<title>Introduction</title>
+
+<para>
+Extended attributes (EAs) are relatively new on GNU/Linux.  Extended
+attributes are a special kind of values that are associated with a
+file or directory. EAs provide the means to add extra attributes
+besides the common attributes (modification time, traditional file
+permissions, etc.). For example, one could add the attribute
+"Photographer" to a collection of JPEG files. Extended attributes 
+are not physically stored in the file, but as meta-data in the filesystem.
+</para>
+
+<para>
+Extended attributes are only supported by 2.6.x and newer 2.4.x kernels. 
+Besides that they are not supported on all filesystems, the commonly used
+Ext2, Ext3 and XFS filesystems do support extended attributes.
+</para>
+</sect2>
+
+<sect2>
+<title>Installing the necessary utilities</title>
+
+<para>
+The extended attribute software is available in Slackware through
+the <emphasis>xfsprogs</emphasis> package, which can be found in
+the <quote>a</quote> diskset. Don't be misled by the name of the
+package, the extended attribute tools also work with other filesystems,
+like Ext3. 
+</para>
+</sect2>
+
+<sect2>
+<title>Showing extended attributes</title>
+
+<para>
+Extended attributes can be queried using the <command>getfattr</command>
+command. Just using getfattr with a file as a parameter will show the 
+attributes that are known for that particular file, without the values 
+set for the attributes. For example:
+</para>
+
+<screen>
+$ <command>getfattr note.txt</command> 
+# file: note.txt
+user.Author
+</screen>
+
+<para>
+This file has one extended attribute, <quote>user.Author</quote>. An attribute 
+has the following form: <quote>namespace.attribute</quote>. There are four 
+defined namespaces: <quote>security</quote>, <quote>system</quote>, 
+<quote>trusted</quote>, and <quote>user</quote>. The role of these namespaces 
+are described in the attr(5) manual page. The "user" namespace is of 
+particular interest to us, because this namespace is used to assign arbitrary 
+attributes to files.
+</para>
+
+<para>
+The values associated with an attribute can be shown using the 
+<quote>-d</quote> (dump) parameter. For example:
+</para>
+
+<screen>
+$ <command>getfattr -d note.txt</command> 
+# file: note.txt
+user.Author="Daniel"
+</screen>
+
+<para>
+In this example the attribute <quote>user.Author</quote> has the value 
+<quote>Daniel</quote> for the file <filename>note.txt</filename>.
+</para>
+</sect2>
+
+<sect2>
+<title>Setting extended attributes</title>
+
+<para>
+Attributes are set with the <command>setfattr</command> command. An attribute 
+can be added to a file using the <quote>-n</quote> (name) parameter, be sure 
+to specify the namespace and the attribute name, for example:
+</para>
+
+<screen>
+$ <command>setfattr -n user.Author note2.txt</command>
+</screen>
+
+<para>
+The value of the attribute can be set using the <quote>-v</quote> (value) 
+parameter:
+</para>
+
+<screen>
+$ <command>setfattr -n user.Author -v Mike note2.txt</command>
+</screen>
+
+<para>
+But it is also possible to add an attribute and setting its value in one run, 
+by specifying both the <quote>-n</quote> and <quote>-v</quote> parameters. For 
+example, the following command adds the MD5 sum of the file as an extended 
+attribute:
+</para>
+
+<screen>
+$ <command>setfattr -n user.MD5 -v `md5sum note2.txt` note2.txt</command>
+$ <command>getfattr -d note2.txt</command>
+# file: note2.txt
+user.Author="Mike"
+user.MD5="78be7a3148027ae7a897aad95e7d9c58"
+</screen>
+</sect2>
+
+</sect1>
+
+<sect1 id="mounting"><title>Mounting filesystems</title>
+
+<sect2>
+<title>Introduction</title>
+
+<para>
+Like most Unices Linux uses a technique named <quote>mounting</quote> to
+access filesystems. Mounting means that a filesystem is connected to a
+directory in the root filesystem. One could for example mount a CD-ROM
+drive to the <filename>/mnt/cdrom</filename> directory. Linux supports
+many kinds of filesystems, like Ext2, Ext3, ReiserFS, JFS, XFS, ISO9660
+(used for CD-ROMs), UDF (used on some DVDs) and DOS/Windows filesystems,
+like FAT, FAT32 and NTFS. These filesystems can reside on many kinds of
+media, for example hard drives, CD-ROMs and Flash drives. This section
+explains how filesystems can be mounted and unmounted.
+</para>
+</sect2>
+
+<sect2>
+<title>mount</title>
+
+<para>
+The <command>mount</command>(8) is used to mount filesystems. The basic
+syntax is: <quote>mount /dev/devname /mountpoint</quote>. The device name
+can be any block device, like hard disks or CD-ROM drives. The mount point
+can be an arbitrary point in the root filesystem. Let's look at an example:
+</para>
+
+<screen>
+# <command>mount /dev/cdrom /mnt/cdrom</command>
+</screen>
+
+<para>
+This mounts the <filename>/dev/cdrom</filename> on the 
+<filename>/mnt/cdrom</filename> mountpoint. The <filename>/dev/cdrom</filename>
+device name is normally a link to the real CD-ROM device name (for example,
+<filename>/dev/hdc</filename>). As you can see, the concept is actually
+very simple, it just takes some time to learn the device names ;). Sometimes
+it is necessary to specify which kind of filesystem you are trying to mount. 
+The filesystem type can be specified by adding the <quote>-t</quote> parameter:
+</para>
+
+<screen>
+# <command>mount -t vfat /dev/sda1 /mnt/flash</command>
+</screen>
+
+<para>
+This mounts the vfat filesystem on <filename>/dev/sda1</filename> to
+<filename>/mnt/flash</filename>.
+</para>
+</sect2>
+
+<sect2>
+<title>umount</title>
+
+<para>
+The <command>umount</command>(1) command is used to unmount filesystems.
+<command>umount</command> accepts two kinds of parameters, mount points
+or devices. For example:
+</para>
+
+<screen>
+# <command>umount /mnt/cdrom</command>
+# <command>umount /dev/sda1</command>
+</screen>
+
+<para>
+The first command unmounts the filesystem that was mounted on
+<filename>/mnt/cdrom</filename>, the second commands unmounts the
+filesystem on <filename>/dev/sda1</filename>.
+</para>
+</sect2>
+
+<sect2>
+<title>The fstab file</title>
+
+<para>
+The GNU/Linux system has a special file, <filename>/etc/fstab</filename>,
+that specifies which filesystems should be mounted during the system boot.
+Let's look at an example:
+</para>
+
+<screen>
+/dev/hda10       swap             swap        defaults         0   0
+/dev/hda5        /                xfs         defaults         1   1
+/dev/hda6        /var             xfs         defaults         1   2
+/dev/hda7        /tmp             xfs         defaults         1   2
+/dev/hda8        /home            xfs         defaults         1   2
+/dev/hda9        /usr             xfs         defaults         1   2
+/dev/cdrom       /mnt/cdrom       iso9660     noauto,owner,ro  0   0
+/dev/fd0         /mnt/floppy      auto        noauto,owner     0   0
+devpts           /dev/pts         devpts      gid=5,mode=620   0   0
+proc             /proc            proc        defaults         0   0
+</screen>
+
+<para>
+As you can see each entry in the <filename>fstab</filename> file has five
+entries: fs_spec, fs_file, fs_vfstype, fs_mntops, fs_freq, and fs_passno.
+We are now going to look at each entry. 
+</para>
+
+<sect3>
+<title>fs_spec</title>
+
+<para>
+The fs_spec option specifies the block device, or remote filesystem that
+should be mounted. As you can see in the example several /dev/hda partitions
+are specified, as well as the CD-ROM drive and floppy drive. When NFS
+volumes are mounted an IP address and directory can be specified, for
+example: <filename>192.168.1.10:/exports/data</filename>.
+</para>
+</sect3>
+
+<sect3>
+<title>fs_file</title>
+
+<para>
+fs_file specifies the mount point. This can be an arbitrary directory in
+the filesystem.
+</para>
+</sect3>
+
+<sect3>
+<title>fs_vfstype</title>
+
+<para>
+This option specifies what kind of filesystem the entry represents. For
+example this can be: ext2, ext3, reiserfs, xfs, nfs, vfat, or ntfs.
+</para>
+</sect3>
+
+<sect3>
+<title>fs_mntops</title>
+
+<para>
+The fs_mntops option specifies which parameters should be used for mounting
+the filesystem. The <command>mount</command>(8) manual page has an extensive
+description of the available options. These are the most interesting
+options:
+</para>
+
+<itemizedlist>
+<listitem>
+<para>
+<emphasis>noauto</emphasis>: filesystems that are listed in
+<filename>/etc/fstab</filename> are normally mounted automatically. When
+the <quote>noauto</quote> option is specified, the filesystem will not
+be mounted during the system boot, but only after issuing a 
+<command>mount</command> command. When mounting such filesystem, only
+the mount point or device name has to be specified, for example:
+<command>mount /mnt/cdrom</command>
+</para>
+</listitem>
+<listitem>
+<para>
+<emphasis>user</emphasis>: adding the <quote>user</quote> option will
+allow normal users to mount the filesystem (normally only the superuser
+is allowed to mount filesystems).
+</para>
+</listitem>
+<listitem>
+<para>
+<emphasis>owner</emphasis>: the <quote>owner</quote> option will allow
+the owner of the specified device to mount the specified device. You can
+see the owner of a device using <command>ls</command>, e.g. 
+<command>ls -l /dev/cdrom</command>.
+</para>
+</listitem>
+<listitem>
+<para>
+<emphasis>noexec</emphasis>: with this option enabled users can not
+run files from the mounted filesystem. This can be used to provide
+more security.
+</para>
+</listitem>
+<listitem>
+<para>
+<emphasis>nosuid</emphasis>: this option is comparable to the 
+<quote>noexec</quote> option. With <quote>nosuid</quote> enabled SUID
+bits on files on the filesystem will not be allowed. SUID is used
+for certain binaries to provide a normal user to do something privileged.
+This is certainly a security threat, so this option should really be
+used for removable media, etc. A normal user mount will force the
+nosuid option, but a mount by the superuser will not!
+</para>
+</listitem>
+<listitem>
+<para>
+<emphasis>unhide</emphasis>: this option is only relevant for normal
+CD-ROMs with the ISO9660 filesystem. If <quote>unhide</quote> is specified
+hidden files will also be visible.
+</para>
+</listitem>
+</itemizedlist>
+
+</sect3>
+
+<sect3>
+<title>fs_freq</title>
+
+<para>
+If the <quote>fs_freq</quote> is set to 1 or higher, it specifies after
+how many days a filesystem dump (backup) has to be made. This option is
+only used when <command>dump</command>(8) is set up correctly to handle this.
+</para>
+</sect3>
+
+<sect3>
+<title>fs_passno</title>
+
+<para>
+This field us used by <command>fsck</command>(8) to determine the order
+in which filesystems are checked during the system boot.
+</para>
+</sect3>
+</sect2>
+
+</sect1>
+
+</chapter>
