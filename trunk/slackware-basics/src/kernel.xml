@@ -1,4 +1,4 @@
-<!-- $Id: kernel.xml,v 1.2 2004/12/20 11:27:34 daniel Exp $ -->
+<!-- $Id: kernel.xml,v 1.3 2004/12/20 11:29:48 daniel Exp $ -->
 
 <chapter id="kernel"> <?dbhtml filename="kernel.html"?>
   <title>Building a kernel</title>
@@ -139,7 +139,7 @@
       a configuration front-end by going to the kernel source directory,
       and executing <command>make &lt;front-end&gt;</command>. For
       example, to configure the kernel with the menu front-end you
-      could use the following commands:
+      can use the following commands:
     </para>
     
     <screen>
@@ -218,7 +218,7 @@
       
       <para>
         This will install the modules in 
-	<filename>/lib/modules/&gt;kernelversion&lt;</filename>. If
+	<filename>/lib/modules/&lt;kernelversion&gt;</filename>. If
 	you are replacing a kernel with the same version number, it is
 	a good idea to remove the old modules before installing the
 	new ones. E.g.:
