@@ -1,28 +1,28 @@
-<!-- $Id: printing.xml,v 1.5 2004/12/19 10:34:04 daniel Exp $ -->
+<!-- $Id: printing.xml,v 1.6 2005/03/04 15:58:12 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="printer.html"?>
-<title>Printer configuration</title>
+  <title>Printer configuration</title>
 
-<sect1>
-<title>Introduction</title>
+  <sect1>
+    <title>Introduction</title>
 
-<para>
-&OS; supports a large share of the available USB, parallel and
-network printers. &Distribution; provides two printing systems,
-<acronym>CUPS</acronym> (Common UNIX Printing System) and
-<acronym>LPRNG</acronym> (LPR Next Generation). This chapter covers
-the CUPS system.
-</para>
+    <para>
+      &OS; supports a large share of the available USB, parallel and
+      network printers. &Distribution; provides two printing systems,
+      <acronym>CUPS</acronym> (Common UNIX Printing System) and
+      <acronym>LPRNG</acronym> (LPR Next Generation). This chapter covers
+      the CUPS system.
+    </para>
 
-<para>
-Independent of which printing system you are going to use, it is
-a good idea to install some printer filter collections. These can
-be found in the <quote>ap</quote> disk set. If you want to have
-support for most printers, make sure the following packages are
-installed:
-</para>
+    <para>
+      Independent of which printing system you are going to use, it is
+      a good idea to install some printer filter collections. These can
+      be found in the <quote>ap</quote> disk set. If you want to have
+      support for most printers, make sure the following packages are
+      installed:
+    </para>
 
-<screen>
+    <screen>
 a2ps
 enscript
 espgs
@@ -30,100 +30,102 @@ gimp-print
 gnu-gs-fonts
 hpijs
 ifhp
-</screen>
+    </screen>
 
-<para>
-Both printing systems have their own advantages and disadvantages. If
-you do not have much experience with configuring printers under &OS;,
-it is a good idea to use CUPS, because CUPS provides a comfortable web
-interface which can be accessed through a web browser.
-</para> 
+    <para>
+      Both printing systems have their own advantages and disadvantages. If
+      you do not have much experience with configuring printers under &OS;,
+      it is a good idea to use CUPS, because CUPS provides a comfortable web
+      interface which can be accessed through a web browser.
+    </para> 
 
-</sect1>
+  </sect1>
 
-<sect1>
-<title>Preparations</title>
+  <sect1>
+    <title>Preparations</title>
 
-<para>
-To be able to use CUPS the <quote>cups</quote> package from the
-<quote>a</quote> disk set has to be installed. After the installation
-CUPS can be started automatically during each system boot by making
-<filename>/etc/rc.d/rc.cups</filename> executable. This can be
-done with the following command:
-</para>
+    <para>
+      To be able to use CUPS the <quote>cups</quote> package from the
+      <quote>a</quote> disk set has to be installed. After the installation
+      CUPS can be started automatically during each system boot by making
+      <filename>/etc/rc.d/rc.cups</filename> executable. This can be
+      done with the following command:
+    </para>
 
-<screen>
+    <screen>
 # <command>chmod a+x /etc/rc.d/rc.cups</command>
-</screen>
+    </screen>
 
-<para>
-After restarting the system CUPS will also be restarted automatically. You
-can start CUPS on a running system by executing the following command:
-</para>
+    <para>
+      After restarting the system CUPS will also be restarted automatically. 
+      You can start CUPS on a running system by executing the following 
+      command:
+    </para>
 
-<screen>
+    <screen>
 # <command>/etc/rc.d/rc.cups start</command>
-</screen> 
+    </screen> 
 
-</sect1>
+  </sect1>
 
-<sect1>
-<title>Configuration</title>
+  <sect1>
+    <title>Configuration</title>
 
-<para>
-CUPS can be configured via a web interface. The configuration interface
-can be accessed with a web browser at the following URL:
-<ulink url="http://localhost:631/">http://localhost:631/</ulink>.
-Some parts of the web interface require that you authenticate yourself.
-If an authentication window pops up you can enter <quote>root</quote>
-as the user name, and fill in the root account password.
-</para>
+    <para>
+      CUPS can be configured via a web interface. The configuration interface
+      can be accessed with a web browser at the following URL:
+      <ulink url="http://localhost:631/">http://localhost:631/</ulink>.
+      Some parts of the web interface require that you authenticate yourself.
+      If an authentication window pops up you can enter <quote>root</quote>
+      as the user name, and fill in the root account password.
+    </para>
 
-<para>
-A printer can be added to the CUPS configuration by clicking on
-<quote>Administrate</quote>, and clicking on the <quote>Add Printer</quote>
-button after that. The web interface will ask for three options:
-</para>
+    <para>
+      A printer can be added to the CUPS configuration by clicking on
+      <quote>Administrate</quote>, and clicking on the <quote>Add
+      Printer</quote> button after that. The web interface will ask for 
+      three options:
+    </para>
 
-<itemizedlist>
-<listitem>
-<para>
-<emphasis>Name</emphasis> - the name of the printer. Use a simple
-name, for example <quote>epson</quote>.
-</para>
-</listitem>
-<listitem>
-<para>
-<emphasis>Location</emphasis> - the physical location of the printer.
-This setting is not crucial, but handy for larger organizations.
-</para>
-</listitem>
-<listitem>
-<para>
-<emphasis>Description</emphasis> - a description of the printer,
-for example <quote>Epson Stylus Color C42UX</quote>.
-</para>
-</listitem>
-</itemizedlist> 
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis>Name</emphasis> - the name of the printer. Use a simple
+          name, for example <quote>epson</quote>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis>Location</emphasis> - the physical location of the printer.
+          This setting is not crucial, but handy for larger organizations.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis>Description</emphasis> - a description of the printer,
+          for example <quote>Epson Stylus Color C42UX</quote>.
+        </para>
+      </listitem>
+    </itemizedlist> 
 
-<para>
-You can proceed by clicking the <quote>Continue</quote> button. On
-the next page you can configure how the printer is connected. If you
-have an USB printer which is turned on, the web interface will show
-the name of the printer next to the USB port that is used. After
-configuring the printer port you can select the printer brand and
-model. After that the printer configuration is finished, and the
-printer will be added to the CUPS configuration.
-</para>
+    <para>
+      You can proceed by clicking the <quote>Continue</quote> button. On
+      the next page you can configure how the printer is connected. If you
+      have an USB printer which is turned on, the web interface will show
+      the name of the printer next to the USB port that is used. After
+      configuring the printer port you can select the printer brand and
+      model. After that the printer configuration is finished, and the
+      printer will be added to the CUPS configuration.
+    </para>
 
-<para>
-An overview of the configured printers can be found on the
-<quote>Printers</quote> page. On this page you can also do some
-printer operations. For example, <quote>Print Test Page</quote>
-can be used to check the printer configuration by printing a test
-page.
-</para>
+    <para>
+      An overview of the configured printers can be found on the
+      <quote>Printers</quote> page. On this page you can also do some
+      printer operations. For example, <quote>Print Test Page</quote>
+      can be used to check the printer configuration by printing a test
+      page.
+    </para>
 
-</sect1>
+  </sect1>
 
 </chapter>
