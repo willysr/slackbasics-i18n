@@ -1,4 +1,4 @@
-<!-- $Id: filesystem.xml,v 1.8 2004/12/19 11:00:01 daniel Exp $ -->
+<!-- $Id: filesystem.xml,v 1.9 2005/02/20 08:37:10 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="filesystem.html"?>
 <title>Files and directories</title>
@@ -313,13 +313,13 @@ $ <command>ls -l logo2.jpg</command>
 
 <para>
 But group permissions still apply for the <emphasis>root</emphasis>
-group. This group can be changed by adding a dot after the owner,
+group. This group can be changed by adding a colon after the owner,
 followed by the name of the group (in this example the group
 is nedslackers):
 </para>
 
 <screen>
-$ <command>chown danieldk.nedslackers logo2.jpg</command>
+$ <command>chown danieldk:nedslackers logo2.jpg</command>
 $ <command>ls -l logo2.jpg</command>
 -rw-r--r--    1 danieldk nedslackers        9253 Dec 29 11:35 logo2.jpg
 </screen>
@@ -331,7 +331,7 @@ parameter:
 </para>
 
 <screen>
-$ <command>chown -R danieldk.users oggs/</command>
+$ <command>chown -R danieldk:users oggs/</command>
 </screen>
 
 <bridgehead>chmod</bridgehead>
