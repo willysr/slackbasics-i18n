@@ -1,142 +1,156 @@
-<!-- $Id: ipsec.xml,v 1.5 2004/12/19 10:19:33 daniel Exp $ -->
+<!-- $Id: ipsec.xml,v 1.6 2005/01/23 11:04:54 daniel Exp $ -->
 
 <chapter id="ipsec"> <?dbhtml filename="ipsec.html"?>
-<title>IPsec</title>
+  <title>IPsec</title>
 
-<sect1>
-<title>Theory</title>
+  <sect1>
+    <title>Theory</title>
 
-<para>
-<acronym>IPsec</acronym> is a standard for securing IP communication
-through authentication, and encryption. Besides that it can compress
-packets, reducing traffic.  The following protocols are part of the
-IPsec standard:
-</para>
+    <para>
+      <acronym>IPsec</acronym> is a standard for securing IP communication
+      through authentication, and encryption. Besides that it can compress
+      packets, reducing traffic.  The following protocols are part of the
+      IPsec standard:
+    </para>
 
-<itemizedlist>
-<listitem>
-<para>
-<acronym>AH</acronym> (Authentication Header) provides authenticity
-guarantee for transported packets. This is done by checksumming the
-packages using a cryptographic algorithm. If the checksum is found to
-be correct by the receiver, the receiver can be assured that the packet
-is not modified, and that the packet really originated from the
-reported sender (provided that the keys are only known by the sender and
-receiver). 
-</para>
-</listitem>
-<listitem>
-<para>
-<acronym>ESP</acronym> (Encapsulating Security Payload) is used to
-encrypt packets. This makes the data of the packet confident, and only
-readable by the host with the right decryption key.
-</para>
-</listitem>
-<listitem>
-<para>
-<acronym>IPcomp</acronym> (IP payload compression) provides compression 
-before a packet is encrypted. This is useful, because encrypted data
-generally compresses worse than unencrypted data.
-</para>
-</listitem>
-<listitem>
-<para>
-<acronym>IKE</acronym> (Internet Key Exchange) provides the means to
-negotiate keys in secrecy. Please note that IKE is optional, keys can
-be configured manually.
-</para>
-</listitem>
-</itemizedlist>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <acronym>AH</acronym> (Authentication Header) provides authenticity
+          guarantee for transported packets. This is done by checksumming the
+          packages using a cryptographic algorithm. If the checksum is found to
+          be correct by the receiver, the receiver can be assured that the 
+	  packet is not modified, and that the packet really originated from 
+	  the reported sender (provided that the keys are only known by the 
+	  sender and receiver). 
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <acronym>ESP</acronym> (Encapsulating Security Payload) is used to
+          encrypt packets. This makes the data of the packet confident, and
+	  only readable by the host with the right decryption key.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <acronym>IPcomp</acronym> (IP payload compression) provides
+	  compression before a packet is encrypted. This is useful, because
+	  encrypted data generally compresses worse than unencrypted data.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <acronym>IKE</acronym> (Internet Key Exchange) provides the means to
+          negotiate keys in secrecy. Please note that IKE is optional, keys can
+          be configured manually.
+        </para>
+      </listitem>
+    </itemizedlist>
 
-<para>
-There are actually two modes of operation: <emphasis>transport mode</emphasis> 
-is used to encrypt normal connections between two hosts, <emphasis>tunnel
-mode</emphasis> encapsulates the original package in a new header. In this
-chapter we are going to look at the transport mode, because the primary
-goal of this chapter is to show how to set up a secure connection between
-two hosts.
-</para>
-</sect1>
+    <para>
+      There are actually two modes of operation: <emphasis>transport
+      mode</emphasis> is used to encrypt normal connections between two 
+      hosts, <emphasis>tunnel mode</emphasis> encapsulates the original
+      package in a new header. In this chapter we are going to look at the 
+      transport mode, because the primary goal of this chapter is to show 
+      how to set up a secure connection between two hosts.
+    </para>
 
-<sect1>
-<title>Kernel configuration</title>
+    <para>
+      There are also two major methods of authentication. You can use manual
+      keys, or an Internet Key Exchange (IKE) daemon, like racoon, that 
+      automatically exchanges keys securely betwoon two hosts. In both cases
+      you need to set up a policy in the Security Policy Database (SPD). This
+      database is used by the kernel to decide what kind of security policy
+      is needed to communicate with another host. If you use manual keying you
+      also have to set up Security Association Database (SAD) entries, which
+      specifies what encryption algorithmn and key should be used for secure
+      communication with another host. If you use an IKE daemon the security
+      associations are automatically established.
+    </para>
+  </sect1>
 
-<para>
-This chapter only applies to &Kernel; 2.6.x kernels. Earlier kernels have
-no native IPsec support. So, make sure that you
-have a 2.6.x kernel. Configure the kernel as you would do normally, and
-make sure the following options are enabled:
-</para>
+  <sect1>
+    <title>Kernel configuration</title>
 
-<screen>
+    <para>
+      This chapter only applies to &Kernel; 2.6.x kernels. Earlier kernels have
+      no native IPsec support. So, make sure that you have a 2.6.x kernel. 
+      Configure the kernel as you would do normally, and make sure the following
+      options are enabled:
+    </para>
+
+    <screen>
 Device Drivers -> Networking support -> Networking options:
 
 &lt;*&gt; PF_Key sockets
 &lt;*&gt; IP: AH transformation
 &lt;*&gt; IP: ESP transformation
 &lt;*&gt; IP: IPComp transformation
-</screen>
+    </screen>
 
-<para>
-In this article we are only going to use AH and ESP transformations, but
-it is not a bad idea to enable IPComp transformation for further configuration
-of IPsec.
-</para>
+    <para>
+      In this article we are only going to use AH and ESP transformations, but
+      it is not a bad idea to enable IPComp transformation for further 
+      configuration of IPsec.
+    </para>
 
-<para>
-Compile the kernel as usual and boot it.
-</para>
-</sect1>
+    <para>
+      Compile the kernel as usual and boot it.
+    </para>
+  </sect1>
 
-<sect1>
-<title>Installing IPsec-Tools</title>
+  <sect1>
+    <title>Installing IPsec-Tools</title>
 
-<para>
-The next step is to install the IPsec-Tools. These tools are ports of
-the <ulink url="http://www.kame.net">KAME</ulink> IPsec utilities.
-Download the latest sources and unpack, configure and install them:
-</para>
+    <para>
+      The next step is to install the IPsec-Tools. These tools are ports of
+      the <ulink url="http://www.kame.net">KAME</ulink> IPsec utilities.
+      Download the latest sources and unpack, configure and install them:
+    </para>
 
-<screen>
+    <screen>
 # <command>tar zxf ipsec-tools-x.y.z.tar.gz</command>
 # <command>cd ipsec-tools-x.y.z</command>
 # <command>./configure --prefix=/usr --sysconfdir=/etc</command>
 # <command>make</command>
 # <command>make install</command>
-</screen>
+    </screen>
 
-<para>
-Replace x.y.z with the version of the downloaded sources, for
-example 0.2.3.
-</para> 
-</sect1>
+    <para>
+      Replace x.y.z with the version of the downloaded sources, for
+      example 0.2.3.
+    </para> 
+  </sect1>
 
-<sect1>
-<title>The configuration of ipsec</title>
+  <sect1>
+    <title>The configuration of ipsec</title>
 
-<sect2>
-<title>Introduction</title>
+    <sect2>
+      <title>Introduction</title>
 
-<para>
-We will use an example as the guideline for setting up an encrypted
-connection between to hosts. The hosts have the IP addresses 
-<emphasis>&host1ip;</emphasis> and <emphasis>&host2ip;</emphasis>.
-The <quote>transport mode</quote> of operation will be used with
-AH and ESP transformations and manual keys.
-</para>
-</sect2>
+      <para>
+        We will use an example as the guideline for setting up an encrypted
+        connection between to hosts. The hosts have the IP addresses 
+        <emphasis>&host1ip;</emphasis> and <emphasis>&host2ip;</emphasis>.
+        The <quote>transport mode</quote> of operation will be used with
+        AH and ESP transformations and manual keys.
+      </para>
+      
+    </sect2>
 
-<sect2>
-<title>Writing the configuration file</title>
+    <sect2>
+      <title>Writing the configuration file</title>
 
-<para>
-The first step is to write a configuration file we will name
-<filename>/etc/ipsec.conf</filename>. On the first host
-(&host1ip;) the following <filename>/etc/ipsec.conf</filename>
-configuration will be used:
-</para>
+      <para>
+        The first step is to write a configuration file we will name
+        <filename>/etc/ipsec.conf</filename>. On the first host
+        (&host1ip;) the following <filename>/etc/ipsec.conf</filename>
+        configuration will be used:
+      </para>
 
-<screen>
+      <screen>
 #!/usr/sbin/setkey -f
 
 # Flush the SAD and SPD
@@ -160,62 +174,62 @@ spdadd 192.168.1.1 192.168.1.169 any -P out ipsec
 spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
            esp/transport//require
            ah/transport//require;
-</screen>
+      </screen>
 
-<para>
-The first line (a line ends with a <quote>;</quote>) adds a key
-for the header checksumming for packets coming from &host1ip; 
-going to &host2ip;. The second line does the same for packets
-coming from &host2ip; to &host1ip;. The third and the fourth line
-define the keys for the data encryption the same way as the
-first two lines. Finally the <quote>spadd</quote> lines define
-two policies, namely packets going out from &host1ip; to &host2ip;
-should be (require) encoded (esp) and <quote>signed</quote> with
-the authorization header. The second policy is for incoming packets
-and it is the same as outgoing packages.
-</para>
+      <para>
+        The first line (a line ends with a <quote>;</quote>) adds a key
+        for the header checksumming for packets coming from &host1ip; 
+        going to &host2ip;. The second line does the same for packets
+        coming from &host2ip; to &host1ip;. The third and the fourth line
+        define the keys for the data encryption the same way as the
+        first two lines. Finally the <quote>spadd</quote> lines define
+        two policies, namely packets going out from &host1ip; to &host2ip;
+        should be (require) encoded (esp) and <quote>signed</quote> with
+        the authorization header. The second policy is for incoming packets
+        and it is the same as outgoing packages.
+      </para>
 
-<para>
-Please be aware that you should not use these keys, but your own
-secretly kept unique keys. You can generate keys using the
-<filename>/etc/random</filename> device:
-</para>
+      <para>
+        Please be aware that you should not use these keys, but your own
+        secretly kept unique keys. You can generate keys using the
+        <filename>/dev/random</filename> device:
+      </para>
 
-<screen>
+      <screen>
 # <command>dd if=/dev/random count=16 bs=1 | xxd -ps</command>
-</screen>
+      </screen>
 
-<para>
-This command uses dd to output 16 bytes from <filename>/dev/random</filename>.
-Don't forget to add <quote>0x</quote> at the beginning of the line in the
-configuration files. You can use the 16 byte (128 bits) for the hmac-md5
-algorithm that is used for AH. The 3des-cbc algorithm that is used for
-ESP in the example should be fed with a 24 byte (192 bits) key. These keys
-can be generated with:
-</para>
+      <para>
+        This command uses dd to output 16 bytes from 
+        <filename>/dev/random</filename>. Don't forget to add <quote>0x</quote>
+        at the beginning of the line in the configuration files. You can use 
+        the 16 byte (128 bits) for the hmac-md5 algorithm that is used for AH.
+        The 3des-cbc algorithm that is used for ESP in the example should be fed 
+        with a 24 byte (192 bits) key. These keys can be generated with:
+      </para>
 
-<screen>
+      <screen>
 # <command>dd if=/dev/random count=24 bs=1 | xxd -ps</command>
-</screen>  
+      </screen>  
 
-<para>
-Make sure that the <filename>/etc/ipsec.conf</filename> file can only
-be read by the root user. If normal users can read the keys IPsec
-provides no security at all. You can do this with:
-</para>
+      <para>
+        Make sure that the <filename>/etc/ipsec.conf</filename> file can only
+        be read by the root user. If normal users can read the keys IPsec
+        provides no security at all. You can do this with:
+      </para>
 
-<screen>
+      <screen>
 # <command>chmod 600 /etc/ipsec.conf</command>
-</screen>
+      </screen>
 
-<para>
-The same <filename>/etc/ipsec.conf</filename> can be created on the
-&host2ip; host, with inverted <parameter class="command">-P 
-in</parameter> and <parameter class="command">-P out</parameter> options. So, 
-the <filename>/etc/ipsec.conf</filename> will look like this:
-</para>
+      <para>
+        The same <filename>/etc/ipsec.conf</filename> can be created on the
+        &host2ip; host, with inverted <parameter class="command">-P 
+        in</parameter> and <parameter class="command">-P out</parameter> options. So, 
+        the <filename>/etc/ipsec.conf</filename> will look like this:
+      </para>
 
-<screen>
+      <screen>
 #!/usr/sbin/setkey -f
 
 # Flush the SAD and SPD
@@ -239,45 +253,46 @@ spdadd 192.168.1.1 192.168.1.169 any -P in ipsec
 spdadd 192.168.1.169 192.168.1.1 any -P out ipsec
            esp/transport//require
            ah/transport//require;
-</screen>
-</sect2>
+      </screen>
+    </sect2>
 
-<sect2>
-<title>Activating the IPsec configuration</title>
+    <sect2>
+      <title>Activating the IPsec configuration</title>
 
-<para>
-The IPsec configuration can be activated with the <command>setkey</command>
-command:
-</para>
+      <para>
+        The IPsec configuration can be activated with the 
+	<command>setkey</command> command:
+      </para>
 
-<screen>
+      <screen>
 # <command>setkey -f /etc/ipsec.conf</command>
-</screen>
+      </screen>
 
-<para>
-If you want to enable IPsec permanently you can add the following line
-to <filename>/etc/rc.d/rc.local</filename> on both hosts:
-</para>
+      <para>
+        If you want to enable IPsec permanently you can add the following line
+        to <filename>/etc/rc.d/rc.local</filename> on both hosts:
+      </para>
 
-<screen>
+      <screen>
 /usr/sbin/setkey -f /etc/ipsec.conf
-</screen>
+      </screen>
 
-<para>
-After configuring IPsec you can test the connection by running
-<command>tcpdump</command> and simultaneously pinging the other
-host. You can see if AH and ESP are actually used in the 
-<command>tcpdump</command> output:
-</para>
+      <para>
+        After configuring IPsec you can test the connection by running
+        <command>tcpdump</command> and simultaneously pinging the other
+        host. You can see if AH and ESP are actually used in the 
+        <command>tcpdump</command> output:
+      </para>
 
-<screen>
+      <screen>
 # <command>tcpdump -i eth0</command>
 tcpdump: listening on eth0
 11:29:58.869988 tazzy.slackfiles.org > 192.168.1.169: AH(spi=0x00000200,seq=0x40f): ESP(spi=0x00000201,seq=0x40f) (DF)
 11:29:58.870786 192.168.1.169 > tazzy.slackfiles.org: AH(spi=0x00000300,seq=0x33d7): ESP(spi=0x00000301,seq=0x33d7)
-</screen>
-</sect2>
+      </screen>
+      
+    </sect2>
 
-</sect1>
+  </sect1>
 
 </chapter>
