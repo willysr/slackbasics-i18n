@@ -1,34 +1,86 @@
-<!-- $Id: book.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<!-- $Id: book.xml,v 1.2 2004/11/30 17:37:34 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="book.html"?>
 <title>About this book</title>
 
 <sect1>
-<title>About this book</title>
+<title>Availability</title>
 
 <para>
-This book aims to provide an introduction to Slackware Linux. It addresses
-people who have little or no GNU/Linux experience. It aims to cover the 
-Slackware Linux installation, basic GNU/Linux commands and the configuration
-of Slackware Linux. As you can see the book is still work in progress, but
-the first bits are released in the <quote>release early, release often</quote>
-spirit.
+This book was written in DocBook/XML, and converted to HTML and PDF
+with Jade. The latest version of the book is always available from:
+<ulink url="http://daniel.taickim.net/slackware-handbook/" />.
 </para>
+
+</sect1>
+
+<sect1>
+<title>Conventions</title>
 
 <para>
-This book was written by Dani&euml;l de Kok and 
-is freely available under the terms of the GNU Free
-Documentation License. It is continually under development,
-not just to keep up with the latest Slackware versions, but also
-to refine the documentation, and extend it where it is deemed
-necessary.
+This section gives a short summary of the conventions in this book.
 </para>
+
+<sect2>
+<title>File names</title>
 
 <para>
-I wish everybody a good time with Slackware Linux, and I hope
-this book is useful for you.
+File or directory names are printed as: <filename>/path/to/file</filename>.
+For example: <filename>/etc/fstab</filename>
+</para>
+</sect2>
+
+<sect2>
+<title>Commands</title>
+
+<para>
+Commands are printed as bold text. For example: <command>ls -l</command>
+</para>
+</sect2>
+
+<sect2>
+<title>Screen output</title>
+
+<para>
+Screen output is printed as this:
 </para>
 
+<screen>
+Hello world!
+</screen>
+
+<para>
+If commands are being entered in the screen output the commands will be
+printed as bold text:
+</para>
+
+<screen>
+$ <command>command</command>
+Output
+</screen>
+
+<para>
+If a command is executed as root, the shell will be displayed as
+<quote>#</quote>. If a command is executed as a normal non-privileged
+user, the shell will be displayed as <quote>$</quote>.
+</para>
+</sect2>
+
+<sect2>
+<title>Notes</title>
+
+<para>
+Some sections contain extra notes. It is not necessary to know the information
+in notes, but notes may provide valuable information, or pointers to 
+information. Notes are printed like this:
+</para>
+
+<note>
+<para>
+This is a note.
+</para>
+</note>
+</sect2>
 </sect1>
 
 </chapter>
