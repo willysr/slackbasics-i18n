@@ -1,4 +1,4 @@
-<!-- $Id: introduction.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<!-- $Id: introduction.xml,v 1.2 2004/11/30 17:40:21 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="introduction.html"?>
 <title>An introduction to Slackware Linux</title>
@@ -90,6 +90,8 @@ important to make a distinction between the official CD-ROM set and
 cheap copies. When you buy the official CD set you are financially
 supporting the development of Slackware Linux. So, if you would
 like to see continuing development of Slackware Linux, buy the CD set!
+The Slackware Store can be found at: 
+<ulink url="http://store.slackware.com/" />
 </para>
 
 </sect1>
