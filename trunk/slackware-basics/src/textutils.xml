@@ -1,0 +1,107 @@
+<!-- $Id: textutils.xml,v 1.1 2004/12/01 13:56:28 daniel Exp $ -->
+
+<chapter> <?dbhtml filename="textutils.html"?>
+  <title>Text Utilities</title>
+
+  <sect1>
+    <title>Introduction</title>
+
+    <para>
+      On of the central ideas of UNIX(-like) operating systems is that 
+      <quote>everything is a file</quote>. Even devices can be treated
+      as a file. Basically there are three types of files in UNIX:
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Binary files</emphasis>, for example
+          executables, and libraries.
+        </para>
+       </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Device files</emphasis>, for example
+          <filename>/dev/zero</filename>, and <filename>/dev/hda</filename>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Text files</emphasis>, pretty much
+          anything else.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>
+      Due to the fact that text files have such an important role in
+      UNIX-like operating systems, like GNU/Linux, this book has a separate
+      chapter dedicated to the subject of processing text files. In
+      the beginning its use may not be that obvious, but once you get
+      used to these tools you will see that you will probably use some
+      of these tools on a daily basis.
+    </para>
+    
+    <note>
+      <para>
+        This chapter relies heavily on the use of pipes and redirection,
+	so it it a good idea to read <xref linkend="redirection-and-pipes" />
+	if you have not done that yet.
+      </para>
+    </note>
+  </sect1>
+
+  <sect1>
+    <title>The basics</title> <!-- XXX - Not really inspiring ;) -->
+    
+    <sect2>
+      <title>wc</title>
+      
+      <para>
+        One of the common things people often want to do with a text
+	is counting the number of words, or lines in a text. The
+	<command>wc</command> command can be used for this purpose.
+	The file to be counted can be specified as an argument to
+	<command>wc</command>
+      </para>
+      
+      <screen>
+$ <command>wc essay.txt</command>
+ 174 1083 8088 essay.txt
+      </screen>
+      
+      <para>
+        As you can see the default output returns three numbers. These
+	are (in order): the <emphasis>number of lines</emphasis>, the
+	<emphasis>number of words</emphasis>, and the 
+	<emphasis>number of characters</emphasis>. It is also possibly
+	to return only one of these numbers, with respectively
+	<parameter>-l</parameter>, <parameter>-w</parameter>, and
+	<parameter>-m</parameter>. For example, if we only want to
+	know the number of lines in the file, we could do the
+	following:
+      </para>
+      
+      <screen>
+$ <command>wc -l essay.txt</command>
+174 essay.txt
+      </screen>
+      
+      <para>
+        In some situations you might want to use the output of
+	<command>wc</command> in a pipeline, or as an argument to another
+	command. The problem with specifying the file name as an argument
+	is that <command>wc</command> will also show the name of the
+	file (as you can see in the example above). You can work around
+	this behavior by redirecting the file contents to 
+	<command>wc</command>. For example:
+      </para>
+      
+      <screen>
+$ <command> wc -l &lt; essay.txt</command>
+174
+      </screen>
+    </sect2>
+  </sect1>
+
+</chapter>
