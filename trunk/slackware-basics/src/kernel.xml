@@ -1,4 +1,4 @@
-<!-- $Id: kernel.xml,v 1.3 2004/12/20 11:29:48 daniel Exp $ -->
+<!-- $Id: kernel.xml,v 1.4 2005/02/07 13:02:10 daniel Exp $ -->
 
 <chapter id="kernel"> <?dbhtml filename="kernel.html"?>
   <title>Building a kernel</title>
@@ -53,7 +53,7 @@
 
     <para>
       This chapter focuses on the default kernel series used in
-      &Distribution; 10.0, &Kernel; 2.4, though most of these
+      &Distribution; 10.1, &Kernel; 2.4, though most of these
       instructions also apply to &Kernel; 2.6. Compiling a kernel is
       not really difficult, just keep around a backup kernel that you
       can use when something goes wrong. Kernel compilation involves

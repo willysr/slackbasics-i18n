@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- $Id: slackware-basics.xml,v 1.14 2005/01/27 23:41:39 daniel Exp $ -->
+<!-- $Id: slackware-basics.xml,v 1.15 2005/02/07 13:02:10 daniel Exp $ -->
 
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "/usr/share/sgml/docbook/xml-dtd-4.1.2/docbookx.dtd" [
 
@@ -51,7 +51,7 @@
 
 <bookinfo>
 <title>&Distribution; Basics</title>
-<subtitle>For &Distribution; 10.0</subtitle>
+<subtitle>For &Distribution; 10.1</subtitle>
 <authorgroup>
 <author><firstname>Dani&euml;l</firstname><surname>de Kok</surname></author>
 </authorgroup>

@@ -1,4 +1,4 @@
-<!-- $Id: pkgmgmt.xml,v 1.6 2005/01/29 12:43:15 daniel Exp $ -->
+<!-- $Id: pkgmgmt.xml,v 1.7 2005/02/07 13:02:10 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="pkgmgmt.html"?>
   <title>Package Management</title>
@@ -157,11 +157,11 @@
       </para>
 
       <screen>
-ftp://ftp.nluug.nl/pub/os/&Kernel;/distr/slackware/slackware-10.0/
+ftp://ftp.nluug.nl/pub/os/&Kernel;/distr/slackware/slackware-10.1/
       </screen>
 
       <para>
-        This will use the &Distribution; 10.0 tree on the ftp.nluug.nl
+        This will use the &Distribution; 10.1 tree on the ftp.nluug.nl
         mirror.  Be sure to use a tree that matches your
         &Distribution; version. If you would like to track
         slackware-current you would uncomment the following line
@@ -283,7 +283,7 @@ $ <command>slackpkg update</command>
         stable &Distribution; releases are in the
         <filename>patches</filename> directory of FTP mirrors. You can
         update a slackware-stable installation (e.g. &Distribution;
-        10.0) with:
+        10.1) with:
       </para>
 
       <screen>

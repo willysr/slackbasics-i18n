@@ -1,4 +1,4 @@
-<!-- $Id: introduction.xml,v 1.10 2004/12/19 14:09:22 daniel Exp $ -->
+<!-- $Id: introduction.xml,v 1.11 2005/02/07 13:02:10 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="introduction.html"?>
   <title>An introduction to &Distribution;</title>
@@ -89,16 +89,16 @@
   </sect1>
 
   <sect1 id="slackware-features">
-    <title>&Distribution; 10.0 features</title>
+    <title>&Distribution; 10.1 features</title>
 
     <para>
       <itemizedlist>
         <listitem>
           <para>
-            <emphasis role="bold">&Kernel; 2.4.26</emphasis> -
+            <emphasis role="bold">&Kernel; 2.4.29</emphasis> -
             &Distribution; uses the proven 2.4 Linux kernel as the
-            default kernel.  &Distribution; 10.0 provides &Kernel;
-            2.6.7 as an option. When a 2.6 kernel is booted,
+            default kernel.  &Distribution; 10.1 provides &Kernel;
+            2.6.10 as an option. When a 2.6 kernel is booted,
             &Distribution; will automatically use
             <emphasis>udev</emphasis>, which is a daemon that
             automatically generates <filename>/dev</filename> device
@@ -107,11 +107,9 @@
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">X11R6.7.0</emphasis> - This is
-            the first &Distribution; to provide the X Window System
-            provided by the X.org Foundation. X11R6.7.0 is based on
-            XFree86 4.4.0RC2, and is expanded with additional hardware
-            support, enhancements, and bug fixes.
+            <emphasis role="bold">X11R6.8.1</emphasis> - This is
+            the second &Distribution; to provide the X Window System
+            provided by the X.org Foundation.
           </para>
         </listitem>
         <listitem>
@@ -124,7 +122,7 @@
         <listitem>
           <para>
             <emphasis role="bold">The K Desktop Environment (KDE)
-            3.2.3</emphasis> - The full KDE environment is provided, 
+            3.3.2</emphasis> - The full KDE environment is provided, 
             which includes KOffice, the Konqueror web browser, 
             multimedia programs, development tools, and many more 
             useful applications.
@@ -135,14 +133,6 @@
             <emphasis role="bold">The GNU Network Object Model 
             Environment (GNOME) 2.6.1</emphasis> - GNOME is a popular
             GTK2 based desktop environment.
-          </para>
-        </listitem>
-        <listitem>
-          <para>
-            <emphasis role="bold">Improved wireless support</emphasis> -
-            &Distribution; 10.0 features a new initialization script for
-            WLAN network cards. These cards can now be configured through
-            <filename>/etc/rc.d/rc.wireless</filename>.
           </para>
         </listitem>
       </itemizedlist>
