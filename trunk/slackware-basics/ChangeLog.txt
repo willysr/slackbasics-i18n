@@ -1,3 +1,9 @@
+Sat Jan 29 23:17:39 CET 2005
+- Add a section about restricting su root access to the user
+  management chapter.
+- Add a section about keeping an rsync mirror to the package
+  management chapter, with notes how to use this for upgrading.
+
 Sat Jan 29 12:42:17 CET 2005
 - Start a new part about "Electronic mail", and add a chapter
   about Spamassassin.
