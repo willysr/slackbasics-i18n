@@ -14,6 +14,10 @@ tt.parameter {
 	color: #000000;
 }
 
+.acronym {
+	font-style: italic;
+}
+
 .screen {
 	width: 90%;
 	border: 1px dashed #b0c4de;
