@@ -1,0 +1,313 @@
+<!-- $Id: proc.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+
+<chapter id="chap-proc"> <?dbhtml filename="proc.html"?>
+<title>Process management</title>
+
+<sect1>
+<title>Introduction</title>
+
+<para>
+Unix-like operating systems work with processes. A process is an unit
+the operating system schedules for CPU time and the memory manager manages
+memory for. Basically a process consists of program code (named text), 
+data (used by a program) and a stack. The stack is used by the program
+to store variables. Programs are at least one process. A program/process
+can ask the system to create a new copy of itself, which is called a
+fork. For example, a web server could fork itself to let the new process
+handle a request.
+</para>
+
+<para>
+A process can be parted in threads. The difference between forking a
+process and creating a thread is that different threads share the address 
+space of the process. A forked process is a separate process with its own
+address space. Forking is more expensive in terms of memory requirement
+and CPU time. 
+</para>
+
+<para>
+A user can control a process by sending signals to the process. For example,
+the SIGTERM command is used to terminate a process, and the SIGHUP signal
+to restart a process.
+</para>
+
+</sect1>
+
+<sect1>
+<title>Process basics</title>
+
+<para>
+This section describes some basic commands that are used for process
+management.
+</para>
+
+<sect2>
+<title>ps</title>
+
+<para>
+The <command>ps</command>(1) command is used to report which processes
+are currently active. By running <command>ps</command> without any
+parameters you can see which processes are active in the current user
+session. Let's look at an example:
+</para>
+
+<screen>
+$ <command>ps</command>
+  PID TTY          TIME CMD
+ 1191 pts/2    00:00:00 bash
+ 1216 pts/2    00:00:00 ps
+</screen>  
+
+<para>
+In this example the <command>bash</command> and <command>ps</command>
+commands are running. As you can see each process has a process ID
+(PID). You will need the process number if you want to send a signal
+to a process, for example a kill signal. The <command>ps</command>
+has many parameters to modify the output. For example, the 
+<varname>x</varname> shows all processes without a controlling tty:
+</para>
+
+<screen>
+$ <command>ps x</command>
+  PID TTY      STAT   TIME COMMAND
+ 1044 tty1     S      0:00 -bash
+ 1089 tty1     S      0:00 /bin/sh /usr/X11R6/bin/startx
+ 1100 tty1     S      0:00 xinit /home/daniel/.xinitrc --
+ 1108 tty1     S      0:00 /usr/bin/wmaker
+ 1113 tty1     S      0:00 sylpheed
+ 1114 tty1     S      0:00 /bin/sh /opt/firefox/run-mozilla.sh /opt/firefox/fire
+ 1120 tty1     S      0:52 /opt/firefox/firefox-bin
+ 1125 tty1     S      0:00 /usr/libexec/gconfd-2 20
+ 1146 tty1     S      0:00 xchat
+ 1161 tty1     S      0:00 xterm -sb
+ 1163 pts/0    S      0:00 bash
+ 1170 pts/0    S      0:00 vi proc.xml
+ 1189 tty1     S      0:00 xterm -sb
+ 1191 pts/2    S      0:00 bash
+ 1275 pts/2    R      0:00 ps x
+</screen>
+
+<para>
+Have a look at the <command>ps</command>(1) manual page for a summary
+of available parameters.
+</para>
+</sect2>
+
+<sect2>
+<title>kill</title>
+
+<para>
+The <command>kill</command>(1) sends a signal to a process. If no signal is
+specified the TERM signal is send, which asks a process to exit gracefully.
+Let's have a look at the normal mode of execution:
+</para>
+
+<screen>
+$ <command>ps ax | grep mc</command>
+ 1045 tty4     S      0:00 /usr/bin/mc -P /tmp/mc-daniel/mc.pwd.756
+$ <command>kill 1045</command>
+$ <command>ps ax | grep mc</command>
+$
+</screen>
+
+<para>
+As you can see the <command>ps</command> is used to look for the 
+<command>mc</command> process. There is one occurrence of <command>mc</command>
+running with PID 1045. This process is killed, and the second 
+<command>ps</command> command shows that the process is indeed terminated.
+</para>
+
+<para>
+As we said earlier the <command>kill</command> command can also be used to
+send other signals. The <command>kill -l</command> displays a list of signals
+that can be sent:
+</para>
+
+<screen>
+ 1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL
+ 5) SIGTRAP      6) SIGABRT      7) SIGBUS       8) SIGFPE
+ 9) SIGKILL     10) SIGUSR1     11) SIGSEGV     12) SIGUSR2
+13) SIGPIPE     14) SIGALRM     15) SIGTERM     17) SIGCHLD
+18) SIGCONT     19) SIGSTOP     20) SIGTSTP     21) SIGTTIN
+22) SIGTTOU     23) SIGURG      24) SIGXCPU     25) SIGXFSZ
+26) SIGVTALRM   27) SIGPROF     28) SIGWINCH    29) SIGIO
+30) SIGPWR      31) SIGSYS
+</screen>
+
+<para>
+The SIGKILL signal is often used to kill processes that refuse to terminate
+with the default SIGTERM signal. The signal can be specified by using the
+number as a parameter, for example, the following command would send a SIGKILL
+signal to PID 1045:
+</para>
+
+<screen>
+$ <command>kill -9 1045</command>
+</screen>
+
+<para>
+It is also possible to specify the signal without the <quote>SIG</quote>
+letters as a parameter. In the following example the SIGHUP signal is sent
+to the <command>inetd</command> to restart it:
+</para>
+
+<screen>
+# <command>ps ax | grep inetd</command>
+  727 ?        S      0:00 /usr/sbin/inetd
+# <command>kill -HUP 727</command>
+</screen>
+
+</sect2>
+</sect1>
+
+<sect1>
+<!-- XXX - Come up with something better -->
+<title>Advanced process management</title>
+
+<sect2>
+<title>Background processes</title>
+
+<para>
+Normally a process takes over the screen and keyboard after it is started.
+It is also possible to start processes as a background process, this means
+that the shell starts the process, but keeps control over the terminal.
+In most shells a process can be started as a background process by placing
+an ampersand (&amp;) after the command. For example:
+</para>
+
+<screen>
+$ <command>rm -rf ~/bunch/of/files &amp;</command>
+</screen>
+
+<para>
+A process that runs in the background can be brought to the foreground using
+the <command>fg %&lt;job ID&gt;</command> command. You can see which
+jobs are running, with their job numbers, using the <command>jobs</command>
+command. For example:
+</para>
+
+<screen>
+$ <command>sleep 1000 &</command>
+[1] 947
+$ <command>jobs</command>
+[1]+  Running                 sleep 1000 &
+$ <command>fg %1</command>
+sleep 1000
+</screen>
+
+<para>
+The first command, <command>sleep 1000 &</command>, starts sleep in the 
+background. <command>sleep</command> is a command does nothing but waiting
+the number of seconds that are specified as a parameter. The output of
+the <command>jobs</command> command shows that <command>sleep</command>
+is indeed running, with Job ID <emphasis>1</emphasis>. Finally we move
+<command>sleep</command> to the foreground. As you can see, the shell will
+print which command is moved to the foreground.
+</para>
+
+</sect2>
+
+<sect2>
+<title>Stopping processes</title>
+<para>
+A process that is running can be stopped by pressing
+the &lt;Control&gt; and &lt;z&gt; keys simultaneously. Stopped processes
+can be moved to the foreground with the <command>fg</command> command. Running
+<command>fg</command> without any parameters moves the last process that was
+stopped to the foreground. Other processes can be moved
+to the foreground by specifying the job ID as a parameter to
+<command>fg</command>.
+</para>
+
+<para>
+A stopped process can also be told to continue as a background process,
+by executing <command>bg &lt;job ID&gt;</command>. Executing 
+<command>fg</command> without any parameter will move the last stopped process 
+to the background.
+</para>
+</sect2>
+
+<sect2>
+<title>Altering priorities</title>
+
+<para>
+The Linux kernel allows a user to change the priority of a program. For
+example, suppose that you want to run a process that requires a lot of CPU
+time, but you do not want to hinder other users. In this
+case you can start the process with a low priority, the process will
+only get CPU time when there are not many other processes demanding
+CPU time. Or you can give processes that are important a higher priority.
+</para>
+
+<para>
+GNU/Linux provides two commands to alter the priority of a process. The
+<command>nice</command>(1) command can be used to specify the priority when
+you are launching a process. With the <command>renice</command>(1) command
+you can alter the priority of a process that is already running. The priority
+is a numerical value from -20 (highest priority) to 19 (lowest priority).
+Let's start with an example of <command>nice</command> in action:
+</para>
+
+<screen>
+$ <command>nice -n 19 ./setiathome</command>
+</screen>
+
+<para>
+As you can see the <emphasis>-n</emphasis> parameter is used to specify
+the priority value. In this case the <command>./setiathome</command> will
+have a very low priority. Be aware that only the superuser can use negative
+priority values. Thus, a normal user cannot give a process a higher priority,
+as illustrated by this example:
+</para>
+
+<screen>
+$ <command>nice -n -1 nice</command>
+nice: cannot set priority: Permission denied
+</screen>
+
+<para>
+But it will work as the <emphasis>root</emphasis> user:
+</para>
+
+<screen>
+$ <command>su -c "nice -n -1 nice"</command>
+Password: 
+-1
+</screen>
+
+<para>
+The <command>renice</command> command has a somewhat different syntax.
+The easiest way to use it is to specify the new priority and the process
+ID as parameters to the <command>renice</command> command, as is 
+shown in the following example:
+</para>
+
+<screen>
+$ <command>renice +5 5811</command>
+5811: old priority 0, new priority 5
+</screen>
+
+<para>
+As with <command>nice</command> a non-<emphasis>root</emphasis> user
+cannot set negative priority values:
+</para>
+
+<screen>
+$ <command>renice -5 5811</command>
+renice: 5811: setpriority: Permission denied
+</screen>
+
+<note>
+<para>
+A normal user can not increase the priority of the process beyond the
+default priority of 0. Such facilities could be misused by careless
+users. After all, the command <command>nice</command> is derived from
+being nice to the other users on the system ;^).
+</para>
+</note>
+
+</sect2>
+</sect1>
+
+
+</chapter>

@@ -1,0 +1,125 @@
+<!-- $Id: x11.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+
+<chapter> <?dbhtml filename="x11.html"?>
+<title>X11</title>
+
+<sect1>
+<title>X Configuration</title>
+
+<para>
+The X11 configuration is stored in <filename>/etc/X11/xorg.conf</filename>.
+Many distributions provide special configuration tools for X, but Slackware
+Linux only provides the standard X11 tools (which are actually quite
+easy to use). In most cases X can be configured automatically, but sometimes
+it is necessary to edit <filename>/etc/X11/xorg.conf</filename> manually.
+</para>
+
+<bridgehead>Automatical configuration</bridgehead>
+
+<para>
+The X11 server provides an option to automatically generate a
+configuration file. X11 will load all available driver modules,
+and will try to detect the hardware, and generate a configuration
+file. Execute the following command to generate a 
+<filename>xorg.conf</filename> configuration file:
+</para>
+
+<screen>
+$ <command>X -configure</command>
+</screen>
+
+<para>
+If X does not output any errors, the generated configuration can be
+copied to the <filename>/etc/X11</filename> directory. And X can be
+started to test the configuration:
+</para>
+
+<screen>
+$ <command>cp /root/xorg.conf /etc/X11/</command>
+$ <command>startx</command>
+</screen>
+
+<bridgehead>Interactive configuration</bridgehead>
+
+<para>
+X11 provides two tools for configuring X interactively,
+<command>xorgcfg</command> and <command>xorgconfig</command>.
+<command>xorgcfg</command> tries to detect the video card automatically,
+and starts a tool which can be used to tune the configuration.
+Sometimes <command>xorgcfg</command> switches to a video mode which
+is not supported by the monitor. In that case <command>xorgcfg</command>
+can also be used in text-mode, by starting it with
+<command>xorgcfg -textmode</command>.
+</para>  
+
+<para>
+<command>xorgconfig</command> differs from the tools described above,
+it does not detect hardware and will ask detailed questions about
+your hardware. If you only have little experience configuring X11
+it is a good idea to avoid <command>xorgconfig</command>.
+</para> 
+
+</sect1>
+
+<sect1>
+<title>Window manager</title>
+
+<para>
+The "look and feel" of X11 is managed by a so-called window manager.
+Slackware Linux provides the following widely user window managers:
+</para>
+
+<itemizedlist>
+<listitem>
+<para>
+WindowMaker: A relatively light window manager, which is part of the GNUStep
+project.
+</para>
+</listitem>
+<listitem>
+<para>
+BlackBlox: Light window manager, BlackBox has no dependencies except the
+X11 libraries.
+</para>
+</listitem>
+<listitem>
+<para>
+KDE: A complete desktop environment, including browser, e-mail program
+and an office suite (KOffice).
+</para>
+</listitem>
+<listitem>
+<para>
+GNOME: Like KDE a complete desktop environment. It is worth noting that
+<ulink url="http://www.dropline.net/">Dropline Systems</ulink> provides
+a special GNOME environment for Slackware.
+</para>
+</listitem>
+</itemizedlist>
+
+<para>
+If you are used to a desktop environment, using KDE or GNOME is a logical
+choice. But it is a good idea to try some of the lighter
+window managers. They are faster, and consumer less memory, besides that
+most KDE and GNOME applications are perfectly usable under other window
+managers.
+</para>
+
+<para>
+On Slackware Linux the following command can be used to select a window
+manager:
+</para>
+
+<screen>
+$ <command>xwmconfig</command>
+</screen>
+
+<para>
+This configuration program shows the installed window managers, from which
+you can choose one. You can set the window manager globally by executing
+<command>xwmconfig</command> as root.
+</para>
+
+</sect1>
+
+</chapter>

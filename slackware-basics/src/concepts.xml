@@ -1,0 +1,359 @@
+<!-- $Id: concepts.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+
+<chapter> <?dbhtml filename="concepts.html"?>
+<title>General concepts</title>
+
+<para>
+This chapter gives an introduction to some general Unix and GNU/Linux
+concepts. It is a good idea to read this chapter thoroughly if you
+do not have any UNIX or GNU/Linux experience. Many concepts covered in this
+chapter are used in this book and in GNU/Linux.
+</para>
+
+<sect1>
+<title>Multitasking</title>
+
+<sect2>
+<title>Introduction</title>
+
+<para>
+One of Linux' strengths is multi-tasking. Multi-tasking means that multiple
+processes can run at the same time. You might wonder why this is important
+to you, because most people are using one application at a time. Besides
+the more obvious reason that it is just handy to browse while you have a
+word processor running in the background, multi-tasking is a bare necessity
+for Unix-like systems. Even if you have launched no applications there are
+a bunch of processes running in the background. Some processes might provide
+network services, others sit there showing a login prompt on other consoles,
+and there is even a process that executes scheduled tasks. These processes
+that are running in the background are often called <emphasis>daemon</emphasis>
+(not to be confused with the word demon, a daemon is a protective angel).
+At a later stage we are going to look at how you can move processes to the
+background yourself (see <xref linkend="chap-proc" />).
+</para>
+
+<note>
+<para>
+Note that on single-processor systems processes are not really running
+simultaneously. In reality a smart scheduler in the kernel is dividing
+CPU time between processes, giving the illusion that processes are
+running simultaneously.
+</para>
+</note>
+</sect2>
+
+<sect2>
+<title>Processes and threads</title>
+
+<para>
+Applications run as one or more processes. To see what a process
+actually is we need to know what it consists of. Every process
+basically has two areas; an area that is named
+<emphasis>text</emphasis> and an area that is named
+<emphasis>data</emphasis>.  The <emphasis>text</emphasis> area is the
+actual program code; it is used to tell the computer what to
+do. The <emphasis>data</emphasis> area is used to store information
+that the process has to keep. The operating system makes sure that
+every process gets its time to execute. New processes can be created
+by duplicating a running process with a system call named 
+<emphasis>fork</emphasis>. <xref linkend="fork" /> shows a fork in action
+schematically. The parent process issues a <emphasis>fork()</emphasis>
+call, and as a result a new process is created.
+</para>
+
+<figure id="fork">
+<title>Forking a process</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/fork.png" format="PNG"/>
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+The problem with processes is that they can get quite large, and
+that is not very efficient for computers with more than one processor.
+This problem is solved by duplicating the <emphasis>text</emphasis> area
+of a process. So, a threaded process is basically a program that has
+multiple instances of its executing code running, but these instances
+share the data area of the process (unlike a fork). These threads can
+be divided over multiple CPUs, making it possible to run one process
+on more than one CPU simultaneously.
+</para>
+</sect2>
+
+</sect1>
+
+<sect1>
+<title>Filesystem hierarchy</title>
+
+<sect2>
+<title>Structure</title>
+
+<para>
+Operating systems store data in filesystems. A filesystem is basically
+a collection of directories that hold files, like the operating system,
+user programs and user data. In GNU/Linux there is only one filesystem
+hierarchy, this means GNU/Linux doesn't have multiple drives (e.g. A:,
+C:, D:), like Windows. The filesystem looks like a tree, with a root
+directory (<filename>/</filename>) which has no parent directory, branches, 
+and leaves (directories with no subdirectories). Directories are separated
+using the <quote>/</quote> character.
+</para>
+
+<figure id="filesystem-structure">
+<title>The filesystem structure</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/fs-structure.png" format="PNG"/>
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+<xref linkend="filesystem-structure"/> shows the structure of a filesystem.
+You can see that the root directory (<filename>/</filename>) has two child
+directories; <filename>bin</filename> and <filename>home</filename>. The
+<filename>home</filename> directory has two child directories, 
+<filename>joe</filename> and <filename>jack</filename>. The diagram shows
+the full pathname of each directory. The same notation is used for files.
+Suppose that there is a file named <filename>memo.txt</filename> in
+the <filename>/home/jack</filename> directory, the full path of the
+file is <filename>/home/jack/memo.txt</filename>.
+</para>
+
+<para>
+Each directory has to special entries, <quote><filename>.</filename></quote>,
+and <quote><filename>..</filename></quote>. 
+<quote><filename>.</filename></quote> refers to the same directory,
+<quote><filename>..</filename></quote> to the parent directory. These
+entries can be used for making relative paths. Suppose that you are working
+in the <filename>jack</filename> directory. From this directory you can
+reference to the <filename>joe</filename> directory with 
+<filename>../joe</filename>.
+</para>
+</sect2>
+
+<sect2>
+<title>Mounting</title>
+
+<para>
+You might have started to wonder how it is possible to access other devices
+or partitions than the hard disk partition which holds the root filesystem.
+Linux uses the same approach as UNIX for accessing other mediums. Linux
+allows the system administrator to connect a device to any directory in
+the filesystem structure. This process is named <quote>mounting</quote>.
+For example, one could mount the CD-ROM drive to the 
+<filename>/cdrom</filename> directory. If the mount was correct, the files
+on the CD-ROM can be accessed through this directory. The mounting
+process is described in detail in <xref linkend="mounting"/>.
+</para>
+</sect2>
+
+<sect2>
+<title>Common directories</title>
+
+<para>
+The Filesystem Hierarchy Standard Group has attempted to create a standard
+that describes which directories should be available on a GNU/Linux system.
+Nowadays most major distributions use the Filesystem Hierarchy Standard as a
+guideline. This section describes some mandatory directories on GNU/Linux
+systems.
+</para>
+
+<para>
+Please note that GNU/Linux does not have a separate directory for each
+application (like Windows), files are ordered by function and type. For
+example, the binaries for most common user programs are stored in
+<filename>/usr/bin</filename>, and their libraries in 
+<filename>/usr/lib</filename>. This is a short overview of important
+directories:
+</para>
+
+<itemizedlist>
+<listitem>
+<para>
+<emphasis role="bold">/bin</emphasis>: essential
+user binaries that should still be available in case the 
+<filename>/usr</filename> is not mounted.
+</para>
+</listitem>
+<listitem>
+<para>
+<emphasis role="bold">/dev</emphasis>: device files.
+These are special files used to access certain devices.
+</para>
+</listitem>
+<listitem>
+<para>
+<emphasis role="bold">/etc</emphasis>: the <filename>/etc</filename>
+directory contains all important configuration files.
+</para>
+</listitem>
+<listitem>
+<para>
+<emphasis role="bold">/home</emphasis>: contains home directories for
+individual users.
+</para>
+</listitem>
+<listitem>
+<para>
+<emphasis role="bold">/lib</emphasis>: essential system libraries (like glibc),
+and kernel modules.
+</para>
+</listitem>
+<listitem>
+<para>
+<emphasis role="bold">/root</emphasis>: home directory for the 
+<emphasis>root</emphasis> user.
+</para>
+</listitem>
+<listitem>
+<para>
+<emphasis role="bold">/sbin</emphasis>: essential binaries that are used for
+system administration.
+</para>
+</listitem>
+<listitem>
+<para>
+<emphasis role="bold">/tmp</emphasis>: a world-writable directory for
+temporary files.
+</para>
+</listitem>
+<listitem>
+<para>
+<emphasis role="bold">X11R6</emphasis>: the X Window System.
+</para>
+</listitem>
+<listitem>
+<para>
+<emphasis role="bold">/usr/bin</emphasis>: stores the majority of the
+user binaries.
+</para>
+</listitem>
+<listitem>
+<para>
+<emphasis role="bold">/usr/lib</emphasis>: libraries that are not essential
+for the system to boot.
+</para>
+</listitem>
+<listitem>
+<para>
+<emphasis role="bold">/usr/sbin</emphasis>: non-essential system administration
+binaries.
+</para>
+</listitem>
+<listitem>
+<para>
+<emphasis role="bold">/var</emphasis>: variable data files, like logs.
+</para>
+</listitem>
+</itemizedlist>
+</sect2>
+</sect1>
+
+<sect1>
+<title>Devices</title>
+
+<sect2>
+<title>Introduction</title>
+<para>
+In UNIX and Linux almost everything is represented as a file, including
+devices. Each GNU/Linux system has a a directory with special files, named
+<filename>/dev</filename>. Each file in the <filename>/dev</filename>
+directory represents a device. You might wonder how this is done; a
+device file is a special file because it has two special numbers, the
+<emphasis>major</emphasis> and the <emphasis>minor</emphasis> number.
+The kernel knows which device a device file represents by these numbers.
+The following example shows these numbers for a device:
+</para>
+
+<screen>
+$ <command>ls -l /dev/zero</command> 
+crw-rw-rw-    1 root     root       1,   5 Apr 22  2003 /dev/zero
+</screen>
+
+<para>
+The <command>ls</command> lists files and information about files. In this
+example information about the <filename>/dev/zero</filename> device is
+listed. This particular device has <emphasis>1</emphasis> as the major
+device number, and <emphasis>5</emphasis> as the minor device number.
+</para>
+
+<note>
+<para>
+If you have the kernel sources unpacked after installing Slackware, you
+can find a comprehensive list of all major devices with their minor
+and major numbers in 
+<filename>/usr/src/linux/Documentation/devices.txt</filename>. An
+up-to-date list is also available online at:
+<ulink url="ftp://ftp.kernel.org/pub/linux/docs/device-list/" />
+</para>
+</note>
+
+<para>
+For the Linux kernel there are two types of devices: 
+<emphasis>character</emphasis> and <emphasis>block</emphasis> devices.
+Character devices can be read byte by byte, block devices can not. Block
+devices are read per block (for example 4096 bytes at a time). Whether
+a device is a character or block device is determined by the nature of
+the device. For example, most storage media are block devices, and most
+input devices are character devices. Block devices have one distinctive
+advantage, namely that they can be cached. This means that commonly read
+or written blocks are stored in a special area of the system memory, named
+the cache. Memory is much faster than most storage media, so it is a
+huge performance benefit to perform read and write operations on commonly
+used blocks in memory. Of course, eventually changes have to be written to 
+the storage medium.
+</para>
+</sect2>
+
+<sect2>
+<title>ATA and SCSI devices</title>
+
+<para>
+There are two categories of devices that we are going to look into in detail, 
+because understanding the naming of these devices can be crucial for 
+partitioning a hard disk, or for mounting. Almost all modern computers use
+ATA hard disks and CD-ROMs. Under Linux these devices are named in the 
+following way:
+</para>
+
+<screen>
+/dev/hda - master device on the first ATA channel
+/dev/hdb - slave device on the first ATA channel
+/dev/hdc - master device on the second ATA channel
+/dev/hdd - slave device on the second ATA channel
+</screen>
+
+<para>
+On most computers the hard disk is the master device on the first ATA
+channel (<filename>/dev/hda</filename>), and the CD-ROM the master
+device on the second ATA channel. Hard disk partitions have the device
+name plus a number. For example, <filename>/dev/hda1</filename> is the
+first partition on the <filename>/dev/hda</filename> disk. 
+</para>
+
+<para>
+Most average PCs do not have SCSI hard disks or CD-ROM drives, but SCSI is 
+often used for USB drives. For SCSI drives the following notation is used:
+</para>
+
+<screen>
+/dev/sda - First SCSI disk
+/dev/sdb - Second SCSI disk
+/dev/sdc - Third SCSI disk
+/dev/scd0 - First CD-ROM
+/dev/scd1 - Second CD-ROM
+/dev/scd2 - Third CD-ROM
+</screen>
+
+<para>
+Partitions are notated in the same way as ATA disks; 
+<filename>/dev/sda1</filename> is the first partition on the first SCSI
+disk.
+</para>
+</sect2>
+</sect1>
+
+</chapter>
