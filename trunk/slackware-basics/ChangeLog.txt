@@ -1,3 +1,9 @@
+Fri Dec  3 00:30:33 CET 2004
+- Start a new chapter about text utilities (textutils.xml). This
+  chapter will mainly cover what used to be the GNU Textutils,
+  plus sed. Besides a general introduction sections about the 
+  following topics are added: wc, tr, sort, uniq.
+
 Tue Nov 30 19:56:08 CET 2004
 - Use a sans-serif font for the HMTL version of the guide.
 - Add a section about manual pages to help.xml.
