@@ -1,4 +1,4 @@
-<!-- $Id: services.xml,v 1.2 2004/12/18 22:07:18 daniel Exp $ -->
+<!-- $Id: services.xml,v 1.3 2004/12/19 10:19:33 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="services.html"?>
 <title>Networking services</title>
@@ -72,7 +72,7 @@ to convert hostnames to IP addresses. Setting up a nameserver with
 caching nameserver by default. Enabling the caching nameserver takes
 just two steps: you have to install BIND and alter the initialization
 scripts. BIND can be installed by adding the bind package from
-the "n" diskset. After that bind can be started by executing the
+the <quote>n</quote> disk set. After that bind can be started by executing the
 <command>named(8)</command> command. If want to start BIND by
 default, make the <filename>/etc/rc.d/rc.bind</filename> file executable.
 This can be done by executing the following command as root:
@@ -95,9 +95,9 @@ you also have to alter <filename>/etc/resolv.conf</filename>.
 <para>
 Apache is the most widely userd webserver on the internet, and is,
 of course, part of &Distribution;. Apache can be installed by
-adding the <filename>apache</filename> pacakge from the "n" diskset.
-If you also want to use PHP, the <filename>php</filename> ("n" diskset)
-and <filename>mysql</filename> ("ap" diskset) are also required.
+adding the <filename>apache</filename> pacakge from the <quote>n</quote> disk set.
+If you also want to use PHP, the <filename>php</filename> (<quote>n</quote> disk set)
+and <filename>mysql</filename> (<quote>ap</quote> disk set) are also required.
 MySQL is required, because the precompiled PHP depends on MySQL shared 
 libraries. You do not have to run MySQL itself. After installing Apache
 it can be started automatically while booting the system by making
@@ -113,7 +113,9 @@ can do this by executing:
 The Apache configuration can be altered in the 
 <filename>/etc/apache/httpd.conf</filename> file. Apache can be
 stopped/started/restarted every moment with the <command>apachectl</command>
-command, and the "stop", "start" and "restart" parameters. For example,
+command, and the <parameter class="command">stop</parameter>, 
+<parameter class="command">start</parameter> and 
+<parameter class="command">restart</parameter> parameters. For example,
 execute the following command to restart Apache:
 </para>
 

@@ -1,4 +1,4 @@
-<!-- $Id: ipsec.xml,v 1.4 2004/12/18 22:18:34 daniel Exp $ -->
+<!-- $Id: ipsec.xml,v 1.5 2004/12/19 10:19:33 daniel Exp $ -->
 
 <chapter id="ipsec"> <?dbhtml filename="ipsec.html"?>
 <title>IPsec</title>
@@ -210,8 +210,9 @@ provides no security at all. You can do this with:
 
 <para>
 The same <filename>/etc/ipsec.conf</filename> can be created on the
-&host2ip; host, with inverted "-P in" and "-P out" options. So, the
-<filename>/etc/ipsec.conf</filename> will look like this:
+&host2ip; host, with inverted <parameter class="command">-P 
+in</parameter> and <parameter class="command">-P out</parameter> options. So, 
+the <filename>/etc/ipsec.conf</filename> will look like this:
 </para>
 
 <screen>

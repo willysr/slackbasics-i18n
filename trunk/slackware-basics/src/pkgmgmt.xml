@@ -1,4 +1,4 @@
-<!-- $Id: pkgmgmt.xml,v 1.3 2004/12/18 22:18:34 daniel Exp $ -->
+<!-- $Id: pkgmgmt.xml,v 1.4 2004/12/19 10:19:33 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="pkgmgmt.html"?>
 <title>Package Management</title>
@@ -29,7 +29,7 @@ at an example, imagine that we have a package with the file name
 of the package is bash-2.05b-i386-2. In the package name information
 about the package is separated by the '-' character. A package
 name has the following meaning: 
-"programname-version-architecture-packagerevision"
+<emphasis>programname-version-architecture-packagerevision</emphasis>
 </para>
 </sect2>
 
@@ -40,7 +40,8 @@ name has the following meaning:
 <para>
 The <command>pkgtool</command> command provides a menu interface
 for some package operations. De most important menu items are
-"Remove" and "Setup". De "Remove" option presents a list of
+<emphasis>Remove</emphasis> and <emphasis>Setup</emphasis>. The
+<emphasis>Remove</emphasis> option presents a list of
 installed packages. You can select which packages you want to
 remove with the space bar and confirm your choices with the
 return key. You can also deselect a package for removal with
@@ -48,7 +49,7 @@ the space bar.
 </para>
 
 <para>
-The "Setup" options provides access to a few tools which can help
+The <emphasis>Setup</emphasis> option provides access to a few tools which can help
 you with configuring your system, for example:
 <command>netconfig</command>, <command>pppconfig</command> and
 <command>xwmconfig</command>.
@@ -102,7 +103,7 @@ version is already installed on the system.
 
 <para>
 The <command>removepkg</command> can be used to remove installed
-packages. For example, if you want to remove the "bash" package
+packages. For example, if you want to remove the <quote>bash</quote> package
 (it is not recommended to do that!), you can execute:
 </para>
 

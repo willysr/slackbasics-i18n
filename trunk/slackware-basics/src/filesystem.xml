@@ -1,4 +1,4 @@
-<!-- $Id: filesystem.xml,v 1.5 2004/12/18 22:18:34 daniel Exp $ -->
+<!-- $Id: filesystem.xml,v 1.6 2004/12/19 10:19:33 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="filesystem.html"?>
 <title>Files and directories</title>
@@ -71,8 +71,8 @@ boot  cdrom1  etc  home    lib     mnt         proc  sbin  tmp  var
 A disadvantage of the default output is that it provides little information
 about files and directories. For example, it is not possible to see whether
 some entry is a file or directory, what size a file is, or who the owner
-of the file is. The <command>ls</command> has the "-l" parameter to show
-more information:
+of the file is. The <command>ls</command> has the 
+<parameter class="command">-l</parameter> parameter to show more information: 
 </para>
 
 <screen>
@@ -570,7 +570,7 @@ attributes are a special kind of values that are associated with a
 file or directory. EAs provide the means to add extra attributes
 besides the common attributes (modification time, traditional file
 permissions, etc.). For example, one could add the attribute
-"Photographer" to a collection of JPEG files. Extended attributes 
+<quote>Photographer</quote> to a collection of JPEG files. Extended attributes 
 are not physically stored in the file, but as meta-data in the filesystem.
 </para>
 
@@ -614,7 +614,7 @@ This file has one extended attribute, <quote>user.Author</quote>. An attribute
 has the following form: <quote>namespace.attribute</quote>. There are four 
 defined namespaces: <quote>security</quote>, <quote>system</quote>, 
 <quote>trusted</quote>, and <quote>user</quote>. The role of these namespaces 
-are described in the attr(5) manual page. The "user" namespace is of 
+are described in the attr(5) manual page. The <quote>user</quote> namespace is of 
 particular interest to us, because this namespace is used to assign arbitrary 
 attributes to files.
 </para>

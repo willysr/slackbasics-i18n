@@ -1,4 +1,4 @@
-<!-- $Id: introduction.xml,v 1.6 2004/12/18 22:18:34 daniel Exp $ -->
+<!-- $Id: introduction.xml,v 1.7 2004/12/19 10:19:33 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="introduction.html"?>
 <title>An introduction to &Distribution;</title>
@@ -44,8 +44,10 @@ can be downloaded in the form of the GNU/HURD operating system. The
 <ulink url="http://www.debian.org/">Debian</ulink> project has even
 developed a version of the GNU operating system which works with the
 <ulink url="http://www.netbsd.org/">NetBSD</ulink> kernel. We should
-call "&Kernel; distributions" "&OS; distributions", because GNU is a
-substantial part of most distributions.  </para> </sect1>
+call <quote>&Kernel; distributions</quote> <quote>&OS; distributions</quote>, 
+because GNU is a substantial part of most distributions.
+</para>
+</sect1>
 
 <sect1>
 <title>What is &Distribution;?</title>
@@ -61,7 +63,7 @@ get to learn &OS; to the bones with &Distribution;.
 </para>
 
 <para>
-Another distinguishing aspect of &Distribution;, that also "complies"
+Another distinguishing aspect of &Distribution;, that also <quote>complies</quote>
 with the KISS principe is the &Distribution; package manager. &Distribution; 
 does not have complex package manager like RPM. Packages are normal tgz
 (tar/gzip) files, mostly with an additional installation script and

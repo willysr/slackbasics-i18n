@@ -1,4 +1,4 @@
-<!-- $Id: installation.xml,v 1.4 2004/12/18 22:57:27 daniel Exp $ -->
+<!-- $Id: installation.xml,v 1.5 2004/12/19 10:19:33 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="installation.html" ?>
 <title>Installing &Distribution;</title>
@@ -18,7 +18,7 @@ CD-ROM booting.
 If the CD is booted when you have the CD inserted in the CD-ROM drive
 during the system boot, the boot sequence is probably not correctly
 configured in the BIOS. Enter the BIOS setup (usually by this can be
-done by holding the "Del" or "Esc" key when the BIOS screen appears)
+done by holding the &lt;Del&gt; or &lt;Esc&gt; key when the BIOS screen appears)
 and make sure the CD-ROM is on the top of the list in the boot sequence.
 If you are using a SCSI CD-ROM you may have to set the boot sequence
 in the SCSI BIOS instead of the system BIOS. Consult the SCSI card manual
@@ -29,7 +29,7 @@ for more information.
 After booting the installation system, you will be asked whether you
 are using a special (national) keyboard layout or not. If you have 
 a normal US/International keyboard, which are the most common, you can
-just press "Enter" at this question. After that the login prompt will
+just press &lt;Enter&gt; at this question. After that the login prompt will
 appear. Log on as <quote>root</quote>, no password will be requested. 
 After logging on the shell is started, and you can start installing
 &Distribution;. The installation procedure will be explained briefly in 

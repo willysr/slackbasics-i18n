@@ -1,4 +1,4 @@
-<!-- $Id: apache.xml,v 1.3 2004/12/18 22:07:18 daniel Exp $ -->
+<!-- $Id: apache.xml,v 1.4 2004/12/19 10:19:32 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="apache.html"?>
 <title>Apache</title>
@@ -20,9 +20,9 @@ based on Apache 1.3.x.
 
 <para>
 Apache can be installed by
-adding the <filename>apache</filename> pacakge from the "n" diskset.
-If you also want to use PHP, the <filename>php</filename> ("n" diskset)
-and <filename>mysql</filename> ("ap" diskset) are also required.
+adding the <filename>apache</filename> pacakge from the <quote>n</quote> diskset.
+If you also want to use PHP, the <filename>php</filename> (<quote>n</quote> diskset)
+and <filename>mysql</filename> (<quote>ap</quote> diskset) are also required.
 MySQL is required, because the precompiled PHP depends on MySQL shared 
 libraries. You do not have to run MySQL itself. After installing Apache
 it can be started automatically while booting the system by making
@@ -38,7 +38,8 @@ can do this by executing:
 The Apache configuration can be altered in the 
 <filename>/etc/apache/httpd.conf</filename> file. Apache can be
 stopped/started/restarted every moment with the <command>apachectl</command>
-command, and the "stop", "start" and "restart" parameters. For example,
+command, and the <quote>stop</quote>, <quote>start</quote> and 
+<quote>restart</quote> parameters. For example,
 execute the following command to restart Apache:
 </para>
 

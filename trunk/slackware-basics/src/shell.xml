@@ -1,4 +1,4 @@
-<!-- $Id: shell.xml,v 1.5 2004/12/18 22:14:34 daniel Exp $ -->
+<!-- $Id: shell.xml,v 1.6 2004/12/19 10:19:33 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="shell.html"?>
 <title>The Bash shell</title>
@@ -29,7 +29,7 @@ The procedure for starting the shell depends on whether you use a graphical
 or text-mode login. If you are logging on in text-mode the shell is 
 immediately started after entering the (correct) password. If you are using
 a graphical login manager like gdm, log on as you would normally, and look in 
-your window manager or desktop environment menu for an entry named "XTerm".
+your window manager or desktop environment menu for an entry named <quote>XTerm</quote>.
 XTerm is a terminal emulator, after the terminal emulator is started the
 shell comes up.
 </para>

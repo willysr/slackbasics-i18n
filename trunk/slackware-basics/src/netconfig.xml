@@ -1,4 +1,4 @@
-<!-- $Id: netconfig.xml,v 1.5 2004/12/18 22:20:00 daniel Exp $ -->
+<!-- $Id: netconfig.xml,v 1.6 2004/12/19 10:19:33 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="netconfig.html"?>
 <title>Networking configuration</title>
@@ -35,7 +35,7 @@ line to <filename>/etc/rc.d/rc.modules</filename>
 
 <para>
 Supported PCMCIA cards are detected automatically by the PCMCIA
-software. The pcmcia-cs packages from the "a" diskset provides
+software. The pcmcia-cs packages from the <quote>a</quote> disk set provides
 PCMCIA functionality for &Distribution;.
 </para> 
 
@@ -45,7 +45,7 @@ PCMCIA functionality for &Distribution;.
 <title>Configuration of interfaces</title>
 
 <para>
-Network cards are available under &Kernel; through so-called "interfaces".
+Network cards are available under &Kernel; through so-called <quote>interfaces</quote>.
 The <command>ifconfig</command>(8) command can be used to display the
 available interfaces:
 </para>
@@ -291,15 +291,15 @@ in a small network. Let's look at an example of the
 
 <screen>
 127.0.0.1       	localhost
-192.168.1.1             tazzy.slackfans.org tazzy
+&host1ip;               tazzy.slackfans.org tazzy
 192.168.1.2             gideon.slackfans.org
 </screen>
 
 <para>
-The localhost line should always be present. It assigns the name "localhost"
+The <emphasis>localhost</emphasis> line should always be present. It assigns the name <emphasis>localhost</emphasis>
 to a special interface, the loopback. In this example the names
-"tazzy.slackfans.org" and "tazzy" are assigned to the IP address 192.168.1.1,
-and the name "gideon.slackfans.org" is assigned to the IP address 192.168.1.2.
+<emphasis>tazzy.slackfans.org</emphasis> and <emphasis>tazzy<emphasis> are assigned to the IP address &host1ip;,
+and the name <emphasis>gideon.slackfans.org</emphasis> is assigned to the IP address 192.168.1.2.
 On the system with this file both computers are available via the
 mentioned hostnames.
 </para>
@@ -333,7 +333,7 @@ which nameservers the system should use. A nameserver converts hostnames
 to IP addresses. Your provider should have given you at least two name
 name server addresses (DNS servers). You can add these nameservers
 to <filename>/etc/resolv.conf</filename> by adding the line
-"nameserver ipaddress" for each nameserver. For example: 
+<emphasis>nameserver ipaddress</emphasis> for each nameserver. For example: 
 </para>
 
 <screen>
@@ -343,7 +343,7 @@ nameserver 192.168.1.69
 
 <para>
 You can check wether the hostnames are tranlated correctly or not with
-the <command>host hostname</command> command. Swap "hostname" with an
+the <command>host hostname</command> command. Swap <emphasis>hostname</emphasis> with an
 existing hostname, for example the website of your internet service
 provider.
 </para>
@@ -413,7 +413,7 @@ and logged with the iptables kernel packet filter. Iptables can
 be administrated through the <command>iptables</command> command.
 NAT (Network Address Translation) is also a subset of iptables,
 and can be controlled and enabled through the <command>iptables</command>
-command. NAT makes it possible to "hide" a network behind one
+command. NAT makes it possible to <quote>hide</quote> a network behind one
 IP address. This allows you to use the internet on a complete network
 with only one IP address.
 </para>

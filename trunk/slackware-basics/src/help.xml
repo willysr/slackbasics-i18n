@@ -1,4 +1,4 @@
-<!-- $Id: help.xml,v 1.5 2004/12/18 22:18:34 daniel Exp $ -->
+<!-- $Id: help.xml,v 1.6 2004/12/19 10:19:33 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="help.html"?>
 <title>Sources of help</title>
@@ -14,13 +14,13 @@ The famous &Kernel; HOWTOs are a collection of documents which
 cover specific parts of a &OS; system. Most HOWTOs are
 distribution independent, and therefore very useful for using
 them with &Distribution;. The "linux-howtos" package in
-from the "f" diskset contains the HOWTO collection. After
+from the <quote>f</quote> diskset contains the HOWTO collection. After
 installing this package the HOWTOs can be found in
 the <filename>/usr/doc/&Kernel;-HOWTOs/</filename> directory.
 &Distribution; also contains a collection of Mini-HOWTOs, which
 are shorter and cover narrower topics. The Mini-HOWTOs can
 be found in the <filename>/usr/doc/&Kernel;-mini-HOWTOs/</filename>
-directory after installing the "linux-mini-howtos" package.
+directory after installing the <quote>linux-mini-howtos</quote> package.
 </para>
 </sect2>
 
@@ -82,7 +82,7 @@ than commands. These sections of manual pages are available:
 alt.os.linux.slackware is a &Distribution; newsgroup. You can read
 newsgroups with a newsreader like tin or knode. Be careful: it is
 expected that you have read all necessary documentation before posting
-to this newsgroup. If you have not the chance of getting "flamed"
+to this newsgroup. If you have not the chance of getting <quote>flamed</quote>
 is really big.
 </para>
 
