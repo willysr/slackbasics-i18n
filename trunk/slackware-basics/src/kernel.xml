@@ -1,4 +1,4 @@
-<!-- $Id: kernel.xml,v 1.1 2004/12/20 11:24:53 daniel Exp $ -->
+<!-- $Id: kernel.xml,v 1.2 2004/12/20 11:27:34 daniel Exp $ -->
 
 <chapter id="kernel"> <?dbhtml filename="kernel.html"?>
   <title>Building a kernel</title>
@@ -106,7 +106,7 @@
   </sect1>
 
   <sect1 id="kernel-build">
-    <title>Configuring the kernel</title>
+    <title>Configuration</title>
 
     <para>
       As laid out above, the first step is to configure the kernel
@@ -163,7 +163,7 @@
   </sect1>
   
   <sect1>
-    <title>Compiling the kernel</title>
+    <title>Compilation</title>
     
     <para>
       The first step of the kernel compilation is to let the kernel
@@ -201,10 +201,10 @@
   </sect1>
   
   <sect1 id="kernel-install">
-    <title>Installing the kernel</title>
+    <title>Installation</title>
     
-    <sect2>
-      <title>Installation</title>
+    <sect2 id="kernel-install-kernel">
+      <title>Installing the kernel</title>
       
       <para>
         The next step is to install the kernel and the kernel modules.
@@ -248,7 +248,7 @@
       </para>
     </sect2>
     
-    <sect2>
+    <sect2 id="kernel-install-lilo">
       <title>Configuring LILO</title>
       
       <para>
