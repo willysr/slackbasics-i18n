@@ -1,3 +1,6 @@
+Fri Mar  4 17:24:06 CET 2005
+- Add a section about CUPS printer access control (suggested
+  by "Robert").
 - Add information about alternative kernels to the installation
   chapter.
 - Add a short blurb about SATA device naming.
