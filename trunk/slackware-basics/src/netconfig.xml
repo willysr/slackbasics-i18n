@@ -1,4 +1,4 @@
-<!-- $Id: netconfig.xml,v 1.7 2004/12/19 10:20:56 daniel Exp $ -->
+<!-- $Id: netconfig.xml,v 1.8 2004/12/21 17:20:09 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="netconfig.html"?>
 <title>Networking configuration</title>
@@ -155,10 +155,7 @@ with a 48-bit prefix.
 <title>The anatomy of an IPv6 address</title>
 <mediaobject>
 <imageobject>
-<imagedata fileref="../images/ipv6addr.gif" format="GIF" />
-</imageobject>
-<imageobject>
-<imagedata fileref="../images/ipv6addr.eps" format="EPS" />
+<imagedata fileref="../images/ipv6addr.png" format="PNG" scale="70" />
 </imageobject>
 </mediaobject>
 </figure>
@@ -364,10 +361,7 @@ Let's have a look at an example:
 <title>Router example</title>
 <mediaobject>
 <imageobject>
-<imagedata fileref="../images/router.gif" format="GIF" />
-</imageobject>
-<imageobject>
-<imagedata fileref="../images/router.eps" format="EPS" />
+<imagedata fileref="../images/router.png" format="PNG" scale="70" />
 </imageobject>
 </mediaobject>
 </figure>
