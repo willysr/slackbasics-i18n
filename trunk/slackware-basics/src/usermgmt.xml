@@ -1,4 +1,4 @@
-<!-- $Id: usermgmt.xml,v 1.2 2004/12/05 11:59:01 daniel Exp $ -->
+<!-- $Id: usermgmt.xml,v 1.3 2004/12/05 12:12:25 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="usermgmt.html"?>
 <title>User management</title>
@@ -126,6 +126,76 @@ Enter new UNIX password:
 Retype new UNIX password: 
 passwd: password updated successfully
 </screen>
+</sect2>
+
+<sect2>
+<title>adduser</title>
+
+<para>
+The <command>adduser</command> command combines <command>useradd</command>
+and <command>passwd</command> in an interactive script. It will ask you
+to fill in information about the account to-be created. After that it
+will create an account based on the information you provided. The screen
+listing below shows a sample session.
+</para>
+
+<screen>
+# <command>adduser</command>
+
+Login name for new user []: <command>john</command>
+
+User ID ('UID') [ defaults to next available ]: <command>&lt;Enter&gt;</command>
+
+Initial group [ users ]: <command>&lt;Enter&gt;</command>
+
+Additional groups (comma separated) []: <command>staff</command>
+
+Home directory [ /home/john ] <command>&lt;Enter&gt;</command>
+
+Shell [ /bin/bash ] <command>&lt;Enter&gt;</command>
+
+Expiry date (YYYY-MM-DD) []: <command>&lt;Enter&gt;</command>
+
+New account will be created as follows:
+
+---------------------------------------
+Login name.......:  john
+UID..............:  [ Next available ]
+Initial group....:  users
+Additional groups:  [ None ]
+Home directory...:  /home/john
+Shell............:  /bin/bash
+Expiry date......:  [ Never ]
+
+This is it... if you want to bail out, hit Control-C.  Otherwise, press
+ENTER to go ahead and make the account.
+<command>&lt;Enter&gt;</command>
+
+Creating new account...
+
+
+Changing the user information for john
+Enter the new value, or press ENTER for the default
+        Full Name []: <command>John Doe</command>
+        Room Number []: <command>&lt;Enter&gt;</command>
+        Work Phone []: <command>&lt;Enter&gt;</command>
+        Home Phone []: <command>&lt;Enter&gt;</command>
+        Other []: <command>&lt;Enter&gt;</command>
+Changing password for john
+Enter the new password (minimum of 5, maximum of 127 characters)
+Please use a combination of upper and lower case letters and numbers.
+New password: <command>password</command>
+Re-enter new password: <command>password</command>
+
+
+Account setup complete.
+</screen>
+
+<para>
+You can use the default values, or leave some fields empty, by tapping
+the &lt;Enter&gt; key.
+</para>
+
 </sect2>
 
 <sect2>
