@@ -1,4 +1,4 @@
-<!-- $Id: usermgmt.xml,v 1.7 2004/12/24 18:27:39 daniel Exp $ -->
+<!-- $Id: usermgmt.xml,v 1.8 2004/12/24 18:36:42 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="usermgmt.html"?>
   <title>User management</title>
@@ -431,7 +431,7 @@ Disk quotas for user joe (uid 1143):
       </para>
 
       <screen>
-Disk quotas for user joe (uid 1001):
+Disk quotas for user joe (uid 1143):
   Filesystem                   blocks       soft       hard     inodes     soft    hard
   /dev/hda5                      2136     <emphasis role="bold">250000</emphasis>     <emphasis role="bold">300000</emphasis>         64        0       0
       </screen>
