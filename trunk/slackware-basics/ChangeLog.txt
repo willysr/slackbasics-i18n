@@ -1,3 +1,6 @@
+Mon Feb  7 14:02:33 CET 2005
+- Prepared the guide for Slackware Linux 10.1.
+
 Sat Jan 29 23:17:39 CET 2005
 - Add a section about restricting su root access to the user
   management chapter.
