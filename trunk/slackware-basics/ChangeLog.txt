@@ -1,3 +1,7 @@
+Sun Jan 23 18:16:12 CET 2005
+- Add a section about setup up IPsec and racoon for use with
+  preshared keys.
+
 Sun Jan 23 02:02:43 CET 2005
 - Add a section about repquota.
 

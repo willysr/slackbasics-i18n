@@ -1,4 +1,4 @@
-<!-- $Id: ipsec.xml,v 1.6 2005/01/23 11:04:54 daniel Exp $ -->
+<!-- $Id: ipsec.xml,v 1.7 2005/01/23 17:17:08 daniel Exp $ -->
 
 <chapter id="ipsec"> <?dbhtml filename="ipsec.html"?>
   <title>IPsec</title>
@@ -125,7 +125,7 @@ Device Drivers -> Networking support -> Networking options:
   </sect1>
 
   <sect1>
-    <title>The configuration of ipsec</title>
+    <title>Setting up IPsec with manual keying</title>
 
     <sect2>
       <title>Introduction</title>
@@ -293,6 +293,220 @@ tcpdump: listening on eth0
       
     </sect2>
 
+  </sect1>
+  
+  <sect1>
+    <title>Setting up IPsec with automatic key exchanging</title>
+
+    <sect2>
+      <title>Introduction</title>
+    
+      <para>
+        The subject of automatical key exchange is already touched shortly
+	in the introduction of this chapter. Put simply, IPsec with IKE
+	works in the following steps.
+      </para>
+      
+      <orderedlist>
+        <listitem>
+	  <para>
+	    Some process on the host wants to connect to another host. The
+	    kernel checks whether there is a security policy set up for
+	    the other host. If there already is a security association
+	    corresponding with the policy the connection can be made,
+	    and will be authenticated, encrypted and/or compressed as defined
+	    in the security association. If there is no security association,
+	    the kernel will request a user-land IKE daemon to set up the
+	    necessary security association(s).
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    During the first phase of the key exchange the IKE daemon
+	    will try to verify the authenticity of the other host. This
+	    is usually done with a preshared key or certificate. If
+	    the authentication is successful a secure channel is set up
+	    between the two hosts, usually called a IKE security
+	    association, to continue the key exchange.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    During the second phase of the key exchange the security
+	    associations for communication with the other host are set
+	    up. This involves choosing the encryption algorithm to be
+	    used, and generating keys that are used for encryption
+	    of the communication.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    At this point the first step is repeated again, but since
+	    there are now security associations the communication can
+	    proceed.
+	  </para>
+	</listitem>
+      </orderedlist>
+      
+      <para>
+        The racoon IKE daemon is included with the KAME IPsec tools, the
+	sections that follow explain how to set up racoon.
+      </para>
+    </sect2>
+    
+    <sect2>
+      <title>Using racoon with a preshared key</title>
+      
+      <para>
+        As usual the first step to set up IPsec is to define security
+	policies. In contrast to the manual keying example you should
+	not set up security associations, because racoon will make them
+	for you. We will use the same host IPs as in the example above.
+	The security policy rules look like this:
+      </para>
+
+      <screen>
+#!/usr/sbin/setkey -f
+
+# Flush the SAD and SPD
+flush;
+spdflush;
+
+spdadd &host1ip; &host2ip; any -P out ipsec
+	esp/transport//require;
+
+spdadd &host2ip; &host1ip; any -P in ipsec
+	esp/transport//require;
+      </screen>
+
+      <para>
+        Cautious souls have probably noticed that AH policies are missing
+        in this example. In most situations this is no problem, ESP can
+        provide authentication. But you should be aware that the authentication
+        is more narrow; it does not protect information outside the ESP
+        headers. But it is more efficient than encapsulating ESP packets
+        in AH.
+      </para>
+
+      <para>
+        With the security policies set up you can configure racoon. Since
+        the connection-specific information, like the authentication method
+        is specified in the phase one configuration. We can use a general
+        phase two configuration. It is also possible to make specific
+        phase two settings for certain hosts. But generally speaking a
+        general configuration will often suffice in simple setups. We
+        will also add paths for the preshared key file, and certification
+        directory. This is an example of 
+        <filename>/etc/racoon/racoon.conf</filename> with the paths
+        and a general phase two policy set up:
+      </para>
+
+      <screen>
+path pre_shared_key "/etc/racoon/psk.txt";
+path certificate "/etc/racoon/certs";
+
+sainfo anonymous {
+{
+	pfs_group 2;
+	lifetime time 1 hour;
+	encryption_algorithm 3des, blowfish 448, rijndael;
+	authentication_algorithm hmac_sha1, hmac_md5;
+	compression_algorithm deflate;
+}
+      </screen>
+
+      <para>
+        The <parameter>sainfo</parameter> identifier is used to make a
+        block that specifies the settings for security associations. Instead
+        of setting this for a specific host, the <parameter>anonymous</parameter>
+        parameter is used to specify that these settings should be used
+        for all hosts that do not have a specific configuration. The
+        <parameter>pfs_group</parameter> specifies which group of
+        Diffie-Hellman exponentiations should be used. The different
+        groups provide different lengths of base prime numbers that are
+        used for the authentication process. Group 2 provides a 1024 bit
+        length if you would like to use a greater length, for increased
+        security, you can use another group (like 14 for a 2048 bit
+        length). The <parameter>encryption_algorithm</parameter> specifies
+        which encryption algorithms this host is willing to use for
+        ESP encryption. The <parameter>authentication_algorithm</parameter>
+        specifies the algorithm to be used for ESP Authentication or
+        AH. Finally, the <parameter>compression_algorithm</parameter>
+        is used to specify which compression algorithm should be used
+        when IPcomp is specified in an association.
+      </para>
+
+      <para>
+        The next step is to add a phase one configuration for the key
+        exchange with the other host to the racoon configuration. For
+        example:
+      </para>
+
+      <screen>
+remote &host2ip; 
+{
+	exchange_mode aggressive, main;
+	my_identifier address;
+	proposal {
+		encryption_algorithm 3des;
+		hash_algorithm sha1;
+		authentication_method pre_shared_key;
+		dh_group 2;
+	}
+}
+      </screen>
+
+      <para>
+        The <parameter>remote</parameter> block specifies a phase one
+        configuration. The <parameter>exchange_mode</parameter> is
+        used to configure what exchange mode should be used for
+        phase. You can specify more than one exchange mode, but the
+        first method is used if this host is the initiator of the
+        key exchange. The <parameter>my_identifier</parameter> option
+        specifies what identifier should be sent to the remote host.
+        If this option committed <parameter>address</parameter> is used,
+        which sends the IP address as the identifier. The 
+        <parameter>proposal</parameter> block specifies parameter that
+        will be proposed to the other host during phase one authentication.
+        The <parameter>encryption_algorithm</parameter>, and
+        <parameter>dh_group</parameter> are explained above. The
+        <parameter>hash_algorithm</parameter> option is mandatory, and
+        configures the hash algorithm that should be used. This
+        can be <parameter>md5</parameter>, or <parameter>sha1</parameter>.
+        The <parameter>authentication_method</parameter> is crucial for
+        this configuration, as this parameter is used to specify that
+        a preshared key should be used, with 
+        <parameter>pre_shared_key</parameter>.
+      </para>
+
+      <para>
+        With racoon set up there is one thing left to do, the preshared
+        key has to be added to <filename>/etc/racoon/psk.txt</filename>.
+        The syntax is very simple, each line contains a host IP address
+        and a key. These parameters are separated with a tab.
+        For example:
+      </para>
+
+      <screen>
+&host2ip;	somekey
+      </screen>
+
+      <para>
+        At this point the configuration of the security policies and racoon
+        is complete, and you can start to test the configuration. It is a
+        good idea to start <command>racoon</command> with the
+        <parameter class="command">-F</parameter> parameter. This will run
+        racoon in the foreground, making it easier to catch error messages.
+        To wrap it up:
+      </para>
+
+      <screen>
+# <command>setkey -f /etc/ipsec.conf</command>
+# <command>racoon -F</command>
+      </screen>
+
+    </sect2>
+    
   </sect1>
 
 </chapter>
