@@ -1,4 +1,4 @@
-<!-- $Id: shell.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<!-- $Id: shell.xml,v 1.2 2004/11/28 18:53:43 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="shell.html"?>
 <title>The Bash shell</title>
@@ -306,7 +306,7 @@ input to a command:
 </para>
 
 <screen>
-$ <command>md5sum < test1</command>
+$ <command>md5sum &lt; test1</command>
 6be249ef5cacb10014740f61793734a8  -
 </screen>
 

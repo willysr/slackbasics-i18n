@@ -1,4 +1,4 @@
-<!-- $Id: proc.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<!-- $Id: proc.xml,v 1.2 2004/11/28 18:53:43 daniel Exp $ -->
 
 <chapter id="chap-proc"> <?dbhtml filename="proc.html"?>
 <title>Process management</title>
@@ -187,16 +187,16 @@ command. For example:
 </para>
 
 <screen>
-$ <command>sleep 1000 &</command>
+$ <command>sleep 1000 &amp;</command>
 [1] 947
 $ <command>jobs</command>
-[1]+  Running                 sleep 1000 &
+[1]+  Running                 sleep 1000 &amp;
 $ <command>fg %1</command>
 sleep 1000
 </screen>
 
 <para>
-The first command, <command>sleep 1000 &</command>, starts sleep in the 
+The first command, <command>sleep 1000 &amp;</command>, starts sleep in the 
 background. <command>sleep</command> is a command does nothing but waiting
 the number of seconds that are specified as a parameter. The output of
 the <command>jobs</command> command shows that <command>sleep</command>

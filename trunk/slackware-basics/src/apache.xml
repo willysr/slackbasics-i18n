@@ -1,4 +1,4 @@
-<!-- $Id: apache.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<!-- $Id: apache.xml,v 1.2 2004/11/28 18:53:43 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="apache.html"?>
 <title>Apache</title>
@@ -122,7 +122,7 @@ of a virtualhost:
 </para>
 
 <screen>
-#&lt;VirtualHost *:80&gt
+#&lt;VirtualHost *:80&gt;
 #    ServerAdmin webmaster@dummy-host.example.com
 #    DocumentRoot /www/docs/dummy-host.example.com
 #    ServerName dummy-host.example.com

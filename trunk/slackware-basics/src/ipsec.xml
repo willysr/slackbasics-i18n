@@ -1,4 +1,4 @@
-<!-- $Id: ipsec.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<!-- $Id: ipsec.xml,v 1.2 2004/11/28 18:53:43 daniel Exp $ -->
 
 <chapter id="ipsec"> <?dbhtml filename="ipsec.html"?>
 <title>IPsec</title>
@@ -70,10 +70,10 @@ make sure the following options are enabled:
 <screen>
 Device Drivers -> Networking support -> Networking options:
 
-<*> PF_Key sockets
-<*> IP: AH transformation
-<*> IP: ESP transformation
-<*> IP: IPComp transformation
+&lt;*&gt; PF_Key sockets
+&lt;*&gt; IP: AH transformation
+&lt;*&gt; IP: ESP transformation
+&lt;*&gt; IP: IPComp transformation
 </screen>
 
 <para>
@@ -168,7 +168,7 @@ going to &host2ip;. The second line does the same for packets
 coming from &host2ip; to &host1ip;. The third and the fourth line
 define the keys for the data encryption the same way as the
 first two lines. Finally the <quote>spadd</quote> lines define
-two policies, namely packets going out from &host1ip to &host2ip;
+two policies, namely packets going out from &host1ip; to &host2ip;
 should be (require) encoded (esp) and <quote>signed</quote> with
 the authorization header. The second policy is for incoming packets
 and it is the same as outgoing packages.
