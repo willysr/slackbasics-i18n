@@ -1,3 +1,15 @@
+Fri Dec 10 09:11:17 CET 2004
+- Add the useradd command to usermgmt.xml, and move this chapter
+  to the "System administration" part.
+- Switched from the GNU Free Documentation License to a BSDL-like
+  license. My motivation for this is that BSD-style licenses are
+  much easier to read and interpret. And it provides more freedom
+  (though some people would argue with that ;)). 
+
+Sat Dec  4 17:00:00 CET 2004
+- Generate textutils.xml by default.
+- Add sections about echo and cat to textutils.xml.
+
 Fri Dec  3 00:30:33 CET 2004
 - Start a new chapter about text utilities (textutils.xml). This
   chapter will mainly cover what used to be the GNU Textutils,
