@@ -1,4 +1,4 @@
-<!-- $Id: security.xml,v 1.6 2004/12/19 11:00:01 daniel Exp $ -->
+<!-- $Id: security.xml,v 1.7 2004/12/24 12:29:12 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="security.html"?>
 <title>Security</title>
@@ -32,7 +32,7 @@ of random letters (including capitals) and numbers.
 <title>Introduction</title>
 
 <para>
-&OS; supports two major of securing e-mails, but before we will look
+&OS; supports two major methods of securing e-mails, but before we will look
 into these specifically we are going to look what e-mail security provides.
 There are two ways in which you can secure e-mails: signing e-mail and
 encrypting e-mail. Signing e-mail means that a special digital signature

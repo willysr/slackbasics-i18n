@@ -1,4 +1,4 @@
-<!-- $Id: book.xml,v 1.3 2004/12/18 21:48:39 daniel Exp $ -->
+<!-- $Id: book.xml,v 1.4 2004/12/24 12:29:12 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="book.html"?>
 <title>About this book</title>
@@ -42,7 +42,7 @@ Commands are printed as bold text. For example: <command>ls -l</command>
 <title>Screen output</title>
 
 <para>
-Screen output is printed as this:
+Screen output is printed like this:
 </para>
 
 <screen>
