@@ -1,4 +1,4 @@
-<!-- $Id: preface.xml,v 1.1 2004/11/30 17:37:34 daniel Exp $ -->
+<!-- $Id: preface.xml,v 1.2 2004/11/30 18:05:13 daniel Exp $ -->
 
 <preface> <?dbhtml filename="preface.html"?>
 <title>Preface</title>
@@ -15,7 +15,8 @@ spirit.
 <para>
 This book was written by Dani&euml;l de Kok and 
 is freely available under the terms of the GNU Free
-Documentation License. It is continually under development,
+Documentation License (the <quote>GFDL</quote> is included in 
+<xref linkend="gfdl" />). It is continually under development,
 not just to keep up with the latest Slackware versions, but also
 to refine the documentation, and extend it where it is deemed
 necessary.
