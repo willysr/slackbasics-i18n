@@ -1,3 +1,9 @@
+Sun Nov 28 23:36:38 CET 2004
+- Added a section about archives to filesystem.xml.
+- Fix a bunch of XML errors found with "make lint".
+- Add the "make lint" target, which helps checking the validity
+  of the XML files.
+
 Thu Nov 4 00:11:58 CET 2004
 - Fix two errors in the CSS stylesheet for HTML output.
 - Use tidy to clean up the resulting HTML files, and let tidy
