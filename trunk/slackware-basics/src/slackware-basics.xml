@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- $Id: slackware-basics.xml,v 1.5 2004/12/05 11:43:28 daniel Exp $ -->
+<!-- $Id: slackware-basics.xml,v 1.6 2004/12/05 12:13:23 daniel Exp $ -->
 
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "/usr/share/sgml/docbook/xml-dtd-4.1.2/docbookx.dtd" [
 
@@ -19,8 +19,8 @@
 <!ENTITY Filesystem SYSTEM "filesystem.xml">
 <!ENTITY Textutils SYSTEM "textutils.xml">
 <!ENTITY Proc SYSTEM "proc.xml">
-<!ENTITY UserMgmt SYSTEM "usermgmt.xml">
 
+<!ENTITY UserMgmt SYSTEM "usermgmt.xml">
 <!ENTITY Netconfig SYSTEM "netconfig.xml">
 <!ENTITY Ipsec SYSTEM "ipsec.xml">
 
@@ -85,11 +85,11 @@
 &Filesystem;
 &Textutils;
 &Proc;
-&UserMgmt;
 </part>
 
 <part> <?dbhtml filename="sysadmin.html"?>
 <title>System administration</title>
+&UserMgmt;
 &Printing;
 &XFree86;
 &Pkgmgmt;
