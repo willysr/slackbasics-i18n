@@ -1,4 +1,4 @@
-<!-- $Id: usermgmt.xml,v 1.6 2004/12/24 12:29:00 daniel Exp $ -->
+<!-- $Id: usermgmt.xml,v 1.7 2004/12/24 18:27:39 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="usermgmt.html"?>
   <title>User management</title>
@@ -367,6 +367,79 @@ $ <command>su -c lilo</command>
 # <command>mount -o remount /home</command>
 # <command>quotaon -avug</command>
       </screen>
+
+    </sect2>
+
+    <sect2>
+      <title>Editing quota</title>
+
+      <para>
+        User and group quotas can be edited with the
+        <quote>edquota</quote> utility. This program allows you to
+        edit quotas interactively with the <command>vi</command>
+        editor. The most basic syntax of this command is
+        <command>edquota username</command>. For example:
+      </para>
+
+      <screen>
+# <command>edquota joe</command>
+      </screen>
+
+      <para>
+        This will launch the <command>vi</command> editor with the
+        quota information for the user <emphasis>joe</emphasis>.  It
+        will look like this:
+      </para>
+
+      <screen>
+Disk quotas for user joe (uid 1143):
+  Filesystem                   blocks       soft       hard     inodes     soft    hard
+  /dev/hda5                      2136          0          0         64        0       0
+      </screen>
+
+      <para>
+        In this example quotas are only turned on for one file system,
+        namely the filesystem on <filename>/dev/hda5</filename>. As
+        you can see there are multiple columns. The
+        <emphasis>blocks</emphasis> column shows how many block the
+        user uses on the file system, and the
+        <emphasis>inodes</emphasis> column the number of inodes a user
+        occupies. Besides that there are <emphasis>soft</emphasis> and
+        <emphasis>hard</emphasis> columns after both
+        <emphasis>blocks</emphasis> and
+        <emphasis>inodes</emphasis>. These columns specify the soft
+        and hard limits on blocks and inodes. A user can exceed the
+        soft limit for a grace period, but the user can never exceed
+        the hard limit. If the value of a limit is
+        <emphasis>0</emphasis>, there is no limit.
+      </para>
+
+      <note>
+        <para>
+          The term <quote>blocks</quote> might be a bit confusing in
+          this context. In the quota settings a block is 1KB, not the
+          block size of the file system.
+        </para>
+      </note>
+
+      <para>
+        Let's look at a simple example. Suppose that we would like to
+        set the soft limit for the user <emphasis>joe</emphasis> to
+        <emphasis>250000</emphasis>, and the hard limit to
+        <emphasis>300000</emphasis>. We could change the quotas listed
+        above to:
+      </para>
+
+      <screen>
+Disk quotas for user joe (uid 1001):
+  Filesystem                   blocks       soft       hard     inodes     soft    hard
+  /dev/hda5                      2136     <emphasis role="bold">250000</emphasis>     <emphasis role="bold">300000</emphasis>         64        0       0
+      </screen>
+
+      <para>
+        The new quota settings for this user will be active after
+        saving the file, and quitting <command>vi</command>.
+      </para>
 
     </sect2>
 
