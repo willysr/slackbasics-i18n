@@ -1,6 +1,8 @@
-<!-- $Id: slackware-basics.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<?xml version="1.0"?>
 
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "/usr/share/sgml/docbook/xml-dtd-4.1/docbookx.dtd" [
+<!-- $Id: slackware-basics.xml,v 1.2 2004/11/28 18:53:29 daniel Exp $ -->
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "/usr/share/sgml/docbook/xml-dtd-4.1.2/docbookx.dtd" [
 
 <!ENTITY Book SYSTEM "book.xml">
 <!ENTITY Introduction SYSTEM "introduction.xml">
@@ -35,6 +37,10 @@
 
 <!ENTITY host1ip "192.168.1.1">
 <!ENTITY host2ip "192.168.1.169">
+
+<!-- Special characters -->
+<!ENTITY euml "&#235;">
+
 ]>
 
 <book><?dbhtml filename="slackware-basics.html"?>
