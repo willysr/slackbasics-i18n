@@ -1,4 +1,4 @@
-<!-- $Id: help.xml,v 1.2 2004/11/30 17:47:35 daniel Exp $ -->
+<!-- $Id: help.xml,v 1.3 2004/12/18 22:07:18 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="help.html"?>
 <title>Sources of help</title>
@@ -13,11 +13,11 @@
 The famous Linux HOWTOs are a collection of documents which
 cover specific parts of a GNU/Linux system. Most HOWTOs are
 distribution independent, and therefore very useful for using
-them with Slackware Linux. The "linux-howtos" package in
+them with &Distribution;. The "linux-howtos" package in
 from the "f" diskset contains the HOWTO collection. After
 installing this package the HOWTOs can be found in
 the <filename>/usr/doc/Linux-HOWTOs/</filename> directory.
-Slackware also contains a collection of Mini-HOWTOs, which
+&Distribution; also contains a collection of Mini-HOWTOs, which
 are shorter and cover narrower topics. The Mini-HOWTOs can
 be found in the <filename>/usr/doc/Linux-mini-HOWTOs/</filename>
 directory after installing the "linux-mini-howtos" package.
@@ -79,7 +79,7 @@ than commands. These sections of manual pages are available:
 <bridgehead>alt.os.linux.slackware</bridgehead>
 
 <para>
-alt.os.linux.slackware is a Slackware Linux newsgroup. You can read
+alt.os.linux.slackware is a &Distribution; newsgroup. You can read
 newsgroups with a newsreader like tin or knode. Be careful: it is
 expected that you have read all necessary documentation before posting
 to this newsgroup. If you have not the chance of getting "flamed"

@@ -1,13 +1,13 @@
-<!-- $Id: preface.xml,v 1.3 2004/12/05 11:43:28 daniel Exp $ -->
+<!-- $Id: preface.xml,v 1.4 2004/12/18 22:07:18 daniel Exp $ -->
 
 <preface> <?dbhtml filename="preface.html"?>
 <title>Preface</title>
 
 <para>
-This book aims to provide an introduction to Slackware Linux. It addresses
+This book aims to provide an introduction to &Distribution;. It addresses
 people who have little or no GNU/Linux experience. It aims to cover the 
-Slackware Linux installation, basic GNU/Linux commands and the configuration
-of Slackware Linux. As you can see the book is still work in progress, but
+&Distribution; installation, basic GNU/Linux commands and the configuration
+of &Distribution;. As you can see the book is still work in progress, but
 the first bits are released in the <quote>release early, release often</quote>
 spirit.
 </para>
@@ -16,13 +16,13 @@ spirit.
 This book was written by Dani&euml;l de Kok and 
 is freely available under a BSDL-like license.
 It is continually under development,
-not just to keep up with the latest Slackware versions, but also
+not just to keep up with the latest &Distribution; versions, but also
 to refine the documentation, and extend it where it is deemed
 necessary.
 </para>
 
 <para>
-I wish everybody a good time with Slackware Linux, and I hope
+I wish everybody a good time with &Distribution;, and I hope
 this book is useful for you.
 </para>
 

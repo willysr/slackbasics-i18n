@@ -1,4 +1,4 @@
-<!-- $Id: security.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<!-- $Id: security.xml,v 1.2 2004/12/18 22:07:18 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="security.html"?>
 <title>Security</title>
@@ -557,7 +557,7 @@ can be done by sending the HUP signal to the inetd process:
 
 <para>
 If you do not need <command>inetd</command> at all, it is a good idea to
-remove it. If you want to keep it installed, but do not want Slackware
+remove it. If you want to keep it installed, but do not want &Distribution;
 to load it at the booting process, execute the following command as root:
 </para>
 

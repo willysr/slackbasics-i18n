@@ -1,4 +1,4 @@
-<!-- $Id: apache.xml,v 1.2 2004/11/28 18:53:43 daniel Exp $ -->
+<!-- $Id: apache.xml,v 1.3 2004/12/18 22:07:18 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="apache.html"?>
 <title>Apache</title>
@@ -8,9 +8,9 @@
 
 <para>
 Apache is the most popular web server since April 1996. It was originally
-based on NCSA httpd, and has grown into a full-featured HTTP server. Slackware
-Linux currently uses the 1.3.x branch of Apache. This chapter is based on
-Apache 1.3.x. 
+based on NCSA httpd, and has grown into a full-featured HTTP server.
+&Distribution; currently uses the 1.3.x branch of Apache. This chapter is 
+based on Apache 1.3.x. 
 </para>
 
 </sect1>
@@ -78,7 +78,7 @@ be used for storing the webpages. For example, the webpages at URL
 <title>Virtual hosts</title>
 
 <para>
-The default documentroot for apache under Slackware is
+The default documentroot for apache under &Distribution; is
 <filename>/var/www/htdocs</filename>. Without using virtual hosts
 every client connecting to the Apache server will receive the
 website in this directory. So, if we have two hostnames pointing

@@ -1,4 +1,4 @@
-<!-- $Id: printing.xml,v 1.2 2004/12/18 21:17:16 daniel Exp $ -->
+<!-- $Id: printing.xml,v 1.3 2004/12/18 22:07:18 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="printer.html"?>
 <title>Printer configuration</title>
@@ -8,7 +8,7 @@
 
 <para>
 GNU/Linux supports a large share of the available USB, parallel and
-network printers. Slackware Linux provides two printing systems,
+network printers. &Distribution; provides two printing systems,
 <acronym>CUPS</acronym> (Common UNIX Printing System) and
 <acronym>LPRNG</acronym> (LPR Next Generation). This chapter covers
 the CUPS system.

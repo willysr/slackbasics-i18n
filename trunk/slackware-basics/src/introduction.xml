@@ -1,7 +1,7 @@
-<!-- $Id: introduction.xml,v 1.3 2004/12/18 21:17:16 daniel Exp $ -->
+<!-- $Id: introduction.xml,v 1.4 2004/12/18 22:07:18 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="introduction.html"?>
-<title>An introduction to Slackware Linux</title>
+<title>An introduction to &Distribution;</title>
 
 <sect1>
 <title>What is Linux?</title>
@@ -48,46 +48,46 @@ call "Linux distributions" "GNU/Linux distributions", because GNU is a
 substantial part of most distributions.  </para> </sect1>
 
 <sect1>
-<title>What is Slackware Linux?</title>
+<title>What is &Distribution;?</title>
 
 <para>
-Slackware Linux is a GNU/Linux distribution which is maintained and
+&Distribution; is a GNU/Linux distribution which is maintained and
 developed by Patrick Volkerding. In contrast to many other distributions
-Slackware adheres to the so-called KISS (keep it simple stupid) principle.
-This means that Slackware does not have complex graphical tools for
+&Distribution; adheres to the so-called KISS (keep it simple stupid) principle.
+This means that &Distribution; does not have complex graphical tools for
 configuring a system. For newbies this can be somwhat harsh, but it
 provides more transperancy and flexibility. Besides that you will
-get to learn GNU/Linux to the bones with Slackware Linux.
+get to learn GNU/Linux to the bones with &Distribution;.
 </para>
 
 <para>
-Another distinguishing aspect of Slackware Linux, that also "complies"
-with the KISS principe is the Slackware package manager. Slackware does
-not have complex package manager like RPM. Packages are normal tgz
+Another distinguishing aspect of &Distribution;, that also "complies"
+with the KISS principe is the &Distribution; package manager. &Distribution; 
+does not have complex package manager like RPM. Packages are normal tgz
 (tar/gzip) files, mostly with an additional installation script and
 a package description. Tgz is much more powerful than RPM for novice
-users and avoids dependency problems. Another famous feature of Slackware
-are the BSD-like initialization scripts of Slackware Linux. Slackware
+users and avoids dependency problems. Another famous feature of &Distribution; 
+are the BSD-like initialization scripts of &Distribution;. &Distribution; 
 has one initialization script for each runlevel insteas of a script
 for eacht daemon. It allow you to tweak with your system easily,
 without the need to write net init scripts yourself.
 </para>
 
 <para>
-The packages in Slackware Linux are compiled with as little modifications
+The packages in &Distribution; are compiled with as little modifications
 as possible. This means you can use most general GNU/Linux documentation.
 </para>  
 
 </sect1>
 
 <sect1>
-<title>Slackware Linux on CD-ROM</title>
+<title>&Distribution; on CD-ROM</title>
 <para>
-Slackware Linux can be purchased at quite many (internet) shops. It is
+&Distribution; can be purchased at quite many (internet) shops. It is
 important to make a distinction between the official CD-ROM set and
 cheap copies. When you buy the official CD set you are financially
-supporting the development of Slackware Linux. So, if you would
-like to see continuing development of Slackware Linux, buy the CD set!
+supporting the development of &Distribution;. So, if you would
+like to see continuing development of &Distribution;, buy the CD set!
 The Slackware Store can be found at: 
 <ulink url="http://store.slackware.com/" />
 </para>

@@ -1,4 +1,4 @@
-<!-- $Id: inetd.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<!-- $Id: inetd.xml,v 1.2 2004/12/18 22:07:18 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="inetd.html"?>
 <title>The internet super server</title>
@@ -42,7 +42,7 @@ This line specifies that <command>inetd</command> should accept
 FTP connections and pass them to <command>tcpd</command>. This
 may seem a bit odd, because <command>proftpd</command> normally 
 handles FTP connections. You can also specify to use <command>proftpd</command>
-directly in <filename>inetd.conf</filename>, but Slackware normally
+directly in <filename>inetd.conf</filename>, but &Distribution; normally
 passes the connection to <command>tcpd</command>. This program
 passes the connection to <command>proftpd</command> in turn, as specified.
 <command>tcpd</command> is used to monitor services and to provide

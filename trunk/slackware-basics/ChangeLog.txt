@@ -1,3 +1,9 @@
+- Mark up some acronyms with <acronym>. Use an italic font for
+  acronyms.
+- Rename the services part to "Network administration". Move the
+  "Network configuration" and IPsec chapters to the "Network 
+  Administration" part.
+
 Fri Dec 10 09:11:17 CET 2004
 - Add the useradd command to usermgmt.xml, and move this chapter
   to the "System administration" part.

@@ -1,14 +1,14 @@
-<!-- $Id: installation.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<!-- $Id: installation.xml,v 1.2 2004/12/18 22:07:18 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="installation.html" ?>
-<title>Installing Slackware Linux</title>
+<title>Installing &Distribution;</title>
 
 <sect1>
 <title>Booting the installation CD-ROM</title>
 
 <para>
 The easiest method for booting the installation system is by using the
-installation CD-ROM. The Slackware installation CD-ROM is a bootable CD,
+installation CD-ROM. The &Distribution; installation CD-ROM is a bootable CD,
 which means that the BIOS can boot the CD, just like it can boot, for
 example, a floppy disk. Most modern systems have a BIOS which supports
 CD-ROM booting.
@@ -32,7 +32,7 @@ a normal US/International keyboard, which are the most common, you can
 just press "Enter" at this question. After that the login prompt will
 appear. Log on as <quote>root</quote>, no password will be requested. 
 After logging on the shell is started, and you can start installing
-Slackware Linux. The installation procedure will be explained briefly in 
+&Distribution;. The installation procedure will be explained briefly in 
 this chapter.
 </para>
 </sect1>
@@ -41,7 +41,7 @@ this chapter.
 <title>Partitioning a hard disk</title>
 
 <para>
-Installing Slackware Linux requires at least one Linux partition, creating
+Installing &Distribution; requires at least one Linux partition, creating
 a swap partition is also recommended. To be able to create a partition there
 has to be free unpartitioned space on the disk. There are some programs
 that can resize partitions. For example, FIPS can resize FAT partitions.
@@ -50,7 +50,7 @@ types.
 </para>
 
 <para>
-After booting the Slackware Linux CD-ROM and logging on, there are two
+After booting the &Distribution; CD-ROM and logging on, there are two
 partitioning programs at your disposal: <command>fdisk</command> and
 <command>cfdisk</command>. <command>cfdisk</command> is the easiest of
 both, because it is controlled by a menu interface. This section
@@ -94,8 +94,8 @@ and executing the <quote>New</quote> command. <command>cfdisk</command>
 will ask you whether you want to create a primary or logical partition.
 The number of primary partitions is limited to four. Linux can be installed
 on both primary and logical partitions. If you want to install other
-operating systems besides Slackware Linux that require primary partitions,
-it is a good idea to install Slackware Linux onto a logical partition.
+operating systems besides &Distribution; that require primary partitions,
+it is a good idea to install &Distribution; onto a logical partition.
 The type of the new partition is automatically set to <quote>Linux
 Native</quote>, so it is not necessary to set the partition type.
 </para>
@@ -129,13 +129,13 @@ restart the computer.
 </sect1>
 
 <sect1>
-<title>Installing Slackware</title>
+<title>Installing &Distribution;</title>
 
 <para>
-The Slackware Linux installer is started by executing <command>setup</command>
+The &Distribution; installer is started by executing <command>setup</command>
 in the installation disk shell. Setup will show a menu with several choices,
 you can see a screenshot of the installer in <xref linkend="setup"/>. Every
-option has to be completed to do a complete Slackware installation, but once
+option has to be completed to do a complete &Distribution; installation, but once
 you start the <command>setup</command> guide will guide you through the
 options.
 </para>
@@ -169,7 +169,7 @@ Normally you can just answer <quote>Yes</quote>.
 <para>
 After setting the swap up space the <quote>TARGET</quote> menu is
 launched, which you can see in <xref linkend="partselect"/>. It is used to 
-initialize the Slackware partitions. Setup
+initialize the &Distribution; partitions. Setup
 will display all partitions with the <quote>Linux native</quote> type.
 </para>
 
@@ -238,14 +238,14 @@ is much smaller.
 
 <para>
 The next step is to select the source medium (<xref linkend="medium"/>). This 
-dialog offers several choices, like installing Slackware from a CD-ROM or 
-installing Slackware via NFS. Most of the times Slackware is installed from
+dialog offers several choices, like installing &Distribution; from a CD-ROM or 
+installing &Distribution; via NFS. Most of the times &Distribution; is installed from
 CD-ROM, so this is what we are going to look at. After selecting
 <quote>CD-ROM</quote> you will be asked whether you want to let
 setup look for the CD-ROM itself (<quote>Auto</quote>) or you want
 to select the CD-ROM device yourself (<quote>Manual</quote>). If you 
 select <quote>Manual</quote> the setup tool will show a list of
-devices. Select the device holding the Slackware CD-ROM.
+devices. Select the device holding the &Distribution; CD-ROM.
 </para> 
 
 <figure id="medium">
@@ -278,7 +278,7 @@ Now it is almost time to start the real installation. The next screen
 asks how you would like to install. The most obvious choices are
 <quote>full</quote>, <quote>menu</quote> or <quote>expert</quote>.
 Selecting <quote>full</quote> will install all packages in the
-selected disk sets. This is the easiest way of installing Slackware.
+selected disk sets. This is the easiest way of installing &Distribution;.
 The disadvantage of this choice is that it can take quite much disk
 space. The <quote>menu</quote> option will ask you for each disk set
 which packages you want to install. The <quote>expert</quote> option
@@ -292,8 +292,8 @@ After the completion of the installation the setup tool will allow you to
 configure some parts of the system. The first dialog will ask you where
 you would like to install the kernel from (see 
 <xref linkend="installkernel" />). Normally it is a good idea to install
-the kernel from the Slackware CD-ROM, this will select the kernel you
-installed Slackware with. You can confirm this, or select another kernel.
+the kernel from the &Distribution; CD-ROM, this will select the kernel you
+installed &Distribution; with. You can confirm this, or select another kernel.
 </para>
 
 <figure id="installkernel">
@@ -307,7 +307,7 @@ installed Slackware with. You can confirm this, or select another kernel.
 
 <para>
 At this point you can choose to make a bootdisk (<xref linkend="bootdisk" />).
-It is a good idea to make a bootdisk, you can use it to boot Slackware if
+It is a good idea to make a bootdisk, you can use it to boot &Distribution; if
 the LILO configuration is botched.
 </para>
 
@@ -399,9 +399,9 @@ extra parameters you can just press the &lt;Enter&gt; key.
 The last step of the LILO configuration is selecting where LILO
 should be installed. <emphasis>MBR</emphasis> is the master boot
 record, the main boot record of PCs. Use this option if you want
-use Slackware as only OS, or if you want to use LILO the boot
+use &Distribution; as only OS, or if you want to use LILO the boot
 other operating systems. The <emphasis>Root</emphasis> option will
-install LILO in the boot record of the Slackware <filename>/</filename>
+install LILO in the boot record of the &Distribution; <filename>/</filename>
 partition. Use this option if you use another bootloader.
 </para>
 

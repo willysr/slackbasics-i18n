@@ -1,4 +1,4 @@
-<!-- $Id: services.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<!-- $Id: services.xml,v 1.2 2004/12/18 22:07:18 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="services.html"?>
 <title>Networking services</title>
@@ -37,7 +37,7 @@ This line specifies that <command>inetd</command> should accept
 FTP connections and pass them to <command>tcpd</command>. This
 may seem a bit odd, because <command>proftpd</command> normally 
 handles FTP connections. You can also specify to use <command>proftpd</command>
-directly in <filename>inetd.conf</filename>, but Slackware normally
+directly in <filename>inetd.conf</filename>, but &Distribution; normally
 passes the connection to <command>tcpd</command>. This program
 passes the connection to <command>proftpd</command> in turn, as specified.
 <command>tcpd</command> is used to monitor services and to provide
@@ -68,7 +68,7 @@ by sending the HUP signal to the inetd process:
 A caching nameserver provides DNS services for a machine or a network,
 but does not provide DNS for a domain. That means it can only be used
 to convert hostnames to IP addresses. Setting up a nameserver with
-Slackware Linux is fairly easy, because BIND is configured as a
+&Distribution; is fairly easy, because BIND is configured as a
 caching nameserver by default. Enabling the caching nameserver takes
 just two steps: you have to install BIND and alter the initialization
 scripts. BIND can be installed by adding the bind package from
@@ -94,7 +94,7 @@ you also have to alter <filename>/etc/resolv.conf</filename>.
 
 <para>
 Apache is the most widely userd webserver on the internet, and is,
-of course, part of Slackware Linux. Apache can be installed by
+of course, part of &Distribution;. Apache can be installed by
 adding the <filename>apache</filename> pacakge from the "n" diskset.
 If you also want to use PHP, the <filename>php</filename> ("n" diskset)
 and <filename>mysql</filename> ("ap" diskset) are also required.

@@ -1,4 +1,4 @@
-<!-- $Id: concepts.xml,v 1.2 2004/12/18 21:17:16 daniel Exp $ -->
+<!-- $Id: concepts.xml,v 1.3 2004/12/18 22:07:18 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="concepts.html"?>
 <title>General concepts</title>
@@ -283,7 +283,7 @@ device number, and <emphasis>5</emphasis> as the minor device number.
 
 <note>
 <para>
-If you have the kernel sources unpacked after installing Slackware, you
+If you have the kernel sources unpacked after installing &Distribution;, you
 can find a comprehensive list of all major devices with their minor
 and major numbers in 
 <filename>/usr/src/linux/Documentation/devices.txt</filename>. An

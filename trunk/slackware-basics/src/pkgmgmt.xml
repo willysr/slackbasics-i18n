@@ -1,4 +1,4 @@
-<!-- $Id: pkgmgmt.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<!-- $Id: pkgmgmt.xml,v 1.2 2004/12/18 22:07:18 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="pkgmgmt.html"?>
 <title>Package Management</title>
@@ -10,18 +10,18 @@
 <title>Introduction</title>
 
 <para>
-Slackware does not use a complex package system, unlike many other
+&Distribution; does not use a complex package system, unlike many other
 Linux distributions. Package have the <filename>.tgz</filename>
 extension, and are usually ordinary tarballs which contain two
 extra files: an installation script and a package description file.
-Due to the simplicity of the packages the Slackware package tools
-do not have the means to handle dependencies. But many Slackware users
+Due to the simplicity of the packages the &Distribution; package tools
+do not have the means to handle dependencies. But many &Distribution; users
 prefer this approach, because dependencies often cause more problems
 than they solve.
 </para>
 
 <para>
-Slackware has a few tools to handle packages. The most important
+&Distribution; has a few tools to handle packages. The most important
 tools will be covered in this chapter. To learn to understand the
 tools we need to have a look at package naming. Let's have a look
 at an example, imagine that we have a package with the file name
@@ -131,9 +131,9 @@ full name:
 
 <para>
 Slackpkg is a package tool written by  Roberto F. Batista and Evaldo Gardenali.
-It helps users to install and upgrade Slackware Linux packages using one of
-the Slackware mirrors. Slackpkg is included in the <filename>extra/</filename>
-directory on the second CD of the Slackware CD set.
+It helps users to install and upgrade &Distribution; packages using one of
+the &Distribution; mirrors. Slackpkg is included in the <filename>extra/</filename>
+directory on the second CD of the &Distribution; CD set.
 </para>
 </sect2>
 
@@ -154,8 +154,8 @@ ftp://ftp.nluug.nl/pub/os/Linux/distr/slackware/slackware-10.0/
 </screen>
 
 <para>
-This will use the Slackware Linux 10.0 tree on the ftp.nluug.nl mirror.
-Be sure to use a tree that matches your Slackware version. If you would
+This will use the &Distribution; 10.0 tree on the ftp.nluug.nl mirror.
+Be sure to use a tree that matches your &Distribution; version. If you would
 like to track slackware-current you would uncomment the following line
 instead (when you would like to use the NLUUG mirror):
 </para>
@@ -171,11 +171,11 @@ not work.
 </sect2>
 
 <sect2>
-<title>Importing the Slackware GPG key</title>
+<title>Importing the &Distribution; GPG key</title>
 
 <para>
 By default slackpkg checks packages using the
-package signatures and the public Slackware GPG key. Since this
+package signatures and the public &Distribution; GPG key. Since this
 is a good idea from a security point of view, you probably do
 not want to change this behaviour. To be able to verify packages
 you have to import the <emphasis>security@slackware.com</emphasis>
@@ -200,9 +200,9 @@ gpg: keyring `/root/.gnupg/secring.gpg' created
 gpg: keyring `/root/.gnupg/pubring.gpg' created
 gpg: searching for "security@slackware.com" from HKP server pgp.mit.edu
 Keys 1-2 of 2 for "security@slackware.com"
-(1)     Slackware Linux Project &lt;security@slackware.com&gt;
+(1)     &Distribution; Project &lt;security@slackware.com&gt;
           1024 bit DSA key 40102233, created 2003-02-25
-(2)     Slackware Linux Project &lt;security@slackware.com&gt;
+(2)     &Distribution; Project &lt;security@slackware.com&gt;
           1024 bit DSA key 40102233, created 2003-02-25
 Enter number(s), N)ext, or Q)uit &gt; 
 </screen>
@@ -217,7 +217,7 @@ the keyring of the <emphasis>root</emphasis> user:
 Enter number(s), N)ext, or Q)uit > <command>1</command>
 gpg: key 40102233: duplicated user ID detected - merged
 gpg: /root/.gnupg/trustdb.gpg: trustdb created
-gpg: key 40102233: public key "Slackware Linux Project &lt;security@slackware.com&gt;" imported
+gpg: key 40102233: public key "&Distribution; Project &lt;security@slackware.com&gt;" imported
 gpg: Total number processed: 1
 gpg:               imported: 1
 </screen>
@@ -232,7 +232,7 @@ parameter:
 
 <screen>
 # <command>gpg --fingerprint security@slackware.com</command>
-pub  1024D/40102233 2003-02-26 Slackware Linux Project &lt;security@slackware.com&gt;
+pub  1024D/40102233 2003-02-26 &Distribution; Project &lt;security@slackware.com&gt;
      Key fingerprint = EC56 49DA 401E 22AB FA67  36EF 6A44 63C0 4010 2233
 sub  1024g/4E523569 2003-02-26 [expires: 2012-12-21]
 </screen>
@@ -265,10 +265,10 @@ $ <command>slackpkg update</command>
 The <parameter>upgrade</parameter> parameter is used to upgrade installed
 packages. You have to add an extra parameter to actually tell
 <command>slackpkg</command> what you want to upgrade, this differs
-for a stable Slackware version and slackware-current. Upgrades
-for stable Slackware releases are in the <filename>patches</filename>
+for a stable &Distribution; version and slackware-current. Upgrades
+for stable &Distribution; releases are in the <filename>patches</filename>
 directory of FTP mirrors. You can update a slackware-stable installation
-(e.g. Slackware Linux 10.0) with:
+(e.g. &Distribution; 10.0) with:
 </para>
 
 <screen>
@@ -309,7 +309,7 @@ The <parameter>install</parameter> is used to install packages:
 </screen>
 
 <para>
-Be aware that neither slackpkg, nor the Slackware package tools do
+Be aware that neither slackpkg, nor the &Distribution; package tools do
 dependency checking. If some program does not work due to missing
 libraries, you have to add them yourself with slackpkg.
 </para>

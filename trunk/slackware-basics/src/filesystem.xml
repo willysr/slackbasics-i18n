@@ -1,4 +1,4 @@
-<!-- $Id: filesystem.xml,v 1.2 2004/11/28 19:17:33 daniel Exp $ -->
+<!-- $Id: filesystem.xml,v 1.3 2004/12/18 22:07:18 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="filesystem.html"?>
 <title>Files and directories</title>
@@ -585,7 +585,7 @@ Ext2, Ext3 and XFS filesystems do support extended attributes.
 <title>Installing the necessary utilities</title>
 
 <para>
-The extended attribute software is available in Slackware through
+The extended attribute software is available in &Distribution; through
 the <emphasis>xfsprogs</emphasis> package, which can be found in
 the <quote>a</quote> diskset. Don't be misled by the name of the
 package, the extended attribute tools also work with other filesystems,

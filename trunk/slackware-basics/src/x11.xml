@@ -1,4 +1,4 @@
-<!-- $Id: x11.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<!-- $Id: x11.xml,v 1.2 2004/12/18 22:07:18 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="x11.html"?>
 <title>X11</title>
@@ -8,8 +8,8 @@
 
 <para>
 The X11 configuration is stored in <filename>/etc/X11/xorg.conf</filename>.
-Many distributions provide special configuration tools for X, but Slackware
-Linux only provides the standard X11 tools (which are actually quite
+Many distributions provide special configuration tools for X, but &Distribution; 
+only provides the standard X11 tools (which are actually quite
 easy to use). In most cases X can be configured automatically, but sometimes
 it is necessary to edit <filename>/etc/X11/xorg.conf</filename> manually.
 </para>
@@ -66,7 +66,7 @@ it is a good idea to avoid <command>xorgconfig</command>.
 
 <para>
 The "look and feel" of X11 is managed by a so-called window manager.
-Slackware Linux provides the following widely user window managers:
+&Distribution; provides the following widely user window managers:
 </para>
 
 <itemizedlist>
@@ -92,7 +92,7 @@ and an office suite (KOffice).
 <para>
 GNOME: Like KDE a complete desktop environment. It is worth noting that
 <ulink url="http://www.dropline.net/">Dropline Systems</ulink> provides
-a special GNOME environment for Slackware.
+a special GNOME environment for &Distribution;.
 </para>
 </listitem>
 </itemizedlist>
@@ -106,7 +106,7 @@ managers.
 </para>
 
 <para>
-On Slackware Linux the following command can be used to select a window
+On &Distribution; the following command can be used to select a window
 manager:
 </para>
 

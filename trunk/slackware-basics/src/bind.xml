@@ -1,4 +1,4 @@
-<!-- $Id: bind.xml,v 1.2 2004/12/18 21:17:16 daniel Exp $ -->
+<!-- $Id: bind.xml,v 1.3 2004/12/18 22:07:18 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="bind.html"?>
 <title>BIND</title>
@@ -90,7 +90,7 @@ load-balancing.
 A caching nameserver provides DNS services for a machine or a network,
 but does not provide DNS for a domain. That means it can only be used
 to convert hostnames to IP addresses. Setting up a nameserver with
-Slackware Linux is fairly easy, because BIND is configured as a
+&Distribution; is fairly easy, because BIND is configured as a
 caching nameserver by default. Enabling the caching nameserver takes
 just two steps: you have to install BIND and alter the initialization
 scripts. BIND can be installed by adding the bind package from
