@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.6 2005/01/27 23:41:38 daniel Exp $
+# $Id: Makefile,v 1.7 2005/02/28 20:25:03 daniel Exp $
 
 CURRENTDIR=`pwd`
 
@@ -9,7 +9,7 @@ lint:
 
 fmt-html:
 	jade -t sgml -d src/slackware-basics.dsl#html \
-		/usr/share/sgml/declaration/xml.dcl \
+		/usr/share/sgml/xml.dcl \
 		src/slackware-basics.xml
 	mv *.html html/
 	cp src/normal.css html/
@@ -18,7 +18,7 @@ fmt-html:
 fmt-tex:
 	jade -t tex -o tex/slackware-basics.tex \
 		-d src/slackware-basics.dsl#print \
-		/usr/share/sgml/docbook/dsssl-stylesheets/dtds/decls/xml.dcl \
+		/usr/share/sgml/xml.dcl \
 		src/slackware-basics.xml
 
 fmt-pdf: fmt-tex
