@@ -1,3 +1,6 @@
+- Use colon as the user/group separator for the chown section, 
+  suggested by Sebastien Guay.
+
 Mon Feb  7 14:02:33 CET 2005
 - Prepared the guide for Slackware Linux 10.1.
 
