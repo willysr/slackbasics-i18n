@@ -1,9 +1,9 @@
-<!-- $Id: introduction.xml,v 1.9 2004/12/19 13:50:27 daniel Exp $ -->
+<!-- $Id: introduction.xml,v 1.10 2004/12/19 14:09:22 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="introduction.html"?>
   <title>An introduction to &Distribution;</title>
 
-  <sect1>
+  <sect1 id="whatis-linux">
     <title>What is &Kernel;?</title>
 
     <para>
@@ -24,7 +24,7 @@
     </para>
   </sect1>
 
-  <sect1>
+  <sect1 id="whatis-gnulinux">
     <title>What is &OS;?</title>
 
     <para>
@@ -52,7 +52,7 @@
     </para>
   </sect1>
 
-  <sect1>
+  <sect1 id="whatis-slackware">
     <title>What is &Distribution;?</title>
 
     <para>
@@ -88,7 +88,7 @@
     </para>
   </sect1>
 
-  <sect1>
+  <sect1 id="slackware-features">
     <title>&Distribution; 10.0 features</title>
 
     <para>
@@ -149,7 +149,7 @@
     </para> 
   </sect1>
 
-  <sect1>
+  <sect1 id="slackware-on-cdrom">
     <title>&Distribution; on CD-ROM</title>
 
     <para>
