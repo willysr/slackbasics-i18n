@@ -1,146 +1,161 @@
-<!-- $Id: usermgmt.xml,v 1.5 2004/12/19 11:00:01 daniel Exp $ -->
+<!-- $Id: usermgmt.xml,v 1.6 2004/12/24 12:29:00 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="usermgmt.html"?>
-<title>User management</title>
+  <title>User management</title>
 
-<sect1>
-<title>Introduction</title>
+  <sect1>
+    <title>Introduction</title>
 
-<para>
-&OS; is a multi-user operating system. This means that multiple users
-can use the system, and they can use the system simultaneously. The &OS;
-concepts for user management are quite simple. First of all, there are several
-user accounts on each system. Even on a single user system there are multiple 
-user accounts, because &OS; uses unique accounts for some tasks. Users
-can be members of groups. Groups are used for more fine grained permissions,
-for example, you could make a file readable by a certain group. There are
-a few reserved users and groups on each system. The most important of these
-is the <emphasis>root</emphasis> account. The <emphasis>root</emphasis>
-user is the system administrator. It is a good idea to avoid logging in
-as root, because this greatly enlarges security risks. You can just log in
-as a normal user, and perform system administration tasks using the
-<command>su</command> and <command>sudo</command> commands. 
-</para>
+    <para>
+      &OS; is a multi-user operating system. This means that multiple
+      users can use the system, and they can use the system
+      simultaneously. The &OS; concepts for user management are quite
+      simple. First of all, there are several user accounts on each
+      system. Even on a single user system there are multiple user
+      accounts, because &OS; uses unique accounts for some
+      tasks. Users can be members of groups. Groups are used for more
+      fine grained permissions, for example, you could make a file
+      readable by a certain group. There are a few reserved users and
+      groups on each system. The most important of these is the
+      <emphasis>root</emphasis> account. The <emphasis>root</emphasis>
+      user is the system administrator. It is a good idea to avoid
+      logging in as root, because this greatly enlarges security
+      risks. You can just log in as a normal user, and perform system
+      administration tasks using the <command>su</command> and
+      <command>sudo</command> commands.
+    </para>
 
-<para>
-The available user accounts are specified in the 
-<filename>/etc/passwd</filename>. You can have a look at this file to get
-an idea of which user account are mandatory. As you will probably notice,
-there are no passwords in this file. Passwords are kept in the separate
-<filename>/etc/shadow</filename> file, as an encrypted string. Information
-about groups is stored in <filename>/etc/group</filename>. It is generally
-speaking not a good idea to edit these files directly. There are some
-excellent tools that can help you with user and group administration. This
-chapter will describe some of these tools.
-</para>
-</sect1>
+    <para>
+      The available user accounts are specified in the
+      <filename>/etc/passwd</filename>. You can have a look at this
+      file to get an idea of which user account are mandatory. As you
+      will probably notice, there are no passwords in this
+      file. Passwords are kept in the separate
+      <filename>/etc/shadow</filename> file, as an encrypted
+      string. Information about groups is stored in
+      <filename>/etc/group</filename>. It is generally speaking not a
+      good idea to edit these files directly. There are some excellent
+      tools that can help you with user and group administration. This
+      chapter will describe some of these tools.
+    </para>
 
-<sect1>
-<title>Command-line tools</title>
+  </sect1>
 
-<sect2>
-<title>useradd</title>
+  <sect1>
+    <title>Adding and removing users</title>
 
-<para>
-The <command>useradd</command> is used to add user accounts to the system.
-Running <command>useradd</command> with a user name as parameter will create
-the user on the system. For example:
-</para>
+    <sect2>
+      <title>useradd</title>
 
-<screen>
+      <para>
+        The <command>useradd</command> is used to add user accounts to
+        the system.  Running <command>useradd</command> with a user
+        name as parameter will create the user on the system. For
+        example:
+      </para>
+
+      <screen>
 # <command>useradd bob</command>
-</screen>
+      </screen>
 
-<para>
-Creates the user account <emphasis>bob</emphasis>. Please be aware that
-this does not create a home directory for the user. Add the 
-<parameter class="command">-m</parameter> parameter to create a home 
-directory. For example:
-</para>
+      <para>
+        Creates the user account <emphasis>bob</emphasis>. Please be
+        aware that this does not create a home directory for the
+        user. Add the <parameter class="command">-m</parameter>
+        parameter to create a home directory. For example:
+      </para>
 
-<screen>
+      <screen>
 # <command>useradd -m bob</command>
-</screen>
+      </screen>
 
-<para>
-This would add the user <emphasis>bob</emphasis> to the system, and
-create the <filename>/home/bob</filename> home directory for this user.
-Normally the user is made a member of the <emphasis>users</emphasis>
-group. Suppose that we would like to make <emphasis>crew</emphasis>
-the primary group for the user <emphasis>bob</emphasis>. This can
-be done using the <parameter class="command">-g</parameter> parameter. 
-For example:
-</para>
+      <para>
+        This would add the user <emphasis>bob</emphasis> to the
+        system, and create the <filename>/home/bob</filename> home
+        directory for this user.  Normally the user is made a member
+        of the <emphasis>users</emphasis> group. Suppose that we would
+        like to make <emphasis>crew</emphasis> the primary group for
+        the user <emphasis>bob</emphasis>. This can be done using the
+        <parameter class="command">-g</parameter> parameter.  For
+        example:
+      </para>
 
-<screen>
+      <screen>
 # <command>useradd -g crew -m bob</command>
-</screen>
+      </screen>
 
-<para>
-It is also possible to add this user to secondary groups during the
-creation of the account with the <emphasis>-G</emphasis>. Group names
-can be separated with a comma. The following command would create the
-user <emphasis>bob</emphasis>, which is a member of the 
-<emphasis>crew</emphasis> group, and the <emphasis>www-admins</emphasis>
-and <emphasis>ftp-admins</emphasis> secondary groups:
-</para>
+      <para>
+        It is also possible to add this user to secondary groups
+        during the creation of the account with the
+        <emphasis>-G</emphasis>. Group names can be separated with a
+        comma. The following command would create the user
+        <emphasis>bob</emphasis>, which is a member of the
+        <emphasis>crew</emphasis> group, and the
+        <emphasis>www-admins</emphasis> and
+        <emphasis>ftp-admins</emphasis> secondary groups:
+      </para>
 
-<screen>
+      <screen>
 # <command>useradd -g crew -G www-admins,ftp-admins -m bob</command>
-</screen>
+      </screen>
 
-<para>
-By default the <command>useradd</command> only adds users, it does not
-set a password for the added user. Passwords can be set using the
-<command>passwd</command> command.
-</para>
-</sect2>
+      <para>
+        By default the <command>useradd</command> only adds users, it
+        does not set a password for the added user. Passwords can be
+        set using the <command>passwd</command> command.
+      </para>
 
-<sect2>
-<title>passwd</title>
+    </sect2>
 
-<para>
-As you probably guessed the <command>passwd</command> command is used to
-set a password for a user. Running this command as a user without a
-parameter will change the password for this user. The password command
-will ask for the old password,once and twice for the new password:
-</para>
+    <sect2>
+      <title>passwd</title>
 
-<screen>
+      <para>
+        As you probably guessed the <command>passwd</command> command
+        is used to set a password for a user. Running this command as
+        a user without a parameter will change the password for this
+        user. The password command will ask for the old password,once
+        and twice for the new password:
+      </para>
+
+      <screen>
 $ <command>passwd</command>
 Changing password for bob
 (current) UNIX password: 
 Enter new UNIX password: 
 Retype new UNIX password: 
 passwd: password updated successfully
-</screen>
+      </screen>
 
-<para>
-The <emphasis>root</emphasis> user can set passwords for users by specifying
-the user name as a parameter. The <command>passwd</command> command will only
-ask for the new password. For example:
-</para>
+      <para>
+        The <emphasis>root</emphasis> user can set passwords for users
+        by specifying the user name as a parameter. The
+        <command>passwd</command> command will only ask for the new
+        password. For example: 
+      </para>
 
-<screen>
+      <screen>
 # passwd bob
 Enter new UNIX password: 
 Retype new UNIX password: 
 passwd: password updated successfully
-</screen>
-</sect2>
+      </screen>
 
-<sect2>
-<title>adduser</title>
+    </sect2>
 
-<para>
-The <command>adduser</command> command combines <command>useradd</command>
-and <command>passwd</command> in an interactive script. It will ask you
-to fill in information about the account to-be created. After that it
-will create an account based on the information you provided. The screen
-listing below shows a sample session.
-</para>
+    <sect2>
+      <title>adduser</title>
 
-<screen>
+      <para>
+        The <command>adduser</command> command combines
+        <command>useradd</command> and <command>passwd</command> in an
+        interactive script. It will ask you to fill in information
+        about the account to-be created. After that it will create an
+        account based on the information you provided. The screen
+        listing below shows a sample session.
+      </para>
+
+      <screen>
 # <command>adduser</command>
 
 Login name for new user []: <command>john</command>
@@ -190,64 +205,69 @@ Re-enter new password: <command>password</command>
 
 
 Account setup complete.
-</screen>
+      </screen>
 
-<para>
-You can use the default values, or leave some fields empty, by tapping
-the &lt;Enter&gt; key.
-</para>
+      <para>
+        You can use the default values, or leave some fields empty, by
+        tapping the &lt;Enter&gt; key.
+      </para>
 
-</sect2>
+    </sect2>
 
-<sect2>
-<title>userdel</title>
+    <sect2>
+      <title>userdel</title>
 
-<para>
-Sometimes it is necessary to remove a user account from the system. &OS;
-offers the <command>userdel</command> tool to do this. Just specify the
-username as a parameter to remove that user from the system. For example,
-the following command will remove the user account <emphasis>bob</emphasis>
-from the system:
-</para>
+      <para>
+        Sometimes it is necessary to remove a user account from the
+        system. &OS; offers the <command>userdel</command> tool to do
+        this. Just specify the username as a parameter to remove that
+        user from the system. For example, the following command will
+        remove the user account <emphasis>bob</emphasis> from the
+        system:
+      </para>
 
-<screen>
+      <screen>
 # <command>userdel bob</command>
-</screen>
+      </screen>
 
-<para>
-This will only remove the user account, not the user's home directory and
-mail spool. Just add the <parameter class="command">-r</parameter> parameter 
-to delete the user's home directory and mail spool too. For example:
-</para>
+      <para>
+        This will only remove the user account, not the user's home
+        directory and mail spool. Just add the <parameter
+        class="command">-r</parameter> parameter to delete the user's
+        home directory and mail spool too. For example:
+      </para>
 
-<screen>
+      <screen>
 # <command>userdel -r bob</command>
-</screen>
-</sect2>
-</sect1>
+      </screen>
 
-<sect1>
-<title>Avoiding root usage</title>
+    </sect2>
 
-<para>
-It is a good idea to avoid logging in as
-<emphasis>root</emphasis>. There are many reasons for not doing
-this. Accidentally typing a wrong command could cause bad things to
-happen, and malicious programs can make a lot of damage when you are
-logged in as <emphasis>root</emphasis>.  Still, there are many
-situations in which you need to have root access. For example, to do
-system administration, or to install new software. Fortunately the
-<command>su</command> can give you temporal root privileges.
-</para>
+  </sect1>
 
-<para>
-Using <command>su</command> is very simple. Just executing 
-<command>su</command> will ask you for the root password, and will
-start a shell with root privileges after the password is correctly
-entered:
-</para>
+  <sect1>
+    <title>Avoiding root usage</title>
 
-<screen>
+    <para>
+      It is a good idea to avoid logging in as
+      <emphasis>root</emphasis>. There are many reasons for not doing
+      this. Accidentally typing a wrong command could cause bad things
+      to happen, and malicious programs can make a lot of damage when
+      you are logged in as <emphasis>root</emphasis>.  Still, there
+      are many situations in which you need to have root access. For
+      example, to do system administration, or to install new
+      software. Fortunately the <command>su</command> can give you
+      temporal root privileges.
+    </para>
+
+    <para>
+      Using <command>su</command> is very simple. Just executing
+      <command>su</command> will ask you for the root password, and
+      will start a shell with root privileges after the password is
+      correctly entered:
+    </para>
+
+    <screen>
 $ <command>whoami</command>
 bob
 $ <command>su</command>
@@ -258,35 +278,98 @@ root
 exit
 $ <command>whoami</command>
 bob
-</screen>
+    </screen>
 
-<para>
-In this example the user <emphasis>bob</emphasis> is logged on, the
-<command>whoami</command> output reflects this. The user executes su
-and enters the <emphasis>root</emphasis> password. <command>su</command>
-launches a shell with root privileges, this is confirmed by the
-<command>whoami</command> output. After exiting the <emphasis>root</emphasis>
-shell, control is returned to the original running shell running with
-the privileges of the user <emphasis>bob</emphasis>.
-</para>
+    <para>
+      In this example the user <emphasis>bob</emphasis> is logged on,
+      the <command>whoami</command> output reflects this. The user
+      executes su and enters the <emphasis>root</emphasis>
+      password. <command>su</command> launches a shell with root
+      privileges, this is confirmed by the <command>whoami</command>
+      output. After exiting the <emphasis>root</emphasis> shell,
+      control is returned to the original running shell running with
+      the privileges of the user <emphasis>bob</emphasis>.
+    </para>
 
-<para>
-It is also possible to execute just one command as the 
-<emphasis>root</emphasis> user with the <parameter class="command">-c</parameter>
-parameter. The following example will run <command>lilo</command>:
-</para>
+    <para>
+      It is also possible to execute just one command as the
+      <emphasis>root</emphasis> user with the <parameter
+      class="command">-c</parameter> parameter. The following example
+      will run <command>lilo</command>:
+    </para>
 
-<screen>
+    <screen>
 $ <command>su -c lilo</command>
-</screen>
+    </screen>
 
-<para>
-If you want to give parameters to the command you would like to run,
-use quotes (e.g. <command>su -c &quot;ls -l /&quot;</command>). Without quotes
-<command>su</command> cannot determine whether the parameters should
-be used by the specified command, or by <command>su</command> itself.
-</para>  
+    <para>
+      If you want to give parameters to the command you would like to
+      run, use quotes (e.g. <command>su -c &quot;ls -l
+      /&quot;</command>). Without quotes <command>su</command> cannot
+      determine whether the parameters should be used by the specified
+      command, or by <command>su</command> itself.
+    </para>
 
-</sect1>
+  </sect1>
+
+  <sect1>
+    <title>Disk quota</title>
+
+    <sect2>
+      <title>Introduction</title>
+
+      <para>
+        Disk quota is a mechanism that allows the system administrator
+        to restrict the number of disk blocks and inodes that a
+        particular user and group can use. Not all filesystems
+        supported by &Kernel; support quota, widely used filesystems
+        that support quota are ext2, ext3 and XFS. Quota are turned on
+        and managed on a per filesystem basis.
+      </para>
+
+    </sect2>
+
+    <sect2>
+      <title>Enabling quota</title>
+
+      <para>
+        Quota can be enabled per filesystem in
+        <filename>/etc/fstab</filename>, by using the
+        <parameter>usrquota</parameter> and
+        <parameter>grpquota</parameter> filesystem options. For
+        example, suppose that we have the following entry for the
+        <filename>/home</filename> partition in
+        <filename>/etc/fstab</filename>:
+      </para>
+
+      <screen>
+/dev/hda8        /home            xfs         defaults         1   2
+      </screen>
+
+      <para>
+        We can now enable user quota by adding the
+        <parameter>usrquota</parameter> filesystem option:
+      </para>
+
+      <screen>
+/dev/hda8        /home            xfs         defaults<emphasis role="bold">,usrquota</emphasis> 1   2
+      </screen>
+
+      <para>
+        At this point the machine can be rebooted, to let the
+        &Distribution; initialization scripts enable quota. You can
+        also enable quota without rebooting the machine, by remounting
+        the partition, and running the <command>quotaon</command>
+        command:
+      </para>
+
+      <screen>
+# <command>mount -o remount /home</command>
+# <command>quotaon -avug</command>
+      </screen>
+
+    </sect2>
+
+  </sect1>
 
 </chapter>
