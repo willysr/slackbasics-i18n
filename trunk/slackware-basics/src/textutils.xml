@@ -1,4 +1,4 @@
-<!-- $Id: textutils.xml,v 1.2 2004/12/01 15:37:59 daniel Exp $ -->
+<!-- $Id: textutils.xml,v 1.3 2004/12/02 23:26:18 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="textutils.html"?>
   <title>Text Utilities</title>
@@ -103,7 +103,7 @@ $ <command> wc -l &lt; essay.txt</command>
       </screen>
     </sect2>
     
-    <sect2>
+    <sect2 id="tr">
       <title>tr</title>
       
       <para>
@@ -229,7 +229,86 @@ $ <command>cat essay.txt | tr " " "\n" | less</command>
       </para>
       
       <screen>
-$ <command>cat essay.txt | tr " " "\n" | tr -c -d "[:alpha:]\n" > wordlist</command>
+$ <command>cat essay.txt | tr " " "\n" | tr -c -d "[:alpha:]\n" &gt; wordlist</command>
+      </screen>
+    </sect2>
+
+    <sect2>
+      <title>sort</title>
+      
+      <para>
+        The <command>command</command> is used to sort lines in a
+	file. To sort a text alphabetically, you can just pipe or
+        redirect the data to <command>sort</command>. 
+	<command>sort</command> also accepts file names as its
+	parameters. When multiple files are specified, the files
+	will be concatenated before sorting the lines. Suppose
+	that you have a word list that is unordered, which is stored
+	in the file <filename>wordlist_unsorted</filename>. You
+	can sort the contents of the file, and output it to
+	<filename>wordlist_sorted</filename> with:
+      </para>
+	
+      <screen>
+$ <command>sort wordlist_unsorted &gt; wordlist_sorted</command>
+      </screen>
+      
+      <para>
+        The <command>sort</command> accepts many different parameters,
+	which are all described in the <command>sort</command>(1)
+	manual page. An often-used parameter we will shortly discuss
+	is <quote>-u</quote>. With this parameter only unique words
+	will be sent to <emphasis>stdout</emphasis> (in other words:
+	double occurences will be ignored). By combining
+	<command>sort -u</command> and the <command>tr</command>, discussed 
+	in <xref linkend="tr" />, you can make a sorted wordlist of a text:
+      </para>
+      
+      <screen>
+$ <command>cat essay.txt | tr " " "\n" | tr -c -d "[:alpha:]\n" | sort -u &gt; wordlist_sorted</command>
+      </screen>
+      
+      <para>
+        If the command listed in this example is combined with
+	<command>wc</command>, one could count the size of the used
+	vocabulary in the text. In the sorted word list each line represents 
+	an unique word from the original text. So, we can count the total
+	number of words that were used, by counting the total number of
+	lines in the sorted list:
+      </para>
+
+      <screen>
+$ <command>cat essay.txt | tr " " "\n" | tr -c -d "[:alpha:]\n" | sort -u | wc -l</command>
+      </screen>
+    </sect2>
+    
+    <sect2>
+      <title>uniq</title>
+      
+      <para>
+        The <command>uniq</command> can be compared to the <quote>-u</quote>
+	parameter of the <command>sort</command>; it removes all but
+	one entry of successive identical lines (in a sorted list). The
+	main difference is that it provides some extra parameters that
+	can be used to manipulate the output. The default behavior works
+	like <command>sort -u</command>, and reduces duplicate entries: 
+      </para>
+      
+      <screen>
+$ <command>sort wordlist_unsorted | uniq &gt; wordlist_sorted</command>
+      </screen>
+      
+      <para>
+        To make a list of how often a line occurs in a text, one could
+	count how many identical lines the sorted list contains of every
+	line. Uniq can add the number of identical lines with the
+	<quote>-c</quote> parameter. To make a list of how many times
+	each word occurs in a text, you can combine <command>tr</command>,
+	<command>sort</command>, and <command>uniq</command>:
+      </para>
+      
+      <screen>
+$ <command>cat essay.txt | tr " " "\n" | tr -c -d "[:alpha:]\n" | sort | uniq -c &gt; wordlist_sorted</command>
       </screen>
     </sect2>
   </sect1>
