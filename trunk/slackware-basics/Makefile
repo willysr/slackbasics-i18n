@@ -1,8 +1,11 @@
-# $Id: Makefile,v 1.1 2004/11/06 23:17:47 daniel Exp $
+# $Id: Makefile,v 1.2 2004/11/28 18:35:00 daniel Exp $
 
 CURRENTDIR=`pwd`
 
 all:	fmt-html fmt-pdf
+
+lint:
+	xmllint --noout --valid src/slackware-basics.xml
 
 fmt-html:
 	jade -t sgml -d src/slackware-basics.dsl#html \
