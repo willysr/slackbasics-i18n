@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.2 2004/11/28 18:35:00 daniel Exp $
+# $Id: Makefile,v 1.3 2004/12/23 16:53:48 daniel Exp $
 
 CURRENTDIR=`pwd`
 
@@ -29,5 +29,8 @@ clean:
 	rm -rf html/*.html 
 	rm -f html/normal.css
 	rm -f pdf/*.pdf
+	rm -f pdf/*.out
+	rm -f pdf/*.log
+	rm -f pdf/*.aux
 	rm -f tex/*.tex
 	rm -f tex/*.dvi
