@@ -1,4 +1,4 @@
-<!-- $Id: filesystem.xml,v 1.6 2004/12/19 10:19:33 daniel Exp $ -->
+<!-- $Id: filesystem.xml,v 1.7 2004/12/19 10:34:04 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="filesystem.html"?>
 <title>Files and directories</title>
@@ -587,7 +587,7 @@ Ext2, Ext3 and XFS filesystems do support extended attributes.
 <para>
 The extended attribute software is available in &Distribution; through
 the <emphasis>xfsprogs</emphasis> package, which can be found in
-the <quote>a</quote> diskset. Don't be misled by the name of the
+the <quote>a</quote> disk set. Don't be misled by the name of the
 package, the extended attribute tools also work with other filesystems,
 like Ext3. 
 </para>

@@ -1,4 +1,4 @@
-<!-- $Id: printing.xml,v 1.4 2004/12/18 22:14:34 daniel Exp $ -->
+<!-- $Id: printing.xml,v 1.5 2004/12/19 10:34:04 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="printer.html"?>
 <title>Printer configuration</title>
@@ -17,7 +17,7 @@ the CUPS system.
 <para>
 Independent of which printing system you are going to use, it is
 a good idea to install some printer filter collections. These can
-be found in the <quote>ap</quote> diskset. If you want to have
+be found in the <quote>ap</quote> disk set. If you want to have
 support for most printers, make sure the following packages are
 installed:
 </para>
@@ -46,7 +46,7 @@ interface which can be accessed through a web browser.
 
 <para>
 To be able to use CUPS the <quote>cups</quote> package from the
-<quote>a</quote> diskset has to be installed. After the installation
+<quote>a</quote> disk set has to be installed. After the installation
 CUPS can be started automatically during each system boot by making
 <filename>/etc/rc.d/rc.cups</filename> executable. This can be
 done with the following command:

@@ -1,4 +1,4 @@
-<!-- $Id: security.xml,v 1.4 2004/12/19 10:19:33 daniel Exp $ -->
+<!-- $Id: security.xml,v 1.5 2004/12/19 10:34:04 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="security.html"?>
 <title>Security</title>
@@ -130,7 +130,7 @@ verify them by default.
 <para>
 This section gives a short introduction on how to configure and use
 GnuPG. Make sure you have GnuPG installed. If you have not, you can
-install it from the <quote>n</quote> diskset.
+install it from the <quote>n</quote> disk set.
 </para>
 
 <sect3>
@@ -458,7 +458,7 @@ will help you tracking down which ports are open, and closing them.
 <para>
 Open ports can be found using a port scanner. Probably the most famous 
 port scanner for &OS; is <command>nmap</command>. <command>nmap</command>
-is available through the <quote>n</quote> diskset. 
+is available through the <quote>n</quote> disk set. 
 </para>
 
 <para>
