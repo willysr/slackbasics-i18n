@@ -81,6 +81,11 @@
 
 (define %stylesheet% "normal.css")
 
+(element emphasis 
+  (if (equal? (normalize "bold") (attribute-string (normalize "role")))
+    ($bold-seq$)
+    ($italic-seq$)))
+
 </style-specification-body>
 </style-specification>
 
