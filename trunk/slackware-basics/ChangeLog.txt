@@ -1,3 +1,4 @@
+Mon Feb 28 21:19:43 CET 2005
 - Use colon as the user/group separator for the chown section, 
   suggested by Sebastien Guay.
 
