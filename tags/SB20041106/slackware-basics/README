@@ -1,0 +1,14 @@
+Het Slackware Handboek
+
+* Installation *
+
+The source XMLs can be compiled into other formats (HTML, PDF, ...)
+using the "sgmltools" package, which can be found in the extra/
+package directory. JadeTeX is also required for generating PDF files.
+
+Execute "make" to generate HTML and PDF files. If you do only want to
+generate the HTML files execute "make fmt-html".
+
+* Authors *
+
+Daniel de Kok <danieldk@pobox.com> 

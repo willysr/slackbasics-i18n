@@ -1,0 +1,10 @@
+Thu Nov 4 00:11:58 CET 2004
+- Fix two errors in the CSS stylesheet for HTML output.
+- Use tidy to clean up the resulting HTML files, and let tidy
+  convert these to XHTML 1.0 Transitional.
+
+Wed Nov 3 23:20:44 CET 2004
+- Added a unified DSSSL stylesheet for "html" and "print" outputs, 
+  slackware-basics.dsl.
+- Expand the slackpkg section with information about importing the
+  Slackware PGP/GPG key, upgrading, and installing packages.
