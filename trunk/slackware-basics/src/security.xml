@@ -1,4 +1,4 @@
-<!-- $Id: security.xml,v 1.5 2004/12/19 10:34:04 daniel Exp $ -->
+<!-- $Id: security.xml,v 1.6 2004/12/19 11:00:01 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="security.html"?>
 <title>Security</title>
@@ -342,8 +342,10 @@ password are stolen, the security of this system is completely compromised.
 To make GnuPG useful, you have to give your public key to people who send
 you files or e-mails. They can use your public key to encrypt files, or use
 it to verify whether a file has a correct signature or not. The key can
-be exported using the <emphasis>--export</emphasis> parameter. It is also
-a good idea to specify the <emphasis>--output</emphasis> parameter, this
+be exported using the <parameter class="command">--export</parameter> 
+parameter. It is also
+a good idea to specify the <parameter class="command">--output</parameter> 
+parameter, this
 will save the key in a file. The following command would save the public
 key of <emphasis>John Doe</emphasis>, used in earlier examples, to
 the file <filename>key.gpg</filename>:
@@ -357,7 +359,7 @@ $ <command>gpg --output key.gpg --export john@doe.com</command>
 This saves the key in binary format. Often it is more convenient to
 use the so-called <quote>ASCII armored output</quote>, which fits better 
 for adding the key to e-mails, or websites. You export an ASCII armored
-version of the key by adding the <emphasis>--armor</emphasis> parameter:
+version of the key by adding the <parameter class="command">--armor</parameter> parameter:
 </para>
 
 <screen>
@@ -378,7 +380,8 @@ With GPG you can make a signature for a file. This signature is unique,
 because your signature can only be made with your private key. This means
 that other people can check whether the file was really sent by you, and
 whether it was in any way altered or not. Files can be signed with the
-<emphasis>--detach-sign</emphasis> parameter. Let us look at an example. This 
+<parameter class="command">--detach-sign</parameter> parameter. Let us look 
+at an example. This 
 command will make a signature for the <filename>memo.txt</filename> file. The 
 signature will be stored in <filename>memo.txt.sig</filename>.
 </para>
@@ -401,8 +404,10 @@ private key. After you have entered the right key the signature file
 
 <para>
 You can verify a file with its signature using the 
-<emphasis>--verify</emphasis> parameter. Specify the signature file
-as a parameter to the <emphasis>--verify parameter</emphasis>. The
+<parameter class="command">--verify</parameter> parameter. Specify 
+the signature file
+as a parameter to the <parameter class="command">--verify</parameter> 
+parameter. The
 file that needs to be verified can be specified as the final parameter:
 </para>
 

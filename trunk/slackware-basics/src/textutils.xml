@@ -1,4 +1,4 @@
-<!-- $Id: textutils.xml,v 1.5 2004/12/18 22:14:34 daniel Exp $ -->
+<!-- $Id: textutils.xml,v 1.6 2004/12/19 11:00:01 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="textutils.html"?>
   <title>Text Utilities</title>
@@ -140,9 +140,10 @@ $ <command>wc essay.txt</command>
 	<emphasis>number of words</emphasis>, and the 
 	<emphasis>number of characters</emphasis>. It is also possibly
 	to return only one of these numbers, with respectively
-	<parameter>-l</parameter>, <parameter>-w</parameter>, and
-	<parameter>-m</parameter>. For example, if we only want to
-	know the number of lines in the file, we could do the
+	<parameter class="command">-l</parameter>, 
+        <parameter class="command">-w</parameter>, and
+	<parameter class="command">-m</parameter>. For example, if we only 
+	want to know the number of lines in the file, we could do the
 	following:
       </para>
       
@@ -230,7 +231,8 @@ $ <command> wc -l &lt; essay.txt</command>
       
       <para>
         Characters can be deleted from one text with the 
-	<parameter>-d</parameter>, and a set that specifies the characters
+	<parameter class="command">-d</parameter>, and a set that specifies 
+        the characters
 	that should be deleted. Let's start with an easy example: suppose
 	that you want to remove all the new line characters from a text
 	stored in <filename>text</filename>, and that you would like to
@@ -248,10 +250,12 @@ $ <command>cat text | tr -d "\n" > text-continuous</command>
       <para>
         It happens quite often that you want to delete everything, but
 	the characters that are specified in a set. You can do this by
-	using the <parameter>-c</parameter>, which automatically complements
-	the specified set. For example, if you'd like to remove every
+	using the <parameter class="command">-c</parameter>, which 
+        automatically complements
+	the specified set. For example, if you would like to remove every
 	character from a text, except for alphabetical characters, new
-	lines, and spaces, you can use the <parameter>-c</parameter>,
+	lines, and spaces, you can use the 
+        <parameter class="command">-c</parameter>,
 	and the following set:
 	<emphasis><quote>[:alpha:]\n </quote></emphasis>. Combined
 	in a command it would look like this:
@@ -321,7 +325,8 @@ $ <command>sort wordlist_unsorted &gt; wordlist_sorted</command>
         The <command>sort</command> accepts many different parameters,
 	which are all described in the <command>sort</command>(1)
 	manual page. An often-used parameter we will shortly discuss
-	is <quote>-u</quote>. With this parameter only unique words
+	is <parameter class="command">-u</parameter>. With this parameter 
+        only unique words
 	will be sent to <emphasis>stdout</emphasis> (in other words:
 	double occurences will be ignored). By combining
 	<command>sort -u</command> and the <command>tr</command>, discussed 
@@ -350,7 +355,8 @@ $ <command>cat essay.txt | tr " " "\n" | tr -c -d "[:alpha:]\n" | sort -u | wc -
       <title>uniq</title>
       
       <para>
-        The <command>uniq</command> can be compared to the <quote>-u</quote>
+        The <command>uniq</command> can be compared to the 
+        <parameter class="command">-u</parameter>
 	parameter of the <command>sort</command>; it removes all but
 	one entry of successive identical lines (in a sorted list). The
 	main difference is that it provides some extra parameters that
@@ -366,7 +372,8 @@ $ <command>sort wordlist_unsorted | uniq &gt; wordlist_sorted</command>
         To make a list of how often a line occurs in a text, one could
 	count how many identical lines the sorted list contains of every
 	line. Uniq can add the number of identical lines with the
-	<quote>-c</quote> parameter. To make a list of how many times
+	<parameter class="command">-c</parameter> parameter. To make a 
+        list of how many times
 	each word occurs in a text, you can combine <command>tr</command>,
 	<command>sort</command>, and <command>uniq</command>:
       </para>

@@ -1,4 +1,4 @@
-<!-- $Id: pkgmgmt.xml,v 1.4 2004/12/19 10:19:33 daniel Exp $ -->
+<!-- $Id: pkgmgmt.xml,v 1.5 2004/12/19 11:00:01 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="pkgmgmt.html"?>
 <title>Package Management</title>
@@ -227,8 +227,8 @@ gpg:               imported: 1
 Be sure to double check the key you received. The key ID and fingerprint
 of this particular key can be found on the Internet on many trustworthy
 sites. The key ID is, as mentioned above <emphasis>40102233</emphasis>.
-You can get the key fingerprint with the <parameter>--fingerprint</parameter>
-parameter:
+You can get the key fingerprint with the 
+<parameter class="command">--fingerprint</parameter> parameter:
 </para>
 
 <screen>
@@ -263,7 +263,8 @@ $ <command>slackpkg update</command>
 <title>Upgrading packages</title>
 
 <para>
-The <parameter>upgrade</parameter> parameter is used to upgrade installed
+The <parameter class="command">upgrade</parameter> parameter is used 
+to upgrade installed
 packages. You have to add an extra parameter to actually tell
 <command>slackpkg</command> what you want to upgrade, this differs
 for a stable &Distribution; version and slackware-current. Upgrades
@@ -302,7 +303,7 @@ of the package to be upgraded, for example:
 <title>Installing packages</title>
 
 <para>
-The <parameter>install</parameter> is used to install packages:
+The <parameter class="command">install</parameter> is used to install packages:
 </para>
 
 <screen>

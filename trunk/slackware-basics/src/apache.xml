@@ -1,4 +1,4 @@
-<!-- $Id: apache.xml,v 1.5 2004/12/19 10:34:04 daniel Exp $ -->
+<!-- $Id: apache.xml,v 1.6 2004/12/19 11:00:01 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="apache.html"?>
 <title>Apache</title>
@@ -38,8 +38,9 @@ can do this by executing:
 The Apache configuration can be altered in the 
 <filename>/etc/apache/httpd.conf</filename> file. Apache can be
 stopped/started/restarted every moment with the <command>apachectl</command>
-command, and the <quote>stop</quote>, <quote>start</quote> and 
-<quote>restart</quote> parameters. For example,
+command, and the <parameter class="command">stop</parameter>, 
+<parameter class="command">start</parameter> and 
+<parameter class="command">restart</parameter> parameters. For example,
 execute the following command to restart Apache:
 </para>
 

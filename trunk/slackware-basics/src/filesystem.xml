@@ -1,4 +1,4 @@
-<!-- $Id: filesystem.xml,v 1.7 2004/12/19 10:34:04 daniel Exp $ -->
+<!-- $Id: filesystem.xml,v 1.8 2004/12/19 11:00:01 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="filesystem.html"?>
 <title>Files and directories</title>
@@ -164,7 +164,8 @@ $ <command>cp memo memo2</command>
 
 <para>
 It is also possible to copy directories recursively, this can be done by
-adding the <emphasis>-r</emphasis>. The following command copies the
+adding the <parameter class="command">-r</parameter> parameter. The following 
+command copies the
 <filename>memos</filename> directory, and all subdirectories, and (sub)files 
 to the <filename>writings</filename> directory:
 </para>
@@ -212,7 +213,7 @@ $ <command>rm hello.c</command>
 <para>
 This commands removes the file <filename>hello.c</filename>. Sometimes
 the <command>rm</command> asks for a confirmation. You can ignore this
-with the '-f' parameter:
+with the <parameter class="command">-f</parameter> parameter:
 </para>
 
 <screen>
@@ -222,10 +223,11 @@ $ <command>rm -f *</command>
 <para>
 This command removes all files in the current directory without asking
 for confirmation. It is also possible to delete directories or even
-whole directory trees. <command>rm</command> provides the '-r'
-parameter to do this. Suppose we want to delete the
-<filename>ogle</filename> directory and all subdirectories and files
-in that directory, this can be done in the following way: 
+whole directory trees. <command>rm</command> provides the
+<parameter class="command">-r</parameter> parameter to do this. Suppose that
+we want to delete the <filename>ogle</filename> directory and all 
+subdirectories and files in that directory, this can be done in the 
+following way:
 </para>
 
 <screen>
@@ -324,7 +326,8 @@ $ <command>ls -l logo2.jpg</command>
 
 <para>
 It is also possible to change ownership recursively, this can be
-done with the recursive (-R) parameter:
+done with the recursive (<parameter class="command">-R</parameter>) 
+parameter:
 </para>
 
 <screen>
@@ -363,7 +366,8 @@ bash-2.05b$ <command>ls -l notes</command>
 
 <para>
 Just like the <command>chown</command> command it is also possible
-to do recursive (-R) operations. In the following example the
+to do recursive (<parameter class="command">-R</parameter>) operations. 
+In the following example the
 <filename>secret/</filename>, including subdirectories and files in this
 directory, is made unreadable for the group set for
 this directory and other users:
@@ -439,8 +443,8 @@ Since many software and data in the &OS; world is archived with
 <command>tar</command> it is important to get used to extracting tar
 archives. The first thing you will often want to do when you receive
 a tar archive is to list its contents. This can be achieved by using
-the <quote>t</quote> parameter. However, if we just execute
-<command>tar</command> with this parameter and the name of the archive
+the <parameter class="command">t</parameter> parameter. However, if we just 
+execute <command>tar</command> with this parameter and the name of the archive
 it will just sit and wait until you enter something to the standard
 input:
 </para>
@@ -469,7 +473,8 @@ That looks more like the output you probably expected. This archive
 seems to contain a directory <filename>test</filename>, which contains
 the files <filename>test2</filename> and <filename>test2</filename>.
 It is also possible to specify the archive file name as an parameter
-to <command>tar</command>, by using the <quote>f</quote> parameter:
+to <command>tar</command>, by using the 
+<parameter class="command">f</parameter> parameter:
 </para>
 
 <screen>
@@ -481,7 +486,8 @@ test/test1
 
 <para>
 This looks like an archive that contains useful files ;). We can now go
-ahead, and extract this archive by using the <quote>x</quote> parameter:
+ahead, and extract this archive by using the 
+<parameter class="command">x</parameter> parameter:
 </para>
 
 <screen>
@@ -500,8 +506,10 @@ test1  test2
 
 <para>
 Extracting or listing files from a gzipped or bzipped archive is not
-much more difficult. This can be done by adding a <quote>z</quote> or
-<quote>b</quote> for respectively archives compressed with gzip or bzip.
+much more difficult. This can be done by adding a 
+<parameter class="command">z</parameter> or 
+<parameter class="command">b</parameter> for respectively archives
+compressed with <command>gzip</command> or <command>bzip2</command>.
 For example, we can list the contents of a gzipped archive with:
 </para>
 
@@ -522,7 +530,8 @@ $ <command>tar bxf archive3.tar.bz2</command>
 <title>Creating archives</title>
 
 <para>
-You can create archives with the <quote>c</quote> parameter. Suppose that
+You can create archives with the <parameter class="command">c</parameter> 
+parameter. Suppose that
 we have the directory <filename>test</filename> shown in the previous
 example. We can make an archive with the <filename>test</filename> directory
 and the files in this directory with:
@@ -534,8 +543,8 @@ $ <command>tar cf important-files.tar test</command>
 
 <para>
 This will create the <filename>important-files.tar</filename> archive
-(which is specified with the <quote>f</quote> parameter). We can now
-verify the archive:
+(which is specified with the <parameter class="command">f</parameter> 
+parameter). We can now verify the archive:
 </para>
 
 <screen>
@@ -547,8 +556,10 @@ test/test1
 
 <para>
 Creating a gzipped or bzipped archive goes along the same lines as
-extracting compressed archives: add a <quote>g</quote> for gzipping
-an archive, or <quote>b</quote> for bzipping an archive. Suppose
+extracting compressed archives: add a 
+<parameter class="command">z</parameter> for gzipping
+an archive, or <parameter class="command">b</parameter> for bzipping 
+an archive. Suppose
 that we wanted to create a <command>gzip</command> compressed
 version of the archive created above. We can do this with:
 </para>
@@ -621,7 +632,7 @@ attributes to files.
 
 <para>
 The values associated with an attribute can be shown using the 
-<quote>-d</quote> (dump) parameter. For example:
+<parameter class="command">-d</parameter> (dump) parameter. For example:
 </para>
 
 <screen>
@@ -641,7 +652,8 @@ In this example the attribute <quote>user.Author</quote> has the value
 
 <para>
 Attributes are set with the <command>setfattr</command> command. An attribute 
-can be added to a file using the <quote>-n</quote> (name) parameter, be sure 
+can be added to a file using the <parameter class="command">-n</parameter> 
+(name) parameter, be sure 
 to specify the namespace and the attribute name, for example:
 </para>
 
@@ -650,8 +662,8 @@ $ <command>setfattr -n user.Author note2.txt</command>
 </screen>
 
 <para>
-The value of the attribute can be set using the <quote>-v</quote> (value) 
-parameter:
+The value of the attribute can be set using the 
+<parameter class="command">-v</parameter> (value) parameter: 
 </para>
 
 <screen>
@@ -660,7 +672,8 @@ $ <command>setfattr -n user.Author -v Mike note2.txt</command>
 
 <para>
 But it is also possible to add an attribute and setting its value in one run, 
-by specifying both the <quote>-n</quote> and <quote>-v</quote> parameters. For 
+by specifying both the <parameter class="command">-n</parameter> and 
+<parameter class="command">-v</parameter> parameters. For 
 example, the following command adds the MD5 sum of the file as an extended 
 attribute:
 </para>
@@ -715,7 +728,8 @@ device name is normally a link to the real CD-ROM device name (for example,
 <filename>/dev/hdc</filename>). As you can see, the concept is actually
 very simple, it just takes some time to learn the device names ;). Sometimes
 it is necessary to specify which kind of filesystem you are trying to mount. 
-The filesystem type can be specified by adding the <quote>-t</quote> parameter:
+The filesystem type can be specified by adding the 
+<parameter class="command">-t</parameter> parameter:
 </para>
 
 <screen>

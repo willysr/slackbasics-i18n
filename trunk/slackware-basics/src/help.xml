@@ -1,4 +1,4 @@
-<!-- $Id: help.xml,v 1.7 2004/12/19 10:34:04 daniel Exp $ -->
+<!-- $Id: help.xml,v 1.8 2004/12/19 11:00:01 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="help.html"?>
 <title>Sources of help</title>
@@ -41,7 +41,8 @@ $ <command>man ls</command>
 
 <para>
 If you do not know the exact name of a manual page or command, you can
-search a page using the keyword (<emphasis>-k</emphasis>) parameter:
+search a page using the keyword (<parameter class="command">-k</parameter>) 
+parameter:
 </para>
 
 <screen>

@@ -1,4 +1,4 @@
-<!-- $Id: usermgmt.xml,v 1.4 2004/12/18 22:14:34 daniel Exp $ -->
+<!-- $Id: usermgmt.xml,v 1.5 2004/12/19 11:00:01 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="usermgmt.html"?>
 <title>User management</title>
@@ -54,8 +54,8 @@ the user on the system. For example:
 <para>
 Creates the user account <emphasis>bob</emphasis>. Please be aware that
 this does not create a home directory for the user. Add the 
-<emphasis>-m</emphasis> parameter to create a home directory. For
-example:
+<parameter class="command">-m</parameter> parameter to create a home 
+directory. For example:
 </para>
 
 <screen>
@@ -68,7 +68,8 @@ create the <filename>/home/bob</filename> home directory for this user.
 Normally the user is made a member of the <emphasis>users</emphasis>
 group. Suppose that we would like to make <emphasis>crew</emphasis>
 the primary group for the user <emphasis>bob</emphasis>. This can
-be done using the <emphasis>-g</emphasis> parameter. For example:
+be done using the <parameter class="command">-g</parameter> parameter. 
+For example:
 </para>
 
 <screen>
@@ -215,8 +216,8 @@ from the system:
 
 <para>
 This will only remove the user account, not the user's home directory and
-mail spool. Just add the <emphasis>-r</emphasis> parameter to delete the
-user's home directory and mail spool too. For example:
+mail spool. Just add the <parameter class="command">-r</parameter> parameter 
+to delete the user's home directory and mail spool too. For example:
 </para>
 
 <screen>
@@ -271,7 +272,7 @@ the privileges of the user <emphasis>bob</emphasis>.
 
 <para>
 It is also possible to execute just one command as the 
-<emphasis>root</emphasis> user with the <emphasis>-c</emphasis>
+<emphasis>root</emphasis> user with the <parameter class="command">-c</parameter>
 parameter. The following example will run <command>lilo</command>:
 </para>
 
