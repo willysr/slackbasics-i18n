@@ -1,3 +1,8 @@
+Fri Dec 24 19:28:21 CET 2004
+- Add the first bits of a section about disk quotas to
+  usermgmt.xml.
+- Swap two GIF images with PNG images to fix PDF output.
+
 Mon Dec 20 12:25:17 CET 2004
 - Add a first draft of the kernel compilation chapter,
   kernel.xml.
