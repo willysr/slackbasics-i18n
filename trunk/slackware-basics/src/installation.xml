@@ -1,4 +1,4 @@
-<!-- $Id: installation.xml,v 1.6 2005/03/03 11:22:42 daniel Exp $ -->
+<!-- $Id: installation.xml,v 1.7 2005/03/27 07:18:07 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="installation.html" ?>
 <title>Installing &Distribution;</title>
@@ -377,7 +377,7 @@ the LILO configuration is botched.
 </para>
 
 <figure id="bootdisk">
-<title>Installing the kernel</title>
+<title>Creating a bootdisk</title>
 <mediaobject>
 <imageobject>
 <imagedata fileref="../images/bootdisk.png" format="PNG" scale="50" />
@@ -469,6 +469,23 @@ other operating systems. The <emphasis>Root</emphasis> option will
 install LILO in the boot record of the &Distribution; <filename>/</filename>
 partition. Use this option if you use another bootloader.
 </para>
+
+<para>
+You will now be asked to configurere your mouse. Select the mouse type
+from the dialog that appears. You will then be ask whether the 
+<command>gpm</command> program should be loaded at boot time or not.
+<command>gpm</command> is a daemon that allows you to cut and paste
+text on the console.
+</para>
+
+<figure id="mouse">
+<title>Configuring a mouse</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/mouse.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
 
 </sect1>
 
