@@ -1,3 +1,12 @@
+Mon Dec 20 12:25:17 CET 2004
+- Add a first draft of the kernel compilation chapter,
+  kernel.xml.
+- Add a section about Slackware Linux 10.0 features to
+  introduction.xml.
+- Mark up command parameters with <parameter class="command">.
+- Remove quotes in the text, replacing them by <quote>,
+  <emphasis>, or <parameter>.
+
 Sat Dec 18 23:21:14 CET 2004
 - Replace occurences of "Slackware", "Slackware Linux", and 
   "Slackware GNU/Linux" with the "Distribution" entity. Replace
