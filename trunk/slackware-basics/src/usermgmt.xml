@@ -1,4 +1,4 @@
-<!-- $Id: usermgmt.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<!-- $Id: usermgmt.xml,v 1.2 2004/12/05 11:59:01 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="usermgmt.html"?>
 <title>User management</title>
@@ -202,11 +202,11 @@ the privileges of the user <emphasis>bob</emphasis>.
 <para>
 It is also possible to execute just one command as the 
 <emphasis>root</emphasis> user with the <emphasis>-c</emphasis>
-parameter. The following example will run <command>update-grub</command>:
+parameter. The following example will run <command>lilo</command>:
 </para>
 
 <screen>
-$ <command>su -c update-grub</command>
+$ <command>su -c lilo</command>
 </screen>
 
 <para>
