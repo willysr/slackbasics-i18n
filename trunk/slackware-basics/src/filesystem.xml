@@ -1,4 +1,4 @@
-<!-- $Id: filesystem.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+<!-- $Id: filesystem.xml,v 1.2 2004/11/28 19:17:33 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="filesystem.html"?>
 <title>Files and directories</title>
@@ -372,6 +372,191 @@ this directory and other users:
 <screen>
 $ <command>chmod -R go-r secret/</command>
 </screen>
+</sect1>
+
+<sect1>
+<title>Archives</title>
+
+<sect2>
+<title>Introduction</title>
+
+<para>
+Sooner or later a GNU/Linux user will encounter <acronym>tar</acronym>
+archives, tar is the standard format for archiving files on GNU/Linux.
+It is often used in conjunction with <command>gzip</command> or
+<command>bzip2</command>. Both commands can compress files and archives.
+<xref linkend="archive-extentions" /> lists frequently used archive 
+extensions, and what they mean.
+</para>
+
+<table id="archive-extentions">
+<title>Archive file extensions</title>
+<tgroup cols="2" align="left" colsep="1" rowsep="1">
+<thead>
+<row>
+<entry>Extension</entry>
+<entry>Meaning</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry>.tar</entry>
+<entry>An uncompressed tar archive</entry>
+</row>
+<row>
+<entry>.tar.gz</entry>
+<entry>A tar archive compressed with gzip</entry>
+</row>
+<row>
+<entry>.tgz</entry>
+<entry>A tar archive compressed with gzip</entry>
+</row>
+<row>
+<entry>.tar.bz2</entry>
+<entry>A tar archive compressed with bzip2</entry>
+</row>
+<row>
+<entry>.tbz</entry>
+<entry>A tar archive compressed with bzip2</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+<para>
+The difference between <command>bzip2</command> and <command>gzip</command>
+is that <command>bzip2</command> can find repeating information in larger
+blocks, resulting in better compression. But <command>bzip2</command> is
+also a lot slower, because it does more data analysis.
+</para>
+</sect2>
+
+<sect2>
+<title>Extracting archives</title>
+
+<para>
+Since many software and data in the GNU/Linux world is archived with
+<command>tar</command> it is important to get used to extracting tar
+archives. The first thing you will often want to do when you receive
+a tar archive is to list its contents. This can be achieved by using
+the <quote>t</quote> parameter. However, if we just execute
+<command>tar</command> with this parameter and the name of the archive
+it will just sit and wait until you enter something to the standard
+input:
+</para>
+
+<screen>
+$ <command>tar t test.tar</command>
+
+</screen>
+
+<para>
+This happens because <command>tar</command> reads data from its standard
+input. If you forgot how redirection works, it is a good idea to reread
+<xref linkend="redirection-and-pipes" />. Let's see what happens if we
+redirect our tar archive to tar:
+</para>
+
+<screen>
+$ <command>tar t &lt; test.tar</command>
+test/
+test/test2
+test/test1
+</screen>
+
+<para>
+That looks more like the output you probably expected. This archive
+seems to contain a directory <filename>test</filename>, which contains
+the files <filename>test2</filename> and <filename>test2</filename>.
+It is also possible to specify the archive file name as an parameter
+to <command>tar</command>, by using the <quote>f</quote> parameter:
+</para>
+
+<screen>
+$ <command>tar tf test.tar</command> 
+test/
+test/test2
+test/test1
+</screen>
+
+<para>
+This looks like an archive that contains useful files ;). We can now go
+ahead, and extract this archive by using the <quote>x</quote> parameter:
+</para>
+
+<screen>
+$ <command>tar xf test.tar</command>
+</screen>
+
+<para>
+We can now verify that tar really extracted the archive by listing the
+contents of the directory with <command>ls</command>:
+</para>
+
+<screen>
+$ <command>ls test/</command>
+test1  test2
+</screen>
+
+<para>
+Extracting or listing files from a gzipped or bzipped archive is not
+much more difficult. This can be done by adding a <quote>z</quote> or
+<quote>b</quote> for respectively archives compressed with gzip or bzip.
+For example, we can list the contents of a gzipped archive with:
+</para>
+
+<screen>
+$ <command>tar ztf archive2.tar.gz</command>
+</screen>
+
+<para>
+And a bzipped archive can be extracted with:
+</para>
+
+<screen>
+$ <command>tar bxf archive3.tar.bz2</command>
+</screen>
+</sect2>
+
+<sect2>
+<title>Creating archives</title>
+
+<para>
+You can create archives with the <quote>c</quote> parameter. Suppose that
+we have the directory <filename>test</filename> shown in the previous
+example. We can make an archive with the <filename>test</filename> directory
+and the files in this directory with:
+</para>
+
+<screen>
+$ <command>tar cf important-files.tar test</command>
+</screen>
+
+<para>
+This will create the <filename>important-files.tar</filename> archive
+(which is specified with the <quote>f</quote> parameter). We can now
+verify the archive:
+</para>
+
+<screen>
+$ <command>tar tf important-files.tar</command>
+test/
+test/test2
+test/test1
+</screen>
+
+<para>
+Creating a gzipped or bzipped archive goes along the same lines as
+extracting compressed archives: add a <quote>g</quote> for gzipping
+an archive, or <quote>b</quote> for bzipping an archive. Suppose
+that we wanted to create a <command>gzip</command> compressed
+version of the archive created above. We can do this with:
+</para>
+
+<screen>
+<command>tar zcf important-files.tar.gz test</command>
+</screen>
+</sect2>
 </sect1>
 
 <sect1><title>Extended attributes</title>
