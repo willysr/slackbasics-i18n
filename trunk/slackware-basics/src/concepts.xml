@@ -1,4 +1,4 @@
-<!-- $Id: concepts.xml,v 1.5 2004/12/18 22:18:34 daniel Exp $ -->
+<!-- $Id: concepts.xml,v 1.6 2005/03/02 08:24:27 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="concepts.html"?>
 <title>General concepts</title>
@@ -337,7 +337,8 @@ first partition on the <filename>/dev/hda</filename> disk.
 
 <para>
 Most average PCs do not have SCSI hard disks or CD-ROM drives, but SCSI is 
-often used for USB drives. For SCSI drives the following notation is used:
+often used for USB drives. Besides that Serial ATA (SATA) drives are also
+made available as SCSI disks. For SCSI drives the following notation is used:
 </para>
 
 <screen>
