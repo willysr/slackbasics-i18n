@@ -1,4 +1,4 @@
-<!-- $Id: introduction.xml,v 1.4 2004/12/18 22:07:18 daniel Exp $ -->
+<!-- $Id: introduction.xml,v 1.5 2004/12/18 22:14:34 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="introduction.html"?>
 <title>An introduction to &Distribution;</title>
@@ -16,16 +16,16 @@ more information can be found at:
 </para>
 
 <para>
-Linux is often confused with the GNU/Linux system. Linux is only a
-kernel, not a complete operating system. GNU/Linux consists of the
+Linux is often confused with the &OS; system. Linux is only a
+kernel, not a complete operating system. &OS; consists of the
 GNU operating system with the Linux kernel. Please read the following
-section for a more detailed explanation of GNU/Linux.
+section for a more detailed explanation of &OS;.
 </para>
 
 </sect1>
 
 <sect1>
-<title>What is GNU/Linux?</title>
+<title>What is &OS;?</title>
 
 <para>
 At the beginning of the eighties Richard Stallman started an ambitious
@@ -38,26 +38,26 @@ which provide Unix-like kernel functionality. In turn these servers
 run under the Mach microkernel.  At the beginning at the nineties the
 HURD team still had to wait till the Mach sources were released as
 free software. In the meanwhile Linus started filling the gap with the
-Linux kernel. GNU/Linux thus refers to the GNU system running on the
+Linux kernel. &OS; thus refers to the GNU system running on the
 Linux kernel. Right now the HURD kernel is also in a usable state and
 can be downloaded in the form of the GNU/HURD operating system. The
 <ulink url="http://www.debian.org/">Debian</ulink> project has even
 developed a version of the GNU operating system which works with the
 <ulink url="http://www.netbsd.org/">NetBSD</ulink> kernel. We should
-call "Linux distributions" "GNU/Linux distributions", because GNU is a
+call "Linux distributions" "&OS; distributions", because GNU is a
 substantial part of most distributions.  </para> </sect1>
 
 <sect1>
 <title>What is &Distribution;?</title>
 
 <para>
-&Distribution; is a GNU/Linux distribution which is maintained and
+&Distribution; is a &OS; distribution which is maintained and
 developed by Patrick Volkerding. In contrast to many other distributions
 &Distribution; adheres to the so-called KISS (keep it simple stupid) principle.
 This means that &Distribution; does not have complex graphical tools for
 configuring a system. For newbies this can be somwhat harsh, but it
 provides more transperancy and flexibility. Besides that you will
-get to learn GNU/Linux to the bones with &Distribution;.
+get to learn &OS; to the bones with &Distribution;.
 </para>
 
 <para>
@@ -75,7 +75,7 @@ without the need to write net init scripts yourself.
 
 <para>
 The packages in &Distribution; are compiled with as little modifications
-as possible. This means you can use most general GNU/Linux documentation.
+as possible. This means you can use most general &OS; documentation.
 </para>  
 
 </sect1>

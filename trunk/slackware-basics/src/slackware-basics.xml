@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- $Id: slackware-basics.xml,v 1.8 2004/12/18 22:07:18 daniel Exp $ -->
+<!-- $Id: slackware-basics.xml,v 1.9 2004/12/18 22:14:34 daniel Exp $ -->
 
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "/usr/share/sgml/docbook/xml-dtd-4.1.2/docbookx.dtd" [
 
@@ -34,6 +34,7 @@
 
 <!-- Some very common terms -->
 <!ENTITY Distribution "Slackware Linux">
+<!ENTITY OS "GNU/Linux">
 
 <!ENTITY host1ip "192.168.1.1">
 <!ENTITY host2ip "192.168.1.169">

@@ -1,12 +1,12 @@
-<!-- $Id: preface.xml,v 1.4 2004/12/18 22:07:18 daniel Exp $ -->
+<!-- $Id: preface.xml,v 1.5 2004/12/18 22:14:34 daniel Exp $ -->
 
 <preface> <?dbhtml filename="preface.html"?>
 <title>Preface</title>
 
 <para>
 This book aims to provide an introduction to &Distribution;. It addresses
-people who have little or no GNU/Linux experience. It aims to cover the 
-&Distribution; installation, basic GNU/Linux commands and the configuration
+people who have little or no &OS; experience. It aims to cover the 
+&Distribution; installation, basic &OS; commands and the configuration
 of &Distribution;. As you can see the book is still work in progress, but
 the first bits are released in the <quote>release early, release often</quote>
 spirit.

@@ -1,4 +1,4 @@
-<!-- $Id: filesystem.xml,v 1.3 2004/12/18 22:07:18 daniel Exp $ -->
+<!-- $Id: filesystem.xml,v 1.4 2004/12/18 22:14:34 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="filesystem.html"?>
 <title>Files and directories</title>
@@ -248,7 +248,7 @@ $ <command>rm -rf ogle/</command>
 
 <bridgehead>A short introduction</bridgehead>
 <para>
-Every file in GNU/Linux has permissions. As you might have noticed,
+Every file in &OS; has permissions. As you might have noticed,
 file permissions can be shown with the <command>ls -l</command> command:
 </para>
 
@@ -272,7 +272,7 @@ classes of users (owner, group and others).
 </para>
 
 <para>
-Each GNU/Linux system has many distinct users (a list of users
+Each &OS; system has many distinct users (a list of users
 can be found in <filename>/etc/passwd</filename>), and a user
 can be a member of certain groups. This kind of user management
 provides makes it possible to manage detailed permissions for
@@ -381,8 +381,8 @@ $ <command>chmod -R go-r secret/</command>
 <title>Introduction</title>
 
 <para>
-Sooner or later a GNU/Linux user will encounter <acronym>tar</acronym>
-archives, tar is the standard format for archiving files on GNU/Linux.
+Sooner or later a &OS; user will encounter <acronym>tar</acronym>
+archives, tar is the standard format for archiving files on &OS;.
 It is often used in conjunction with <command>gzip</command> or
 <command>bzip2</command>. Both commands can compress files and archives.
 <xref linkend="archive-extentions" /> lists frequently used archive 
@@ -435,7 +435,7 @@ also a lot slower, because it does more data analysis.
 <title>Extracting archives</title>
 
 <para>
-Since many software and data in the GNU/Linux world is archived with
+Since many software and data in the &OS; world is archived with
 <command>tar</command> it is important to get used to extracting tar
 archives. The first thing you will often want to do when you receive
 a tar archive is to list its contents. This can be achieved by using
@@ -565,7 +565,7 @@ version of the archive created above. We can do this with:
 <title>Introduction</title>
 
 <para>
-Extended attributes (EAs) are relatively new on GNU/Linux.  Extended
+Extended attributes (EAs) are relatively new on &OS;.  Extended
 attributes are a special kind of values that are associated with a
 file or directory. EAs provide the means to add extra attributes
 besides the common attributes (modification time, traditional file
@@ -753,7 +753,7 @@ filesystem on <filename>/dev/sda1</filename>.
 <title>The fstab file</title>
 
 <para>
-The GNU/Linux system has a special file, <filename>/etc/fstab</filename>,
+The &OS; system has a special file, <filename>/etc/fstab</filename>,
 that specifies which filesystems should be mounted during the system boot.
 Let's look at an example:
 </para>

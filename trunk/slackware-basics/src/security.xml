@@ -1,4 +1,4 @@
-<!-- $Id: security.xml,v 1.2 2004/12/18 22:07:18 daniel Exp $ -->
+<!-- $Id: security.xml,v 1.3 2004/12/18 22:14:34 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="security.html"?>
 <title>Security</title>
@@ -9,7 +9,7 @@
 <para>
 With the increasing usage of the Internet and wireless networks security
 is getting more important every day. It is impossible to cover this subject
-in a single chapter of an introduction to GNU/Linux. This chapter covers
+in a single chapter of an introduction to &OS;. This chapter covers
 some basic security techniques that provide a good start for desktop
 and server security.
 </para>
@@ -32,7 +32,7 @@ of random letters (including capitals) and numbers.
 <title>Introduction</title>
 
 <para>
-GNU/Linux supports two major of securing e-mails, but before we will look
+&OS; supports two major of securing e-mails, but before we will look
 into these specifically we are going to look what e-mail security provides.
 There are two ways in which you can secure e-mails: signing e-mail and
 encrypting e-mail. Signing e-mail means that a special digital signature
@@ -70,7 +70,7 @@ a professional e-mail address with digitally signed e-mails?
 <bridgehead>GnuPG or S/MIME</bridgehead>
 
 <para>
-At the moment there two major standards that are supported by GNU/Linux,
+At the moment there two major standards that are supported by &OS;,
 the OpenPGP standard, by the GnuPG tool, and S/MIME. Both are about
 equally good concerning the strength of the used encryption algorithms.
 The big difference is that S/MIME relies on a certificate authority
@@ -114,7 +114,7 @@ key is not known to a certificate authority.
 </para>
 
 <para>
-GnuPG used to be supported a lot better on GNU/Linux, but more and more
+GnuPG used to be supported a lot better on &OS;, but more and more
 e-mail clients support S/MIME these days. On Windows S/MIME is better
 supported, because Outlook Express and Mozilla Mail (two commonly used
 e-mail clients) both have S/MIME support. If you are communicating
@@ -435,7 +435,7 @@ gpg: BAD signature from "John Doe (Work) &lt;john@doe.com&gt;"
 <title>Introduction</title>
 
 <para>
-Many GNU/Linux run some services that are open to a local network or the
+Many &OS; run some services that are open to a local network or the
 Internet. Other hosts can connect to these services by connecting to specific
 ports. For example, port 80 is used for WWW traffic. The
 <filename>/etc/services</filename> file contains a table with all commonly
@@ -457,7 +457,7 @@ will help you tracking down which ports are open, and closing them.
 
 <para>
 Open ports can be found using a port scanner. Probably the most famous 
-port scanner for GNU/Linux is <command>nmap</command>. <command>nmap</command>
+port scanner for &OS; is <command>nmap</command>. <command>nmap</command>
 is available through the <quote>n</quote> diskset. 
 </para>
 

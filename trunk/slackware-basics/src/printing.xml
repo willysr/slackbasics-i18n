@@ -1,4 +1,4 @@
-<!-- $Id: printing.xml,v 1.3 2004/12/18 22:07:18 daniel Exp $ -->
+<!-- $Id: printing.xml,v 1.4 2004/12/18 22:14:34 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="printer.html"?>
 <title>Printer configuration</title>
@@ -7,7 +7,7 @@
 <title>Introduction</title>
 
 <para>
-GNU/Linux supports a large share of the available USB, parallel and
+&OS; supports a large share of the available USB, parallel and
 network printers. &Distribution; provides two printing systems,
 <acronym>CUPS</acronym> (Common UNIX Printing System) and
 <acronym>LPRNG</acronym> (LPR Next Generation). This chapter covers
@@ -34,7 +34,7 @@ ifhp
 
 <para>
 Both printing systems have their own advantages and disadvantages. If
-you do not have much experience with configuring printers under GNU/Linux,
+you do not have much experience with configuring printers under &OS;,
 it is a good idea to use CUPS, because CUPS provides a comfortable web
 interface which can be accessed through a web browser.
 </para> 

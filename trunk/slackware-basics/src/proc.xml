@@ -1,4 +1,4 @@
-<!-- $Id: proc.xml,v 1.2 2004/11/28 18:53:43 daniel Exp $ -->
+<!-- $Id: proc.xml,v 1.3 2004/12/18 22:14:34 daniel Exp $ -->
 
 <chapter id="chap-proc"> <?dbhtml filename="proc.html"?>
 <title>Process management</title>
@@ -240,7 +240,7 @@ CPU time. Or you can give processes that are important a higher priority.
 </para>
 
 <para>
-GNU/Linux provides two commands to alter the priority of a process. The
+&OS; provides two commands to alter the priority of a process. The
 <command>nice</command>(1) command can be used to specify the priority when
 you are launching a process. With the <command>renice</command>(1) command
 you can alter the priority of a process that is already running. The priority

@@ -1,4 +1,4 @@
-<!-- $Id: usermgmt.xml,v 1.3 2004/12/05 12:12:25 daniel Exp $ -->
+<!-- $Id: usermgmt.xml,v 1.4 2004/12/18 22:14:34 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="usermgmt.html"?>
 <title>User management</title>
@@ -7,11 +7,11 @@
 <title>Introduction</title>
 
 <para>
-GNU/Linux is a multi-user operating system. This means that multiple users
-can use the system, and they can use the system simultaneously. The GNU/Linux
+&OS; is a multi-user operating system. This means that multiple users
+can use the system, and they can use the system simultaneously. The &OS;
 concepts for user management are quite simple. First of all, there are several
 user accounts on each system. Even on a single user system there are multiple 
-user accounts, because GNU/Linux uses unique accounts for some tasks. Users
+user accounts, because &OS; uses unique accounts for some tasks. Users
 can be members of groups. Groups are used for more fine grained permissions,
 for example, you could make a file readable by a certain group. There are
 a few reserved users and groups on each system. The most important of these
@@ -202,7 +202,7 @@ the &lt;Enter&gt; key.
 <title>userdel</title>
 
 <para>
-Sometimes it is necessary to remove a user account from the system. GNU/Linux
+Sometimes it is necessary to remove a user account from the system. &OS;
 offers the <command>userdel</command> tool to do this. Just specify the
 username as a parameter to remove that user from the system. For example,
 the following command will remove the user account <emphasis>bob</emphasis>

@@ -1,3 +1,6 @@
+- Replace occurences of "Slackware", "Slackware Linux", and 
+  "Slackware GNU/Linux" with a single entity; &Distribution. 
+  This will improve naming consistency in the guide.
 - Mark up some acronyms with <acronym>. Use an italic font for
   acronyms.
 - Rename the services part to "Network administration". Move the

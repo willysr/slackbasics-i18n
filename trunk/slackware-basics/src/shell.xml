@@ -1,4 +1,4 @@
-<!-- $Id: shell.xml,v 1.4 2004/12/18 22:07:18 daniel Exp $ -->
+<!-- $Id: shell.xml,v 1.5 2004/12/18 22:14:34 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="shell.html"?>
 <title>The Bash shell</title>
@@ -7,7 +7,7 @@
 <title>Introduction</title>
 
 <para>
-The shell is the traditional interface used by UNIX and GNU/Linux. In contrast
+The shell is the traditional interface used by UNIX and &OS;. In contrast
 to the X Window System it is an interface that works with commands. In the
 beginning this can be a bit awkward, but the shell is very powerful. Even
 in these days the shell is almost unavoidable ;).
@@ -126,7 +126,7 @@ the filename, and hitting &lt;Tab&gt; completes the command to
 </para>
 
 <para>
-It is worth noting that completion also works with commands. Most GNU/Linux
+It is worth noting that completion also works with commands. Most &OS;
 commands are quite short, so it will not be of much use most of the time.
 </para>
 

@@ -1,4 +1,4 @@
-<!-- $Id: textutils.xml,v 1.4 2004/12/04 15:59:09 daniel Exp $ -->
+<!-- $Id: textutils.xml,v 1.5 2004/12/18 22:14:34 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="textutils.html"?>
   <title>Text Utilities</title>
@@ -35,7 +35,7 @@
 
     <para>
       Due to the fact that text files have such an important role in
-      UNIX-like operating systems, like GNU/Linux, this book has a separate
+      UNIX-like operating systems, like &OS;, this book has a separate
       chapter dedicated to the subject of processing text files. In
       the beginning its use may not be that obvious, but once you get
       used to these tools you will see that you will probably use some
