@@ -29,73 +29,42 @@
   <sect1 id="spamassassin-install">
     <title>Installing spamassasin</title>
 
-    <sect2 id="spamassassin-install-html-parser">
-      <title>HTML::Parser</title>
-      
-      <para>
-        Spamassassin requires the HTML::Parser Perl package. The sources 
-	of this package can be downloaded from CPAN. You can get the latest 
-	version at the following URL: 
-	<ulink url="http://search.cpan.org/dist/HTML-Parser/" />. We want 
-	to install this package system-wide, so be sure to execute the 
-	following instructions as the root user (or only the <command>make 
-	install</command> step if you prefer). First of all you have to 
-	extract the source archive, for example:
-      </para>
-
-      <screen>
-# <command>tar zxf HTML-Parser-3.33.tar.gz</command>
-      </screen>
-
-      <para>
-        In these examples you have to substitute the version number (3.33) 
-	with the version number of the package you downloaded. After 
-	extracting the archive go to the <filename>HTML-Parser-3.33</filename> 
-	directory and configure, compile and install HTML::Parser with the 
-	following commands:
-      </para>
-
-      <screen>
-# <command>perl Makefile.PL</command>
-# <command>make</command>
-# <command>make install</command>
-      </screen>
-
-    </sect2>
-
     <sect2 id="spamassassin-install-spamassassin">
       <title>SpamAssassin</title>
 
       <para>
-        After installing HTML::Parser the Slackware system is ready to 
-	configure and install Spamassassin. This first step is, as always, 
-	to download the sources. The SpamAssassin source can be downloaded 
-	from: <ulink url="http://www.spamassassin.org/" />. Extract the 
-	archive (use the version number of your SpamAssassin sources):
+        SpamAssassin is written in Perl, and is available through
+	CPAN (Comprehensive Perl Archive Network). You can install
+	SpamAssassin through the CPAN shell. Execute the following
+	command to enter the CPAN shell:
       </para>
 
       <screen>
-# <command>tar zxf Mail-SpamAssassin-2.60.tar.gz</command>
+# <command>perl -MCPAN -e shell</command>
       </screen>
 
       <para>
-        And go to the <filename>Mail-SpamAssassin-2.60</filename> and execute 
-	the following commands:
+        Once the shell is started you can install SpamAssassin:
       </para>
 
       <screen>
-# <command>perl Makefile.PL PREFIX=/usr SYSCONFDIR=/etc</command>
-# <command>make</command>
-# <command>make install</command>
+# <command>o conf prerequisites_policy ask</command>
+# <command>install Mail::SpamAssassin</command>
       </screen>
 
       <para>
-        The <parameter class="command">PREFIX</parameter> parameter is used 
-	to make sure that the SpamAssassin files are installed under the 
-	<filename>/usr</filename> directory and the 
-	<parameter class="command">SYSCONFDIR</parameter> parameter specifies 
-	that the configuration files should be stored in 
-	<filename>/etc</filename>.
+        The first command will make the installation of dependencies
+	interactive (in other words, the CPAN shell will ask you to
+	confirm their installation). The second command asks the CPAN
+	shell to install SpamAssassin.
+      </para>
+
+      <para>
+        During the installation you will be asked to fill in the e-mail
+	address of the e-mail address or URL that should be used in the
+	report that is sent when something is suspected to be spam.
+        You will also be asked whether you would like to conduct some tests
+	or not. You can answer <quote>n</quote> to these questions.
       </para>
       
     </sect2>
