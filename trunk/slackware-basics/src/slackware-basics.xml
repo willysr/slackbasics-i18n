@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- $Id: slackware-basics.xml,v 1.13 2005/01/23 01:03:57 daniel Exp $ -->
+<!-- $Id: slackware-basics.xml,v 1.14 2005/01/27 23:41:39 daniel Exp $ -->
 
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "/usr/share/sgml/docbook/xml-dtd-4.1.2/docbookx.dtd" [
 
@@ -32,6 +32,8 @@
 <!ENTITY Inetd SYSTEM "inetd.xml">
 <!ENTITY Apache SYSTEM "apache.xml">
 <!ENTITY Bind SYSTEM "bind.xml">
+
+<!ENTITY Spamassassin SYSTEM "spamassassin.xml">
 
 <!-- Some very common terms -->
 <!ENTITY Distribution "Slackware Linux">
@@ -104,6 +106,11 @@
 &Inetd;
 &Apache;
 &Bind;
+</part>
+
+<part> <?dbhtml filename="email.html"?>
+<title>Electronic mail</title>
+&Spamassassin;
 </part>
 
 <!--

@@ -1,0 +1,203 @@
+<chapter id="spamassassin"> <?dbhtml filename="spamassassin.html"?>
+  <title>Spamassassin</title>
+
+  <sect1 id="spamassassin-intro">
+    <title>Introduction</title>
+
+    <para>
+      Spam E-Mail is one of the major problems of the current Internet. 
+      Fortunately there are some tools which can help you reducing the 
+      amount of spam you get. One of them is using blacklists. A blacklist 
+      is a list of known open e-mail relays. With a blacklist you can 
+      block e-mails which are sent using one of these open relays. 
+      Unfortunately there are a few problems with this method, first of 
+      all the database of open relays can never be complete. Besides that 
+      some spam is sent using normal ISP-specific SMTP servers.
+    </para>
+
+    <para>
+      Another method is scanning the incoming e-mails for common 
+      characteristics of spam. This method is comparable with a virus 
+      scanner; a filter program knows a large number of spam 
+      characteristics and gives each characteristic found in a mail a 
+      point. If a defined number of points is exceeded the mail is 
+      marked as spam. Spamassassin is that kind of filter.
+    </para>
+
+  </sect1>
+
+  <sect1 id="spamassassin-install">
+    <title>Installing spamassasin</title>
+
+    <sect2 id="spamassassin-install-html-parser">
+      <title>HTML::Parser</title>
+      
+      <para>
+        Spamassassin requires the HTML::Parser Perl package. The sources 
+	of this package can be downloaded from CPAN. You can get the latest 
+	version at the following URL: 
+	<ulink url="http://search.cpan.org/dist/HTML-Parser/" />. We want 
+	to install this package system-wide, so be sure to execute the 
+	following instructions as the root user (or only the <command>make 
+	install</command> step if you prefer). First of all you have to 
+	extract the source archive, for example:
+      </para>
+
+      <screen>
+# <command>tar zxf HTML-Parser-3.33.tar.gz</command>
+      </screen>
+
+      <para>
+        In these examples you have to substitute the version number (3.33) 
+	with the version number of the package you downloaded. After 
+	extracting the archive go to the <filename>HTML-Parser-3.33</filename> 
+	directory and configure, compile and install HTML::Parser with the 
+	following commands:
+      </para>
+
+      <screen>
+# <command>perl Makefile.PL</command>
+# <command>make</command>
+# <command>make install</command>
+      </screen>
+
+    </sect2>
+
+    <sect2 id="spamassassin-install-spamassassin">
+      <title>SpamAssassin</title>
+
+      <para>
+        After installing HTML::Parser the Slackware system is ready to 
+	configure and install Spamassassin. This first step is, as always, 
+	to download the sources. The SpamAssassin source can be downloaded 
+	from: <ulink url="http://www.spamassassin.org/" />. Extract the 
+	archive (use the version number of your SpamAssassin sources):
+      </para>
+
+      <screen>
+# <command>tar zxf Mail-SpamAssassin-2.60.tar.gz</command>
+      </screen>
+
+      <para>
+        And go to the <filename>Mail-SpamAssassin-2.60</filename> and execute 
+	the following commands:
+      </para>
+
+      <screen>
+# <command>perl Makefile.PL PREFIX=/usr SYSCONFDIR=/etc</command>
+# <command>make</command>
+# <command>make install</command>
+      </screen>
+
+      <para>
+        The <parameter class="command">PREFIX</parameter> parameter is used 
+	to make sure that the SpamAssassin files are installed under the 
+	<filename>/usr</filename> directory and the 
+	<parameter class="command">SYSCONFDIR</parameter> parameter specifies 
+	that the configuration files should be stored in 
+	<filename>/etc</filename>.
+      </para>
+      
+    </sect2>
+
+    <sect2 id="spamassassin-install-spamd">
+      <title>Starting spamd</title>
+
+      <para>
+        It is not a bad idea to start a daemonized version of SpamAssassin 
+	which runs in the background. This will speed up mail filtering. 
+	The daemon can be started using the following command:
+      </para>
+
+      <screen>
+# <command>spamd -c -d</command>
+      </screen>
+
+      <para>
+        It is a good idea tot add this to <filename>/etc/rc.local</filename>, 
+	so <command>spamd</command> will automatically be started during the 
+	initialization process.
+      </para>
+      
+    </sect2>
+    
+  </sect1>
+
+  <sect1 id="spamassassin-procmail">
+    <title>Using spamassassin with procmail</title>
+
+    <para>
+      Sendmail will use procmail automatically on the default Slackware 
+      installation if procmail is installed. Procmail is a program which 
+      processes e-mails and allows you to apply filters. At first we are 
+      going to have a look at how to add spamassassin headers to a 
+      processed e-mail, after that we are going to look at a method to 
+      separate spam from normal e-mail.
+    </para>
+
+    <sect2 id="spamassassin-procmail-marking">
+      <title>Marking messages as spam</title>
+
+      <para>
+        The first step is to mark messages as either spam or non-spam. 
+	Create a <filename>/etc/procmailrc</filename> file, if you do not 
+	already have one. This is the system-wide procmail configuration 
+	file, and applies to all incoming e-mails. Use the 
+	<filename>~/.procmailrc</filename> file if you want to enable spam 
+	marking for an individual account. Add the following lines to the 
+	configuration file:
+      </para>
+
+      <screen>
+:0 fw
+* &lt; 256000
+| /usr/bin/spamc -f
+      </screen>
+
+      <para>
+        The first line says we want to pipe all messages to an external 
+	command. The second line makes sure only messages smaller than 
+	256000 bytes are filtered. Spam messages are usually not that 
+	large, and adding this line can decrease the system load. Finally, 
+	the third line specifies that the messages should be piped 
+	through <command>/usr/bin/spamc</command> with the 
+	<parameter>-f</parameter> parameter.
+      </para>
+
+    </sect2>
+
+    <sect2 id="spamassassin-procmail-moving">
+      <title>Moving spam mail to a separate mailbox</title>
+
+      <para>
+        Procmail can also be used to move spam to a separate mailbox 
+	file. It is not a bad idea to configure this on a user basis, 
+	because some users might want to use the filters of their e-mail 
+	program to separate spam. In the following example we will move 
+	spam messages to the <filename>~/mail/spam</filename> mailbox 
+	file. To do this add the following lines to 
+	<filename>~/.procmailrc</filename>:
+      </para>
+
+      <screen>
+MAILDIR=$HOME/mail
+
+:0:
+* ^X-Spam-Status: Yes
+spam
+      </screen>
+
+      <para>
+        First of all MAILDIR is defined, this will create and use the 
+	mailboxes in <filename>~/mail/</filename>. In the next two lines 
+	we say that we want to filter out e-mails with the 
+	<emphasis>X-Spam-Status: Yes</emphasis> header, which is added by 
+	spamassassin if it believes an e-mail is spam. Finally the mailbox 
+	to which the e-mails should be moved is specified.
+      </para>
+      
+    </sect2>
+
+  </sect1>
+
+</chapter>
