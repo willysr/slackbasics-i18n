@@ -1,4 +1,4 @@
-<!-- $Id: installation.xml,v 1.5 2004/12/19 10:19:33 daniel Exp $ -->
+<!-- $Id: installation.xml,v 1.6 2005/03/03 11:22:42 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="installation.html" ?>
 <title>Installing &Distribution;</title>
@@ -24,6 +24,71 @@ If you are using a SCSI CD-ROM you may have to set the boot sequence
 in the SCSI BIOS instead of the system BIOS. Consult the SCSI card manual
 for more information. 
 </para> 
+
+<para>
+When the CD-ROM is booted, a pre-boot screen will appear. Normally
+you can just press &lt;ENTER&gt; to proceed loading the default 
+(<filename>bare.i</filename>) Linux kernel. If want to install Slackware
+Linux to a disk that is attached to a SCSI or SATA controller, you
+have to boot an alternative kernel. You can boot an alternative kernel
+by entering the kernel name on the prompt, and pressing &lt;ENTER&gt;.
+The following table lists some of the alternative kernels, for a full
+list of kernels, refer to the <filename>Slackware-HOWTO</filename>
+file on the CD-ROM.
+</para>
+
+<table>
+  <title>Alternative kernels</title>
+
+  <tgroup cols="2">
+    <thead>
+      <row>
+        <entry>Kernel</entry><entry>Description</entry>
+      </row>
+    </thead>
+    <tbody>
+      <row>
+        <entry>adaptec.s</entry>
+	<entry>
+	  This kernel provides support for most Adaptec SCSI controllers,
+	  including VLB and EISA models aside from the more modern PCI
+	  controllers.
+	</entry>
+      </row>
+      <row>
+        <entry>bareacpi.i</entry>
+	<entry>
+	  This kernel is similar to the <emphasis>bare.i</emphasis>
+	  kernel, but provides support for the Advanced Configuration
+	  and Power Interface (ACPI).
+	</entry>
+      </row>
+      <row>
+        <entry>ataraid.i</entry>
+	<entry>
+	  This kernel provides support for some commonly used ATA
+	  RAID controllers.
+	</entry>
+      </row>
+      <row>
+        <entry>sata.i</entry>
+	<entry>
+          This kernel is similar to the <emphasis>bare.i</emphasis>
+          kernel, but provides support for commonly used SATA controllers.
+        </entry>
+      </row>
+      <row>
+        <entry>scsi.s/scsi2.s/scsi3.s</entry>
+	<entry>
+	  These kernels provide support for various SCSI controllers.
+	  Refer to the <filename>Slackware-HOWTO</filename> on the
+	  CD-ROM for a list of controllers supported by each kernel.
+	</entry>
+      </row>
+
+    </tbody>
+  </tgroup>
+</table>
 
 <para>
 After booting the installation system, you will be asked whether you
