@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- $Id: slackware-basics.xml,v 1.6 2004/12/05 12:13:23 daniel Exp $ -->
+<!-- $Id: slackware-basics.xml,v 1.7 2004/12/18 20:52:04 daniel Exp $ -->
 
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "/usr/share/sgml/docbook/xml-dtd-4.1.2/docbookx.dtd" [
 
@@ -21,19 +21,13 @@
 <!ENTITY Proc SYSTEM "proc.xml">
 
 <!ENTITY UserMgmt SYSTEM "usermgmt.xml">
-<!ENTITY Netconfig SYSTEM "netconfig.xml">
-<!ENTITY Ipsec SYSTEM "ipsec.xml">
-
-<!ENTITY Networking SYSTEM "networking.xml">
-
 <!ENTITY Pkgmgmt SYSTEM "pkgmgmt.xml">
 <!ENTITY Printing SYSTEM "printing.xml">
-
 <!ENTITY XFree86 SYSTEM "x11.xml">
-<!ENTITY Vi SYSTEM "vi.xml">
-
 <!ENTITY Security SYSTEM "security.xml">
 
+<!ENTITY Netconfig SYSTEM "netconfig.xml">
+<!ENTITY Ipsec SYSTEM "ipsec.xml">
 <!ENTITY Inetd SYSTEM "inetd.xml">
 <!ENTITY Apache SYSTEM "apache.xml">
 <!ENTITY Bind SYSTEM "bind.xml">
@@ -93,13 +87,13 @@
 &Printing;
 &XFree86;
 &Pkgmgmt;
-&Netconfig;
-&Ipsec;
 &Security;
 </part>
 
-<part> <?dbhtml filename="services.html"?>
-<title>Network services</title>
+<part> <?dbhtml filename="netadmin.html"?>
+<title>Network administration</title>
+&Netconfig;
+&Ipsec;
 &Inetd;
 &Apache;
 &Bind;
