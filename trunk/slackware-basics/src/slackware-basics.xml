@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- $Id: slackware-basics.xml,v 1.11 2004/12/18 22:20:00 daniel Exp $ -->
+<!-- $Id: slackware-basics.xml,v 1.12 2004/12/20 11:24:53 daniel Exp $ -->
 
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "/usr/share/sgml/docbook/xml-dtd-4.1.2/docbookx.dtd" [
 
@@ -24,6 +24,7 @@
 <!ENTITY Pkgmgmt SYSTEM "pkgmgmt.xml">
 <!ENTITY Printing SYSTEM "printing.xml">
 <!ENTITY XFree86 SYSTEM "x11.xml">
+<!ENTITY BuildKernel SYSTEM "kernel.xml">
 <!ENTITY Security SYSTEM "security.xml">
 
 <!ENTITY Netconfig SYSTEM "netconfig.xml">
@@ -91,6 +92,7 @@
 &Printing;
 &XFree86;
 &Pkgmgmt;
+&BuildKernel;
 &Security;
 </part>
 
