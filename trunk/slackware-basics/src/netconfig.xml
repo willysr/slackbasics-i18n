@@ -1,4 +1,4 @@
-<!-- $Id: netconfig.xml,v 1.4 2004/12/18 22:18:34 daniel Exp $ -->
+<!-- $Id: netconfig.xml,v 1.5 2004/12/18 22:20:00 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="netconfig.html"?>
 <title>Networking configuration</title>
@@ -274,7 +274,7 @@ configure the hostname in <filename>/etc/HOSTNAME</filename>.
 A single line with the hostname of the machine will suffice. Normally
 a hostname has the following form: host.domain.tld, for example
 darkstar.slackfans.org. Be aware that the hostname has to be resolvable,
-meaning that &Kernel; should be able to convert the hostname to an IP
+meaning that &OS; should be able to convert the hostname to an IP
 address. You can make sure the hostname is resolvable by adding it
 to <filename>/etc/hosts</filename>. Read the following section for
 more information about this file.
@@ -355,7 +355,7 @@ provider.
 <para>
 IPv4 forwarding connects two or more networks by sending packets
 which arrive on one interface to another interface. This makes it
-possible to let a &Kernel; machine act as a router. For example, you
+possible to let a &OS; machine act as a router. For example, you
 can connect multiple networks, or your home network with the internet.
 Let's have a look at an example:
 </para> 
