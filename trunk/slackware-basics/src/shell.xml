@@ -1,0 +1,372 @@
+<!-- $Id: shell.xml,v 1.1 2004/11/06 23:17:47 daniel Exp $ -->
+
+<chapter> <?dbhtml filename="shell.html"?>
+<title>The Bash shell</title>
+
+<sect1>
+<title>Introduction</title>
+
+<para>
+The shell is the traditional interface used by UNIX and GNU/Linux. In contrast
+to the X Window System it is an interface that works with commands. In the
+beginning this can be a bit awkward, but the shell is very powerful. Even
+in these days the shell is almost unavoidable ;).
+</para>
+
+<para>
+The default shell on Slackware GNU/Linux is Bash. Bash means <quote>Bourne-Again
+SHell</quote>, which is a pun on the name of one of the traditional UNIX shells,
+the <quote>Bourne Shell</quote>. Slackware also provides some other shells, but
+Bash is the main topic of this chapter.
+</para>
+</sect1>
+
+<sect1>
+<title>Starting the shell</title>
+
+<para>
+The procedure for starting the shell depends on whether you use a graphical
+or text-mode login. If you are logging on in text-mode the shell is 
+immediately started after entering the (correct) password. If you are using
+a graphical login manager like gdm, log on as you would normally, and look in 
+your window manager or desktop environment menu for an entry named "XTerm".
+XTerm is a terminal emulator, after the terminal emulator is started the
+shell comes up.
+</para>
+
+<para>
+The shell might remind some people of MS-DOS. Be happy, it has nothing to
+do with DOS, the only similarity is that you can enter commands ;).
+</para>
+</sect1>
+
+<sect1>
+<title>Shell basics</title>
+
+<para>
+This chapter might be a difficult to read for the first time, because
+you might not know any shell commands. Many important commands are
+described in the next chapters, but those chapters are not really useful
+without any knowledge of the shell. So, it is not a bad idea to
+browse quickly through this chapter, and the next few chapters, to get
+an idea what this shell thing is all about. After that quick overview
+you should be able to understand this chapter.
+</para>
+
+<sect2>
+<title>Executing commands</title>
+
+<para>
+The most important job for the shell is to execute your commands. Let's
+look at a simple example. Most UNIX variants have a command named
+<command>whoami</command>, which shows as which user you are logged in.
+Try typing <command>whoami</command>, and press the &lt;Enter&gt;
+after that. The &lt;Enter&gt; tells the shell that it should execute
+the command that you have typed on the current line. The output looks
+like this:
+</para>
+
+<screen>
+daniel@tazzy:~$ <command>whoami</command>
+daniel
+daniel@tazzy:~$
+</screen>
+
+<para>
+As you can see the control is handed back to the shell after the command
+is finished.
+</para>
+</sect2>
+
+<sect2>
+<title>Browsing through shell commands</title>
+
+<para>
+It often happens that you have to execute commands that you executed earlier.
+Fortunately, you do not have to type them all over again. You can browse
+through the history of executed commands with the up and down arrows. Besides
+that it is also possible to search for a command. Press &lt;Control&gt; +
+&lt;r&gt; and start typing the command you want to execute. You will notice
+that bash will display the first match it can find. If this is not the
+match you were looking for you can continue typing the command (till it
+is unique and a match appears), or press &lt;Control&gt; + &lt;r&gt;
+once more to get the next match. When you have found the command you were
+looking for, you can execute it by pressing &lt;Enter&gt;.
+</para>
+</sect2>
+
+<sect2>
+<title>Completion</title>
+
+<para>
+Completion is one of the most useful functionalities of Unix-like shells.
+Suppose that you have a directory with two files named 
+<filename>websites</filename> and <filename>recipe</filename>. And suppose
+you want to <command>cat</command> the file <filename>websites</filename>
+(<command>cat</command> shows the contents of a file), by specifying
+<filename>websites</filename> as a parameter to cat. Normally you would
+type <quote>cat websites</quote>, and execute the command. Try typing
+<quote>cat w</quote>, and hit the &lt;Tab&gt; key. Bash will automatically
+expand what you typed to <quote>cat websites</quote>.
+</para>
+
+<para>
+But what happens if you have files that start with the same letter? Suppose
+that you have the <filename>recipe1.txt</filename> and 
+<filename>recipe2.txt</filename> files. Type <quote>cat r</quote> 
+and hit &lt;Tab&gt;, Bash will complete the filename as far as it can. It 
+would leave you with <quote>cat recipe</quote>. Try hitting &lt;Tab&gt;
+again, and Bash will show you a list of filenames that start with
+<quote>recipe</quote>, in this case both recipe files. At this point you
+have to help Bash by typing the next character of the file you need.
+Suppose you want to <command>cat</command> <filename>recipe2</filename>,
+you can push the &lt;2&gt; key. After that there are no problems completing
+the filename, and hitting &lt;Tab&gt; completes the command to
+<quote>cat recipe2.txt</quote>.
+</para>
+
+<para>
+It is worth noting that completion also works with commands. Most GNU/Linux
+commands are quite short, so it will not be of much use most of the time.
+</para>
+
+<para>
+It is a good idea to practice a bit with completion, it can save alot
+of keystrokes if you can handle completion well. You can make some
+empty files to practive with using the <command>touch</command> command.
+For example, to make a file named <filename>recipe3.txt</filename>,
+execute <command>touch recipe3.txt</command>.
+</para>
+</sect2>
+
+<sect2>
+<title>Wildcards</title>
+
+<para>
+Most shells, including Bash, support wildcards. Wildcards are special
+characters that can be used to do pattern matching. The table listed
+below displays some commonly used wildcards. We are going to look at
+several examples to give a general idea how wildcards work.
+</para>
+
+<table><title>Bash wildcards</title>
+<tgroup cols="2" align="left" colsep="1" rowsep="1">
+<thead>
+<row>
+  <entry>Wildcard</entry>
+  <entry>Matches</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry>*</entry>
+<entry>A string of characters</entry>
+</row>
+<row>
+<entry>?</entry>
+<entry>A single character</entry>
+</row>
+<row>
+<entry>[]</entry>
+<entry>A character in an array of characters</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+<sect3>
+<title>Matching a string of characters</title>
+
+<para>
+As you can see in the table above the <quote>*</quote> character matches
+a string of characters. For example, <emphasis>*.html</emphasis> matches
+everything ending with <emphasis>.html</emphasis>, <emphasis>d*.html</emphasis>
+matches everything starting with a <emphasis>d</emphasis> and ending with
+<emphasis>.html</emphasis>.
+</para>
+
+<para>
+Suppose that you would like to list all files in the current directory with
+the <emphasis>.html</emphasis> extension, the following command will do the
+job:
+</para>
+
+<screen>
+$ <command>ls *.html</command>
+book.html        installation.html     pkgmgmt.html  usermgmt.html
+filesystem.html  internet.html         printer.html  xfree86.html
+gfdl.html        introduction.html     proc.html
+help.html        slackware-basics.html shell.html
+</screen>
+
+<para>
+Likewise we could remove all files starting with an <emphasis>in</emphasis>:
+</para>
+
+<screen>
+$ <command>rm in*</command>
+</screen>
+</sect3>
+
+<sect3>
+<title>Matching single characters</title>
+
+<para>
+The <quote>?</quote> wildcard works as the <quote>*</quote> wildcard, but
+matches single characters. Suppose that we have three files, 
+<filename>file1.txt</filename>, <filename>file2.txt</filename> and
+<filename>file3.txt</filename>. The string <emphasis>file?.txt</emphasis> 
+matches all three of these files, but it does not match 
+<filename>file10.txt</filename> (<quote>10</quote> are two characters).
+</para>
+</sect3>
+
+<sect3>
+<title>Matching characters from a set</title>
+
+<para>
+The <quote>[]</quote> wildcard matches every character between the brackets.
+Suppose we have the files from the previous example,
+<filename>file1.txt</filename>, <filename>file2.txt</filename> and
+<filename>file3.txt</filename>. The string <emphasis>file[23].txt</emphasis>
+matches <filename>file2.txt</filename> and <filename>file3.txt</filename>,
+but not <filename>file1.txt</filename>.
+</para>
+</sect3>
+</sect2>
+
+<sect2>
+<title>Redirections and pipes</title>
+
+<para>
+One of the main features of Unix-like shells are redirections and pipes. 
+Before we start to look at both techniques we have to look how most Unix-like
+commands work. When a command is not getting data from a file, it will open
+a special pseudo-file named <emphasis>stdin</emphasis>, and wait for data
+to appear on it. The same principle can be applied for command output, when
+there is no explicit reason for saving output to a file, the pseudo-file
+<emphasis>stdout</emphasis> will be opened for output of data. This principle
+is shown schematically in <xref linkend="shell-inout" />
+</para>
+
+<figure id="shell-inout">
+<title>Standard input and output</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/shell-inout.png" format="PNG"/>
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+You can see <emphasis>stdin</emphasis> and <emphasis>stdout</emphasis>
+in action with the <command>cat</command> command. If cat is started without
+any parameters it will just wait for input on <emphasis>stdin</emphasis>
+and output the same data on <emphasis>stdout</emphasis>. If no redirection
+is used keyboard input will be used for <emphasis>stdin</emphasis>, and
+<emphasis>stdout</emphasis> output will be printed to the terminal:
+</para>
+
+<screen>
+$ <command>cat</command>
+<command>Hello world!</command>
+Hello world!
+</screen>
+
+<para>
+As you can see cat will print data to <emphasis>stdout</emphasis> after 
+inputting data to <emphasis>stdin</emphasis> using the keyboard.
+</para>
+
+<sect3>
+<title>Redirection</title>
+
+<para>
+The shell allows you to take use of <emphasis>stdin</emphasis> and
+<emphasis>stdout</emphasis> using the <quote>&lt;</quote> and 
+<quote>&gt;</quote>. Data is redirected in which way the sharp bracket
+points. In the following example we will redirect the md5 summaries
+calculated for a set of files to a file named 
+<filename>md5sums</filename>:
+</para>
+
+<screen>
+$ <command>md5sum * > md5sums</command>
+$ <command>cat md5sums</command> 
+6be249ef5cacb10014740f61793734a8  test1
+220d2cc4d5d5fed2aa52f0f48da38ebe  test2
+631172a1cfca3c7cf9e8d0a16e6e8cfe  test3
+</screen>
+
+<para>
+As we can see in the <command>cat</command> output the output of the
+<command>md5sum *</command> output was redirected to the 
+<filename>md5sums</filename> file. We can also use redirection to provide
+input to a command:
+</para>
+
+<screen>
+$ <command>md5sum < test1</command>
+6be249ef5cacb10014740f61793734a8  -
+</screen>
+
+<para>
+This feeds the contents of the <filename>test1</filename> to 
+<command>md5sum</command>.
+</para>
+</sect3>
+
+<sect3>
+<title>pipes</title>
+
+<para>
+You can also connect the input and output of commands using so-called
+<emphasis>pipes</emphasis>. A pipe between commands can be made with the
+<quote>|</quote> character. Two or more combined commands are called a
+<emphasis>pipeline</emphasis>. <xref linkend="shell-pipeline" /> shows
+a schematic overview of a pipeline consisting of two commands.
+</para>
+
+<figure id="shell-pipeline">
+<title>A pipeline</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/shell-pipeline.png" format="PNG"/>
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+The <quote>syntax</quote> of a pipe is: <command>command1 | command2 ... |
+commandn</command>. If you know how the most basic Unix-like commands work
+you can now let these commands work together. Let's look at a quick example:
+</para>
+
+<screen>
+$ <command>cat /usr/share/dict/american-english | grep "aba" | wc -l</command>
+123
+</screen>
+
+<para>
+The first command, <command>cat</command>, reads the dictionary file
+<filename>/usr/share/dict/american-english</filename>. The output of
+the <command>cat</command> command is piped to <command>grep</command>,
+which prints out all files containing the phrase <quote>aba</quote>.
+In turn, the output of <quote>grep</quote> is piped to 
+<command>wc -l</command>, which counts the number of lines it receives
+from <emphasis>stdin</emphasis>. Finally, when the stream is finished
+<command>wc</command> prints the number of lines it counted. So, combined
+three commands to count the number of words containing the phrase
+<quote>aba</quote> in this particular dictionary.
+</para>
+
+<para>
+There are hundreds of small utilities that handle specific tasks. As you
+can imagine, together these commands provide a very powerful toolbox by
+making combinations using pipes.
+</para>
+</sect3>
+</sect2>
+</sect1>
+
+</chapter>
