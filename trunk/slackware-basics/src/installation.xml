@@ -1,4 +1,4 @@
-<!-- $Id: installation.xml,v 1.2 2004/12/18 22:07:18 daniel Exp $ -->
+<!-- $Id: installation.xml,v 1.3 2004/12/18 22:18:34 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="installation.html" ?>
 <title>Installing &Distribution;</title>
@@ -41,7 +41,7 @@ this chapter.
 <title>Partitioning a hard disk</title>
 
 <para>
-Installing &Distribution; requires at least one Linux partition, creating
+Installing &Distribution; requires at least one &Kernel; partition, creating
 a swap partition is also recommended. To be able to create a partition there
 has to be free unpartitioned space on the disk. There are some programs
 that can resize partitions. For example, FIPS can resize FAT partitions.
@@ -89,29 +89,29 @@ A command can be executed with the &lt;Enter&gt; key.
 </para>
 
 <para>
-You can create a Linux partition by selecting <quote>Free Space</quote>
+You can create a &Kernel; partition by selecting <quote>Free Space</quote>
 and executing the <quote>New</quote> command. <command>cfdisk</command>
 will ask you whether you want to create a primary or logical partition.
-The number of primary partitions is limited to four. Linux can be installed
+The number of primary partitions is limited to four. &Kernel; can be installed
 on both primary and logical partitions. If you want to install other
 operating systems besides &Distribution; that require primary partitions,
 it is a good idea to install &Distribution; onto a logical partition.
-The type of the new partition is automatically set to <quote>Linux
+The type of the new partition is automatically set to <quote>&Kernel;
 Native</quote>, so it is not necessary to set the partition type.
 </para>
 
 <para>
 The creation of a swap partition involves the same steps as a normal
-Linux partition, but the type of the partition has to be changed to
-<quote>Linux Swap</quote> after the partition is created. The suggested
+&Kernel; partition, but the type of the partition has to be changed to
+<quote>&Kernel; Swap</quote> after the partition is created. The suggested
 size of the swap partition depends on your own needs. The swap partition
 is used to store programs if the main (RAM) memory is full. If you have
 a harddisk of a reasonable size, it is a good idea to make a 256MB or
 512MB swap partition, which should be enough for normal usage.
 After creating the partition the partition type can be changed to
-<quote>Linux Swap</quote>, by selecting the <quote>Type</quote>
+<quote>&Kernel; Swap</quote>, by selecting the <quote>Type</quote>
 command. The <command>cfdisk</command> program will ask for the type
-number, <quote>Linux Swap</quote> partitions have type number 82.
+number, <quote>&Kernel; Swap</quote> partitions have type number 82.
 Normally number 82 is already selected, so you can go ahead by pressing
 the &lt;Enter&gt; key.
 </para> 
@@ -123,7 +123,7 @@ confirmed by entering <command>yes</command>. After saving the changes
 you can quite <command>cfdisk</command> with the <command>Quit</command>
 command. It is a good idea to reboot the computer before starting the
 installation, to make sure that the partitioning changes are active.
-Press &lt;ctrl&gt; + &lt;alt&gt; + &lt;del&gt; to shut Linux down and
+Press &lt;ctrl&gt; + &lt;alt&gt; + &lt;del&gt; to shut &Kernel; down and
 restart the computer.
 </para>
 </sect1>
@@ -152,7 +152,7 @@ options.
 <para>
 The first part of the installation is named <quote>ADDSWAP</quote>. The
 <command>setup</command> tool will look for a partition with the
-<quote>Linux Swap</quote> type, and ask you if you want to format
+<quote>&Kernel; Swap</quote> type, and ask you if you want to format
 and activate the swap partition (see figure <xref linkend="addswap"/>).
 Normally you can just answer <quote>Yes</quote>.
 </para>
@@ -170,7 +170,7 @@ Normally you can just answer <quote>Yes</quote>.
 After setting the swap up space the <quote>TARGET</quote> menu is
 launched, which you can see in <xref linkend="partselect"/>. It is used to 
 initialize the &Distribution; partitions. Setup
-will display all partitions with the <quote>Linux native</quote> type.
+will display all partitions with the <quote>&Kernel; native</quote> type.
 </para>
 
 <figure id="partselect">
@@ -201,7 +201,7 @@ linkend="fscheck"/>). Checking the disk can take a lot of time.
 <para>
 After selecting whether you want to filesystem or not, you can specify which 
 filesystem should be used (<xref linkend="filesystem"/>). Normally you can 
-choose the ext2, ext3 and reiserfs filesystems. Ext2 was the standard Linux 
+choose the ext2, ext3 and reiserfs filesystems. Ext2 was the standard &Kernel; 
 filesystem for many years, the disadvantage is that Ext2 does not support 
 journaling. A journal is a special file or area of a partition in which all
 filesystem operations are logged. When the system crashes the filesystem
@@ -354,7 +354,7 @@ of the hotplug scripts.
 
 <para>
 The following steps are important, the next dialogs will assist
-you with installing LILO, the Linux bootloader. Unless you have
+you with installing LILO, the &Kernel; bootloader. Unless you have
 experience in configuring LILO it is a good idea to choose 
 to use the <emphasis>simple</emphasis> option for configuration of LILO, 
 which tries to configure LILO automatically (<xref linkend="liloinstall" />).

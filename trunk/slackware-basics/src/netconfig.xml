@@ -1,4 +1,4 @@
-<!-- $Id: netconfig.xml,v 1.3 2004/12/18 22:07:18 daniel Exp $ -->
+<!-- $Id: netconfig.xml,v 1.4 2004/12/18 22:18:34 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="netconfig.html"?>
 <title>Networking configuration</title>
@@ -45,7 +45,7 @@ PCMCIA functionality for &Distribution;.
 <title>Configuration of interfaces</title>
 
 <para>
-Network cards are available under Linux through so-called "interfaces".
+Network cards are available under &Kernel; through so-called "interfaces".
 The <command>ifconfig</command>(8) command can be used to display the
 available interfaces:
 </para>
@@ -194,7 +194,7 @@ There are a some specially reserved prefixes, most notable include:
 <title>&Distribution; IPv6 support</title>
 
 <para>
-The Linux kernel binaries included in &Distribution; do not support IPv6
+The &Kernel; kernel binaries included in &Distribution; do not support IPv6
 by default, but support is included as a kernel module. This module can be
 loaded using <command>modprobe</command>:
 </para>
@@ -274,7 +274,7 @@ configure the hostname in <filename>/etc/HOSTNAME</filename>.
 A single line with the hostname of the machine will suffice. Normally
 a hostname has the following form: host.domain.tld, for example
 darkstar.slackfans.org. Be aware that the hostname has to be resolvable,
-meaning that Linux should be able to convert the hostname to an IP
+meaning that &Kernel; should be able to convert the hostname to an IP
 address. You can make sure the hostname is resolvable by adding it
 to <filename>/etc/hosts</filename>. Read the following section for
 more information about this file.
@@ -355,7 +355,7 @@ provider.
 <para>
 IPv4 forwarding connects two or more networks by sending packets
 which arrive on one interface to another interface. This makes it
-possible to let a Linux machine act as a router. For example, you
+possible to let a &Kernel; machine act as a router. For example, you
 can connect multiple networks, or your home network with the internet.
 Let's have a look at an example:
 </para> 

@@ -1,4 +1,4 @@
-<!-- $Id: help.xml,v 1.4 2004/12/18 22:14:34 daniel Exp $ -->
+<!-- $Id: help.xml,v 1.5 2004/12/18 22:18:34 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="help.html"?>
 <title>Sources of help</title>
@@ -7,19 +7,19 @@
 <title>On your system</title>
 
 <sect2>
-<title>Linux HOWTO's</title>
+<title>&Kernel; HOWTO's</title>
 
 <para>
-The famous Linux HOWTOs are a collection of documents which
+The famous &Kernel; HOWTOs are a collection of documents which
 cover specific parts of a &OS; system. Most HOWTOs are
 distribution independent, and therefore very useful for using
 them with &Distribution;. The "linux-howtos" package in
 from the "f" diskset contains the HOWTO collection. After
 installing this package the HOWTOs can be found in
-the <filename>/usr/doc/Linux-HOWTOs/</filename> directory.
+the <filename>/usr/doc/&Kernel;-HOWTOs/</filename> directory.
 &Distribution; also contains a collection of Mini-HOWTOs, which
 are shorter and cover narrower topics. The Mini-HOWTOs can
-be found in the <filename>/usr/doc/Linux-mini-HOWTOs/</filename>
+be found in the <filename>/usr/doc/&Kernel;-mini-HOWTOs/</filename>
 directory after installing the "linux-mini-howtos" package.
 </para>
 </sect2>
@@ -46,11 +46,11 @@ search a page using the keyword (<emphasis>-k</emphasis>) parameter:
 
 <screen>
 $ <command>man -k routing</command>
-NETLINK_ROUTE [rtnetlink] (7)  - Linux IPv4 routing socket
+NETLINK_ROUTE [rtnetlink] (7)  - &Kernel; IPv4 routing socket
 netstat              (8)  - Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
 route                (8)  - show / manipulate the IP routing table
 routed               (8)  - network routing daemon
-rtnetlink            (7)  - Linux IPv4 routing socket
+rtnetlink            (7)  - &Kernel; IPv4 routing socket
 </screen>
 
 <para>

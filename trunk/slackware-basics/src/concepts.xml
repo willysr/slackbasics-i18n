@@ -1,4 +1,4 @@
-<!-- $Id: concepts.xml,v 1.4 2004/12/18 22:14:34 daniel Exp $ -->
+<!-- $Id: concepts.xml,v 1.5 2004/12/18 22:18:34 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="concepts.html"?>
 <title>General concepts</title>
@@ -17,7 +17,7 @@ chapter are used in this book and in &OS;.
 <title>Introduction</title>
 
 <para>
-One of Linux' strengths is multi-tasking. Multi-tasking means that multiple
+One of &Kernel;' strengths is multi-tasking. Multi-tasking means that multiple
 processes can run at the same time. You might wonder why this is important
 to you, because most people are using one application at a time. Besides
 the more obvious reason that it is just handy to browse while you have a
@@ -140,7 +140,7 @@ reference to the <filename>joe</filename> directory with
 <para>
 You might have started to wonder how it is possible to access other devices
 or partitions than the hard disk partition which holds the root filesystem.
-Linux uses the same approach as UNIX for accessing other mediums. Linux
+&Kernel; uses the same approach as UNIX for accessing other mediums. &Kernel;
 allows the system administrator to connect a device to any directory in
 the filesystem structure. This process is named <quote>mounting</quote>.
 For example, one could mount the CD-ROM drive to the 
@@ -259,7 +259,7 @@ binaries.
 <sect2>
 <title>Introduction</title>
 <para>
-In UNIX and Linux almost everything is represented as a file, including
+In UNIX and &Kernel; almost everything is represented as a file, including
 devices. Each &OS; system has a a directory with special files, named
 <filename>/dev</filename>. Each file in the <filename>/dev</filename>
 directory represents a device. You might wonder how this is done; a
@@ -293,7 +293,7 @@ up-to-date list is also available online at:
 </note>
 
 <para>
-For the Linux kernel there are two types of devices: 
+For the &Kernel; kernel there are two types of devices: 
 <emphasis>character</emphasis> and <emphasis>block</emphasis> devices.
 Character devices can be read byte by byte, block devices can not. Block
 devices are read per block (for example 4096 bytes at a time). Whether
@@ -316,7 +316,7 @@ the storage medium.
 There are two categories of devices that we are going to look into in detail, 
 because understanding the naming of these devices can be crucial for 
 partitioning a hard disk, or for mounting. Almost all modern computers use
-ATA hard disks and CD-ROMs. Under Linux these devices are named in the 
+ATA hard disks and CD-ROMs. Under &Kernel; these devices are named in the 
 following way:
 </para>
 

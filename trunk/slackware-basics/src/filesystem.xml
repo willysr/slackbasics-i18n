@@ -1,4 +1,4 @@
-<!-- $Id: filesystem.xml,v 1.4 2004/12/18 22:14:34 daniel Exp $ -->
+<!-- $Id: filesystem.xml,v 1.5 2004/12/18 22:18:34 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="filesystem.html"?>
 <title>Files and directories</title>
@@ -682,10 +682,10 @@ user.MD5="78be7a3148027ae7a897aad95e7d9c58"
 <title>Introduction</title>
 
 <para>
-Like most Unices Linux uses a technique named <quote>mounting</quote> to
+Like most Unices &Kernel; uses a technique named <quote>mounting</quote> to
 access filesystems. Mounting means that a filesystem is connected to a
 directory in the root filesystem. One could for example mount a CD-ROM
-drive to the <filename>/mnt/cdrom</filename> directory. Linux supports
+drive to the <filename>/mnt/cdrom</filename> directory. &Kernel; supports
 many kinds of filesystems, like Ext2, Ext3, ReiserFS, JFS, XFS, ISO9660
 (used for CD-ROMs), UDF (used on some DVDs) and DOS/Windows filesystems,
 like FAT, FAT32 and NTFS. These filesystems can reside on many kinds of

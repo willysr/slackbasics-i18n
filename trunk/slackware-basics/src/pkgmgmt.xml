@@ -1,4 +1,4 @@
-<!-- $Id: pkgmgmt.xml,v 1.2 2004/12/18 22:07:18 daniel Exp $ -->
+<!-- $Id: pkgmgmt.xml,v 1.3 2004/12/18 22:18:34 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="pkgmgmt.html"?>
 <title>Package Management</title>
@@ -11,7 +11,7 @@
 
 <para>
 &Distribution; does not use a complex package system, unlike many other
-Linux distributions. Package have the <filename>.tgz</filename>
+&Kernel; distributions. Package have the <filename>.tgz</filename>
 extension, and are usually ordinary tarballs which contain two
 extra files: an installation script and a package description file.
 Due to the simplicity of the packages the &Distribution; package tools
@@ -150,7 +150,7 @@ close to you. For example:
 </para>
 
 <screen>
-ftp://ftp.nluug.nl/pub/os/Linux/distr/slackware/slackware-10.0/
+ftp://ftp.nluug.nl/pub/os/&Kernel;/distr/slackware/slackware-10.0/
 </screen>
 
 <para>
@@ -161,7 +161,7 @@ instead (when you would like to use the NLUUG mirror):
 </para>
 
 <screen>
-ftp://ftp.nluug.nl/pub/os/Linux/distr/slackware/slackware-current/
+ftp://ftp.nluug.nl/pub/os/&Kernel;/distr/slackware/slackware-current/
 </screen>
 
 <para>

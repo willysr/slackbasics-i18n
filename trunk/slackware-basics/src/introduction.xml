@@ -1,14 +1,14 @@
-<!-- $Id: introduction.xml,v 1.5 2004/12/18 22:14:34 daniel Exp $ -->
+<!-- $Id: introduction.xml,v 1.6 2004/12/18 22:18:34 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="introduction.html"?>
 <title>An introduction to &Distribution;</title>
 
 <sect1>
-<title>What is Linux?</title>
+<title>What is &Kernel;?</title>
 
 <para>
-Linux is a Unix-like kernel which is written by Linus Torvalds
-and other developers, who communicate using the internet. Linux
+&Kernel; is a Unix-like kernel which is written by Linus Torvalds
+and other developers, who communicate using the internet. &Kernel;
 runs on many different architectures, for example on many IA32, IA64,
 Alpha, m68k, SPARC and PowerPC machines. The latest kernel and
 more information can be found at:
@@ -16,9 +16,9 @@ more information can be found at:
 </para>
 
 <para>
-Linux is often confused with the &OS; system. Linux is only a
+&Kernel; is often confused with the &OS; system. &Kernel; is only a
 kernel, not a complete operating system. &OS; consists of the
-GNU operating system with the Linux kernel. Please read the following
+GNU operating system with the &Kernel; kernel. Please read the following
 section for a more detailed explanation of &OS;.
 </para>
 
@@ -38,13 +38,13 @@ which provide Unix-like kernel functionality. In turn these servers
 run under the Mach microkernel.  At the beginning at the nineties the
 HURD team still had to wait till the Mach sources were released as
 free software. In the meanwhile Linus started filling the gap with the
-Linux kernel. &OS; thus refers to the GNU system running on the
-Linux kernel. Right now the HURD kernel is also in a usable state and
+&Kernel; kernel. &OS; thus refers to the GNU system running on the
+&Kernel; kernel. Right now the HURD kernel is also in a usable state and
 can be downloaded in the form of the GNU/HURD operating system. The
 <ulink url="http://www.debian.org/">Debian</ulink> project has even
 developed a version of the GNU operating system which works with the
 <ulink url="http://www.netbsd.org/">NetBSD</ulink> kernel. We should
-call "Linux distributions" "&OS; distributions", because GNU is a
+call "&Kernel; distributions" "&OS; distributions", because GNU is a
 substantial part of most distributions.  </para> </sect1>
 
 <sect1>

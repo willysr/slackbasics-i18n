@@ -1,4 +1,4 @@
-<!-- $Id: proc.xml,v 1.3 2004/12/18 22:14:34 daniel Exp $ -->
+<!-- $Id: proc.xml,v 1.4 2004/12/18 22:18:34 daniel Exp $ -->
 
 <chapter id="chap-proc"> <?dbhtml filename="proc.html"?>
 <title>Process management</title>
@@ -231,7 +231,7 @@ to the background.
 <title>Altering priorities</title>
 
 <para>
-The Linux kernel allows a user to change the priority of a program. For
+The &Kernel; kernel allows a user to change the priority of a program. For
 example, suppose that you want to run a process that requires a lot of CPU
 time, but you do not want to hinder other users. In this
 case you can start the process with a low priority, the process will
