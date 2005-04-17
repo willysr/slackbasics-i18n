@@ -1,4 +1,4 @@
-<!-- $Id: ipsec.xml,v 1.8 2005/04/17 14:46:18 daniel Exp $ -->
+<!-- $Id: ipsec.xml,v 1.9 2005/04/17 14:47:21 daniel Exp $ -->
 
 <chapter id="ipsec"> <?dbhtml filename="ipsec.html"?>
   <title>IPsec</title>
@@ -79,9 +79,9 @@
       kernels.  Earlier kernels have no native IPsec support. So, make
       sure that you have a 2.6.x kernel. The 2.6 kernel is available
       in &Distribution 10.0 and 10.1 from the
-      <filename>testing</filename> directory on CD2 of the Slackware
-      Linux CD sets, or any of the official Slackware mirrors.  The
-      default Slackware 2.6 kernel has support for AH, ESP and IPcomp
+      <filename>testing</filename> directory on CD2 of the &Distribution; 
+      CD sets, or any of the official &Distribution; mirrors.  The
+      default &Distribution; 2.6 kernel has support for AH, ESP and IPcomp
       in for both IPv4 and IPv6. If you are compiling a custom kernel
       enable use at least the following options in your kernel
       configuration:
