@@ -1,4 +1,4 @@
-<!-- $Id: ipsec.xml,v 1.7 2005/01/23 17:17:08 daniel Exp $ -->
+<!-- $Id: ipsec.xml,v 1.8 2005/04/17 14:46:18 daniel Exp $ -->
 
 <chapter id="ipsec"> <?dbhtml filename="ipsec.html"?>
   <title>IPsec</title>
@@ -75,25 +75,46 @@
     <title>Kernel configuration</title>
 
     <para>
-      This chapter only applies to &Kernel; 2.6.x kernels. Earlier kernels have
-      no native IPsec support. So, make sure that you have a 2.6.x kernel. 
-      Configure the kernel as you would do normally, and make sure the following
-      options are enabled:
+      Native IPsec support is only available in &Kernel; 2.6.x
+      kernels.  Earlier kernels have no native IPsec support. So, make
+      sure that you have a 2.6.x kernel. The 2.6 kernel is available
+      in &Distribution 10.0 and 10.1 from the
+      <filename>testing</filename> directory on CD2 of the Slackware
+      Linux CD sets, or any of the official Slackware mirrors.  The
+      default Slackware 2.6 kernel has support for AH, ESP and IPcomp
+      in for both IPv4 and IPv6. If you are compiling a custom kernel
+      enable use at least the following options in your kernel
+      configuration:
     </para>
 
     <screen>
-Device Drivers -> Networking support -> Networking options:
-
-&lt;*&gt; PF_Key sockets
-&lt;*&gt; IP: AH transformation
-&lt;*&gt; IP: ESP transformation
-&lt;*&gt; IP: IPComp transformation
+CONFIG_INET_AH=y
+CONFIG_INET_ESP=y
+CONFIG_INET_IPCOMP=y
     </screen>
 
     <para>
-      In this article we are only going to use AH and ESP transformations, but
+      Or you can compile support for IPsec protocols as a module:
+    </para>
+
+    <screen>
+CONFIG_INET_AH=m
+CONFIG_INET_ESP=m
+CONFIG_INET_IPCOMP=m
+    </screen>
+
+
+    <para>
+      In this chapter we are only going to use AH and ESP transformations, but
       it is not a bad idea to enable IPComp transformation for further 
       configuration of IPsec.
+    </para>
+
+    <para>
+      When you choose to compile IPsec support as a module, make sure
+      that the required modules are loaded. For example, if you are going
+      to use ESP for IPv4 connections, load the <emphasis>esp4</emphasis>
+      module.
     </para>
 
     <para>
@@ -105,23 +126,55 @@ Device Drivers -> Networking support -> Networking options:
     <title>Installing IPsec-Tools</title>
 
     <para>
-      The next step is to install the IPsec-Tools. These tools are ports of
+      The next step is to install the
+      <ulink url="http://ipsec-tools.sourceforge.net>IPsec-Tools</ulink>.
+      These tools are ports of
       the <ulink url="http://www.kame.net">KAME</ulink> IPsec utilities.
       Download the latest sources and unpack, configure and install them:
     </para>
 
     <screen>
-# <command>tar zxf ipsec-tools-x.y.z.tar.gz</command>
+# <command>tar jxf ipsec-tools-x.y.z.tar.bz2</command>
 # <command>cd ipsec-tools-x.y.z</command>
-# <command>./configure --prefix=/usr --sysconfdir=/etc</command>
+# <command>CFLAGS="-O2 -march=i486 -mcpu=i686" \
+  ./configure --prefix=/usr \
+              --sysconfdir=/etc \
+              --localstatedir=/var \
+              --enable-hybrid \
+              --enable-natt \
+              --enable-dpd \
+              --enable-frag \
+              i486-slackware-linux</command>
 # <command>make</command>
 # <command>make install</command>
     </screen>
 
-    <para>
-      Replace x.y.z with the version of the downloaded sources, for
-      example 0.2.3.
-    </para> 
+      <para>
+        Replace <emphasis>x.y.z</emphasis> with the version of the
+	downloaded sources. The most notable flags that we specify
+	during the configuration of the sources are:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+	  <para>
+	    <emphasis>--enable-dpd</emphasis>: enables
+	    dead peer detection (DPD). DPD is a method for detecting
+	    wether any of the hosts for which security associations
+	    are set up is unreachable. When this is the case the
+	    security associations to that host can be removed.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    <emphasis>--enable-natt</emphasis>: enables NAT traversal
+	    (NAT-T). Since NAT alters the IP headers, this causes
+	    problems for guaranteeing authenticity of a packet. NAT-T
+	    is a method that helps overcoming this problem. Configuring
+	    NAT-T is beyond the scope of this article.
+	  </para>
+	</listitem>
+      </itemizedlist>
   </sect1>
 
   <sect1>
@@ -145,8 +198,8 @@ Device Drivers -> Networking support -> Networking options:
 
       <para>
         The first step is to write a configuration file we will name
-        <filename>/etc/ipsec.conf</filename>. On the first host
-        (&host1ip;) the following <filename>/etc/ipsec.conf</filename>
+        <filename>/etc/setkey.conf</filename>. On the first host
+        (&host1ip;) the following <filename>/etc/setkey.conf</filename>
         configuration will be used:
       </para>
 
@@ -213,20 +266,20 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </screen>  
 
       <para>
-        Make sure that the <filename>/etc/ipsec.conf</filename> file can only
+        Make sure that the <filename>/etc/setkey.conf</filename> file can only
         be read by the root user. If normal users can read the keys IPsec
         provides no security at all. You can do this with:
       </para>
 
       <screen>
-# <command>chmod 600 /etc/ipsec.conf</command>
+# <command>chmod 600 /etc/setkey.conf</command>
       </screen>
 
       <para>
-        The same <filename>/etc/ipsec.conf</filename> can be created on the
+        The same <filename>/etc/setkey.conf</filename> can be created on the
         &host2ip; host, with inverted <parameter class="command">-P 
         in</parameter> and <parameter class="command">-P out</parameter> options. So, 
-        the <filename>/etc/ipsec.conf</filename> will look like this:
+        the <filename>/etc/setkey.conf</filename> will look like this:
       </para>
 
       <screen>
@@ -265,7 +318,7 @@ spdadd 192.168.1.169 192.168.1.1 any -P out ipsec
       </para>
 
       <screen>
-# <command>setkey -f /etc/ipsec.conf</command>
+# <command>setkey -f /etc/setkey.conf</command>
       </screen>
 
       <para>
@@ -274,7 +327,7 @@ spdadd 192.168.1.169 192.168.1.1 any -P out ipsec
       </para>
 
       <screen>
-/usr/sbin/setkey -f /etc/ipsec.conf
+/usr/sbin/setkey -f /etc/setkey.conf
       </screen>
 
       <para>
@@ -490,6 +543,10 @@ remote &host2ip;
       <screen>
 &host2ip;	somekey
       </screen>
+    </sect2>
+
+    <sect2>
+      <title>Activating the IPsec configuration</title>
 
       <para>
         At this point the configuration of the security policies and racoon
@@ -501,8 +558,63 @@ remote &host2ip;
       </para>
 
       <screen>
-# <command>setkey -f /etc/ipsec.conf</command>
+# <command>setkey -f /etc/setkey.conf</command>
 # <command>racoon -F</command>
+      </screen>
+
+      <para>
+        Now that you have added the security policies to the security policy
+        database, and started Racoon, you can test your IPsec configuration.
+        For instance, you could ping the other host to start with. The
+        first time you ping the other host, this will fail:
+      </para>
+
+      <screen>
+$ <command>ping &host2ip;</command>
+connect: Resource temporarily unavailable
+      </screen>
+
+      <para>
+        The reason for this is that the security associations still
+        have to be set up. But the ICMP packet will trigger the key exchange.
+        ping will trigger the key exchange. You can see whether the exchange
+        was succesful or not by looking at the Racoon log messages in
+        <filename>/var/log/messages</filename>, or the racoon output
+        if you started racoon in the foreground. A succesful key exhange
+        looks like this:
+      </para>
+
+      <screen>
+ Apr  4 17:14:58 terrapin racoon: INFO: IPsec-SA request for &host2ip; queued due to no phase1 found.
+ Apr  4 17:14:58 terrapin racoon: INFO: initiate new phase 1 negotiation: &host1ip;[500]&lt;=&gt;&host2ip;[500] 
+ Apr  4 17:14:58 terrapin racoon: INFO: begin Aggressive mode. 
+ Apr  4 17:14:58 terrapin racoon: INFO: received Vendor ID: DPD 
+ Apr  4 17:14:58 terrapin racoon: NOTIFY: couldn't find the proper pskey, try to get one by the peer's address.
+ Apr  4 17:14:58 terrapin racoon: INFO: ISAKMP-SA established &host1ip;[500]-&host2ip;[500] spi:58c4669f762abf10:60593eb9e3dd7406
+ Apr  4 17:14:59 terrapin racoon: INFO: initiate new phase 2 negotiation: &host1ip;[0]&lt;=&gt;&host2ip;[0] 
+ Apr  4 17:14:59 terrapin racoon: INFO: IPsec-SA established: ESP/Transport &host2ip;-&gt;host1ip; spi=232781799(0xddff7e7) 
+ Apr  4 17:14:59 terrapin racoon: INFO: IPsec-SA established: ESP/Transport &host1ip;-&gt;&host2ip; spi=93933800(0x59950e8) 
+      </screen>
+
+      <para>
+        After the key exchange, you
+        can verify that IPsec is set up correctly by analyzing the packets
+        that go in and out with <command>tcpdump</command>. tcpdump is
+        available in the <emphasis>n</emphasis> diskset. Suppose that
+        the outgoing connection to the other host goes through the
+        <emphasis>eth0</emphasis> interface, you can analyze the packats
+        that go though the <emphasis>eth0</emphasis> interface with
+        <command>tcpdump -i eth0</command>. If the outgoing packets are
+        encrypted with ESP, you can see this in the <command>tcpdump</command>
+        output. For example:
+      </para>
+
+      <screen>
+# <command>tcpdump -i eth0</command>
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on eth0, link-type EN10MB (Ethernet), capture size 96 bytes
+17:27:50.241067 IP terrapin.taickim.net &gt; &host2ip;: ESP(spi=0x059950e8,seq=0x9)
+17:27:50.241221 IP &host2ip; &gt; terrapin.taickim.net: ESP(spi=0x0ddff7e7,seq=0x9)
       </screen>
 
     </sect2>
