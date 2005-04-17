@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.7 2005/02/28 20:25:03 daniel Exp $
+# $Id: Makefile,v 1.8 2005/04/17 14:50:34 daniel Exp $
 
 CURRENTDIR=`pwd`
 
@@ -7,7 +7,11 @@ all:	fmt-html fmt-pdf
 lint:
 	xmllint --noout --valid src/slackware-basics.xml
 
-fmt-html:
+touch-pubdate:
+	cat src/slackware-basics.xml | sed "s/<pubdate><\/pubdate>/<pubdate>`date`<\/pubdate>/" > src/slackware-basics.xml.new
+	mv src/slackware-basics.xml.new src/slackware-basics.xml
+
+fmt-html: touch-pubdate
 	jade -t sgml -d src/slackware-basics.dsl#html \
 		/usr/share/sgml/xml.dcl \
 		src/slackware-basics.xml
@@ -15,7 +19,7 @@ fmt-html:
 	cp src/normal.css html/
 	tidy -q -i -asxhtml -f err.out -m html/*.html
 
-fmt-tex:
+fmt-tex: touch-pubdate
 	jade -t tex -o tex/slackware-basics.tex \
 		-d src/slackware-basics.dsl#print \
 		/usr/share/sgml/xml.dcl \
