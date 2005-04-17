@@ -1,3 +1,8 @@
+Sun Apr 17 17:01:29 CEST 2005
+- Improve the IPsec chapter a bit (more information about testing
+  IPsec, update the configure flags).
+- Add a publication date to the book.
+
 Fri Mar  4 17:24:06 CET 2005
 - Add a section about CUPS printer access control (suggested
   by "Robert").
