@@ -1,4 +1,4 @@
-<!-- $Id: ipsec.xml,v 1.10 2005/04/17 14:53:23 daniel Exp $ -->
+<!-- $Id: ipsec.xml,v 1.11 2005/04/17 14:56:02 daniel Exp $ -->
 
 <chapter id="ipsec"> <?dbhtml filename="ipsec.html"?>
   <title>IPsec</title>
@@ -340,8 +340,8 @@ spdadd 192.168.1.169 192.168.1.1 any -P out ipsec
       <screen>
 # <command>tcpdump -i eth0</command>
 tcpdump: listening on eth0
-11:29:58.869988 tazzy.slackfiles.org > 192.168.1.169: AH(spi=0x00000200,seq=0x40f): ESP(spi=0x00000201,seq=0x40f) (DF)
-11:29:58.870786 192.168.1.169 > tazzy.slackfiles.org: AH(spi=0x00000300,seq=0x33d7): ESP(spi=0x00000301,seq=0x33d7)
+11:29:58.869988 terrapin.taickim.net > 192.168.1.169: AH(spi=0x00000200,seq=0x40f): ESP(spi=0x00000201,seq=0x40f) (DF)
+11:29:58.870786 192.168.1.169 > terrapin.taickim.net: AH(spi=0x00000300,seq=0x33d7): ESP(spi=0x00000301,seq=0x33d7)
       </screen>
       
     </sect2>
