@@ -1,4 +1,4 @@
-<!-- $Id: ipsec.xml,v 1.9 2005/04/17 14:47:21 daniel Exp $ -->
+<!-- $Id: ipsec.xml,v 1.10 2005/04/17 14:53:23 daniel Exp $ -->
 
 <chapter id="ipsec"> <?dbhtml filename="ipsec.html"?>
   <title>IPsec</title>
@@ -78,7 +78,7 @@
       Native IPsec support is only available in &Kernel; 2.6.x
       kernels.  Earlier kernels have no native IPsec support. So, make
       sure that you have a 2.6.x kernel. The 2.6 kernel is available
-      in &Distribution 10.0 and 10.1 from the
+      in &Distribution; 10.0 and 10.1 from the
       <filename>testing</filename> directory on CD2 of the &Distribution; 
       CD sets, or any of the official &Distribution; mirrors.  The
       default &Distribution; 2.6 kernel has support for AH, ESP and IPcomp
@@ -127,7 +127,7 @@ CONFIG_INET_IPCOMP=m
 
     <para>
       The next step is to install the
-      <ulink url="http://ipsec-tools.sourceforge.net>IPsec-Tools</ulink>.
+      <ulink url="http://ipsec-tools.sourceforge.net">IPsec-Tools</ulink>.
       These tools are ports of
       the <ulink url="http://www.kame.net">KAME</ulink> IPsec utilities.
       Download the latest sources and unpack, configure and install them:
