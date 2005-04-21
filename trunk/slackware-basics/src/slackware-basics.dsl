@@ -35,6 +35,10 @@
         (normalize "set")  ;; sets are definitely chunks...
         ))
 
+(define (book-titlepage-verso-elements)
+  (list (normalize "pubdate")
+))
+
 (define (section-element-list)
   (list (normalize "section")
     (normalize "sect1")
