@@ -1,4 +1,4 @@
-<!-- $Id: installation.xml,v 1.7 2005/03/27 07:18:07 daniel Exp $ -->
+<!-- $Id: installation.xml,v 1.8 2005/04/21 17:33:16 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="installation.html" ?>
 <title>Installing &Distribution;</title>
@@ -460,6 +460,15 @@ kernel. This is normally not necessary, if you do not want to pass
 extra parameters you can just press the &lt;Enter&gt; key.
 </para>
 
+<figure id="kernel-param">
+<title>Adding kernel parameters</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/kernel-param.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
+
 <para>
 The last step of the LILO configuration is selecting where LILO
 should be installed. <emphasis>MBR</emphasis> is the master boot
@@ -470,12 +479,18 @@ install LILO in the boot record of the &Distribution; <filename>/</filename>
 partition. Use this option if you use another bootloader.
 </para>
 
+<figure id="lilo-dest">
+<title>Choosing where LILO should be installed</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/lilo-dest.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
+
 <para>
 You will now be asked to configurere your mouse. Select the mouse type
-from the dialog that appears. You will then be ask whether the 
-<command>gpm</command> program should be loaded at boot time or not.
-<command>gpm</command> is a daemon that allows you to cut and paste
-text on the console.
+from the dialog that appears. 
 </para>
 
 <figure id="mouse">
@@ -486,6 +501,282 @@ text on the console.
 </imageobject>
 </mediaobject>
 </figure>
+
+<para>
+You will then be asked whether the 
+<command>gpm</command> program should be loaded at boot time or not.
+<command>gpm</command> is a daemon that allows you to cut and paste
+text on the console.
+</para>
+
+<figure id="ask-load-gpm">
+<title>Choosing whether GPM should be started or not</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/ask-load-gpm.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+The next few steps will configure network connectivity. This is required
+on almost every networked system. The &Distribution; setup will ask you
+if you want to set up network connectivity. If you answer <quote>No</quote>
+you can skip the next few network-related steps.
+</para>
+
+<figure id="ask-configure-network">
+<title>Choosing whether you would like to configure network connectivity</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/ask-configure-network.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+You will now be asked to set the hostname. Please note that this is
+not the fully qualified domain name (FQDN), just the part that represents
+the host (normally the characters before the first dot in a FQDN).
+</para>
+
+<figure id="hostname">
+<title>Setting the host name</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/hostname.png" format="PNG" scale="50"
+ />
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+After setting the host name you can set the domain name part of the
+fully qualified domain name (FQDN).
+</para>
+
+<figure id="domainname">
+<title>Setting the domain name</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/domainname.png" format="PNG" scale="50"
+ />
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+The rest of the network configuration depends on how the IP address is
+set on the network the machine is connected to. Some networks have a
+DHCP server that automatically assigns an IP address to hosts in the
+network. If this is the case for the network the machine select
+<emphasis>DHCP</emphasis> during this step of the installation. When
+DHCP is selected you will only be asked whether a host name should
+be sent to the server, normally you can leave this blank. If you use
+DHCP you can skip the rest of the network configuration described below.
+</para>
+
+<para>
+If the network does not have a DHCP server you can choose the
+<emphasis>static IP</emphasis> option, which will allow you to
+set the IP address and related settings manually.
+</para>
+
+<figure id="set-ipconfig-type">
+<title>Manual or automatic IP address configuration</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/set-ipconfig-type.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+The first step of the manual configuration is to set the IP address
+of the first interface (eth0) of the machine.
+</para>
+
+<figure id="ipaddr">
+<title>Setting the IP addres</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/ipaddr.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+After setting the IP address you will be asked to enter the netmask.
+The netmask is usually dependent on the IP address class.
+</para>
+
+<figure id="netmask">
+<title>Setting the netmask</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/netmask.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+You will then be asked to set the address of the gateway. The gateway
+is the machine on the network that provides access to other networks
+by routing IP packets. If your network has no network you can just
+hit the &lt;ENTER&gt; key.
+</para>
+
+<figure id="gateway">
+<title>Setting the gateway</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/gateway.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+The next dialog will ask you whether you want to use a nameserver or
+not. A nameserver is a server that can provide the IP address for a
+hostname. For example, if you surf to <emphasis>www.slackbasics.org</emphasis>,
+the nameserver will <quote>convert</quote> the
+<emphasis>www.slackbasics.org</emphasis> name to the corresponding IP
+address.
+</para>
+
+<figure id="ask-nameserver">
+<title>Choosing whether you want to use a nameserver or not</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/ask-nameserver.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+If you chose to use a nameserver, you will be given the opportunity
+to set the IP address of the nameserver.
+</para>
+
+<figure id="nameserver">
+<title>Setting the nameserver(s)</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/nameserver.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+The final network settings screen provides an overview of the settings,
+giving you the opportunity to correct settings that have errors.
+</para>
+
+<figure id="network-confirm">
+<title>Confirming the network settings</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/network-confirm.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+After the network configuration you can set which services should be
+started. You can mark/unmark services with the &lt;SPACE&gt; key.
+</para>
+
+<figure id="startup-services">
+<title>Enabling/disabling startup services</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/startup-services.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
+
+<!-- try fonts? -->
+
+<para>
+Traditionally the system clock is set to the UTC timezone on UNIX(-like) 
+systems. If this is the case, select <emphasis>Yes</emphasis>. If you also
+use a non-UNIX(-like) OS on the same system, like Windows, it is usually
+a good idea to choose <emphasis>No</emphasis>, because some PC operating
+systems do not work with a separate system clock and software clock. 
+</para>
+
+<figure id="ask-clock-utc">
+<title>Choosing whether the clock is set to UTC</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/ask-clock-utc.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+You will then be given the opportunity to select the time zone. This
+is especially important on systems that have their system clock set
+to UTC, without selecting the correct timezone the software clock will
+not match the local time.
+</para>
+
+<figure id="timezone">
+<title>Setting the timezone</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/timezone.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+If you installed the X Window System you can now set the default window
+manager. The most basic functionality of a window manager is to provide
+basic window managing functionality like title bars. But some options,
+like KDE provide a complete desktop environment.
+</para>
+
+<figure id="defaultwm">
+<title>Choosing the default window manager</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/defaultwm.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+The final step is to set the root password. The setup will ask you
+whether you would like to set it or not. There is no reason not to
+do this, and without a root password your system is dangerously
+insecure.
+</para>
+
+<figure id="rootpasswd">
+<title>Setting the root password</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/rootpasswd.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>
+At this point you have completed the &Distribution; installation. You
+can now reboot the system to start your fresh new &Distribution; system.
+It was not that hard, was is? ;-)
+</para>
+
+<figure id="finished">
+<title>Finished</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/finished.png" format="PNG" scale="50" />
+</imageobject>
+</mediaobject>
+</figure>
+
 
 </sect1>
 
