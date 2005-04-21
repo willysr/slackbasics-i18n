@@ -1,4 +1,4 @@
-<!-- $Id: book.xml,v 1.5 2005/03/27 07:05:40 daniel Exp $ -->
+<!-- $Id: book.xml,v 1.6 2005/04/21 17:52:57 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="book.html"?>
 <title>About this book</title>
@@ -9,7 +9,7 @@
 <para>
 This book was written in DocBook/XML, and converted to HTML and PDF
 with Jade. The latest version of the book is always available from:
-<ulink url="http://www.taickim.net/daniel/slackware-basics/" />.
+<ulink url="http://www.slackbasics.org/" />.
 </para>
 
 </sect1>
