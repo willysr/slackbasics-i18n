@@ -1,4 +1,4 @@
-<!-- $Id: installation.xml,v 1.8 2005/04/21 17:33:16 daniel Exp $ -->
+<!-- $Id: installation.xml,v 1.9 2005/04/21 17:49:28 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="installation.html" ?>
 <title>Installing &Distribution;</title>
@@ -387,7 +387,8 @@ the LILO configuration is botched.
 
 <para>
 The following dialog can be used to make a link, 
-<filename>/dev/modem</filename>, that points to your modem device. If
+<filename>/dev/modem</filename>, that points to your modem device. 
+(<xref linkend="modem" />). If
 you do not have a modem you can select <emphasis>no modem</emphasis>.
 </para>
 
@@ -401,7 +402,8 @@ you do not have a modem you can select <emphasis>no modem</emphasis>.
 </figure>
 
 <para>
-The next step is to select whether you would like to use hotplug.
+The next step is to select whether you would like to use hotplug
+(<xref linkend="hotplug" />).
 Hotplug is used for automatically configuring pluggable USB, PCMCIA
 and PCI devices. Generally speaking it is a good idea to enable
 hotplugging, but some systems may have problems with the probing
@@ -436,7 +438,8 @@ which tries to configure LILO automatically (<xref linkend="liloinstall" />).
 
 <para>
 After selecting the <emphasis>simple</emphasis> option the LILO configuration 
-utility will asks you whether you would like to use a framebuffer or not.
+utility will asks you whether you would like to use a framebuffer or not
+(<xref linkend="framebuffer" />).
 Using a framebuffer will allow you to use the console in several resolutions,
 with other dimensions than the usual 80x25 characters. Some people who
 use the console extensively prefer to use a framebuffer, which allows
@@ -456,7 +459,8 @@ here.
 
 <para>
 After setting the framebuffer you can pass extra parameters to the
-kernel. This is normally not necessary, if you do not want to pass
+kernel (<xref linkend="kernel-param" />). This is normally not necessary,
+if you do not want to pass
 extra parameters you can just press the &lt;Enter&gt; key.
 </para>
 
@@ -471,7 +475,8 @@ extra parameters you can just press the &lt;Enter&gt; key.
 
 <para>
 The last step of the LILO configuration is selecting where LILO
-should be installed. <emphasis>MBR</emphasis> is the master boot
+should be installed (<xref linkend="lilo-dest" />). <emphasis>MBR</emphasis>
+is the master boot
 record, the main boot record of PCs. Use this option if you want
 use &Distribution; as only OS, or if you want to use LILO the boot
 other operating systems. The <emphasis>Root</emphasis> option will
@@ -489,8 +494,8 @@ partition. Use this option if you use another bootloader.
 </figure>
 
 <para>
-You will now be asked to configurere your mouse. Select the mouse type
-from the dialog that appears. 
+You will now be asked to configure your mouse. Select the mouse type
+from the dialog that appears (<xref linkend="mouse" />). 
 </para>
 
 <figure id="mouse">
@@ -503,8 +508,9 @@ from the dialog that appears.
 </figure>
 
 <para>
-You will then be asked whether the 
-<command>gpm</command> program should be loaded at boot time or not.
+You will then be asked whether the
+<command>gpm</command> program should be loaded at boot time or not
+(<xref linkend="ask-load-gpm" />).
 <command>gpm</command> is a daemon that allows you to cut and paste
 text on the console.
 </para>
@@ -521,7 +527,8 @@ text on the console.
 <para>
 The next few steps will configure network connectivity. This is required
 on almost every networked system. The &Distribution; setup will ask you
-if you want to set up network connectivity. If you answer <quote>No</quote>
+if you want to set up network connectivity
+(<xref linkend="ask-configure-network" />). If you answer <quote>No</quote>
 you can skip the next few network-related steps.
 </para>
 
@@ -535,7 +542,8 @@ you can skip the next few network-related steps.
 </figure>
 
 <para>
-You will now be asked to set the hostname. Please note that this is
+You will now be asked to set the hostname (<xref linkend="hostname" />). 
+Please note that this is
 not the fully qualified domain name (FQDN), just the part that represents
 the host (normally the characters before the first dot in a FQDN).
 </para>
@@ -552,7 +560,7 @@ the host (normally the characters before the first dot in a FQDN).
 
 <para>
 After setting the host name you can set the domain name part of the
-fully qualified domain name (FQDN).
+fully qualified domain name (FQDN) (<xref linkend="domainname" />).
 </para>
 
 <figure id="domainname">
@@ -570,7 +578,8 @@ The rest of the network configuration depends on how the IP address is
 set on the network the machine is connected to. Some networks have a
 DHCP server that automatically assigns an IP address to hosts in the
 network. If this is the case for the network the machine select
-<emphasis>DHCP</emphasis> during this step of the installation. When
+<emphasis>DHCP</emphasis> during this step of the installation 
+(<xref linkend="set-ipconfig-type" />). When
 DHCP is selected you will only be asked whether a host name should
 be sent to the server, normally you can leave this blank. If you use
 DHCP you can skip the rest of the network configuration described below.
@@ -593,7 +602,7 @@ set the IP address and related settings manually.
 
 <para>
 The first step of the manual configuration is to set the IP address
-of the first interface (eth0) of the machine.
+of the first interface (eth0) of the machine (<xref linkend="ipaddr" />).
 </para>
 
 <figure id="ipaddr">
@@ -607,7 +616,8 @@ of the first interface (eth0) of the machine.
 
 <para>
 After setting the IP address you will be asked to enter the netmask.
-The netmask is usually dependent on the IP address class.
+The netmask is usually dependent on the IP address class (<xref
+linkend="netmask" />).
 </para>
 
 <figure id="netmask">
@@ -620,7 +630,8 @@ The netmask is usually dependent on the IP address class.
 </figure>
 
 <para>
-You will then be asked to set the address of the gateway. The gateway
+You will then be asked to set the address of the gateway (<xref
+linkend="gateway" />). The gateway
 is the machine on the network that provides access to other networks
 by routing IP packets. If your network has no network you can just
 hit the &lt;ENTER&gt; key.
@@ -637,7 +648,8 @@ hit the &lt;ENTER&gt; key.
 
 <para>
 The next dialog will ask you whether you want to use a nameserver or
-not. A nameserver is a server that can provide the IP address for a
+not (<xref linkend="ask-nameserver" />). A nameserver is a server that
+can provide the IP address for a
 hostname. For example, if you surf to <emphasis>www.slackbasics.org</emphasis>,
 the nameserver will <quote>convert</quote> the
 <emphasis>www.slackbasics.org</emphasis> name to the corresponding IP
@@ -655,7 +667,7 @@ address.
 
 <para>
 If you chose to use a nameserver, you will be given the opportunity
-to set the IP address of the nameserver.
+to set the IP address of the nameserver (<xref linkend="nameserver" />).
 </para>
 
 <figure id="nameserver">
@@ -669,7 +681,8 @@ to set the IP address of the nameserver.
 
 <para>
 The final network settings screen provides an overview of the settings,
-giving you the opportunity to correct settings that have errors.
+giving you the opportunity to correct settings that have errors
+(<xref linkend="network-confirm" />).
 </para>
 
 <figure id="network-confirm">
@@ -683,7 +696,8 @@ giving you the opportunity to correct settings that have errors.
 
 <para>
 After the network configuration you can set which services should be
-started. You can mark/unmark services with the &lt;SPACE&gt; key.
+started (<xref linkend="startup-services" />). You can mark/unmark services
+with the &lt;SPACE&gt; key.
 </para>
 
 <figure id="startup-services">
@@ -699,7 +713,8 @@ started. You can mark/unmark services with the &lt;SPACE&gt; key.
 
 <para>
 Traditionally the system clock is set to the UTC timezone on UNIX(-like) 
-systems. If this is the case, select <emphasis>Yes</emphasis>. If you also
+systems. If this is the case, select <emphasis>Yes</emphasis> during the
+next step (<xref linkend="ask-clock-utc" />). If you also
 use a non-UNIX(-like) OS on the same system, like Windows, it is usually
 a good idea to choose <emphasis>No</emphasis>, because some PC operating
 systems do not work with a separate system clock and software clock. 
@@ -715,7 +730,8 @@ systems do not work with a separate system clock and software clock.
 </figure>
 
 <para>
-You will then be given the opportunity to select the time zone. This
+You will then be given the opportunity to select the time zone
+(<xref linkend="timezone" />). This
 is especially important on systems that have their system clock set
 to UTC, without selecting the correct timezone the software clock will
 not match the local time.
@@ -732,7 +748,8 @@ not match the local time.
 
 <para>
 If you installed the X Window System you can now set the default window
-manager. The most basic functionality of a window manager is to provide
+manager (<xref linkend="defaultwm" />). The most basic functionality of
+a window manager is to provide
 basic window managing functionality like title bars. But some options,
 like KDE provide a complete desktop environment.
 </para>
@@ -747,7 +764,8 @@ like KDE provide a complete desktop environment.
 </figure>
 
 <para>
-The final step is to set the root password. The setup will ask you
+The final step is to set the root password (<xref linkend="rootpasswd" />). 
+The setup will ask you
 whether you would like to set it or not. There is no reason not to
 do this, and without a root password your system is dangerously
 insecure.
