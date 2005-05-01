@@ -1,4 +1,4 @@
-<!-- $Id: kernel.xml,v 1.4 2005/02/07 13:02:10 daniel Exp $ -->
+<!-- $Id: kernel.xml,v 1.5 2005/05/01 23:44:45 daniel Exp $ -->
 
 <chapter id="kernel"> <?dbhtml filename="kernel.html"?>
   <title>Building a kernel</title>
@@ -182,6 +182,10 @@
       command will usually give some clues where things went wrong. If
       everything went fine, you can start compiling the kernel with:
     </para>
+
+    <screen>
+# <command>make bzImage</command>
+    </screen>
     
     <para>
       This will compile the kernel and make a compressed kernel image 
@@ -314,6 +318,28 @@ Added SlackOld
         The next time you boot both entries will be available, and the
         <quote>Slack</quote> entry will be booted by default.
       </para>
+      
+      <note>
+        <para>
+          If you want LILO to show a menu with the entries configured
+          via <filename>lilo.conf</filename> on each boot, make sure that
+          you add a line that says
+        </para>
+
+        <screen>
+prompt
+        </screen>
+
+        <para>
+          to <filename>lilo.conf</filename>. Otherwise LILO will boot
+          the default entry that is set with
+          <emphasis>default=&lt;name&gt;</emphasis>,
+          or the first entry when no default kernel is set. You can
+          access the menu with entries at any time by holding the
+          &lt;Shift&gt; key when LILO is started.
+        </para>
+      </note>
+      
     </sect2>
   </sect1>
 
