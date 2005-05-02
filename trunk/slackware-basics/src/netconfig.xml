@@ -1,4 +1,4 @@
-<!-- $Id: netconfig.xml,v 1.9 2005/05/02 11:06:13 daniel Exp $ -->
+<!-- $Id: netconfig.xml,v 1.10 2005/05/02 12:55:36 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="netconfig.html"?>
 <title>Networking configuration</title>
@@ -255,6 +255,115 @@ For example:
 </screen> 
 
 </sect2>
+
+</sect1>
+
+<sect1>
+<title>Wireless interfaces</title>
+
+<para>
+Wireless interfaces usually require some additional configuration, like
+setting the ESSID, WEP keys and the wireless mode. Interface settings that
+are specific to wireless interfaces can be set in the 
+<filename>/etc/rc.d/rc.wireless.conf</filename> file. The
+<command>/etc/rc.d/rc.wireless</command> script configures wireless
+interfaces based on descriptions from
+<filename>/etc/rc.d/rc.wireless.conf</filename>. In
+<filename>rc.wireless.conf</filename> settings are made per interface
+MAC address. By default this file has a section that matches any interface:
+</para>
+
+<screen>
+## NOTE : Comment out the following five lines to activate the samples below ...
+## --------- START SECTION TO REMOVE -----------
+## Pick up any Access Point, should work on most 802.11 cards
+*)
+    INFO="Any ESSID"
+    ESSID="any"
+    ;;
+## ---------- END SECTION TO REMOVE ------------
+</screen>
+
+<para>
+It is generally a good idea to remove this section to make per-card
+settings. If you are lazy and only have one wireless card, you can leave
+this section in and add any configuration parameters you need. Since this
+section matches any wireless interface the wireless card you have will
+be matched and configured. You can now add a sections for your wireless
+interfaces. Each section has the following format:
+</para>
+
+<screen>
+&lt;MAC address&gt;)
+    &lt;settings&gt;
+;;
+</screen>
+
+<para>
+You can find the MAC address of an interface by looking at the 
+<command>ifconfig</command> output for the interface. For example,
+if a wireless card has the <emphasis>eth1</emphasis> interface name,
+you can find the MAC address the following way:
+</para>
+
+<screen>
+# <command>ifconfig eth1</command>
+eth1      Link encap:Ethernet  HWaddr <emphasis>00:01:F4:EC:A5:32</emphasis>
+          inet addr:192.168.2.2  Bcast:192.168.2.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:4 errors:1 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 b)  TX bytes:504 (504.0 b)
+          Interrupt:5 Base address:0x100
+</screen>
+
+<para>
+The hexadecimal address that is printed after <emphasis>HWaddr</emphasis>
+is the MAC address, in this case <emphasis>00:01:F4:EC:A5:32</emphasis>.
+When you have found the MAC address of the interface you can add a section
+for the device to <filename>/etc/rc.d/rc.wireless.conf</filename>. For
+example:
+</para>
+
+<screen>
+00:01:F4:EC:A5:32)
+    INFO="Cabletron Roamabout WLAN NIC"
+    ESSID="home"
+    CHANNEL="8"
+    MODE="Managed"
+    KEY="1234-5678-AB"
+    ;;
+</screen>
+
+<para>
+This will set the interface with MAC address
+<emphasis>00:01:F4:EC:A5:32</emphasis> to use the ESSID
+<emphasis>home</emphasis>, work in <emphasis>Managed</emphasis> mode on
+channel <emphasis>8</emphasis>. The key used for WEP encryption is
+<emphasis>1234-5678-AB</emphasis>. There are many other parameters
+that can be set. For an overview of all parameters, refer to the last
+example in <filename>rc.wireless.conf</filename>.
+</para>
+
+<para>
+After configuring a wireless interface, you can activate the changes
+by executing the network initialization script
+<command>/etc/rc.d/rc.inet1</command>. You can see the current wireless
+settings with the <command>iwconfig</command> command:
+</para>
+
+<screen>
+eth1      IEEE 802.11-DS  ESSID:"home"  Nickname:"HERMES I"
+          Mode:Managed  Frequency:2.447 GHz  Access Point: 02:20:6B:75:0C:56   
+          Bit Rate:2 Mb/s   Tx-Power=15 dBm   Sensitivity:1/3  
+          Retry limit:4   RTS thr:off   Fragment thr:off
+          Encryption key:1234-5678-AB
+          Power Management:off
+          Link Quality=0/92  Signal level=134/153  Noise level=134/153
+          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
+          Tx excessive retries:27  Invalid misc:0   Missed beacon:0
+</screen>
 
 </sect1>
 
