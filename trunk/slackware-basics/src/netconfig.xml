@@ -1,4 +1,4 @@
-<!-- $Id: netconfig.xml,v 1.8 2004/12/21 17:20:09 daniel Exp $ -->
+<!-- $Id: netconfig.xml,v 1.9 2005/05/02 11:06:13 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="netconfig.html"?>
 <title>Networking configuration</title>
@@ -53,7 +53,7 @@ available interfaces:
 <screen>
 # <command>ifconfig -a</command>
 eth0      Link encap:Ethernet  HWaddr 00:20:AF:F6:D4:AD  
-          inet addr:192.168.1.1  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet addr:&host1ip;  Bcast:192.168.1.255  Mask:255.255.255.0
           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
           RX packets:1301 errors:0 dropped:0 overruns:0 frame:0
           TX packets:1529 errors:0 dropped:0 overruns:0 carrier:0
@@ -82,14 +82,14 @@ the comments, and fill in the required information. For example:
 
 <screen>
 # Config information for eth0:
-IPADDR[0]="192.168.1.1"
+IPADDR[0]="&host1ip;"
 NETMASK[0]="255.255.255.0"
 USE_DHCP[0]=""
 DHCP_HOSTNAME[0]=""
 </screen>
 
 <para>
-In this example the IP address 192.168.1.1 with the 255.255.255.0
+In this example the IP address &host1ip; with the 255.255.255.0
 netmask is assigned to the first ethernet interface (eth0). If you
 are using a DHCP server you can change the <emphasis>USE_DHCP=""</emphasis> 
 line to <emphasis>USE_DHP[n]="yes"</emphasis> (swap <quote>n</quote> with 
@@ -287,16 +287,16 @@ in a small network. Let's look at an example of the
 </para>
 
 <screen>
-127.0.0.1       	localhost
-&host1ip;               tazzy.slackfans.org tazzy
-192.168.1.2             gideon.slackfans.org
+127.0.0.1               localhost
+&host1ip;             tazzy.slackfans.org tazzy
+&host2ip;           flux.slackfans.org
 </screen>
 
 <para>
 The <emphasis>localhost</emphasis> line should always be present. It assigns the name <emphasis>localhost</emphasis>
 to a special interface, the loopback. In this example the names
 <emphasis>tazzy.slackfans.org</emphasis> and <emphasis>tazzy</emphasis> are assigned to the IP address &host1ip;,
-and the name <emphasis>gideon.slackfans.org</emphasis> is assigned to the IP address 192.168.1.2.
+and the name <emphasis>flux.slackfans.org</emphasis> is assigned to the IP address &host2ip;.
 On the system with this file both computers are available via the
 mentioned hostnames.
 </para>
@@ -310,8 +310,8 @@ file with IPv4 and IPv6 entries:
 <screen>
 # IPv4 entries
 127.0.0.1               localhost
-192.168.1.1             tazzy.slackfans.org tazzy
-192.168.1.2             gideon.slackfans.org
+&host1ip;             tazzy.slackfans.org tazzy
+&host2ip;           gideon.slackfans.org
 
 # IPv6 entries
 ::1			localhost
@@ -334,8 +334,8 @@ to <filename>/etc/resolv.conf</filename> by adding the line
 </para>
 
 <screen>
-nameserver 192.168.1.1
-nameserver 192.168.1.69
+nameserver &host1ip;
+nameserver &host2ip;
 </screen>
 
 <para>
