@@ -1,3 +1,6 @@
+Mon May  2 12:16:44 CEST 2005
+- Fix a bunch of errors noted by Mikhail Zotov.
+
 Thu Apr 21 19:51:51 CEST 2005
 - Long overdue: complete the installation walk-through. I still
   wonder why nobody complained about this ;-).
