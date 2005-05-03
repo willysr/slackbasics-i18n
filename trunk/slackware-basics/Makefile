@@ -1,4 +1,4 @@
-# $Id: Makefile,v 1.8 2005/04/17 14:50:34 daniel Exp $
+# $Id: Makefile,v 1.9 2005/05/03 20:01:10 daniel Exp $
 
 CURRENTDIR=`pwd`
 
@@ -8,7 +8,7 @@ lint:
 	xmllint --noout --valid src/slackware-basics.xml
 
 touch-pubdate:
-	cat src/slackware-basics.xml | sed "s/<pubdate><\/pubdate>/<pubdate>`date`<\/pubdate>/" > src/slackware-basics.xml.new
+	cat src/slackware-basics.xml | sed "s/<pubdate>.*<\/pubdate>/<pubdate>`date`<\/pubdate>/" > src/slackware-basics.xml.new
 	mv src/slackware-basics.xml.new src/slackware-basics.xml
 
 fmt-html: touch-pubdate
