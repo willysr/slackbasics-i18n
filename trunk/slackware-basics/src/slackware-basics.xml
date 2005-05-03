@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- $Id: slackware-basics.xml,v 1.16 2005/04/17 14:49:59 daniel Exp $ -->
+<!-- $Id: slackware-basics.xml,v 1.17 2005/05/03 19:17:33 daniel Exp $ -->
 
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "/usr/share/sgml/docbook/xml-dtd-4.1.2/docbookx.dtd" [
 
@@ -26,6 +26,7 @@
 <!ENTITY XFree86 SYSTEM "x11.xml">
 <!ENTITY BuildKernel SYSTEM "kernel.xml">
 <!ENTITY Security SYSTEM "security.xml">
+<!ENTITY MiscAdmin SYSTEM "miscadmin.xml">
 
 <!ENTITY Netconfig SYSTEM "netconfig.xml">
 <!ENTITY Ipsec SYSTEM "ipsec.xml">
@@ -98,6 +99,7 @@
 &Pkgmgmt;
 &BuildKernel;
 &Security;
+&MiscAdmin;
 </part>
 
 <part> <?dbhtml filename="netadmin.html"?>
