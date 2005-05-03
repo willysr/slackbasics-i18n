@@ -101,6 +101,18 @@
 (define %admon-graphics-path%
   "../images/")
 
+(define %callout-graphics%
+  #t)
+
+(define %callout-graphics-path%
+  "../images/callouts/")
+
+(define %callout-graphics-extension%
+  ".png")
+
+(define %callout-unicode%
+  #t)
+
 (define %stylesheet% "normal.css")
 
 (element emphasis 
