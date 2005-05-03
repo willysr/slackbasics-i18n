@@ -52,6 +52,24 @@
   ;; Are sections enumerated?
   #t)
 
+(element sect1info
+  (process-children))
+
+(element (sect1info authorgroup author)
+  (literal (author-list-string)))
+
+<!-- Snippet borrowed from the FreeBSD Handbook DSSSL stylesheet -->
+(define (custom-authorgroup)
+  ($italic-seq$
+    (make sequence
+      (process-node-list (select-elements (descendants (current-node))
+        (normalize "contrib")))
+      (process-children)
+      (literal ".  "))))
+
+(element (sect1info authorgroup)
+  (custom-authorgroup))
+
 (define %graphic-default-extension%
   "png")
 
