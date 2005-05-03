@@ -1,3 +1,8 @@
+Tue May  3 22:01:21 CEST 2005
+- Add a section contributed by Murray Stokely about cron (thanks
+  Murray!).
+- Add a section about configuring wireless cards.
+
 Mon May  2 12:16:44 CEST 2005
 - Fix a bunch of errors noted by Mikhail Zotov.
 
