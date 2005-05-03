@@ -7,12 +7,16 @@ h1 {
 	color: #990000;
 }
 
-tt {
+tt.filename {
 	color: #007a00;
 }
 
 tt.parameter {
 	color: #000000;
+}
+
+tt.command {
+	font-weight: bold;
 }
 
 .acronym {
