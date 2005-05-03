@@ -1,4 +1,4 @@
-<!-- $Id: miscadmin.xml,v 1.1 2005/05/03 19:14:15 daniel Exp $ -->
+<!-- $Id: miscadmin.xml,v 1.2 2005/05/03 20:00:47 daniel Exp $ -->
 
 <chapter id="sysadmin-misc"> <?dbhtml filename="miscadmin.html"?>
   <title>Miscellaneous</title>
@@ -19,7 +19,7 @@
 
     </sect1info>
 
-    <title>Scheduling Tasks with cron</title>
+    <title>Scheduling tasks with cron</title>
 
     <indexterm><primary>cron</primary></indexterm>
     <indexterm><primary>crontab file</primary></indexterm>
