@@ -1,4 +1,4 @@
-<!-- $Id: mutt.xml,v 1.2 2005/05/04 08:34:01 daniel Exp $ -->
+<!-- $Id: mutt.xml,v 1.3 2005/05/04 10:42:34 daniel Exp $ -->
 
 <chapter id="email-mutt"> <?dbhtml filename="mutt.html"?>
   <title>Reading and writing e-mail with mutt</title>
@@ -164,6 +164,88 @@ set sendmail="/usr/bin/msmtp"
       </para>
     </sect2>
 
+  </sect1>
+
+  <sect1 id="email-mutt-gnupg">
+    <title>Signing/encrypting e-mails</title>
+
+    <sect2 id="email-mutt-gnupg-introduction">
+      <title>Introduction</title>
+
+      <para>
+        Mutt provides excellent support for signing or encrypting e-mails
+        with GnuPG. One might wonder why he or she should use one of these
+        techniques. While most people do not feel the need to encrypt most
+        of their e-mails, it generally is a good idea to sign your e-mails.
+        There are, for example, a lot of viruses these days that use other
+        people's e-mail addresses in the From: field of viruses. If the
+        people who you are communicating with know that you sign your e-mails,
+        they will not open fake e-mail from viruses. Besides that it looks
+        much more professional if people can check your identity, especially
+        in business transactions. For example, who would you rather trust,
+        vampire_boy93853@hotmail.com, or someone using a professional e-mail
+        address with digitally signed e-mails?
+      </para>
+
+      <para>
+        This section describes how you can use GnuPG with mutt, for more
+        information about GnuPG read
+        <xref linkend="basics-filesystem-gnupg" />.
+      </para>
+    </sect2>
+
+    <sect2 id="email-mutt-gnupg-configuration">
+      <title>Configuration</title>
+
+      <para>
+        An example configuration for using GnuPG in mutt can be found
+        in <filename>/usr/share/doc/mutt/samples/gpg.rc</filename>.
+        In general the contents of this file to your mutt configuration will
+        suffice. From the shell you can add the contents of this file
+        to you <filename>.muttrc</filename> with the following command:
+      </para>
+
+      <screen>
+$ <command>cat /usr/share/doc/mutt/samples/gpg.rc >> ~/.muttrc</command>
+      </screen>
+
+      <para>
+        There are some handy parameters that you can additionally set.
+        For example, if you always want to sign e-mails, add the following
+        line to your mutt configuration:
+      </para>
+
+      <screen>
+set crypt_autosign = yes
+      </screen>
+
+      <para>
+        Another handy option is <emphasis>crypt_replyencrypt</emphasis>,
+        which will automatically encrypt replies to messages that were
+        encrypted. To enable this, add the following line to your mutt
+        configuration:
+      </para>
+
+      <screen>
+set crypt_replyencrypt = yes
+      </screen>
+    </sect2>
+
+    <sect2 id="email-mutt-gnupg-usage">
+      <title>Usage</title>
+
+      <para>
+        If you have set some of the automatical options, like
+        <emphasis>crypt_autosign</emphasis> GnuPG usage of mutt is mostly
+        automatic. If not, you can press the &lt;p&gt; key during the
+        final step of sending an e-mail. In the bottom of the screen
+        various GnuPG/PGP options will appear, which you can access
+        via the letters that are enclosed in parentheses. For example,
+        &lt;s&gt; signs e-mails, and &lt;e&gt; encrypts an e-mail.
+        You can always clear any GnuPG option you set by pressing
+        &lt;p&gt; and then &lt;c&gt;.
+      </para>
+    </sect2>
   </sect1>
 
 </chapter>
