@@ -1,4 +1,4 @@
-<!-- $Id: sendmail.xml,v 1.1 2005/05/04 12:44:55 daniel Exp $ -->
+<!-- $Id: sendmail.xml,v 1.2 2005/05/04 13:20:43 daniel Exp $ -->
 
 <chapter id="email-sendmail"> <?dbhtml filename="sendmail.html"?>
   <title>Sendmail</title>
@@ -124,6 +124,23 @@
 # <command>cp sendmail-straw.cf /etc/mail/sendmail.cf</command>
       </screen>
     </sect2>
+    
+    <sect2 id="email-sendmail-configuration-smarthost">
+      <title>Using a smarthost</title>
+
+      <para>
+        If you would like to use another host to deliver e-mail to
+        remote locations you can set up sendmail to use a <quote>smart
+        host</quote>. You do this by defining
+        <emphasis>SMART_HOST</emphasis> in your mc file. For example,
+        if you want to use <emphasis>smtp2.example.org</emphasis>
+        as the smart host, you can add the following line:
+      </para>
+
+      <screen>
+define(`SMART_HOST',`stmp2.example.org')
+      </screen>
+    </sect2>
 
     <sect2 id="email-sendmail-configuration-accepthosts">
       <title>Alternative names</title>
@@ -151,6 +168,67 @@ FEATURE(`use_cw_file')dnl
 example.org
 mail.example.org
 www.example.org
+      </screen>
+    </sect2>
+
+    <sect2 id="email-sendmail-configuration-mapaddr">
+      <title>Mapping addresses to user names</title>
+
+      <para>
+        Often you may want to map e-mail addresses to user names. This
+        is needed when the user name differs from the part before the
+        <quote>@</quote> part of an e-mail address. To enable this
+        functionality, make sure the following line is added to your
+        mc file:
+      </para>
+
+      <screen>
+FEATURE(`virtusertable',`hash -o /etc/mail/virtusertable.db')dnl
+      </screen>
+
+      <para>
+        The mappings will now be read from
+        <filename>/etc/mail/virtusertable.db</filename>. This is a
+        binary database file that should not directly edit. You can
+        edit <filename>/etc/mail/virtusertable</filename> instead,
+        and generate <filename>/etc/mail/virtusertable.db</filename>
+        from that file.
+      </para>
+
+      <para>
+        The <filename>/etc/mail/virtusertable</filename> file is a simple
+        plain text file. That has a mapping on each line, with an e-mail
+        address and a username separated by a tab. For example:
+      </para>
+
+      <screen>
+john.doe@example.org    john
+john.doe@mail.example.org        john
+      </screen>
+
+      <para>
+        In this example both e-mail for
+        <emphasis>john.doe@example.org</emphasis> and
+        <emphasis>john.doe@mail.example.org</emphasis> will be
+        delivered to the <emphasis>john</emphasis> account. It is
+        also possible to deliver some e-mail destined for a domain
+        that is hosted on the server to another e-mail address,
+        by specifying the e-mail address to deliver the e-mail to
+        in the second in the second column. For example:
+      </para>
+
+      <screen>
+john.doe@example.org    john.doe@example.com
+      </screen>
+
+      <para>
+        After making the necessary changes to the
+        <filename>virtusertable</filename> file you can generate the
+        database with the following command:
+      </para>
+
+      <screen>
+# <command>makemap hash /etc/mail/virtusertable &lt; /etc/mail/virtusertable</command>
       </screen>
     </sect2>
   </sect1>
