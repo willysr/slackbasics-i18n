@@ -1,0 +1,158 @@
+<!-- $Id: sendmail.xml,v 1.1 2005/05/04 12:44:55 daniel Exp $ -->
+
+<chapter id="email-sendmail"> <?dbhtml filename="sendmail.html"?>
+  <title>Sendmail</title>
+
+  <indexterm><primary>sendmail</primary></indexterm>
+
+  <sect1 id="email-sendmail-introduction">
+    <title>Introduction</title>
+    
+    <indexterm><primary>MTA</primary></indexterm>
+    <indexterm><primary>Mail Transfer Agent</primary></indexterm>
+
+    <para>
+      Sendmail is the default Mail Transfer Agent (<acronym>MTA</acronym>)
+      that &Distribution; uses. sendmail was originally written by Eric
+      Allman, who still maintains sendmail. The primary role of the sendmail
+      MTA is delivering messages, either locally or remotely. Delivery
+      is usually done through the SMTP protocol. The means that sendmail
+      can accept e-mail from remote sites through the SMTP port, and that
+      sendmail delivers site destined for remote sites to other SMTP
+      servers.
+    </para>
+  </sect1>
+
+  <sect1 id="email-sendmail-installation">
+    <title>Installation</title>
+
+    <para>
+      Sendmail is available as the <emphasis>sendmail</emphasis> package
+      in the <quote>n</quote> disk set. If you want to generate your own
+      sendmail configuration files, the <emphasis>sendmail-cf</emphasis>
+      package is also required. For information about how to install
+      packages on &Distribution;, refer to
+      <xref linkend="sysadmin-pkgmgmt" />.
+    </para>
+
+    <para>
+      You can let &Distribution; start sendmail during each boot by
+      making the <filename>/etc/rc.d/rc.sendmail</filename> executable.
+      You can do this by executing:
+    </para>
+
+    <screen>
+# <command>chmod a+x /etc/rc.d/rc.sendmail</command>
+    </screen>
+
+    <para>
+      You can also start, stop and restart sendmail by using
+      <emphasis>start</emphasis>, <emphasis>stop</emphasis>, and
+      <emphasis>restart</emphasis> as a parameter to the sendmail
+      initialization script. For example, you can restart sendmail
+      in the following way:
+    </para>
+
+    <screen>
+# <command>/etc/rc.d/rc.sendmail restart</command>
+    </screen>
+  </sect1>	
+
+  <sect1 id="email-sendmail-configuration">
+    <title>Configuration</title>
+
+    <para>
+      The most central sendmail configuration file is
+      <filename>/etc/mail/sendmail.cf</filename>; this is where the 
+      behaviour of sendmail is configured, and where other files
+      are included. The syntax of <filename>/etc/mail/sendmail.cf</filename>
+      is somewhat obscure, because this file is compiled from a
+      much simpler <filename>.mc</filename> files that uses M4 macros
+      that are defined for sendmail.
+    </para>
+
+    <para>
+      Some definitions can easily be changed in the
+      <filename>/etc/mail/sendmail.cf</filename> file, but for other
+      changes it is better to create your own <filename>.mc</filename>
+      file. Examples in this chapter will be focused on creating a
+      customized mc file.
+    </para>
+
+    <sect2 id="email-sendmail-configuration-mc">
+      <title>Working with mc files</title>
+
+      <para>
+        In this section we will look how you can start off with an
+        initial mc file, and how to compile your own .cf file to a
+        cf file. There are many interesting example mc files available
+        in <filename>/usr/share/sendmail/cf/cf</filename>. The most
+        interesting examples are <filename>sendmail-slackware.mc</filename>
+        (which is used for generating the default &Distribution;
+        <filename>sendmail.cf</filename>), and
+        <filename>sendmail-slackware-tls.mc</filename> which adds
+        TLS support to the standard &Distribution; sendmail configuration.
+        If you want to create your own sendmail configuration, it is
+        a good idea to start with a copy of the standard &Distribution;
+        mc file. For instance, suppose that we would like to create
+        a configuration file for the server named <emphasis>straw</emphasis>,
+        we could execute:
+      </para>
+
+      <screen>
+# <command>cd /usr/share/sendmail/cf/cf</command>
+# <command>cp sendmail-slackware.mc sendmail-straw.mc</command>
+      </screen>
+
+      <para>
+        and start editing <filename>sendmail-straw.mc</filename>. After
+        the configuration file is modified to our tastes, M4 can be used
+        to compile a cf file:
+      </para>
+
+      <screen>
+# <command>m4 sendmail-straw.mc > sendmail-straw.cf</command>
+      </screen>
+
+      <para>
+        If we want to use this new configuration file as the default
+        configuration, we can copy it to
+        <filename>/etc/mail/sendmail.cf</filename>:
+      </para>
+
+      <screen>
+# <command>cp sendmail-straw.cf /etc/mail/sendmail.cf</command>
+      </screen>
+    </sect2>
+
+    <sect2 id="email-sendmail-configuration-accepthosts">
+      <title>Alternative names</title>
+
+      <para>
+        By default sendmail will accept mail destined for localhost, and the
+        current hostname of the system. You can simply add additional hosts
+        or domains to accept e-mail for. The first step is to make sure that 
+        the following line is added to your mc configuration:
+      </para>
+
+      <screen>
+FEATURE(`use_cw_file')dnl
+      </screen>
+
+      <para>
+        When this option is enabled you can add host names and domain
+        names to accept mail for to
+        <filename>/etc/mail/local-host-names</filename>. This file
+        is a newline separated database of names. For example, the file
+        could look like this:
+      </para>
+
+      <screen>
+example.org
+mail.example.org
+www.example.org
+      </screen>
+    </sect2>
+  </sect1>
+
+</chapter>
