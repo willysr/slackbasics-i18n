@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- $Id: slackware-basics.xml,v 1.18 2005/05/04 06:44:31 daniel Exp $ -->
+<!-- $Id: slackware-basics.xml,v 1.19 2005/05/04 07:22:35 daniel Exp $ -->
 
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "/usr/share/sgml/docbook/xml-dtd-4.1.2/docbookx.dtd" [
 
@@ -20,6 +20,7 @@
 <!ENTITY Textutils SYSTEM "textutils.xml">
 <!ENTITY Proc SYSTEM "proc.xml">
 
+<!ENTITY Mutt SYSTEM "mutt.xml">
 <!ENTITY Spamassassin SYSTEM "spamassassin.xml">
 
 <!ENTITY UserMgmt SYSTEM "usermgmt.xml">
@@ -93,6 +94,7 @@
 
 <part> <?dbhtml filename="email.html"?>
 <title>Electronic mail</title>
+&Mutt;
 &Spamassassin;
 </part>
 

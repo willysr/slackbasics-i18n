@@ -1,0 +1,101 @@
+<!-- $Id: mutt.xml,v 1.1 2005/05/04 07:22:35 daniel Exp $ -->
+
+<chapter id="email-mutt"> <?dbhtml filename="mutt.html"?>
+  <title>Reading and writing e-mail with mutt</title>
+
+  <indexterm><primary>mutt</primary></indexterm>
+
+  <sect1 id="email-mutt-introduction">
+    <title>Introduction</title>
+
+    <indexterm><primary>MUA</primary></indexterm>
+    <indexterm><primary>Mail User Agent</primary></indexterm>
+
+    <para>
+      Mutt is a mail user agent (<acronym>MUA</acronym>) that can be used
+      for reading and writing e-mail. Mutt is a text-mode installation,
+      meaning that it can be used on the console, over SSH and in an X
+      terminal. Due to its menu interface, it is very easy to read large
+      amounts of e-mail in a short time, and mutt can be configured to
+      use your favorite text editor.
+    </para>
+
+    <para>
+      This chapter will discuss how you can customize mutt for your needs,
+      how to use it, and how PGP/GnuPG support is used.
+    </para>
+  </sect1>
+
+  <sect1 id="email-mutt-basicsetup">
+    <title>Basic setup</title>
+
+    <para>
+      There are a few mutt settings you often want to configure. This section
+      describes these settings. User-specific mutt customizations can be made
+      in the <filename>.muttrc</filename> in the user's home directory. You
+      can change global mutt settings in <filename>/etc/mutt/Muttrc</filename>.
+    </para>
+
+    <sect2 id="email-mutt-basicsetup-headers">
+      <title>Customized headers</title>
+
+      <indexterm><primary>mutt</primary><secondary>headers</secondary></indexterm>
+
+      <para>
+        Each e-mail has headers with various information. For example, the
+        header contains information about the path an e-mail has traversed
+        after it has been sent. The sender (<emphasis>From:</emphasis>) and
+        recipient (<emphasis>To:</emphasis>) e-mail addresses are also stored
+        in the headers, as well as the subject (<emphasis>Subject:</emphasis>)
+        of an e-mail. You can add your own headers to an e-mail with the
+        <emphasis>my_hdr</emphasis> configuration option. This option
+        has the following syntax: <emphasis>my_hdr &lt;header name&gt;:
+        &lt;header contents&gt;</emphasis>. For example, you can add information
+        about what OS you are running by adding the following line to your
+        mutt configuration:
+      </para>
+
+      <screen>
+my_hdr X-Operating-System: &Distribution; 10.1
+      </screen>
+
+      <para>
+        You can also override some of the headers that are normally used,
+        such as the sender address that is specified in the
+        <emphasis>From:</emphasis> header:
+      </para>
+
+      <screen>
+my_hdr From: John Doe &lt;john.doe@example.org&gt;
+      </screen>
+    </sect2>
+
+    <sect2>
+      <title>The sendmail binary</title>
+
+      <indexterm><primary>mutt</primary><secondary>sendmail binary</secondary></indexterm>
+
+      <para>
+        By default mutt uses the sendmail MTA to deliver e-mails that
+        were sent. You can use another command to send e-mail by altering
+        the <emphasis>sendmail</emphasis> configuration variable. The
+        sendmail replacement must handle the same parameter syntax
+        as sendmail. For example, if you have installed MSMTP to deliver
+        e-mails, you can configure mutt to use it by adding the following
+        line to your mutt configuration:
+      </para>
+
+      <screen>
+set sendmail="/usr/bin/msmtp"
+      </screen>
+
+      <para>
+        When you have completely replaced sendmail with another MTA, for
+        instance Postfix, it is usually not needed to set this parameter,
+        because most MTAs provide an alternative sendmail binary file.
+      </para>
+    </sect2>
+
+  </sect1>
+
+</chapter>
