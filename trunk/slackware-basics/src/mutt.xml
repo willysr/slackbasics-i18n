@@ -1,4 +1,4 @@
-<!-- $Id: mutt.xml,v 1.1 2005/05/04 07:22:35 daniel Exp $ -->
+<!-- $Id: mutt.xml,v 1.2 2005/05/04 08:34:01 daniel Exp $ -->
 
 <chapter id="email-mutt"> <?dbhtml filename="mutt.html"?>
   <title>Reading and writing e-mail with mutt</title>
@@ -24,6 +24,74 @@
       This chapter will discuss how you can customize mutt for your needs,
       how to use it, and how PGP/GnuPG support is used.
     </para>
+  </sect1>
+
+  <sect1 id="email-mutt-usage">
+    <title>Usage</title>
+
+    <para>
+      Mutt is pretty simple to use, though it may take some time to get
+      used to the keys that are used to navigate, read and write e-mails.
+      The next few sections describe some of the more important keys. Mutt
+      provides a more thorough overview of available keys after pressing
+      the &lt;h&gt; key.
+    </para>
+
+    <sect2 id="email-mutt-usage-browsing">
+      <title>Browsing the list of e-mails</title>
+      
+      <para>
+        After invoking the <command>mutt</command> command, an overview
+        of all e-mails will show up. You can browse through the list of
+        e-mails with the up and down arrow keys, or the &lt;k&gt; and
+        &gt;j&gt; keys. 
+      </para>
+
+    </sect2>
+
+    <sect2 id="email-mutt-usage-reading">
+      <title>Reading e-mails</title>
+      
+      <para>
+        To read an e-mail, use the &lt;Enter&gt; key, after selecting an
+        e-mail in the overview of e-mails.
+        When reading an e-mail you can use the &lt;Page Up&gt; and
+        &lt;Page Down&gt; to browse through an e-mail. You can still use
+        the navigational keys used to browse the list of e-mail to browse
+        to other e-mails.
+      </para>
+
+      <para>
+        If an e-mail has any attachments, you can see them by pressing
+        the &lt;v&gt; key. You can view individual attachments by selecting
+        them and pressing the &lt;Enter&gt; key. To save an attachment to
+        a file, press the &lt;s&gt; key.
+      </para>
+    </sect2>
+    
+    <sect2 id="email-mutt-usage-sending">
+      <title>Sending e-mails</title>
+
+      <para>
+        You can compose a new e-mail with the &lt;c&gt; key, or reply
+        to a selected e-mail with the &lt;r&gt; key. Mutt will ask you
+        to specify the recipient (<emphasis>To:</emphasis>), and a
+        subject (<emphasis>Subject:</emphasis>). After entering this
+        information an editor is launched (<command>vi</command> is used
+        by default), which you can use to compose the e-mail. After saving
+        the e-mail, and quitting the editor, mutt will give you the
+        opportunity to make any changes to the e-mail. If you decide
+        that you want to alter the e-mail, you can restart the editor
+        with the &lt;e&gt; key. You can change the recipient or the
+        subject with respectively &lt;t&gt; or &lt;s&gt;. Finally, you
+        can send the e-mail by pressing &lt;y&gt;. If you would like to
+        cancel the e-mail, press &lt;q&gt;. Mutt will ask you whether you
+        want to postpone the e-mail. If you do so, you will be given the
+        opportunity to re-do the e-mail the next time you compose a
+        message.
+      </para>
+    </sect2>
+
   </sect1>
 
   <sect1 id="email-mutt-basicsetup">
