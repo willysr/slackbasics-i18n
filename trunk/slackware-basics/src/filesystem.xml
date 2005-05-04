@@ -1,9 +1,9 @@
-<!-- $Id: filesystem.xml,v 1.11 2005/05/04 09:57:21 daniel Exp $ -->
+<!-- $Id: filesystem.xml,v 1.12 2005/05/04 10:08:13 daniel Exp $ -->
 
-<chapter> <?dbhtml filename="filesystem.html"?>
+<chapter id="basics-filesystem"> <?dbhtml filename="filesystem.html"?>
 <title>Files and directories</title>
 
-<sect1>
+<sect1 id="basics-filesystem-intro">
 <title>Introduction</title>
 
 <para>
@@ -24,7 +24,7 @@ and mounting.
 </para>
 </sect1>
 
-<sect1>
+<sect1 id="basics-filesystem-basics">
 <title>The basics</title>
 
 <bridgehead>pwd</bridgehead>
@@ -245,7 +245,7 @@ $ <command>rm -rf ogle/</command>
 
 </sect1>
 
-<sect1>
+<sect1 id="basics-filesystem-permissions">
 <title>Permissions</title>
 
 <bridgehead>A short introduction</bridgehead>
@@ -378,10 +378,10 @@ $ <command>chmod -R go-r secret/</command>
 </screen>
 </sect1>
 
-<sect1>
+<sect1 id="basics-filesystem-archives">
 <title>Archives</title>
 
-<sect2>
+<sect2 id="basics-filesystem-archives-introduction">
 <title>Introduction</title>
 
 <para>
@@ -435,7 +435,7 @@ also a lot slower, because it does more data analysis.
 </para>
 </sect2>
 
-<sect2>
+<sect2 id="basics-filesystem-archives-extracting">
 <title>Extracting archives</title>
 
 <para>
@@ -526,7 +526,7 @@ $ <command>tar bxf archive3.tar.bz2</command>
 </screen>
 </sect2>
 
-<sect2>
+<sect2 id="basics-filesystem-archives-creating">
 <title>Creating archives</title>
 
 <para>
@@ -570,9 +570,9 @@ version of the archive created above. We can do this with:
 </sect2>
 </sect1>
 
-<sect1><title>Extended attributes</title>
+<sect1 id="basics-filesystem-ea"><title>Extended attributes</title>
 
-<sect2>
+<sect2 id="basics-filesystem-ea-introduction">
 <title>Introduction</title>
 
 <para>
@@ -592,7 +592,7 @@ Ext2, Ext3 and XFS filesystems do support extended attributes.
 </para>
 </sect2>
 
-<sect2>
+<sect2 id="basics-filesystem-ea-installing">
 <title>Installing the necessary utilities</title>
 
 <para>
@@ -604,7 +604,7 @@ like Ext3.
 </para>
 </sect2>
 
-<sect2>
+<sect2 id="basics-filesystem-ea-showing">
 <title>Showing extended attributes</title>
 
 <para>
@@ -647,7 +647,7 @@ In this example the attribute <quote>user.Author</quote> has the value
 </para>
 </sect2>
 
-<sect2>
+<sect2 id="basics-filesystem-ea-setting">
 <title>Setting extended attributes</title>
 
 <para>
@@ -689,9 +689,9 @@ user.MD5="78be7a3148027ae7a897aad95e7d9c58"
 
 </sect1>
 
-<sect1 id="mounting"><title>Mounting filesystems</title>
+<sect1 id="basics-filesystem-mounting"><title>Mounting filesystems</title>
 
-<sect2>
+<sect2 id="basics-filesystem-mounting-introduction">
 <title>Introduction</title>
 
 <para>
@@ -707,7 +707,7 @@ explains how filesystems can be mounted and unmounted.
 </para>
 </sect2>
 
-<sect2>
+<sect2 id="basics-filesystem-mounting-mount">
 <title>mount</title>
 
 <para>
@@ -742,7 +742,7 @@ This mounts the vfat filesystem on <filename>/dev/sda1</filename> to
 </para>
 </sect2>
 
-<sect2>
+<sect2 id="basics-filesystem-mounting-umount">
 <title>umount</title>
 
 <para>
@@ -763,7 +763,7 @@ filesystem on <filename>/dev/sda1</filename>.
 </para>
 </sect2>
 
-<sect2>
+<sect2 id="basics-filesystem-mounting-fstab">
 <title>The fstab file</title>
 
 <para>
@@ -909,7 +909,7 @@ in which filesystems are checked during the system boot.
 
 </sect1>
 
-<sect1>
+<sect1 id="basics-filesystem-gnupg">
 
 <title>Encrypting and signing files</title>
 

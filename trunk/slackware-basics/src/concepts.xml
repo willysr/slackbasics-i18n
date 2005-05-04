@@ -1,4 +1,4 @@
-<!-- $Id: concepts.xml,v 1.6 2005/03/02 08:24:27 daniel Exp $ -->
+<!-- $Id: concepts.xml,v 1.7 2005/05/04 10:08:13 daniel Exp $ -->
 
 <chapter> <?dbhtml filename="concepts.html"?>
 <title>General concepts</title>
@@ -146,7 +146,7 @@ the filesystem structure. This process is named <quote>mounting</quote>.
 For example, one could mount the CD-ROM drive to the 
 <filename>/cdrom</filename> directory. If the mount was correct, the files
 on the CD-ROM can be accessed through this directory. The mounting
-process is described in detail in <xref linkend="mounting"/>.
+process is described in detail in <xref linkend="basics-filesystem-mounting"/>.
 </para>
 </sect2>
 
