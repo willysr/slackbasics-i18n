@@ -1,4 +1,4 @@
-<!-- $Id: sendmail.xml,v 1.3 2005/05/04 13:29:14 daniel Exp $ -->
+<!-- $Id: sendmail.xml,v 1.4 2005/05/04 13:36:14 daniel Exp $ -->
 
 <chapter id="email-sendmail"> <?dbhtml filename="sendmail.html"?>
   <title>Sendmail</title>
@@ -26,7 +26,7 @@
   <sect1 id="email-sendmail-installation">
     <title>Installation</title>
 
-    <indexterm><primary>sendmail</primary><secondary>smarthost</secundary></indexterm>
+    <indexterm><primary>sendmail</primary><secondary>smarthost</secondary></indexterm>
 
     <para>
       Sendmail is available as the <emphasis>sendmail</emphasis> package
@@ -84,7 +84,7 @@
     <sect2 id="email-sendmail-configuration-mc">
       <title>Working with mc files</title>
     
-      <indexterm><primary>sendmail</primary><secondary>mc files</secundary></indexterm>
+      <indexterm><primary>sendmail</primary><secondary>mc files</secondary></indexterm>
 
       <para>
         In this section we will look how you can start off with an
@@ -132,7 +132,7 @@
     <sect2 id="email-sendmail-configuration-smarthost">
       <title>Using a smarthost</title>
 
-      <indexterm><primary>sendmail</primary><secondary>smarthost</secundary></indexterm>
+      <indexterm><primary>sendmail</primary><secondary>smarthost</secondary></indexterm>
 
       <para>
         If you would like to use another host to deliver e-mail to
@@ -151,7 +151,7 @@ define(`SMART_HOST',`stmp2.example.org')
     <sect2 id="email-sendmail-configuration-accepthosts">
       <title>Alternative host/domain names</title>
 
-      <indexterm><primary>sendmail</primary><secondary>local host names</secundary></indexterm>
+      <indexterm><primary>sendmail</primary><secondary>local host names</secondary></indexterm>
 
       <para>
         By default sendmail will accept mail destined for localhost, and the
@@ -182,7 +182,7 @@ www.example.org
     <sect2 id="email-sendmail-configuration-mapaddr">
       <title>Virtual user table</title>
 
-      <indexterm><primary>sendmail</primary><secondary>virtual user table</secundary></indexterm>
+      <indexterm><primary>sendmail</primary><secondary>virtual user table</secondary></indexterm>
 
       <para>
         Often you may want to map e-mail addresses to user names. This
