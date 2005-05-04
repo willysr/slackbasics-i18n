@@ -1,4 +1,4 @@
-<!-- $Id: sendmail.xml,v 1.2 2005/05/04 13:20:43 daniel Exp $ -->
+<!-- $Id: sendmail.xml,v 1.3 2005/05/04 13:29:14 daniel Exp $ -->
 
 <chapter id="email-sendmail"> <?dbhtml filename="sendmail.html"?>
   <title>Sendmail</title>
@@ -25,6 +25,8 @@
 
   <sect1 id="email-sendmail-installation">
     <title>Installation</title>
+
+    <indexterm><primary>sendmail</primary><secondary>smarthost</secundary></indexterm>
 
     <para>
       Sendmail is available as the <emphasis>sendmail</emphasis> package
@@ -64,7 +66,7 @@
     <para>
       The most central sendmail configuration file is
       <filename>/etc/mail/sendmail.cf</filename>; this is where the 
-      behaviour of sendmail is configured, and where other files
+      behavior of sendmail is configured, and where other files
       are included. The syntax of <filename>/etc/mail/sendmail.cf</filename>
       is somewhat obscure, because this file is compiled from a
       much simpler <filename>.mc</filename> files that uses M4 macros
@@ -81,6 +83,8 @@
 
     <sect2 id="email-sendmail-configuration-mc">
       <title>Working with mc files</title>
+    
+      <indexterm><primary>sendmail</primary><secondary>mc files</secundary></indexterm>
 
       <para>
         In this section we will look how you can start off with an
@@ -111,7 +115,7 @@
       </para>
 
       <screen>
-# <command>m4 sendmail-straw.mc > sendmail-straw.cf</command>
+# <command>m4 sendmail-straw.mc &gt; sendmail-straw.cf</command>
       </screen>
 
       <para>
@@ -128,6 +132,8 @@
     <sect2 id="email-sendmail-configuration-smarthost">
       <title>Using a smarthost</title>
 
+      <indexterm><primary>sendmail</primary><secondary>smarthost</secundary></indexterm>
+
       <para>
         If you would like to use another host to deliver e-mail to
         remote locations you can set up sendmail to use a <quote>smart
@@ -143,7 +149,9 @@ define(`SMART_HOST',`stmp2.example.org')
     </sect2>
 
     <sect2 id="email-sendmail-configuration-accepthosts">
-      <title>Alternative names</title>
+      <title>Alternative host/domain names</title>
+
+      <indexterm><primary>sendmail</primary><secondary>local host names</secundary></indexterm>
 
       <para>
         By default sendmail will accept mail destined for localhost, and the
@@ -172,7 +180,9 @@ www.example.org
     </sect2>
 
     <sect2 id="email-sendmail-configuration-mapaddr">
-      <title>Mapping addresses to user names</title>
+      <title>Virtual user table</title>
+
+      <indexterm><primary>sendmail</primary><secondary>virtual user table</secundary></indexterm>
 
       <para>
         Often you may want to map e-mail addresses to user names. This
@@ -198,7 +208,7 @@ FEATURE(`virtusertable',`hash -o /etc/mail/virtusertable.db')dnl
       <para>
         The <filename>/etc/mail/virtusertable</filename> file is a simple
         plain text file. That has a mapping on each line, with an e-mail
-        address and a username separated by a tab. For example:
+        address and a user name separated by a tab. For example:
       </para>
 
       <screen>
