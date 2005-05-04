@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- $Id: slackware-basics.xml,v 1.17 2005/05/03 19:17:33 daniel Exp $ -->
+<!-- $Id: slackware-basics.xml,v 1.18 2005/05/04 06:44:31 daniel Exp $ -->
 
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "/usr/share/sgml/docbook/xml-dtd-4.1.2/docbookx.dtd" [
 
@@ -20,6 +20,8 @@
 <!ENTITY Textutils SYSTEM "textutils.xml">
 <!ENTITY Proc SYSTEM "proc.xml">
 
+<!ENTITY Spamassassin SYSTEM "spamassassin.xml">
+
 <!ENTITY UserMgmt SYSTEM "usermgmt.xml">
 <!ENTITY Pkgmgmt SYSTEM "pkgmgmt.xml">
 <!ENTITY Printing SYSTEM "printing.xml">
@@ -33,8 +35,6 @@
 <!ENTITY Inetd SYSTEM "inetd.xml">
 <!ENTITY Apache SYSTEM "apache.xml">
 <!ENTITY Bind SYSTEM "bind.xml">
-
-<!ENTITY Spamassassin SYSTEM "spamassassin.xml">
 
 <!-- Some very common terms -->
 <!ENTITY Distribution "Slackware Linux">
@@ -91,6 +91,11 @@
 &Proc;
 </part>
 
+<part> <?dbhtml filename="email.html"?>
+<title>Electronic mail</title>
+&Spamassassin;
+</part>
+
 <part> <?dbhtml filename="sysadmin.html"?>
 <title>System administration</title>
 &UserMgmt;
@@ -109,11 +114,6 @@
 &Inetd;
 &Apache;
 &Bind;
-</part>
-
-<part> <?dbhtml filename="email.html"?>
-<title>Electronic mail</title>
-&Spamassassin;
 </part>
 
 <!--
