@@ -1,4 +1,4 @@
-<!-- $Id: sendmail.xml,v 1.4 2005/05/04 13:36:14 daniel Exp $ -->
+<!-- $Id: sendmail.xml,v 1.5 2005/05/06 21:44:26 daniel Exp $ -->
 
 <chapter id="email-sendmail"> <?dbhtml filename="sendmail.html"?>
   <title>Sendmail</title>
@@ -26,7 +26,7 @@
   <sect1 id="email-sendmail-installation">
     <title>Installation</title>
 
-    <indexterm><primary>sendmail</primary><secondary>smarthost</secondary></indexterm>
+    <indexterm><primary>sendmail</primary><secondary>installation</secondary></indexterm>
 
     <para>
       Sendmail is available as the <emphasis>sendmail</emphasis> package
@@ -136,10 +136,12 @@
 
       <para>
         If you would like to use another host to deliver e-mail to
-        remote locations you can set up sendmail to use a <quote>smart
-        host</quote>. You do this by defining
-        <emphasis>SMART_HOST</emphasis> in your mc file. For example,
-        if you want to use <emphasis>smtp2.example.org</emphasis>
+        locations to which the sendmail server you are configuring can not
+        deliver you can set up sendmail to use a so-called <quote>smart
+        host</quote>. Sendmail will send the undeliverable e-mail to the
+        smart host, which is in turn supposed to handle the e-mail. You do
+        this by defining <emphasis>SMART_HOST</emphasis> in your mc file.
+        For example, if you want to use <emphasis>smtp2.example.org</emphasis>
         as the smart host, you can add the following line:
       </para>
 
