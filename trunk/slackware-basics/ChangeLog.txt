@@ -1,3 +1,7 @@
+Fri May  6 23:51:18 CEST 2005
+- Add a chapter about the sendmail MTA.
+- Add a chapter about the Mutt MUA.
+
 Tue May  3 22:01:21 CEST 2005
 - Add a section contributed by Murray Stokely about cron (thanks
   Murray!).
