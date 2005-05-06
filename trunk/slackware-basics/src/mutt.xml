@@ -1,4 +1,4 @@
-<!-- $Id: mutt.xml,v 1.3 2005/05/04 10:42:34 daniel Exp $ -->
+<!-- $Id: mutt.xml,v 1.4 2005/05/06 21:50:52 daniel Exp $ -->
 
 <chapter id="email-mutt"> <?dbhtml filename="mutt.html"?>
   <title>Reading and writing e-mail with mutt</title>
@@ -115,7 +115,22 @@
         after it has been sent. The sender (<emphasis>From:</emphasis>) and
         recipient (<emphasis>To:</emphasis>) e-mail addresses are also stored
         in the headers, as well as the subject (<emphasis>Subject:</emphasis>)
-        of an e-mail. You can add your own headers to an e-mail with the
+        of an e-mail.
+      </para>
+
+      <note>
+        <para>
+          In reality the <emphasis>To:</emphasis> header is not used to
+          determine the destination of an e-mail during the deliverance
+          process of the e-mail. MTAs use the <emphasis>envelope
+          address</emphasis> to determine the destination of the e-mail.
+          Though, most MUAs use the <emphasis>To:</emphasis> address that
+          the user fills in as the envelope address.
+        </para>
+      </note>
+
+      <para>
+        You can add your own headers to an e-mail with the
         <emphasis>my_hdr</emphasis> configuration option. This option
         has the following syntax: <emphasis>my_hdr &lt;header name&gt;:
         &lt;header contents&gt;</emphasis>. For example, you can add information
