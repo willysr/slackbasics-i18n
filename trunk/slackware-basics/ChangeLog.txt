@@ -1,3 +1,5 @@
+- Add some instructions about printing manual pages.
+
 Fri May  6 23:51:18 CEST 2005
 - Add a chapter about the sendmail MTA.
 - Add a chapter about the Mutt MUA.
