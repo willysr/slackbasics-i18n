@@ -1,3 +1,5 @@
+Sun May  8 17:13:36 CEST 2005
+- Add a section about tagfiles to the package management chapter.
 - Add some instructions about printing manual pages.
 
 Fri May  6 23:51:18 CEST 2005
