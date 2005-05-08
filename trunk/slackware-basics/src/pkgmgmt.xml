@@ -1,4 +1,4 @@
-<!-- $Id: pkgmgmt.xml,v 1.8 2005/05/04 13:20:09 daniel Exp $ -->
+<!-- $Id: pkgmgmt.xml,v 1.9 2005/05/08 15:11:25 daniel Exp $ -->
 
 <chapter id="sysadmin-pkgmgmt"> <?dbhtml filename="pkgmgmt.html"?>
   <title>Package Management</title>
@@ -389,6 +389,192 @@ rsync://fill-in-mirror/pub/slackware/slackware-current/ \
 # <command>upgradepkg /usr/share/mirrors/slackware-current/slackware/*/*.tgz</command>
     </screen>
 
+  </sect1>
+
+  <sect1 id="sysadmin-pkgmgmt-tagfiles">
+    <title>Tagfiles</title>
+
+    <sect2 id="sysadmin-pkgmgmt-tagfiles-introduction">
+      <title>Introduction</title>
+
+      <para>
+        Tagfiles are a relatively unknown feature of &Distribution;. A
+        tagfile is a file that can be used to instruct
+        <command>installpkg</command> what packages should be installed
+        from a collection of packages. For instance, the &Distribution; 
+        installer generates a tagfile during the <emphasis>Expert</emphasis>
+        and <emphasis>Menu</emphasis> installation methods to store which
+        packages should be installed during the installation process.
+      </para>
+
+      <para>
+        The nice aspect of tagfiles is that you can easily create tagfiles
+        yourself. By writing your own tagfiles you can automate the package
+        installation, which is ideal for larger client or server roll-outs
+        (or smaller set-ups if it gives you more comfort than installing
+        packages manually). The easiest way to create your own tagfiles
+        is by starting out with the tagfiles that are part of the official
+        &Distribution; distribution. In the following sections we are going
+        to look at how this is done.
+      </para>
+    </sect2>
+
+    <sect2 id="sysadmin-pkgmgmt-tagfiles-creating">
+      <title>Creating tagfiles</title>
+
+      <para>
+        Tagfiles are simple plain-text files. Each line consists of a
+        package name and a flag, these two elements are separated by
+        a colon and a space. The flag specifies what should be done
+        with a package. The fields are described in
+        <xref linkend="sysadmin-pkgmgmt-tagfiles-creating-fields" />.
+        Let's look at a few lines from the tagfile in the <quote>a</quote>
+        disk set:
+      </para>
+
+      <screen>
+aaa_base: ADD
+aaa_elflibs: ADD
+acpid: REC
+apmd: REC
+bash: ADD
+bin: ADD
+      </screen>
+
+      <para>
+        It should be noted that you can also add comments to tagfiles
+        with the usual comment (#) character. As you can see in the
+        snippet above there are different flags. The table listed below
+        describes the four different flags.
+      </para>
+
+      <table id="sysadmin-pkgmgmt-tagfiles-creating-fields">
+        <title>Tagfile fields</title>
+        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+          <thead>
+            <row>
+              <entry>Flag</entry>
+              <entry>Meaning</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>ADD</entry>
+              <entry>A package marked by this flag will automatically be
+              installed</entry>
+            </row>
+            <row>
+              <entry>SKP</entry>
+              <entry>A package marked by this flag will automatically be
+              skipped</entry>
+            </row>
+            <row>
+              <entry>REC</entry>
+              <entry>Ask the user what to do, recommend installation of
+              the package.</entry>
+            </row>
+            <row>
+              <entry>OPT</entry>
+              <entry>Ask the user what to do, the package will be described
+              as optional.</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+      <para>
+        As you can read from the table <command>installpkg</command> will
+        only act automatically when either <emphasis>ADD</emphasis> or
+        <emphasis>SKP</emphasis> is used.
+      </para>
+
+      <para>
+        It would be a bit tedious to write a tagfile for each &Distribution;
+        disk set. The official &Distribution; distribution contains a tagfile
+        in the directory for each disk set. You can use these tagfiles as
+        a start. The short script listed below can be used to copy the
+        tagfiles to the current directory, preserving the disk set structure.
+      </para>
+
+      <screen>
+#!/bin/sh
+
+if [ ! $# -eq 1 ] ; then
+  echo "Syntax: $0 [directory]"
+  exit
+fi
+
+for i in $1/*/tagfile; do 
+  setdir=`echo $i | egrep -o '\w+/tagfile$' | xargs dirname`
+  mkdir $setdir
+  cp $i $setdir
+done
+      </screen>
+
+      <para>
+        After writing the script to a file you can execute it, and specify
+        a <filename>slackware/</filename> directory that provides the disk
+        sets. For example:
+      </para>
+
+      <screen>
+$ <command>sh copy-tagfiles.sh /mnt/flux/slackware-current/slackware</command>
+      </screen>
+
+      <para>
+        After doing this the current directory will contain a directory
+        structure like this, in which you can edit the individual tag
+        files:
+      </para>
+
+      <screen>
+a/tagfile
+ap/tagfile
+d/tagfile
+e/tagfile
+[...]
+      </screen>
+    </sect2>
+
+    <sect2 id="sysadmin-pkgmgmt-tagfiles-using">
+      <title>Using tagfiles</title>
+
+      <para>
+        On an installed system you can let <command>installpkg</command> use
+        a tagfile with the <parameter class="command">-tagfile</parameter>
+        parameter. For example:
+      </para>
+
+      <screen>
+# <command>installpkg -root /mnt-small -tagfile a/tagfile /mnt/flux/slackware-current/slackware/a/*.tgz</command>
+      </screen>
+
+      <para>
+        Of course, tagfiles would be useless if they cannot be used during
+        the installation of &Distribution;. This is certainly possible:
+        after selecting which disk sets you want to install you can choose
+        in what way you want to select packages (the dialog is named
+        <emphasis>SELECT PROMPTING MODE</emphasis>. Select
+        <emphasis>tagpath</emphasis> from this menu. You will then be
+        asked to enter the path to the directory structure with the tagfiles.
+        The usual way to provide tagfiles to the &Distribution; installation
+        is to put them on a floppy or another medium, and mounting this
+        before or during the installation. E.g. you can switch to the
+        second console with by pressing the &lt;ALT&gt; and &lt;F2&gt;
+        keys, and create a mount point and mount the disk with the tagfiles:
+      </para>
+
+      <screen>
+# <command>mkdir /mnt-tagfiles</command>
+# <command>mount /dev/fd0 /mnt/mnt-tagfiles</command>
+      </screen>
+
+      <para>
+        After mounting the disk you can return to the virtual console on
+        which you run <command>setup</command>, by pressing lt;ALT&gt; and
+        &lt;F1&gt;.
+      </para>
+    </sect2>
   </sect1>
 
 </chapter>
