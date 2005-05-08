@@ -1,4 +1,4 @@
-<!-- $Id: pkgmgmt.xml,v 1.9 2005/05/08 15:11:25 daniel Exp $ -->
+<!-- $Id: pkgmgmt.xml,v 1.10 2005/05/08 15:12:26 daniel Exp $ -->
 
 <chapter id="sysadmin-pkgmgmt"> <?dbhtml filename="pkgmgmt.html"?>
   <title>Package Management</title>
@@ -571,7 +571,7 @@ e/tagfile
 
       <para>
         After mounting the disk you can return to the virtual console on
-        which you run <command>setup</command>, by pressing lt;ALT&gt; and
+        which you run <command>setup</command>, by pressing &lt;ALT&gt; and
         &lt;F1&gt;.
       </para>
     </sect2>
