@@ -1,0 +1,184 @@
+<!-- $Id: latex.xml,v 1.1 2005/05/11 22:26:32 daniel Exp $ -->
+
+<chapter id="editing-latex"> <?dbhtml filename="latex.html"?>
+  <title>LaTeX</title>
+
+  <indexterm><primary>LaTeX</primary></indexterm>
+  <indexterm><primary>typesetting</primary></indexterm>
+
+  <sect1 id="editing-latex-introduction">
+    <title>Introduction</title>
+
+    <para>
+      LaTeX is a typesetting system that can be used to produce high-quality
+      articles, books, letters and other publications. LaTeX is based on
+      TeX, a lower-level typesetting language that was designed by Donald
+      E. Knuth. LaTeX does not work like a <acronym>WYSIWYG</acronym>
+      (what you see is what you get) word processor, the kind of document
+      preparation system most people are accustomed to. With LaTeX you
+      do not have to care about formatting the document, only about writing
+      the document.
+    </para>
+
+    <para>
+      LaTeX files are plain-text files that contain LaTeX macros. LaTeX
+      formats the document based on the macros that are used. In the
+      beginning using LaTeX may be a bit awkward to a new user. But after
+      a while you will discover that using LaTeX has some distinct
+      advantages. To name a few:
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          LaTeX-formatted documents look very professional.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          You do not have to care about the layout of your documents. You
+          just add structure to your documents, and LaTeX takes care of
+          the formatting.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          LaTeX files are plain text, and can easily be changed using
+          standard UNIX tools, such as <command>vi</command>,
+          <command>sed</command> or <command>awk</command>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          LaTeX provides very good support for typesetting things like
+          mathematical formula, references and Postscript images.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>
+      LaTeX is very extensive, so this chapter will only touch the
+      surface of LaTeX. But it should be enough to get you started
+      to be able to make simple documents.
+    </para>
+  </sect1>
+
+  <sect1 id="editing-latex-basic">
+    <title>Preparing basic LaTeX documents</title>
+
+    <indexterm><primary>LaTeX</primary><secondary>documentclass</secondary></indexterm>
+    <indexterm><primary>LaTeX</primary><secondary>environments</secondary></indexterm>
+
+    <sect2 id="editing-latex-basic-minimal">
+      <title>Minimal document structure</title>
+
+      <para>
+        Each LaTeX document has some basic minimal structure that
+        describes the document. Let's look at an example:
+      </para>
+
+      <screen>
+\documentclass[10pt,a4paper]{article} <co id="latex-struct-1" />
+
+\title{The history of block ciphers} <co id="latex-struct-2" />
+\author{John Doe} <co id="latex-struct-3" />
+
+\begin{document} <co id="latex-struct-4" />
+
+This is a basic document. <co id="latex-struct-5" />
+
+\end{document} <co id="latex-struct-6" />
+      </screen>
+
+      <para>
+        You can already see the basic syntactical structure of LaTeX
+        commands. A command is started with a backslash, followed by the
+        name of the command. Each macro has a mandatory argument that
+        is placed in accolades, and an optional argument that is placed
+        in square brackets.
+      </para>
+
+      <calloutlist>
+        <callout arearefs="latex-struct-1">
+          <para>
+            The first command in every document is the
+            <emphasis>documentclass</emphasis>. This command specifies
+            what kind of document LaTeX is dealing with. The type of
+            document is specified as a mandatory parameter. You can
+            also specify some optional parameters, such as the font
+            size and the paper size. In this case the font size is changed
+            from the default 12pt to 10pt, and A4 is used as the
+            paper size. The document classes that are available in
+            LaTeX are shown in <xref linkend="latex-documentclasses" />.
+          </para>
+        </callout>
+        <callout arearefs="latex-struct-2">
+          <para>
+            After the documentclass you can add some meta-information
+            to the document, like the title of the document. In this
+            case the title is <emphasis>The history of block
+            ciphers</emphasis>.
+          </para>
+        </callout>
+        <callout arearefs="latex-struct-3">
+          <para>
+            The author command specifies the author of the book.
+          </para>
+        </callout>
+        <callout arearefs="latex-struct-4">
+          <para>
+            The <emphasis>\begin</emphasis> command marks the beginning
+            of an environment. There are many different environments,
+            but they all implicate certain typesetting conventions for the
+            text that is in an environment. In this case we start an
+            <emphasis>document</emphasis> environment. This is a very
+            basic environment, LaTeX interprets everything in this
+            environment as the body of the text.
+          </para>
+        </callout>
+        <callout arearefs="latex-struct-5">
+          <para>
+            The content of the document can be placed within the
+            <emphasis>document</emphasis>, in this case a friendly
+            warning about the nature of the document.
+          </para>
+        </callout>
+        <callout arearefs="latex-struct-6">
+          <para>
+            All environments eventually have to be closed. The
+            <emphasis>document</emphasis> environment is the last
+            environment that is closed, because it denotes the end
+            of the body of the text.
+          </para>
+        </callout>
+      </calloutlist>
+
+      <table id="latex-documentclasses">
+        <title>LaTeX document classes</title>
+
+        <tgroup cols="1">
+          <thead>
+            <row>
+              <entry>Class</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>article</entry>
+            </row>
+            <row>
+              <entry>book</entry>
+            </row>
+            <row>
+              <entry>letter</entry>
+            </row>
+            <row>
+              <entry>report</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+
+    </sect2>
+  </sect1>
+</chapter>
