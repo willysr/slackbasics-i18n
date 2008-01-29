@@ -1,0 +1,129 @@
+<!-- $Id: services.xml 283 2007-09-18 20:14:31Z danieldk $ -->
+
+<chapter> <?dbhtml filename="services.html"?>
+<title>Networking services</title>
+
+<sect1>
+<title>The internet super server</title>
+
+<para>
+There are two ways to offer TCP/IP services: by running server
+applications standalone as a daemon or by using the internet
+super server, <command>inetd</command>. <command>inetd</command>
+is a daemon which monitors a range of ports. If a client attempts
+to connect to a port <command>inetd</command> handles the connection
+and forwards the connection to the server software which handles
+that kind of connection. The advantage of this approach is
+that it adds an extra layer of security and it makes it easier
+to log incoming connections. The disadvantage is that it is
+somewhat slower than using a standalone daemon. It is thus
+a good idea to run a standalone daemon on, for example, 
+a heavily loaded FTP server.
+</para>
+
+<para>
+<command>inetd</command> can be configured using the
+<filename>/etc/inetd.conf</filename> file. Let's have a look at
+an example line from <filename>inetd.conf</filename>:
+</para>
+
+<screen>
+# File Transfer Protocol (FTP) server:
+ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
+</screen>
+
+<para>
+This line specifies that <command>inetd</command> should accept
+FTP connections and pass them to <command>tcpd</command>. This
+may seem a bit odd, because <command>proftpd</command> normally 
+handles FTP connections. You can also specify to use <command>proftpd</command>
+directly in <filename>inetd.conf</filename>, but Slackware Linux normally
+passes the connection to <command>tcpd</command>. This program
+passes the connection to <command>proftpd</command> in turn, as specified.
+<command>tcpd</command> is used to monitor services and to provide
+host based access control.
+</para>
+
+<para>
+Services can be disabled by adding the comment character (#) at
+the beginning of the line. It is a good idea to disable all services
+and enable services you need one at a time. After changing
+<filename>/etc/inetd.conf</filename> <command>inetd</command>
+needs to be restarted to activate the changes. This can be done
+by sending the HUP signal to the inetd process:
+</para>
+
+<screen>
+# <command>ps ax | grep 'inetd'</command>
+   64 ?        S      0:00 /usr/sbin/inetd
+# <command>kill -HUP 64</command>
+</screen>
+
+</sect1>
+
+<sect1>
+<title>Caching nameserver</title>
+
+<para>
+A caching nameserver provides DNS services for a machine or a network,
+but does not provide DNS for a domain. That means it can only be used
+to convert hostnames to IP addresses. Setting up a nameserver with
+Slackware Linux is fairly easy, because BIND is configured as a
+caching nameserver by default. Enabling the caching nameserver takes
+just two steps: you have to install BIND and alter the initialization
+scripts. BIND can be installed by adding the bind package from
+the <quote>n</quote> disk set. After that bind can be started by executing the
+<command>named</command> command. If want to start BIND by
+default, make the <filename>/etc/rc.d/rc.bind</filename> file executable.
+This can be done by executing the following command as root:
+</para>
+
+<screen>
+# <command>chmod a+x /etc/rc.d/rc.bind</command>
+</screen>
+
+<para>
+If you want to use the nameserver on the machine that runs BIND,
+you also have to alter <filename>/etc/resolv.conf</filename>.
+</para>
+
+</sect1>
+
+<sect1>
+<title>The Apache webserver</title>
+
+<para>
+Apache is the most widely userd webserver on the internet, and is,
+of course, part of Slackware Linux. Apache can be installed by
+adding the <filename>apache</filename> pacakge from the <quote>n</quote> disk set.
+If you also want to use PHP, the <filename>php</filename> (<quote>n</quote> disk set)
+and <filename>mysql</filename> (<quote>ap</quote> disk set) are also required.
+MySQL is required, because the precompiled PHP depends on MySQL shared 
+libraries. You do not have to run MySQL itself. After installing Apache
+it can be started automatically while booting the system by making
+the <filename>/etc/rc.d/rc.httpd</filename> file executable. You
+can do this by executing: 
+</para>
+
+<screen>
+# <command>chmod a+x /etc/rc.d/rc.httpd</command>
+</screen> 
+
+<para>
+The Apache configuration can be altered in the 
+<filename>/etc/apache/httpd.conf</filename> file. Apache can be
+stopped/started/restarted every moment with the <command>apachectl</command>
+command, and the <parameter class="command">stop</parameter>, 
+<parameter class="command">start</parameter> and 
+<parameter class="command">restart</parameter> parameters. For example,
+execute the following command to restart Apache:
+</para>
+
+<screen>
+# <command>apachectl restart</command>
+/usr/sbin/apachectl restart: httpd restarted
+</screen>
+
+</sect1>
+
+</chapter>

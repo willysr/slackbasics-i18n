@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<book xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  version="5.0"
+  xml:lang="en">
+
+  <info>
+    <title>Slackware Linux Basics</title>
+    <subtitle>For Slackware Linux 12.0</subtitle>
+    <pubdate>Thu Sep 27 10:20:04 CEST 2007</pubdate>
+    <authorgroup>
+      <author><personname>Dani&#235;l de Kok</personname></author>
+    </authorgroup>
+
+    <copyright>
+      <year>2002</year>
+      <year>2003</year>
+      <year>2004</year>
+      <year>2005</year>
+      <year>2006</year>
+      <year>2007</year>
+      <year>2008</year>
+      <holder>Dani&#235;l de Kok</holder>
+    </copyright>
+
+    <legalnotice>
+      <title>License</title>
+
+      <para>
+	Redistribution and use in textual and binary forms, with or
+	without modification, are permitted provided that the
+	following conditions are met:
+      </para>
+
+      <orderedlist>
+	<listitem>
+	  <para>
+	    Redistributions of this book must retain the above
+	    copyright notice, this list of conditions and the
+	    following disclaimer.
+	  </para>
+	</listitem>
+
+	<listitem>
+	  <para>
+	    The names of the authors may not be used to endorse or
+	    promote products derived from this book without specific
+	    prior written permission.
+	  </para>
+	</listitem>
+      </orderedlist>
+
+      <para>
+	THIS BOOK IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+	CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+	INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+	MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+	SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+	NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+	HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS BOOK,
+	EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+      </para>
+
+      <para>
+	Linux is a registered trademark of Linus Torvalds. Slackware
+	Linux is a registered trademark of Patrick Volkerding and
+	Slackware Linux, Inc.  UNIX is a registered trademark of The
+	Open Group.
+      </para>
+    </legalnotice>
+  </info>
+
+  <toc></toc>
+
+  <xi:include href="preface.xml"/>
+
+  <part xml:id="getstarted">
+    <title>Getting started</title>
+
+    <xi:include href="chap-book.xml"/>
+    <xi:include href="chap-intro.xml"/>
+    <xi:include href="chap-help.xml"/>
+    <xi:include href="concepts.xml"/>
+    <xi:include href="chap-install.xml"/>
+    <xi:include href="custom-installation.xml"/>
+  </part>
+
+  <part xml:id="basics">
+    <title>Slackware Linux Basics</title>
+
+    <xi:include href="chap-shell.xml"/>
+    <xi:include href="chap-filesystem.xml"/>
+    <xi:include href="chap-textproc.xml"/>
+    <xi:include href="chap-procmgmt.xml"/>
+  </part>
+
+  <part xml:id="editing">
+    <title>Editing and typesetting</title>
+    <xi:include href="latex.xml"/>
+  </part>
+
+  <part xml:id="email">
+    <title>Electronic mail</title>
+    
+    <xi:include href="mutt.xml"/>
+    <xi:include href="sendmail.xml"/>
+  </part>
+
+  <part xml:id="sysadmin">
+    <title>System administration</title>
+    
+    <xi:include href="chap-usermgmt.xml"/>
+    <xi:include href="printing.xml"/>
+    <xi:include href="chap-x11.xml"/>
+    <xi:include href="chap-pkgmgmt.xml"/>
+    <xi:include href="chap-kernel.xml"/>
+    <xi:include href="chap-init.xml"/>
+    <xi:include href="security.xml"/>
+    <xi:include href="miscadmin.xml"/>
+   </part>
+
+  <part xml:id="netadmin">
+    <title>Network administration</title>
+    <xi:include href="netconfig.xml"/>
+    <xi:include href="ipsec.xml"/>
+    <xi:include href="inetd.xml"/>
+    <xi:include href="apache.xml"/>
+    <xi:include href="bind.xml"/>
+  </part>
+
+<!--
+  <part> <?dbhtml filename="appendices.html"?>
+    <title>Appendices</title>
+  </part>
+-->
+
+</book>
