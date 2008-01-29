@@ -1,4 +1,4 @@
-<!-- $Id: latex.xml,v 1.1 2005/05/11 22:26:32 daniel Exp $ -->
+<!-- $Id: latex.xml,v 1.2 2005/05/11 22:46:01 daniel Exp $ -->
 
 <chapter id="editing-latex"> <?dbhtml filename="latex.html"?>
   <title>LaTeX</title>
@@ -80,7 +80,7 @@
       <screen>
 \documentclass[10pt,a4paper]{article} <co id="latex-struct-1" />
 
-\title{The history of block ciphers} <co id="latex-struct-2" />
+\title{The history of symmetric ciphers} <co id="latex-struct-2" />
 \author{John Doe} <co id="latex-struct-3" />
 
 \begin{document} <co id="latex-struct-4" />
@@ -116,7 +116,7 @@ This is a basic document. <co id="latex-struct-5" />
           <para>
             After the documentclass you can add some meta-information
             to the document, like the title of the document. In this
-            case the title is <emphasis>The history of block
+            case the title is <emphasis>The history of symmetric 
             ciphers</emphasis>.
           </para>
         </callout>
@@ -178,7 +178,63 @@ This is a basic document. <co id="latex-struct-5" />
           </tbody>
         </tgroup>
       </table>
+    </sect2>
 
+    <sect2 id="editing-latex-basic-sections">
+      <title>Sections</title>
+
+      <indexterm><primary>LaTeX</primary><secondary>sections</secondary></indexterm>
+
+      <para>
+        Now that you know how to create a basic LaTeX document, it is
+        a good time to add some more structure. Structure is added using
+        sections, subsections, and subsubsections. These structural
+        elements are made with respectively the <emphasis>\section</emphasis>,
+        <emphasis>\subsection</emphasis> and
+        <emphasis>\subsubsection</emphasis> commands. The mandatory parameter
+        for a section is the title for the section. Normal sections,
+        subsections and subsubsections are automatically numbered, and
+        added to the table of contents. By adding a star after a section
+        command, for example <emphasis>\section*{title}</emphasis> section
+        numbering is suppressed, and the section is not added to the
+        table of contents. The following example demonstrates how
+        you can use sections:
+      </para>
+
+      <screen>
+\documentclass[10pt,a4paper]{article}
+
+\title{The history of symmetric ciphers}
+\author{John Doe}
+
+\begin{document}
+
+\section{Pre-war ciphers}
+
+To be done.
+
+\section{Modern ciphers}
+
+\subsection*{Rijndael}
+
+Rijndael is a modern block cipher that was designed by Joan Daemen and
+Vincent Rijmen. 
+
+In the year 2000 the US National Institute of Standards and Technologies
+selected Rijndael as the winner in the contest for becoming the Advanced
+Encryption Standard, the successor of DES.
+
+\end{document}
+      </screen>
+
+      <para>
+        The example above is pretty straightforward, but this is a good
+        time to look at how LaTeX treats end of line characters and empty
+        lines. Empty lines are ignored by LaTeX, making the text a
+        continuous flow. An empty line starts a new paragraph. All paragraphs
+        but the first paragraph are stared with a extra space left of the
+        first word.
+      </para>
     </sect2>
   </sect1>
 </chapter>
