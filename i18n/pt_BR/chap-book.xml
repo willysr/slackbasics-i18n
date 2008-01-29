@@ -1,85 +1,83 @@
 <chapter xml:id="chap-book">
-  <title>About this book</title>
+  <title>Sobre este livro</title>
 
   <sect1 xml:id="chap-book-availability">
-    <title>Availability</title>
+    <title>Disponibilidade</title>
 
     <para>
-      This book was written in DocBook/XML, and converted to HTML and
-      XSL:FO with <command>xsltproc</command>. The latest version of
-      the book is always available from: <ulink
+      Este livro foi escrito em DocBook/XML, e convertido para HTML e 
+      XSL:FO com <command>xsltproc</command>. A última versão 
+      deste livro está disponível em: <ulink
       url="http://www.slackbasics.org/" />.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-book-conventions">
-    <title>Conventions</title>
+    <title>Convenções</title>
 
     <para>
-      This section gives a short summary of the conventions in this book.
+      Esta seção dá um breve resumo das convenções utilizadas neste livro.
     </para>
 
     <sect2 xml:id="chap-book-conventions-filenames">
-      <title>File names</title>
+      <title>Nomes de arquivos</title>
 
       <para>
-	File or directory names are printed as:
-	<filename>/path/to/file</filename>.  For example:
+	Nomes de arquivos ou diretórios são mostrados como:
+	<filename>/caminho/para/arquivo</filename>.  Por exemplo:
 	<filename>/etc/fstab</filename>
       </para>
     </sect2>
 
     <sect2 xml:id="chap-book-conventions-commands">
-      <title>Commands</title>
+      <title>Comandos</title>
 
       <para>
-	Commands are printed as bold text. For example: <command>ls
+	Comandos são mostrados em negrito. Por exemplo: <command>ls
 	-l</command>
       </para>
     </sect2>
 
     <sect2 xml:id="chap-book-conventions-screenoutput">
-      <title>Screen output</title>
+      <title>Impressões de tela</title>
 
       <para>
-	Screen output is printed like this:
+	Impressões de tela são mostradas assim:
       </para>
 
       <screen>
-Hello world!
+Olá mundo!
       </screen>
 
       <para>
-	If commands are being entered in the screen output the
-	commands will be printed as bold text:
+	Se algum comando tem que ser digitado na tela, o comando
+	será mostrado em negrito:
       </para>
 
       <screen>
-$ <command>command</command>
-Output
+$ <command>comando</command>
+Saída
       </screen>
 
       <para>
-	If a command is executed as root, the shell will be displayed
-	as <quote>#</quote>. If a command is executed as a normal
-	non-privileged user, the shell will be displayed as
-	<quote>$</quote>.
+	Se um comando for executado como root, o shell irá mostrar um
+	<quote>#</quote>. Se o comando for executado como um usuário
+	normal, o shell irá mostrar um <quote>$</quote>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-book-conventions-notes">
-      <title>Notes</title>
+      <title>Notas</title>
 
       <para>
-	Some sections contain extra notes. It is not necessary to know
-	the information in notes, but notes may provide valuable
-	information, or pointers to information. Notes are printed
-	like this:
+	Algumas seções contém notas extras. Não é necessário ler estas
+	notas, mas elas podem prover informações úteis. Notas são
+	mostradas assim:
       </para>
 
       <note>
 	<para>
-	  This is a note.
+	  Isto é uma nota.
 	</para>
       </note>
     </sect2>
