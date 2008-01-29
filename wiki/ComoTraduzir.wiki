@@ -1,0 +1,5 @@
+#summary One-sentence summary of this page.
+
+= Como traduzir =
+
+O repositório do projeto possui a mesma estrutura do projeto [http://slackbasics.org original], com uma pasta adicional chamada `i18n` na raiz e algumas alterações no arquivo `Makefile`. Dentro da pasta `i18n` encontram-se as pastas da linguagem a ser utilizada para tradução, que no nosso caso é a `pt_BR`.
