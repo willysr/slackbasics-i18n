@@ -59,7 +59,7 @@ V. System administration
 
 VI. Network administration
 
-    22. Networking configuration
+    22. Networking configuration    Douglas C. R. Paes
 
     23. IPsec
 
