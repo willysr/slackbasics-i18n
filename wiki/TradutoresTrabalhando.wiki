@@ -13,7 +13,7 @@ I. Getting started
 
     4. General concepts
 
-    5. Installing Slackware Linux
+    5. Installing Slackware Linux (Rodrigo Flores)
 
     6. Custom installation
 
