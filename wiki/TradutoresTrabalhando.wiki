@@ -5,13 +5,13 @@
 Preface
 I. Getting started
 
-    1. About this book
+    1. About this book (Thiago Coutinho)
 
-    2. An introduction to Slackware Linux
+    2. An introduction to Slackware Linux (Thiago Coutinho)
 
-    3. Sources of help
+    3. Sources of help (Thiago Coutinho)
 
-    4. General concepts
+    4. General concepts (Thiago Coutinho)
 
     5. Installing Slackware Linux (Rodrigo Flores)
 
@@ -59,12 +59,12 @@ V. System administration
 
 VI. Network administration
 
-    22. Networking configuration    Douglas C. R. Paes
+    22. Networking configuration (Douglas C. R. Paes)
 
     23. IPsec
 
     24. The Internet super server
 
-    25. Apache
+    25. Apache (Thiago Coutinho)
 
     26. BIND
