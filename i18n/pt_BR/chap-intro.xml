@@ -2,200 +2,193 @@
 
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:id="chap-intro">
-  <title>An introduction to Slackware Linux</title>
+  <title>Uma introdução ao Slackware Linux</title>
 
   <sect1 xml:id="chap-intro-linux">
-    <title>What is Linux?</title>
+    <title> O que é Linux?</title>
 
     <para>
-      Linux is a UNIX-like kernel, which is written by Linus Torvalds
-      and other developers. Linux runs on many different
-      architectures, for example on IA32, IA64, Alpha, m68k, SPARC and
-      PowerPC machines. The latest kernel and information about the
-      Linux kernel can be found on the Linux kernel website: <ulink
-      url="http://www.kernel.org">http://www.kernel.org</ulink>.
+      Linux é um kernel UNIX-like, que é escrito por Linus Torvalds e 
+      outros desenvolvedores. Ele roda em diversas arquiteturas, como 
+      por exemplo IA32, IA64, Alpha, m68k, SPARC e PowerPC. A última 
+      versão do kernel e informações podem ser obtidas no próprio site
+      oficial: <ulink url="http://www.kernel.org">http://www.kernel.org</ulink>.
     </para>
 
     <para>
-      The Linux kernel is often confused with the GNU/Linux operating
-      system.  Linux is only a kernel, not a complete operating
-      system. GNU/Linux consists of the GNU operating system with the
-      Linux kernel. The following section gives a more extensive
-      description of GNU/Linux.
+      O kernel Linux muitas vezes é confundido com o sistema operacional
+      GNU/Linux. Linux é apenas o kernel, não o sistema operacional completo.
+      GNU/Linux consiste no sistema operacional GNU com o kernel Linux.
+      A próxima seção dará uma descrição melhor sobre o GNU/Linux.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-intro-gnulinux">
-    <title>What is GNU/Linux?</title>
+    <title>O que é GNU/Linux?</title>
 
     <para>
-      In 1984 Richard Stallman started an ambitious project with the
-      goal to write a free UNIX-like operating system. The name of
-      this system is <acronym>GNU</acronym>, which is an acronym of
-      <quote>GNU's Not UNIX</quote>.  Around 1990, all major
-      components of the GNU operating system were written, except the
-      kernel. Two years earlier, in 1988, it was decided that the GNU
-      project would use the Mach 3.0 microkernel as the foundation of
-      its kernel.  However, it took until 1991 for Mach 3.0 to be
-      released under a free software license.  In the the same year
-      Linus Torvalds started to fill the kernel gap in the GNU system
-      by writing the Linux kernel. GNU/Linux thus refers to a GNU
-      system running with the Linux kernel.
+      Em 1984, Richard Stallman iniciou um ambicioso projeto que tinha
+      como objetivo desenvolver um sistema operacional UNIX-like livre.
+      O nome deste sistema é <acronym>GNU</acronym>, que é um acrônimo
+      para <quote>GNU's Not UNIX</quote>. Em meado de 1990, a maioria do
+      componentes do sistema operacional GNU foram escritos, com exceção
+      do kernel. Dois anos antes, em 1988, foi decidido que o projeto GNU
+      iria usar o microkernel Mach 3.0 como fundamento para o seu kernel.
+      Entretanto, demorou até 1991 para que o Mach 3.0 fosse lançado sobre
+      uma licença de software livre. No mesmo ano Linus Torvalds começou a
+      construir um kernel para o sistema GNU, o kernel Linux. GNU/Linux
+      então refere-se a um sistema GNU rodando com o kernel Linux.
     </para>
 
     <para>
-      The GNU kernel, named <quote>HURD</quote> was still under
-      development when this book was written, and is available as the
-      GNU/HURD operating system. There are some other kernels that are
-      ported to the GNU operating system as well. For instance, the
-      Debian project has developed a version of the GNU operating
-      system that works with the NetBSD kernel.
+      O kernel GNU, chamado <quote>HURD</quote> estava em desenvolvimento
+      enquanto este livro era escrito, e estava disponível como sistema
+      operacional GNU/HURD. Há alguns outros kernels que são portados
+      para o sistema operacional GNU. O projeto Debian, por exemplo,
+      desenvolve uma versão do sistema operacional GNU que trabalha com o
+      kernel NetBSD.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-intro-slackware">
-    <title>What is Slackware Linux?</title>
+    <title>O que é Slackware Linux?</title>
 
     <para>
-      Slackware Linux is a GNU/Linux distribution, which is maintained
-      and developed by Patrick Volkerding. A distribution is a
-      coherent collection of software that provides a usable GNU/Linux
-      system. Volkerding started using GNU/Linux because he needed a
-      LISP interpreter for a project. At the time the dominant
-      GNU/Linux distribution was Softlanding System Linux (SLS
-      Linux). Slackware Linux started out as a private collection of
-      Volkerding's patches for SLS Linux. The first publicly available
-      Slackware Linux release was 1.0, which was released on July 16,
-      1993.
+      Slackware Linux é uma distribuição GNU/Linux, que é mantido e
+      desenvolvido por Patrick Volkerding. Uma distribuição é uma coleção
+      coerente de software que provê um sistema GNU/Linux utilizável.
+      Volkerding começou a usar o GNU/Linux porque precisava de um
+      interpretador LISP para um projeto. Na época a distribuição GNU/Linux
+      dominante era o Softlanding System Linux (SLS Linux). O Slackware
+      Linux começou como uma coleção particular de patches do Volkerding
+      para o SLS Linux. A primeira versão pública disponível do Slackware
+      Linux foi a 1.0, que foi lançada em 16 de julho de 1993.
     </para>
 
     <para>
-      In contrast to many other GNU/Linux distributions, Slackware
-      Linux adheres to the so-called KISS (Keep It Simple Stupid)
-      principle. This means that Slackware Linux does not have complex
-      graphical tools to configure the system. As a result the
-      learning curve of Slackware Linux can be high for inexperienced
-      GNU/Linux users, but it provides more transparency and
-      flexibility. Besides that you get a deeper understanding of
-      GNU/Linux with no-frills distributions like Slackware Linux.
+      Em contraste à muitas outras distribuições GNU/Linux, o Slackware
+      Linux aderiu ao então chamado princípio KISS (Keep It Simple Stupid -
+      Mantenha Isto Simples, Estúpido). Isto que dizer que o Slackware 
+      Linux não possui ferramentas gráficas complexas para configurar o
+      sistema. Como resultado disto a curva de aprendizado pode ser alta
+      para os usuários do GNU/Linux menos experientes, e provê mais
+      transparência e flexibilidade. Além disso você terá um melhor 
+      entendimento do GNU/Linux com distribuições sem furos como o
+      Slackware Linux.
     </para>
 
     <para>
-      Another distinguishing aspect of Slackware Linux, that also
-      <quote>complies</quote> with the KISS principle, is the
-      Slackware Linux package manager. Slackware Linux does not have a
-      complex package manager like RPM or dpkg. Packages are normal
-      tgz (tar/gzip) files, often with an additional installation
-      script and a package description file. For novice users tgz is
-      much more powerful than RPM, and avoids dependency
-      problems. Another widely known feature of Slackware Linux is its
-      initialization scripts. In contrast to most other GNU/Linux
-      distributions Slackware Linux does not have a directory for each
-      runlevel with symbolic links to services that have to be started
-      or killed in that runlevel. It uses a simpler approach in which
-      you can enable or disable services by twiddling the executable
-      bit of an initialization script.
+      Outro aspecto que destaca o Slackware Linux que também <quote>cumpre</quote>
+      com o princípio KISS, é o seu gerenciador de pacotes. O Slackware
+      Linux não possui um gerenciador de pacotes complexo como o RPM ou
+      o dpkg. Pacotes são arquivos tgz (tar/gzip), com um script adicional
+      de instalação e um arquivo de descrição do pacote. Para usuários novatos
+      o tgz é muito mais poderoso que o RPM, e não traz problemas de dependências.
+      Outra característica muito conhecida do Slackware Linux são os arquivos de
+      inicialização. Em contraste à maioria das outras distribuições o Slackware
+      Linux não tem um diretório para cada runlevel com links simbólicos para cada
+      serviço que deve ser iniciado ou parado naquele runlevel. Ele usa o simples
+      conceito em que você pode habilitar ou desabilitar serviços retirando a
+      permissão de execução do script de inicialização.
     </para>
 
     <para>
-      The packages in Slackware Linux are compiled with as little
-      modifications as possible. This means you can use most general
-      GNU/Linux documentation.
+      Os pacotes no Slackware Linux são compilado com as menores modificações
+      possíveis. Isto garante que você pode usar qualquer documentação GNU/Linux.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-intro-unix">
-    <title>The UNIX philosophy</title>
+    <title>A filosofia UNIX</title>
 
     <para>
-      Since GNU/Linux is a free reimplementation of the UNIX operating
-      system, it is a good idea to look at the philosophy that made
-      UNIX widely loved.  Doug McIlroy summarized the UNIX philosophy
-      in three simple rules:
+      Desde que o GNU/Linux é uma reimplementação livre do sistema operacional
+      UNIX, é uma boa idéia conhecer a filosofia que fez com que o UNIX fosse
+      tão amado. Doug McIlroy sumarizou a filosofia UNIX em três simples regras:
     </para>
 
     <itemizedlist>
       <listitem>
         <para>
-          Write programs that do one thing and do it well.
+          Escreva programas que façam alguma coisa e que faça isto bem.
         </para>
       </listitem>
       <listitem>
         <para>
-          Write programs to work together.
+          Escreva programas para trabalharem juntos.
         </para>
       </listitem>
       <listitem>
         <para>
-          Write programs to handle text streams, because that is a
-          universal interface.
+          Escreva programas que manipulem texto, porque é uma
+          interface universal.
         </para>
       </listitem>
     </itemizedlist>
 
     <para>
-      Odds are that you do not intend to write programs for
-      GNU/Linux. However, even as a user these basic UNIX rules can
-      mean a lot to you. Once you get to know the essential commands
-      that have been part of UNIX for many years, you will be able to
-      combine simple programs to solve complex problems. Keep this in
-      mind while you learn Slackware Linux; try to get a feeling for
-      how you can divide complex tasks in simple combined operations.
+      É provável que você não queira escrever programas para o GNU/Linux.
+      Entretanto, mesmo como usuário, essas regras básicas do UNIX podem
+      ajudá-lo muito. Quando você souber como utilizar os comandos
+      essenciais que fazem parte dos sistemas UNIX, você poderá combiná-los
+      para resolver problemas complexos. Tenha isto em mente enquanto você
+      estiver aprendendo sobre o Slackware Linux; tente imaginar como você
+      pode dividir tarefas complexas em simples operações combinadas.
     </para>
   </sect1>
 
   <sect1 xml:id="free-software">
-    <title>Free and open source software</title>
+    <title>Software livre e de código aberto</title>
 
     <para>
-      Most packages in Slackware Linux are published under a free
-      software or open source license. Under these licenses software
-      may be used, studied, changed and distributed
-      freely. Practically, this means that the software is available
-      and redistributable in source and binary form. Although the free
-      software and open source software movements share many licenses
-      and principles, there are subtle differences between both
-      movements. The open source movement tends to focus on the
-      economic and technical advantages of sharing source code, while
-      the free software movement puts accent on the ethical side of
-      providing sources and binaries freely. As the GNU website puts
-      it: <quote>Free software is a matter of liberty, not price.  To
-      understand the concept, you should think of free as in free
-      speech, not as in free beer.<footnote>
+      A maioria dos pacotes no Slackware Linux são distribuídos
+      sob uma licença livre ou uma licença de código aberto. Sob
+      estas licenças, o software pode ser usado, estudado, alterado,
+      e distribuído gratuitamente. Praticamente, isto quer dizer que
+      ele está disponível e é redistribuído em forma de código
+      fonte ou binário. Embora o movimento do software livre e o de
+      código aberto compartilhem muitas licenças e princípios, há
+      algumas diferenças entre ambos. O movimento do código aberto
+      tende a focar nas vantagens técnicas e econômicas de
+      compartilhar o código fonte, enquanto o movimento do software
+      livre se concentra no lado ético de prover o código fonte e
+      binários gratuitamente. No site do GNU diz isso:
+      <quote>Software livre é uma questão de liberdade, não de preço.
+      Para entender o conceito, você deve pensar em "liberdade de
+      expressão", não em "cerveja grátis".<footnote>
       <para>
 	<ulink url="http://www.gnu.org/philosophy/free-sw.html" />
       </para>
     </footnote></quote>
-
-      In the spirit of free and open source software the source code
-      of almost all packages is included in the official Slackware
-      Linux CD set or DVD.
+      E no espírito de software livre e de código aberto, a maioria
+      do código fonte dos pacotes estão inclusos no conjunto oficial
+      de CDs ou DVDs do Slackware Linux.
     </para>
   </sect1>
 
   <sect1 xml:id="slackware-features">
-    <title>Slackware Linux 12.0 features</title>
+    <title>Caracerísticas do Slackware Linux 12.0</title>
 
     <para>
       <itemizedlist>
 	<listitem>
 	  <para>
 	    <emphasis role="bold">Linux 2.6.21.5</emphasis> -
-	    Slackware Linux uses as modern high-performance Linux
-	    kernel. The kernel includes support for all modern disk
-	    controllers, LVM, Software RAID, encrypted disks, and
-	    multiple processors/cores. By default,
-	    <emphasis>udev</emphasis> is enabled for automatic
-	    management of device nodes.
+            o Slackware Linux usa um kernel Linux moderno e de alta
+            performance. O kernel inclui suporte para todos os discos
+            modernos, LVM, Software RAID, discos encriptados, e
+            múltiplos processadores/núcleos. Por padrão, o
+            <emphasis>udev</emphasis> é habilitado para gerenciar
+            automaticamente os dispositivos.
           </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    <emphasis role="bold">HAL</emphasis> - the HAL (Hardware
-	    Abstraction Layer) is now included too. This provides a
-	    uniform API for desktop applications to use hardware.  It
-	    makes automatic mounting of disks and CDs considerably
-	    easier under Xfce and KDE.
+	    <emphasis role="bold">HAL</emphasis> - o HAL (Hardware
+	    Abstraction Layer) está disponível também. Ele provê uma
+	    API uniforme para que as aplicaçõe usem o hardware. Ele
+	    faz a montagem automática de discos e CDs considerávelmente
+	    fácil sobre o Xfce e o KDE.
 	  </para>
 	</listitem>
 	<listitem>
