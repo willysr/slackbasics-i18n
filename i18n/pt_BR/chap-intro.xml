@@ -30,7 +30,7 @@
       Em 1984, Richard Stallman iniciou um ambicioso projeto que tinha
       como objetivo desenvolver um sistema operacional UNIX-like livre.
       O nome deste sistema é <acronym>GNU</acronym>, que é um acrônimo
-      para <quote>GNU's Not UNIX</quote>. Em meado de 1990, a maioria do
+      para <quote>GNU's Not UNIX</quote>. Em meado de 1990, a maioria dos
       componentes do sistema operacional GNU foram escritos, com exceção
       do kernel. Dois anos antes, em 1988, foi decidido que o projeto GNU
       iria usar o microkernel Mach 3.0 como fundamento para o seu kernel.
@@ -176,7 +176,7 @@
 	    <emphasis role="bold">Linux 2.6.21.5</emphasis> -
             o Slackware Linux usa um kernel Linux moderno e de alta
             performance. O kernel inclui suporte para todos os discos
-            modernos, LVM, Software RAID, discos encriptados, e
+            modernos, LVM, Software RAID, discos encriptados e
             múltiplos processadores/núcleos. Por padrão, o
             <emphasis>udev</emphasis> é habilitado para gerenciar
             automaticamente os dispositivos.
@@ -193,44 +193,44 @@
 	</listitem>
 	<listitem>
 	  <para>
-            <emphasis role="bold">X11 7.2.0</emphasis> - This is the
-            first version of Slackware Linux to use modular X.  This
-            means that the X11 components are separated in many small
-            packages for easier maintenance and lighter weight
-            upgrades.
+            <emphasis role="bold">X11 7.2.0</emphasis> - Esta é a
+            primeira versão do Slackware Linux a usar o X modular.
+	    Isto que dizer que os componentes do X11 estão separados
+	    em diversos pacotes pequenos para facilitar a manutenção
+	    e atualização.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">GCC 4.1.2</emphasis> - Slackware
-            Linux 12.0 includes a completely revised toolchain based
-            on the GNU Compiler Collection 4.1.2. GCC provides C, C++,
-            Objective-C, Fortran-77/95, and Ada 95
-            compilers. Additionally, version 2.5 of the GNU C library is
-            used.
+            <emphasis role="bold">GCC 4.1.2</emphasis> - o Slackware
+	    Linux 12.0 inclui uma cadeia de ferramentas completamente
+	    revisada baseada no GNU Compiler Collection 4.1.2. O GCC
+	    provê compiladores para o C, C++, Objective-c, Fortran-77/95
+	    e Ada 95. Adicionalmente, a versão 2.5 da biblioteca GNU C
+	    é utilizada.
           </para>
         </listitem>
 	<listitem>
 	  <para>
-	    <emphasis role="bold">Apache 2.2.4</emphasis> - Apache was
-	    upgraded to a new major version. Apache 2.x is a
-	    substantial rewrite of the old 1.3.x series.
+            <emphasis role="bold">Apache 2.2.4</emphasis> - o Apache foi
+            atualizado para a mais nova versão. A série 2.x é uma
+	    reimplementação substancial da antiga série 1.3.x.
 	  </para>
 	</listitem>
         <listitem>
           <para>
-            <emphasis role="bold">The K Desktop Environment (KDE)
-            3.5.7</emphasis> - The full KDE environment is provided,
-            which includes KOffice, the Konqueror web browser,
-            multimedia programs, development tools, and many more
-            useful applications.
+            <emphasis role="bold">O K Desktop Environment (KDE)
+	    3.5.7</emphasis> - o ambiente KDE completo está
+            disponível, e inclui p KOffice, o browser web Konqueror,
+            programas de multimídia, ferramentas de desenvolvimento,
+            e muitas outras aplicações úteis.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">Xfce 4.4.1</emphasis> - Xfce is a
-            lightweight desktop environment based on GTK2. It embodies
-            the UNIX spirit of modularity and reusability.
+	    <emphasis role="bold">Xfce 4.4.1</emphasis> - Xfce é um
+            ambiente desktop muito leve baseado em GTK2. Ele possui
+            o espírito UNIX de modularidade e reusabilidade.
           </para>
         </listitem>
       </itemizedlist>
@@ -238,27 +238,27 @@
   </sect1>
 
   <sect1 xml:id="chap-intro-getting">
-    <title>Getting Slackware Linux</title>
+    <title>Obtendo o Slackware Linux</title>
 
     <para>
-      Slackware Linux is freely downloadable from the official
-      Slackware Linux mirrors. The list of Slackware mirrors is
-      available at <ulink url="http://www.slackware.com/getslack/" />.
+      O Slackware Linux pode ser baixado gratuitamente de um dos
+      espelhos oficiais. A lista de espelhos do Slackware está
+      disponível em <ulink url="http://www.slackware.com/getslack/" />.
     </para>
 
     <para>
-      You can also order Slackware Linux as a CD set or DVD from the
-      Slackware Store.  Many Internet shops also provide Slackware
-      Linux cheaply on CD-ROM or DVD, but you are only supporting
-      Slackware Linux financially if you buy an official CD set or
-      DVD. The Slackware Store also offers Slackware Linux
-      subscriptions.  A subscriber automatically receives new
-      Slackware Linux releases at a reduced price.
+      Você pode também encomendar o conjunto de CDs ou o DVD na
+      Slackware Store. Muitas lojas na internet também vendem os CDs
+      e o DVD por preços baixos, mas você só estará ajudando 
+      financeiramente o Slackware Linux se comprar na loja oficial.
+      O Slackware Store também oferece inscrições. O inscrito recebe
+      automaticamente novas versões do Slackware Linux por preços
+      mais baixos.
     </para>
 
     <para>
-      If you would like to have more information about purchasing
-      Slackware Linux, visit the Slackware Store website at <ulink
+      Se você gostaria de obter mais informações sobre comprar o
+      Slackware Linux, visite o site em <ulink
       url="http://store.slackware.com/" />.
     </para>
   </sect1>
