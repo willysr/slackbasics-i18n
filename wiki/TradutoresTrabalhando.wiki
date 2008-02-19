@@ -5,9 +5,9 @@
 Preface
 I. Getting started
 
-    1. About this book (Thiago Coutinho)
+    1. About this book (Thiago Coutinho) *concluído!*
 
-    2. An introduction to Slackware Linux (Thiago Coutinho)
+    2. An introduction to Slackware Linux (Thiago Coutinho) *concluído!*
 
     3. Sources of help (Thiago Coutinho)
 
