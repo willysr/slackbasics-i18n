@@ -3,53 +3,52 @@
          xmlns:xl="http://www.w3.org/1999/xlink"
          xml:lang="en"
          xml:id="chap-help">
-  <title>Sources of help</title>
+  <title>Fontes de ajuda</title>
 
   <para>
-    There is a wealth of information available about many subjects
-    related to GNU/Linux. Most general documentation applies to
-    Slackware Linux, because the software in the distribution has been
-    compiled from source code that has been altered as little as
-    possible. This chapter provides some pointers to information and
-    documentation that can be found on an installed Slackware Linux
-    system, and on the Internet.
+    Há uma série de informação disponível sobre muitos assuntos
+    relacionados ao GNU/Linux. A maioria da documentação se aplica
+    ao Slackware Linux, porque as aplicações da distribuição foram
+    compiladas diretamente do código fonte que foi alterado o
+    mínimo possível. Este capítulo provê alguns pontos de informação
+    e documentação que podem ser encontrados em um sistema Slackware
+    Linux instalado ou na Internet.
   </para>
 
   <sect1 xml:id="chap-help-system">
-    <title>On your system</title>
+    <title>No seu sistema</title>
 
     <sect2 xml:id="chap-help-system-howtos">
       <title>Linux HOWTO's</title>
 
       <para>
-        The Linux HOWTOs are a collection of documents which cover
-        specific subjects related to GNU/Linux. Most Linux HOWTOs are
-        not tailored to a specific distribution, therefore they are
-        very useful for Slackware Linux users. The
-        <emphasis>linux-howtos</emphasis> package in the
-        <quote>f</quote> software set contains the HOWTO
-        collection. After installing this package the HOWTOs are
-        available from the <filename>/usr/doc/Linux-HOWTOs/</filename>
-        directory. Slackware Linux also contains a small collection of
-        Linux-related <acronym>FAQs</acronym> (FAQs are documents that
-        answer Frequently Asked Questions). The Linux FAQs are
-        installed to the <filename>/usr/doc/Linux-FAQs/</filename>
-        directory, and are available from the
-        <emphasis>linux-faqs</emphasis> package, which is also part of
-        the <quote>f</quote> software set.
+	Os Linux HOWTOs são uma coleção de documentos que cobrem
+	assuntos específicos relacionados ao GNU/Linux. A maioria
+	dos Linux HOWTOs não são focados em nenhuma distribuição Linux
+	específica, entretanto eles são muito úteis para usuários do
+	Slackware Linux. O pacote <emphasis>linux-howtos</emphasis> da
+	série <quote>f</quote> contém a coleção HOWTO. Depois de instalar
+	este pacote os HOWTOs estarão disponíveis no diretório
+	<filename>/usr/doc/Linux-HOWTOs/</filename>. O Slackware Linux
+	também contém uma pequena coleção de <acronym>FAQs</acronym>
+	relacionados ao Linux (FAQs são documentos que respondem à
+	perguntas feitas mais frequentes). Os FAQs do Linux são
+	instalados no diretório <filename>/usr/doc/Linux-FAQs/</filename>, 
+	e está disponível no pacote <emphasis>linux-faqs</emphasis>, 
+	que faz parte da série <quote>f</quote>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-help-system-manpages">
-      <title>Manual pages</title>
+      <title>Páginas de manuais</title>
 
       <para>
-        Most UNIX-like commands are covered by a traditional UNIX help
-        system called the <emphasis>manual pages</emphasis>. You can
-        read the manual page of a program with the
-        <command>man</command> command. Executing
-        <command>man</command> with the name of a command as an
-        argument shows the manual page for that command. For instance,
+        A maioria do comandos UNIX-like são descritos pelo tradicional
+	sistema de ajuda UNIX chamado <emphasis>páginas de manual</emphasis>. 
+	Você pode ler uma página de manual de um programa com o comando
+	<command>man</command>. Executando <command>man</command> com 
+	o nome do comando como argumento mostra a página de manual para 
+	o comando. Por exemplo, 
       </para>
 
       <screen>
@@ -57,40 +56,38 @@ $ <userinput>man ls</userinput>
       </screen>
 
       <para>
-	shows the manual page of the <command>ls</command> command.
+        mostra a página de manual do comando <command>ls</command>.
       </para>
 
       <para>
-	If you do not know the exact name of a manual page or command,
-	you can search through the manual pages with a keyword. The
-	<parameter class="command">-k</parameter> option is provided
-	to make use of this facility:
+        Se você não sabe exatamente qual o nome da página ou comando,
+	você pode procurar através das páginas de manual usando uma 
+	palavra	chave. A opção <parameter class="command">-k</parameter>
+	existe para o uso desta facilidade:
       </para>
 
       <screen>
 $ <userinput>man -k rmdir</userinput>
-hrmdir               (1)  - remove an empty HFS directory
-rmdir                (1)  - remove empty directories
-rmdir                (2)  - delete a directory
+hrmdir               (1)  - remove um diretório HFS vazio
+rmdir                (1)  - remove diretórios vazios
+rmdir                (2)  - remove um diretório
       </screen>
 
       <para>
-        The manual page collection is very extensive, and covers more
-        subjects than just commands. The following sections of manual
-        pages are available:
+        A coleção de páginas de manuais é muito extensa, e cobre não apenas 
+	comandos. A seguinte seção páginas de manual estão disponíveis:
       </para>
 
       <literallayout>
 1   Executable programs or shell commands
-2   System calls (functions provided by the kernel)
-3   Library calls (functions within program libraries)
-4   Special files (usually found in /dev)
-5   File formats and conventions eg /etc/passwd
-6   Games
-7   Miscellaneous  (including  macro  packages and conven-
-    tions), e.g. man(7), groff(7)
-8   System administration commands (usually only for root)
-9   Linux routines [Non standard]
+2   Chamadas de sistem (funções providas pelo kernel)
+3   Chamadas de bibliotecas (funções de bibliotecas de programas)
+4   Arquivos especiais (usualmente encontrados em /dev)
+5   Formatos de arquivos e convenções e.g. /etc/passwd
+6   Jogos
+7   Utilidades (incluindo pacotes macroi e convenções), e.g. man(7), groff(7)
+8   Comandos de administração do sistema (usualmente somente para o root)
+9   Rotinas do Linux [Não padronizado]
       </literallayout>
 
       <para>
