@@ -35,13 +35,13 @@ executando:
 </screen> 
 
 <para>
-The Apache configuration can be altered in the 
-<filename>/etc/apache/httpd.conf</filename> file. Apache can be
-stopped/started/restarted every moment with the <command>apachectl</command>
-command, and the <parameter class="command">stop</parameter>, 
-<parameter class="command">start</parameter> and 
-<parameter class="command">restart</parameter> parameters. For example,
-execute the following command to restart Apache:
+A configuração do Apache pode ser alterada no arquivo
+<filename>/etc/apache/httpd.conf</filename>. Ele pode ser
+parado/iniciado/reiniciado a qualquer momento com o comando <command>apachectl</command>, 
+junto com o parâmetro <parameter class="command">stop</parameter>, 
+<parameter class="command">start</parameter> e 
+<parameter class="command">restart</parameter>. Por exemplo, 
+execute o seguinte comando para reiniciar o Apache:
 </para>
 
 <screen>
@@ -52,15 +52,15 @@ execute the following command to restart Apache:
 </sect1>
 
 <sect1>
-<title>User directories</title>
+<title>Diretórios dos usuários</title>
 
 <para>
-Apache provides support for so-call user directories. This means every
-user gets web space in the form of <emphasis>http://host/~user/</emphasis>. The
-contents of <quote>~user/</quote> is stored in a subdirectory in the
-home directory of the user. This directory can be specified using the
-<quote>UserDir</quote> option in <filename>httpd.conf</filename>, for
-example:
+O Apache provê suporte à chamadas para os diretórios dos usuários.
+Isto quer dizer que cada usuário tem um espaço na web no endereço
+<emphasis>http://host/~usuario/</emphasis>. O conteúdo de <quote>~usuario/</quote> 
+fica em um subdiretório do diretório <quote>home</quote> do usuário. Este 
+diretório pode ser especificado usando a opção <quote>UserDir</quote> 
+no arquivo <filename>httpd.conf</filename>, por exemplo:
 </para>
 
 <screen>
@@ -68,36 +68,36 @@ UserDir public_html
 </screen>
 
 <para>
-This specifies that the <filename>public_html</filename> directory should
-be used for storing the web pages. For example, the web pages at URL 
-<emphasis>http://host/~snail/</emphasis> are stored in 
-<filename>/home/snail/public_html</filename>.
+Isto especifica que o diretório <filename>public_html</filename> deve 
+ser usado para armazenar as páginas web. Por exemplo, as páginas web
+do endereço <emphasis>http://host/~snail/</emphasis> estão armazenadas 
+em <filename>/home/snail/public_html</filename>.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Virtual hosts</title>
+<title>Hosts virtuais</title>
 
 <para>
-The default documentroot for Apache under Slackware Linux is
-<filename>/var/www/htdocs</filename>. Without using virtual hosts
-every client connecting to the Apache server will receive the
-website in this directory. So, if we have two hostnames pointing
-to the server, <quote>www.example.org</quote> and 
-<quote>forum.example.org</quote>, both will display the same website.
-You can make separate sites for different hostnames by using
-virtual hosts.
+No Slackware Linux, o diretório raiz do Apache é
+<filename>/var/www/htdocs</filename>. Sem o uso de hosts virtuais, 
+todos os clientes que conectarem no servidor Apache visualizarão
+o website deste diretório. Então se nós tivermos dois hostnames apontando
+para o servidor, <quote>www.example.org</quote> and <quote>forum.example.org</quote>, 
+ambos irão mostrar o mesmo website.
+Você pode separar os sites para diferentes hostnames usando 
+hosts virtuais.
 </para>
 
 <para>
-In this example we are going to look how you can make two virtual
-hosts, one for <quote>www.example.org</quote>, with the documentroot
-<filename>/var/www/htdocs-www</filename>, and <quote>forum.example.org</quote>,
-with the documentroot <filename>/var/www/htdocs-forum</filename>. First
-of all we have to specify which IP addresses Apache should listen to.
-Somewhere in the <filename>/etc/apache/httpd.conf</filename> configuration
-file you will find the following line:
+Neste exemplo nós iremos ver como você pode fazer dois hosts virtuais,
+um para <quote>www.example.org</quote>, com o diretório raiz em
+<filename>/var/www/htdocs-www</filename>, e <quote>forum.example.org</quote>,
+com o diretório raiz em <filename>/var/www/htdocs-forum</filename>. Primeiramente 
+nós precisamos especificar em qual endereço IP o Apache deverá escutar.
+Em algum lugar do arquivo de configuração <filename>/etc/apache/httpd.conf</filename> 
+você encontrará a seguinte linha:
 </para>
 
 <screen>
@@ -105,10 +105,11 @@ file you will find the following line:
 </screen>
 
 <para>
-This line has to be commented out to use name-based virtual hosts.
-Remove the comment character
-(#) and change the parameter to <quote>BindAddress IP:port</quote>, or
-<quote>BindAddress *:port</quote> if you want Apache to bind to all IP addresses
+Esta linha fica comentada para usar um virtual host baseado em nomes.
+Remova o caracter de comentário (#) e altere o parâmetro para 
+<quote>BindAddress IP:porta</quote>, ou <quote>BindAddress *:porta</quote> 
+se você precisa 
+if you want Apache to bind to all IP addresses
 the host has. Suppose we want to provide virtual hosts for IP address 
 192.168.1.201 port 80 (the default Apache port),
 we would change the line to:
