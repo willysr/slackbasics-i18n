@@ -108,11 +108,10 @@ você encontrará a seguinte linha:
 Esta linha fica comentada para usar um virtual host baseado em nomes.
 Remova o caracter de comentário (#) e altere o parâmetro para 
 <quote>BindAddress IP:porta</quote>, ou <quote>BindAddress *:porta</quote> 
-se você precisa 
-if you want Apache to bind to all IP addresses
-the host has. Suppose we want to provide virtual hosts for IP address 
-192.168.1.201 port 80 (the default Apache port),
-we would change the line to:
+se você precisa que o Apache escute em todos os endereços IP que o host 
+possui. Supondo que nós queiramos prover hosts virtuais para o endereço 
+IP 192.168.1.201 na porta 80 (porta padrão do Apache), devemos mudar a 
+linha para:
 </para>
 
 <screen>
@@ -120,8 +119,8 @@ NameVirtualHost 192.168.1.201:80
 </screen>
 
 <para>
-Somewhere below the NameVirtualHost line you can find a commented example
-of a virtualhost:
+Em algum lugar depois da linha NameVirtualHost você irá encontrar um exemplo
+de host virtual comentado:
 </para>
 
 <screen>
@@ -135,9 +134,9 @@ of a virtualhost:
 </screen>
 
 <para>
-You can use this example as a guideline. For example, if we want to use
-all the default values, and we want to write the logs for both virtual
-hosts to the default Apache logs, we would add these lines:
+Você pode usar este exemplo. Se quisermos usar todos valores padrões, 
+e quisermos escrever os logs de ambos os hosts virtuais junto
+com os logs do Apache, devemos adicionar estas linhas:
 </para>
 
 <screen>
