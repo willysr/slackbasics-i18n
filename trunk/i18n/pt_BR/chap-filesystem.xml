@@ -1,216 +1,212 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xmlns:xl="http://www.w3.org/1999/xlink"
-	 xml:lang="en"
+	 xml:lang="pt_BR"
 	 xml:id="chap-filesystem">
-  <title>Files and directories</title>
+  <title>Arquivos e diretórios</title>
 
   <sect1 xml:id="chap-filesystem-introduction">
-    <title>Some theory</title>
+    <title>Um pouco de teoria</title>
 
     <para>
-      Before we move on to look at practical filesystem operations, we
-      are going to look at a more theoretical overview of how
-      filesystems on UNIX-like systems work. Slackware Linux supports
-      many different filesystems, but all these filesystems use
-      virtually the same semantics. These semantics are provided
-      through the <emphasis>Virtual Filesystem</emphasis> (VFS)
-      layer, giving a generic layer for disk and network filesystems.
+      Antes de começarmos a ver as operações práticas com sistemas de
+      arquivos, vamos conferir uma visão geral mais teórica de como
+      sistemas de arquivos funcionam em sistemas UNIX-like.  O Slackware
+      Linux dá suporte a vários sistemas de arquivos distintos, mas
+      todos estes sistemas de arquivos usam essencialmente as mesmas
+      semânticas.  Estas semânticas são oferecidas através de uma camada
+      de <emphasis>Sistema de Arquivo Virtual</emphasis> (VFS, da sigla
+      em inglês), que proporciona uma camada genérica para sistemas de
+      arquivo em disco ou em rede.
     </para>
 
     <sect2 xml:id="chap-filesystem-introduction-atoms">
-      <title>inodes, directories and data</title>
+      <title>inodes, diretórios e dados</title>
 
       <para>
-	The filesystem consists of two types of elements: data and
-	metadata. The metadata describes the actual data blocks that
-	are on the disk. Most filesystems use information nodes
-	(inodes) to provide store metadata. Most filesystems store the
-	following data in their inodes:
+    O sistema de arquivos consiste de dois tipos de elementos: dados e
+    metadados.  Os metadados descrevem os atuais blocos de dados que
+    estão no disco.  Muitos sistemas de arquivo usam nós de informação
+    (inodes) para manter metadados.  Muitos sistemas de arquivo
+    armazenam os seguintes dados em seus inodes:
       </para>
 
       <table xml:id="chap-filesystem-introduction-atoms-inodes">
-        <title>Common inode fields</title>
+        <title>Campos comuns em um inode</title>
         <tgroup cols="2">
           <thead>
             <row>
-              <entry>Field</entry>
-              <entry>Description</entry>
+              <entry>Campo</entry>
+              <entry>Descrição</entry>
             </row>
           </thead>
           <tbody>
             <row>
               <entry>mode</entry>
-              <entry>The file permissions.</entry>
+              <entry>As permissões do arquivo..</entry>
             </row>
             <row>
               <entry>uid</entry>
-              <entry>The user ID of the owner of the file.</entry>
+              <entry>O ID do usuário que é o dono do arquivo.</entry>
             </row>
             <row>
               <entry>gid</entry>
-              <entry>The group ID of the group of the file.</entry>
+              <entry>O ID do grupo do arquivo.</entry>
             </row>
             <row>
               <entry>size</entry>
-              <entry>Size of the file in bytes.</entry>
+              <entry>O tamanho do arquivo em bytes.</entry>
             </row>
             <row>
               <entry>ctime</entry>
-              <entry>File creation time.</entry>
+              <entry>Momento de criação do arquivo.</entry>
             </row>
             <row>
               <entry>mtime</entry>
-              <entry>Time of the last file modification.</entry>
+              <entry>Momento da última modificação do arquivo.</entry>
             </row>
             <row>
               <entry>links_count</entry>
-              <entry>The number of links pointing to this inode.</entry>
+              <entry>O número de links apontando para este inode.</entry>
             </row>
             <row>
               <entry>i_block</entry>
-              <entry>Pointers to data blocks</entry>
+              <entry>Ponteiros para os blocos de dados.</entry>
             </row>
           </tbody>
         </tgroup>
       </table>
 
       <para>
-	If you are not a UNIX or Linux afficiendo, these names will
-	probably sound bogus to you, but we will clear them up in the
-	following sections. At any rate, you can probably deduct the
-	relation between inodes and data from this table, and
-	specifically the <emphasis>i_block</emphasis> field: every
-	inode has pointers to the data blocks that the inode provides
-	information for. Together, the inode and data blocks are the
-	actual file on the filesystem.
+    Se você não for um entusiasta de UNIX ou Linux, estes nomes
+    provavelmente deve estar soando um pouco estranhos a você, mas vamos
+    esclarecê-los melhor nas seções seguintes.  De qualquer forma,
+    a partir desta tabela possivelmente você já pode deduzir a relação
+    entre inodes e dados, e especificamente sobre o campo
+    <emphasis>i_block</emphasis>: cada inode tem ponteiros para os
+    blocos de dados sobre os quais o inode provê informações.  Além
+    disso, o inome e os blocos de dados são o próprio arquivo no sistema
+    de arquivos.
       </para>
 
       <para>
-	You may wonder by now where the names of files (and
-	directories) reside, since there is no file name field in the
-	inode. Actually, the names of the files are separated from the
-	inode and data blocks, which allows you to do groovy stuff,
-	like giving the same file more than one name. The filenames
-	are stored in so-called directory entries. These entries
-	specify a filename and the inode of the file. Since
-	directories are also represented by inodes, a directory
-	structure can also be constructed in this manner.
+    Agora você pode estar se perguntando onde fica a informação com o
+    nome dos arquivos (e diretórios), já que não há um campo para o nome
+    do arquivo no inode.  Atualmente, os nomes dos arquivos são
+    armazenados nas assim chamadas entradas de diretório.  Estas
+    entradas especificam um nome de arquivo e o inode do arquivo.  Uma
+    vez que diretórios também são representados por inodes, uma
+    estrutura de diretórios pode ser construída desta maneira.
       </para>
 
       <para>
-	We can simply show how this all works by illustrating what the
-	kernel does when we execute the command <command>cat
-	/home/daniel/note.txt</command>
+    Podemos mostrar de uma forma simplicada como isto tudo funciona
+    ilustrando o que o kernel faz quando executamos o comando
+	<command>cat /home/daniel/note.txt</command>
       </para>
 
       <orderedlist>
         <listitem>
 	  <para>
-	    The system reads the inode of the <filename>/</filename>
-	    directory, checks if the user is allowed to access this
-	    inode, and reads the data block to find the inode number
-	    of the <filename>home</filename> directory.
+        O sistema lê o inode do diretório <filename>/</filename>,
+        verifica se o usuário tem permissão para acessar este inode, e
+        lê o bloco de dados para encontrar o número do inode do
+	    diretório <filename>home</filename>.
 	  </para>
         </listitem>
         <listitem>
           <para>
-	    The system reads the inode of the
-	    <filename>home</filename> directory, checks if the user is
-	    allowed to access this inode, and reads the data block to
-	    find the inode number of the <filename>daniel</filename>
-	    directory. </para>
+        O sistema lê o inode do diretório <filename>home</filename>,
+        verifica se o usuário tem permissão para acessar este inode, e
+        lê o bloco de dados para encontrar o número do inode do
+	    diretório <filename>daniel</filename>.</para>
         </listitem>
         <listitem>
           <para>
-	    The system reads the inode of the
-	    <filename>home</filename> directory, checks if the user is
-	    allowed to access this inode, and reads the data block to
-	    find the inode number of the <filename>note.txt</filename>
-	    file.
+        O sistema lê o inode do diretório <filename>daniel</filename>,
+        verifica se o usuário tem permissão para acessar este inode, e
+        lê o bloco de dados para encontrar o número do inode do arquivo
+        <filename>note.txt</filename>
 	  </para>
         </listitem>
         <listitem>
           <para>
-	    The system reads the inode of the
-	    <filename>notice.txt</filename> file, checks if the user
-	    is allowed to access this inode, and returns the data
-	    blocks to <command>cat</command> through the
-	    <emphasis>read()</emphasis> system call. </para>
+        O sistema lê o inode do arquivo <filename>note.txt</filename>,
+        verifica se o usuário tem permissão para acessar este inode, e
+        retorna o bloco de dados para o <command>cat</command> por meio
+        da chamada de sistema <emphasis>read()</emphasis>.</para>
         </listitem>
       </orderedlist>
     </sect2>
 
     <sect2 xml:id="chap-filesystem-introduction-permissions">
-      <title>File permissions</title>
+      <title>Permissões de arquivos</title>
 
       <para>
-	As we have described earlier, Linux is a multi-user
-	system. This means that each user has his/her own files (that
-	are usually located in the home directory). Besides that users
-	can be members of a group, which may give the user additional
-	privileges.
+    Como descrevemos anteriormente, Linux é um sistema multi-usuário.
+    Isto significa que cada usuário tem seus próprios arquivos (que
+    usualmente estão localizados no diretório home).  Além disso, os
+    usuários podem ser membros de grupos, que podem lhes dar privilégios
+    adicionais de usuário.
       </para>
 
       <para>
-	As you have seen in the inode field table, every file has a
-	owner and a group.  Traditional UNIX access control gives
-	read, write, or executable permissions to the file owner, file
-	group, and other users. These permissions are stored in the
-	<emphasis>mode</emphasis> field of the inode. The mode field
-	represents the file permissions as a four digit octal
-	number. The first digit represents some special
-	options, the second digit stores the owner permissions, the
-	third the group permissions, and the fourth the permissions
-	for other users. The permissions are established by digit by
-	using or adding one of the number in <xref
-	linkend="chap-filesystem-permissions-numbers"/>
+    Como você viu na tabela dos campos do inode, cada arquivo tem um
+    usuário e um grupo.  O controle de acesso tradicional do UNIX
+    possibilita permissões para leitura, escrita, ou execução ao dono do
+    arquivo, para seu grupo, e para os outros usuários.  Estas
+    permissões são armazenadas no campo <emphasis>mode</emphasis> de
+    cada inode.  O campo mode representa as permissões do arquivo como
+    quatro dígitos em numeração octal.  O primeiro dígito representa
+    certas opções especiais; o segundo dígito armazena as permissões do
+    dono do arquivo; o terceiro, as permissões de grupo e o quarto
+    dígito, as permissões para os outros usuários.  As permissões são
+    estabelecidas pelos dígitos usando-se ou adicionando-se um dos
+    números em <xref linkend="chap-filesystem-permissions-numbers"/>
       </para>
 
       <table xml:id="chap-filesystem-permissions-numbers">
-        <title>Meaning of numbers in the mode octet</title>
+        <title>Significado dos números no octeto do campo mode</title>
         <tgroup cols="2">
           <thead>
             <row>
-              <entry>Number</entry>
-              <entry>Meaning</entry>
+              <entry>Número</entry>
+              <entry>Significado</entry>
             </row>
           </thead>
           <tbody>
             <row>
               <entry>1</entry>
-              <entry>Execute (x)</entry>
+              <entry>Execução (x)</entry>
             </row>
             <row>
               <entry>2</entry>
-              <entry>Write (w)</entry>
+              <entry>Escrita (w)</entry>
             </row>
             <row>
               <entry>4</entry>
-              <entry>Read (r)</entry>
+              <entry>Leitura (r)</entry>
             </row>
           </tbody>
         </tgroup>
       </table>
 
       <para>
-	Now, suppose that a file has mode <emphasis>0644</emphasis>,
-	this means that the file is readable and writable by the owner
-	(<emphasis>6</emphasis>), and readable by the file group
-	(<emphasis>4</emphasis>) and others
-	(<emphasis>4</emphasis>). </para>
+    Agora, suponha que um arquivo tenha um mode
+    <emphasis>0644</emphasis>, isto significa que o arquivo é legível e
+    passível de escrita pelo dono (<emphasis>6</emphasis>, e apenas
+    legível pelo grupo do arquivo (<emphasis>4</emphasis>) e outros
+    usuário (<emphasis>4</emphasis>).</para>
 
       <para>
-	Most users do not want to deal with octal numbers, so that is
-	why many utilities can also deal with an alphabetic
-	representation of file permissions. The letters that are
-	listed in <xref
-	linkend="chap-filesystem-permissions-numbers"/> between
-	parentheses are used in this notation. In the following
-	example information about a file with
-	<emphasis>0644</emphasis> permissions is printed. The numbers
-	are replaced by three rwx triplets (the first character can
-	list special mode options).
+    Muitos usuários não querem lidar com números octais, então por isso
+    que muitos utilitários podem também lidar com representações
+    alfabéticas das permissões de arquivo.  As letras estão listadas em
+	<xref linkend="chap-filesystem-permissions-numbers"/> entre
+    parênteses e são usadas nesta notação.  No exemplo seguinte, a
+    informação sobre um arquivo com permissões <emphasis>0644</emphasis>
+    é exibida.  Os números são substituídos por três conjuntos rwx (o
+    primeiro caracter pode listar opções especiais de modo).
       </para>
 
       <screen>
@@ -219,24 +215,26 @@ $ <userinput>ls -l note.txt</userinput>
       </screen>
 
       <para>
-	Over the years these traditional UNIX permissions have proven
-	not to be sufficient in some cases. The POSIX 1003.1e
-	specification aimed to extend the UNIX access control model
-        with <emphasis>Access Control Lists</emphasis> (ACLs).
-	Unfortunately this effort stalled,
-        though some systems (like GNU/Linux) have implemented ACLs<footnote>
-	<para>At the time of writing, ACLs were supported on ext2,
-        ext3, and XFS filesystems</para> </footnote>. Access control
-        lists follow the same semantics as normal file permissions,
-        but give you the opportunity to add <emphasis>rwx</emphasis>
-        triplets for additional users and groups. </para>
+    Com o passar dos anos estas permissões tradicionais do UNIX
+    mostraram não serem suficientes em alguns casos.  A especificação
+    POSIX 1003.1e ajudou a extender o modelo de controle de acesso do
+        UNIX com as <emphasis>Listas de Controle de Acesso</emphasis>
+        (ACLs, da sigla em inglês).
+    Infelizmente este esforço ficou estagnado, já que só alguns sistemas
+        (como o GNU/Linux) implementaram ACLs<footnote>
+    <para>No momento em que este livro estava sendo escrito, ACLs têm
+        suporte nos sistemas de arquivos ext2, ext3, e XFS</para>
+        </footnote>.  Listas de controle de acesso seguem a mesma
+        semântica que as permissões de arquivo normais, mas lhe dão a
+        oportunidade de adicionar conjuntos de <emphasis>rwx</emphasis>
+        para usuários de grupos adicionais.</para>
 
       <para>
-	The following example shows the access control list of a
-	file. As you can see, the permissions look like normal UNIX
-	permissions (the access rights for the user, group, and others
-	are specified). But there is also an additional entry for the
-	user <emphasis>joe</emphasis>.
+    O exemplo a seguir exibe a lista de controle de acesso de um
+    arquivo.  Como você pode ver, as permissões parecem com as
+    permissões normais do UNIX (são especificadas as permissões de
+    para o dono, o grupo, e outros).  Mas há também uma entrada
+    adicional para o usuário <emphasis>joe</emphasis>.
       </para>
 
       <programlisting>
@@ -248,11 +246,12 @@ other::---
       </programlisting>
 
       <para>
-	To make matters even more complex (and sophisticated), some
-	GNU/Linux systems add more fine-grained access control through
-	Mandatory Access Control Frameworks (MAC) like SELinux and
-	AppArmor. But these access control frameworks are beyond the
-	scope of this book.
+    Para tornar as coisas ainda mais complexas (e mais sofisticadas),
+    alguns sistemas GNU/Linux adicionam controle de acesso ainda mais
+    específico por meio de Frameworks de Controle de Acesso Obrigatório
+    (<foreignphrase>Mandatory Access Control Frameworks,
+    MAC</foreignphrase>) como o SELinux e o AppArmor.  Mas estes
+    frameworks de controle de acesso estão fora do escopo deste livro.
       </para>
     </sect2>
 
@@ -260,18 +259,19 @@ other::---
       <title>Links</title>
 
       <para>
-	A directory entry that points to an inode is named a
-	<emphasis>hard link</emphasis>.  Most files are only linked
-	once, but nothing holds you from linking a file twice. This
-	will increase the <emphasis>links_count</emphasis> field of
-	the inode. This is a nice way for the system to see which
-	inodes and data blocks are free to use. If links_count is set
-	to zero, the inode is not referred to anymore, and can be
-	reclaimed.
+    Uma entrada de diretório que aponta para um inode é chamada de 
+	<emphasis><foreignphrase>hard linki<foreignphrase></emphasis>.
+    Muitos arquivos possuem apenas um único link, mas nada lhe impede de
+    criar mais de um link para o arquivo.  Isto irá incrementar o campo
+    <emphasis>links_count</emphasis> do inode.  Esta é uma bela maneira
+    de o sistema verificar quais inodes e blocos de dados estão livres
+    para utilização.  Se links_count estiver com valor zero, então o
+    inode não é mais referenciado em lugar nenhum, e pode ser
+    reutilizado.
       </para>
 
       <figure xml:id="chap-filesystems-introduction-links-hardlink">
-        <title>The structure of a hard link</title>
+        <title>A estrutura de um hard link</title>
 
         <mediaobject>
           <imageobject>
@@ -284,29 +284,31 @@ other::---
       </figure>
 
       <para>
-	Hard links have two limitations. First of all, hard links can
-	not interlink between filessystems, since they point to
-	inodes. Every filesystem has its own inodes and corresponding
-	inode numbers. Besides that, most filesystems do not allow you
-	to create hard links to directories. Allowing creation of hard
-	links to directories could produce directory loops,
-	potentially leading to deadlocks and filesystem
-	inconsistencies. In addition to that, most implementations of
-	<command>rm</command> and <command>rmdir</command> do not know
-	how to deal with such extra directory hard links.
+	Hard links possuem duas limitações.  Em primeiro lugar, hard links
+    não podem linkar entre diferentes sistemas de arquivos, uma vez que
+    eles apontam para inodes.  Cada sistema de arquivo tem seus próprios
+    inodes e números de inode correspondentes.  Além disso, muitos
+    sistemas de arquivos não permitem que você crie hard links para
+    diretórios.  Permitir a criação de hard links para diretórios pode
+    gerar loops de diretórios, potencialmente resultando em deadlocks e
+    inconsistências no sistema de arquivo.  Adicionalmente, muitas
+    implementações dos comandos <command>rm</command> e
+    <command>rmdir</command> não sabem como lidar com hard links extras
+    para diretórios.
       </para>
 
       <para>
-        <emphasis>Symbolic links</emphasis> do not have these
-        limitations, because they point to file names, rather than
-        inodes. When the symbolic link is used, the operating system
-        will follow the path to that link. Symbolic links can also
-        refer to a file that does not exist, since it just contains a
-        name. Such links are called dangling links.
+        <emphasis>Links simbólicos</emphasis> não possuem estas
+        limitações, pois eles apontam para nomes de arquivos, ao invés
+        do que para inodes.  Quando um link simbólico é usado, o sistema
+        operacional irá seguir o caminho daquele link.  Links simbólicos
+        também podem se referir a arquivos que não existem, uma vez que
+        contém apenas um nome.  Links deste tipo são chamados de
+        <foreignphrase>dangling links</foreignphrase>.
       </para>
 
       <figure xml:id="chap-filesystems-introduction-links-symlink">
-        <title>The structure of a symbolic link</title>
+        <title>A estrutura de um link simbólico</title>
 
         <mediaobject>
           <imageobject>
@@ -320,30 +322,29 @@ other::---
 
       <note>
         <para>
-	  If you ever get into system administration, it is good to be
-	  aware of the security implications of hard links. If the
-	  <filename>/home</filename> directory is on the same
-	  filesystem as any system binaries, a user will be able to
-	  create hard links to binaries.  In the case that a
-	  vulnerable program is upgraded, the link in the user's home
-	  directory will keep pointing to the old program binary,
-	  effectively giving the user continuing access to a
-	  vulnerable binary.
+      Se você estiver envolvido com administração de sistemas, é bom
+      estar ciente das implicações de segurança da utilização de hard
+      links.  Se o diretório <filename>/home</filename> estiver no mesmo
+      sistema de arquivos que outros binários do sistema, um usuário
+      poderia criar hard links para binários.  No caso de um programa
+      vulnerável ser atualizado, o link no diretório home do usuário
+      permanecerá apontando para o programa binário antigo, efetivamente
+      dadno ao usuário acesso contínuo ao binário vulnerável.
 	</para>
 
         <para>
-	  For this reason it is a good idea to put any directories
-	  that users can write to on different filesystems. In
-	  practice, this means that it is a good idea to put at least
-	  <filename>/home</filename> and <filename>/tmp</filename> on
-	  separate filesystems.
+      Por esta razão é uma boa idéia colocar quaisquer diretórios que os
+      usuários possam escrevem em diferentes sistemas de arquivos.  Na
+      prática, isto significa que é uma boa idéia colocar ao menos os
+      diretórios <filename>/home</filename> e <filename>/tmp</filename>
+      em sistemas de arquivos distintos.
         </para>
       </note>
     </sect2>
   </sect1>
 
   <sect1 xml:id="chap-filesystems-analyzing">
-    <title>Analyzing files</title>
+    <title>Analisando arquivos</title>
 
     <para>
       Before going to some more adventurous venues, we will start
