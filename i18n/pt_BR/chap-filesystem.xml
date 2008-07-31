@@ -347,19 +347,18 @@ other::---
     <title>Analisando arquivos</title>
 
     <para>
-      Before going to some more adventurous venues, we will start
-      with some file and directory usage basics.
+      Antes de nos aventurarmos por outros mares, vamos começar com
+      um pouco da utilização básica de arquivos e diretórios.
     </para>
 
     <sect2 xml:id="chap-filesystems-analyzing-listing">
-      <title>Listing files</title>
+      <title>Listando arquivos</title>
 
       <para>
-	One of the most common things that you will want to do is to
-	list all or certain files. The <command>ls</command> command
-	serves this purpose very well. Using <command>ls</command>
-	without any arguments will show the contents of the actual
-	directory:
+    Uma das coisas mais comuns que você vai querer fazer é listar todos
+    os alguns arquivos.  O comando <command>ls</command> serve muito bem
+    a este propósito.  Usar <command>ls</command> sem nenhum argumento
+    irá mostrar o conteúdo do diretório atual:
       </para>
 
       <screen>
@@ -368,12 +367,12 @@ dns.txt  network-hosts.txt  papers
       </screen>
 
       <para>
-	If you use a GNU/Linux distribution, you may also see some
-	fancy coloring based on the type of file. The standard output
-	is handy to skim through the contents of a directory, but if
-	you want more information, you can use the <parameter
-	class="command">-l</parameter> parameter. This provides a
-	so-called long listing for each file:
+    Se você usa uma distribuição GNU/Linux, você também pode ver a saída
+    em cores baseadas nos tipos de arquivos.  A saída padrão é útil para
+    consultar o conteúdo de um diretório, mas se você quer mais
+    informação, você pode usar o parâmetro <parameter
+    class="command">-l</parameter>.  Este parâmetro proporciona uma
+    listagem longa para cada arquivo:
       </para>
 
       <screen>
@@ -385,31 +384,29 @@ drwxrwxr-x  2 daniel daniel  4096 Sep  4 15:55 papers
       </screen>
 
       <para>
-	This gives a lot more information about the three directory
-	entries that we have found with <command>ls</command>.  The
-	first column shows the file permissions. The line that shows
-	the <filename>papers</filename> entry starts with a
-	<quote>d</quote>, meaning that this entry represents a
-	directory. The second column shows the number of hard links
-	pointing to the inode that a directory entry points to. If
-	this is higher than 1, there is some other filename for the
-	same file. Directory entries usually have at least two hard
-	links, namely the link in the parent directory and the link in
-	the directory itself (each directory has a
-	<filename>.</filename> entry, which refers to the directory
-	itself). The third and the fourth columns list the file owner
-	and group respectively. The fifth column contains the file
-	size in bytes. The sixth column the last modification time and
-	date of the file. And finally, the last column shows the name
-	of this entry.
+    Isto resulta em bastante informação a mais sobre as entradas da
+    árvore de diretório que a que obtemos com o comando
+    <command>ls</command>.  A primeira coluna exibe as permissões dos
+    arquivos.  A linha que exibe a entrada <filename>papers</filename>
+    inicia com um <quote>d</quote>, significando que esta entrada
+    representa um diretório.  A segunda coluna exibe o número de hard
+    links que apontam para o inode referente aquele diretório.  Se este
+    número é maior que 1, há alguns outros nomes de arquivo para o mesmo
+    arquivo.  Entradas de diretório usualmente possuem pelo menos dois
+    hard links, referenciando o link no diretório pai e o link para o
+    diretório em si (cada diretório possui uma entrada
+    <filename>.</filename>, a qual se refere ao diretório em si).  A
+    terceira e quarta colunas listam o dono do arquivo e o grupo
+    respectivamente.  A quinta coluna contém o tamanho do arquivo em
+    bytes.  A sexta coluna é o momento da última modificação e a data do
+    arquivo.  E finalmente, a última coluna mostra o nome desta entrada.
       </para>
 
       <para>
-	Files that start with a period (.) will not be shown by most
-	applications, including <command>ls</command>. You can list
-	these files too, by adding the <parameter
-	class="command">-a</parameter> option to
-	<command>ls</command>:
+    Arquivos que iniciam com um ponto (.) não serão exibidos pela
+    maioria das aplicações, incluindo o <command>ls</command>.  Você
+    pode listar estes arquivos também, adicionando a opção <parameter
+    class="command">-a</parameter> ao comando <command>ls</command>:
       </para>
 
       <screen>
@@ -424,24 +421,23 @@ drwxrwxr-x   2 daniel daniel  4096 Sep  4 15:55 papers
       </screen>
 
       <para>
-	As you can see, three more entries have appeared. First of
-	all, the <filename>.settings</filename> file is now
-	shown. Besides that you can see two additional directory
-	entries, <filename>.</filename> and
-	<filename>..</filename>. These represent the current directory
-	and the parent directory respectively.
+    Como você pode ver, mais três entradas apareceram.  Primeiro de
+    tudo, o arquivo <filename>.settings</filename> agora é mostrado.
+    Além disso você pode ver as duas entradas de diretório adicionais,
+    <filename>.</filename> e <filename>..</filename>.  Estas representam
+    o diretório atual e o diregório pai, respectivamente.
       </para>
 
       <para>
-	Earlier in this chapter (<xref
-	linkend="chap-filesystem-introduction-atoms"/>) we talked
-	about inodes. The inode number that a directory entry points
-	to can be shown with the <parameter
-	class="command">-i</parameter> parameter. Suppose that I have
-	created a hard link to the inode that points to the same inode
-	as <filename>dns.txt</filename>, they should have the same
-	inode number. The following <command>ls</command> output shows
-	that this is true:
+    Anteriormente neste capítulo (<xref 
+	linkend="chap-filesystem-introduction-atoms"/>) falamos sobre
+    inodes.  O número do inode apontado por uma entrada de diretório
+    pode ser mostrado com o parâmetro <parameter
+    class="command">-i</parameter>.  Suponha que eu tenha criado um hard
+    link para o inode que aponta para o mesmo inode que o arquivo
+    <filename>dns.txt</filename>, eles devem ter o mesmo número de
+    inode.  A seguinte saída do comando <command>ls</command> mostra que
+    isto é verdade:
       </para>
 
       <screen>
