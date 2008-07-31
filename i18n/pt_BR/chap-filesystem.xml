@@ -448,15 +448,15 @@ $ <userinput>ls -i dns*</userinput>
     </sect2>
 
     <sect2 xml:id="chap-filesystem-analyzing-file">
-      <title>Determining the type of a file</title>
+      <title>Determinando o tipo de um arquivo</title>
 
       <para>
-	Sometimes you will need some help to determine the type of a
-	file. This is where the <command>file</command> utility
-	becomes handy. Suppose that I find a file named
-	<filename>HelloWorld.class</filename> somewhere on my disk. I
-	suppose that this is a file that holds Java bytecode, but we
-	can use <command>file</command> to check this:
+    Algumas vezes você vai precisar de ajuda para determinar o tipo de
+    um arquivo.  É onde o utilitário <command>file</command> se torna
+    útil.  Imagine que eu encontre um arquivo chamado
+    <filename>HelloWorld.class</filename> em algum lugar do meu disco.
+    Eu suponho que este seja um arquivo que contenha bytecodes Java, mas
+    podemos usar <command>file</command> para confirmar isto:
       </para>
 
       <screen>
@@ -465,10 +465,10 @@ HelloWorld.class: compiled Java class data, version 49.0
       </screen>
 
       <para>
-	That is definitely Java bytecode. <command>file</command> is
-	quite smart, and handles most things you throw at it. For
-	instance, you could ask it to provide information about a
-	device node:
+    Definitivamente isto é bytecode Java.  <command>file</command> é
+    bastante esperto, e manipula muitas coisas que você sequer imagina.
+    Por exemplo, você poderia usá-lo para obter informação sobre um
+    dispositivo:
       </para>
 
       <screen>
@@ -477,7 +477,7 @@ $ <userinput>file /dev/zero</userinput>
       </screen>
 
       <para>
-	Or a symbolic link:
+	Ou sobre um link simbólico:
       </para>
 
       <screen>
@@ -486,9 +486,9 @@ $ <userinput>file /usr/X11R6/bin/X</userinput>
       </screen>
 
       <para>
-	If you are rather interested in the file
-	<filename>/usr/X11R6/bin/X</filename> links to, you can use
-	the <parameter class="command">-L</parameter> option of
+    Se você estiver interessado em para onde o arquivo 
+	<filename>/usr/X11R6/bin/X</filename> aponta, você pode usar a
+    opção <parameter class="command">-L</parameter> do
 	<command>file</command>:
       </para>
 
@@ -498,14 +498,14 @@ $ <userinput>file -L /usr/X11R6/bin/X</userinput>
       </screen>
 
       <para>
-	You may wonder why <command>file</command> can determine the
-	file type relatively easy. Most files start of with a
-	so-called <emphasis>magic number</emphasis>, this is a unique
-	number that tells programs that can read the file what kind of
-	file it is. The <command>file</command> program uses a file
-	which describes many file types and their magic numbers.  For
-	instance, the magic file on my system contains the following
-	lines for Java compiled class files:
+    Você pode se perguntar como o <command>file</command> pode
+    determinar o tipo de arquivo tão facilmente.  Muitos arquivos
+    iniciam com algo que chamamos de <emphasis>número mágico</emphasis>,
+    que é um número único que informa aos programas que podem lê-los
+    sobre de que tipo o arquivo é.  O programa <command>file</command>
+    usa um arquivo com a descrição de diversos tipos de arquivos e seus
+    números mágicos.  Por exemplo, no meu sistema este arquivo mágico
+    contém as seguintes linhas para arquivos Java compilados:
       </para>
 
       <programlisting>
@@ -517,30 +517,31 @@ $ <userinput>file -L /usr/X11R6/bin/X</userinput>
       </programlisting>
 
       <para>
-	This entry says that if a file starts with a long (32-bit)
-	hexadecimal magic number <emphasis>0xcafebabe</emphasis><footnote>
-          <para>Yeah, you can be creative with magic numbers
-          too!</para> </footnote>, it is a file that holds
-          <quote>compiled Java class data</quote>. The short that
-          follows determines the class file format version.
+    Esta entrada diz que se um arquivo iniciar com o longo número mágico
+    hexadecimal <emphasis>0xcafebabe</emphasis><footnote><
+        <para>Sim, você pode ser criativo com os números mágicos
+        também!</para> </footnote>, é um arquivo que contém dados
+        compilados de uma classe Java (<quote><foreignphrase>compiled
+        Java class data</foreignphrase></quote>).  o número curto que se
+        segue determina a versão do formato do arquivo class.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-filesystem-analyzing-integrity">
-      <title>File integrity</title>
+      <title>Integridade de arquivos</title>
 
       <para>
-	While we will look at more advanced file integrity checking
-	later, <!-- XXX xref --> we will have a short look at the
-	<command>cksum</command> utility. <command>cksum</command> can
-	calculate a cyclic redundancy check (CRC) for an input
-	file. This is a mathematically sound method for calculating a
-	unique number for a file. You can use this number to check
-	whether a file is unchanged (for example, after downloading a
-	file from a server). You can specify the file to calculate a
-	CRC for as a parameter to <command>cksum</command>, and
-	<command>cksum</command> will print the CRC, the file size in
-	bytes, and the file name:
+    Antes de partirmos para a checagem mais avançada da integridade de
+    arquivos,  <!-- XXX xref --> vamos dar uma breve olhada no
+    utilitário <command>cksum</command>.  <command>cksum</command> pode
+    calcular a soma para checagem de redundância cíclica (CRC) de um
+    dado arquivo de entrada.  Este é um método matemático para cálculo
+    de um número único para um arquivo.  Você pode usar este número para
+    verificar se um arquivo não sofreu modificações (por exemplo, depois
+    de baixar um arquivo de um servidor).  Você pode especificar o
+    arquivos para cálculo do CRC como um parâmetro para o
+    <command>cksum</cksum>, e o <command>cksum</command> irá exibir o
+    valor do CRC, o tamanho em bytes e o nome do arquivo:
       </para>
 
       <screen>
@@ -549,29 +550,30 @@ $ <userinput>cksum myfile</userinput>
       </screen>
 
       <para>
-	Slackware Linux also provides utilities for calculating
-	checksums based on one-way hashes (for instance MD5 or SHA-1).
-	<!-- XXX - elaborate -->
+	O Slackware Linux também possui utilitários para cálculo de somas de
+    verificação baseadas em algorítmos de via única (por exemplo, MD5 ou
+    SHA-1).
+	<!-- XXX - elaborar -->
       </para>
     </sect2>
 
     <sect2 xml:id="chap-filesystem-analyzing-viewing">
-      <title>Viewing files</title>
+      <title>Visualizando arquivos</title>
 
       <para>
-	Since most files on UNIX systems are usually text files, they
-	are easy to view from a character-based terminal or terminal
-	emulator. The most primitive way of looking at the contents of
-	a file is by using <command>cat</command>.
-	<command>cat</command> reads files that were specified as a
-	parameter line by line, and will write the lines to the
-	standard output. So, you can write the contents of the file
-	<filename>note.txt</filename> to the terminal with
-	<command>cat note.txt</command>. While some systems and most
-	terminal emulators provide support for scrolling, this is not
-	a practical way to view large files. You can pipe the output
-	of <command>cat</command> to the <command>less</command>
-	paginator:
+    Uma vez que muitos arquivos em sistemas UNIX são essencialmente
+    arquivos de texto, eles são fáceis de serem visualizados em um
+    terminal de caracteres ou emulador de terminal.  A forma mais
+    primitiva de ver o conteúdo de um arquivo é através do
+    <command>cat</command>.  O comando <command>cat</command> lê
+    os arquivos que forem especificados como parâmetros linha por linha,
+    e irá exibí-las na saída padrão.  Então, você pode imprimir o
+    conteúdo do arquivo <filename>note.txt</filename> para o terminal
+    com <filename>cat note.txt</filename>.  Ainda que alguns sistemas e
+    muitos emuladores de terminal tenham suporte a barras de rolagem,
+    esta não é uma maneira prática de visualizar arquivos grandes.  Você
+    pode criar um duto (<foreignphrase>pipe</foreignphrase>) com a saída
+    do <command>cat</command> para o paginador <command>less</command>:
       </para>
 
       <screen>
@@ -579,7 +581,7 @@ $ <userinput>cat note.txt | less</userinput>
       </screen>
 
       <para>
-	or let <command>less</command> read the file directly:
+	ou deixar que o <command>less</command> leia o arquivo diretamente:
       </para>
 
       <screen>
@@ -587,103 +589,108 @@ $ <userinput>less note.txt</userinput>
       </screen>
 
       <para>
-	The <command>less</command> paginator lets you scroll forward
-	and backward through a file. <xref
+    O <command>less</command> é um paginador e permite que você role a
+    tela para frente e para trás num arquivo.  <xref
 	linkend="chap-filesystem-analyzing-viewing-less-keys"/>
-	provides an overview of the most important keys that are used
-	to control <command>less</command>
+    contém uma visão geral das teclas mais importantes usadas para
+    controlar o <command>less</command>
       </para>
 
       <table xml:id="chap-filesystem-analyzing-viewing-less-keys">
-        <title>less command keys</title>
+        <title>teclas de comando do less</title>
 
         <tgroup cols="2" colsep="1" rowsep="1">
           <thead>
             <row>
-              <entry>Key</entry>
-              <entry>Description</entry>
+              <entry>Tecla</entry>
+              <entry>Descrição</entry>
             </row>
           </thead>
           <tbody>
             <row>
               <entry>j</entry>
-              <entry>Scroll forward one line.</entry>
+              <entry>Rola uma linha para a frente.</entry>
             </row>
             <row>
               <entry>k</entry>
-              <entry>Scroll backwards one line.</entry>
+              <entry>Rola uma linha para trás.</entry>
             </row>
             <row>
               <entry>f</entry>
-              <entry>Scroll forward one screen full of text.</entry>
+              <entry>Rola uma tela cheia de texto para frente.</entry>
             </row>
             <row>
               <entry>b</entry>
-              <entry>Scroll backwards one screen full of text.</entry>
+              <entry>Rola uma tela cheia de texto para trás.</entry>
             </row>
             <row>
               <entry>q</entry>
-              <entry>Quit less.</entry>
+              <entry>Termina o comando.</entry>
             </row>
             <row>
               <entry>g</entry>
-              <entry>Jump to the beginning of the file.</entry>
+              <entry>Pula para o começo do arquivo.</entry>
             </row>
             <row>
               <entry>G</entry>
-              <entry>Jump to the end of the file.</entry>
+              <entry>Pula para o final do arquivo.</entry>
             </row>
             <row>
-              <entry>/<emphasis>pattern</emphasis></entry>
-              <entry> Search for the <link xl:href="#chap-textproc-regexps">regular expression</link>
-                <emphasis>pattern</emphasis>. </entry>
+              <entry>/<emphasis>padrão</emphasis></entry>
+              <entry> Procura pelo <emphasis>padrão</emphasis> de texto
+              com a <link
+              xl:href="#chap-textproc-regexps">expressão regular</link>
+                dada. </entry>
             </row>
             <row>
               <entry>n</entry>
-              <entry> Search for the next match of the previously specified regular expression.
+              <entry> Procura pela próxima ocorrência da expressão
+              regular previamente especificada.
               </entry>
             </row>
             <row>
-              <entry>m<emphasis>letter</emphasis></entry>
-              <entry> Mark the current position in the file with <emphasis>letter</emphasis>.
+              <entry>m<emphasis>letra</emphasis></entry>
+              <entry> Faz um marcador da posição atual no arquivo com a
+              <emphasis>letra</emphasis>.
               </entry>
             </row>
             <row>
-              <entry>'<emphasis>letter</emphasis></entry>
-              <entry>Jump to the mark <emphasis>letter</emphasis></entry>
+              <entry>'<emphasis>letra</emphasis></entry>
+              <entry>Pula para o marcador dado por <emphasis>letra</emphasis></entry>
             </row>
           </tbody>
         </tgroup>
       </table>
 
       <para>
-	The command keys that can be quantized can be prefixed by a
-	number. For instance <emphasis>11j</emphasis> scrolls forward
-	eleven lines, and <emphasis>3n</emphasis> searches the third
-	match of the previously specified regular expression.
+    As teclas de comando podem ser quantificadas com um prefixo
+    numérico.  Por exemplo, <emphasis>11j</emphasis> rola a tela onze
+    linhas para a frente, e <emphasis>3n</emphasis> procura pela
+    terceira ocorrência da última expressão regular especificada.
       </para>
 
       <para>
+    O Slackware Linux também possui uma alternativa ao
 	Slackware Linux also provides an alternative to
-	<command>less</command>, the older <quote>more</quote> command.
-	We will not go into <emphasis>more</emphasis> here,
-	<command>less</command> is more comfortable, and also more popular
-	these days.
+	<command>less</command>, o antigo comando <quote>more</quote>.
+    Não vamos abordar o <emphasis>more</emphasis> aqui pois o
+	<command>less</command> é mais confortável e mais popular hoje em
+    dia.
       </para>
 
     </sect2>
 
     <sect2 xml:id="chap-filesystem-analyzing-filesize">
-      <title>File and directory sizes</title>
+      <title>Tamanhos de arquivos e diretórios</title>
 
       <para>
-	The <command>ls -l</command> output that we have seen earlier
-	provides information about the size of a file. While this
-	usually provides enough information about the size of files,
-	you might want to gather information about collections of
-	files or directories. This is where the <command>du</command>
-	command comes in. By default, <command>du</command> prints the
-	file size per directory. For example:
+	A saída de <command>ls -l</command> que vimos há pouco provê
+    informação sobre o tamanho de um arquivo.  Ainda que isto usualmente
+    seja informação suficiente sobre tamanhos de arquivos, você pode
+    querer coletar informação sobre conjuntos de arquivos ou diretórios.
+    É onde entra o comando <command>du</command>.  Por padrão,
+    <command>du</command> exibe o tamanho dos arquivos por diretório.
+    Por exemplo:
       </para>
 
       <screen>
@@ -694,12 +701,13 @@ $ <userinput>du ~/qconcord</userinput>
       </screen>
 
       <para>
-        By default, <command>du</command> represents the size in 1024
-        byte units. You can explicitly specify that
-        <command>du</command> should use 1024 byte units by adding the
-        <parameter class="command" >-k</parameter> flag. This is useful
-	for writing scripts, because some other systems default to
-	using 512-byte blocks. For example:
+        Por padrão, <command>du</command> representa o tamanho em
+        números de blocos de 1024 bytes.  Você pode especificar
+        explicitamente que o <command>du</command> deva usar unidades de
+        1024 bytes adicionando a opção <parameter
+        class="command">-k</command>.  Isto é útil para escrever
+    scripts, pois o padrão de alguns outros sistemas é usar blocos de
+    512 bytes.  Por exemplo:
       </para>
 
       <screen>
@@ -710,8 +718,8 @@ $ <userinput>du -k ~/qconcord</userinput>
       </screen>
 
       <para>
-	If you would also like to see per-file disk usage, you can add
-	the <parameter class="command">-a</parameter> flag:
+    Se você também quiser ver a utilização de disco por arquivo, você
+    pode adicionar a opção <parameter class="command">-a</parameter>:
       </para>
 
       <screen>
@@ -733,10 +741,10 @@ $ <userinput>du -k -a ~/qconcord</userinput>
       </screen>
 
       <para>
-	You can also use the name of a file or a wildcard as a
-	parameter. But this will not print the sizes of files in
-	subdirectories, unless <parameter
-	class="command">-a</parameter> is used:
+    Você também pode usar o nome de um arquivo um caracter curinga como
+    parâmetro.  Mas isto não vai exibir os tamanhos dos arquivos em
+    subdiretórios, a menos que <parameter class="command">-a</parameter>
+    seja usado:
       </para>
 
       <screen>
@@ -757,9 +765,9 @@ $ <userinput>du -k -a ~/qconcord/*</userinput>
       </screen>
 
       <para>
-	If you want to see the total sum of the disk usage of the
-	files and subdirectories that a directory holds, use the
-	<parameter class="command">-s</parameter> flag:
+    Se você quiser ver a soma total do espaço em disco utilizado pelos
+    arquivos e subdiretórios dentro do diretório dado, então use a opção
+	<parameter class="command">-s</parameter>:
       </para>
 
       <screen>
