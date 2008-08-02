@@ -75,27 +75,26 @@ rmdir                (2)  - remove um diretório
 
       <para>
         A coleção de páginas de manuais é muito extensa, e cobre não apenas 
-	comandos. A seguinte seção páginas de manual estão disponíveis:
+	    comandos. A seguinte seção páginas de manual estão disponíveis:
       </para>
 
       <literallayout>
-1   Executable programs or shell commands
+1   Programas executáveis e comandos shell
 2   Chamadas de sistem (funções providas pelo kernel)
 3   Chamadas de bibliotecas (funções de bibliotecas de programas)
 4   Arquivos especiais (usualmente encontrados em /dev)
 5   Formatos de arquivos e convenções e.g. /etc/passwd
 6   Jogos
-7   Utilidades (incluindo pacotes macroi e convenções), e.g. man(7), groff(7)
+7   Utilidades (incluindo pacotes macro e convenções), e.g. man(7), groff(7)
 8   Comandos de administração do sistema (usualmente somente para o root)
 9   Rotinas do Linux [Não padronizado]
       </literallayout>
 
       <para>
-        If there is more than one section that has a manual page with
-        a specific name, as with for instance
-        <command>rmdir</command>, you can choose what page you want to
-        see by adding the section number of the manual page before the
-        manual page name. For example:
+        Se houver mais que uma seção que contenha uma página de manual
+        com um nome específico, como por exemplo <command>rmdir</command>,
+        você pode escolher a página que você quer ver adicionando o número
+        da seção manual antes do nome da página. Por exemplo:
       </para>
 
       <screen>
@@ -103,14 +102,14 @@ rmdir                (2)  - remove um diretório
       </screen>
 
       <para>
-        If you would like to print a manual page to a printer that you
-        have set up, you can pipe the output of <command>man</command>
-        to the <command>lpr</command> command. When the <parameter
-        class="command">-t</parameter> option of the
-        <command>man</command> command is used, <command>man</command>
-        will output the manual page in Postscript format, rather than
-        ASCII. For example, you can use the following command to print
-        the <command>cat</command> manual page:
+        Se você quer imprimir uma página de manual, você pode jogar a
+        saída do comando <command>man</command> para o comando 
+        <command>lpr</command>. Quando a opção <parameter
+        class="command">-t</parameter> é utilizada, o comando 
+        <command>man</command> retorna a página de manual no formato
+        Postscript em vez de ASCII. Por exemplo, você pode usar o 
+        seguinte comando para imprimir a página de manual do comando 
+        <command>man</command>:
       </para>
 
       <screen>
@@ -120,69 +119,69 @@ $ <userinput>man -t cat | lpr</userinput>
   </sect1>
 
   <sect1 xml:id="chap-help-internet">
-    <title>On the Internet</title>
+    <title>Na Internet</title>
 
     <para>
-      There are many websites and forums related to GNU/Linux and
-      Slackware Linux on the Internet. But many sites often disappear
-      as fast as they appeared, and the information on many web sites
-      is fragmentary. The following resources have been around for a
-      longer time, and provide good content.
+      Há muitos sites e fóruns relacionados à GNU/Linux e 
+      Slackware LInux na Internet. Mas muitos sites desaparecem
+      tão rápidos quanto aparecem, e a informção em muitos sites
+      é fragmentada. As referências abaixo estão disponíveis há 
+      bastante tempo e possuem um bom conteúdo.
     </para>
 
     <sect2 xml:id="chap-help-internet-slacksite">
-      <title>The Slackware Linux website</title>
+      <title>O site do Slackware Linux</title>
 
       <para>
-        The Slackware Linux website may be a bit outdated at times,
-        but it provides many useful resources:
+        O site do Slackware Linux pode ser um pouco desatualizado
+        às vezes, mas provê muitas coisas interessantes:
       </para>
 
       <itemizedlist>
 	<listitem>
-	  <para>
-            A news page that announces new releases and lists other
-            important news that is relevant to Slackware Linux.
+      <para>
+            Uma página de notícias que anuncia novas versões e mostra
+            outras notas importantes que são relevantes ao Slackware
+            Linux.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-            An overview of the changes to the distribution is provided
-            in a structured format called a
-            <emphasis>ChangeLog</emphasis>. ChangeLogs are provided
-            for the current development version, as well as the latest
-            stable release.
+            Um resumo das mudanças na distribuição é disponibilizada
+            em um formato estruturado chamado 
+            <emphasis>ChangeLog</emphasis>. ChangeLogs estão disponíveis
+            para a versão atual em desenvolvimento e também para a 
+            última versão estável.
           </para>
         </listitem>
         <listitem>
           <para>
-            There are two mailing lists to which you can
-            subscribe. The <emphasis>slackware-announce</emphasis>
-            list is used to announce new Slackware Linux releases, and
-            security updates are announced on the
-            <emphasis>slackware-security</emphasis> list.
+            Há duas listas de discussão que você pode increver-se.
+            A lista <emphasis>slackware-announce</emphasis> é usada
+            para anunciar novas versões do Slackware Linux, e as
+            atualizações de segurança são anunciadas na lista
+            <emphasis>slackware-security</emphasis>.
           </para>
         </listitem>
         <listitem>
           <para>
-            A list of mirrors where you can download Slackware
-            Linux. The mirrors are indexed per country. Additional
-            information such as the download protocols the mirrors
-            support, and the speed of the mirrors is also included.
+            Uma lista de espelhos onde você pode baixar o Slackware
+            Linux. Os espelhos são indexados pelo país. Adicionalmente, 
+            informações como os protocolos para download que o espelho
+            suporta e a velocidade são incluídas.
           </para>
         </listitem>
         <listitem>
           <para>
-            Documentation of various kinds, including a list of
-            frequently asked questions and the <emphasis>Slackware
-            Linux Essentials</emphasis> book.
+            Documentação de vários tipos, incluindo uma lista de 
+            perguntas mais frequentes e o livro <emphasis>Slackware
+            Linux Essentials</emphasis>.
           </para>
         </listitem>
       </itemizedlist>
 
       <para>
-	The Slackware Linux website is available at:
-	<link xl:href="http://www.slackware.com/" />
+        O site do Slackware Linux está disponível em: <link xl:href="http://www.slackware.com/" />
       </para>
     </sect2>
 
@@ -190,11 +189,11 @@ $ <userinput>man -t cat | lpr</userinput>
       <title>LinuxQuestions</title>
 
       <para>
-        LinuxQuestions is a large GNU/Linux forum with many helpful
-        members.  Particularly interesting is the Slackware Linux
-        subforum, where you can seek assistance to help you with
-        problems that you may have with Slackware Linux. The
-        LinuxQuestions forum is available at: 
+        LinuxQuestions é o maior fórum de GNU/Linux com muitos
+        membros prontos para ajudar. Particularmente interessante
+        é o subfórum do Slackware Linux, onde você pode ter 
+        assistência para ajudá-lo nos problemas que você tiver.
+        O fórum está disponível em:
 	<link xl:href="http://www.linuxquestions.org/" />
       </para>
     </sect2>
@@ -203,13 +202,14 @@ $ <userinput>man -t cat | lpr</userinput>
       <title>alt.os.linux.slackware</title>
 
       <para>
-        <emphasis>alt.os.linux.slackware</emphasis> is a Slackware
-        Linux newsgroup. You can read newsgroups with a newsreader
-        like tin or slrn, through the newsgroup server of your
-        Internet service provider. On this newsgroup it is expected
-        that you have read all necessary documentation before posting
-        questions. If you have not done that, the chance of getting
-        <quote>flamed</quote> is large.
+        O <emphasis>alt.os.linux.slackware</emphasis> é um
+        grupo de notícias do Slackware Linux. Você pode ler
+        grupos de notícias com um leitor de notícias como tin 
+        ou slrn, através do servidor de grupo de notícias do 
+        seu provedor. Neste grupo de notícias é esperado
+        que você tenha lido toda a documentação necessária
+        antes de enviar uma pergunta. Se você não fizer isto,
+        as chances de você ser <quote>queimado</quote> são grandes.
       </para>
     </sect2>
   </sect1>
