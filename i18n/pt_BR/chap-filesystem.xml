@@ -778,24 +778,24 @@ $ <userinput>du -k -s ~/qconcord</userinput>
   </sect1>
 
   <sect1 xml:id="chap-filesystem-directories">
-    <title>Working with directories</title>
+    <title>Trabalhando com diretórios</title>
 
     <para>
-      After having a bird's eye view of directories in <xref
-      linkend="chap-filesystem-introduction-atoms"/>, we will have a
-      look at some directory-related commands.
+      Depois de dar uma visão geral de diretórios em <xref 
+      linkend="chap-filesystem-introduction-atoms"/>, vamos agora dar uma
+      olhada em alguns comandos relacionados a diretórios.
     </para>
 
     <sect2 xml:id="chap-filesystem-directories-listing">
-      <title>Listing directories</title>
+      <title>Listando diretórios</title>
 
       <para>
-	The <command>ls</command> command that we have looked at in
-	<xref linkend="chap-filesystems-analyzing-listing"/> can also
-	be used to list directories in various ways. As we have seen,
-	the default <command>ls</command> output includes directories,
-	and directories can be identified using the first output
-	column of a long listing:
+	O comando <command>ls</command> que vimos em <xref 
+	linkend="chap-filesystems-analyzing-listing"/> também pode ser usado
+    para listar diretórios de diferentes maneiras.  Como já vimos, a
+    saída padrão do <command>ls</command> inclui diretórios, e os
+    diretórios podem ser identificados usando a primeira coluna da saída
+    de uma listagem longa:
       </para>
 
       <screen>
@@ -807,16 +807,14 @@ drwxrwxr-x  2 daniel daniel  4096 Sep  4 15:55 papers
       </screen>
 
       <para>
-	If a directory name, or if wildcards are specified,
-	<command>ls</command> will list the contents of the directory,
-	or the directories that match the wildcard respectively. For example,
-	if there is a directory <filename>papers</filename>, <command>ls
-	paper*</command> will list the contents of this directory
-	<filename>paper</filename>. This is often annoying if you
-	would just like to see the matches, and not the contents of
-	the matching directories. The <parameter
-	class="command">-d</parameter> avoid that this recursion
-	happens:
+    Se um nome de diretório, ou se um coringa for especificado, o
+	<command>ls</command> irá listar o conteúdo do diretório, os dos
+    diretórios que casem com o coringa respectivamente.  Por exemplo, se
+    houver um diretóro <filename>papers</filename>, <command>ls
+    paper*</command> vai listar o conteúdo deste diretório
+    <filename>papers</filename>.  O parâmetro <parameter 
+	class="command">-d</parameter> evita que esta recursão
+    aconteça:
       </para>
 
       <screen>
@@ -825,9 +823,9 @@ drwxrwxr-x  2 daniel daniel  4096 Sep  4 15:55 papers
       </screen>
 
       <para>
-	You can also recursively list the contents of a directory, and
-	its subdirectories with the <parameter
-	class="command">-R</parameter> parameter:
+    Você também pode listar recursivament o conteúdo de um diretório, e
+    de seus subdiretórios com o parâmetro <parameter 
+	class="command">-R</parameter>:
       </para>
 
       <screen>
@@ -847,178 +845,174 @@ logics.pdf
     </sect2>
 
     <sect2 xml:id="chap-filesystem-directories-management">
-      <title>Creating and removing directories</title>
+      <title>Criando e removendo diretórios</title>
 
       <para>
-	UNIX provides the <command>mkdir</command> command to create
-	directories. If a relative path is specified, the directory is
-	created in the current active directory. The basic syntax is
-	very simple: <emphasis>mkdir &lt;name&gt;</emphasis>, for
-	example:
+    O UNIX provê o comando <command>mkdir</command> para criar
+    diretórios.  Se um caminho relativo é especificado, o diretório é
+    criado no diretório corrente.  A sintaxe básica é muito simples:
+	<emphasis>mkdir &lt;nome&gt;</emphasis>, por exemplo:
       </para>
 
       <screen>
-$ <userinput>mkdir mydir</userinput>
+$ <userinput>mkdir meudir</userinput>
       </screen>
 
       <para>
-	By default, <command>mkdir</command> only creates one
-	directory level. So, if you use <command>mkdir</command> to
-	create <filename>mydir/mysubdir</filename>,
-	<command>mkdir</command> will fail if
-	<filename>mydir</filename> does not exist already. If you
-	would like to create both directories at once, use the
-	<parameter class="command">-p</parameter> parameter:
+	Por padrão, <command>mkdir</command> cria apenas um nível de
+    diretório.  Então, se você usar <command>mkdir</command> para criar 
+	<filename>meudir/meusubdir</filename>, <command>mkdir</command> vai
+    falhar se <filename>meudir</filename> não existir.  Se você quiser
+    criar ambos os diretórios de uma só vez, use o parâmetro
+	<parameter class="command">-p</parameter>:
       </para>
 
       <screen>
-$ <userinput>mkdir -p mydir/mysubdir</userinput>
+$ <userinput>mkdir -p meudir/meusubdir</userinput>
       </screen>
 
       <para>
-	<command>rmdir</command> removes a directory. Its behavior is
-	comparable to <command>mkdir</command>. <command>rmdir
-	mydir/mysubdir</command> removes <filename>mydir/subdir</filename>,
-	while <command>rmdir -p mydir/mysubdir</command> removes
-	<filename>mydir/mysubdir</filename> and then
-	<filename>mydir</filename>.
+	<command>rmdir</command> remove um diretório.  Seu comportamento é
+    comparável ao do <command>mkdir</command>.  <command>rmdir
+	meudir/meusubdir</command> remove
+    <filename>meudir/meusubdir</filename>, ao passo que <command>rmdir -p
+    meudir/meusubdir</command> remove
+    <filename>meudir/meusubdir</filename> e também 
+    <filename>meudir</filename>.
       </para>
 
       <para>
-	If a subdirectory that we want to remove contains directory
-	entries, <command>rmdir</command> will fail. If you would like
-	to remove a directory, including all its contents, use the
-	<command>rm</command> command instead. <!-- XXX - xref -->
+    Se um subdiretório que quisermos remover contenha entradas de
+	diretório, <command>rmdir</command> irá falhar.  Se você quiser
+    remover um diretório, incluindo todo o seu conteúdo, use o comando
+	<command>rm</command> então. <!-- XXX - xref -->
       </para>
     </sect2>
   </sect1>
 
   <sect1 xml:id="chap-filesystem-managing">
-    <title>Managing files and directories</title>
+    <title>Gerenciando arquivos e diretórios</title>
 
     <sect2 xml:id="chap-filesystem-managing-copying">
-      <title>Copying</title>
+      <title>Copiando</title>
 
       <para>
-	Files and directories can be copied with the
-	<command>cp</command> command. In its most basic syntax the
-	source and the target file are specified. The following
-	example will make a copy of <filename>file1</filename> named
-	<filename>file2</filename>:
+    Arquivos e diretórios podem ser copiados com o comando 
+	<command>cp</command>.  Em sua sintaxe mais básica a origem e destino
+    do arquivo são especificados.  O exemplo a seguir fará uma cópia do
+	<filename>arquivo1</filename> chamada <filename>arquivo2</filename>:
       </para>
 
       <screen>
-$ <userinput>cp file1 file2</userinput>
+$ <userinput>cp arquivo1 arquivo2</userinput>
       </screen>
 
       <para>
-	It is not surprising that relative and absolute paths do also
-	work:
+    Não é surpresa que caminhos relativos e absolutos também funcionam:
       </para>
 
       <screen>
-$ <userinput>cp file1 somedir/file2</userinput>
-$ <userinput>cp file1 /home/joe/design_documents/file2</userinput>
+$ <userinput>cp arquivo1 algumdir/arquivo2</userinput>
+$ <userinput>cp arquivo1 /home/joe/design_documents/arquivo2</userinput>
       </screen>
 
       <para>
-	You can also specify a directory as the second parameter. If
-	this is the case, <command>cp</command> will make a copy of
-	the file in that directory, giving it the same file name as
-	the original file. If there is more than one parameter, the
-	last parameter will be used as the target directory. For
-	instance
+    Você também pode especificar um diretório como segundo parâmetro.  Se
+    este for o caso, <command>cp</command> vai fazer uma cópia do arquivo
+    dentro daquele diretório, dando-lhe o mesmo nome que o arquivo
+    original.  Se houver mais de um parâmetro, o último parâmetro será
+    usado como diretório de destino.  Por exemplo
       </para>
 
       <screen>
-$ <userinput>cp file1 file2 somedir</userinput>
+$ <userinput>cp arquivo1 arquivo2 algumdir</userinput>
       </screen>
 
       <para>
-	will copy both <filename>file1</filename> and
-	<filename>file2</filename> to the directory
-	<filename>somedir</filename>. You can not copy multiple files
-	to one file. You will have to use <command>cat</command>
-	instead: <!-- XXX href -->
+    vai copiar tanto o <filename>arquivo1</filename> quanto o
+    <filename>arquivo2</filename> para o diretório
+    <filename>algumdir</filename>.  Você não pode copiar múltiplos
+    arquivos para um arquivo.  Vamos usar o <command>cat</command> para
+    isto: <!-- XXX href -->
       </para>
 
       <screen>
-$ <userinput>cat file1 file2 > combined_file</userinput>
+$ <userinput>cat arquivo1 arquivo2 > arquivo_combinado</userinput>
       </screen>
 
       <para>
-	You can also use <command>cp</command> to copy directories, by
-	adding the <parameter class="command">-R</parameter>. This
-	will recursively copy a directory and all its
-	subdirectories. If the target directory exists, the source
-	directory or directories will be placed under the target
-	directory. If the target directory does not exist, it will be
-	created if there is only one source directory.
+    Você também pode user <command>cp</command> para copiar diretórios,
+    adicionando o parâmetro <parameter class="command">-R</parameter>.
+    Isto irá copiar recursivamente um diretório e todos os seus
+    subdiretórios.  Se o diretório destino existir, o diretório ou
+    diretórios de origem serão postos dentro do diretório destino.  Se o
+    diretório destino não existir.  Se o diretório destino não existir,
+    será criado se houver um único diretório de origem.
       </para>
 
       <screen>
-$ <userinput>cp -r mytree tree_copy</userinput>
-$ <userinput>mkdir trees</userinput>
-$ <userinput>cp -r mytree trees</userinput>
+$ <userinput>cp -r minhaarvore arvore_copia</userinput>
+$ <userinput>mkdir arvores</userinput>
+$ <userinput>cp -r minhaarvore arvores</userinput>
       </screen>
 
       <para>
-	After executing these commands, there are two copies of the directory
-        <filename>mytree</filename>, <filename>tree_copy</filename> and
-        <filename>trees/mytree</filename>. Trying to copy two directories to a nonexistent target
-        directory will fail:
+    Depois de executar estes comandos, haverá duas cópias do diretório 
+        <filename>minhaarvore</filename>,
+        <filename>arvore_copia</filename> e
+        <filename>arvores/minhaarvore</filename>.  Tentar copiar dois
+        diretórios para um destino inexistente irá falhar:
       </para>
 
       <screen>
-$ <userinput>cp -R mytree mytree2 newdir</userinput>
+$ <userinput>cp -R minhaarvore minhaarvore2 novodir</userinput>
 usage: cp [-R [-H | -L | -P]] [-f | -i] [-pv] src target
        cp [-R [-H | -L | -P]] [-f | -i] [-pv] src1 ... srcN directory
       </screen>
 
       <note>
 	<para>
-	  Traditionally, the <parameter class="command">-r</parameter>
-	  has been available on many UNIX systems to recursively copy
-	  directories. However, the behavior of this parameter can be
-	  implementation-dependent, and the Single UNIX Specification
-	  version 3 states that it may be removed in future versions
-	  of the standard.
+      Tradicionalmente, o <parameter class="command">-r</parameter>
+      estava disponível em muitos sistemas UNIX para cópia recursiva de
+      diretórios.  No entanto, o comportamento deste parâmetro pode
+      depender da implementação, e na versão 3 da Single UNIX
+      Specification consta que este parâmetro pode ser removido em
+      implementações futuras do padrão.
 	</para>
       </note>
 
       <para>
-	When you are copying files recursively, it is a good idea to
-	specify the behavior of what <command>cp</command> should do
-	when a symbolic link is encountered explicitly, if you want
-	to use <command>cp</command> in portable scripts. The
-	Single UNIX Specification version 3 does not specify how they
-	should be handled by default. If <parameter
-	class="command">-P</parameter> is used, symbolic links will
-	not be followed, effectively copying the link itself. If
-	<parameter class="command">-H</parameter> is used, symbolic
-	links specified as a parameter to <command>cp</command> may be
-	followed, depending on the type and content of the file. If
-	<parameter class="command">-L</parameter> is used, symbolic
-	links that were specified as a parameter to
-	<command>cp</command> and symbolic links that were encountered
-	while copying recursively may be followed, depending on the
-	content of the file.
+    Quando você estiver copiando arquivos recursivamente, é uma boa idéia
+    especificar o comportamento que o <command>cp</command> deve ter
+    ao encontrar um link simbólico explicitamente, se você quiser usar o
+    <command>cp</command> em scripts portáveis.  A versão 3 da Single
+    UNIX Specification não define como isto deve ser tratado por padrão.
+	Se <parameter class="command">-P</parameter> for usado, links
+    simbólicos não serão seguidos, resultando efetivamente na cópia do
+    link em si.  Se <parameter class="command">-H</parameter> for usado,
+    links simbólicos especificdos como um parâmetro para o
+    <command>cp</command> podem ser seguidos, dependendo di tipo do
+    arquivo.  Se <parameter class="command">-L</parameter> for usado,
+    links simbólicos especificados como parâmetro para o
+    <command>cp</command> e links simbólicos que forem encontrados
+    durante a cópia recursiva serão seguidos, dependendo do conteúdo do
+    arquivo.
       </para>
 
       <para>
-	If you want to preserve the ownership, SGID/SUID bits, and the
-	modification and access times of a file, you can use the
-	<parameter>-p</parameter> flag. This will try to preserve
-	these properties in the file or directory copy. Good
-	implementations of <command>cp</command> provide some
-	additional protection as well - if the target file already
-	exists, it may not be overwritten if the relevant metadata
-	could not be preserved.
+    Se você quer preservar a propriedade, os buts SGID/SUID, e os
+    momentos de modificação e acesso do arquivo, você pode usar
+    o <parameter>-p</parameter>.  Isto tentará preservar estas
+    propriedades nas cópias dos arquivos ou diretórios.  Boas
+    implementações de <command>cp</command> também provêem algumas
+    proteções adicionais - se o arquivo destino já existir, ele não pode
+    ser sobrescrito se os metadados relevantes não puderem ser
+    preservados.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-filesystem-managing-moving">
-      <title>Moving files and directories</title>
+      <title> Moving files and directories</title>
 
       <para>
 	The UNIX command for moving files, <command>mv</command>, can
