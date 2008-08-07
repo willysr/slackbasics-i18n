@@ -1012,72 +1012,76 @@ usage: cp [-R [-H | -L | -P]] [-f | -i] [-pv] src target
     </sect2>
 
     <sect2 xml:id="chap-filesystem-managing-moving">
-      <title> Moving files and directories</title>
+      <title>Movendo arquivos e diretórios</title>
 
       <para>
-	The UNIX command for moving files, <command>mv</command>, can
-	move or rename files or directories. What actually happens
-	depends on the location of the files or directories. If the
-	source and destination files or directories are on the same
-	filesystem, <command>mv</command> usually just creates new
-	hard links, effectively renaming the files or directories. If
-	both are on different filesystems, the files are actually
-	copied, and the source files or directories are
-	unlinked.
+    O comando do UNIX para mover arquivos, <command>mv</command>, pode
+    mover ou renomear arquivos e diretórios.  O que acontece atualmente
+    depende do local dos arquivos ou diretórios.  Se os arquivos de
+    origem e de destino estão no mesmo sistema de arquivos, o
+    <command>mv</command> comumente apenas cria novos hard links,
+    efetivamente renomeando os arquivos ou diretórios.  Se ambos estão
+    em sistemas de arquivos diferentes, os arquivos atualmente são
+    copiados, e os arquivos ou diretórios de origem são desvinculados.
       </para>
 
       <para>
-	The syntax of <command>mv</command> is comparable to
-	<command>cp</command>. The most basic syntax renames
-	<filename>file1</filename> to <filename>file2</filename>:
-      </para>
-
-      <screen>
-$ <userinput>mv file1 file2</userinput>
-      </screen>
-
-      <para>
-	The same syntax can be used for two directories as well, which
-	will rename the directory given as the first parameter to the
-	second parameter.
-      </para>
-
-      <para>
-	When the last parameter is an existing directory, the file or
-	directory that is specified as the first parameter, is copied
-	to that directory. In this case you can specify multiple files
-	or directories as well. For instance:
+	A sintaxe do <command>mv</command> é comparável à do
+	<command>cp</command>.  A sintaxe mais básica renomeia
+	<filename>arquivo1</filename> para <filename>arquivo2</filename>:
       </para>
 
       <screen>
-$ <userinput>targetdir</userinput>
-$ <userinput>mv file1 directory1 targetdir</userinput>
+$ <userinput>mv arquivo1 arquivo2</userinput>
       </screen>
 
-      <para> This creates the directory <filename>targetdir</filename>, and moves
-        <filename>file1</filename> and <filename>directory1</filename> to this directory. </para>
+      <para>
+    A mesma sintaxe pode ser usada para dois diretórios também, o que
+    vai renomear o diretório dado como primeiro parâmetro para o nome
+    especificado no segundo parâmetro.
+      </para>
+
+      <para>
+    Quando o último parâmetro for um diretório existente, o arquivo ou
+    diretório especificado como primeiro parâmetro é copiado para este
+    diretório.  Neste caso você pode especificar múltiplos arquivos ou
+    diretórios também.  Por exemplo:
+      </para>
+
+      <screen>
+$ <userinput>mkdir destinodir</userinput>
+$ <userinput>mv arquivo1 diretorio1 destinodir</userinput>
+      </screen>
+
+      <para>Isto cria o diretório <filename>destinodir</filename>, e
+      move <filename>arquivo1</filename> e
+      <filename>diretorio1</filename> para este diretório. </para>
     </sect2>
 
     <sect2 xml:id="chap-filesystem-managing-removing">
-      <title>Removing files and directories</title>
+      <title>Removendo arquivos e diretórios</title>
 
       <para>
-	Files and directories can be removed with the <citerefentry>
+    Arquivos e diretórios podem ser removidos com o comando
+    <citerefentry>
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> command. This command unlinks files and directories. If there are no other
-        links to a file, its inode and disk blocks can be reclaimed for new files. Files can be
-        removed by providing the files that should be removed as a parameter to <citerefentry>
+        </citerefentry>.  Este comando desvincula arquivos e diretórios.
+        Se não houver outros links para um arquivo, seu inode e seus
+        blocos no disco podem ser requisitados por novos arquivos.  Os
+        arquivos podem ser removidos informando o nome destes arquivos
+        como parâmetro para o 
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry>. If the file is not writable, <citerefentry>
+        </citerefentry>.  Se o arquivo não for gravável, o <citerefentry>
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> will ask for confirmation. For instance, to remove
-        <filename>file1</filename> and <filename>file2</filename>, you can execute: </para>
+        </citerefentry> irá solicitar confirmação.  Por exemplo, para
+        remover <filename>arquivo1</filename> e
+        <filename>arquivo2</filename>, você pode executar: </para>
 
       <screen>
-$ <userinput>rm file1 file2</userinput>
+$ <userinput>rm arquivo1 arquivo2</userinput>
       </screen>
 
       <para>
