@@ -1044,8 +1044,8 @@ $ <userinput>mv arquivo1 arquivo2</userinput>
       <para>
     Quando o último parâmetro for um diretório existente, o arquivo ou
     diretório especificado como primeiro parâmetro é copiado para este
-    diretório.  Neste caso você pode especificar múltiplos arquivos ou
-    diretórios também.  Por exemplo:
+    diretório. Neste caso você pode especificar múltiplos arquivos ou
+    diretórios também. Por exemplo:
       </para>
 
       <screen>
@@ -1076,7 +1076,7 @@ $ <userinput>mv arquivo1 diretorio1 destinodir</userinput>
         </citerefentry>.  Se o arquivo não for gravável, o <citerefentry>
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> irá solicitar confirmação.  Por exemplo, para
+        </citerefentry> irá solicitar confirmação. Por exemplo, para
         remover <filename>arquivo1</filename> e
         <filename>arquivo2</filename>, você pode executar: </para>
 
@@ -1085,8 +1085,8 @@ $ <userinput>rm arquivo1 arquivo2</userinput>
       </screen>
 
       <para>
-	If you have to remove a large number of files that require a confirmation before they
-        can be deleted, or if you want to use <citerefentry>
+      Se você quer remover um número elevado de arquivos que requerem confirmação antes
+      de serem deletados, ou se você quer usar <citerefentry>
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
         </citerefentry> to remove files from a script that will not be run on a terminal, add the
