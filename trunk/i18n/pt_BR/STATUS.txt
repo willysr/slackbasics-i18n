@@ -1,0 +1,31 @@
+apache.xml - OK
+bind.xml - OK
+chap-book.xml - OK
+chap-filesystem.xml - Em andamento
+chap-help.xml - OK
+chap-init.xml
+chap-install.xml
+chap-intro.xml - OK
+chap-kernel.xml
+chap-pkgmgmt.xml
+chap-procmgmt.xml
+chap-shell.xml
+chap-textproc.xml
+chap-usermgmt.xml
+chap-x11.xml
+concepts.xml
+custom-installation.xml
+default.css
+inetd.xml
+ipsec.xml
+latex.xml
+miscadmin.xml
+mutt.xml
+netconfig.xml
+normal.css
+preface.xml - OK
+printing.xml
+security.xml
+sendmail.xml
+services.xml
+slackware-basics.xml - OK
