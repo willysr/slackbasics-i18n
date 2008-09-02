@@ -7,10 +7,10 @@
 <title>Introdução</title>
 
 <para>
-Apache é o servidor web mais popular desde abril de 1996. É originalmente
+O Apache é o servidor web mais popular desde abril de 1996. Foi originalmente
 baseado no httpd NCSA, e cresceu ao ponto de ser um servidor HTTP completo.
 O Slackware Linux atualmente usa a série 1.3.x do Apache. Este capítulo é
-baseado no Apache 1.3.x.
+baseado nesta versão.
 </para>
 
 </sect1>
@@ -22,7 +22,7 @@ baseado no Apache 1.3.x.
 O Apache pode ser instalado
 adicionando o pacote <filename>apache</filename> da série <quote>n</quote> do CD2.
 Se você pretende usar o PHP, será necessário instalar os pacotes <filename>php</filename> 
-série <quote>n</quote>) e <filename>mysql</filename> (série <quote>ap</quote>).
+(série <quote>n</quote>) e <filename>mysql</filename> (série <quote>ap</quote>).
 O MySQL é necessário porque o PHP é pré-compilado com dependências de bibliotecas
 do MySQL. Você não precisará rodar o MySQL realmente. Depois de instalar o Apache,
 ele pode ser iniciado automaticamente quando o sistema iniciar, basta dar permissão
