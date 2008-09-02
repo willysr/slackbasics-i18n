@@ -24,7 +24,7 @@
 
       <para>
 	Nomes de arquivos ou diretórios são mostrados como:
-	<filename>/caminho/para/arquivo</filename>.  Por exemplo:
+	<filename>/caminho/para/arquivo</filename>. Por exemplo:
 	<filename>/etc/fstab</filename>
       </para>
     </sect2>
@@ -83,4 +83,3 @@ Saída
     </sect2>
   </sect1>
 </chapter>
-

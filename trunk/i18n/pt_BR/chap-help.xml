@@ -22,20 +22,20 @@
       <title>Linux HOWTO's</title>
 
       <para>
-	Os Linux HOWTOs são uma coleção de documentos que cobrem
-	assuntos específicos relacionados ao GNU/Linux. A maioria
-	dos Linux HOWTOs não são focados em nenhuma distribuição Linux
-	específica, entretanto eles são muito úteis para usuários do
-	Slackware Linux. O pacote <emphasis>linux-howtos</emphasis> da
-	série <quote>f</quote> contém a coleção HOWTO. Depois de instalar
-	este pacote os HOWTOs estarão disponíveis no diretório
-	<filename>/usr/doc/Linux-HOWTOs/</filename>. O Slackware Linux
-	também contém uma pequena coleção de <acronym>FAQs</acronym>
-	relacionados ao Linux (FAQs são documentos que respondem à
-	perguntas feitas mais frequentes). Os FAQs do Linux são
-	instalados no diretório <filename>/usr/doc/Linux-FAQs/</filename>, 
-	e está disponível no pacote <emphasis>linux-faqs</emphasis>, 
-	que faz parte da série <quote>f</quote>.
+	    Os Linux HOWTOs são uma coleção de documentos que cobrem
+    	assuntos específicos relacionados ao GNU/Linux. A maioria
+    	dos Linux HOWTOs não são focados em nenhuma distribuição Linux
+    	específica, entretanto eles são muito úteis para usuários do
+    	Slackware Linux. O pacote <emphasis>linux-howtos</emphasis> da
+    	série <quote>f</quote> contém a coleção HOWTO. Depois de instalar
+    	este pacote os HOWTOs estarão disponíveis no diretório
+    	<filename>/usr/doc/Linux-HOWTOs/</filename>. O Slackware Linux
+    	também contém uma pequena coleção de <acronym>FAQs</acronym>
+    	relacionados ao Linux (FAQs são documentos que respondem à
+    	perguntas feitas mais frequentes). Os FAQs do Linux são
+    	instalados no diretório <filename>/usr/doc/Linux-FAQs/</filename>, 
+    	e está disponível no pacote <emphasis>linux-faqs</emphasis>, 
+    	que faz parte da série <quote>f</quote>.
       </para>
     </sect2>
 
@@ -44,11 +44,11 @@
 
       <para>
         A maioria do comandos UNIX-like são descritos pelo tradicional
-	sistema de ajuda UNIX chamado <emphasis>páginas de manual</emphasis>. 
-	Você pode ler uma página de manual de um programa com o comando
-	<command>man</command>. Executando <command>man</command> com 
-	o nome do comando como argumento mostra a página de manual para 
-	o comando. Por exemplo, 
+	    sistema de ajuda UNIX chamado <emphasis>páginas de manual</emphasis>. 
+	    Você pode ler uma página de manual de um programa com o comando
+	    <command>man</command>. Executando <command>man</command> com 
+	    o nome do comando como argumento mostra a página de manual para 
+	    o comando. Por exemplo, 
       </para>
 
       <screen>
@@ -61,9 +61,9 @@ $ <userinput>man ls</userinput>
 
       <para>
         Se você não sabe exatamente qual o nome da página ou comando,
-	você pode procurar através das páginas de manual usando uma 
-	palavra	chave. A opção <parameter class="command">-k</parameter>
-	existe para o uso desta facilidade:
+    	você pode procurar através das páginas de manual usando uma 
+	    palavra	chave. A opção <parameter class="command">-k</parameter>
+    	existe para o uso desta facilidade:
       </para>
 
       <screen>
