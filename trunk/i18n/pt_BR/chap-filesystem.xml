@@ -1089,221 +1089,231 @@ $ <userinput>rm arquivo1 arquivo2</userinput>
       de serem deletados, ou se você quer usar <citerefentry>
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> to remove files from a script that will not be run on a terminal, add the
-          <parameter class="command">-f</parameter> parameter to override the use of prompts. Files
-        that are not writable, are deleted with the <filename>-f</filename> flag if the file
-        ownership allows this. This parameter will also suppress printing of errors to
-          <emphasis>stderr</emphasis> if a file that should be removed was not found. </para>
+        </citerefentry> para remover arquivos a partir de um script que
+        não vai ser executado em um terminal, adicione o parâmetro 
+          <parameter class="command">-f</parameter> para evitar diálogos
+        de confirmação.  Arquivos sem permissão de escrita, são excluídos
+        com o parâmetro <filename>-f</filename> se as permissões do dono
+        do arquivo permitirem.  Este parâmetro também vai suprimir a
+        exibição de erros para <emphasis>stderr</emphasis> se o arquivo
+        a ser excluído não existir. </para>
 
-      <para> Directories can be removed recursively as well with the <parameter class="command"
-        >-r</parameter> parameter. <citerefentry>
+      <para>Diretórios também podem ser removidos recursivamente com o
+        parâmetro <parameter class="command">-r</parameter>.
+        <citerefentry>
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> will traverse the directory structure, unlinking and removing directories as
-        they are encountered. The same semantics are used as when normal files are removed, as far
-        as the <parameter class="command">-f</parameter> flag is concerned. To give a short example,
-        you can recursively remove all files and directories in the <filename>notes</filename>
-        directory with: </para>
+        </citerefentry> vai percorrer a estrutura do diretório, removendo
+        links e excluindo diretórios conforme forem encontrados.  A mesma
+        semântica é usada como quando arquivos normais são excluídos, da
+        mesma forma como o parâmetro
+        <parameter class="command">-f</parameter> foi concebido.  Para
+        dar um exemplo simples, você pode remover recursivamente todos os
+        arquivos e subdiretórios no diretório <filename>notas</filename>
+        com: </para>
 
       <screen>
-$ <userinput>rm -r notes</userinput>
+$ <userinput>rm -r notas</userinput>
       </screen>
 
-      <!-- XXX - describe -i flag? -->
+      <!-- XXX - descrever o parâmetro -i? -->
 
-      <para> Since <citerefentry>
+      <para> Uma vez que o comando <citerefentry>
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> command uses the <citerefentry>
+        </citerefentry> usa a função <citerefentry>
           <refentrytitle>unlink</refentrytitle>
           <manvolnum>2</manvolnum>
-        </citerefentry> function, data blocks are not rewritten to an uninitialized state. The
-        information in data blocks is only overwritten when they are reallocated and used at a later
-        time. To remove files including their data blocks securely, some systems provide a <citerefentry>
+        </citerefentry>, blocos de dados não são regravados para um estado não inicializado.  A
+        informação em blocos de dados só é sobrescrita quando elas são realocadas e usadas posteriormente.
+        Para remover arquivos incluindo seus blocos de dados de forma segura, alguns sistemas disponibilizam um comando
+         <citerefentry>
           <refentrytitle>shred</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> command that overwrites data blocks with random data. But this is not
-        effective on many modern (journaling) filesystems, because they don't write data in place. </para>
+        </citerefentry> que sobrescreve os blocos de dados com dados aleatórios.  Mas isto não
+        é efetivo em muitos sistemas de arquivo modernos (com journaling), porque eles não escrevem dados no local. </para>
 
-      <para> The <citerefentry>
+      <para> O comando <citerefentry>
           <refentrytitle>unlink</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> commands provides a one on one implementation of the <citerefentry>
+        </citerefentry> provê uma das implementações da função <citerefentry>
           <refentrytitle>unlink</refentrytitle>
           <manvolnum>2</manvolnum>
-        </citerefentry> function. It is of relatively little use, because it can not remove
-        directories. </para>
+        </citerefentry>.  É relativamente pouco usável, pois não pode remover 
+        diretórios. </para>
     </sect2>
   </sect1>
 
   <sect1 xml:id="chap-filesystem-permissions">
-    <title>Permissions</title>
+    <title>Permissões</title>
 
-    <para> We touched the subject of file and directory permissions in <xref
-        linkend="chap-filesystem-introduction-permissions"/>. In this section, we will look at the <citerefentry>
+    <para> Nós tocamos no assunto de permissões de arquivos e diretórios em <xref
+        linkend="chap-filesystem-introduction-permissions"/>.  Nesta seção, vamos dar uma olhada nos comandos
+      <citerefentry>
         <refentrytitle>chown</refentrytitle>
         <manvolnum>1</manvolnum>
-      </citerefentry> and <citerefentry>
+      </citerefentry> e <citerefentry>
         <refentrytitle>chmod</refentrytitle>
         <manvolnum>1</manvolnum>
-      </citerefentry> commands, that are used to set the file ownership and permissions
-      respectively. After that, we are going to look at a modern extension to permissions named
-      Access Control Lists (ACLs). </para>
+      </citerefentry>, que são usados para definir a propriedade e as permissões de arquivos,
+      respectivamente.  Depois disto, vamos conferir uma extensão mais moderna às permissões chamada de
+      Listas de Controle de Acesso (ACLs). </para>
 
     <sect2 xml:id="chap-filesystem-permissions-ownership">
-      <title>Changing the file ownership</title>
+      <title>Alterando o dono de um arquivo</title>
 
-      <para> As we have seen earlier, every file has an owner (user) ID and a group ID stored in the
-        inode. The <citerefentry>
+      <para> Como já vimos anteriormente, cada arquivo tem um ID do dono (usuário) e um ID do grupo armazenados no
+        inode.  O comando <citerefentry>
           <refentrytitle>chown</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> command can be used to set these fields. This can be done by the numeric
-        IDs, or their names. For instance, to change the owner of the file
-        <filename>note.txt</filename> to <emphasis>john</emphasis>, and its group to
-        <emphasis>staff</emphasis>, the following command is used: </para>
+        </citerefentry> pode ser usado para definir estes campos.  Isto pode ser feito com IDs numéricos
+        ou com seus nomes.  Por exemplo, para alterar o dono de um arquivo
+        <filename>nota.txt</filename> para <emphasis>john</emphasis>, e seu grupo para 
+        <emphasis>staff</emphasis>, o seguinte comando é usado: </para>
 
       <screen>
-$ <userinput>chown john:staff note.txt</userinput>
+$ <userinput>chown john:staff nota.txt</userinput>
       </screen>
 
-      <para> You can also omit either components, to only set one of both fields. If you want to set
-        the user name, you can also omit the colon. So, the command above can be split up in two
-        steps: </para>
+      <para> Você também pode omitir qualquer desses componentes, para definir apenas um destes dois campos.  Se você
+        quiser definir o nome do usuário, você não precisa informar os dois-pontos.  Assim, o comando acima poderia ser
+        realizado em dois passos: </para>
 
       <screen>
-$ <userinput>chown john note.txt</userinput>
-$ <userinput>chown :staff note.txt</userinput>
+$ <userinput>chown john nota.txt</userinput>
+$ <userinput>chown :staff nota.txt</userinput>
       </screen>
 
-      <para> If you want to change the owner of a directory, and all the files or directories it
-        holds, you can add the <parameter class="command">-R</parameter> to <citerefentry>
+      <para> Se você quiser mudar o dono de um diretório, e de todos os arquivos ou subdiretórios contidos
+        nele, você pode adicionar um <parameter class="command">-R</parameter> ao <citerefentry>
           <refentrytitle>chown</refentrytitle>
           <manvolnum>1</manvolnum>
         </citerefentry>: </para>
 
       <screen>
-$ <userinput>chown -R john:staff notes</userinput>
+$ <userinput>chown -R john:staff notas</userinput>
       </screen>
 
-      <para> If user and group names were specified, rather than IDs, the names are converted by <citerefentry>
+      <para> Se o nome do usuário e do grupo for especificado, ao invés de seus IDs, os nomes são convertidos
+        pelo
+        <citerefentry>
           <refentrytitle>chown</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry>. This conversion usually relies on the system-wide password database. If you
-        are operating on a filesystem that uses another password database (e.g. if you mount a root
-        filesystem from another system for recovery), it is often useful to change file ownership by
-        the user or group ID. In this manner, you can keep the relevant user/group name to ID
-        mappings in tact. So, changing the ownership of <filename>note</filename> to UID 1000 and
-        GUID 1000 is done in the following (predictable) manner: </para>
+        </citerefentry>.  Esta conversão baseia-se comumente na base de dados de senhas do sistema.  Se você
+        está trabalhando em um sistema de arquivos que usa outra base de dados de senhas (p.ex. se você montou
+        um sistema de arquivos raíz a partir de outro sistema para recuperação), frequentemente é útil mudar a
+        propriedade usando o ID de usuário ou de grupo.  Desta maneira, você pode manter o mapeamento do nome
+        do usuário/grupo intacto.  Assim, alterar a propriedade de <filename>nota.txt</filename> para o UID 1000 e
+        GUID 1000 é feito da seguinte (e deduzível) maneira: </para>
 
       <screen>
-$ <userinput>chown 1000:1000 note.txt</userinput>
+$ <userinput>chown 1000:1000 nota.txt</userinput>
       </screen>
     </sect2>
 
     <sect2 xml:id="chap-filesystem-permissions-permbits">
-      <title>Changing file permission bits</title>
+      <title>Modificando os bits de permissão de arquivos</title>
 
-      <para> After reading the introduction to filesystem permissions in <xref
-          linkend="chap-filesystem-introduction-permissions"/>, changing the permission bits that
-        are stored in the inode is fairly easy with the <citerefentry>
+      <para> Depois de ler a introdução às permissões do sistema de arquivos em <xref
+          linkend="chap-filesystem-introduction-permissions"/>, alterar os bits de permissão que
+          são armazenados no inode é bastante fácil com o comando <citerefentry>
           <refentrytitle>chmod</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> command. <citerefentry>
+        </citerefentry>. <citerefentry>
           <refentrytitle>chmod</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> accepts both numeric and symbolic representations of permissions.
-        Representing the permissions of a file numerically is very handy, because it allows setting
-        all relevant permissions tersely. For instance: </para>
+        </citerefentry> aceita tanto representações numéricas quanto simbólicas das permissões.
+        Representar as permissões de um arquivo numericamente é bastante prático, pois permite definir
+        todas as permissões relevantes de uma vez.  Por exemplo: </para>
 
       <screen>
-$ <userinput>chmod 0644 note.txt</userinput>
+$ <userinput>chmod 0644 notas.txt</userinput>
       </screen>
 
-      <para> Make <filename>note.txt</filename> readable and writable for the owner of the file, and
-        readable for the file group and others. </para>
+      <para> Torna o arquivo <filename>notas.txt</filename> legível e gravável para o dono do arquivo, e
+        regível para o grupo do arquivo e outros. </para>
 
-      <para> Symbolic permissions work with addition or subtraction of rights, and allow for
-        relative changes of file permissions. The syntax for symbolic permissions is: </para>
+      <para> Permissões simbólicas se prestam a adicionar ou remover permissões, e permitem alterações
+        relativas nas permissões de arquivo.  A sintaxe para permissões simbólicas é: </para>
 
       <screen>
 [ugo][-+][rwxst]
       </screen>
 
-      <para> The first component specifies the user classes to which the permission change applies
-        (user, group or other). Multiple characters of this component can be combined. The second
-        component takes away rights (<emphasis>-</emphasis>), or adds rights
-        (<emphasis>+</emphasis>). The third component is the access specifier (read, write, execute,
-        set UID/GID on execution, sticky). Multiple components can be specified for this component
-        too. Let's look at some examples to clear this up: </para>
+      <para> O primeiro componente especifica as classes de usuário às quais a mudança de permissão se aplica
+        (usuário, grupo ou outros).  Caracteres múltiplos deste componente podem ser combinados.  O segundo
+        componente remove (<emphasis>-</emphasis>) ou adiciona as permissões 
+        (<emphasis>+</emphasis>).  O terceiro componente é o descritor de acesso (leitura, escrita, execução,
+        uso de UID/GID na execução, e sticky bit).  Múltiplos caracteres podem ser especificados neste componente
+        também.  Vamos ver alguns exemplos para tornar isto mais claro: </para>
 
       <screen>
-ug+rw        # Give read/write rights to the file user and group
-chmod go-x   # Take away execute rights from the file group and others.
-chmod ugo-wx # Disallow all user classes to write to the file and to
-             # execute the file.
+ug+rw        # Dá permissão de leitura/escrita ao usuário e ao grupo do arquivo
+chmod go-x   # Remove a permissão de execução para o grupo do arquivo e para os outros.
+chmod ugo-wx # Impossibilita todas as classes de usuário de escrever no arquivo e de executá-lo.
       </screen>
 
-      <para> These commands can be used in the following manner with chmod: </para>
+      <para> Estes comandos podem ser usados da seguinte maneira com chmod: </para>
 
       <screen>
-$ <userinput>chmod ug+rw note.txt</userinput>
+$ <userinput>chmod ug+rw nota.txt</userinput>
 $ <userinput>chmod go-x script1.sh</userinput>
 $ <userinput>chmod ugo-x script2.sh</userinput>
       </screen>
 
-      <para> Permissions of files and directories can be changed recursively with the <parameter
-          class="command">-R</parameter>. The following command makes the directory
-        <filename>notes</filename> world-readable, including its contents: </para>
+      <para> As permissões de arquivos e diretórios podem ser alteradas recursivamente com o parâmetro <parameter
+          class="command">-R</parameter>.  O seguinte comando torna o diretório 
+        <filename>notas</filename> legível a todos, incluindo seu conteúdo: </para>
 
       <screen>
-$ <userinput>chmod -R ugo+r notes</userinput>
+$ <userinput>chmod -R ugo+r notas</userinput>
       </screen>
 
-      <para> Extra care should be taken with directories, because the <emphasis>x</emphasis> flag
-        has a special meaning in a directory context. Users that have execute rights on directories
-        can access a directory. User that don't have execute rights on directories can not. Because
-        of this particular behavior, it is often easier to change the permissions of a directory
-        structure and its files with help of the <citerefentry>
+      <para> Cuidados extras devem ser tomados com diretórios, porque a permissão <emphasis>x</emphasis>
+        tem um significado especial no contexto de diretórios.  Usuários com permissão de execução em diretórios
+        podem acessar o diretório.  Usuários que não têm permissões de execução em diretórios não podem.  Devido
+        a este comportamente particular, é quase sempre mais fácil mudar as permissões de uma estrutura de
+        diretório e de seus arquivos com ajuda do comando <citerefentry>
           <refentrytitle>find</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> command <!-- XXX xref -->. </para>
+        </citerefentry> <!-- XXX xref -->. </para>
 
-      <para> There are a few extra permission bits that can be set that have a special meaning. The
-        SUID and SGID are the most interesting bits of these extra bits. These bits change the
-        active user ID or group ID to that of the owner or group of the file when the file is
-        executed. The <command>su(1)</command> command is a good example of a file that usually has
-        the SUID bit set: </para>
+      <para> Há alguns poucos bits extras de permissão que podem ser definidos e que tem um significado especial.  Os
+        SUID e SGID são os mais interessantes destes bits extras.  Estes bits modificam o
+        ID do usuário ativo ou ID do grupo para aquele usuário ou grupo como o qual o arquivo está
+        sendo executado.  O comando <command>su(1)</command> é um bom exemplo de um arquivo que frequentemente tem
+        o bit SUID ativado: </para>
 
       <screen>
 $ <userinput>ls -l /bin/su</userinput>
 -rwsr-xr-x  1 root root 60772 Aug 13 12:26 /bin/su
       </screen>
 
-      <para> This means that the <command>su</command> command runs as the user
-        <emphasis>root</emphasis> when it is executed. The SUID bit can be set with the
-        <emphasis>s</emphasis> modifier. For instance, if the SUID bit was not set on
-          <filename>/bin/su</filename> this could be done with: </para>
+      <para> Isso significa que o comando <command>su</command> executa como o usuário 
+        <emphasis>root</emphasis> quando executado.  O bit SUID pode ser definido com o modificador
+        <emphasis>s</emphasis>.  Por exemplo, se o bit SUID não estivesse atribuído em 
+          <filename>/bin/su</filename> isto poderia ser feito com: </para>
 
       <screen>
 $ <userinput>chmod u+s /bin/su</userinput>
       </screen>
 
       <note>
-        <para> Please be aware that the SUID and SGID bits have
-        security implications. If a program with these bits set
-        contain a bug, it may be exploited to get privileges of the
-        file owner or group. For this reason it is good manner to keep
-        the number of files with the SUID and SGID bits set to an
-        absolute minimum. </para>
+        <para> Por favor atente que ativas os bits SUID e SGID têm
+        implicações de segurança.  Se um programa com estes bits definidos
+        contiver um bug, ele poderá ser explorado para obter privilégios
+        do dono do arquivo ou grupo.  Por este motivo é uma boa prática deixar
+        a quantidade de arquivos com os bits SUID e SGID ativos restritos a
+        restritos a um mínimo possível. </para>
       </note>
 
-      <para> The sticky bit is also interesting when it comes to
-      directory. It disallows users to rename of unlink files that
-      they do not own, in directories that they do have write access
-      to. This is usually used on world-writeable directories, like
-      the temporary directory (<filename>/tmp</filename>) on many UNIX
-      systems. The sticky tag can be set with the
-      <emphasis>t</emphasis> modifier: </para>
+      <para> O sticky bit também é interessante quando aplicado a um
+      diretório.  Ele impossibilita que usuários renomeiem ou excluam
+      arquivos que não lhes pertencem, em diretórios que tenham acesso.  
+      Isto é comumente usado em diretórios com permissões de escrita para
+      todos, como o diretório temporário (<filename>/tmp</filename>) em
+      muitos sistemas UNIX.  O sticky bit pode ser atribuído com o
+      modificador <emphasis>t</emphasis>: </para>
 
       <screen>
 $ <userinput>chmod g+t /tmp</userinput>
@@ -1311,38 +1321,37 @@ $ <userinput>chmod g+t /tmp</userinput>
     </sect2>
 
     <sect2 xml:id="chap-filesystem-permissions-umask">
-      <title>File creation mask</title>
+      <title>Máscara de criação de arquivo</title>
 
       <para>
-	The question that remains is what initial permissions are used
-	when a file is created.  This depends on two factors: the mode
-	flag that was passed to the <emphasis>open(2)</emphasis>
-	system call, that is used to create a file, and the active
-	file creation mask. The file creation mask can be represented
-	as an octal number. The effective permissions for creating the
-	file are determined as <emphasis>mode &amp;
-	~mask</emphasis>. Or, if represented in an octal fashion, you
-	can substract the digits of the mask from the mode. For
-	instance, if a file is created with permissions
-	<emphasis>0666</emphasis> (readable and writable by the file
-	user, file group, and others), and the effective file creation
-	mask is <emphasis>0022</emphasis>, the effective file
-	permission will be <emphasis>0644</emphasis>. Let's look at
-	anothere example. Suppose that files are still created with
-	<emphasis>0666</emphasis> permissions, and you are more
-	paranoid, and want to take away all read and write permissions
-	for the file group and others. This means you have to set the
-	file creation mask to <emphasis>0066</emphasis>, because
-	substracting <emphasis>0066</emphasis> from
-	<emphasis>0666</emphasis> yields
+    A pergunta que não quer calar é quais as permissões são usadas
+    quando um arquvo é criado.  Isto depende de dois fatores: a flag de
+    modo que for passada para a chamada de sistema
+    <emphasis>open(2)</emphasis>, que é usada para criar um arquivo, e a
+    máscara de criação de arquivo ativa.  A máscara de criação de arquivos
+    pode ser representada como um número octal.  As permissões efetivas para
+    criação do arquivo são determinadas como <emphasis>mode &amp;
+	~mask</emphasis>.  Ou, se estiver na representação octal, você pode
+	subtrair os dígitos da máscara dos do modo.  Por exemplo, se um arquivo
+	é criado com permissões <emphasis>0666</emphasis> (legível e gravável
+	pelo usuário do arquivo, pelo grupo e por outros), e a máscara efetiva
+	de criação de arquivo for <emphasis>0022</emphasis>, a permissão do
+	resultante do arquivo será <emphasis>0644</emphasis>.  Vamos ver outro
+	exemplo.  Suponha que arquivos ainda são criados com as permissões 
+	<emphasis>0666</emphasis>, e você é mais paranóico, e quer remover
+	todas as permissões de leitura e escrita do grupo do arquivo e dos
+	outros.  Isto quer dizer que você deve definir a máscara de criação
+	de arquivos para <emphasis>0066</emphasis>, já que
+	subtraindo <emphasis>0066</emphasis> de 
+	<emphasis>0666</emphasis> resulta em 
 	<emphasis>0600</emphasis>
       </para>
       
       <para>
-        The effective file creation mask can be queried and set with
-        the <command>umask</command> command, that is normally a
-        built-in shell command. The effective mask can be printed by
-        running <command>umask</command> without any parameters:
+        O valor da máscara de criação de arquivos pode ser consultado com
+        o comando <command>umask</command>, que normalmente já existe 
+        como comando do próprio shell.  A máscara eftiva pode ser exibida
+        executando <command>umask</command> sem nenhum parâmetro:
       </para>
       
       <screen>
@@ -1351,8 +1360,8 @@ $ <userinput>umask</userinput>
       </screen>
       
       <para>
-        The mask can be set by giving the octal mask number as a
-        parameter. For instance:
+        O valor da máscara pode ser definido atribuindo um número octal
+        como parâmetro.  Por exemplo:
       </para>
       
       <screen>
@@ -1360,7 +1369,7 @@ $ <userinput>umask 0066</userinput>
       </screen>
       
       <para>
-        We can verify that this works by creating an empty file:
+        E podemos verificar que isso funciona criando um arquivo vazio:
       </para>
       
       <screen>
