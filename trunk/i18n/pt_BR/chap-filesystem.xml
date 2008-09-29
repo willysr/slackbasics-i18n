@@ -1381,37 +1381,38 @@ $ <userinput>ls -l test</userinput>
     </sect2>
 
     <sect2 xml:id="chap-filesystem-permissions-acl">
-      <title>Access Control Lists</title>
+      <title>Listas de Controle de Acesso</title>
 
       <para>
-	Access Control lists (<acronym>ACL</acronym>s) are an
-	extension to traditional UNIX file permissions, that allow for
-	more fine-grained access control. Most systems that support
-	filesystem ACLs implement them as they were specified in the
-	POSIX.1e and POSIX.2c draft specifications. Notable UNIX and
-	UNIX-like systems that implement ACLs according to this draft
-	are FreeBSD, Solaris, and Linux.
+    Listas de Controle de Acesso (<acronym>ACL</acronym>s) são uma
+    extensão às permissões de arquivos tradicionais do UNIX que permitem
+    um controle de acesso mais específico.  Muitos sistemas que suportam
+    sistemas de arquivos ACLs as implementam tal como especificado nos
+    projetos das espeficicações POSIX.1e e POSIX.2c.  Exemplos de
+    sistemas UNIX e UNIX-like que implementam ACLs de acordo com estas
+    especificações são FreeBSD, Solaris e Linux.
       </para>
 
       <para>
-	As we have seen in <xref
-	linkend="chap-filesystem-introduction-permissions" /> access
-	control lists allows you to use read, write and execute
-	triplets for additional users or groups. In contrast to the
-	traditional file permissions, additional access control lists
-	are note stored directly in the node, but in extended
-	attributes that are associated with files. Two thing to be
-	aware of when you use access control lists is that not all
-	systems support them, and not all programs support them.
+    Como vimos em <xref
+	linkend="chap-filesystem-introduction-permissions" /> listas de
+    controle de acesso permitem a você usar trincas de leitura, escrita
+    e execução adicionais para usuários ou grupos.  Diferentemente das
+    permissões de arquivo tradicionais, listas de controle de acesso
+    adicionais não são armazenadas diretamente no inode, mas em
+    atributos extendidos que são associados aos arquivos.  Duas coisas
+    com que precisamos ter cuidado ao usar listas de controle de acesso
+    é que nem todos os sistemas as suportam, e também nem todos os
+    programas dão suporte a elas.
       </para>
 
       <sect3 xml:id="chap-filesystem-permissions-acl-reading">
-	<title>Reading access control lists</title>
+	<title>Lendo listas de controle de acesso</title>
 
 	<para>
-	  On most systems that support ACLs, <command>ls</command>
-	  uses a visual indicator to show that there are ACLs
-	  associated with a file. For example:
+      Na maioria dos sistemas que suportam ACLs, o comando
+      <command>ls</command> usa um indicador visual para mostrar que há
+      ACLs associadas ao arquivo.  Por exemplo:
 	</para>
 
 	<screen>
@@ -1420,15 +1421,15 @@ $ <userinput>ls -l index.html</userinput>
 	</screen>
 
 	<para>
-	  As you can see, the permissions column shows an additional
-	  plus (<emphasis>+</emphasis>) sign. The permission bits do
-	  not quite act like you expect them to be. We will get to
-	  that in a minute.
+      Como você pode ver, a coluna de permissões mostra um sinal de mais
+	  (<emphasis>+</emphasis>) adicional.  Os bits de permissão não agem
+      exatamente da forma como você espera que eles ajam.  Vamos ver
+      isso em instantes.
 	</para>
 
 	<para>
-	  The ACLs for a file can be queried with the
-	  <command>getfacl</command> command:
+      As ACLs para um arquivo podem ser consultadas com o comando 
+	  <command>getfacl</command>:
 	</para>
 
 	<screen>
@@ -1444,58 +1445,58 @@ other::---
 	</screen>
 
 	<para>
-	  Most lines can be interpreted very easily: the file user has
-	  read/write permissions, the file group no permissions, users
-	  of the group <emphasis>www-data</emphasis> have read
-	  permissions, and other users have no permissions. But why
-	  does the group entry list no permissions for the file group,
-	  while <command>ls</command> does? The secret is that if
-	  there is a <emphasis>mask</emphasis> entry,
-	  <command>ls</command> displays the value of the mask, rather
-	  than the file group permissions.
+      Muitas linhas podem ser facilmente interpretadas: o usuário do
+      arquivo tem permissões de leitura/escrita, o grupo do arquivo não
+      tem quaisquer permissões, usuários do grupo
+      <emphasis>www-data</emphasis> têm permissão de leitura, e outros
+      usuários também não têm permissões.  Mas por que esta saída mostra
+      que não há permissões para o grupo do arquivo enquanto que o
+      comando <command>ls</command> mostra permissão de leitura?  O
+      segredo é que se houver uma entrada chamada
+      <emphasis>mask</emphasis>, o <command>ls</command> exibirá o valor
+      da máscara, ao invés das permissões do grupo do arquivo.
 	</para>
 
 	<para>
-	  The <emphasis>mask</emphasis> entry is used to restrict all
-	  list entries with the exception of that of the file user,
-	  and that for other users. It is best to memorize the
-	  following rules for interpreting ACLs:
+      A entrada <emphasis>mask</emphasis> é usada para restringir todas
+      as entradas da listagem exceto a do usuário do arquivo, e a dos
+      outros usuários.  Para interpretar ACLs, é melhor memorizar as
+      seguintes regras:
 	</para>
 
 	<itemizedlist>
 	  <listitem>
 	    <para>
-	      The <emphasis>user::</emphasis> entry permissions
-	      correspond with the permissions of the file owner.
+          As permissões da entrada <emphasis>user::</emphasis>
+          correspondem às permissões do dono do arquivo.
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      The <emphasis>group::</emphasis> entry permissions
-	      correspond with the permissions of the file group,
-	      unless there is a <emphasis>mask::</emphasis> entry. If
-	      there is a <emphasis>mask::</emphasis> entry, the
-	      permissions of the group correspond to the group
-	      entry with the the mask entry as the maximum of allowed
-	      permissions (meaning that the group restrictions can be
-	      more restrictive, but not more permissive).
+          As permissões da entrada <emphasis>group::</emphasis>
+          correspondem às permissões do grupo do arquivo, a menos que
+          haja uma entrada <emphasis>mask::</emphasis>.  Se houver uma
+          entrada <emphasis>mask::</emphasis>, as permissões do grupo
+          correspondem à entrada de grupo tendo a entrada de máscara
+          como o máximo de permissões permitidas (significando que as
+          restrições de grupo podem ser mais restritivas, mas não mais
+          permissivas).
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      The permissions of other users and groups correspond to
-	      their <emphasis>user:</emphasis> and
-	      <emphasis>group:</emphasis> entries, with the value of
-	      <emphasis>mask::</emphasis> as their maximum
-	      permissions.
+          As permissões de outros usuários e grupos correspondem às suas
+          entradas <emphasis>user:</emphasis> e
+          <emphasis>group:</emphasis>, com o valor de 
+	      <emphasis>mask::</emphasis> como suas permissões máximas.
 	    </para>
 	  </listitem>
 	</itemizedlist>
 
 	<para>
-	  The second and third rules can clearly be observed if there
-	  us a user or group that has more rights than the mask for
-	  the file:
+      A segunda e terceira regras podem ser claramente observadas se
+      houver um usuário ou grupo que tenha mais permissões que a máscara
+      para o arquivo:
 	</para>
 
 	<screen>
@@ -1511,28 +1512,30 @@ other::---
 	</screen>
 
 	<para>
-	  Although read and write permissions are specified for the
-	  file and <emphasis>www-data</emphasis> groups, both groups
-	  will effectively only have read permission, because this is
-	  the maximal permission that the mask allows.
+      Ainda que as permissões de leitura e escrita sejam especificadas
+      para o grupo do arquivo e para o grupo
+      <emphasis>www-data</emphasis>, ambos os grupos efetivamente terão
+      apenas permissão de leitura, pois esta é a permissão máxima que a
+      máscara permite.
 	</para>
 
 	<para>
-	  Another aspect to pay attention to is the handling of ACLs
-	  on directories. Access control lists can be added to
-	  directories to govern access, but directories can also have
-	  <emphasis>default ACLs</emphasis> which specify the initial
-	  ACLs for files and directories created under that directory.
+      Outro aspecto a que devemos prestar atenção é a manipulação de
+      ACLs em diretórios.  Listas de controle de acesso podem ser
+      adicionadas a diretórios para gerenciar o acesso, mas os
+      diretórios podem também ter <emphasis>ACLs padrão</emphasis> as
+      quais especificam as ACLs iniciais para arquivos e diretórios
+      criados dentro do diretório em questão.
 	</para>
 
 	<para>
-	  Suppose that the directory <filename>reports</filename> has
-	  the following ACL:
+      Suponha que o diretório <filename>relatorios/</filename> tenha a
+      seguinte ACL:
 	</para>
 
 	<screen>
-$ <userinput>getfacl reports</userinput>
-# file: reports
+$ <userinput>getfacl relatorios</userinput>
+# file: relatorios
 # owner: daniel
 # group: daniel
 user::rwx
@@ -1548,16 +1551,16 @@ default:other::---
 	</screen>
 
 	<para>
-	  New files that are created in the
-	  <filename>reports</filename> directory get a ACL based on
-	  the entries that have <emphasis>default:</emphasis> as a
-	  prefix. For example:
+      Os novos arquivos que forem criados dentro do diretórios 
+	  <filename>relatorios</filename> obtém sua ACL baseada nas entradas
+      que têm um <emphasis>default:</emphasis> como prefixo.  Por
+      exemplo:
 	</para>
 
 	<screen>
-$ touch reports/test
-$ getfacl reports/test
-# file: reports/test
+$ touch relatorios/teste
+$ getfacl reportorios/teste
+# file: reportorios/teste
 # owner: daniel
 # group: daniel
 user::rw-
@@ -1568,9 +1571,9 @@ other::---
 	</screen>
 
 	<para>
-	  As you can see, the default ACL was copied. The execute bit
-	  is removed from the mask, because the new file was not
-	  created with execute permissions.
+      Como você pode ver, a ACL padrão foi copiada.  O bit de execução
+      foi removido da máscara, pois o novo arquivo não foi criado com
+      permissão de execução.
 	</para>
       </sect3>
 
