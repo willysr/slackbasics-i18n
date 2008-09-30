@@ -1578,70 +1578,70 @@ other::---
       </sect3>
 
       <sect3 xml:id="chap-filesystem-permissions-acl-setting">
-	<title>Creating access control lists</title>
+	<title>Criando listas de controle de acesso</title>
 
 	<para>
-	  The ACL for a file or directory can be changed with the
-	  <command>setfacl</command> program. Unfortunately, the
-	  usage of this program highly depends on the system that
-	  is being used. To add to that confusion, at least one
-	  important flag (<parameter class="command">-d</parameter>)
-	  has a different meanings on different systems. One can
-	  only hope that this command will get standardized.
+      A ACL para um arquivo ou diretório pode ser modificada com o
+      comando <command>setfacl</command>.  Infelizmente, sua utilização
+      é fortemente dependente do sistema em que está sendo usado.  Para
+      aumentar a confusão, pelo menos uma opção importante (<parameter
+      class="command">-d</parameter>) tem significados diferentes em
+      diferentes sistemas.  Pode-se apenas esperar que este comando seja
+      padronizado algum dia.
 	</para>
 
 	<table xml:id="chap-filesystem-permissions-acl-setting-flags">
-	  <title>System-specific <command>setfacl</command> flags</title>
+	  <title>Opções específicas de sistemas do <command>setfacl</command></title>
 	  
 	  <tgroup cols="2">
 	    <thead>
 	      <row>
-		<entry>Operation</entry>
+		<entry>Operação</entry>
 		<entry>Linux</entry>
 	      </row>
 	    </thead>
 	    <tbody>
 	      <row>
-		<entry>Set entries, removing all old entries</entry>
+		<entry>Define entradas, removendo todas as entradas antigas</entry>
 		<entry><parameter class="command">--set</parameter></entry>
 	      </row>
 	      <row>
-		<entry>Modify entries</entry>
+		<entry>Modifica entradas</entry>
 		<entry><parameter class="command">-m</parameter></entry>
 	      </row>
 	      <row>
-		<entry>Modify default ACL entries</entry>
+		<entry>Modifica as entradas ACL padrão</entry>
 		<entry><parameter class="command">-d</parameter></entry>
 	      </row>
 	      <row>
-		<entry>Delete entry</entry>
+		<entry>Remove entradas</entry>
 		<entry><parameter class="command">-x</parameter></entry>
 	      </row>
 	      <row>
 		<entry>
-		  Remove all ACL entries (except for the three
-		  required entries.
+		  Remove todas as entradas ACL (exceto as três entradas que são
+          requeridas.)
 		</entry>
 		<entry><parameter class="command">-b</parameter></entry>
 	      </row>
 	      <row>
-		<entry>Recalculate mask</entry>
+		<entry>Recalcula a máscara</entry>
 		<entry>
-		  Always recalculated, unless <parameter
-		  class="command">-n</parameter> is used, or an mask
-		  entry expicitly specified.
+          Sempre recalculada, a menos que <parameter
+		  class="command">-n</parameter> seja usado, ou uma entrada de
+          máscara seja especificada explicitamente.
 		</entry>
 	      </row>
 	      <row>
-		<entry>Use ACL specification from a file</entry>
+		<entry>Usa a especificação ACL a partir de um arquivo</entry>
 		<entry>
-		  <parameter class="command">-M</parameter> (modify),
-		  <parameter class="command">-X</parameter> (delete),
-		  or <parameter class="command">--restore</parameter>
+		  <parameter class="command">-M</parameter> (modificar),
+		  <parameter class="command">-X</parameter> (excluir),
+		  ou <parameter class="command">--restore</parameter>
 		</entry>
 	      </row>
 	      <row>
-		<entry>Recursive modification of ACLs</entry>
+		<entry>Modificação recursiva de ACLs</entry>
 		<entry><parameter class="command">-R</parameter></entry>
 	      </row>
 	    </tbody>
@@ -1649,37 +1649,36 @@ other::---
 	</table>
 
 	<para>
-	  As we have seen in the previous section, entries can be
-	  specified for users and groups, by using the following
-	  syntax:
-	  <emphasis>user/group:name:permissions</emphasis>. Permissions
-	  can be specified as a triplet by using the letters
-	  <emphasis>r</emphasis> (read), <emphasis>w</emphasis>
-	  (write), or <emphasis>x</emphasis> (execute). A dash
-	  (<emphasis>-</emphasis>) should be used for permissions that
-	  you do not want to give to the user or group, since Solaris
-	  requires this. If you want to disallow access completely,
-	  you can use the <emphasis>---</emphasis> triplet.
+      Como vimos nas seções anteriores, entradas podem ser especificadas
+      para usuários e grupos usando-se a seguinte sintaxe:
+	  <emphasis>user/group:name:permissions</emphasis>.  Permissões
+      podem ser especificadas como uma tripla através do uso das letras
+	  <emphasis>r</emphasis> (leitura), <emphasis>w</emphasis>
+	  (escrita), ou <emphasis>x</emphasis> (execução).  Um hífen
+	  (<emphasis>-</emphasis>) deve ser usado para as permissões que
+      você não quer dar para aquele usuário ou grupo, uma vez que é
+      requerido pelo Solaris.  Se você quiser desabilitar o acesso
+      completamente, você pode usar a tripla <emphasis>---</emphasis>.
 	</para>
 
 	<para>
-	  The specification for other users, and the mask
-	  follows this format: <emphasis>other:r-x</emphasis>. The
-	  following slightly more predictable format can also be
-	  used: <emphasis>other::r-x</emphasis>.
+      A especificação para outros usuários, e a máscara segue este
+      formato: <emphasis>other:r-x</emphasis>.  O formato seguinte,
+      ligeiramente mais intuitivo, também pode ser usado:
+      <emphasis>other::r-x</emphasis>.
 	</para>
 
 	<sect4 xml:id="chap-filesystem-permissions-acl-setting-modify">
-	  <title>Modifying ACL entries</title>
+	  <title>Modificando entradas ACL</title>
 
 	  <para>
-	    The simplest operation is to modify an ACL entry. This
-	    will create a new entry if the entry does not exist
-	    yet. Entries can be modified with the <parameter
-	    class="command">-m</parameter>. For instance, suppose that
-	    we want to give the group <emphasis>friend</emphasis> read
-	    and write access to the file
-	    <filename>report.txt</filename>. This can be done with:
+        A operação mais simples é modificar uma entrada ACL.  Isto vai
+        criar uma nova entrada se a entrada ainda não existir.  Entradas
+        podem ser modificadas com <parameter
+        class="command">-m</parameter>.  Por exemplo, suponha que
+        queiramos dar acesso de leitura e escrita para o grupo
+        <emphasis>friends</emphasis> ao arquivo
+        <filename>report.txt</filename>.  Isto pode ser feito com:
 	  </para>
 
 	  <screen>
@@ -1687,8 +1686,9 @@ $ <userinput>setfacl -m group:friends:rw- report.txt</userinput>
 	  </screen>
 
 	  <para>
-	    The mask entry will be recalculated, setting it to the
-	    union of all group entries, and additional user entries:
+        A entrada de máscara será recalculada, definindo-a para a união
+        dos três grupos de entradas, e as entradas de usuário
+        adicionais:
 	  </para>
 
 	  <screen>
@@ -1704,8 +1704,8 @@ other::r--
 	  </screen>
 
 	  <para>
-	    You can combine multiple ACL entries
-	    by separating them with a comma character. For instance:
+        Você pode combinar múltiplas entradas ACL separando-as por
+        vírgulas.  Por exemplo:
 	  </para>
 
 	  <screen>
@@ -1714,11 +1714,11 @@ $ <userinput>setfacl -m group:friends:rw-,group:foes:--- report.txt</userinput>
 	</sect4>
 
 	<sect4 xml:id="chap-filesystem-permissions-acl-setting-removing">
-	  <title>Removing ACL entries</title>
+	  <title>Removendo entradas ACL</title>
 
 	  <para>
-	    An entry can be removed with the <parameter
-	    class="command">-x</parameter> option:
+	    Uma entrada pode ser removida com a opção <parameter
+	    class="command">-x</parameter>:
 	  </para>
 
 	  <screen>
@@ -1726,20 +1726,20 @@ $ <userinput>setfacl -x group:friends: report.txt</userinput>
 	  </screen>
 
 	  <para>
-	    The trailing colon can optionally be omitted.
+	    O caracter dois-pontos do final é opcional e pode ser omitido.
 	  </para>
 	</sect4>
 
 	<sect4 xml:id="chap-filesystem-permissions-acl-setting-new">
-	  <title>Making a new ACL</title>
+	  <title>Criando uma nova ACL</title>
 
 	  <para>
-	    The <parameter class="command">--set</parameter> option
-	    is provided create a new access control list
-	    for a file, clearing all existing entries,
-	    except for the three required entries.
-	    It is required that the file user, group and
-	    other entries are also specified. For example:
+        A opção <parameter class="command">--set</parameter> está
+        disponível para a criação de uma nova lista de controle de
+        acesso para um arquivo, limpando todas as entradas existentes,
+        exceto pelas três entradas requeridas.  É obrigatório que as
+        entradas de usuário do arquivo, de grupo e de outros também
+        sejam especificadas.  Por exemplo:
 	  </para>
 
 	  <screen>
@@ -1747,14 +1747,13 @@ $ <userinput>setfacl --set user::rw-,group::r--,other:---,group:friends:rwx repo
 	  </screen>
 
 	  <para>
-	    If you do not want to clean the user, group, and other
-	    permissions, but do want to clear all other ACL entries,
-	    you can use the <parameter class="command">-b</parameter>
-	    option. The following example uses this in combination
-	    with the <parameter class="command">-m</parameter> option
-	    to clear all ACL entries (except for user, group, and other),
-	    and to add an entry for the <emphasis>friends</emphasis>
-	    group:
+        Se você não quer limpar as permissões de usuário, grupo e
+        outros, mas quer limpar todas as outras entradas ACL, você pode
+        usar a opção <parameter class="command">-b</parameter>.  O
+        exemplo seguinte a utiliza em conjunto com a opção <parameter
+        class="command">-m</parameter> para limpar todas as entradas ACL
+        (exceto para usuário, grupo e outros), e para adicionar uma
+        entrada para o grupo <emphasis>friends</emphasis>:
 	  </para>
 
 	  <screen>
