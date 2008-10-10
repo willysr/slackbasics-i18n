@@ -1762,15 +1762,15 @@ $ <userinput>setfacl -b -m group:friends:rw- report.txt</userinput>
 	</sect4>
 
 	<sect4 xml:id="chap-filesystem-permissions-acl-setting-default">
-	  <title>Setting a default ACL</title>
+	  <title>Definindo uma ACL padrão</title>
 
 	  <para>
-	    As we have seen in <xref
-	    linkend="chap-filesystem-permissions-acl" />, directories
-	    can have default ACL entries that specify what permissions
-	    should be used for files and directories that are created
-	    below that directory. The <parameter class="command">-d</parameter>
-	    option is used to operate on default entries:
+	    Como vimos em <xref
+	    linkend="chap-filesystem-permissions-acl" />, diretórios podem
+	    ter entradas ACL padrão que especifiquem que permissões devem
+	    ser usadas por arquivos e diretórios que forem criados dentro
+	    desse diretório.  A opção <parameter class="command">-d</parameter>
+	    é usada para operar sobre entradas padrão:
 	  </para>
 
 	  <screen>
@@ -1791,17 +1791,15 @@ default:other::r-x
 	</sect4>
 
 	<sect4 xml:id="chap-filesystem-permissions-acl-setting-filesource">
-	  <title>Using an ACL from a reference file</title>
+	  <title>Usando uma ACL a partir de um arquivo de referência</title>
 
 	  <para>
-	    You can also use an ACL specification from file, rather
-	    than specifying it on the command line. An input file follows
-	    the same
-	    syntax as specifying entries as a parameter to
-	    <command>setfacl</command>, but the entries are separated
-	    by newlines, rather than by commas. This is very useful,
-	    because you can use the ACL for an existing file as a
-	    reference:
+	    Você também pode usar uma definição ACL a partir de um arquivo,
+	    ao invés de especificá-la na linha de comando.  Um arquivo de
+	    entrada segue a mesma sintaxe para especificação de entradas que
+	    o <command>setfacl</command>, mas as entradas são separadas por
+	    linhas, ao invés de por vírgulas.  Isto é muito útil, já que
+	    você pode usar a ACL para um arquivo existente como referência:
 	  </para>
 
 	  <screen>
@@ -1809,12 +1807,11 @@ $ <userinput>getfacl report.txt > ref</userinput>
 	  </screen>
 
 	  <para>
-	    The <parameter class="command">-M</parameter> option
-	    is provided to modify the ACL for a
-	    file by reading the entries from a file. So, if we have a
-	    file named <filename>report2.txt</filename>, we could
-	    modify the ACL for this file with the entries from
-	    <filename>ref</filename> with:
+	    A opção <parameter class="command">-M</parameter> existe para
+	    modificar a ACL para um arquivo através da leitura das entradas
+	    a partir de um arquivo.  Assim, se tivermos um arquivo chamado
+	    <filename>report2.txt</filename>, podemos modificar a ACL para
+	    este arquivo com as entradas de <filename>ref</filename> com:
 	  </para>
 
 	  <screen>
@@ -1822,10 +1819,10 @@ $ <userinput>setfacl -M ref report2.txt</userinput>
 	  </screen>
 
 	  <para>
-	    If you would like to start with a clean ACL, and add the
-	    entries from <filename>ref</filename>, you can add the
-	    <parameter class="command">-b</parameter> flag that we
-	    encountered earlier:
+	    Se você quiser iniciar com uma ACL limpa, e adicionar as
+	    entradas a partir de <filename>ref</filename>, você pode
+	    adicionar o parâmetro <parameter class="command">-b</parameter>
+	    que apresentamos anteriormente:
 	  </para>
 
 	  <screen>
@@ -1833,11 +1830,12 @@ $ <userinput>setfacl -b -M ref report2.txt</userinput>
 	  </screen>
 
 	  <para>
-	    Of course, it is not necessary to use this interim
-	    file. We can directly pipe the output from
-	    <command>getfacl</command> to <command>setfacl</command>,
-	    by using the symbolic name for the standard input
-	    (<emphasis>-</emphasis>), rather than the name of a file:
+	    É claro, não é necessário sequer usar este arquivo por completo.
+	    Podemos canalizar (<foreignphrase>pipe</foreignphrase>) a saída
+	    de <command>getfacl</command> diretamente para
+	    <command>setfacl</command>, usando o nome simbólico para a
+	    entrada padrão (<emphasis>-</emphasis>), ao invés de um nome de
+	    arquivo:
 	  </para>
 
 	  <screen>
@@ -1845,10 +1843,10 @@ $ <userinput>getfacl report.txt | setfacl -b -M - report2.txt</userinput>
 	  </screen>
 
 	  <para>
-	    The <parameter class="command">-X</parameter> removes
-	    the ACL entries defined in a file. This follows the same syntax as the
-	    <parameter class="command">-x</parameter> flag, with
-	    commas replaced by newlines.
+	    O <parameter class="command">-X</parameter> remove as entradas
+	    ACL definidas num arquivo.  Isto segue a mesma sintaxe que o
+	    parâmetro <parameter class="command">-x</parameter>, com
+	    vírgulas substituídas por novas-linhas.
 	  </para>
 	</sect4>
       </sect3>
