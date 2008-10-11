@@ -2063,16 +2063,17 @@ $ <userinput>find . -group friends</userinput>
 	</screen>
 
 	<para>
-	  The operand for checking file permissions
-	  <emphasis>-perm</emphasis> is less trivial. Like the
-	  <command>chmod</command> command this operator can work with
-	  octal and symbolic permission notations. We will start with
-	  looking at the octal notation. If an octal number is
-	  specified as a parameter to the <emphasis>-perm</emphasis>
-	  operand, it will match all objects that have exactly that
-	  permissions. For instance, <emphasis>-perm 0600</emphasis>
-	  will match all objects that are only readable and writable
-	  by the user, and have no additional flags set:
+	  O operando para verificação das permissões de arquivos 
+	  <emphasis>-perm</emphasis> é menos trivial.  Como o comando
+	  <command>chmod</command>, este operador pode trabalhar com
+	  notações de permissões octais e simbólicas.  Vamos começar olhando
+	  a notação octal.  Se um número octal for especificado como
+	  parâmetro para o operando <emphasis>-perm</emphasis>, ele irá
+	  corresponder a todos os objetos que tenham exatamente aquelas
+	  permissões.  Por exemplo, <emphasis>-perm 0600</emphasis> irá
+	  procurar por todos os objetos que tenham apenas permissões de
+	  leitura e escrita para o usuário, e não tenham opções adicionais
+	  definidas:
 	</para>
 
 	<screen>
@@ -2081,13 +2082,13 @@ $ <userinput>find . -perm 0600</userinput>
 	</screen>
 
 	<para>
-	  If a dash is added as a prefix to a number, it will match
-	  every object that has at least the bits set that are
-	  specified in the octal number. A useful example is to find
-	  all files which have at least writable bits set for
-	  <emphasis>other</emphasis> users with <emphasis>-perm
-	  -0002</emphasis>. This can help you to find device nodes or
-	  other objects with insecure permissions.
+	  Se um hífen for adicionado como prefixo para um número, ele irá
+	  procurar cada objeto que tenha pelo menos os bits definidos tal
+	  como especificado pelo número octal.  Um exemplo útil é procurar
+	  todos os arquivos que tenham pelo menos os bits de escrita
+	  definidos para <emphasis>outros</emphasis> usuários com
+	  <emphasis>-perm -0002</emphasis>.  Isto pode lhe ajudara encontrar
+	  nós de dispositivos ou outros objetos com permissões inseguras.
 	</para>
 
 	<screen>
@@ -2106,24 +2107,25 @@ $ <userinput>find /dev -perm -0002</userinput>
 
 	<note>
 	  <para>
-	    Some device nodes have to be world-writable for a UNIX
-	    system to function correctly. For instance, the
-	    <filename>/dev/null</filename> device is always writable.
+	    Alguns nós de dispositivos precisam ser graváveis por todos para
+	    que um sistema UNIX funcione corretamente.  Por exemplo, o
+	    dispositivo <filename>/dev/null</filename> deve ser sempre
+	    gravável.
 	  </para>
 	</note>
 
 	<para>
-	  The symbolic notation of <emphasis>-perm</emphasis>
-	  parameters uses the same notation as the
-	  <command>chmod</command> command.  Symbolic permissions are
-	  built with a file mode where all bits are cleared, so it is
-	  never necessary to use a dash to take away rights. This also
-	  prevents ambiguity that could arise with the dash
-	  prefix. Like the octal syntax, prefixing the permission with
-	  a dash will match objects that have at least the specified
-	  permission bits set. The use of symbolic names is quite
-	  predictable - the following two commands repeat the previous
-	  examples with symbolic permissions:
+	  A notação simbólica dos parâmetros <emphasis>-perm</emphasis> usa
+	  a mesma notação que o comando <command>chmod</command>.
+	  Permissões simbólicas são construídas com um modo de arquivo em
+	  que todos os bits são zerados, então nunca será preciso usar um
+	  hífen para descarcar permissões.  Isto também evita abiquidade que
+	  poderia se ter com o uso do prefixo hífen de permissões.  Como a
+	  sintaxe octal, prefixar a permissão com um hífen irá casar com
+	  objetos que tenham pelo menos os bits de permissão especificados.
+	  O uso de nomes simbólicos é bastante previsível - os dois comandos
+	  seguintes repetem os exemplos anteriores com permissões
+	  simbólicas:
 	</para>
 
 	<screen>
@@ -2147,53 +2149,51 @@ $ <userinput>find /dev -perm -o+w</userinput>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-time">
-	<title>Operands that limit by object creation time</title>
+	<title>Operandos que limitam pelo horário de criação do objeto</title>
 
 	<para>
-	  There are three operands that operate on time intervals.
-	  The syntax of the operand is <emphasis>operand n</emphasis>,
-	  where <emphasis>n</emphasis> is the time in days. All three
-	  operators calculate a time delta in seconds that is divided
-	  by the the number of seconds in a day (86400), discarding
-	  the remainder. So, if the delta is one day,
-	  <emphasis>operand 1</emphasis> will match for the
-	  object. The three operands are:
+	  Há três operando que funcionam sobre intervalos de tempo.  A
+	  sintaxe do operando é <emphasis>operando n</emphasis>, onde
+	  <emphasis>n</emphasis> é o tempo em dias.  Todos os três operandos
+	  calculam a diferença de tempo em segundos que é dividida pelo
+	  número de segundos de um dia (86400), descartando o resto.  Então,
+	  se a diferença for de um dia, <emphasis>operando 1</emphasis> irá
+	  casar com o objeto.  Os três operandos são:
 	</para>
 
 	<itemizedlist>
 	  <listitem>
 	    <para>
-	      <emphasis>-atime n</emphasis> - this operand evaluates
-	      to true if the initialization time of <command>find</command>
-	      minus the last access time of the object equals
-	      to <emphasis>n</emphasis>.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      <emphasis>-ctime n</emphasis> - this operand evaluates
-	      to true if the initialization time of
-	      <command>find</command> minus the time of the latest
-	      change in the file status information equals to
+	      <emphasis>-atime n</emphasis> - o operando resulta em
+	      verdadeiro se o momento de execução do <command>find</command>
+	      menos o horário do último acesso do objeto for igual a
 	      <emphasis>n</emphasis>.
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>-mtime n</emphasis> - this operand evaluates
-	      to true if the initialization time of
-	      <command>find</command> minus the latest file change
-	      time equals to <emphasis>n</emphasis>.
+	      <emphasis>-ctime n</emphasis> - este operando resulta em
+	      verdadeiro se o momento de execução do <command>find</command>
+	      menos o horário da última alteração na informação de status do
+	      arquivo for igual a <emphasis>n</emphasis>.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      <emphasis>-mtime n</emphasis> - este operando resulta em
+	      verdadeiro se o momento de execução do <command>find</command>
+	      menos o horário da última modificação no arquivo for igual a
+	      <emphasis>n</emphasis>.
 	    </para>
 	  </listitem>
 	</itemizedlist>
 
 	<para>
-	  So, these operands match if the latest access, change,
-	  modification respectively was <emphasis>n</emphasis> days
-	  ago. To give an example, the following command shows all
-	  objects in <filename>/etc</filename> that have been modified
-	  one day ago:
+	  Assim, estes operandos correspondem se o último acesso, última
+	  alteração e última modificação, respectivamente, tiverem sido a
+	  <emphasis>n</emphasis> dias atrás.  Para dar um exemplo, o comando
+	  seguinte mostra todos os objetos em <filename>/etc</filename> que
+	  tenham sido modificados há um dia:
 	</para>
 
 	<screen>
@@ -2207,12 +2207,13 @@ $ <userinput>find /etc -mtime 1</userinput>
 	</screen>
 
 	<para>
-	  The plus or minus sign can be used as modifiers for the meaning
-	  of <emphasis>n</emphasis>. <emphasis>+n</emphasis> means more
-	  than <emphasis>n</emphasis> days, <emphasis>-n</emphasis>
-	  means less than <emphasis>n</emphasis> days. So, to find all
-	  files in <filename>/etc</filename> that were modified less
-	  than two days ago, you could execute:
+	  O sinal de mais ou de menos pode ser usado como modificadores para
+	  o significado de <emphasis>n</emphasis>.  <emphasis>+n</emphasis>
+	  significa mais do que <emphasis>n</emphasis> dias,
+	  <emphasis>-n</emphasis> significa menos do que
+	  <emphasis>n</emphasis> dias.  Assim, para encontrar todos os
+	  arquivos em <filename>/etc</filename> que tiverem sido modificados
+	  há menos de dois dias, você poderia executar:
 	</para>
 
 	<screen>
@@ -2227,12 +2228,12 @@ $ <userinput>find /etc -mtime -2</userinput>
 	</screen>
 
 	<para>
-	  Another useful time-based operand is the <emphasis>-newer
-	  reffile</emphasis> operand. This matches all files that were
-	  modified later that the file with filename
-	  <filename>reffile</filename>. The followin example shows how
-	  you could use this to list all files that have later modification
-	  times than <filename>economic/report2.txt</filename>:
+	  Outro operando temporal útil é o <emphasis>-newer
+	  reffile</emphasis>.  Este irá casar com todos os arquivos que
+	  tiverem sido modificados depois das modificações no arquivo
+	  chamado <filename>reffile</filename>.  O exemplo a seguir mostra
+	  como você poderia usar isto para listar todos os arquivos
+	  modificados depois de <filename>economic/report2.txt</filename>:
 	</para>
 
 	<screen>
