@@ -1854,34 +1854,33 @@ $ <userinput>getfacl report.txt | setfacl -b -M - report2.txt</userinput>
   </sect1>
 
   <sect1 xml:id="chap-filesystem-finding">
-    <title>Finding files</title>
+    <title>Procurando arquivos</title>
 
     <sect2 xml:id="chap-filesystem-finding-find">
       <title>find</title>
 
       <para>
-	The <command>find</command> command is without doubt the most
-	comprehensive utility to find files on UNIX systems. Besides
-	that it works in a simple and predictable way:
-	<command>find</command> will traverse the directory tree or
-	trees that are specified as a parameter to
-	<command>find</command>. Besides that a user can specify an
-	expression that will be evaluated for each file and directory.
-	The name of a file or directory will be printed if the
-	expression evaluates to <emphasis>true</emphasis>. The first
-	argument that starts with a dash (<emphasis>-</emphasis>),
-	exclamation mark (<emphasis>!</emphasis>, or an opening
-	parenthesis (<emphasis>(</emphasis>, signifies the start of
-	the expression. The expression can consist of various
-	operands.  To wrap it up, the syntax of
-	<command>find</command> is: <emphasis>find paths
-	expression</emphasis>.
+    O comando <command>find</command>, sem dúvida, é o utilitário mais
+    compreensível para procurar arquivos em sistemas UNIX.  Pelo fato de
+    que fato de que funciona de uma maneira simples e previsível:
+	o <command>find</command> irá varrer a árvore ou árvores de
+	diretório que forem especificadas como parâmetro para o
+	<command>find</command>.  Além disso, um usuário pode especificar
+	uma expressão que será avaliada para cada arquivo e diretório.  O
+	nome do arquivo ou diretório será exibido se a expressão for
+	avaliada para <emphasis>true</emphasis>.  O primeiro argumento que
+	inicia com um hífen (<emphasis>-</emphasis>), ponto de exclamação
+	(<emphasis>!</emphasis>, ou abre-parênteses (<emphasis>(</emphasis>,
+	significa o início da expressão.  A expressão pode consistir de
+	vários operandos.  De forma simplificiada, a sintaxe do
+	<command>find</command> e: <emphasis>find caminhos expressão</emphasis>.
       </para>
 
       <para>
-	The simplest use of <command>find</command> is to use no
-	expression.  Since this matches every directory and subdirectory
-	entry, all files and directories will be printed. For instance:
+    O uso mais simples de <command>find</command> é não especificar
+    nenhuma expressão.  Como o comando corresponde cada entrada de
+    diretório e subdiretório, todos os arquivos e diretórios serão
+    exibidos.  Por exemplo:
       </para>
 
       <screen>
@@ -1896,7 +1895,7 @@ $ <userinput>find .</userinput>
       </screen>
 
       <para>
-	You can also specify multiple directories:
+    Você também pode especificar múltiplos diretórios:
       </para>
 
       <screen>
@@ -1910,16 +1909,16 @@ technical/report.txt
       </screen>
 
       <sect3 xml:id="chap-filesystem-finding-find-nametype">
-	<title>Operands that limit by object name or type</title>
+	<title>Operandos delimitadores por nome ou tipo de objeto</title>
 
 	<para>
-	  One common scenario for finding files or directories is to
-	  look them up by name. The <emphasis>-name</emphasis> operand
-	  can be used to match objects that have a certain name, or
-	  match a particular wildcard. For instance, using the operand
-	  <emphasis>-name 'report.txt'</emphasis> will only be true
-	  for files or directories with the name
-	  <filename>report.txt</filename>. For example:
+	  Um cenário comum para procura de arquivos ou diretórios é
+	  procurá-los pelo nome.  O operando <emphasis>-name</emphasis> pode
+	  ser usado para corresponder objetos com um dado nome, ou que casem
+	  com um determinado coringa.  Por exemplo, usar o operando 
+	  <emphasis>-name 'report.txt'</emphasis> irá apenas ser verdadeiro
+	  para arquivos ou diretórios com o nome 
+	  <filename>report.txt</filename>.  Por exemplo:
 	</para>
 
 	<screen>
@@ -1929,7 +1928,7 @@ technical/report.txt
 	</screen>
 
 	<para>
-	  The same thing holds for wildcards:
+	  A mesma coisa se aplica quando se usa coringas:
 	</para>
 
 	<screen>
@@ -1940,46 +1939,46 @@ technical/report2.txt
 
 	<note>
 	  <para>
-	    When using <command>find</command> you will want to pass
-	    the wildcard to <command>find</command>, rather than
-	    letting the shell expand it. So, make sure that patterns
-	    are either quoted, or that wildcards are escaped.
+	    Ao usar o <command>find</command> você vai querer passar o
+	    caracter coringa ao <command>find</command>, ao invés de deixar
+	    o shell expandí-lo.  Assim, certifique-se de que os padrões ou
+	    sejam delimitados por aspas, ou que os coringas sejam escapados.
 	  </para>
 	</note>
 
 	<para>
-	  It is also possible to evaluate the type of the object with
-	  the <emphasis>-type c</emphasis> operand, where
-	  <emphasis>c</emphasis> specifies the type to be matched.
+	  Também é possível avaliar o tipo dos objetos com o operando
+	  <emphasis>-type c</emphasis>, onde <emphasis>c</emphasis>
+	  especifica o tipo a ser correspondido.
 	  <xref
 	  linkend="chap-filesystem-finding-find-nametype-type-params"
-	  /> lists the various object types that can be used.
+	  /> lista os vários tipos de objetos que podem ser usados.
 	</para>
 
 	<table xml:id="chap-filesystem-finding-find-nametype-type-params">
-	  <title>Parameters for the '-type' operand</title>
+	  <title>Parâmetros para o operando '-type'</title>
 
 	  <tgroup cols="2">
 	    <thead>
 	      <row>
-		<entry>Parameter</entry><entry>Meaning</entry>
+		<entry>Parâmetro</entry><entry>Significado</entry>
 	      </row>
 	    </thead>
 	    <tbody>
 	      <row>
-		<entry>b</entry><entry>Block device file</entry>
+		<entry>b</entry><entry>Arquivo de dispositivo de block</entry>
 	      </row>
 	      <row>
-		<entry>c</entry><entry>Character device file</entry>
+		<entry>c</entry><entry>Arquivo de dispositivo de caracter</entry>
 	      </row>
 	      <row>
-		<entry>d</entry><entry>Directory</entry>
+		<entry>d</entry><entry>Diretório</entry>
 	      </row>
 	      <row>
-		<entry>f</entry><entry>Regular file</entry>
+		<entry>f</entry><entry>Arquivo normal</entry>
 	      </row>
 	      <row>
-		<entry>l</entry><entry>Symbolic link</entry>
+		<entry>l</entry><entry>Link simbólico</entry>
 	      </row>
 	      <row>
 		<entry>p</entry><entry>FIFO</entry>
@@ -1992,9 +1991,9 @@ technical/report2.txt
 	</table>
 
 	<para>
-	  So, for instance, if you would like to match directories,
-	  you could use the <emphasis>d</emphasis> parameter to
-	  <emphasis>-type</emphasis> operand:
+	  Assim, por exemplo, se você quiser encontrar diretórios, você
+	  poderia usar o parâmetro <emphasis>d</emphasis> para o operando
+	  <emphasis>-type</emphasis>:
 	</para>
 
 	<screen>
@@ -2005,16 +2004,16 @@ $ <userinput>find . -type d</userinput>
 	</screen>
 
 	<para>
-	  We will look at forming a complex expression at the end of
-	  this section about <command>find</command>, but at this
-	  moment it is handy to know that you can make a boolean 'and'
-	  expression by specifying multiple operands. For instance
-	  <emphasis>operand1 operand2</emphasis> is true if both
-	  <emphasis>operand1</emphasis> and
-	  <emphasis>operand2</emphasis> are true for the object that
-	  is being evaluated. So, you could combine the
-	  <emphasis>-name</emphasis> and <emphasis>-type</emphasis>
-	  operands to find all directories that start with
+	  Vamos ver como formar expressões mais complexas ao final desta
+	  seção sobre o <command>find</command>, mas neste momento é útil
+	  saber que você pode fazer uma expressão booleana 'and'
+	  especificando múltiplos operandos.  Por exemplo
+	  <emphasis>operando1 operando2</emphasis> é verdadeiro se tanto
+	  <emphasis>operando1</emphasis> e
+	  <emphasis>operando2</emphasis> forem verdadeiros para o objeto
+	  sendo avaliado.  Então, você pode combinar os operandos
+	  <emphasis>-name</emphasis> e <emphasis>-type</emphasis> para
+	  encontrar todos os diretórios que comecem com
 	  <emphasis>eco</emphasis>:
 	</para>
 
@@ -2025,28 +2024,27 @@ $ <userinput>find . -name 'eco*' -type d</userinput>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-perms">
-	<title>Operands that limit by object ownership or permissions</title>
+	<title>Operandos que especificam a propriedade ou permissões</title>
 
 	<para>
-	  Besides matching objects by their name or type, you can also
-	  match them by their active permissions or the object ownership.
-	  This is often useful to find files that have incorrect permissions
-	  or ownership.
+	  Além de casar objetos por seus nomes ou tipos, você também pode
+	  procurá-los por suas permissoes ativas ou pela propriedade do
+	  objeto.  Isto frequentemente é útil para encontrar arquivos que
+	  tenham permissões ou propriedade incorretas.
 	</para>
 
 	<para>
-	  The owner (user) or group of an object can be matched with
-	  respectively the <emphasis>-user username</emphasis> and
-	  <emphasis>-group groupname</emphasis> variants. The name of
-	  a user or group will be interpreted as a user ID or group ID
-	  of the name is decimal, and could not be found on the system
-	  with
+	  O dono (usuário) ou grupo de um objeto podem ser correspondidos
+	  respectivamente com as opções <emphasis>-user username</emphasis>
+	  e <emphasis>-group groupname</emphasis>.  O nome do usuário ou
+	  grupo será interpretado como um ID de usuário ou ID de grupo cujo
+	  nome é decimal, e poderia não ser encontrado no sistema com 
 	  <citerefentry><refentrytitle>getpwnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>
-	  or
-	  <citerefentry><refentrytitle>getgrnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>. So,
-	  if you would like to match all objects of which
-	  <emphasis>joe</emphasis> is the owner, you can use
-	  <emphasis>-user joe</emphasis> as an operand:
+	  ou
+	  <citerefentry><refentrytitle>getgrnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>.
+      Assim, se você quiser obter todos os objetos que pertençam ao
+      usuário <emphasis>joe</emphasis>, você poderia usar 
+	  <emphasis>-user joe</emphasis> como um operando:
 	</para>
 
 	<screen>
@@ -2055,8 +2053,8 @@ $ <userinput>find . -user joe</userinput>
 	</screen>
 
 	<para>
-	  Or to find all objects with the group
-	  <emphasis>friend</emphasis> as the file group:
+	  Ou para encontrar todos os objetos que tenham
+	  <emphasis>friend</emphasis> como grupo de arquivo:
 	</para>
 
 	<screen>
