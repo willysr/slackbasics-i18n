@@ -2248,22 +2248,22 @@ $ <userinput>find . -newer economic/report2.txt</userinput>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-depth">
-	<title>Operands that affect tree traversal</title>
+	<title>Operandos que afetam o percurso da árvore</title>
 
 	<para>
-	  Some operands affect the manner in which the
-	  <command>find</command> command traverses the tree. The
-	  first of these operands is the <emphasis>-xdev</emphasis>
-	  operand. <emphasis>-xdev</emphasis> prevents that
-	  <command>find</command> decends into directories that have a
-	  different device ID, effectively avoiding traversal of other
-	  filesystems. The directory to which the filesystem is
-	  mounted, is printed, because this operand always returns
-	  <emphasis>true</emphasis>. A nice example is a system where
-	  <filename>/usr</filename> is mounted on a different filesystem
-	  than <filename>/</filename>. For instance, if we search for
-	  directories with the name <emphasis>bin</emphasis>, this may
-	  yield the following result:
+	  Alguns operandos afetam a maneira na qual o comando 
+	  <command>find</command> percorre a árvore.  O primeiro desses
+	  operandos é o <emphasis>-xdev</emphasis>.  O
+	  <emphasis>-xdev</emphasis> evita que o <command>find</command>
+	  desça nos diretórios que têm um ID de dispositivo diferente,
+	  evitando efetivamente a varredura de outros sistemas de arquivos.
+	  O diretório no qual o sistema de arquivos é montado é exibido,
+	  pois este operando sempre retorna <emphasis>true</emphasis>.  Um
+	  bom exemplo é um sistema em que o <filename>/usr</filename> seja
+	  montado num outro sistema de arquivos que o
+	  <filename>/</filename>.  Por exemplo, se procurarmos pelos
+	  diretórios com o nome <emphasis>bin</emphasis>, o que pode gerar
+	  o seguinte resultado:
 	</para>
 
 	<screen>
@@ -2273,9 +2273,9 @@ $ <userinput>find / -name 'bin' -type d</userinput>
 	</screen>
 
 	<para>
-	  But if we add <emphasis>-xdev</emphasis>
-	  <filename>/usr/bin</filename> is not found, because it is on
-	  a different filesystem (and device):
+	  Mas se adicionarmos <emphasis>-xdev</emphasis>, 
+	  <filename>/usr/bin</filename> não será encontrado, porque está num
+	  sistema de arquivo (e um dispositivo) diferente :
 	</para>
 
 	<screen>
@@ -2284,11 +2284,10 @@ $ <userinput>find / -name 'bin' -type d -xdev</userinput>
 	</screen>
 
 	<para>
-	  The <emphasis>-depth</emphasis> operand modifies the order
-	  in which directories are evaluated. With
-	  <emphasis>-depth</emphasis> the contents of a directory are
-	  evaluated first, and then the directory itself. This can be
-	  witnessed in the following example:
+	  O operando <emphasis>-depth</emphasis> modifica a ordem em que
+	  cada diretório é avaliado.  Com <emphasis>-depth</emphasis>, o
+	  conteúdo de um diretório é verificado primeiro, e só então o
+	  diretório em si.  Isto pode ser ilustrado com o seguinte exemplo:
 	</para>
 
 	<screen>
@@ -2303,41 +2302,40 @@ $ <userinput>find . -depth</userinput>
 	</screen>
 
 	<para>
-	  As you can see in the output, files in the
-	  <emphasis>./economic</emphasis> directory is evaluated
-	  before <filename>.</filename>, and
-	  <filename>./economic/report.txt</filename> before
-	  <filename>./economic</filename>. <emphasis>-depth</emphasis>
-	  always evaluates to <emphasis>true</emphasis>.
+	  Como você pode ver na saída, os arquivos no diretório 
+	  <emphasis>./economic</emphasis> são verificados antes de
+	  <filename>.</filename>, e
+	  <filename>./economic/report.txt</filename> antes de 
+	  <filename>./economic</filename>.  O <emphasis>-depth</emphasis>
+	  sempre avalia para <emphasis>true</emphasis>.
 	</para>
 
 	<para>
-	  Finally, the <emphasis>-prune</emphasis> operand causes find
-	  not to decend into a directory that is being evaluated.
-	  <emphasis>-prune</emphasis> is discarded if the
-	  <emphasis>-depth</emphasis> operand is also
-	  used. <emphasis>-depth</emphasis> always evaluates to
+	  Finalmente, o operando <emphasis>-prune</emphasis> faz com que o
+	  find não desça dentro do diretório que está sendo avaliado.  
+	  <emphasis>-prune</emphasis> é descartado se o operando 
+	  <emphasis>-depth</emphasis> também for usado.
+	  <emphasis>-depth</emphasis> também sempre avalia para 
 	  <emphasis>true</emphasis>.
 	</para>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-exec">
-	<title>Operands that execute external utilities</title>
+	<title>Operandos que executam utilitários externos</title>
 
 	<para>
-	  <command>find</command> becomes a very powerful tool when it
-	  is combined with external utilities. This can be done with
-	  the <emphasis>-exec</emphasis> operand. There are two
-	  syntaxes for the <emphasis>-exec</emphasis> operand. The
-	  first syntax is <emphasis>-exec utility arguments
-	  ;</emphasis>. The command <emphasis>utility</emphasis> will
-	  be executed with the arguments that were specified for each
-	  object that is being evaluated. If any of the arguments is
-	  <emphasis>{}</emphasis>, these braces will be replaced by
-	  the file being evaluated. This is very handy, especially when
-	  we consider that, if we use no additional expression syntax,
-	  operands will be evaluated from left to right. Let's look at
-	  an example:
+	  O <command>find</command> se torna uma ferramenta muito poderosa
+	  quando combinado com utilitários externos.  Isto pode ser feito
+	  com o operando <emphasis>-exec</emphasis>.  Há duas sintaxes para
+	  o operando <emphasis>-exec</emphasis>.  A primeira sintaxe é
+	  <emphasis>-exec utility arguments;</emphasis>.  O comando
+	  <emphasis>utility</emphasis> será executado com os argumentos
+	  especificados para cada objeto que estiver sendo avaliado.  Se
+	  algum dos argumentos for <emphasis>{}</emphasis>, estas chaves
+	  serão substituídas pelo arquivo que estiver sendo avaliado.  Isto
+	  é bastante útil, especialmente quando consideramos que, se não
+	  usarmos nenhuma expressão de sintaxe adicional, os operandos irão
+	  ser avaliados da esquerda para a direita.  Vamos dar um exemplo:
 	</para>
 
 	<screen>
@@ -2345,34 +2343,34 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} \;</userinput>
 	</screen>
 
 	<para>
-	 The first operand returns true for files that have their
-	 permissions set to <emphasis>0666</emphasis>. The second
-	 operand executes <emphasis>chmod 0644 filename</emphasis> for
-	 each file that is being evaluated. If you were wondering why
-	 this command is not executed for every file, that is a good
-	 question. Like many other interpreters of expressions,
-	 <command>find</command> uses <quote>short-circuiting</quote>.
-	 Because no other operator was specified, the logical
-	 <emphasis>and</emphasis> operator is automatically is assumed
-	 between both operands. If the first operand evaluates to
-	 <emphasis>false</emphasis>, it makes no sense to evaluate any
-	 further operands, because the complete expression will always
-	 evaluate to false. So, the <emphasis>-exec</emphasis> operand
-	 will only be evaluated if the first operand is true. Another
-	 particularity is that the semi-colon that closes the
-	 <emphasis>-exec</emphasis> is escaped, to prevent that the
-	 shell parses it.
+	 O primeiro operando retorna verdadeiro para arquivos que tenham
+	 suas permissões atribuídas para <emphasis>0666</emphasis>.  O
+	 segundo operando executa <emphasis>chmod 0644 filename</emphasis>
+	 para cada arquivo que estiver sendo avaliado.  Se você está se
+	 perguntando porque não executar este comando para cada arquivo,
+	 esta é uma boa pergunta.  Como muitos outros interpretadores de
+	 expressões, o <command>find</command> usa avaliação em
+	 <quote>curto-circuito</quote>.  Como nenhum outro operando for
+	 especificado, o operador lógico <emphasis>and</emphasis> é
+	 automaticamente assumido entre ambos os operandos.  Se o primeiro
+	 operando avaliar para falso, <emphasis>false</emphasis>, não faz
+	 sentido avaliar quaisquer outros operandos, pois a expressão
+	 completa será avaliada para falso.  Então, o operando
+	 <emphasis>-exec</emphasis> só será avaliado se o primeiro operando
+	 for verdadeiro.  Outra particularidade é que o ponto-e-vírgula que
+	 encerra o <emphasis>-exec</emphasis> é escapado para previnir que o
+	 shell tente interpretá-lo.
 	</para>
 
 	<para>
-	  A nice thing about the <emphasis>-exec</emphasis> operator
-	  is that it evaluates to <emphasis>true</emphasis> if the
-	  command terminated sucessfully. So, you could also use
-	  the <emphasis>-exec</emphasis> command to add additional
-	  conditions that are not represented by <command>find</command>
-	  operands. For instance, the following command prints
-	  all objects ending with <emphasis>.txt</emphasis> that contain
-	  the string <emphasis>gross income</emphasis>:
+	  Uma ótima coisa sobre o operador <emphasis>-exec</emphasis> é que
+	  ele avaliado para <emphasis>true</emphasis> se o comando for
+	  concluído com sucesso.  Então, você também poderia usar o comando
+	  <emphasis>-exec</emphasis> para adicionar condições extras não
+	  representadas por operandos do <command>find</command>.  Por
+	  exemplo, o seguinte comando exibe todos os objetos que terminem
+	  com <emphasis>.txt</emphasis> e que contenham a string
+	  <emphasis>gross income</emphasis>:
 	</para>
 
 	<screen>
@@ -2381,22 +2379,23 @@ $ <userinput>find . -name '*.txt' -exec grep -q 'gross income' {} \; -print</use
 	</screen>
 
 	<para>
-	  The <command>grep</command> command will be covered lateron.
-	  <!-- XXX - xref --> But for the moment, it is enough to know
-	  that it can be used to match text patterns. The
-	  <emphasis>-print</emphasis> operand prints the current
-	  object path. It is always used implicitly, except when the
-	  <emphasis>-exec</emphasis> or <emphasis>-ok</emphasis>
-	  operands are used. <!-- XXX - move to introduction? -->
+	  O comando <command>grep</command> será abordado mais à frente.
+	  <!-- XXX - xref --> Mas por hora, nos basta saber que ele pode ser
+	  usado para encontrar padrões de texto.  O operando
+	  <emphasis>-print</emphasis> exibe o caminho atual do objeto.  Ele
+	  é sempre usado implicitamente, exceto quando os operandos 
+	  <emphasis>-exec</emphasis> ou <emphasis>-ok</emphasis> são usados.
+	  <!-- XXX - move to introduction? -->
 	</para>
 
 	<para>
-	  The second syntax of the <emphasis>-exec</emphasis> operand
-	  is <emphasis>-exec utility arguments {} +</emphasis>. This
-	  gathers a set of all matched object for which the expression
-	  is true, and provides this set of files as an argument to
-	  the utility that was specified. The first example of the
-	  <emphasis>-exec</emphasis> operand can also be written as:
+	  A segunda sintaxe do operando <emphasis>-exec</emphasis> é
+	  <emphasis>-exec utility arguments {} +</emphasis>.  Esta, pega um
+	  conjunto de todos os objetos correspondidos para os quais a
+	  expressão é verdadeira, e provê este conjunto de arquivos como um
+	  argumento para o utilitário que foi especificado.  O primeiro
+	  exemplo do operando <emphasis>-exec</emphasis> também pode ser
+	  escrito como:
 	</para>
 
 	<screen>
@@ -2404,36 +2403,37 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} +</userinput>
 	</screen>
 
 	<para>
-	  This will execute the <command>chmod</command> command only
-	  once, with all files for which the expression is true as its
-	  arguments. This operand always returns <emphasis>true</emphasis>.
+	  Isto irá executar o comando <command>chmod</command> apenas uma
+	  vez, com todos os arquivos com os quais a expressão for verdadeira
+	  como seus argumentos.  Este operando sempre returna
+	  <emphasis>true</emphasis>.
 	</para>
 
 	<para>
-	  If a command executed by find returns a non-zero value
-	  (meaning that the execution of the command was not
-	  succesful), <command>find</command> should also return a
-	  non-zero value.
+	  Se um comando executado pelo find retorna um valor diferente de
+	  zero (significando que a execução do comando não foi bem
+	  sucedida), o <command>find</command> deveria retornar um valor
+	  diferente de zero.
 	</para>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-operators">
-	<title>Operators for building complex expressions</title>
+	<title>Operadores para construção de expressões complexas</title>
 
 	<para>
-	  <command>find</command> provides some operators that can be
-	  combined to make more complex expressions:
+	  O <command>find</command> provê alguns operadores que podem ser
+	  combinados para fazer expressões mais complexas:
 	</para>
 
 	<variablelist>
-	  <title>Operators</title>
+	  <title>Operadores</title>
 
 	  <varlistentry>
 	    <term>( expr )</term>
 	    <listitem>
 	      <para>
-		Evaluates to <emphasis>true</emphasis> if
-		<emphasis>expr</emphasis> evaluates to
+		Resulta em <emphasis>true</emphasis> se 
+		<emphasis>expr</emphasis> resultar em
 		<emphasis>true</emphasis>.
 	      </para>
 	    </listitem>
@@ -2442,17 +2442,17 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} +</userinput>
 	    <term>expr1 [-a] expr2</term>
 	    <listitem>
 	      <para>
-		Evaluates to <emphasis>true</emphasis> if both
-		<emphasis>expr1</emphasis> and <emphasis>expr2</emphasis>
-		are true. If <emphasis>-a</emphasis> is omitted,
-		this operator is implicitly assumed.
+        Resulta em <emphasis>true</emphasis> se tanto 
+		<emphasis>expr1</emphasis> quanto <emphasis>expr2</emphasis>
+		forem true.  Se <emphasis>-a</emphasis> for omitido,
+		este operador é assumido implicitamente.
 	      </para>
 
 	      <para>
-		<command>find</command> will use short-circuiting when
-		this operator is evaluated: <emphasis>expr2</emphasis>
-		will not be evaluated when <emphasis>expr1</emphasis>
-		evaluates to <emphasis>false</emphasis>
+		O <command>find</command> usará avaliação em curto-circuito
+		quando este operador for avaliado: <emphasis>expr2</emphasis>
+		não será avaliada quando <emphasis>expr1</emphasis> resultar em
+		<emphasis>false</emphasis>
 	      </para>
 	    </listitem>
 	  </varlistentry>
@@ -2460,16 +2460,16 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} +</userinput>
 	    <term>expr1 -o expr2</term>
 	    <listitem>
 	      <para>
-		Evaluates to <emphasis>true</emphasis> if either or
-		both <emphasis>expr1</emphasis> and
-		<emphasis>expr2</emphasis> are true.
+        Resulta em <emphasis>true</emphasis> se ou um ou outro, ou ambos
+        <emphasis>expr1</emphasis> e <emphasis>expr2</emphasis> forem
+        true.
 	      </para>
 
 	      <para>
-		<command>find</command> will use short-circuiting when
-		this operator is evaluated: <emphasis>expr2</emphasis>
-		will not be evaluated when <emphasis>expr1</emphasis>
-		evaluates to <emphasis>true</emphasis>
+		O <command>find</command> usa avaliação em curto-circuito também
+		quando este operador é avaliado: <emphasis>expr2</emphasis> não
+		será avaliada quando <emphasis>expr1</emphasis> resultar em
+		<emphasis>true</emphasis>
 	      </para>
 	    </listitem>
 	  </varlistentry>
@@ -2477,26 +2477,25 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} +</userinput>
 	    <term>! expr</term>
 	    <listitem>
 	      <para>
-		Negates <emphasis>expr</emphasis>. So, if
-		<emphasis>expr</emphasis> evaluates to true, this
-		expression will evaluate to <emphasis>false</emphasis>
-		and vise versa.
+		Nega <emphasis>expr</emphasis>.  Assim, se a expressão
+		<emphasis>expr</emphasis> avaliar para true, o resultado irá
+		avaliar para <emphasis>false</emphasis> e vice-versa.
 	      </para>
 	    </listitem>
 	  </varlistentry>
 	</variablelist>
 
 	<para>
-	  Since both the parentheses and exclamation mark characters
-	  are interpreted by most shells, they should usually be
-	  escaped.
+	  Uma vez que tanto os parênteses quanto a exclamação são
+	  interpretados pela maioria dos shells, comumente eles devem ser
+	  precedidos de um caracter de escape.
 	</para>
 
 	<para>
-	  The following example shows some operators in action. This
-	  command executes <command>chmod</command> for all files that
-	  either have their permissions set to
-	  <emphasis>0666</emphasis> or <emphasis>0664</emphasis>.
+	  O exemplo seguinte mostra alguns operadores em ação.  Este comando
+	  executa <command>chmod</command> para todos os arquivos que tenham
+	  ou permissão <emphasis>0666</emphasis> ou
+	  <emphasis>0664</emphasis>.
 	</para>
 
 	<screen>
