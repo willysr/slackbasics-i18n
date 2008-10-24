@@ -2508,12 +2508,13 @@ $ <userinput>find . \( -perm 0666 -o -perm 0664 \) -exec chmod 0644 {} \;</useri
       <title>which</title>
 
       <para>
-	The <command>which</command> command is not part of the Single
-	UNIX Specification version 3, but it is provided by most
-	sysmtems. <command>which</command> locates a command that is
-	in the user's path (as set by the PATH environment variable),
-	printing its full path. Providing the name of a command as its
-	parameter will show the full path:
+       O comando <command>which</command> não é parta da Especificação
+       Única do UNIX versão 3, mas está disponível na maioria dos
+       sistemas.  <command>which</command> localiza um comando que
+       estiver no path do usuário (como definido pela variável de
+       ambiente PATH), exibindo seu caminho completo.  Informando o nome
+       de um comando como seu parâmetro irá mostrar o caminho completo
+       correspondente:
       </para>
 
       <screen>
@@ -2522,7 +2523,7 @@ $ <userinput>which ls</userinput>
       </screen>
 
       <para>
-	You can also query the paths of multiple commands:
+       Você também pode descobrir os caminhos de múltiplos comandos:
       </para>
 
       <screen>
@@ -2532,8 +2533,8 @@ $ <userinput>which ls cat</userinput>
       </screen>
 
       <para>
-        <command>which</command> returns a non-zero return value
-	if the command could not be found.
+       O <command>which</command> retorna um valor não-zero se o caminho
+       do comando não puder se encontrado.
       </para>
     </sect2>
 
@@ -2541,11 +2542,11 @@ $ <userinput>which ls cat</userinput>
       <title>whereis</title>
 
       <para>
-	This <command>whereis</command> command searches binaries, manual pages and sources of a
-	command in some predefined places. For instance, the following
-	command shows the path of the <command>ls</command> and the
-	<citerefentry><refentrytitle>ls</refentrytitle><manvolnum>1</manvolnum></citerefentry>
-	manual page:
+       Este comando <command>whereis</command> procura por binários,
+       páginas de manual e arquivos-fonte de um comando em alguns locais
+       pré-definidos.  Por exemplo, o comando a seguir mostra o caminho
+       de <command>ls</command> e da página de manual de
+       <citerefentry><refentrytitle>ls</refentrytitle><manvolnum>1</manvolnum></citerefentry>:
       </para>
 
       <screen>
@@ -2558,48 +2559,49 @@ ls: /bin/ls /usr/share/man/man1/ls.1.gz
       <title>locate</title>
 
       <para>
-        Slackware Linux also provides the
-	<command>locate</command> command that searches through a file
-	database that can be generated periodically with the
-	<command>updatedb</command> command. Since it uses a prebuilt
-	database of the filesystem, it is a lot faster than
-	<command>command</command>, especially when directory entry
-	information has not been cached yet. Though, the
-	<command>locate</command>/<command>updatedb</command> combo
-	has some downsides:
+       O Slackware Linux também provê o comando
+       <command>locate</command> que realiza buscas em uma base de dados
+       de arquivos que pode ser gerada periodicamente com o comando
+       <command>updatedb</command>.  Como este comando usa uma base de
+       dados pré-construída no sistema de arquivos, ele é muito mais
+       rápido que <command>command</command>, especialmente quando as
+       informações de entradas de diretórios ainda não estiverem sendo
+       mantidas em cache.  Porém, a dupla
+       <command>locate</command>/<command>updatedb</command> tem alguns
+       pontos fracos:
       </para>
 
       <itemizedlist>
 	<listitem>
 	  <para>
-	    New files are not part of the database until the next
-	    <command>updatedb</command> invocation.
+	    Novos arquivos não farão parte da base de dados até a próxima
+	    execução de <command>updatedb</command>.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    <command>locate</command> has no conception of
-	    permissions, so users may locate files that are normally
-	    hidden to them.
+	    O <command>locate</command> não tem conceito de permissões,
+	    então os usuários podem localizar arquivos que normalmente não
+	    seriam visíveis por eles.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    A newer implementation, named <emphasis>slocate</emphasis>
-	    deals with permissions, but requires elevated privileges.
-	    This is the <command>locate</command> variation that is
-	    included with Slackware Linux.
+	    Uma implementação mais nova, chamada de
+	    <emphasis>slocate</emphasis> já lida com permissões, mas
+	    necessita de privilégios elevados.  Esta é a variação do
+	    <command>locate</command> que é incluída com o Slackware Linux.
 	  </para>
 	</listitem>
       </itemizedlist>
 
       <para>
-	With filesystems becoming faster, and by applying common sense
-	when formulating <command>find</command> queries,
-	<command>locate</command> does not really seem worth the
-	hassle. Of course, your mileage may vary. That said, the basic
-	usage of <command>locate</command> is <emphasis>locate
-	filename</emphasis>. For example:
+       Com os sistemas de arquivo cada vez mais velozes, e usando-se o
+       bom senso ao realizar consultas com o <command>find</command>, o
+       <command>locate</command> não parece valer tanto a pena assim.  É
+       claro que sua impressão sobre isso pode variar.  Dito isto, temos
+       o uso básico do <command>locate</command> que é <emphasis>locate
+       filename</emphasis>. Por exemplo:
       </para>
 
       <screen>
@@ -2616,77 +2618,78 @@ $ <userinput>locate locate</userinput>
   </sect1>
 
   <sect1 xml:id="basics-filesystem-archives">
-    <title>Archives</title>
+    <title>Pacotes de Arquivos</title>
 
     <sect2 xml:id="basics-filesystem-archives-introduction">
-      <title>Introduction</title>
+      <title>Introdução</title>
 
       <para>
-	Sooner or later a GNU/Linux user will encounter
-	<acronym>tar</acronym> archives, tar is the standard format
-	for archiving files on GNU/Linux.  It is often used in
-	conjunction with <command>gzip</command> or
-	<command>bzip2</command>. Both commands can compress files and
-	archives.  <xref linkend="archive-extentions" /> lists
-	frequently used archive extensions, and what they mean.
+       Mesmo usuários GNU/Linux mais antigos ou mais novos certamente
+       irão encontrar arquivos <acronym>tar</acronym>, tar é o formato
+       padrão para empacotamento de arquivos no GNU/Linux.  É
+       frequentemente usado juntamente com o <command>gzip</command> ou
+       <command>bzip2</command>.  Ambos os comandos podem compactar
+       arquivos e diretórios.  <xref linkend="archive-extentions" />
+       lista as extensões de empacotamento e compactação mais
+       frequentemente usadas, e o que significam.
       </para>
 
       <table xml:id="archive-extentions">
-	<title>Archive file extensions</title>
+	<title>Extensões de arquivos</title>
 	<tgroup cols="2" align="left" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Extension</entry>
-	      <entry>Meaning</entry>
+	      <entry>Extensão</entry>
+	      <entry>Significado</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>.tar</entry>
-	      <entry>An uncompressed tar archive</entry>
+	      <entry>Um pacote tar sem compactação</entry>
 	    </row>
 	    <row>
 	      <entry>.tar.gz</entry>
-	      <entry>A tar archive compressed with gzip</entry>
+	      <entry>Um pacote tar compactado com gzip</entry>
 	    </row>
 	    <row>
 	      <entry>.tgz</entry>
-	      <entry>A tar archive compressed with gzip</entry>
+	      <entry>Um pacote tar compactado com gzip</entry>
 	    </row>
 	    <row>
 	      <entry>.tar.bz2</entry>
-	      <entry>A tar archive compressed with bzip2</entry>
+	      <entry>Um pacote tar compactado com bzip2</entry>
 	    </row>
 	    <row>
 	      <entry>.tbz</entry>
-	      <entry>A tar archive compressed with bzip2</entry>
+	      <entry>Um pacote tar compactado com bzip2</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <para>
-	The difference between <command>bzip2</command> and
-	<command>gzip</command> is that <command>bzip2</command> can
-	find repeating information in larger blocks, resulting in
-	better compression. But <command>bzip2</command> is also a lot
-	slower, because it does more data analysis.
+       A diferença entre o <command>bzip2</command> e o
+       <command>gzip</command> é que o <command>bzip2</command> pode
+       encontrar informações repetidas em blocos maiores, resultando
+       numa compactação melhor.  Mas o <command>bzip2</command> também
+       é bem mais lento, pois afinal faz maior análise de dados.
       </para>
     </sect2>
 
     <sect2 xml:id="basics-filesystem-archives-extracting">
-      <title>Extracting archives</title>
+      <title>Descompactando (extraindo) arquivos</title>
 
       <para>
-	Since many software and data in the GNU/Linux world is
-	archived with <command>tar</command> it is important to get
-	used to extracting tar archives. The first thing you will
-	often want to do when you receive a tar archive is to list its
-	contents. This can be achieved by using the <parameter
-	class="command">t</parameter> parameter. However, if we just
-	execute <command>tar</command> with this parameter and the
-	name of the archive it will just sit and wait until you enter
-	something to the standard input:
+       No mundo GNU/Linux, como muitos softwares e dados são
+       distribuídos com <command>tar</command>, é importante
+       acostumar-se a extrair pacotes tar.  Provavelmente a primeira
+       coisa que você vai querer fazer quando receber um arquivo tar é
+       verificar seu conteúdo.  Isto pode ser feito usando-se o
+       parâmetro <parameter class="command">t</parameter>.  No entanto,
+       se você apenas executar o <command>tar</command> com este
+       parâmetro mais o nome do arquivo, ele irá apenas sentar e
+       aguardar até que você informe algo na entrada padrão:
       </para>
 
       <screen>
@@ -2694,10 +2697,11 @@ $ <userinput>tar t test.tar</userinput>
       </screen>
 
       <para>
-	This happens because <command>tar</command> reads data from
-	its standard input. If you forgot how redirection works, it is
-	a good idea to reread <xref linkend="chap-shell-inout" />. Let's
-	see what happens if we redirect our tar archive to tar:
+       Isto acontece porque o <command>tar</command> lê os dados a
+       partir de sua entrada padrão.  Se você se esqueceu como os
+       redirecionamentos funcionam, é uma boa idéia reler <xref
+       linkend="chap-shell-inout" />.  Vamos ver o que acontece se nós
+       redirecionarmos nossa arquivo tar para o comando tar:
       </para>
 
       <screen>
@@ -2708,13 +2712,13 @@ test/test1
       </screen>
 
       <para>
-	That looks more like the output you probably expected. This
-	archive seems to contain a directory
-	<filename>test</filename>, which contains the files
-	<filename>test2</filename> and <filename>test2</filename>.  It
-	is also possible to specify the archive file name as an
-	parameter to <command>tar</command>, by using the <parameter
-	class="command">f</parameter> parameter:
+       Isto é mais parecido com a saída que você provavelmente estava
+       esperando.  Este arquivo parece conter um diretório
+       <filename>test</filename>, que contém os arquivos
+       <filename>test2</filename> e <filename>test2</filename>.  Também
+       é possível especificar o nome do arquivo como um parâmetro para
+       o <command>tar</command>, com o parâmetro <parameter
+       class="command">f</parameter>:
       </para>
 
       <screen>
@@ -2725,9 +2729,9 @@ test/test1
       </screen>
 
       <para>
-	This looks like an archive that contains useful files ;). We
-	can now go ahead, and extract this archive by using the
-	<parameter class="command">x</parameter> parameter:
+       Parece ser um pacote que contém arquivos úteis ;).  Vamos avançar
+       agora e extrair o conteúdo deste pacote usando o parâmetro
+       <parameter class="command">x</parameter>:
       </para>
 
       <screen>
@@ -2735,9 +2739,9 @@ $ <userinput>tar xf test.tar</userinput>
       </screen>
 
       <para>
-	We can now verify that tar really extracted the archive by
-	listing the contents of the directory with
-	<command>ls</command>:
+       Agora podemos verificar que o tar realmente extraiu o conteúdo do
+       pacote através de uma listagem do diretório com
+       <command>ls</command>:
       </para>
 
       <screen>
@@ -2746,13 +2750,13 @@ test1  test2
       </screen>
 
       <para>
-	Extracting or listing files from a gzipped or bzipped archive
-	is not much more difficult. This can be done by adding a
-	<parameter class="command">z</parameter> or <parameter
-	class="command">b</parameter> for respectively archives
-	compressed with <command>gzip</command> or
-	<command>bzip2</command>.  For example, we can list the
-	contents of a gzipped archive with:
+    Extrair ou listar arquivos de um pacote gzipado ou bzipado não é
+    muito mais difícil.  Isto pode ser feito adicionando-se um 
+	<parameter class="command">z</parameter> ou <parameter
+	class="command">b</parameter>, respectivamente, para pacotes
+	compactados com <command>gzip</command> ou
+	<command>bzip2</command>.  Por exemplo, podemos listar o conteúdo de
+	um pacote gzipado com:
       </para>
 
       <screen>
@@ -2760,7 +2764,7 @@ $ <userinput>tar ztf archive2.tar.gz</userinput>
       </screen>
 
       <para>
-	And a bzipped archive can be extracted with:
+       Enquanto que um pacote bzipado pode ser extraído com:
       </para>
 
       <screen>
@@ -2769,15 +2773,14 @@ $ <userinput>tar bxf archive3.tar.bz2</userinput>
     </sect2>
 
     <sect2 xml:id="basics-filesystem-archives-creating">
-      <title>Creating archives</title>
+      <title>Criando pacotes</title>
 
       <para>
-	You can create archives with the <parameter
-	class="command">c</parameter> parameter. Suppose that we have
-	the directory <filename>test</filename> shown in the previous
-	example. We can make an archive with the
-	<filename>test</filename> directory and the files in this
-	directory with:
+       Você pode empacotar arquivos com o parâmetro <parameter
+       class="command">c</parameter>.  Suponha que temos o diretório
+       <filename>test</filename> mostrado no exemplo anterior.  Podemos
+       criar um pacote com o diretório <filename>test</filename> e os
+       arquivos dentro dele com:
       </para>
 
       <screen>
@@ -2785,10 +2788,10 @@ $ <userinput>tar cf important-files.tar test</userinput>
       </screen>
 
       <para>
-	This will create the <filename>important-files.tar</filename>
-	archive (which is specified with the <parameter
-	class="command">f</parameter> parameter). We can now verify
-	the archive:
+    Isto irá criar o pacote <filename>important-files.tar</filename>
+    (que é especificado com o parâmetro <parameter
+	class="command">f</parameter>).  Agora nós podemos verificar o
+	conteúdo deste arquivo:
       </para>
 
       <screen>
@@ -2799,13 +2802,13 @@ test/test1
       </screen>
 
       <para>
-	Creating a gzipped or bzipped archive goes along the same
-	lines as extracting compressed archives: add a <parameter
-	class="command">z</parameter> for gzipping an archive, or
-	<parameter class="command">b</parameter> for bzipping an
-	archive. Suppose that we wanted to create a
-	<command>gzip</command> compressed version of the archive
-	created above. We can do this with:
+       Criar um pacote compactado com gzip ou bzip2 é análogo a extrair
+       arquivos compactados: adicione um <parameter
+       class="command">z</parameter> para compactar o arquivo no formato
+       gzip ou <parameter class="command">b</parameter> para usar bzip2.
+       Suponha queiramos criar uma versão compactada com 
+       <command>gzip</command> do arquivo criado acima.  Podemos fazer
+       isso com:
       </para>
 
       <screen>
@@ -2815,23 +2818,25 @@ test/test1
   </sect1>
 
   <sect1 xml:id="basics-filesystem-mounting">
-    <title>Mounting filesystems</title>
+    <title>Montando sistemas de arquivos</title>
 
     <sect2 xml:id="basics-filesystem-mounting-introduction">
-      <title>Introduction</title>
+      <title>Introdução</title>
 
       <para>
-	Like most Unices Linux uses a technique named
-	<quote>mounting</quote> to access filesystems. Mounting means
-	that a filesystem is connected to a directory in the root
-	filesystem. One could for example mount a CD-ROM drive to the
-	<filename>/mnt/cdrom</filename> directory. Linux supports many
-	kinds of filesystems, like Ext2, Ext3, ReiserFS, JFS, XFS,
-	ISO9660 (used for CD-ROMs), UDF (used on some DVDs) and
-	DOS/Windows filesystems, like FAT, FAT32 and NTFS. These
-	filesystems can reside on many kinds of media, for example
-	hard drives, CD-ROMs and Flash drives. This section explains
-	how filesystems can be mounted and unmounted.
+       Como a maioria dos Unices, o Linux uma técnica chamada de 
+       <quote>montagem</quote> para acessar sistemas de arquivos.
+       Montagem significa que um sistema de arquivos está conectado a
+       um diretório no sistema de arquivos raiz.  Alguém poderia, por
+       exemplo, montar um drive de CD-ROM no diretório
+       <filename>/mnt/cdrom</filename>.  O Linux suporta muitos tipos de
+       sistemas de arquivos, como Ext2, Ext3, ReiserFS, JFS, XFS,
+       ISO9660 (usado por CD-ROMs), UDF (usado por alguns DVDs) além de
+       sistemas de arquivos DOS/Windows, como FAT, FAT32 e NTFS.  Estes
+       sistemas de arquivos podem residir em muitos tipos de mídia, como
+       por exemplo discos rígidos, CD-ROMs e dispositivos Flash.  Esta
+       seção explica como os sistemas de arquivos podem ser montados e
+       desmontados.
       </para>
     </sect2>
 
@@ -2839,12 +2844,12 @@ test/test1
       <title>mount</title>
 
       <para>
-	The <command>mount</command> is used to mount filesystems. The
-	basic syntax is: <quote>mount /dev/devname
-	/mountpoint</quote>. The device name can be any block device,
-	like hard disks or CD-ROM drives. The mount point can be an
-	arbitrary point in the root filesystem. Let's look at an
-	example:
+       O <command>mount</command> é usado para montar sistemas de
+       arquivos.  A sintaxe básica é: <quote>mount /dev/devname
+       /mountpoint</quote>.  O dispositivo pode ser qualquer dispositivo
+       de bloco, como discos rígidos ou drives de CD-ROM.  O ponto de
+       montagem pode ser um ponto qualquer no sistema de arquivos raiz.
+       Vamos ver um exemplo:
       </para>
 
       <screen>
@@ -2852,16 +2857,17 @@ test/test1
       </screen>
 
       <para>
-	This mounts the <filename>/dev/cdrom</filename> on the
-	<filename>/mnt/cdrom</filename> mountpoint. The
-	<filename>/dev/cdrom</filename> device name is normally a link
-	to the real CD-ROM device name (for example,
-	<filename>/dev/hdc</filename>). As you can see, the concept is
-	actually very simple, it just takes some time to learn the
-	device names ;). Sometimes it is necessary to specify which
-	kind of filesystem you are trying to mount.  The filesystem
-	type can be specified by adding the <parameter
-	class="command">-t</parameter> parameter:
+       Isto monta o dispositivo <filename>/dev/cdrom</filename> no ponto
+       de montagem <filename>/mnt/cdrom</filename>.  O dispositivo
+       <filename>/dev/cdrom</filename> normalmente é um link para o nome
+       do dispositivo real do CD-ROM (por exemplo,
+       <filename>/dev/hdc</filename>).  Como você pode ver, o conceito
+       é, de fato, muito simples, apenas demanda algum tempo para
+       aprender os nomes dos dispositivos ;).  Algumas vezes é
+       necessário especificar que tipo de sistema de arquivos você está
+       tentando montar.  O tipo de sistema de arquivos pode ser
+       especificado com o parâmetro
+       <parameter class="command">-t</parameter>:
       </para>
 
       <screen>
@@ -2869,9 +2875,9 @@ test/test1
       </screen>
 
       <para>
-	This mounts the vfat filesystem on
-	<filename>/dev/sda1</filename> to
-	<filename>/mnt/flash</filename>.
+       Isto monta o sistema de arquivos vfat de
+       <filename>/dev/sda1</filename> em 
+       <filename>/mnt/flash</filename>.
       </para>
     </sect2>
 
@@ -2879,9 +2885,10 @@ test/test1
       <title>umount</title>
 
       <para>
-	The <command>umount</command> command is used to unmount
-	filesystems.  <command>umount</command> accepts two kinds of
-	parameters, mount points or devices. For example:
+       O comando <command>umount</command> é usado para desmontar
+       sistemas de arquivos.  <command>umount</command> aceita dois
+       tipos de parâmetros, sejam pontos de montagem ou dispositivos.
+       Por exemplo:
       </para>
 
       <screen>
@@ -2890,20 +2897,20 @@ test/test1
       </screen>
 
       <para>
-	The first command unmounts the filesystem that was mounted on
-	<filename>/mnt/cdrom</filename>, the second commands unmounts
-	the filesystem on <filename>/dev/sda1</filename>.
+       O primeiro comando desmonta o sistema de arquivos que estava
+       montado em <filename>/mnt/cdrom</filename>, o segundo comando
+       desmonta o sistema de arquivos em <filename>/dev/sda1</filename>.
       </para>
     </sect2>
 
     <sect2 xml:id="basics-filesystem-mounting-fstab">
-      <title>The fstab file</title>
+      <title>O arquivo fstab</title>
 
       <para>
-	The GNU/Linux system has a special file,
-	<filename>/etc/fstab</filename>, that specifies which
-	filesystems should be mounted during the system boot.  Let's
-	look at an example:
+       O sistema GNU/Linux possui um arquivo especial, o
+       <filename>/etc/fstab</filename>, que especifica quais sistemas de
+       arquivos devem ser montados durante a inicialização do sistema.
+       Vamos ver um exemplo:
       </para>
 
       <screen>
@@ -2920,22 +2927,23 @@ proc             /proc            proc        defaults         0   0
       </screen>
 
       <para>
-	As you can see each entry in the <filename>fstab</filename>
-	file has five entries: fs_spec, fs_file, fs_vfstype,
-	fs_mntops, fs_freq, and fs_passno.  We are now going to look
-	at each entry.
+       Como você pode ver, cada linha no arquivo
+       <filename>fstab</filename> possui cinco entradas: fs_spec,
+       fs_file, fs_vfstype, fs_mntops, fs_freq, e fs_passno.  Agora
+       vamos dar uma olhada em cada uma dessas entradas.
       </para>
 
       <sect3>
 	<title>fs_spec</title>
 
 	<para>
-	  The fs_spec option specifies the block device, or remote
-	  filesystem that should be mounted. As you can see in the
-	  example several /dev/hda partitions are specified, as well
-	  as the CD-ROM drive and floppy drive. When NFS volumes are
-	  mounted an IP address and directory can be specified, for
-	  example: <filename>192.168.1.10:/exports/data</filename>.
+      A opção fs_spec option especifica o dispositivo de bloco, ou o
+      sistema de arquivos remoto que deve ser montado.  Como você pode
+      ver no exemplo, diversas partições de /dev/hda são especificadas,
+      bem como o drive de CD-ROM e o drive de disquete.  Quando volumes
+      NFS forem montados, um endereço IP e um diretório podem ser
+      especificados, por exemplo:
+      <filename>192.168.1.10:/exports/data</filename>.
 	</para>
       </sect3>
 
@@ -2943,8 +2951,8 @@ proc             /proc            proc        defaults         0   0
 	<title>fs_file</title>
 
 	<para>
-	  fs_file specifies the mount point. This can be an arbitrary
-	  directory in the filesystem.
+      fs_file especifica o ponto de montagem.  Este pode ser um
+      diretório qualquer no sistema de arquivos.
 	</para>
       </sect3>
 
@@ -2952,9 +2960,9 @@ proc             /proc            proc        defaults         0   0
 	<title>fs_vfstype</title>
 
 	<para>
-	  This option specifies what kind of filesystem the entry
-	  represents. For example this can be: ext2, ext3, reiserfs,
-	  xfs, nfs, vfat, or ntfs.
+      Este campo especifica que tipo de sistema de arquivos a entrada
+      representa.  Por exemplo, este campo pode ser: ext2, ext3,
+      reiserfs, xfs, nfs, vfat, ou ntfs.
 	</para>
       </sect3>
 
@@ -2962,70 +2970,71 @@ proc             /proc            proc        defaults         0   0
 	<title>fs_mntops</title>
 
 	<para>
-	  The fs_mntops option specifies which parameters should be
-	  used for mounting the filesystem. The
-	  <command>mount</command> manual page has an extensive
-	  description of the available options. These are the most
-	  interesting options:
+      A opção fs_mntops especifica quais parâmetros devem ser usados na
+      montagem do sistema de arquivo.  A página de manual do comando 
+      <command>mount</command> tem uma extensiva descrição das opções
+      disponíveis.  Estas são as opções mais interessantes:
 	</para>
 
 	<itemizedlist>
 	  <listitem>
 	    <para>
-	      <emphasis>noauto</emphasis>: filesystems that are listed
-	      in <filename>/etc/fstab</filename> are normally mounted
-	      automatically. When the <quote>noauto</quote> option is
-	      specified, the filesystem will not be mounted during the
-	      system boot, but only after issuing a
-	      <command>mount</command> command. When mounting such
-	      filesystem, only the mount point or device name has to
-	      be specified, for example: <command>mount
-	      /mnt/cdrom</command>
+          <emphasis>noauto</emphasis>: os sistemas de arquivos que são
+          listados no <filename>/etc/fstab</filename> normalmente são
+          montados automaticamente.  Quando a opção
+          <quote>noauto</quote> é especificada, o sistema de arquivos
+          não será montado durante a inicialização do sistema, mas
+          apenas depois de se executar um comando
+          <command>mount</command>.  Para montar sistemas de arquivos
+          dessa maneira, apenas o ponto de montagem ou o nome do
+          dispositivo podem ser especificados, por exemplo: 
+          <command>mount /mnt/cdrom</command>
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>user</emphasis>: adding the
-	      <quote>user</quote> option will allow normal users to
-	      mount the filesystem (normally only the superuser is
-	      allowed to mount filesystems).
+          <emphasis>user</emphasis>: adicionando-se a opção 
+          <quote>user</quote> irá permitir que usuários normais montem
+          o sistema de arquivos (normalmente, apenas o superusuário tem
+          permissão para montar sistemas de arquivos).
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>owner</emphasis>: the <quote>owner</quote>
-	      option will allow the owner of the specified device to
-	      mount the specified device. You can see the owner of a
-	      device using <command>ls</command>, e.g.  <command>ls -l
-	      /dev/cdrom</command>.
+          <emphasis>owner</emphasis>: a opção <quote>owner</quote>
+          permitirá que o dono do dispositivo especificado monte seu
+          referido dispositivo.  Você pode ver o dono de um dispositivo
+          usando <command>ls</command>, p.ex.,  <command>ls -l
+          /dev/cdrom</command>.
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>noexec</emphasis>: with this option enabled
-	      users can not run files from the mounted
-	      filesystem. This can be used to provide more security.
+          <emphasis>noexec</emphasis>: com esta opção habilitada, os
+          usuários não podem executar os arquivos no sistema de arquivos
+          montado.  Isto pode ser usado para oferecer mais segurança.
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>nosuid</emphasis>: this option is comparable
-	      to the <quote>noexec</quote> option. With
-	      <quote>nosuid</quote> enabled SUID bits on files on the
-	      filesystem will not be allowed. SUID is used for certain
-	      binaries to provide a normal user to do something
-	      privileged.  This is certainly a security threat, so
-	      this option should really be used for removable media,
-	      etc. A normal user mount will force the nosuid option,
-	      but a mount by the superuser will not!
+          <emphasis>nosuid</emphasis>: esta opção é comparável à opção
+          <quote>noexec</quote>.  Com 
+          <quote>nosuid</quote> habilitado, não serão permitidos bits
+          SUID no sistema de arquivos montado.  SUID é usado por certos
+          binários para deixar que um usuário normal faça algo com
+          maiores privilégios.  Isto é certamente uma falha de
+          segurança, então esta opção deveria realmente ser usada para
+          mídias removíveis e etc.  Uma montagem de usuário normal irá
+          forçar a opção nosuid, mas uma montagem feita pelo
+          superusuário, não!
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>unhide</emphasis>: this option is only
-	      relevant for normal CD-ROMs with the ISO9660
-	      filesystem. If <quote>unhide</quote> is specified hidden
-	      files will also be visible.
+          <emphasis>unhide</emphasis>: esta opção só é relevante para
+          CD-ROMs normais com o sistema de arquivo ISO9660.  Se
+          <quote>unhide</quote> for especificado, arquivos ocultos
+          também serão visíveis.
 	    </para>
 	  </listitem>
 	</itemizedlist>
@@ -3035,11 +3044,12 @@ proc             /proc            proc        defaults         0   0
 	<title>fs_freq</title>
 
 	<para>
-	  If the <quote>fs_freq</quote> is set to 1 or higher, it
-	  specifies after how many days a filesystem dump (backup) has
-	  to be made. This option is only used when <ulink
-	  url="http://dump.sourceforge.net/">dump</ulink> is
-	  installed, and set up correctly to handle this.
+      Se <quote>fs_freq</quote> for definido para o valor 1 ou mais
+      alto, ele indica depois de quantos dias um despejo
+      (<foreignphrase>dump</foreignphrase>, backup) será feito.  Esta
+      opção só é usada quand o <ulink
+      url="http://dump.sourceforge.net/">dump</ulink> está instalado e
+      configurado adequadamente para manipular este campo do arquivo.
 	</para>
       </sect3>
 
@@ -3047,9 +3057,9 @@ proc             /proc            proc        defaults         0   0
 	<title>fs_passno</title>
 
 	<para>
-	  This field is used by <command>fsck</command> to determine
-	  the order in which filesystems are checked during the system
-	  boot.
+      Este campo é usado pelo <command>fsck</command> para determinar a
+      ordem na qual os sistema de arquivos são verificados durante a
+      inicialização do sistema.
 	</para>
       </sect3>
     </sect2>
