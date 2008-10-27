@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
-	 xmlns:xl="http://www.w3.org/1999/xlink"
-	 xml:lang="pt_BR"
-	 xml:id="chap-filesystem">
+     xmlns:xl="http://www.w3.org/1999/xlink"
+     xml:lang="pt_BR"
+     xml:id="chap-filesystem">
   <title>Arquivos e diretórios</title>
 
   <sect1 xml:id="chap-filesystem-introduction">
@@ -102,24 +102,24 @@
       <para>
     Podemos mostrar de uma forma simplicada como isto tudo funciona
     ilustrando o que o kernel faz quando executamos o comando
-	<command>cat /home/daniel/note.txt</command>
+    <command>cat /home/daniel/note.txt</command>
       </para>
 
       <orderedlist>
         <listitem>
-	  <para>
+      <para>
         O sistema lê o inode do diretório <filename>/</filename>,
         verifica se o usuário tem permissão para acessar este inode, e
         lê o bloco de dados para encontrar o número do inode do
-	    diretório <filename>home</filename>.
-	  </para>
+        diretório <filename>home</filename>.
+      </para>
         </listitem>
         <listitem>
           <para>
         O sistema lê o inode do diretório <filename>home</filename>,
         verifica se o usuário tem permissão para acessar este inode, e
         lê o bloco de dados para encontrar o número do inode do
-	    diretório <filename>daniel</filename>.</para>
+        diretório <filename>daniel</filename>.</para>
         </listitem>
         <listitem>
           <para>
@@ -127,7 +127,7 @@
         verifica se o usuário tem permissão para acessar este inode, e
         lê o bloco de dados para encontrar o número do inode do arquivo
         <filename>note.txt</filename>
-	  </para>
+      </para>
         </listitem>
         <listitem>
           <para>
@@ -202,7 +202,7 @@
     Muitos usuários não querem lidar com números octais, então por isso
     que muitos utilitários podem também lidar com representações
     alfabéticas das permissões de arquivo.  As letras estão listadas em
-	<xref linkend="chap-filesystem-permissions-numbers"/> entre
+    <xref linkend="chap-filesystem-permissions-numbers"/> entre
     parênteses e são usadas nesta notação.  No exemplo seguinte, a
     informação sobre um arquivo com permissões <emphasis>0644</emphasis>
     é exibida.  Os números são substituídos por três conjuntos rwx (o
@@ -259,8 +259,8 @@ other::---
       <title>Links</title>
 
       <para>
-    Uma entrada de diretório que aponta para um inode é chamada de 
-	<emphasis><foreignphrase>hard linki<foreignphrase></emphasis>.
+    Uma entrada de diretório que aponta para um inode é chamada de
+    <emphasis><foreignphrase>hard linki<foreignphrase></emphasis>.
     Muitos arquivos possuem apenas um único link, mas nada lhe impede de
     criar mais de um link para o arquivo.  Isto irá incrementar o campo
     <emphasis>links_count</emphasis> do inode.  Esta é uma bela maneira
@@ -284,7 +284,7 @@ other::---
       </figure>
 
       <para>
-	Hard links possuem duas limitações.  Em primeiro lugar, hard links
+    Hard links possuem duas limitações.  Em primeiro lugar, hard links
     não podem linkar entre diferentes sistemas de arquivos, uma vez que
     eles apontam para inodes.  Cada sistema de arquivo tem seus próprios
     inodes e números de inode correspondentes.  Além disso, muitos
@@ -330,7 +330,7 @@ other::---
       vulnerável ser atualizado, o link no diretório home do usuário
       permanecerá apontando para o programa binário antigo, efetivamente
       dadno ao usuário acesso contínuo ao binário vulnerável.
-	</para>
+    </para>
 
         <para>
       Por esta razão é uma boa idéia colocar quaisquer diretórios que os
@@ -429,8 +429,8 @@ drwxrwxr-x   2 daniel daniel  4096 Sep  4 15:55 papers
       </para>
 
       <para>
-    Anteriormente neste capítulo (<xref 
-	linkend="chap-filesystem-introduction-atoms"/>) falamos sobre
+    Anteriormente neste capítulo (<xref
+    linkend="chap-filesystem-introduction-atoms"/>) falamos sobre
     inodes.  O número do inode apontado por uma entrada de diretório
     pode ser mostrado com o parâmetro <parameter
     class="command">-i</parameter>.  Suponha que eu tenha criado um hard
@@ -477,7 +477,7 @@ $ <userinput>file /dev/zero</userinput>
       </screen>
 
       <para>
-	Ou sobre um link simbólico:
+    Ou sobre um link simbólico:
       </para>
 
       <screen>
@@ -486,10 +486,10 @@ $ <userinput>file /usr/X11R6/bin/X</userinput>
       </screen>
 
       <para>
-    Se você estiver interessado em para onde o arquivo 
-	<filename>/usr/X11R6/bin/X</filename> aponta, você pode usar a
+    Se você estiver interessado em para onde o arquivo
+    <filename>/usr/X11R6/bin/X</filename> aponta, você pode usar a
     opção <parameter class="command">-L</parameter> do
-	<command>file</command>:
+    <command>file</command>:
       </para>
 
       <screen>
@@ -550,10 +550,10 @@ $ <userinput>cksum myfile</userinput>
       </screen>
 
       <para>
-	O Slackware Linux também possui utilitários para cálculo de somas de
+    O Slackware Linux também possui utilitários para cálculo de somas de
     verificação baseadas em algorítmos de via única (por exemplo, MD5 ou
     SHA-1).
-	<!-- XXX - elaborar -->
+    <!-- XXX - elaborar -->
       </para>
     </sect2>
 
@@ -581,7 +581,7 @@ $ <userinput>cat note.txt | less</userinput>
       </screen>
 
       <para>
-	ou deixar que o <command>less</command> leia o arquivo diretamente:
+    ou deixar que o <command>less</command> leia o arquivo diretamente:
       </para>
 
       <screen>
@@ -591,7 +591,7 @@ $ <userinput>less note.txt</userinput>
       <para>
     O <command>less</command> é um paginador e permite que você role a
     tela para frente e para trás num arquivo.  <xref
-	linkend="chap-filesystem-analyzing-viewing-less-keys"/>
+    linkend="chap-filesystem-analyzing-viewing-less-keys"/>
     contém uma visão geral das teclas mais importantes usadas para
     controlar o <command>less</command>
       </para>
@@ -671,10 +671,10 @@ $ <userinput>less note.txt</userinput>
 
       <para>
     O Slackware Linux também possui uma alternativa ao
-	Slackware Linux also provides an alternative to
-	<command>less</command>, o antigo comando <quote>more</quote>.
+    Slackware Linux also provides an alternative to
+    <command>less</command>, o antigo comando <quote>more</quote>.
     Não vamos abordar o <emphasis>more</emphasis> aqui pois o
-	<command>less</command> é mais confortável e mais popular hoje em
+    <command>less</command> é mais confortável e mais popular hoje em
     dia.
       </para>
 
@@ -684,7 +684,7 @@ $ <userinput>less note.txt</userinput>
       <title>Tamanhos de arquivos e diretórios</title>
 
       <para>
-	A saída de <command>ls -l</command> que vimos há pouco provê
+    A saída de <command>ls -l</command> que vimos há pouco provê
     informação sobre o tamanho de um arquivo.  Ainda que isto usualmente
     seja informação suficiente sobre tamanhos de arquivos, você pode
     querer coletar informação sobre conjuntos de arquivos ou diretórios.
@@ -712,9 +712,9 @@ $ <userinput>du ~/qconcord</userinput>
 
       <screen>
 $ <userinput>du -k ~/qconcord</userinput>
-72	/home/daniel/qconcord/src
-24	/home/daniel/qconcord/ui
-132	/home/daniel/qconcord
+72  /home/daniel/qconcord/src
+24  /home/daniel/qconcord/ui
+132 /home/daniel/qconcord
       </screen>
 
       <para>
@@ -767,7 +767,7 @@ $ <userinput>du -k -a ~/qconcord/*</userinput>
       <para>
     Se você quiser ver a soma total do espaço em disco utilizado pelos
     arquivos e subdiretórios dentro do diretório dado, então use a opção
-	<parameter class="command">-s</parameter>:
+    <parameter class="command">-s</parameter>:
       </para>
 
       <screen>
@@ -781,7 +781,7 @@ $ <userinput>du -k -s ~/qconcord</userinput>
     <title>Trabalhando com diretórios</title>
 
     <para>
-      Depois de dar uma visão geral de diretórios em <xref 
+      Depois de dar uma visão geral de diretórios em <xref
       linkend="chap-filesystem-introduction-atoms"/>, vamos agora dar uma
       olhada em alguns comandos relacionados a diretórios.
     </para>
@@ -790,8 +790,8 @@ $ <userinput>du -k -s ~/qconcord</userinput>
       <title>Listando diretórios</title>
 
       <para>
-	O comando <command>ls</command> que vimos em <xref 
-	linkend="chap-filesystems-analyzing-listing"/> também pode ser usado
+    O comando <command>ls</command> que vimos em <xref
+    linkend="chap-filesystems-analyzing-listing"/> também pode ser usado
     para listar diretórios de diferentes maneiras.  Como já vimos, a
     saída padrão do <command>ls</command> inclui diretórios, e os
     diretórios podem ser identificados usando a primeira coluna da saída
@@ -808,12 +808,12 @@ drwxrwxr-x  2 daniel daniel  4096 Sep  4 15:55 papers
 
       <para>
     Se um nome de diretório, ou se um coringa for especificado, o
-	<command>ls</command> irá listar o conteúdo do diretório, os dos
+    <command>ls</command> irá listar o conteúdo do diretório, os dos
     diretórios que casem com o coringa respectivamente.  Por exemplo, se
     houver um diretóro <filename>papers</filename>, <command>ls
     paper*</command> vai listar o conteúdo deste diretório
-    <filename>papers</filename>.  O parâmetro <parameter 
-	class="command">-d</parameter> evita que esta recursão
+    <filename>papers</filename>.  O parâmetro <parameter
+    class="command">-d</parameter> evita que esta recursão
     aconteça:
       </para>
 
@@ -824,8 +824,8 @@ drwxrwxr-x  2 daniel daniel  4096 Sep  4 15:55 papers
 
       <para>
     Você também pode listar recursivament o conteúdo de um diretório, e
-    de seus subdiretórios com o parâmetro <parameter 
-	class="command">-R</parameter>:
+    de seus subdiretórios com o parâmetro <parameter
+    class="command">-R</parameter>:
       </para>
 
       <screen>
@@ -851,7 +851,7 @@ logics.pdf
     O UNIX provê o comando <command>mkdir</command> para criar
     diretórios.  Se um caminho relativo é especificado, o diretório é
     criado no diretório corrente.  A sintaxe básica é muito simples:
-	<emphasis>mkdir &lt;nome&gt;</emphasis>, por exemplo:
+    <emphasis>mkdir &lt;nome&gt;</emphasis>, por exemplo:
       </para>
 
       <screen>
@@ -859,12 +859,12 @@ $ <userinput>mkdir meudir</userinput>
       </screen>
 
       <para>
-	Por padrão, <command>mkdir</command> cria apenas um nível de
-    diretório.  Então, se você usar <command>mkdir</command> para criar 
-	<filename>meudir/meusubdir</filename>, <command>mkdir</command> vai
+    Por padrão, <command>mkdir</command> cria apenas um nível de
+    diretório.  Então, se você usar <command>mkdir</command> para criar
+    <filename>meudir/meusubdir</filename>, <command>mkdir</command> vai
     falhar se <filename>meudir</filename> não existir.  Se você quiser
     criar ambos os diretórios de uma só vez, use o parâmetro
-	<parameter class="command">-p</parameter>:
+    <parameter class="command">-p</parameter>:
       </para>
 
       <screen>
@@ -872,20 +872,20 @@ $ <userinput>mkdir -p meudir/meusubdir</userinput>
       </screen>
 
       <para>
-	<command>rmdir</command> remove um diretório.  Seu comportamento é
+    <command>rmdir</command> remove um diretório.  Seu comportamento é
     comparável ao do <command>mkdir</command>.  <command>rmdir
-	meudir/meusubdir</command> remove
+    meudir/meusubdir</command> remove
     <filename>meudir/meusubdir</filename>, ao passo que <command>rmdir -p
     meudir/meusubdir</command> remove
-    <filename>meudir/meusubdir</filename> e também 
+    <filename>meudir/meusubdir</filename> e também
     <filename>meudir</filename>.
       </para>
 
       <para>
     Se um subdiretório que quisermos remover contenha entradas de
-	diretório, <command>rmdir</command> irá falhar.  Se você quiser
+    diretório, <command>rmdir</command> irá falhar.  Se você quiser
     remover um diretório, incluindo todo o seu conteúdo, use o comando
-	<command>rm</command> então. <!-- XXX - xref -->
+    <command>rm</command> então. <!-- XXX - xref -->
       </para>
     </sect2>
   </sect1>
@@ -897,10 +897,10 @@ $ <userinput>mkdir -p meudir/meusubdir</userinput>
       <title>Copiando</title>
 
       <para>
-    Arquivos e diretórios podem ser copiados com o comando 
-	<command>cp</command>.  Em sua sintaxe mais básica a origem e destino
+    Arquivos e diretórios podem ser copiados com o comando
+    <command>cp</command>.  Em sua sintaxe mais básica a origem e destino
     do arquivo são especificados.  O exemplo a seguir fará uma cópia do
-	<filename>arquivo1</filename> chamada <filename>arquivo2</filename>:
+    <filename>arquivo1</filename> chamada <filename>arquivo2</filename>:
       </para>
 
       <screen>
@@ -957,7 +957,7 @@ $ <userinput>cp -r minhaarvore arvores</userinput>
       </screen>
 
       <para>
-    Depois de executar estes comandos, haverá duas cópias do diretório 
+    Depois de executar estes comandos, haverá duas cópias do diretório
         <filename>minhaarvore</filename>,
         <filename>arvore_copia</filename> e
         <filename>arvores/minhaarvore</filename>.  Tentar copiar dois
@@ -971,14 +971,14 @@ usage: cp [-R [-H | -L | -P]] [-f | -i] [-pv] src target
       </screen>
 
       <note>
-	<para>
+    <para>
       Tradicionalmente, o <parameter class="command">-r</parameter>
       estava disponível em muitos sistemas UNIX para cópia recursiva de
       diretórios.  No entanto, o comportamento deste parâmetro pode
       depender da implementação, e na versão 3 da Single UNIX
       Specification consta que este parâmetro pode ser removido em
       implementações futuras do padrão.
-	</para>
+    </para>
       </note>
 
       <para>
@@ -987,7 +987,7 @@ usage: cp [-R [-H | -L | -P]] [-f | -i] [-pv] src target
     ao encontrar um link simbólico explicitamente, se você quiser usar o
     <command>cp</command> em scripts portáveis.  A versão 3 da Single
     UNIX Specification não define como isto deve ser tratado por padrão.
-	Se <parameter class="command">-P</parameter> for usado, links
+    Se <parameter class="command">-P</parameter> for usado, links
     simbólicos não serão seguidos, resultando efetivamente na cópia do
     link em si.  Se <parameter class="command">-H</parameter> for usado,
     links simbólicos especificdos como um parâmetro para o
@@ -1026,9 +1026,9 @@ usage: cp [-R [-H | -L | -P]] [-f | -i] [-pv] src target
       </para>
 
       <para>
-	A sintaxe do <command>mv</command> é comparável à do
-	<command>cp</command>.  A sintaxe mais básica renomeia
-	<filename>arquivo1</filename> para <filename>arquivo2</filename>:
+    A sintaxe do <command>mv</command> é comparável à do
+    <command>cp</command>.  A sintaxe mais básica renomeia
+    <filename>arquivo1</filename> para <filename>arquivo2</filename>:
       </para>
 
       <screen>
@@ -1070,7 +1070,7 @@ $ <userinput>mv arquivo1 diretorio1 destinodir</userinput>
         Se não houver outros links para um arquivo, seu inode e seus
         blocos no disco podem ser requisitados por novos arquivos.  Os
         arquivos podem ser removidos informando o nome destes arquivos
-        como parâmetro para o 
+        como parâmetro para o
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
         </citerefentry>.  Se o arquivo não for gravável, o <citerefentry>
@@ -1090,7 +1090,7 @@ $ <userinput>rm arquivo1 arquivo2</userinput>
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
         </citerefentry> para remover arquivos a partir de um script que
-        não vai ser executado em um terminal, adicione o parâmetro 
+        não vai ser executado em um terminal, adicione o parâmetro
           <parameter class="command">-f</parameter> para evitar diálogos
         de confirmação.  Arquivos sem permissão de escrita, são excluídos
         com o parâmetro <filename>-f</filename> se as permissões do dono
@@ -1139,7 +1139,7 @@ $ <userinput>rm -r notas</userinput>
         </citerefentry> provê uma das implementações da função <citerefentry>
           <refentrytitle>unlink</refentrytitle>
           <manvolnum>2</manvolnum>
-        </citerefentry>.  É relativamente pouco usável, pois não pode remover 
+        </citerefentry>.  É relativamente pouco usável, pois não pode remover
         diretórios. </para>
     </sect2>
   </sect1>
@@ -1168,7 +1168,7 @@ $ <userinput>rm -r notas</userinput>
           <manvolnum>1</manvolnum>
         </citerefentry> pode ser usado para definir estes campos.  Isto pode ser feito com IDs numéricos
         ou com seus nomes.  Por exemplo, para alterar o dono de um arquivo
-        <filename>nota.txt</filename> para <emphasis>john</emphasis>, e seu grupo para 
+        <filename>nota.txt</filename> para <emphasis>john</emphasis>, e seu grupo para
         <emphasis>staff</emphasis>, o seguinte comando é usado: </para>
 
       <screen>
@@ -1242,7 +1242,7 @@ $ <userinput>chmod 0644 notas.txt</userinput>
 
       <para> O primeiro componente especifica as classes de usuário às quais a mudança de permissão se aplica
         (usuário, grupo ou outros).  Caracteres múltiplos deste componente podem ser combinados.  O segundo
-        componente remove (<emphasis>-</emphasis>) ou adiciona as permissões 
+        componente remove (<emphasis>-</emphasis>) ou adiciona as permissões
         (<emphasis>+</emphasis>).  O terceiro componente é o descritor de acesso (leitura, escrita, execução,
         uso de UID/GID na execução, e sticky bit).  Múltiplos caracteres podem ser especificados neste componente
         também.  Vamos ver alguns exemplos para tornar isto mais claro: </para>
@@ -1262,7 +1262,7 @@ $ <userinput>chmod ugo-x script2.sh</userinput>
       </screen>
 
       <para> As permissões de arquivos e diretórios podem ser alteradas recursivamente com o parâmetro <parameter
-          class="command">-R</parameter>.  O seguinte comando torna o diretório 
+          class="command">-R</parameter>.  O seguinte comando torna o diretório
         <filename>notas</filename> legível a todos, incluindo seu conteúdo: </para>
 
       <screen>
@@ -1289,9 +1289,9 @@ $ <userinput>ls -l /bin/su</userinput>
 -rwsr-xr-x  1 root root 60772 Aug 13 12:26 /bin/su
       </screen>
 
-      <para> Isso significa que o comando <command>su</command> executa como o usuário 
+      <para> Isso significa que o comando <command>su</command> executa como o usuário
         <emphasis>root</emphasis> quando executado.  O bit SUID pode ser definido com o modificador
-        <emphasis>s</emphasis>.  Por exemplo, se o bit SUID não estivesse atribuído em 
+        <emphasis>s</emphasis>.  Por exemplo, se o bit SUID não estivesse atribuído em
           <filename>/bin/su</filename> isto poderia ser feito com: </para>
 
       <screen>
@@ -1309,7 +1309,7 @@ $ <userinput>chmod u+s /bin/su</userinput>
 
       <para> O sticky bit também é interessante quando aplicado a um
       diretório.  Ele impossibilita que usuários renomeiem ou excluam
-      arquivos que não lhes pertencem, em diretórios que tenham acesso.  
+      arquivos que não lhes pertencem, em diretórios que tenham acesso.
       Isto é comumente usado em diretórios com permissões de escrita para
       todos, como o diretório temporário (<filename>/tmp</filename>) em
       muitos sistemas UNIX.  O sticky bit pode ser atribuído com o
@@ -1331,53 +1331,53 @@ $ <userinput>chmod g+t /tmp</userinput>
     máscara de criação de arquivo ativa.  A máscara de criação de arquivos
     pode ser representada como um número octal.  As permissões efetivas para
     criação do arquivo são determinadas como <emphasis>mode &amp;
-	~mask</emphasis>.  Ou, se estiver na representação octal, você pode
-	subtrair os dígitos da máscara dos do modo.  Por exemplo, se um arquivo
-	é criado com permissões <emphasis>0666</emphasis> (legível e gravável
-	pelo usuário do arquivo, pelo grupo e por outros), e a máscara efetiva
-	de criação de arquivo for <emphasis>0022</emphasis>, a permissão do
-	resultante do arquivo será <emphasis>0644</emphasis>.  Vamos ver outro
-	exemplo.  Suponha que arquivos ainda são criados com as permissões 
-	<emphasis>0666</emphasis>, e você é mais paranóico, e quer remover
-	todas as permissões de leitura e escrita do grupo do arquivo e dos
-	outros.  Isto quer dizer que você deve definir a máscara de criação
-	de arquivos para <emphasis>0066</emphasis>, já que
-	subtraindo <emphasis>0066</emphasis> de 
-	<emphasis>0666</emphasis> resulta em 
-	<emphasis>0600</emphasis>
+    ~mask</emphasis>.  Ou, se estiver na representação octal, você pode
+    subtrair os dígitos da máscara dos do modo.  Por exemplo, se um arquivo
+    é criado com permissões <emphasis>0666</emphasis> (legível e gravável
+    pelo usuário do arquivo, pelo grupo e por outros), e a máscara efetiva
+    de criação de arquivo for <emphasis>0022</emphasis>, a permissão do
+    resultante do arquivo será <emphasis>0644</emphasis>.  Vamos ver outro
+    exemplo.  Suponha que arquivos ainda são criados com as permissões
+    <emphasis>0666</emphasis>, e você é mais paranóico, e quer remover
+    todas as permissões de leitura e escrita do grupo do arquivo e dos
+    outros.  Isto quer dizer que você deve definir a máscara de criação
+    de arquivos para <emphasis>0066</emphasis>, já que
+    subtraindo <emphasis>0066</emphasis> de
+    <emphasis>0666</emphasis> resulta em
+    <emphasis>0600</emphasis>
       </para>
-      
+
       <para>
         O valor da máscara de criação de arquivos pode ser consultado com
-        o comando <command>umask</command>, que normalmente já existe 
+        o comando <command>umask</command>, que normalmente já existe
         como comando do próprio shell.  A máscara eftiva pode ser exibida
         executando <command>umask</command> sem nenhum parâmetro:
       </para>
-      
+
       <screen>
 $ <userinput>umask</userinput>
 0002
       </screen>
-      
+
       <para>
         O valor da máscara pode ser definido atribuindo um número octal
         como parâmetro.  Por exemplo:
       </para>
-      
+
       <screen>
 $ <userinput>umask 0066</userinput>
       </screen>
-      
+
       <para>
         E podemos verificar que isso funciona criando um arquivo vazio:
       </para>
-      
+
       <screen>
 $ <userinput>touch test</userinput>
 $ <userinput>ls -l test</userinput>
 -rw-------  1 daniel daniel 0 Oct 24 00:10 test2
       </screen>
-      
+
     </sect2>
 
     <sect2 xml:id="chap-filesystem-permissions-acl">
@@ -1395,7 +1395,7 @@ $ <userinput>ls -l test</userinput>
 
       <para>
     Como vimos em <xref
-	linkend="chap-filesystem-introduction-permissions" /> listas de
+    linkend="chap-filesystem-introduction-permissions" /> listas de
     controle de acesso permitem a você usar trincas de leitura, escrita
     e execução adicionais para usuários ou grupos.  Diferentemente das
     permissões de arquivo tradicionais, listas de controle de acesso
@@ -1407,32 +1407,32 @@ $ <userinput>ls -l test</userinput>
       </para>
 
       <sect3 xml:id="chap-filesystem-permissions-acl-reading">
-	<title>Lendo listas de controle de acesso</title>
+    <title>Lendo listas de controle de acesso</title>
 
-	<para>
+    <para>
       Na maioria dos sistemas que suportam ACLs, o comando
       <command>ls</command> usa um indicador visual para mostrar que há
       ACLs associadas ao arquivo.  Por exemplo:
-	</para>
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>ls -l index.html</userinput>
 -rw-r-----+ 1 daniel daniel 3254 2006-10-31 17:11 index.html
-	</screen>
+    </screen>
 
-	<para>
+    <para>
       Como você pode ver, a coluna de permissões mostra um sinal de mais
-	  (<emphasis>+</emphasis>) adicional.  Os bits de permissão não agem
+      (<emphasis>+</emphasis>) adicional.  Os bits de permissão não agem
       exatamente da forma como você espera que eles ajam.  Vamos ver
       isso em instantes.
-	</para>
+    </para>
 
-	<para>
-      As ACLs para um arquivo podem ser consultadas com o comando 
-	  <command>getfacl</command>:
-	</para>
+    <para>
+      As ACLs para um arquivo podem ser consultadas com o comando
+      <command>getfacl</command>:
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>getfacl index.html</userinput>
 # file: index.html
 # owner: daniel
@@ -1442,9 +1442,9 @@ group::---
 group:www-data:r--
 mask::r--
 other::---
-	</screen>
+    </screen>
 
-	<para>
+    <para>
       Muitas linhas podem ser facilmente interpretadas: o usuário do
       arquivo tem permissões de leitura/escrita, o grupo do arquivo não
       tem quaisquer permissões, usuários do grupo
@@ -1455,24 +1455,24 @@ other::---
       segredo é que se houver uma entrada chamada
       <emphasis>mask</emphasis>, o <command>ls</command> exibirá o valor
       da máscara, ao invés das permissões do grupo do arquivo.
-	</para>
+    </para>
 
-	<para>
+    <para>
       A entrada <emphasis>mask</emphasis> é usada para restringir todas
       as entradas da listagem exceto a do usuário do arquivo, e a dos
       outros usuários.  Para interpretar ACLs, é melhor memorizar as
       seguintes regras:
-	</para>
+    </para>
 
-	<itemizedlist>
-	  <listitem>
-	    <para>
+    <itemizedlist>
+      <listitem>
+        <para>
           As permissões da entrada <emphasis>user::</emphasis>
           correspondem às permissões do dono do arquivo.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           As permissões da entrada <emphasis>group::</emphasis>
           correspondem às permissões do grupo do arquivo, a menos que
           haja uma entrada <emphasis>mask::</emphasis>.  Se houver uma
@@ -1481,25 +1481,25 @@ other::---
           como o máximo de permissões permitidas (significando que as
           restrições de grupo podem ser mais restritivas, mas não mais
           permissivas).
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           As permissões de outros usuários e grupos correspondem às suas
           entradas <emphasis>user:</emphasis> e
-          <emphasis>group:</emphasis>, com o valor de 
-	      <emphasis>mask::</emphasis> como suas permissões máximas.
-	    </para>
-	  </listitem>
-	</itemizedlist>
+          <emphasis>group:</emphasis>, com o valor de
+          <emphasis>mask::</emphasis> como suas permissões máximas.
+        </para>
+      </listitem>
+    </itemizedlist>
 
-	<para>
+    <para>
       A segunda e terceira regras podem ser claramente observadas se
       houver um usuário ou grupo que tenha mais permissões que a máscara
       para o arquivo:
-	</para>
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>getfacl links.html</userinput>
 # file: links.html
 # owner: daniel
@@ -1509,31 +1509,31 @@ group::rw-                      #effective:r--
 group:www-data:rw-              #effective:r--
 mask::r--
 other::---
-	</screen>
+    </screen>
 
-	<para>
+    <para>
       Ainda que as permissões de leitura e escrita sejam especificadas
       para o grupo do arquivo e para o grupo
       <emphasis>www-data</emphasis>, ambos os grupos efetivamente terão
       apenas permissão de leitura, pois esta é a permissão máxima que a
       máscara permite.
-	</para>
+    </para>
 
-	<para>
+    <para>
       Outro aspecto a que devemos prestar atenção é a manipulação de
       ACLs em diretórios.  Listas de controle de acesso podem ser
       adicionadas a diretórios para gerenciar o acesso, mas os
       diretórios podem também ter <emphasis>ACLs padrão</emphasis> as
       quais especificam as ACLs iniciais para arquivos e diretórios
       criados dentro do diretório em questão.
-	</para>
+    </para>
 
-	<para>
+    <para>
       Suponha que o diretório <filename>relatorios/</filename> tenha a
       seguinte ACL:
-	</para>
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>getfacl relatorios</userinput>
 # file: relatorios
 # owner: daniel
@@ -1548,16 +1548,16 @@ default:group::r-x
 default:group:www-data:r-x
 default:mask::r-x
 default:other::---
-	</screen>
+    </screen>
 
-	<para>
-      Os novos arquivos que forem criados dentro do diretórios 
-	  <filename>relatorios</filename> obtém sua ACL baseada nas entradas
+    <para>
+      Os novos arquivos que forem criados dentro do diretórios
+      <filename>relatorios</filename> obtém sua ACL baseada nas entradas
       que têm um <emphasis>default:</emphasis> como prefixo.  Por
       exemplo:
-	</para>
+    </para>
 
-	<screen>
+    <screen>
 $ touch relatorios/teste
 $ getfacl reportorios/teste
 # file: reportorios/teste
@@ -1568,19 +1568,19 @@ group::r-x                      #effective:r--
 group:www-data:r-x              #effective:r--
 mask::r--
 other::---
-	</screen>
+    </screen>
 
-	<para>
+    <para>
       Como você pode ver, a ACL padrão foi copiada.  O bit de execução
       foi removido da máscara, pois o novo arquivo não foi criado com
       permissão de execução.
-	</para>
+    </para>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-permissions-acl-setting">
-	<title>Criando listas de controle de acesso</title>
+    <title>Criando listas de controle de acesso</title>
 
-	<para>
+    <para>
       A ACL para um arquivo ou diretório pode ser modificada com o
       comando <command>setfacl</command>.  Infelizmente, sua utilização
       é fortemente dependente do sistema em que está sendo usado.  Para
@@ -1588,90 +1588,90 @@ other::---
       class="command">-d</parameter>) tem significados diferentes em
       diferentes sistemas.  Pode-se apenas esperar que este comando seja
       padronizado algum dia.
-	</para>
+    </para>
 
-	<table xml:id="chap-filesystem-permissions-acl-setting-flags">
-	  <title>Opções específicas de sistemas do <command>setfacl</command></title>
-	  
-	  <tgroup cols="2">
-	    <thead>
-	      <row>
-		<entry>Operação</entry>
-		<entry>Linux</entry>
-	      </row>
-	    </thead>
-	    <tbody>
-	      <row>
-		<entry>Define entradas, removendo todas as entradas antigas</entry>
-		<entry><parameter class="command">--set</parameter></entry>
-	      </row>
-	      <row>
-		<entry>Modifica entradas</entry>
-		<entry><parameter class="command">-m</parameter></entry>
-	      </row>
-	      <row>
-		<entry>Modifica as entradas ACL padrão</entry>
-		<entry><parameter class="command">-d</parameter></entry>
-	      </row>
-	      <row>
-		<entry>Remove entradas</entry>
-		<entry><parameter class="command">-x</parameter></entry>
-	      </row>
-	      <row>
-		<entry>
-		  Remove todas as entradas ACL (exceto as três entradas que são
+    <table xml:id="chap-filesystem-permissions-acl-setting-flags">
+      <title>Opções específicas de sistemas do <command>setfacl</command></title>
+
+      <tgroup cols="2">
+        <thead>
+          <row>
+        <entry>Operação</entry>
+        <entry>Linux</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+        <entry>Define entradas, removendo todas as entradas antigas</entry>
+        <entry><parameter class="command">--set</parameter></entry>
+          </row>
+          <row>
+        <entry>Modifica entradas</entry>
+        <entry><parameter class="command">-m</parameter></entry>
+          </row>
+          <row>
+        <entry>Modifica as entradas ACL padrão</entry>
+        <entry><parameter class="command">-d</parameter></entry>
+          </row>
+          <row>
+        <entry>Remove entradas</entry>
+        <entry><parameter class="command">-x</parameter></entry>
+          </row>
+          <row>
+        <entry>
+          Remove todas as entradas ACL (exceto as três entradas que são
           requeridas.)
-		</entry>
-		<entry><parameter class="command">-b</parameter></entry>
-	      </row>
-	      <row>
-		<entry>Recalcula a máscara</entry>
-		<entry>
+        </entry>
+        <entry><parameter class="command">-b</parameter></entry>
+          </row>
+          <row>
+        <entry>Recalcula a máscara</entry>
+        <entry>
           Sempre recalculada, a menos que <parameter
-		  class="command">-n</parameter> seja usado, ou uma entrada de
+          class="command">-n</parameter> seja usado, ou uma entrada de
           máscara seja especificada explicitamente.
-		</entry>
-	      </row>
-	      <row>
-		<entry>Usa a especificação ACL a partir de um arquivo</entry>
-		<entry>
-		  <parameter class="command">-M</parameter> (modificar),
-		  <parameter class="command">-X</parameter> (excluir),
-		  ou <parameter class="command">--restore</parameter>
-		</entry>
-	      </row>
-	      <row>
-		<entry>Modificação recursiva de ACLs</entry>
-		<entry><parameter class="command">-R</parameter></entry>
-	      </row>
-	    </tbody>
-	  </tgroup>
-	</table>
+        </entry>
+          </row>
+          <row>
+        <entry>Usa a especificação ACL a partir de um arquivo</entry>
+        <entry>
+          <parameter class="command">-M</parameter> (modificar),
+          <parameter class="command">-X</parameter> (excluir),
+          ou <parameter class="command">--restore</parameter>
+        </entry>
+          </row>
+          <row>
+        <entry>Modificação recursiva de ACLs</entry>
+        <entry><parameter class="command">-R</parameter></entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
 
-	<para>
+    <para>
       Como vimos nas seções anteriores, entradas podem ser especificadas
       para usuários e grupos usando-se a seguinte sintaxe:
-	  <emphasis>user/group:name:permissions</emphasis>.  Permissões
+      <emphasis>user/group:name:permissions</emphasis>.  Permissões
       podem ser especificadas como uma tripla através do uso das letras
-	  <emphasis>r</emphasis> (leitura), <emphasis>w</emphasis>
-	  (escrita), ou <emphasis>x</emphasis> (execução).  Um hífen
-	  (<emphasis>-</emphasis>) deve ser usado para as permissões que
+      <emphasis>r</emphasis> (leitura), <emphasis>w</emphasis>
+      (escrita), ou <emphasis>x</emphasis> (execução).  Um hífen
+      (<emphasis>-</emphasis>) deve ser usado para as permissões que
       você não quer dar para aquele usuário ou grupo, uma vez que é
       requerido pelo Solaris.  Se você quiser desabilitar o acesso
       completamente, você pode usar a tripla <emphasis>---</emphasis>.
-	</para>
+    </para>
 
-	<para>
+    <para>
       A especificação para outros usuários, e a máscara segue este
       formato: <emphasis>other:r-x</emphasis>.  O formato seguinte,
       ligeiramente mais intuitivo, também pode ser usado:
       <emphasis>other::r-x</emphasis>.
-	</para>
+    </para>
 
-	<sect4 xml:id="chap-filesystem-permissions-acl-setting-modify">
-	  <title>Modificando entradas ACL</title>
+    <sect4 xml:id="chap-filesystem-permissions-acl-setting-modify">
+      <title>Modificando entradas ACL</title>
 
-	  <para>
+      <para>
         A operação mais simples é modificar uma entrada ACL.  Isto vai
         criar uma nova entrada se a entrada ainda não existir.  Entradas
         podem ser modificadas com <parameter
@@ -1679,19 +1679,19 @@ other::---
         queiramos dar acesso de leitura e escrita para o grupo
         <emphasis>friends</emphasis> ao arquivo
         <filename>report.txt</filename>.  Isto pode ser feito com:
-	  </para>
+      </para>
 
-	  <screen>
+      <screen>
 $ <userinput>setfacl -m group:friends:rw- report.txt</userinput>
-	  </screen>
+      </screen>
 
-	  <para>
+      <para>
         A entrada de máscara será recalculada, definindo-a para a união
         dos três grupos de entradas, e as entradas de usuário
         adicionais:
-	  </para>
+      </para>
 
-	  <screen>
+      <screen>
 $ <userinput>getfacl report.txt</userinput>
 # file: report.txt
 # owner: daniel
@@ -1701,52 +1701,52 @@ group::r--
 group:friends:rw-
 mask::rw-
 other::r--
-	  </screen>
+      </screen>
 
-	  <para>
+      <para>
         Você pode combinar múltiplas entradas ACL separando-as por
         vírgulas.  Por exemplo:
-	  </para>
+      </para>
 
-	  <screen>
+      <screen>
 $ <userinput>setfacl -m group:friends:rw-,group:foes:--- report.txt</userinput>
-	  </screen>
-	</sect4>
+      </screen>
+    </sect4>
 
-	<sect4 xml:id="chap-filesystem-permissions-acl-setting-removing">
-	  <title>Removendo entradas ACL</title>
+    <sect4 xml:id="chap-filesystem-permissions-acl-setting-removing">
+      <title>Removendo entradas ACL</title>
 
-	  <para>
-	    Uma entrada pode ser removida com a opção <parameter
-	    class="command">-x</parameter>:
-	  </para>
+      <para>
+        Uma entrada pode ser removida com a opção <parameter
+        class="command">-x</parameter>:
+      </para>
 
-	  <screen>
+      <screen>
 $ <userinput>setfacl -x group:friends: report.txt</userinput>
-	  </screen>
+      </screen>
 
-	  <para>
-	    O caracter dois-pontos do final é opcional e pode ser omitido.
-	  </para>
-	</sect4>
+      <para>
+        O caracter dois-pontos do final é opcional e pode ser omitido.
+      </para>
+    </sect4>
 
-	<sect4 xml:id="chap-filesystem-permissions-acl-setting-new">
-	  <title>Criando uma nova ACL</title>
+    <sect4 xml:id="chap-filesystem-permissions-acl-setting-new">
+      <title>Criando uma nova ACL</title>
 
-	  <para>
+      <para>
         A opção <parameter class="command">--set</parameter> está
         disponível para a criação de uma nova lista de controle de
         acesso para um arquivo, limpando todas as entradas existentes,
         exceto pelas três entradas requeridas.  É obrigatório que as
         entradas de usuário do arquivo, de grupo e de outros também
         sejam especificadas.  Por exemplo:
-	  </para>
+      </para>
 
-	  <screen>
+      <screen>
 $ <userinput>setfacl --set user::rw-,group::r--,other:---,group:friends:rwx report.txt</userinput>
-	  </screen>
+      </screen>
 
-	  <para>
+      <para>
         Se você não quer limpar as permissões de usuário, grupo e
         outros, mas quer limpar todas as outras entradas ACL, você pode
         usar a opção <parameter class="command">-b</parameter>.  O
@@ -1754,26 +1754,26 @@ $ <userinput>setfacl --set user::rw-,group::r--,other:---,group:friends:rwx repo
         class="command">-m</parameter> para limpar todas as entradas ACL
         (exceto para usuário, grupo e outros), e para adicionar uma
         entrada para o grupo <emphasis>friends</emphasis>:
-	  </para>
+      </para>
 
-	  <screen>
+      <screen>
 $ <userinput>setfacl -b -m group:friends:rw- report.txt</userinput>
-	  </screen>
-	</sect4>
+      </screen>
+    </sect4>
 
-	<sect4 xml:id="chap-filesystem-permissions-acl-setting-default">
-	  <title>Definindo uma ACL padrão</title>
+    <sect4 xml:id="chap-filesystem-permissions-acl-setting-default">
+      <title>Definindo uma ACL padrão</title>
 
-	  <para>
-	    Como vimos em <xref
-	    linkend="chap-filesystem-permissions-acl" />, diretórios podem
-	    ter entradas ACL padrão que especifiquem que permissões devem
-	    ser usadas por arquivos e diretórios que forem criados dentro
-	    desse diretório.  A opção <parameter class="command">-d</parameter>
-	    é usada para operar sobre entradas padrão:
-	  </para>
+      <para>
+        Como vimos em <xref
+        linkend="chap-filesystem-permissions-acl" />, diretórios podem
+        ter entradas ACL padrão que especifiquem que permissões devem
+        ser usadas por arquivos e diretórios que forem criados dentro
+        desse diretório.  A opção <parameter class="command">-d</parameter>
+        é usada para operar sobre entradas padrão:
+      </para>
 
-	  <screen>
+      <screen>
 $ <userinput>setfacl -d -m group:friends:rwx reports</userinput>
 $ <userinput>getfacl reports</userinput>
 # file: reports
@@ -1787,68 +1787,68 @@ default:group::r-x
 default:group:friends:rwx
 default:mask::rwx
 default:other::r-x
-	  </screen>
-	</sect4>
+      </screen>
+    </sect4>
 
-	<sect4 xml:id="chap-filesystem-permissions-acl-setting-filesource">
-	  <title>Usando uma ACL a partir de um arquivo de referência</title>
+    <sect4 xml:id="chap-filesystem-permissions-acl-setting-filesource">
+      <title>Usando uma ACL a partir de um arquivo de referência</title>
 
-	  <para>
-	    Você também pode usar uma definição ACL a partir de um arquivo,
-	    ao invés de especificá-la na linha de comando.  Um arquivo de
-	    entrada segue a mesma sintaxe para especificação de entradas que
-	    o <command>setfacl</command>, mas as entradas são separadas por
-	    linhas, ao invés de por vírgulas.  Isto é muito útil, já que
-	    você pode usar a ACL para um arquivo existente como referência:
-	  </para>
+      <para>
+        Você também pode usar uma definição ACL a partir de um arquivo,
+        ao invés de especificá-la na linha de comando.  Um arquivo de
+        entrada segue a mesma sintaxe para especificação de entradas que
+        o <command>setfacl</command>, mas as entradas são separadas por
+        linhas, ao invés de por vírgulas.  Isto é muito útil, já que
+        você pode usar a ACL para um arquivo existente como referência:
+      </para>
 
-	  <screen>
+      <screen>
 $ <userinput>getfacl report.txt > ref</userinput>
-	  </screen>
+      </screen>
 
-	  <para>
-	    A opção <parameter class="command">-M</parameter> existe para
-	    modificar a ACL para um arquivo através da leitura das entradas
-	    a partir de um arquivo.  Assim, se tivermos um arquivo chamado
-	    <filename>report2.txt</filename>, podemos modificar a ACL para
-	    este arquivo com as entradas de <filename>ref</filename> com:
-	  </para>
+      <para>
+        A opção <parameter class="command">-M</parameter> existe para
+        modificar a ACL para um arquivo através da leitura das entradas
+        a partir de um arquivo.  Assim, se tivermos um arquivo chamado
+        <filename>report2.txt</filename>, podemos modificar a ACL para
+        este arquivo com as entradas de <filename>ref</filename> com:
+      </para>
 
-	  <screen>
+      <screen>
 $ <userinput>setfacl -M ref report2.txt</userinput>
-	  </screen>
+      </screen>
 
-	  <para>
-	    Se você quiser iniciar com uma ACL limpa, e adicionar as
-	    entradas a partir de <filename>ref</filename>, você pode
-	    adicionar o parâmetro <parameter class="command">-b</parameter>
-	    que apresentamos anteriormente:
-	  </para>
+      <para>
+        Se você quiser iniciar com uma ACL limpa, e adicionar as
+        entradas a partir de <filename>ref</filename>, você pode
+        adicionar o parâmetro <parameter class="command">-b</parameter>
+        que apresentamos anteriormente:
+      </para>
 
-	  <screen>
+      <screen>
 $ <userinput>setfacl -b -M ref report2.txt</userinput>
-	  </screen>
+      </screen>
 
-	  <para>
-	    É claro, não é necessário sequer usar este arquivo por completo.
-	    Podemos canalizar (<foreignphrase>pipe</foreignphrase>) a saída
-	    de <command>getfacl</command> diretamente para
-	    <command>setfacl</command>, usando o nome simbólico para a
-	    entrada padrão (<emphasis>-</emphasis>), ao invés de um nome de
-	    arquivo:
-	  </para>
+      <para>
+        É claro, não é necessário sequer usar este arquivo por completo.
+        Podemos canalizar (<foreignphrase>pipe</foreignphrase>) a saída
+        de <command>getfacl</command> diretamente para
+        <command>setfacl</command>, usando o nome simbólico para a
+        entrada padrão (<emphasis>-</emphasis>), ao invés de um nome de
+        arquivo:
+      </para>
 
-	  <screen>
+      <screen>
 $ <userinput>getfacl report.txt | setfacl -b -M - report2.txt</userinput>
-	  </screen>
+      </screen>
 
-	  <para>
-	    O <parameter class="command">-X</parameter> remove as entradas
-	    ACL definidas num arquivo.  Isto segue a mesma sintaxe que o
-	    parâmetro <parameter class="command">-x</parameter>, com
-	    vírgulas substituídas por novas-linhas.
-	  </para>
-	</sect4>
+      <para>
+        O <parameter class="command">-X</parameter> remove as entradas
+        ACL definidas num arquivo.  Isto segue a mesma sintaxe que o
+        parâmetro <parameter class="command">-x</parameter>, com
+        vírgulas substituídas por novas-linhas.
+      </para>
+    </sect4>
       </sect3>
     </sect2>
   </sect1>
@@ -1863,17 +1863,17 @@ $ <userinput>getfacl report.txt | setfacl -b -M - report2.txt</userinput>
     O comando <command>find</command>, sem dúvida, é o utilitário mais
     compreensível para procurar arquivos em sistemas UNIX.  Pelo fato de
     que fato de que funciona de uma maneira simples e previsível:
-	o <command>find</command> irá varrer a árvore ou árvores de
-	diretório que forem especificadas como parâmetro para o
-	<command>find</command>.  Além disso, um usuário pode especificar
-	uma expressão que será avaliada para cada arquivo e diretório.  O
-	nome do arquivo ou diretório será exibido se a expressão for
-	avaliada para <emphasis>true</emphasis>.  O primeiro argumento que
-	inicia com um hífen (<emphasis>-</emphasis>), ponto de exclamação
-	(<emphasis>!</emphasis>, ou abre-parênteses (<emphasis>(</emphasis>,
-	significa o início da expressão.  A expressão pode consistir de
-	vários operandos.  De forma simplificiada, a sintaxe do
-	<command>find</command> e: <emphasis>find caminhos expressão</emphasis>.
+    o <command>find</command> irá varrer a árvore ou árvores de
+    diretório que forem especificadas como parâmetro para o
+    <command>find</command>.  Além disso, um usuário pode especificar
+    uma expressão que será avaliada para cada arquivo e diretório.  O
+    nome do arquivo ou diretório será exibido se a expressão for
+    avaliada para <emphasis>true</emphasis>.  O primeiro argumento que
+    inicia com um hífen (<emphasis>-</emphasis>), ponto de exclamação
+    (<emphasis>!</emphasis>, ou abre-parênteses (<emphasis>(</emphasis>,
+    significa o início da expressão.  A expressão pode consistir de
+    vários operandos.  De forma simplificiada, a sintaxe do
+    <command>find</command> e: <emphasis>find caminhos expressão</emphasis>.
       </para>
 
       <para>
@@ -1909,189 +1909,189 @@ technical/report.txt
       </screen>
 
       <sect3 xml:id="chap-filesystem-finding-find-nametype">
-	<title>Operandos delimitadores por nome ou tipo de objeto</title>
+    <title>Operandos delimitadores por nome ou tipo de objeto</title>
 
-	<para>
-	  Um cenário comum para procura de arquivos ou diretórios é
-	  procurá-los pelo nome.  O operando <emphasis>-name</emphasis> pode
-	  ser usado para corresponder objetos com um dado nome, ou que casem
-	  com um determinado coringa.  Por exemplo, usar o operando 
-	  <emphasis>-name 'report.txt'</emphasis> irá apenas ser verdadeiro
-	  para arquivos ou diretórios com o nome 
-	  <filename>report.txt</filename>.  Por exemplo:
-	</para>
+    <para>
+      Um cenário comum para procura de arquivos ou diretórios é
+      procurá-los pelo nome.  O operando <emphasis>-name</emphasis> pode
+      ser usado para corresponder objetos com um dado nome, ou que casem
+      com um determinado coringa.  Por exemplo, usar o operando
+      <emphasis>-name 'report.txt'</emphasis> irá apenas ser verdadeiro
+      para arquivos ou diretórios com o nome
+      <filename>report.txt</filename>.  Por exemplo:
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find economic technical -name 'report.txt'</userinput>
 economic/report.txt
 technical/report.txt
-	</screen>
+    </screen>
 
-	<para>
-	  A mesma coisa se aplica quando se usa coringas:
-	</para>
+    <para>
+      A mesma coisa se aplica quando se usa coringas:
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find economic technical -name '*2.txt'</userinput>
 economic/report2.txt
 technical/report2.txt
-	</screen>
+    </screen>
 
-	<note>
-	  <para>
-	    Ao usar o <command>find</command> você vai querer passar o
-	    caracter coringa ao <command>find</command>, ao invés de deixar
-	    o shell expandí-lo.  Assim, certifique-se de que os padrões ou
-	    sejam delimitados por aspas, ou que os coringas sejam escapados.
-	  </para>
-	</note>
+    <note>
+      <para>
+        Ao usar o <command>find</command> você vai querer passar o
+        caracter coringa ao <command>find</command>, ao invés de deixar
+        o shell expandí-lo.  Assim, certifique-se de que os padrões ou
+        sejam delimitados por aspas, ou que os coringas sejam escapados.
+      </para>
+    </note>
 
-	<para>
-	  Também é possível avaliar o tipo dos objetos com o operando
-	  <emphasis>-type c</emphasis>, onde <emphasis>c</emphasis>
-	  especifica o tipo a ser correspondido.
-	  <xref
-	  linkend="chap-filesystem-finding-find-nametype-type-params"
-	  /> lista os vários tipos de objetos que podem ser usados.
-	</para>
+    <para>
+      Também é possível avaliar o tipo dos objetos com o operando
+      <emphasis>-type c</emphasis>, onde <emphasis>c</emphasis>
+      especifica o tipo a ser correspondido.
+      <xref
+      linkend="chap-filesystem-finding-find-nametype-type-params"
+      /> lista os vários tipos de objetos que podem ser usados.
+    </para>
 
-	<table xml:id="chap-filesystem-finding-find-nametype-type-params">
-	  <title>Parâmetros para o operando '-type'</title>
+    <table xml:id="chap-filesystem-finding-find-nametype-type-params">
+      <title>Parâmetros para o operando '-type'</title>
 
-	  <tgroup cols="2">
-	    <thead>
-	      <row>
-		<entry>Parâmetro</entry><entry>Significado</entry>
-	      </row>
-	    </thead>
-	    <tbody>
-	      <row>
-		<entry>b</entry><entry>Arquivo de dispositivo de block</entry>
-	      </row>
-	      <row>
-		<entry>c</entry><entry>Arquivo de dispositivo de caracter</entry>
-	      </row>
-	      <row>
-		<entry>d</entry><entry>Diretório</entry>
-	      </row>
-	      <row>
-		<entry>f</entry><entry>Arquivo normal</entry>
-	      </row>
-	      <row>
-		<entry>l</entry><entry>Link simbólico</entry>
-	      </row>
-	      <row>
-		<entry>p</entry><entry>FIFO</entry>
-	      </row>
-	      <row>
-		<entry>s</entry><entry>Socket</entry>
-	      </row>
-	    </tbody>
-	  </tgroup>
-	</table>
+      <tgroup cols="2">
+        <thead>
+          <row>
+        <entry>Parâmetro</entry><entry>Significado</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+        <entry>b</entry><entry>Arquivo de dispositivo de block</entry>
+          </row>
+          <row>
+        <entry>c</entry><entry>Arquivo de dispositivo de caracter</entry>
+          </row>
+          <row>
+        <entry>d</entry><entry>Diretório</entry>
+          </row>
+          <row>
+        <entry>f</entry><entry>Arquivo normal</entry>
+          </row>
+          <row>
+        <entry>l</entry><entry>Link simbólico</entry>
+          </row>
+          <row>
+        <entry>p</entry><entry>FIFO</entry>
+          </row>
+          <row>
+        <entry>s</entry><entry>Socket</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
 
-	<para>
-	  Assim, por exemplo, se você quiser encontrar diretórios, você
-	  poderia usar o parâmetro <emphasis>d</emphasis> para o operando
-	  <emphasis>-type</emphasis>:
-	</para>
+    <para>
+      Assim, por exemplo, se você quiser encontrar diretórios, você
+      poderia usar o parâmetro <emphasis>d</emphasis> para o operando
+      <emphasis>-type</emphasis>:
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find . -type d</userinput>
 .
 ./economic
 ./technical
-	</screen>
+    </screen>
 
-	<para>
-	  Vamos ver como formar expressões mais complexas ao final desta
-	  seção sobre o <command>find</command>, mas neste momento é útil
-	  saber que você pode fazer uma expressão booleana 'and'
-	  especificando múltiplos operandos.  Por exemplo
-	  <emphasis>operando1 operando2</emphasis> é verdadeiro se tanto
-	  <emphasis>operando1</emphasis> e
-	  <emphasis>operando2</emphasis> forem verdadeiros para o objeto
-	  sendo avaliado.  Então, você pode combinar os operandos
-	  <emphasis>-name</emphasis> e <emphasis>-type</emphasis> para
-	  encontrar todos os diretórios que comecem com
-	  <emphasis>eco</emphasis>:
-	</para>
+    <para>
+      Vamos ver como formar expressões mais complexas ao final desta
+      seção sobre o <command>find</command>, mas neste momento é útil
+      saber que você pode fazer uma expressão booleana 'and'
+      especificando múltiplos operandos.  Por exemplo
+      <emphasis>operando1 operando2</emphasis> é verdadeiro se tanto
+      <emphasis>operando1</emphasis> e
+      <emphasis>operando2</emphasis> forem verdadeiros para o objeto
+      sendo avaliado.  Então, você pode combinar os operandos
+      <emphasis>-name</emphasis> e <emphasis>-type</emphasis> para
+      encontrar todos os diretórios que comecem com
+      <emphasis>eco</emphasis>:
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find . -name 'eco*' -type d</userinput>
 ./economic
-	</screen>
+    </screen>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-perms">
-	<title>Operandos que especificam a propriedade ou permissões</title>
+    <title>Operandos que especificam a propriedade ou permissões</title>
 
-	<para>
-	  Além de casar objetos por seus nomes ou tipos, você também pode
-	  procurá-los por suas permissoes ativas ou pela propriedade do
-	  objeto.  Isto frequentemente é útil para encontrar arquivos que
-	  tenham permissões ou propriedade incorretas.
-	</para>
+    <para>
+      Além de casar objetos por seus nomes ou tipos, você também pode
+      procurá-los por suas permissoes ativas ou pela propriedade do
+      objeto.  Isto frequentemente é útil para encontrar arquivos que
+      tenham permissões ou propriedade incorretas.
+    </para>
 
-	<para>
-	  O dono (usuário) ou grupo de um objeto podem ser correspondidos
-	  respectivamente com as opções <emphasis>-user username</emphasis>
-	  e <emphasis>-group groupname</emphasis>.  O nome do usuário ou
-	  grupo será interpretado como um ID de usuário ou ID de grupo cujo
-	  nome é decimal, e poderia não ser encontrado no sistema com 
-	  <citerefentry><refentrytitle>getpwnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>
-	  ou
-	  <citerefentry><refentrytitle>getgrnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>.
+    <para>
+      O dono (usuário) ou grupo de um objeto podem ser correspondidos
+      respectivamente com as opções <emphasis>-user username</emphasis>
+      e <emphasis>-group groupname</emphasis>.  O nome do usuário ou
+      grupo será interpretado como um ID de usuário ou ID de grupo cujo
+      nome é decimal, e poderia não ser encontrado no sistema com
+      <citerefentry><refentrytitle>getpwnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>
+      ou
+      <citerefentry><refentrytitle>getgrnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>.
       Assim, se você quiser obter todos os objetos que pertençam ao
-      usuário <emphasis>joe</emphasis>, você poderia usar 
-	  <emphasis>-user joe</emphasis> como um operando:
-	</para>
+      usuário <emphasis>joe</emphasis>, você poderia usar
+      <emphasis>-user joe</emphasis> como um operando:
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find . -user joe</userinput>
 ./secret/report.txt
-	</screen>
+    </screen>
 
-	<para>
-	  Ou para encontrar todos os objetos que tenham
-	  <emphasis>friend</emphasis> como grupo de arquivo:
-	</para>
+    <para>
+      Ou para encontrar todos os objetos que tenham
+      <emphasis>friend</emphasis> como grupo de arquivo:
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find . -group friends</userinput>
 ./secret/report.txt
-	</screen>
+    </screen>
 
-	<para>
-	  O operando para verificação das permissões de arquivos 
-	  <emphasis>-perm</emphasis> é menos trivial.  Como o comando
-	  <command>chmod</command>, este operador pode trabalhar com
-	  notações de permissões octais e simbólicas.  Vamos começar olhando
-	  a notação octal.  Se um número octal for especificado como
-	  parâmetro para o operando <emphasis>-perm</emphasis>, ele irá
-	  corresponder a todos os objetos que tenham exatamente aquelas
-	  permissões.  Por exemplo, <emphasis>-perm 0600</emphasis> irá
-	  procurar por todos os objetos que tenham apenas permissões de
-	  leitura e escrita para o usuário, e não tenham opções adicionais
-	  definidas:
-	</para>
+    <para>
+      O operando para verificação das permissões de arquivos
+      <emphasis>-perm</emphasis> é menos trivial.  Como o comando
+      <command>chmod</command>, este operador pode trabalhar com
+      notações de permissões octais e simbólicas.  Vamos começar olhando
+      a notação octal.  Se um número octal for especificado como
+      parâmetro para o operando <emphasis>-perm</emphasis>, ele irá
+      corresponder a todos os objetos que tenham exatamente aquelas
+      permissões.  Por exemplo, <emphasis>-perm 0600</emphasis> irá
+      procurar por todos os objetos que tenham apenas permissões de
+      leitura e escrita para o usuário, e não tenham opções adicionais
+      definidas:
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find . -perm 0600</userinput>
 ./secret/report.txt
-	</screen>
+    </screen>
 
-	<para>
-	  Se um hífen for adicionado como prefixo para um número, ele irá
-	  procurar cada objeto que tenha pelo menos os bits definidos tal
-	  como especificado pelo número octal.  Um exemplo útil é procurar
-	  todos os arquivos que tenham pelo menos os bits de escrita
-	  definidos para <emphasis>outros</emphasis> usuários com
-	  <emphasis>-perm -0002</emphasis>.  Isto pode lhe ajudara encontrar
-	  nós de dispositivos ou outros objetos com permissões inseguras.
-	</para>
+    <para>
+      Se um hífen for adicionado como prefixo para um número, ele irá
+      procurar cada objeto que tenha pelo menos os bits definidos tal
+      como especificado pelo número octal.  Um exemplo útil é procurar
+      todos os arquivos que tenham pelo menos os bits de escrita
+      definidos para <emphasis>outros</emphasis> usuários com
+      <emphasis>-perm -0002</emphasis>.  Isto pode lhe ajudara encontrar
+      nós de dispositivos ou outros objetos com permissões inseguras.
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find /dev -perm -0002</userinput>
 /dev/null
 /dev/zero
@@ -2103,37 +2103,37 @@ $ <userinput>find /dev -perm -0002</userinput>
 /dev/psm0
 /dev/bpsm0
 /dev/ptyp0
-	</screen>
+    </screen>
 
-	<note>
-	  <para>
-	    Alguns nós de dispositivos precisam ser graváveis por todos para
-	    que um sistema UNIX funcione corretamente.  Por exemplo, o
-	    dispositivo <filename>/dev/null</filename> deve ser sempre
-	    gravável.
-	  </para>
-	</note>
+    <note>
+      <para>
+        Alguns nós de dispositivos precisam ser graváveis por todos para
+        que um sistema UNIX funcione corretamente.  Por exemplo, o
+        dispositivo <filename>/dev/null</filename> deve ser sempre
+        gravável.
+      </para>
+    </note>
 
-	<para>
-	  A notação simbólica dos parâmetros <emphasis>-perm</emphasis> usa
-	  a mesma notação que o comando <command>chmod</command>.
-	  Permissões simbólicas são construídas com um modo de arquivo em
-	  que todos os bits são zerados, então nunca será preciso usar um
-	  hífen para descarcar permissões.  Isto também evita abiquidade que
-	  poderia se ter com o uso do prefixo hífen de permissões.  Como a
-	  sintaxe octal, prefixar a permissão com um hífen irá casar com
-	  objetos que tenham pelo menos os bits de permissão especificados.
-	  O uso de nomes simbólicos é bastante previsível - os dois comandos
-	  seguintes repetem os exemplos anteriores com permissões
-	  simbólicas:
-	</para>
+    <para>
+      A notação simbólica dos parâmetros <emphasis>-perm</emphasis> usa
+      a mesma notação que o comando <command>chmod</command>.
+      Permissões simbólicas são construídas com um modo de arquivo em
+      que todos os bits são zerados, então nunca será preciso usar um
+      hífen para descarcar permissões.  Isto também evita abiquidade que
+      poderia se ter com o uso do prefixo hífen de permissões.  Como a
+      sintaxe octal, prefixar a permissão com um hífen irá casar com
+      objetos que tenham pelo menos os bits de permissão especificados.
+      O uso de nomes simbólicos é bastante previsível - os dois comandos
+      seguintes repetem os exemplos anteriores com permissões
+      simbólicas:
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find . -perm u+rw</userinput>
 ./secret/report.txt
-	</screen>
+    </screen>
 
-	<screen>
+    <screen>
 $ <userinput>find /dev -perm -o+w</userinput>
 /dev/null
 /dev/zero
@@ -2145,58 +2145,58 @@ $ <userinput>find /dev -perm -o+w</userinput>
 /dev/psm0
 /dev/bpsm0
 /dev/ptyp0
-	</screen>
+    </screen>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-time">
-	<title>Operandos que limitam pelo horário de criação do objeto</title>
+    <title>Operandos que limitam pelo horário de criação do objeto</title>
 
-	<para>
-	  Há três operando que funcionam sobre intervalos de tempo.  A
-	  sintaxe do operando é <emphasis>operando n</emphasis>, onde
-	  <emphasis>n</emphasis> é o tempo em dias.  Todos os três operandos
-	  calculam a diferença de tempo em segundos que é dividida pelo
-	  número de segundos de um dia (86400), descartando o resto.  Então,
-	  se a diferença for de um dia, <emphasis>operando 1</emphasis> irá
-	  casar com o objeto.  Os três operandos são:
-	</para>
+    <para>
+      Há três operando que funcionam sobre intervalos de tempo.  A
+      sintaxe do operando é <emphasis>operando n</emphasis>, onde
+      <emphasis>n</emphasis> é o tempo em dias.  Todos os três operandos
+      calculam a diferença de tempo em segundos que é dividida pelo
+      número de segundos de um dia (86400), descartando o resto.  Então,
+      se a diferença for de um dia, <emphasis>operando 1</emphasis> irá
+      casar com o objeto.  Os três operandos são:
+    </para>
 
-	<itemizedlist>
-	  <listitem>
-	    <para>
-	      <emphasis>-atime n</emphasis> - o operando resulta em
-	      verdadeiro se o momento de execução do <command>find</command>
-	      menos o horário do último acesso do objeto for igual a
-	      <emphasis>n</emphasis>.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      <emphasis>-ctime n</emphasis> - este operando resulta em
-	      verdadeiro se o momento de execução do <command>find</command>
-	      menos o horário da última alteração na informação de status do
-	      arquivo for igual a <emphasis>n</emphasis>.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-	      <emphasis>-mtime n</emphasis> - este operando resulta em
-	      verdadeiro se o momento de execução do <command>find</command>
-	      menos o horário da última modificação no arquivo for igual a
-	      <emphasis>n</emphasis>.
-	    </para>
-	  </listitem>
-	</itemizedlist>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis>-atime n</emphasis> - o operando resulta em
+          verdadeiro se o momento de execução do <command>find</command>
+          menos o horário do último acesso do objeto for igual a
+          <emphasis>n</emphasis>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis>-ctime n</emphasis> - este operando resulta em
+          verdadeiro se o momento de execução do <command>find</command>
+          menos o horário da última alteração na informação de status do
+          arquivo for igual a <emphasis>n</emphasis>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis>-mtime n</emphasis> - este operando resulta em
+          verdadeiro se o momento de execução do <command>find</command>
+          menos o horário da última modificação no arquivo for igual a
+          <emphasis>n</emphasis>.
+        </para>
+      </listitem>
+    </itemizedlist>
 
-	<para>
-	  Assim, estes operandos correspondem se o último acesso, última
-	  alteração e última modificação, respectivamente, tiverem sido a
-	  <emphasis>n</emphasis> dias atrás.  Para dar um exemplo, o comando
-	  seguinte mostra todos os objetos em <filename>/etc</filename> que
-	  tenham sido modificados há um dia:
-	</para>
+    <para>
+      Assim, estes operandos correspondem se o último acesso, última
+      alteração e última modificação, respectivamente, tiverem sido a
+      <emphasis>n</emphasis> dias atrás.  Para dar um exemplo, o comando
+      seguinte mostra todos os objetos em <filename>/etc</filename> que
+      tenham sido modificados há um dia:
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find /etc -mtime 1</userinput>
 /etc
 /etc/group
@@ -2204,19 +2204,19 @@ $ <userinput>find /etc -mtime 1</userinput>
 /etc/spwd.db
 /etc/passwd
 /etc/pwd.db
-	</screen>
+    </screen>
 
-	<para>
-	  O sinal de mais ou de menos pode ser usado como modificadores para
-	  o significado de <emphasis>n</emphasis>.  <emphasis>+n</emphasis>
-	  significa mais do que <emphasis>n</emphasis> dias,
-	  <emphasis>-n</emphasis> significa menos do que
-	  <emphasis>n</emphasis> dias.  Assim, para encontrar todos os
-	  arquivos em <filename>/etc</filename> que tiverem sido modificados
-	  há menos de dois dias, você poderia executar:
-	</para>
+    <para>
+      O sinal de mais ou de menos pode ser usado como modificadores para
+      o significado de <emphasis>n</emphasis>.  <emphasis>+n</emphasis>
+      significa mais do que <emphasis>n</emphasis> dias,
+      <emphasis>-n</emphasis> significa menos do que
+      <emphasis>n</emphasis> dias.  Assim, para encontrar todos os
+      arquivos em <filename>/etc</filename> que tiverem sido modificados
+      há menos de dois dias, você poderia executar:
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find /etc -mtime -2</userinput>
 /etc
 /etc/network/run
@@ -2225,18 +2225,18 @@ $ <userinput>find /etc -mtime -2</userinput>
 /etc/default
 /etc/default/locale
 [...]
-	</screen>
+    </screen>
 
-	<para>
-	  Outro operando temporal útil é o <emphasis>-newer
-	  reffile</emphasis>.  Este irá casar com todos os arquivos que
-	  tiverem sido modificados depois das modificações no arquivo
-	  chamado <filename>reffile</filename>.  O exemplo a seguir mostra
-	  como você poderia usar isto para listar todos os arquivos
-	  modificados depois de <filename>economic/report2.txt</filename>:
-	</para>
+    <para>
+      Outro operando temporal útil é o <emphasis>-newer
+      reffile</emphasis>.  Este irá casar com todos os arquivos que
+      tiverem sido modificados depois das modificações no arquivo
+      chamado <filename>reffile</filename>.  O exemplo a seguir mostra
+      como você poderia usar isto para listar todos os arquivos
+      modificados depois de <filename>economic/report2.txt</filename>:
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find . -newer economic/report2.txt</userinput>
 .
 ./technical
@@ -2244,53 +2244,53 @@ $ <userinput>find . -newer economic/report2.txt</userinput>
 ./technical/report.txt
 ./secret
 ./secret/report.txt
-	</screen>
+    </screen>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-depth">
-	<title>Operandos que afetam o percurso da árvore</title>
+    <title>Operandos que afetam o percurso da árvore</title>
 
-	<para>
-	  Alguns operandos afetam a maneira na qual o comando 
-	  <command>find</command> percorre a árvore.  O primeiro desses
-	  operandos é o <emphasis>-xdev</emphasis>.  O
-	  <emphasis>-xdev</emphasis> evita que o <command>find</command>
-	  desça nos diretórios que têm um ID de dispositivo diferente,
-	  evitando efetivamente a varredura de outros sistemas de arquivos.
-	  O diretório no qual o sistema de arquivos é montado é exibido,
-	  pois este operando sempre retorna <emphasis>true</emphasis>.  Um
-	  bom exemplo é um sistema em que o <filename>/usr</filename> seja
-	  montado num outro sistema de arquivos que o
-	  <filename>/</filename>.  Por exemplo, se procurarmos pelos
-	  diretórios com o nome <emphasis>bin</emphasis>, o que pode gerar
-	  o seguinte resultado:
-	</para>
+    <para>
+      Alguns operandos afetam a maneira na qual o comando
+      <command>find</command> percorre a árvore.  O primeiro desses
+      operandos é o <emphasis>-xdev</emphasis>.  O
+      <emphasis>-xdev</emphasis> evita que o <command>find</command>
+      desça nos diretórios que têm um ID de dispositivo diferente,
+      evitando efetivamente a varredura de outros sistemas de arquivos.
+      O diretório no qual o sistema de arquivos é montado é exibido,
+      pois este operando sempre retorna <emphasis>true</emphasis>.  Um
+      bom exemplo é um sistema em que o <filename>/usr</filename> seja
+      montado num outro sistema de arquivos que o
+      <filename>/</filename>.  Por exemplo, se procurarmos pelos
+      diretórios com o nome <emphasis>bin</emphasis>, o que pode gerar
+      o seguinte resultado:
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find / -name 'bin' -type d</userinput>
 /usr/bin
 /bin
-	</screen>
+    </screen>
 
-	<para>
-	  Mas se adicionarmos <emphasis>-xdev</emphasis>, 
-	  <filename>/usr/bin</filename> não será encontrado, porque está num
-	  sistema de arquivo (e um dispositivo) diferente :
-	</para>
+    <para>
+      Mas se adicionarmos <emphasis>-xdev</emphasis>,
+      <filename>/usr/bin</filename> não será encontrado, porque está num
+      sistema de arquivo (e um dispositivo) diferente :
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find / -name 'bin' -type d -xdev</userinput>
 /bin
-	</screen>
+    </screen>
 
-	<para>
-	  O operando <emphasis>-depth</emphasis> modifica a ordem em que
-	  cada diretório é avaliado.  Com <emphasis>-depth</emphasis>, o
-	  conteúdo de um diretório é verificado primeiro, e só então o
-	  diretório em si.  Isto pode ser ilustrado com o seguinte exemplo:
-	</para>
+    <para>
+      O operando <emphasis>-depth</emphasis> modifica a ordem em que
+      cada diretório é avaliado.  Com <emphasis>-depth</emphasis>, o
+      conteúdo de um diretório é verificado primeiro, e só então o
+      diretório em si.  Isto pode ser ilustrado com o seguinte exemplo:
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find . -depth</userinput>
 ./economic/report.txt
 ./economic/report2.txt
@@ -2299,208 +2299,208 @@ $ <userinput>find . -depth</userinput>
 ./technical/report.txt
 ./technical
 .
-	</screen>
+    </screen>
 
-	<para>
-	  Como você pode ver na saída, os arquivos no diretório 
-	  <emphasis>./economic</emphasis> são verificados antes de
-	  <filename>.</filename>, e
-	  <filename>./economic/report.txt</filename> antes de 
-	  <filename>./economic</filename>.  O <emphasis>-depth</emphasis>
-	  sempre avalia para <emphasis>true</emphasis>.
-	</para>
+    <para>
+      Como você pode ver na saída, os arquivos no diretório
+      <emphasis>./economic</emphasis> são verificados antes de
+      <filename>.</filename>, e
+      <filename>./economic/report.txt</filename> antes de
+      <filename>./economic</filename>.  O <emphasis>-depth</emphasis>
+      sempre avalia para <emphasis>true</emphasis>.
+    </para>
 
-	<para>
-	  Finalmente, o operando <emphasis>-prune</emphasis> faz com que o
-	  find não desça dentro do diretório que está sendo avaliado.  
-	  <emphasis>-prune</emphasis> é descartado se o operando 
-	  <emphasis>-depth</emphasis> também for usado.
-	  <emphasis>-depth</emphasis> também sempre avalia para 
-	  <emphasis>true</emphasis>.
-	</para>
+    <para>
+      Finalmente, o operando <emphasis>-prune</emphasis> faz com que o
+      find não desça dentro do diretório que está sendo avaliado.
+      <emphasis>-prune</emphasis> é descartado se o operando
+      <emphasis>-depth</emphasis> também for usado.
+      <emphasis>-depth</emphasis> também sempre avalia para
+      <emphasis>true</emphasis>.
+    </para>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-exec">
-	<title>Operandos que executam utilitários externos</title>
+    <title>Operandos que executam utilitários externos</title>
 
-	<para>
-	  O <command>find</command> se torna uma ferramenta muito poderosa
-	  quando combinado com utilitários externos.  Isto pode ser feito
-	  com o operando <emphasis>-exec</emphasis>.  Há duas sintaxes para
-	  o operando <emphasis>-exec</emphasis>.  A primeira sintaxe é
-	  <emphasis>-exec utility arguments;</emphasis>.  O comando
-	  <emphasis>utility</emphasis> será executado com os argumentos
-	  especificados para cada objeto que estiver sendo avaliado.  Se
-	  algum dos argumentos for <emphasis>{}</emphasis>, estas chaves
-	  serão substituídas pelo arquivo que estiver sendo avaliado.  Isto
-	  é bastante útil, especialmente quando consideramos que, se não
-	  usarmos nenhuma expressão de sintaxe adicional, os operandos irão
-	  ser avaliados da esquerda para a direita.  Vamos dar um exemplo:
-	</para>
+    <para>
+      O <command>find</command> se torna uma ferramenta muito poderosa
+      quando combinado com utilitários externos.  Isto pode ser feito
+      com o operando <emphasis>-exec</emphasis>.  Há duas sintaxes para
+      o operando <emphasis>-exec</emphasis>.  A primeira sintaxe é
+      <emphasis>-exec utility arguments;</emphasis>.  O comando
+      <emphasis>utility</emphasis> será executado com os argumentos
+      especificados para cada objeto que estiver sendo avaliado.  Se
+      algum dos argumentos for <emphasis>{}</emphasis>, estas chaves
+      serão substituídas pelo arquivo que estiver sendo avaliado.  Isto
+      é bastante útil, especialmente quando consideramos que, se não
+      usarmos nenhuma expressão de sintaxe adicional, os operandos irão
+      ser avaliados da esquerda para a direita.  Vamos dar um exemplo:
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find . -perm 0666 -exec chmod 0644 {} \;</userinput>
-	</screen>
+    </screen>
 
-	<para>
-	 O primeiro operando retorna verdadeiro para arquivos que tenham
-	 suas permissões atribuídas para <emphasis>0666</emphasis>.  O
-	 segundo operando executa <emphasis>chmod 0644 filename</emphasis>
-	 para cada arquivo que estiver sendo avaliado.  Se você está se
-	 perguntando porque não executar este comando para cada arquivo,
-	 esta é uma boa pergunta.  Como muitos outros interpretadores de
-	 expressões, o <command>find</command> usa avaliação em
-	 <quote>curto-circuito</quote>.  Como nenhum outro operando for
-	 especificado, o operador lógico <emphasis>and</emphasis> é
-	 automaticamente assumido entre ambos os operandos.  Se o primeiro
-	 operando avaliar para falso, <emphasis>false</emphasis>, não faz
-	 sentido avaliar quaisquer outros operandos, pois a expressão
-	 completa será avaliada para falso.  Então, o operando
-	 <emphasis>-exec</emphasis> só será avaliado se o primeiro operando
-	 for verdadeiro.  Outra particularidade é que o ponto-e-vírgula que
-	 encerra o <emphasis>-exec</emphasis> é escapado para previnir que o
-	 shell tente interpretá-lo.
-	</para>
+    <para>
+     O primeiro operando retorna verdadeiro para arquivos que tenham
+     suas permissões atribuídas para <emphasis>0666</emphasis>.  O
+     segundo operando executa <emphasis>chmod 0644 filename</emphasis>
+     para cada arquivo que estiver sendo avaliado.  Se você está se
+     perguntando porque não executar este comando para cada arquivo,
+     esta é uma boa pergunta.  Como muitos outros interpretadores de
+     expressões, o <command>find</command> usa avaliação em
+     <quote>curto-circuito</quote>.  Como nenhum outro operando for
+     especificado, o operador lógico <emphasis>and</emphasis> é
+     automaticamente assumido entre ambos os operandos.  Se o primeiro
+     operando avaliar para falso, <emphasis>false</emphasis>, não faz
+     sentido avaliar quaisquer outros operandos, pois a expressão
+     completa será avaliada para falso.  Então, o operando
+     <emphasis>-exec</emphasis> só será avaliado se o primeiro operando
+     for verdadeiro.  Outra particularidade é que o ponto-e-vírgula que
+     encerra o <emphasis>-exec</emphasis> é escapado para previnir que o
+     shell tente interpretá-lo.
+    </para>
 
-	<para>
-	  Uma ótima coisa sobre o operador <emphasis>-exec</emphasis> é que
-	  ele avaliado para <emphasis>true</emphasis> se o comando for
-	  concluído com sucesso.  Então, você também poderia usar o comando
-	  <emphasis>-exec</emphasis> para adicionar condições extras não
-	  representadas por operandos do <command>find</command>.  Por
-	  exemplo, o seguinte comando exibe todos os objetos que terminem
-	  com <emphasis>.txt</emphasis> e que contenham a string
-	  <emphasis>gross income</emphasis>:
-	</para>
+    <para>
+      Uma ótima coisa sobre o operador <emphasis>-exec</emphasis> é que
+      ele avaliado para <emphasis>true</emphasis> se o comando for
+      concluído com sucesso.  Então, você também poderia usar o comando
+      <emphasis>-exec</emphasis> para adicionar condições extras não
+      representadas por operandos do <command>find</command>.  Por
+      exemplo, o seguinte comando exibe todos os objetos que terminem
+      com <emphasis>.txt</emphasis> e que contenham a string
+      <emphasis>gross income</emphasis>:
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find . -name '*.txt' -exec grep -q 'gross income' {} \; -print</userinput>
 ./economic/report2.txt
-	</screen>
+    </screen>
 
-	<para>
-	  O comando <command>grep</command> será abordado mais à frente.
-	  <!-- XXX - xref --> Mas por hora, nos basta saber que ele pode ser
-	  usado para encontrar padrões de texto.  O operando
-	  <emphasis>-print</emphasis> exibe o caminho atual do objeto.  Ele
-	  é sempre usado implicitamente, exceto quando os operandos 
-	  <emphasis>-exec</emphasis> ou <emphasis>-ok</emphasis> são usados.
-	  <!-- XXX - move to introduction? -->
-	</para>
+    <para>
+      O comando <command>grep</command> será abordado mais à frente.
+      <!-- XXX - xref --> Mas por hora, nos basta saber que ele pode ser
+      usado para encontrar padrões de texto.  O operando
+      <emphasis>-print</emphasis> exibe o caminho atual do objeto.  Ele
+      é sempre usado implicitamente, exceto quando os operandos
+      <emphasis>-exec</emphasis> ou <emphasis>-ok</emphasis> são usados.
+      <!-- XXX - move to introduction? -->
+    </para>
 
-	<para>
-	  A segunda sintaxe do operando <emphasis>-exec</emphasis> é
-	  <emphasis>-exec utility arguments {} +</emphasis>.  Esta, pega um
-	  conjunto de todos os objetos correspondidos para os quais a
-	  expressão é verdadeira, e provê este conjunto de arquivos como um
-	  argumento para o utilitário que foi especificado.  O primeiro
-	  exemplo do operando <emphasis>-exec</emphasis> também pode ser
-	  escrito como:
-	</para>
+    <para>
+      A segunda sintaxe do operando <emphasis>-exec</emphasis> é
+      <emphasis>-exec utility arguments {} +</emphasis>.  Esta, pega um
+      conjunto de todos os objetos correspondidos para os quais a
+      expressão é verdadeira, e provê este conjunto de arquivos como um
+      argumento para o utilitário que foi especificado.  O primeiro
+      exemplo do operando <emphasis>-exec</emphasis> também pode ser
+      escrito como:
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find . -perm 0666 -exec chmod 0644 {} +</userinput>
-	</screen>
+    </screen>
 
-	<para>
-	  Isto irá executar o comando <command>chmod</command> apenas uma
-	  vez, com todos os arquivos com os quais a expressão for verdadeira
-	  como seus argumentos.  Este operando sempre returna
-	  <emphasis>true</emphasis>.
-	</para>
+    <para>
+      Isto irá executar o comando <command>chmod</command> apenas uma
+      vez, com todos os arquivos com os quais a expressão for verdadeira
+      como seus argumentos.  Este operando sempre returna
+      <emphasis>true</emphasis>.
+    </para>
 
-	<para>
-	  Se um comando executado pelo find retorna um valor diferente de
-	  zero (significando que a execução do comando não foi bem
-	  sucedida), o <command>find</command> deveria retornar um valor
-	  diferente de zero.
-	</para>
+    <para>
+      Se um comando executado pelo find retorna um valor diferente de
+      zero (significando que a execução do comando não foi bem
+      sucedida), o <command>find</command> deveria retornar um valor
+      diferente de zero.
+    </para>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-operators">
-	<title>Operadores para construção de expressões complexas</title>
+    <title>Operadores para construção de expressões complexas</title>
 
-	<para>
-	  O <command>find</command> provê alguns operadores que podem ser
-	  combinados para fazer expressões mais complexas:
-	</para>
+    <para>
+      O <command>find</command> provê alguns operadores que podem ser
+      combinados para fazer expressões mais complexas:
+    </para>
 
-	<variablelist>
-	  <title>Operadores</title>
+    <variablelist>
+      <title>Operadores</title>
 
-	  <varlistentry>
-	    <term>( expr )</term>
-	    <listitem>
-	      <para>
-		Resulta em <emphasis>true</emphasis> se 
-		<emphasis>expr</emphasis> resultar em
-		<emphasis>true</emphasis>.
-	      </para>
-	    </listitem>
-	  </varlistentry>
-	  <varlistentry>
-	    <term>expr1 [-a] expr2</term>
-	    <listitem>
-	      <para>
-        Resulta em <emphasis>true</emphasis> se tanto 
-		<emphasis>expr1</emphasis> quanto <emphasis>expr2</emphasis>
-		forem true.  Se <emphasis>-a</emphasis> for omitido,
-		este operador é assumido implicitamente.
-	      </para>
+      <varlistentry>
+        <term>( expr )</term>
+        <listitem>
+          <para>
+        Resulta em <emphasis>true</emphasis> se
+        <emphasis>expr</emphasis> resultar em
+        <emphasis>true</emphasis>.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>expr1 [-a] expr2</term>
+        <listitem>
+          <para>
+        Resulta em <emphasis>true</emphasis> se tanto
+        <emphasis>expr1</emphasis> quanto <emphasis>expr2</emphasis>
+        forem true.  Se <emphasis>-a</emphasis> for omitido,
+        este operador é assumido implicitamente.
+          </para>
 
-	      <para>
-		O <command>find</command> usará avaliação em curto-circuito
-		quando este operador for avaliado: <emphasis>expr2</emphasis>
-		não será avaliada quando <emphasis>expr1</emphasis> resultar em
-		<emphasis>false</emphasis>
-	      </para>
-	    </listitem>
-	  </varlistentry>
-	  <varlistentry>
-	    <term>expr1 -o expr2</term>
-	    <listitem>
-	      <para>
+          <para>
+        O <command>find</command> usará avaliação em curto-circuito
+        quando este operador for avaliado: <emphasis>expr2</emphasis>
+        não será avaliada quando <emphasis>expr1</emphasis> resultar em
+        <emphasis>false</emphasis>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>expr1 -o expr2</term>
+        <listitem>
+          <para>
         Resulta em <emphasis>true</emphasis> se ou um ou outro, ou ambos
         <emphasis>expr1</emphasis> e <emphasis>expr2</emphasis> forem
         true.
-	      </para>
+          </para>
 
-	      <para>
-		O <command>find</command> usa avaliação em curto-circuito também
-		quando este operador é avaliado: <emphasis>expr2</emphasis> não
-		será avaliada quando <emphasis>expr1</emphasis> resultar em
-		<emphasis>true</emphasis>
-	      </para>
-	    </listitem>
-	  </varlistentry>
-	  <varlistentry>
-	    <term>! expr</term>
-	    <listitem>
-	      <para>
-		Nega <emphasis>expr</emphasis>.  Assim, se a expressão
-		<emphasis>expr</emphasis> avaliar para true, o resultado irá
-		avaliar para <emphasis>false</emphasis> e vice-versa.
-	      </para>
-	    </listitem>
-	  </varlistentry>
-	</variablelist>
+          <para>
+        O <command>find</command> usa avaliação em curto-circuito também
+        quando este operador é avaliado: <emphasis>expr2</emphasis> não
+        será avaliada quando <emphasis>expr1</emphasis> resultar em
+        <emphasis>true</emphasis>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>! expr</term>
+        <listitem>
+          <para>
+        Nega <emphasis>expr</emphasis>.  Assim, se a expressão
+        <emphasis>expr</emphasis> avaliar para true, o resultado irá
+        avaliar para <emphasis>false</emphasis> e vice-versa.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
 
-	<para>
-	  Uma vez que tanto os parênteses quanto a exclamação são
-	  interpretados pela maioria dos shells, comumente eles devem ser
-	  precedidos de um caracter de escape.
-	</para>
+    <para>
+      Uma vez que tanto os parênteses quanto a exclamação são
+      interpretados pela maioria dos shells, comumente eles devem ser
+      precedidos de um caracter de escape.
+    </para>
 
-	<para>
-	  O exemplo seguinte mostra alguns operadores em ação.  Este comando
-	  executa <command>chmod</command> para todos os arquivos que tenham
-	  ou permissão <emphasis>0666</emphasis> ou
-	  <emphasis>0664</emphasis>.
-	</para>
+    <para>
+      O exemplo seguinte mostra alguns operadores em ação.  Este comando
+      executa <command>chmod</command> para todos os arquivos que tenham
+      ou permissão <emphasis>0666</emphasis> ou
+      <emphasis>0664</emphasis>.
+    </para>
 
-	<screen>
+    <screen>
 $ <userinput>find . \( -perm 0666 -o -perm 0664 \) -exec chmod 0644 {} \;</userinput>
-	</screen>
+    </screen>
       </sect3>
     </sect2>
 
@@ -2572,27 +2572,27 @@ ls: /bin/ls /usr/share/man/man1/ls.1.gz
       </para>
 
       <itemizedlist>
-	<listitem>
-	  <para>
-	    Novos arquivos não farão parte da base de dados até a próxima
-	    execução de <command>updatedb</command>.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    O <command>locate</command> não tem conceito de permissões,
-	    então os usuários podem localizar arquivos que normalmente não
-	    seriam visíveis por eles.
-	  </para>
-	</listitem>
-	<listitem>
-	  <para>
-	    Uma implementação mais nova, chamada de
-	    <emphasis>slocate</emphasis> já lida com permissões, mas
-	    necessita de privilégios elevados.  Esta é a variação do
-	    <command>locate</command> que é incluída com o Slackware Linux.
-	  </para>
-	</listitem>
+    <listitem>
+      <para>
+        Novos arquivos não farão parte da base de dados até a próxima
+        execução de <command>updatedb</command>.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        O <command>locate</command> não tem conceito de permissões,
+        então os usuários podem localizar arquivos que normalmente não
+        seriam visíveis por eles.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        Uma implementação mais nova, chamada de
+        <emphasis>slocate</emphasis> já lida com permissões, mas
+        necessita de privilégios elevados.  Esta é a variação do
+        <command>locate</command> que é incluída com o Slackware Linux.
+      </para>
+    </listitem>
       </itemizedlist>
 
       <para>
@@ -2635,37 +2635,37 @@ $ <userinput>locate locate</userinput>
       </para>
 
       <table xml:id="archive-extentions">
-	<title>Extensões de arquivos</title>
-	<tgroup cols="2" align="left" colsep="1" rowsep="1">
-	  <thead>
-	    <row>
-	      <entry>Extensão</entry>
-	      <entry>Significado</entry>
-	    </row>
-	  </thead>
-	  <tbody>
-	    <row>
-	      <entry>.tar</entry>
-	      <entry>Um pacote tar sem compactação</entry>
-	    </row>
-	    <row>
-	      <entry>.tar.gz</entry>
-	      <entry>Um pacote tar compactado com gzip</entry>
-	    </row>
-	    <row>
-	      <entry>.tgz</entry>
-	      <entry>Um pacote tar compactado com gzip</entry>
-	    </row>
-	    <row>
-	      <entry>.tar.bz2</entry>
-	      <entry>Um pacote tar compactado com bzip2</entry>
-	    </row>
-	    <row>
-	      <entry>.tbz</entry>
-	      <entry>Um pacote tar compactado com bzip2</entry>
-	    </row>
-	  </tbody>
-	</tgroup>
+    <title>Extensões de arquivos</title>
+    <tgroup cols="2" align="left" colsep="1" rowsep="1">
+      <thead>
+        <row>
+          <entry>Extensão</entry>
+          <entry>Significado</entry>
+        </row>
+      </thead>
+      <tbody>
+        <row>
+          <entry>.tar</entry>
+          <entry>Um pacote tar sem compactação</entry>
+        </row>
+        <row>
+          <entry>.tar.gz</entry>
+          <entry>Um pacote tar compactado com gzip</entry>
+        </row>
+        <row>
+          <entry>.tgz</entry>
+          <entry>Um pacote tar compactado com gzip</entry>
+        </row>
+        <row>
+          <entry>.tar.bz2</entry>
+          <entry>Um pacote tar compactado com bzip2</entry>
+        </row>
+        <row>
+          <entry>.tbz</entry>
+          <entry>Um pacote tar compactado com bzip2</entry>
+        </row>
+      </tbody>
+    </tgroup>
       </table>
 
       <para>
@@ -2751,12 +2751,12 @@ test1  test2
 
       <para>
     Extrair ou listar arquivos de um pacote gzipado ou bzipado não é
-    muito mais difícil.  Isto pode ser feito adicionando-se um 
-	<parameter class="command">z</parameter> ou <parameter
-	class="command">b</parameter>, respectivamente, para pacotes
-	compactados com <command>gzip</command> ou
-	<command>bzip2</command>.  Por exemplo, podemos listar o conteúdo de
-	um pacote gzipado com:
+    muito mais difícil.  Isto pode ser feito adicionando-se um
+    <parameter class="command">z</parameter> ou <parameter
+    class="command">b</parameter>, respectivamente, para pacotes
+    compactados com <command>gzip</command> ou
+    <command>bzip2</command>.  Por exemplo, podemos listar o conteúdo de
+    um pacote gzipado com:
       </para>
 
       <screen>
@@ -2790,8 +2790,8 @@ $ <userinput>tar cf important-files.tar test</userinput>
       <para>
     Isto irá criar o pacote <filename>important-files.tar</filename>
     (que é especificado com o parâmetro <parameter
-	class="command">f</parameter>).  Agora nós podemos verificar o
-	conteúdo deste arquivo:
+    class="command">f</parameter>).  Agora nós podemos verificar o
+    conteúdo deste arquivo:
       </para>
 
       <screen>
@@ -2806,7 +2806,7 @@ test/test1
        arquivos compactados: adicione um <parameter
        class="command">z</parameter> para compactar o arquivo no formato
        gzip ou <parameter class="command">b</parameter> para usar bzip2.
-       Suponha queiramos criar uma versão compactada com 
+       Suponha queiramos criar uma versão compactada com
        <command>gzip</command> do arquivo criado acima.  Podemos fazer
        isso com:
       </para>
@@ -2824,7 +2824,7 @@ test/test1
       <title>Introdução</title>
 
       <para>
-       Como a maioria dos Unices, o Linux uma técnica chamada de 
+       Como a maioria dos Unices, o Linux uma técnica chamada de
        <quote>montagem</quote> para acessar sistemas de arquivos.
        Montagem significa que um sistema de arquivos está conectado a
        um diretório no sistema de arquivos raiz.  Alguém poderia, por
@@ -2876,7 +2876,7 @@ test/test1
 
       <para>
        Isto monta o sistema de arquivos vfat de
-       <filename>/dev/sda1</filename> em 
+       <filename>/dev/sda1</filename> em
        <filename>/mnt/flash</filename>.
       </para>
     </sect2>
@@ -2934,9 +2934,9 @@ proc             /proc            proc        defaults         0   0
       </para>
 
       <sect3>
-	<title>fs_spec</title>
+    <title>fs_spec</title>
 
-	<para>
+    <para>
       A opção fs_spec option especifica o dispositivo de bloco, ou o
       sistema de arquivos remoto que deve ser montado.  Como você pode
       ver no exemplo, diversas partições de /dev/hda são especificadas,
@@ -2944,41 +2944,41 @@ proc             /proc            proc        defaults         0   0
       NFS forem montados, um endereço IP e um diretório podem ser
       especificados, por exemplo:
       <filename>192.168.1.10:/exports/data</filename>.
-	</para>
+    </para>
       </sect3>
 
       <sect3>
-	<title>fs_file</title>
+    <title>fs_file</title>
 
-	<para>
+    <para>
       fs_file especifica o ponto de montagem.  Este pode ser um
       diretório qualquer no sistema de arquivos.
-	</para>
+    </para>
       </sect3>
 
       <sect3>
-	<title>fs_vfstype</title>
+    <title>fs_vfstype</title>
 
-	<para>
+    <para>
       Este campo especifica que tipo de sistema de arquivos a entrada
       representa.  Por exemplo, este campo pode ser: ext2, ext3,
       reiserfs, xfs, nfs, vfat, ou ntfs.
-	</para>
+    </para>
       </sect3>
 
       <sect3>
-	<title>fs_mntops</title>
+    <title>fs_mntops</title>
 
-	<para>
+    <para>
       A opção fs_mntops especifica quais parâmetros devem ser usados na
-      montagem do sistema de arquivo.  A página de manual do comando 
+      montagem do sistema de arquivo.  A página de manual do comando
       <command>mount</command> tem uma extensiva descrição das opções
       disponíveis.  Estas são as opções mais interessantes:
-	</para>
+    </para>
 
-	<itemizedlist>
-	  <listitem>
-	    <para>
+    <itemizedlist>
+      <listitem>
+        <para>
           <emphasis>noauto</emphasis>: os sistemas de arquivos que são
           listados no <filename>/etc/fstab</filename> normalmente são
           montados automaticamente.  Quando a opção
@@ -2987,38 +2987,38 @@ proc             /proc            proc        defaults         0   0
           apenas depois de se executar um comando
           <command>mount</command>.  Para montar sistemas de arquivos
           dessa maneira, apenas o ponto de montagem ou o nome do
-          dispositivo podem ser especificados, por exemplo: 
+          dispositivo podem ser especificados, por exemplo:
           <command>mount /mnt/cdrom</command>
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
-          <emphasis>user</emphasis>: adicionando-se a opção 
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis>user</emphasis>: adicionando-se a opção
           <quote>user</quote> irá permitir que usuários normais montem
           o sistema de arquivos (normalmente, apenas o superusuário tem
           permissão para montar sistemas de arquivos).
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <emphasis>owner</emphasis>: a opção <quote>owner</quote>
           permitirá que o dono do dispositivo especificado monte seu
           referido dispositivo.  Você pode ver o dono de um dispositivo
           usando <command>ls</command>, p.ex.,  <command>ls -l
           /dev/cdrom</command>.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <emphasis>noexec</emphasis>: com esta opção habilitada, os
           usuários não podem executar os arquivos no sistema de arquivos
           montado.  Isto pode ser usado para oferecer mais segurança.
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <emphasis>nosuid</emphasis>: esta opção é comparável à opção
-          <quote>noexec</quote>.  Com 
+          <quote>noexec</quote>.  Com
           <quote>nosuid</quote> habilitado, não serão permitidos bits
           SUID no sistema de arquivos montado.  SUID é usado por certos
           binários para deixar que um usuário normal faça algo com
@@ -3027,109 +3027,108 @@ proc             /proc            proc        defaults         0   0
           mídias removíveis e etc.  Uma montagem de usuário normal irá
           forçar a opção nosuid, mas uma montagem feita pelo
           superusuário, não!
-	    </para>
-	  </listitem>
-	  <listitem>
-	    <para>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <emphasis>unhide</emphasis>: esta opção só é relevante para
           CD-ROMs normais com o sistema de arquivo ISO9660.  Se
           <quote>unhide</quote> for especificado, arquivos ocultos
           também serão visíveis.
-	    </para>
-	  </listitem>
-	</itemizedlist>
+        </para>
+      </listitem>
+    </itemizedlist>
       </sect3>
 
       <sect3>
-	<title>fs_freq</title>
+    <title>fs_freq</title>
 
-	<para>
+    <para>
       Se <quote>fs_freq</quote> for definido para o valor 1 ou mais
       alto, ele indica depois de quantos dias um despejo
       (<foreignphrase>dump</foreignphrase>, backup) será feito.  Esta
       opção só é usada quand o <ulink
       url="http://dump.sourceforge.net/">dump</ulink> está instalado e
       configurado adequadamente para manipular este campo do arquivo.
-	</para>
+    </para>
       </sect3>
 
       <sect3>
-	<title>fs_passno</title>
+    <title>fs_passno</title>
 
-	<para>
+    <para>
       Este campo é usado pelo <command>fsck</command> para determinar a
       ordem na qual os sistema de arquivos são verificados durante a
       inicialização do sistema.
-	</para>
+    </para>
       </sect3>
     </sect2>
 
   </sect1>
 
   <sect1 xml:id="basics-filesystem-gnupg">
-    <title>Encrypting and signing files</title>
+    <title>Criptografando e assinando arquivos</title>
 
     <sect2>
-      <title>Introduction</title>
+      <title>Introdução</title>
 
       <para>
-	There are two security mechanisms for securing files: signing
-	files and encrypting files. Signing a file means that a
-	special digital signature is generated for a file. You, or
-	other persons can use the signature to verify the integrity of
-	the file. File encryption encodes a file in a way that only a
-	person for which the file was intended to read can read the
-	file.
+    Há dois mecanismos de para segurança de arquivos: assinatura digital
+    e criptografia.  Asinar um arquivo significa que uma assinatura
+    digital especial é gerada para o arquivo.  Você, ou outras pessoas
+    podem usar a assinatura para verificar a integridade do arquivo.  Já
+    a criptografia codifica o arquivo de tal maneira que apenas a pessoa
+    a qual o arquivo se destina seja capaz de lê-lo.
       </para>
 
       <para>
-	This system relies on two keys: the private and the public
-	key. Public keys are used to encrypt files, and files can only
-	be decrypted with the private key. This means that one can
-	sent his public key out to other persons. Others can use this
-	key to send encrypted files, that only the person with the
-	private key can decode. Of course, this means that the
-	security of this system depends on how well the private is
-	kept secret.
+    Este sistema depende de um par de chaves: uma privada e uma pública.
+    Chaves públicas são usadas para criptografar arquivos, e os arquivos
+    só podem ser descriptografados com a respectiva chave privada.  Isto
+    significa que alguém pode enviar essa chave pública para outras
+    pessoas.  Os outros podem usar essa chave para enviar arquivos
+    criptografados, que apenas a pessoa com a respectiva chave privada
+    possa decodificar.  É claro, isto quer dizer que a securança desse
+    sistema depende do quão a chave privada seja mantida secreta.
       </para>
 
       <para>
-	Slackware Linux provides an excellent tool for signing and
-	encrypting files, named GnuPG. GnuPG can be installed from the
-	<quote>n</quote> disk set.
+    O Slackware Linux oferece uma excelente ferramenta para assinatura
+    e criptografia de arquivos, chamada GnuPG.  O GnuPG pode ser
+    instalado a partir do grupo <quote>n</quote> de discos.
       </para>
     </sect2>
 
     <sect2>
-      <title>Generating your private and public keys</title>
+      <title>Gerando suas chaves pública e privada</title>
 
       <para>
-	Generating public and private keys is a bit complicated,
-	because GnuPG uses DSA keys by default. DSA is an encryption
-	algorithm, the problem is that the maximum key length of DSA
-	is 1024 bits, this is considered too short for the longer
-	term. That is why it is a good idea to use 2048 bit RSA
-	keys. This section describers how this can be done.
+    Gerar as chaves pública e privada é um pouquinho complicado, porque
+    o GnuPG usa chaves DSA por padrão.  DSA é um algoritmo de
+    criptografia, o problema é que o tamanho máximo do DSA é 1024 bits,
+    o que é considerado muito pequeno a longo prazo.  Por isso é uma boa
+    idéia usar chaves RSA de 2048 bits.  Esta seção descreve como isso
+    pode ser feito.
       </para>
 
       <note>
-	<para>
-	  1024-bit keys were believed to be secure for a long
-	  time. But Bernstein's paper <emphasis>Circuits for Integer
-	  Factorization: a Proposal</emphasis> contests this, the
-	  bottom line is that it is quite feasible for national
-	  security agencies to produce hardware that can break keys in
-	  a relatively short amount of time.  Besides that it has be
-	  shown that 512-bit RSA keys can be broken in a relatively
-	  short time using common hardware. More information about
-	  these issues can by found in this e-mail to the cypherpunks
-	  list:
-	<ulink url="http://lists.saigon.com/vault/security/encryption/rsa1024.html" />
-	</para>
+    <para>
+      Por muito tempo acreditou-se que chaves de 1024 bits eram seguras.
+      Mas o artigo de Bernstein's paper <emphasis>Circuits for Integer
+      Factorization: a Proposal</emphasis> contestou isto.  A questão é
+      que é bastante viável para órgãos nacionais de segurança
+      produzirem hardware que podem quebrar chaves desse tamanho em um
+      espaço de tempo razoavelmente curto.  Também sabe-se ainda que
+      chaves RSA de 512 bits podem ser quebradas relativamente em pouco
+      tempo mesmo usando hardware comum.  Mais informações sobre estes
+      tópicos podem ser encontradas neste e-mail da lista cypherpunks
+      list:
+    <ulink url="http://lists.saigon.com/vault/security/encryption/rsa1024.html" />
+    </para>
       </note>
 
       <para>
-	We can generate a key by executing:
+    Vamos gerar uma chave executando:
       </para>
 
       <screen>
@@ -3137,8 +3136,8 @@ $ <userinput>gpg --gen-key</userinput>
       </screen>
 
       <para>
-	The first question is what kind of key you would like to
-	make. We will choose <emphasis>(4) RSA (sign only)</emphasis>:
+    A primeira pergunta é que tipo de chave você gostaria de gerar.
+    Vamos escolher <emphasis>(4) RSA (sign only)</emphasis>:
       </para>
 
       <screen>
@@ -3150,9 +3149,9 @@ Your selection? <userinput>4</userinput>
       </screen>
 
       <para>
-	You will then be asked what the size of the key you want to
-	generate has to be. Type in <emphasis>2048</emphasis> to
-	generate a 2048 bit key, and press enter to continue.
+    Você então será perguntado sobre o tamanho da chave que gostaria que
+    fosse gerada.  Digite <emphasis>2048</emphasis> para gerar uma chave
+    de 2048 bits, e pressione enter para continuar.
       </para>
 
       <screen>
@@ -3160,10 +3159,10 @@ What keysize do you want? (1024) <userinput>2048</userinput>
       </screen>
 
       <para>
-	The next question is simple to answer, just choose what you
-	like. Generally speaking it is not a bad idea to let the key
-	be valid infinitely. You can always deactivate the key with a
-	special revocation certificate.
+    A próxima pergunta é simples de responder, apenas escolha a que
+    melhor lhe agradar.  Falando de uma forma geran, não é uma má idéia
+    fazer com que a chave seja válida indefinidamente.  Você sempre pode
+    desativar a chave com um certificado especial de revogação.
       </para>
 
       <screen>
@@ -3177,41 +3176,41 @@ Key is valid for? (0) <userinput>0</userinput>
       </screen>
 
       <para>
-	GnuPG will then ask for confirmation. After confirming your
-	name and e-mail address will be requested. GnuPG will also ask
-	for a comment, you can leave this blank, or you could fill in
-	something like <quote>Work</quote> or <quote>Private</quote>,
-	to indicate what the key is used for. For example:
+    O GnuPG então irá pedir confirmação.  Depois de confirmar seu nome e
+    endereço de e-mail solicitados.  O GnuPG também irá solicitar um
+    comentário, que você pode deixar em branco, ou você pode preencher
+    com algo como <quote>Trabalho</quote> ou <quote>Pessoal</quote>,
+    para indicar para o que usará essa chave.  Por exemplo:
       </para>
 
       <screen>
 Real name: <userinput>John Doe</userinput>
 Email address: <userinput>john@doe.com</userinput>
-Comment: <userinput>Work</userinput>              
+Comment: <userinput>Work</userinput>
 You selected this USER-ID:
     "John Doe (Work) &lt;john@doe.com&gt;"
       </screen>
 
       <para>
-	GnuPG will the ask you to confirm your user ID. After
-	confirming it GnuPG will ask you to enter a password. Be sure
-	to use a good password:
+    O GnuPG irá solicitar que você confirme seu ID de usuário.  Depois
+    de confirmá-lo, o GnuPG irá solicitar que entre com uma senha.
+    Assegure-se de usar uma boa senha:
       </para>
 
       <screen>
-You need a Passphrase to protect your secret key.    
+You need a Passphrase to protect your secret key.
 
 Enter passphrase:
       </screen>
 
       <para>
-	After entering the password twice GnuPG will generate the
-	keys. But we are not done yet. GnuPG has only generated a key
-	for signing information, not for encryption of information. To
-	continue, have a look at the output, and look for the key
-	ID. In the information about the key you will see
-	<emphasis>pub 2048R/</emphasis>. The key ID is printed after
-	this fragment.  In this example:
+    Depois de digitar a senha duas vezes, o GnuPG irá gerar efetivamente
+    as chaves.  Mas ainda não terminamos.  O GnuPG gerou apenas uma
+    chave para informações de assinatura, e não para criptografia de
+    dados.  Para continuar, dê uma olhada na saída, e procure pelo ID
+    da chave.  Na informação sobre a chave você irá ver
+    <emphasis>pub 2048R/</emphasis>.  O ID da chave é exibido depois
+    deste trecho.  Neste exemplo:
       </para>
 
       <screen>
@@ -3223,11 +3222,10 @@ pub  2048R/8D080768 2004-07-16 John Doe (Work) &lt;john@doe.com&gt;
       </screen>
 
       <para>
-	the key ID is <emphasis>8D080768</emphasis>. If you lost the
-	output of the key generation you can still find the key ID in
-	the output of the <command>gpg --list-keys</command>
-	command. Use the key ID to tell GnuPG that you want to edit
-	your key:
+    o ID da chave é <emphasis>8D080768</emphasis>.  Se você perdeu a
+    saída da geração da chave você ainda pode encontrar o ID da chave na
+    saída do comando <command>gpg --list-keys</command>.  Use este ID
+    para informar ao GnuPG que você quer editar sua chave:
       </para>
 
       <screen>
@@ -3235,7 +3233,7 @@ $ <userinput>gpg --edit-key &lt;Key ID&gt;</userinput>
       </screen>
 
       <para>
-	With the example key above the command would be:
+    Com a chave de exemplo acima, o comando seria:
       </para>
 
       <screen>
@@ -3243,8 +3241,8 @@ $ <userinput>gpg --edit-key 8D080768</userinput>
       </screen>
 
       <para>
-	GnuPG will now display a command prompt. Execute the
-	<command>addkey</command> command on this command prompt:
+    O GnuPG agora irá exibir um prompt de comando.  Execute o comando
+    <command>addkey</command> neste prompt:
       </para>
 
       <screen>
@@ -3252,7 +3250,7 @@ Command&gt; <userinput>addkey</userinput>
       </screen>
 
       <para>
-	GnuPG will now ask the password you used for your key:
+    O GnuPG agora irá solicitar a senha que você usou para sua chave:
       </para>
 
       <screen>
@@ -3266,10 +3264,11 @@ Enter passphrase:
       </screen>
 
       <para>
-	After entering the password GnuPG will ask you what kind of
-	key you would like to create. Choose <emphasis>RSA (encrypt
-	only)</emphasis>, and fill in the information like you did
-	earlier (be sure to use a 2048 bit key).  For example:
+    Depois que você informar a senha, o GnuPG irá solicitar que tipo de
+    chave você gostaria de criar.  Escolha <emphasis>RSA (encrypt
+    only)</emphasis>, e preencha a informação como você fez
+    anteriormente (certifique-se de usar chaves de 2048 bits).  Por
+    exemplo:
       </para>
 
       <screen>
@@ -3280,7 +3279,7 @@ Please select what kind of key you want:
    (5) RSA (encrypt only)
 Your selection? <userinput>5</userinput>
 What keysize do you want? (1024) <userinput>2048</userinput>
-Requested keysize is 2048 bits       
+Requested keysize is 2048 bits
 Please specify how long the key should be valid.
          0 = key does not expire
       &lt;n&gt;  = key expires in n days
@@ -3291,9 +3290,9 @@ Key is valid for? (0) <userinput>0</userinput>
       </screen>
 
       <para>
-	And confirm that the information is correct. After the key is
-	generated you can leave the GnuPG command prompt, and save the
-	new key with the <command>save</command> command:
+    E confirme se a informação estiver correta.  Depois que a chave for
+    gerada você pode deixar o prompt de comando do GnuPGm e salvar a
+    nova chave com o comando <command>save</command>:
       </para>
 
       <screen>
@@ -3301,32 +3300,36 @@ Command&gt; <userinput>save</userinput>
       </screen>
 
       <para>
-	Congratulations! You have now generated the necessary keys to
-	encrypt and decrypt e-mails and files. You can now configure
-	your e-mail client to use GnuPG. It is a good idea to store
-	the contents of the <filename>.gnupg</filename> directory on
-	some reliable medium, and store that in a safe place! If your
-	private key is lost you can't decrypt files and messages that
-	were encrypted with your public key. If the private key, and
-	your password are stolen, the security of this system is
-	completely compromised.
+    Parabéns!  Você acabou de gerar as chaves necessárias para
+    criptografar e descriptografar e-mails e arquivos.  Você agora pode
+    configurar seu cliente de e-mail para usar o GnuPG.  É uma boa idéia
+    armazenar o conteúdo do diretório <filename>.gnupg</filename> em
+    alguma mídia confiável, e guardá-la em algum lugar seguro!  Se sua
+    chave privada for perdida, você não conseguirá descriptografar
+    arquivos e mensagens que tiverem sido criptografados com sua chave
+    pública.  Se a chave privada, e sua senha forem roubadas, então a
+    segurança do sistema está completamente comprometida.
       </para>
     </sect2>
 
     <sect2>
-      <title>Exporting your public key</title>
+      <title>Exportando sua chave pública</title>
 
       <para>
-	To make GnuPG useful, you have to give your public key to
-	people who send you files or e-mails. They can use your public
-	key to encrypt files, or use it to verify whether a file has a
-	correct signature or not. The key can be exported using the
-	<parameter class="command">--export</parameter> parameter. It
-	is also a good idea to specify the <parameter
-	class="command">--output</parameter> parameter, this will save
-	the key in a file. The following command would save the public
-	key of <emphasis>John Doe</emphasis>, used in earlier
-	examples, to the file <filename>key.gpg</filename>:
+    Para tornar o GnuPG útil, você tem que disponibilizar sua chave
+    pública às pessoas que lhe enviam arquivos ou e-mails.  Elas podem
+    usar sua chave pública para criptografar arquivos, ou usá-la para
+    verificar se um arquivo tem uma assinatura correta ou não.  A chave
+    pode ser exportada usando-se o parâmetro
+    <parameter class="command">--export</parameter>.  Também é uma boa
+    idéia especificar o parâmetro <parameter
+    class="command">--output</parameter>, isto irá salvar a chave em um
+    arquivo.  O comando a seguir deveria salvar a chave pública de
+    <emphasis>John Doe</emphasis><footnote>N.T.: John Doe é um nome
+    fictício genérico usado na língua inglesa para se referir a alguém
+    inespecífico.  Algo mais ou menos equivalente ao nosso
+    <quote>João Ninguém</quote>.</footnote>, usado nos exemplos
+    anteriores, para o arquivo <filename>key.gpg</filename>:
       </para>
 
       <screen>
@@ -3334,12 +3337,12 @@ $ <userinput>gpg --output key.gpg --export john@doe.com</userinput>
       </screen>
 
       <para>
-	This saves the key in binary format. Often it is more
-	convenient to use the so-called <quote>ASCII armored
-	output</quote>, which fits better for adding the key to
-	e-mails, or websites. You export an ASCII armored version of
-	the key by adding the <parameter
-	class="command">--armor</parameter> parameter:
+    Isto salva a chave num formato binário.  Quase sempre é mais
+    conveniente usar a assim chamada <quote>saída codificada em
+    ASCII</quote> (<foreignphrase>ASCII armored</foreignphrase>), a qual
+    é mais adequada para publicação da chave em e-mails ou websites.
+    Você exporta uma versão codificada em ASCII da chave adicionando o
+    parâmetro <parameter class="command">--armor</parameter>:
       </para>
 
       <screen>
@@ -3347,25 +3350,25 @@ $ <userinput>gpg --armor --output key.gpg --export john@doe.com</userinput>
       </screen>
 
       <para>
-	If you look at the <filename>key.gpg</filename> file you will
-	notice that the ASCII armored key is a much more comfortable
-	format.
+    Se você vir o conteúdo do arquivo <filename>key.gpg</filename> você
+    irá notar que a chave codificada em ASCII está num formato muito
+    mais confortável.
       </para>
     </sect2>
 
     <sect2>
-      <title>Signatures</title>
+      <title>Assinaturas</title>
 
       <para>
-	With GPG you can make a signature for a file. This signature
-	is unique, because your signature can only be made with your
-	private key. This means that other people can check whether
-	the file was really sent by you, and whether it was in any way
-	altered or not. Files can be signed with the <parameter
-	class="command">--detach-sign</parameter> parameter. Let us
-	look at an example. This command will make a signature for the
-	<filename>memo.txt</filename> file. The signature will be
-	stored in <filename>memo.txt.sig</filename>.
+    Com o GPG você pode fazer uma assinatura para um arquivo.  Esta
+    assinatura é única, porque sua assinatura só pode ser feita com sua
+    chave privada.  Isto quer dizer que outras pessoas podem verificar
+    se o arquivo realmente foi enviado por você, ou mesmo se o arquivo
+    sofreu alguma alteração ou não.  Arquivos podem ser assinados com o
+    parâmetro <parameter class="command">--detach-sign</parameter>.
+    Vamos ver um exemplo.  Este comando fará uma assinatura para o
+    arquivo <filename>memo.txt</filename>.  A assinatura será armazenada
+    em <filename>memo.txt.sig</filename>.
       </para>
 
       <screen>
@@ -3379,18 +3382,18 @@ Enter passphrase:
       </screen>
 
       <para>
-	As you can see, GnuPG will ask you to enter the password for
-	your private key. After you have entered the right key the
-	signature file (<filename>memo.txt.sig</filename>) will be
-	created.
+    Como você pode ver, o GnuPG irá pedir que você entre com a senha de
+    sua chave privada.  Depois de você ter entrado corretamente com a
+    senha, o arquivo de assinatura (<filename>memo.txt.sig</filename>)
+    será criado.
       </para>
 
       <para>
-	You can verify a file with its signature using the <parameter
-	class="command">--verify</parameter> parameter. Specify the
-	signature file as a parameter to the <parameter
-	class="command">--verify</parameter> parameter. The file that
-	needs to be verified can be specified as the final parameter:
+    Você pode verificar um arquivo com sua assinatura usando o parâmetro
+    <parameter class="command">--verify</parameter>.  Especifique o
+    arquivo de assinatura para o parâmetro <parameter
+    class="command">--verify</parameter>.  O arquivo que precisa ser
+    verificado pode ser especificado por último:
       </para>
 
       <screen>
@@ -3400,11 +3403,11 @@ gpg: Good signature from "John Doe (Work) &lt;john@doe.com&gt;"
       </screen>
 
       <para>
-	This will confirm that the file was indeed signed by
-	<emphasis>John Doe (Work) &lt;john@doe.com&gt;</emphasis>,
-	with the key <emphasis>8D080768</emphasis>, and that the file
-	is unchanged. Suppose the file was changed, GnuPG would have
-	complained about it loudly:
+    Isto irá confirmar que o arquivo havia sido assinado por
+    <emphasis>John Doe (Work) &lt;john@doe.com&gt;</emphasis>, com a
+    chave <emphasis>8D080768</emphasis>, e que o arquivo está
+    inalterado.  Agora suponha que o arquivo tivesse sofrido alguma
+    alteração, o GnuPG deveria apontar isso com bastante estardalhaço:
       </para>
 
       <screen>
@@ -3415,22 +3418,21 @@ gpg: BAD signature from "John Doe (Work) &lt;john@doe.com&gt;"
     </sect2>
 
     <sect2>
-      <title>Encryption</title>
+      <title>Criptografia</title>
 
       <para>
-	One of the main features of GnuPG is encryption. Due to its
-	use of asymmetric cryptography, the person who encrypts a file
-	and the person who decrypts a file do not need to share a
-	key. You can encrypt a file with the public key of another
-	person, and that other person can decrypt it with his or her
-	private key. You can encrypt files with the <parameter
-	class="command">--encrypt</parameter>. If you do not specify a
-	user ID for which the file should be encrypted, GnuPG will
-	prompt for the user ID. You can specify the user ID with the
-	<parameter class="command">-r</parameter> parameter. In the
-	following example, the file <filename>secret.txt</filename>
-	will be encrypted for another person named <emphasis>John
-	Doe</emphasis>:
+    Um dos principais recursos do GnuPG é a criptografia.  Devido seu
+    uso de criptografia assimétrica, a pessoa que criptografa um arquivo
+    e a pessoa que o descriptografa não precisam compartilhar uma mesma
+    chave.  Você pode criptografar um arquivo com a chave pública de
+    outra pessoa, e aquela outra pessoa pode descriptografá-lo com sua
+    chave privada.  Você pode criptografar arquivos com <parameter
+    class="command">--encrypt</parameter>.  Se você não especifcar um ID
+    de usuário, o GnuPG irá solicitá-lo.  Você pode especificar o ID de
+    usuário com o parâmetro <parameter class="command">-r</parameter>.
+    No exemplo seguinte, o arquivo <filename>secret.txt</filename> será
+    criptografado para outra pessoa chamada <emphasis>John
+    Doe</emphasis>:
       </para>
 
       <screen>
@@ -3438,16 +3440,16 @@ $ <userinput>gpg --encrypt -r "John Doe" secret.txt</userinput>
       </screen>
 
       <para>
-	The user ID is quoted with double quotes for making sure that
-	the ID is interpreted as a single program argument. After the
-	encryption is completed, the encrypted version of the file
-	will be available as <filename>secret.txt.gpg</filename>.
+    O ID de usuário está entre aspas duplas para garantir que o ID seja
+    interpretado como um único argumento do programa.  Depois que a
+    criptografia esteja completada, a versão criptografada do arquivo
+    estará disponível como <filename>secret.txt.gpg</filename>.
       </para>
 
       <para>
-	The user who receives the file can decrypt it with the
-	<parameter class="command">--decrypt</parameter> parameter of
-	the <command>gpg</command> command:
+    O usuário que receber o arquivo pode descriptografá-lo com o
+    parâmetro <parameter class="command">--decrypt</parameter> do
+    comando <command>gpg</command>:
       </para>
 
       <screen>
@@ -3464,9 +3466,9 @@ gpg: encrypted with 2048-bit RSA key, ID 8D080768, created 2004-07-16
       </screen>
 
       <para>
-	In this example the <parameter
-	class="command">--output</parameter> parameter is used store
-	the decrypted content in <filename>secret.txt</filename>.
+    Neste exemplo, o parâmetro <parameter
+    class="command">--output</parameter> é usado para armazenar o
+    conteúdo descriptografado no arquivo <filename>secret.txt</filename>.
       </para>
     </sect2>
   </sect1>
