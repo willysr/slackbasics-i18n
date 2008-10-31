@@ -1,117 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
-	 xml:lang="en" xml:id="kernel">
-  <title>Building a kernel</title>
+     xml:lang="en" xml:id="kernel">
+  <title>Construindo um kernel</title>
 
   <sect1 xml:id="chap-kernel-intro">
-    <title>Introduction</title>
+    <title>Introdução</title>
 
     <para>
-      The Linux kernel is shortly discussed in <xref
-      linkend="chap-intro-linux" />. One of the advantages of Linux is
-      that the full sources are available (as most of the Slackware
-      Linux system). This means that you can recompile the
-      kernel. There are many situations in which recompiling the
-      kernel is useful. For example:
-    </para> 
-
-    <itemizedlist>
-      <listitem>
-	<para>
-	  <emphasis role="bold">Making the kernel leaner</emphasis>:
-	  One can disable certain functionality of the kernel, to
-	  decrease its size. This is especially useful in environments
-	  where memory is scarce.
-	</para>
-      </listitem>
-      <listitem>
-	<para>
-	  <emphasis role="bold">Optimizing the kernel</emphasis>: it
-	  is possible to optimize the kernel. For instance, by
-	  compiling it for a specific processor type.
-	</para>
-      </listitem>
-      <listitem>
-	<para>
-	  <emphasis role="bold">Hardware support</emphasis>: Support
-	  for some hardware is not enabled by default in the Linux
-	  kernel provided by Slackware Linux. A common example is
-	  support for SMP systems.
-	</para>
-      </listitem>
-      <listitem>
-	<para>
-	  <emphasis role="bold">Using custom patches</emphasis>: There
-	  are many unofficial patches for the Linux kernel. Generally
-	  speaking it is a good idea to avoid unofficial patches. But
-	  some third party software, like <ulink
-	  url="http://www.netraverse.com">Win4Lin</ulink>, require
-	  that you install an additional kernel patch.
-	</para>
-      </listitem>
-      <listitem>
-	<para>
-	  Making the proper headers and build infrastucture available
-	  to build third-party modules.
-	</para>
-      </listitem>
-    </itemizedlist>
-
-    <para>
-      This chapter focuses on the default kernel series used in
-      Slackware Linux 12.0, Linux 2.6. Compiling a kernel is not
-      really difficult, just keep around a backup kernel that you can
-      use when something goes wrong. Linux compilation involves these
-      steps:
+      O kernel Linux é brevemente apresentado em <xref
+      linkend="chap-intro-linux" />.  Uma das vantagens do Linux é que
+      os fontes completos estão disponíveis (bem como todo o sistema
+      Slackware Linux).  Isto quer dizer que você pode recompilar o
+      kernel.  Há muitas situações em que é útil recompilar o kernel.
+      Por exemplo:
     </para>
 
     <itemizedlist>
       <listitem>
-	<para>
-	  Configuring the kernel.
-	</para>
+    <para>
+      <emphasis role="bold">Deixar o kernel mais enxuto</emphasis>:
+      Você pode desabilitar algumas funcionalidades do kernel para
+      reduzir seu tamanho.  Isso é especialmente útil em ambiente em
+      que a memória seja escassa.
+    </para>
       </listitem>
       <listitem>
-	<para>
-	  Building the kernel.
-	</para>
+    <para>
+      <emphasis role="bold">Otimizar o kernel</emphasis>: é possível
+      otimizar o kernel.  Por exemplo, compilando-o para seu tipo
+      específico de processador.
+    </para>
       </listitem>
       <listitem>
-	<para>
-	  Building modules.
-	</para>
+    <para>
+      <emphasis role="bold">Suporte de hardware</emphasis>: o suporte
+      para alguns hardwares não está disponível no kernel padrão
+      provido pelo Slackware Linux.  Um exemplo comum é o suporte a
+      sistemas SMP.
+    </para>
       </listitem>
       <listitem>
-	<para>
-	  Installing the kernel and modules.
-	</para>
+    <para>
+      <emphasis role="bold">Utilizar patches específicos</emphasis>: há
+      muitos patches não-oficiais para o kernel Linux.  Falando de uma
+      forma geral, é uma boa idéia evitar patches não-oficiais.  Mas
+      alguns softwares de terceiros, como o <ulink
+      url="http://www.netraverse.com">Win4Lin</ulink>, podem precisar
+      que você instale patches adicionais no kernel.
+    </para>
       </listitem>
       <listitem>
-	<para>
-	  Updating the LILO configuration.
-	</para>
+    <para>
+      Pegue os cabeçalhos apropriados e construa a infraestrutura
+      disponível para construir módulos de terceiros.
+    </para>
       </listitem>
     </itemizedlist>
-    
+
     <para>
-      In this chapter, we suppose that the kernel sources are
-      available in <filename>/usr/src/linux</filename>. If you have
-      installed the kernel sources from the <quote>k</quote> disk set,
-      the kernel sources are available in
-      <filename>/usr/src/linux-kernelversion</filename>, and
-      <filename>/usr/src/linux</filename> is a symbolic link to the
-      real kernel source directory. So, if you use the standards
-      Slackware Linux kernel package you are set to go.
+      Este capítulo foca na série do kernel padrão usado no Slackware
+      Linux 12.0, que é o Linux 2.6.  Compilar um kernel não é realmente
+      difícil, apenas mantenha sempre um kernel de backup que você possa
+      usar quando algo der errado.  A compilação do Linux envolve os
+      seguintes passos:
+    </para>
+
+    <itemizedlist>
+      <listitem>
+    <para>
+      Configurar o kernel.
+    </para>
+      </listitem>
+      <listitem>
+    <para>
+      Construir o kernel.
+    </para>
+      </listitem>
+      <listitem>
+    <para>
+      Construir os modules.
+    </para>
+      </listitem>
+      <listitem>
+    <para>
+      Instalar o kernel e os módulos.
+    </para>
+      </listitem>
+      <listitem>
+    <para>
+      Atualizar a configuração do LILO.
+    </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>
+      Neste capítulo, supomos que os fontes do kernel já estão
+      disponíveis em <filename>/usr/src/linux</filename>.  Se você
+      instalou os fontes do kernel a partir da série <quote>k</quote>,
+      os fontes do kernel estão disponíveis em
+      <filename>/usr/src/linux-kernelversion</filename>, e
+      <filename>/usr/src/linux</filename> é um link simbólico para o
+      diretório real dos fontes do kernel.  Então, se você usar os
+      padrões do Slackware Linux, o pacote de kernel que você configurar
+      estará pronto para usar.
     </para>
 
     <para>
-      In contrast to older kernel versions, it is not necessary to use
-      a <filename>/usr/src/linux</filename> symbolink anymore.  If you
-      have extracted newer kernel sources in
-      <filename>/usr/src</filename>, you can build the kernel in
-      <filename>/usr/src/linux-&lt;version&gt;</filename>, and use
-      that directory in the examples in this chapter.
+      Diferente das versões mais antigas do kernel, não é mais necesário
+      usar um link simbólico <filename>/usr/src/linux</filename>.  Se
+      você extraiu os fontes do kernel em <filename>/usr/src</filename>,
+      você pode construir o kernel em
+      <filename>/usr/src/linux-&lt;version&gt;</filename>, e usar esse
+      diretório para os exemplos neste capítulo.
     </para>
   </sect1>
 
@@ -131,7 +132,7 @@
       <filename>/mnt/cdrom</filename>, you can copy the Slackware
       Linux kernel configuration with:
     </para>
-    
+
     <screen>
 # <userinput>cp /mnt/cdrom/kernels/hugesmp.s/config /usr/src/linux/.config</userinput>
     </screen>
@@ -204,7 +205,7 @@ If you have an IBM ThinkPad laptop, say Y or M here.
       configuration will be filled in automatically based on the
       configuration file.
     </para>
-    
+
     <para>
       At this point you can start to actually configure the kernel in
       detail. There are three configuration front-ends to the kernel
@@ -223,12 +224,12 @@ If you have an IBM ThinkPad laptop, say Y or M here.
       kernel with the menu front-end you can use the following
       commands:
     </para>
-    
+
     <screen>
 # <userinput>cd /usr/src/linux</userinput>
 # <userinput>make menuconfig</userinput>
     </screen>
-    
+
     <para>
       Of course, if you prefer, you can also edit the
       <filename>.config</filename> file directly with your favorite
@@ -254,27 +255,27 @@ If you have an IBM ThinkPad laptop, say Y or M here.
 
     <note>
       <para>
-	It is always a good idea to keep your old kernel in modules
-	around, in the case that you have made a configuration error.
-	If the to be compiled kernel has the same version number as
-	the running kernel, you should seriously consider modifying
-	the <emphasis>CONFIG_LOCALVERSION</emphasis> option. The
-	string specified in this option is appended to the version
-	name. For example, if the kernel has version 2.6.21.6, and
-	<emphasis>CONFIG_LOCALVERSION</emphasis> is set to
-	<emphasis>"-smp-ddk"</emphasis>, the kernel version will be
-	<emphasis>2.6.21.6-smp-ddk</emphasis>.
+    It is always a good idea to keep your old kernel in modules
+    around, in the case that you have made a configuration error.
+    If the to be compiled kernel has the same version number as
+    the running kernel, you should seriously consider modifying
+    the <emphasis>CONFIG_LOCALVERSION</emphasis> option. The
+    string specified in this option is appended to the version
+    name. For example, if the kernel has version 2.6.21.6, and
+    <emphasis>CONFIG_LOCALVERSION</emphasis> is set to
+    <emphasis>"-smp-ddk"</emphasis>, the kernel version will be
+    <emphasis>2.6.21.6-smp-ddk</emphasis>.
       </para>
 
       <para>
-	If you don't modify the version in this manner, the
-	installation of modules from the new kernel will overwrite the
-	modules from the running kernel. This is highly uncomfortable
-	if you need to fall back to the old kernel.
+    If you don't modify the version in this manner, the
+    installation of modules from the new kernel will overwrite the
+    modules from the running kernel. This is highly uncomfortable
+    if you need to fall back to the old kernel.
       </para>
     </note>
   </sect1>
-  
+
   <sect1 xml:id="chap-kernel-compile">
     <title>Compilation</title>
 
@@ -289,7 +290,7 @@ If you have an IBM ThinkPad laptop, say Y or M here.
 # <userinput>cd /usr/src/linux</userinput>
 # <userinput>make</userinput>
     </screen>
-    
+
     <para>
       After the compilation is finished, the tree contains the
       compiled modules, and a compressed kernel image named
@@ -298,58 +299,58 @@ If you have an IBM ThinkPad laptop, say Y or M here.
       continue with the installation of the kernel and its modules.
     </para>
   </sect1>
-  
+
   <sect1 xml:id="chap-kernel-install">
     <title>Installation</title>
-    
+
     <sect2 xml:id="chap-kernel-install-kernel">
       <title>Installing the kernel</title>
-      
+
       <para>
-	The next step is to install the kernel and the kernel modules.
-	We will start with installing the kernel modules, because this
-	can be done with one command within the kernel source tree:
+    The next step is to install the kernel and the kernel modules.
+    We will start with installing the kernel modules, because this
+    can be done with one command within the kernel source tree:
       </para>
-      
+
       <screen>
 # <userinput>make modules_install</userinput>
       </screen>
-      
+
       <para>
-	This will install the modules in
-	<filename>/lib/modules/&lt;kernelversion&gt;</filename>. If
-	you are replacing a kernel with the exactly the same version
-	number, it is a good idea to remove the old modules before
-	installing the new ones. E.g.:
+    This will install the modules in
+    <filename>/lib/modules/&lt;kernelversion&gt;</filename>. If
+    you are replacing a kernel with the exactly the same version
+    number, it is a good idea to remove the old modules before
+    installing the new ones. E.g.:
       </para>
-	
+
       <screen>
 # <userinput>rm -rf /lib/modules/2.6.21.5-smp</userinput>
       </screen>
-      
+
       <para>
-	You can <quote>install</quote> the kernel by copying it to the
-	<filename>/boot</filename> directory. You can give it any name
-	you want, but it is a good idea to use some naming
-	convention. E.g.  <filename>vmlinuz-version</filename>. For
-	instance, if you name it
-	<filename>vmlinuz-2.6.21.5-smp-ddk</filename>, you can copy it
-	from within the kernel source tree with:
+    You can <quote>install</quote> the kernel by copying it to the
+    <filename>/boot</filename> directory. You can give it any name
+    you want, but it is a good idea to use some naming
+    convention. E.g.  <filename>vmlinuz-version</filename>. For
+    instance, if you name it
+    <filename>vmlinuz-2.6.21.5-smp-ddk</filename>, you can copy it
+    from within the kernel source tree with:
       </para>
-      
+
       <screen>
 # <userinput>cp arch/i386/boot/bzImage /boot/vmlinuz-2.6.21.5-smp-ddk</userinput>
       </screen>
-      
+
       <para>
-	At this point you are almost finished. The last step is to add
-	the new kernel to the Linux boot loader (LILO) configuration.
+    At this point you are almost finished. The last step is to add
+    the new kernel to the Linux boot loader (LILO) configuration.
       </para>
     </sect2>
-    
+
     <sect2 xml:id="chap-kernel-install-lilo">
       <title>Configuring LILO</title>
-      
+
       <para>
         <acronym>LILO</acronym> (Linux Loader) is the default boot
         loader that Slackware Linux uses. The configuration of LILO
@@ -364,7 +365,7 @@ If you have an IBM ThinkPad laptop, say Y or M here.
         <filename>/etc/lilo.conf</filename> you will see this entry,
         it looks comparable to this:
       </para>
-      
+
       <screen>
 # Linux bootable partition config begins
 image = /boot/vmlinuz
@@ -373,7 +374,7 @@ image = /boot/vmlinuz
   read-only # Non-UMSDOS filesystems should be mounted read-only for checking
 # Linux bootable partition config ends
       </screen>
-      
+
       <para>
         The easiest way to add the new kernel is to duplicate the
         existing entry, and then editing the first entry, changing the
@@ -381,7 +382,7 @@ image = /boot/vmlinuz
         options. After changing the example above it would look like
         this:
       </para>
-      
+
       <screen>
 # Linux bootable partition config begins
 image = /boot/vmlinuz-2.6.21.5-smp-ddk
@@ -395,14 +396,14 @@ image = /boot/vmlinuz
   read-only # Non-UMSDOS filesystems should be mounted read-only for checking
 # Linux bootable partition config ends
       </screen>
-      
+
       <para>
-	As you can see the first <parameter>image</parameter> entry
-	points to the new kernel, and the label of the second entry
-	was changed to <quote>SlackOld</quote>. LILO will
-	automatically boot the first image. You can now install this
-	new LILO configuration with the <command>lilo</command>
-	command:
+    As you can see the first <parameter>image</parameter> entry
+    points to the new kernel, and the label of the second entry
+    was changed to <quote>SlackOld</quote>. LILO will
+    automatically boot the first image. You can now install this
+    new LILO configuration with the <command>lilo</command>
+    command:
       </para>
 
       <screen>
@@ -412,29 +413,29 @@ Added SlackOld
       </screen>
 
       <para>
-	The next time you boot both entries will be available, and the
-	<quote>Slack</quote> entry will be booted by default.
+    The next time you boot both entries will be available, and the
+    <quote>Slack</quote> entry will be booted by default.
       </para>
-      
+
       <note>
-	<para>
-	  If you want LILO to show a menu with the entries configured
-	  via <filename>lilo.conf</filename> on each boot, make sure
-	  that you add a line that says
-	</para>
+    <para>
+      If you want LILO to show a menu with the entries configured
+      via <filename>lilo.conf</filename> on each boot, make sure
+      that you add a line that says
+    </para>
 
-	<screen>
+    <screen>
 prompt
-	</screen>
+    </screen>
 
-	<para>
-	  to <filename>lilo.conf</filename>. Otherwise LILO will boot
+    <para>
+      to <filename>lilo.conf</filename>. Otherwise LILO will boot
           the default entry that is set with
           <emphasis>default=&lt;name&gt;</emphasis>,
           or the first entry when no default kernel is set. You can
           access the menu with entries at any time by holding the
           &lt;Shift&gt; key when LILO is started.
-	</para>
+    </para>
       </note>
     </sect2>
   </sect1>
