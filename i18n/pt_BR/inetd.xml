@@ -1,35 +1,35 @@
 <!-- $Id: inetd.xml 283 2007-09-18 20:14:31Z danieldk $ -->
 
 <chapter> <?dbhtml filename="inetd.html"?>
-<title>The Internet super server</title>
+<title>O super servidor Internet</title>
 
 <sect1>
-<title>Introduction</title>
+<title>Introdução</title>
 
 <para>
-There are two ways to offer TCP/IP services: by running server
-applications standalone as a daemon or by using the Internet
-super server, <command>inetd</command>. <command>inetd</command>
-is a daemon which monitors a range of ports. If a client attempts
-to connect to a port <command>inetd</command> handles the connection
-and forwards the connection to the server software which handles
-that kind of connection. The advantage of this approach is
-that it adds an extra layer of security and it makes it easier
-to log incoming connections. The disadvantage is that it is
-somewhat slower than using a standalone daemon. It is thus
-a good idea to run a standalone daemon on, for example, 
-a heavily loaded FTP server.
+Há duas maneiras de disponibilizar serviços TCP/IP: executando as
+aplicações servidoras de forma independente como daemon ou usando o
+super servidor internet, <command>inetd</command>.  O
+<command>inetd</command> é um daemon que monitora um intervalo de
+portas.  Se um cliente tenta se conectar a uma porta,o
+<command>inetd</command> manipula a conexão e a encaminha para o
+software servidor responsável por aquele tipo de conexão.  A vantagem
+dessa abordagem é que ela adiciona uma camada extra de segurança e torna
+mais fácil o log de conexões entrantes.  A desvantagem é que acaba sendo
+mais lento que usar um daemon independente.  Então, será uma boa idéia
+usar o servidor como daemon indepentente, por exemplo, em um servidor
+FTP bastante carregado.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Configuration</title>
+<title>Configuração</title>
 
 <para>
-<command>inetd</command> can be configured using the
-<filename>/etc/inetd.conf</filename> file. Let's have a look at
-an example line from <filename>inetd.conf</filename>:
+O <command>inetd</command> pode ser configurado através do arquivo
+<filename>/etc/inetd.conf</filename>.  Vamos ver um exemplo de uma linha
+do <filename>inetd.conf</filename>:
 </para>
 
 <screen>
@@ -38,24 +38,25 @@ ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
 </screen>
 
 <para>
-This line specifies that <command>inetd</command> should accept
-FTP connections and pass them to <command>tcpd</command>. This
-may seem a bit odd, because <command>proftpd</command> normally 
-handles FTP connections. You can also specify to use <command>proftpd</command>
-directly in <filename>inetd.conf</filename>, but Slackware Linux normally
-passes the connection to <command>tcpd</command>. This program
-passes the connection to <command>proftpd</command> in turn, as specified.
-<command>tcpd</command> is used to monitor services and to provide
-host based access control.
+Esta linha especifica que o <command>inetd</command> deve aceitar
+conexões FTP e passá-las para o <command>tcpd</command>.  Isto pode
+parecer um pouco estranho, afinal é o <command>proftpd</command> que
+normalmente manipula conexões FTP.  Você também poderia atribuir o
+<command>proftpd</command> diretamente no
+<filename>inetd.conf</filename>, mas o Slackware Linux normalmente passa
+a conexão para o <command>tcpd</command>.  Por sua vez, este programa
+repassa a conexão para o <command>proftpd</command>, como especificado.
+O <command>tcpd</command> é usado para monitorar serviços e permitir
+controle de acesso baseado em hosts.
 </para>
 
 <para>
-Services can be disabled by adding the comment character (#) at
-the beginning of the line. It is a good idea to disable all services
-and enable services you need one at a time. After changing
-<filename>/etc/inetd.conf</filename> <command>inetd</command>
-needs to be restarted to activate the changes. This can be done
-by sending the HUP signal to the inetd process:
+Serviços podem ser desabilitados adicionando-se o caracter de comentário
+(#) no começo da linha.  É uma boa idéia desabilitar todos os serviços e
+deixar habilitados apenas aqueles que você precisar a cada momento.
+Depois de modificar o <filename>/etc/inetd.conf</filename>, o
+<command>inetd</command> precisa ser reiniciado para ativar as mudanças.
+Isto pode ser feito enviando-se um sinal HUP para o processo inetd:
 </para>
 
 <screen>
@@ -65,8 +66,9 @@ by sending the HUP signal to the inetd process:
 </screen>
 
 <para>
-  Or you can use the <filename>rc.inetd</filename> initialization script to
-  restart <command>inetd</command>:
+  Ou você pode usar o script de inicialização
+  <filename>rc.inetd</filename> para reiniciar o
+  <command>inetd</command>:
 </para>
 
 <screen>
@@ -79,9 +81,10 @@ by sending the HUP signal to the inetd process:
 <title>TCP wrappers</title>
 
 <para>
-As you can see in <filename>/etc/inetd.conf</filename> connections for most
-protocols are made through <command>tcpd</command>, instead of directly 
-passing the connection to a service program. For example:
+Como você pode ver no arquivo <filename>/etc/inetd.conf</filename>, as
+conexões para a maioria dos protocolos são feitas por meio do
+<command>tcpd</command>, ao invés de se passar a conexão diretamente
+para o software do serviço.  Por exemplo:
 </para>
 
 <screen>
@@ -90,13 +93,15 @@ ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
 </screen>
 
 <para>
-In this example ftp connections are passed through <command>tcpd</command>.
-<command>tcpd</command> logs the connection through syslog and allows for
-additional checks. One of the most used features of <command>tcpd</command>
-is host-based access control. Hosts that should be denied are controlled
-via <filename>/etc/hosts.deny</filename>, hosts that should be allowed
-via <filename>/etc/hosts.allow</filename>. Both files have one rule on
-each line of the following form:
+Neste exemplo, as conexões ftp são passadas para o
+<command>tcpd</command>.  O <command>tcpd</command> registra logs das
+conexões por meio do syslog e permite verificações adicionais.  Um dos
+recursos mais usado do <command>tcpd</command> é o controle de acesso
+baseado em hosts.  Hosts que devem ter acesso negado são determinados
+pelo <filename>/etc/hosts.deny</filename>, enquanto que os hosts com
+permissão de acesso são definidos via
+<filename>/etc/hosts.allow</filename>.  Ambos os arquivos levam uma
+regra por linha, da seguinte forma:
 </para>
 
 <screen>
@@ -104,16 +109,16 @@ service: hosts
 </screen>
 
 <para>
-Hosts can be specified by hostname or IP address. The ALL keyword specifies
-all hosts or all services.
+Os hosts podem ser espeficiados pelo nome de host ou por seu endereço
+IP.  A palavra-chave ALL significa todos os hosts ou todos os serviços.
 </para>
 
 <para>
-Suppose we want to block access to all services managed through 
-<command>tcpd</command>, except for host 
-<quote>trusted.example.org</quote>. To do this the following
-<filename>hosts.deny</filename> and <filename>hosts.allow</filename>
-files should be created.
+Suponha que nós queremos bloquear acesso a todos os serviços gerenciados
+pelo <command>tcpd</command>, exceto para o host
+<quote>trusted.example.org</quote>.  Para isso, os seguintes arquivos
+<filename>hosts.deny</filename> e <filename>hosts.allow</filename> devem
+ser criados.
 </para>
 
 <para>
@@ -133,10 +138,10 @@ ALL: trusted.example.org
 </screen>
 
 <para>
-In the <filename>hosts.deny</filename> access is blocked to all (ALL)
-services for all (ALL) hosts. But <filename>hosts.allow</filename>
-specifies that all (ALL) services should be available to
-<quote>trusted.example.org</quote>.
+No arquivo <filename>hosts.deny</filename>, o acesso é bloqueado para
+todos (ALL) os serviços e para todos (ALL) os hosts.  Mas o arquivo
+<filename>hosts.allow</filename> especifica que todos (ALL) os serviços
+devem estar disponíveis para <quote>trusted.example.org</quote>.
 </para>
 
 </sect1>
