@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
-	 xmlns:xl="http://www.w3.org/1999/xlink"
-	 xml:lang="en"
-	 xml:id="chap-x11">
+     xmlns:xl="http://www.w3.org/1999/xlink"
+     xml:lang="en"
+     xml:id="chap-x11">
   <title>X11</title>
 
   <sect1 xml:id="chap-x11-config">
-    <title>X Configuration</title>
+    <title>Configuração do X</title>
 
     <para>
-      The X11 configuration is stored in
-      <filename>/etc/X11/xorg.conf</filename>.  Many distributions
-      provide special configuration tools for X, but Slackware Linux
-      only provides the standard X11 tools (which are actually quite
-      easy to use). In most cases X can be configured automatically,
-      but sometimes it is necessary to edit
-      <filename>/etc/X11/xorg.conf</filename> manually.
+      A configuração do X11 é armazenada em
+      <filename>/etc/X11/xorg.conf</filename>.  Muitas distribuições
+      oferecem ferramentas de configuração especiais para o X, mas o
+      Slackware Linux dispõe apenas das ferramentas padrão do X11 (que
+      são bem fáceis de usar).  Na maioria dos casos o X pode ser
+      configurado automaticamente mas algumas vezes é necessário editar
+      o <filename>/etc/X11/xorg.conf</filename> manualmente.
     </para>
 
     <sect2 xml:id="chap-x11-config-automatic">
-      <title>Automatic configuration</title>
+      <title>Configuração automática</title>
 
       <para>
-	The X11 server provides an option to automatically generate a
-	configuration file. X11 will load all available driver
-	modules, and will try to detect the hardware, and generate a
-	configuration file. Execute the following command to generate
-	a <filename>xorg.conf</filename> configuration file:
+    O servidor X11 dispõe uma opção para gerar um arquivo de
+    configuração automaticamente.  O X11 irá carregar todos os módulos
+    dos drivers disponíveis, e irá tentar detectar o hardware, e gerar
+    um arquivo de configuração.  Execute o seguinte comando para gerar
+    um arquivo de configuração <filename>xorg.conf</filename>:
       </para>
 
       <screen>
@@ -34,9 +34,9 @@ $ <userinput>X -configure</userinput>
       </screen>
 
       <para>
-	If X does not output any errors, the generated configuration
-	can be copied to the <filename>/etc/X11</filename>
-	directory. And X can be started to test the configuration:
+    Se o X não der nenhum erro na saída, a configuração pode ser copiada
+    para o diretório <filename>/etc/X11</filename>.  E o X pode ser
+    reiniciado para teste da nova configuração:
       </para>
 
       <screen>
@@ -46,80 +46,86 @@ $ <userinput>startx</userinput>
     </sect2>
 
     <sect2 xml:id="chap-x11-config-interactive">
-      <title>Interactive configuration</title>
+      <title>Configuração interativa</title>
 
       <para>
-	X11 provides two tools for configuring X interactively,
-	<command>xorgcfg</command> and <command>xorgconfig</command>.
-	<command>xorgcfg</command> tries to detect the video card
-	automatically, and starts a tool which can be used to tune the
-	configuration.  Sometimes <command>xorgcfg</command> switches
-	to a video mode which is not supported by the monitor. In that
-	case <command>xorgcfg</command> can also be used in text-mode,
-	by starting it with <command>xorgcfg -textmode</command>.
+    O X11 dispõe de duas ferramentas para configuração do X de forma
+    interativa, <command>xorgcfg</command> e
+    <command>xorgconfig</command>.  O <command>xorgcfg</command> tenta
+    detectar a placa de vídeo automaticamente, e inicia uma ferramenta
+    que pode ser usada para ajustar a configuração.  Algumas vezes o
+    <command>xorgcfg</command> troca para um modo de vídeo não suportado
+    pelo monitor.  Neste caso, o <command>xorgcfg</command> também pode
+    ser usado em modo texto, ao ser executado com <command>xorgcfg
+    -textmode</command>.
       </para>
 
       <para>
-	<command>xorgconfig</command> differs from the tools described
-	above, it does not detect hardware and will ask detailed
-	questions about your hardware. If you only have little
-	experience configuring X11 it is a good idea to avoid
-	<command>xorgconfig</command>.
+    Já o <command>xorgconfig</command> difere das ferramentas descritas
+    acima, ele não detecta o hardware e irá fazer perguntas a você sobre
+    detalhes de seu hardware.  Se você tiver pouca experiência na
+    configuração do X11 é uma boa idéia evitar o
+    <command>xorgconfig</command>.
       </para>
     </sect2>
   </sect1>
 
   <sect1 xml:id="chap-x11-wm">
-    <title>Window manager</title>
+    <title>Gerenciador de janelas</title>
 
     <para>
-      The <quote>look and feel</quote> of X11 is managed by a
-      so-called window manager.  Slackware Linux provides the
-      following widely-used window managers:
+      A <quote>aparência e comportamento</quote>
+      (<foreignphrase>look-and-feel</foreignphrase>) do X11 é gerenciada
+      por um, assim chamado, gerenciador de janelas.  O Slackware Linux
+      dispõe dos seguintes gerenciadores de janelas, que são os mais
+      largamente usados:
     </para>
 
     <itemizedlist>
       <listitem>
-	<para>
-	  WindowMaker: A relatively light window manager, which is
-	  part of the GNUStep project.
-	</para>
+    <para>
+      WindowMaker: Um gerenciador de janelas relativamente leve, que é
+      parte do projeto GNUStep.
+    </para>
       </listitem>
       <listitem>
-	<para>
-	  BlackBox: Light window manager, BlackBox has no dependencies
-	  except the X11 libraries.
-	</para>
+    <para>
+      BlackBox: Gerenciador de janelas bastante leve, o BlackBox não
+      possui quaisquer dependências a não ser das próprias bibliotecas
+      do X11.
+    </para>
       </listitem>
       <listitem>
-	<para>
-	  KDE: A complete desktop environment, including browser,
-	  e-mail program and an office suite (KOffice).
-	</para>
+    <para>
+      KDE: Um ambiente de trabalho completo, incluindo navegador web,
+      programa de e-mail e suíte de escritório (KOffice).
+    </para>
       </listitem>
       <listitem>
-	<para>
-	  Xfce: A lightweight desktop environment. This is an ideal
-	  environment if you would like to have a userfriendly desktop
-	  that runs on less capable machines.
-	</para>
+    <para>
+      Xfce: Um ambiente de trabalho mais leve.  É ideal se você gosta de
+      um ambiente bastante amigável e que pode ser executado mesmo em
+      máquinas sem muitos recursos.
+    </para>
       </listitem>
     </itemizedlist>
 
     <para>
-      If you are used to a desktop environment, using KDE or Xfce is a
-      logical choice. But it is a good idea to try some of the lighter
-      window managers. They are faster, and consume less memory,
-      besides that most KDE and Xfce applications are perfectly usable
-      under other window managers.
+      Se você está acostumado a usar ambientes de trabalho, o KDE ou o
+      Xfce são as escolhas mais lógicas.  Mas é uma boa idéia
+      experimentar alguns dos gerenciadores de janelas mais leves.  Eles
+      são rápidos e consomem menos memória, além do que a maioria das
+      aplicações para KDE e Xfce podem ser usadas perfeitamente com
+      outros gerenciadores de janelas.
     </para>
 
     <para>
-      On Slackware Linux the <command>xwmconfig</command> command can
-      be used to set the default window manager. This program shows
-      the installed window managers, from which you can choose
-      one. You can set the window manager globally by executing
-      <command>xwmconfig</command> as root.
+      No Slackware Linux, o comando <command>xwmconfig</command> pode
+      ser usado para definir o gerenciador de janelas padrão.  Este
+      programa exibe todos os gerenciadores de janelas instalados, para
+      que você possa escolher um.  Você pode definir o gerenciador de
+      janelas globalmente para todos os usuários executando o
+      <command>xwmconfig</command> como root.
     </para>
   </sect1>
 </chapter>
