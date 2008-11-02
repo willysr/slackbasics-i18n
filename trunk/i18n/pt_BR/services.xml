@@ -1,30 +1,30 @@
 <!-- $Id: services.xml 283 2007-09-18 20:14:31Z danieldk $ -->
 
 <chapter> <?dbhtml filename="services.html"?>
-<title>Networking services</title>
+<title>Serviços de rede</title>
 
 <sect1>
-<title>The internet super server</title>
+<title>O super servidor internet</title>
 
 <para>
-There are two ways to offer TCP/IP services: by running server
-applications standalone as a daemon or by using the internet
-super server, <command>inetd</command>. <command>inetd</command>
-is a daemon which monitors a range of ports. If a client attempts
-to connect to a port <command>inetd</command> handles the connection
-and forwards the connection to the server software which handles
-that kind of connection. The advantage of this approach is
-that it adds an extra layer of security and it makes it easier
-to log incoming connections. The disadvantage is that it is
-somewhat slower than using a standalone daemon. It is thus
-a good idea to run a standalone daemon on, for example, 
-a heavily loaded FTP server.
+Há duas maneiras de disponibilizar serviços TCP/IP: executando as
+aplicações servidoras de forma independente como daemon ou usando o
+super servidor internet, <command>inetd</command>.  O
+<command>inetd</command> é um daemon que monitora um intervalo de
+portas.  Se um cliente tenta se conectar a uma porta,o
+<command>inetd</command> manipula a conexão e a encaminha para o
+software servidor responsável por aquele tipo de conexão.  A vantagem
+dessa abordagem é que ela adiciona uma camada extra de segurança e torna
+mais fácil o log de conexões entrantes.  A desvantagem é que acaba sendo
+mais lento que usar um daemon independente.  Então, será uma boa idéia
+usar o servidor como daemon indepentente, por exemplo, em um servidor
+FTP bastante carregado.
 </para>
 
 <para>
-<command>inetd</command> can be configured using the
-<filename>/etc/inetd.conf</filename> file. Let's have a look at
-an example line from <filename>inetd.conf</filename>:
+O <command>inetd</command> pode ser configurado através do arquivo
+<filename>/etc/inetd.conf</filename>.  Vamos ver um exemplo de uma linha
+do <filename>inetd.conf</filename>:
 </para>
 
 <screen>
@@ -33,24 +33,25 @@ ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
 </screen>
 
 <para>
-This line specifies that <command>inetd</command> should accept
-FTP connections and pass them to <command>tcpd</command>. This
-may seem a bit odd, because <command>proftpd</command> normally 
-handles FTP connections. You can also specify to use <command>proftpd</command>
-directly in <filename>inetd.conf</filename>, but Slackware Linux normally
-passes the connection to <command>tcpd</command>. This program
-passes the connection to <command>proftpd</command> in turn, as specified.
-<command>tcpd</command> is used to monitor services and to provide
-host based access control.
+Esta linha especifica que o <command>inetd</command> deve aceitar
+conexões FTP e passá-las para o <command>tcpd</command>.  Isto pode
+parecer um pouco estranho, afinal é o <command>proftpd</command> que
+normalmente manipula conexões FTP.  Você também poderia atribuir o
+<command>proftpd</command> diretamente no
+<filename>inetd.conf</filename>, mas o Slackware Linux normalmente passa
+a conexão para o <command>tcpd</command>.  Por sua vez, este programa
+repassa a conexão para o <command>proftpd</command>, como especificado.
+O <command>tcpd</command> é usado para monitorar serviços e permitir
+controle de acesso baseado em hosts.
 </para>
 
 <para>
-Services can be disabled by adding the comment character (#) at
-the beginning of the line. It is a good idea to disable all services
-and enable services you need one at a time. After changing
-<filename>/etc/inetd.conf</filename> <command>inetd</command>
-needs to be restarted to activate the changes. This can be done
-by sending the HUP signal to the inetd process:
+Serviços podem ser desabilitados adicionando-se o caracter de comentário
+(#) no começo da linha.  É uma boa idéia desabilitar todos os serviços e
+deixar habilitados apenas aqueles que você precisar a cada momento.
+Depois de modificar o <filename>/etc/inetd.conf</filename>, o
+<command>inetd</command> precisa ser reiniciado para ativar as mudanças.
+Isto pode ser feito enviando-se um sinal HUP para o processo inetd:
 </para>
 
 <screen>
@@ -62,20 +63,22 @@ by sending the HUP signal to the inetd process:
 </sect1>
 
 <sect1>
-<title>Caching nameserver</title>
+<title>Cache de servidor de nomes</title>
 
 <para>
-A caching nameserver provides DNS services for a machine or a network,
-but does not provide DNS for a domain. That means it can only be used
-to convert hostnames to IP addresses. Setting up a nameserver with
-Slackware Linux is fairly easy, because BIND is configured as a
-caching nameserver by default. Enabling the caching nameserver takes
-just two steps: you have to install BIND and alter the initialization
-scripts. BIND can be installed by adding the bind package from
-the <quote>n</quote> disk set. After that bind can be started by executing the
-<command>named</command> command. If want to start BIND by
-default, make the <filename>/etc/rc.d/rc.bind</filename> file executable.
-This can be done by executing the following command as root:
+Um cache de servidor de nomes disponibiliza os serviços de DNS para uma
+máquina ou uma rede, mas não fornece DNS para um domínio.  Isto
+significa que tal servidor pode ser usado apenas para converter nomes de
+hosts em endereços IP.  Configurar um servidor de nomes no Slackware
+Linux é muito fácil, pois o BIND já é definido como ser usado como cache
+de servidor de nomes por padrão.  Habilitar o cache de servidor de nomes
+leva apenas dois passos: você tem que instalar o BIND e alterar os
+scripts de inicialização.  O BIND pode ser instalado adicionando-se o
+pacote bind a partir da série <quote>n</quote>.  Depois, o bind pode ser
+iniciado executando-se o comando <command>named</command>.  Se quiser
+iniciar o BIND por padrão, deixe o arquivo
+<filename>/etc/rc.d/rc.bind</filename> executável.  Isto pode ser feito
+como root com o seguinte comando:
 </para>
 
 <screen>
@@ -83,40 +86,43 @@ This can be done by executing the following command as root:
 </screen>
 
 <para>
-If you want to use the nameserver on the machine that runs BIND,
-you also have to alter <filename>/etc/resolv.conf</filename>.
+Se você quiser usar o servidor de nomes na máquina que executa o BIND,
+você também precisa alterar o <filename>/etc/resolv.conf</filename>.
 </para>
 
 </sect1>
 
 <sect1>
-<title>The Apache webserver</title>
+<title>O servidor web Apache</title>
 
 <para>
-Apache is the most widely userd webserver on the internet, and is,
-of course, part of Slackware Linux. Apache can be installed by
-adding the <filename>apache</filename> pacakge from the <quote>n</quote> disk set.
-If you also want to use PHP, the <filename>php</filename> (<quote>n</quote> disk set)
-and <filename>mysql</filename> (<quote>ap</quote> disk set) are also required.
-MySQL is required, because the precompiled PHP depends on MySQL shared 
-libraries. You do not have to run MySQL itself. After installing Apache
-it can be started automatically while booting the system by making
-the <filename>/etc/rc.d/rc.httpd</filename> file executable. You
-can do this by executing: 
+Apache é o servidor web mais difundido e mais utilizado na internet, e é
+claro, é parte do Slackware Linux.  O Apache pode ser instalado
+adicionando-se o pacote <filename>apache</filename> a partir do conjunto
+da série <quote>n</quote>.  Se você também quiser usar PHP, os pacotes
+<filename>php</filename> (série <quote>n</quote>) e
+<filename>mysql</filename> (série <quote>ap</quote>) também são
+requeridos.  O MySQL é necessário porque o pacote precompilado do PHP
+depende de bibliotecas compartilhadas do MySQL.  Você não precisa
+executar o MySQL em si.  Depois de instalar o Apache, ele pode ser
+executado automaticamente na inicialização do sistema deixando-se o
+arquivo <filename>/etc/rc.d/rc.httpd</filename> executável.  Você pode
+fazer isso com o comando:
 </para>
 
 <screen>
 # <command>chmod a+x /etc/rc.d/rc.httpd</command>
-</screen> 
+</screen>
 
 <para>
-The Apache configuration can be altered in the 
-<filename>/etc/apache/httpd.conf</filename> file. Apache can be
-stopped/started/restarted every moment with the <command>apachectl</command>
-command, and the <parameter class="command">stop</parameter>, 
-<parameter class="command">start</parameter> and 
-<parameter class="command">restart</parameter> parameters. For example,
-execute the following command to restart Apache:
+A configuração do Apache pode ser alterada no arquivo
+<filename>/etc/apache/httpd.conf</filename>.  O Apache pode ser
+parado/iniciado/reiniciado a qualquer momento com o comando
+<command>apachectl</command>, e os respectivos parâmetros <parameter
+class="command">stop</parameter>, <parameter
+class="command">start</parameter> e <parameter
+class="command">restart</parameter>.  Por exemplo,
+execute o seguinte comando para reiniciar o Apache:
 </para>
 
 <screen>
