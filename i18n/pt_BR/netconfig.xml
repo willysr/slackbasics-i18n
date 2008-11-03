@@ -1,53 +1,53 @@
 <!-- $Id: netconfig.xml 295 2007-09-18 23:03:49Z danieldk $ -->
 
 <chapter id="sysadmin-netconfig"> <?dbhtml filename="netconfig.html"?>
-<title>Networking configuration</title>
+<title>Configuração de rede</title>
 
 <sect1 id="sysadmin-netconfig-hardware">
 <title>Hardware</title>
 
-<bridgehead>Network cards (NICs)</bridgehead>
+<bridgehead>Placas de rede</bridgehead>
 
 <para>
-Drivers for NICs are installed as kernel modules. The module for
-your NIC has to be loaded during the initialization of Slackware Linux.
-On most systems the NIC is automatically detected and configured
-during the installation of Slackware Linux. You can reconfigure
-your NIC with the <command>netconfig</command> command.
-<command>netconfig</command> adds the driver (module) for the detected
-card to <filename>/etc/rc.d/rc.netdevice</filename>. 
+Os drivers para a placa de rede são instalados como módulos do kernel. 
+O módulo para a sua placa é carregada durante a inicialização do 
+Slackware Linux. Na maioria do sistemas a placa de rede é automaticamente
+detectada e configurada durante a instalação do Slackware Linux. Você
+pode reconfigurá-la utilizando o comando <command>netconfig</command>.
+O <command>netconfig</command> adiciona o driver (módulo) para a placa
+detectada no arquivo <filename>/etc/rc.d/rc.netdevice</filename>.
 </para>
 
 <para>
-It is also possible to manually configure which modules should be
-loaded during the initialization of the system. This can be done
-by adding a <command>modprobe</command> line to
-<filename>/etc/rc.d/rc.modules</filename>. For example, if you want
-to load the module for 3Com 59x NICs (3c59x.o), add the following
-line to <filename>/etc/rc.d/rc.modules</filename> 
+Também é possível configurar quais módulos devem ser carregados durante a
+inicialização do sistema. Isto pode ser feito adicionando uma linha com
+o comando <command>modprobe</command> no arquivo 
+<filename>/etc/rc.d/rc.modules</filename>. Por exemplo, se você precisa
+carregar o módulo para as placas 3Com 59x (3c59x.o), adicione a seguinte 
+linha no arquivo <filename>/etc/rc.d/rc.modules</filename> 
 </para>
 
 <screen>
 /sbin/modprobe 3c59x
 </screen>
 
-<bridgehead>PCMCIA cards</bridgehead>
+<bridgehead>Placas PCMCIA</bridgehead>
 
 <para>
-Supported PCMCIA cards are detected automatically by the PCMCIA
-software. The pcmcia-cs packages from the <quote>a</quote> disk set provides
-PCMCIA functionality for Slackware Linux.
+Placas PCMCIA suportadas são detectadas automaticamente pelo software
+responsável por este tipo de placa. Os pacotes pcmcia-cs do conjunto 
+<quote>a</quote> do CD provê todas as funcionalidades para placas PCMCIA 
+para o Slackware Linux.
 </para> 
 
 </sect1>
 
 <sect1>
-<title>Configuration of interfaces</title>
+<title>Configuração das interfaces</title>
 
 <para>
-Network cards are available under Linux through so-called <quote>interfaces</quote>.
-The <command>ifconfig</command> command can be used to display the
-available interfaces:
+Placas de rede disponíveis no Linux são chamadas de <quote>interfaces</quotes>.
+O comando <command>ifconfig</command> pode ser usado para mostrar as interfaces disponíveis:
 </para>
 
 <screen>
@@ -71,13 +71,13 @@ lo        Link encap:Local Loopback
 </screen>
 
 <para>
-Network cards get the name ethn, in which n is a number, starting with
-0. In the example above, the first network card (eth0) already has an
-IP address. But unconfigured interfaces have no IP address, the
-<command>ifconfig</command> will not show IP addresses for unconfigured
-interfaces. Interfaces can be configured in the 
-<filename>/etc/rc.d/rc.inet1.conf</filename> file. You can simply read
-the comments, and fill in the required information. For example:
+As placas de rede recebem o nome ethn, onde o n é um número, começando 
+em 0. No exemplo anterior, a primeira placa de rede (eth0) já possui um
+endereço IP. Mas placas desconfiguradas não possuem endereço IP, o comando 
+<command>ifconfig</command> não irá mostrar endereços IP para interfaces 
+desconfiguradas. As interfaces podem ser configuradas no arquivo 
+<filename>/etc/rc.d/rc.inet1.conf</filename>. Você pode simplesmente ler 
+os comentários, e preencher as informações necessárias. Por exemplo:
 </para>
 
 <screen>
@@ -89,12 +89,12 @@ DHCP_HOSTNAME[0]=""
 </screen>
 
 <para>
-In this example the IP address 192.168.1.1 with the 255.255.255.0
-netmask is assigned to the first ethernet interface (eth0). If you
-are using a DHCP server you can change the <emphasis>USE_DHCP=""</emphasis> 
-line to <emphasis>USE_DHP[n]="yes"</emphasis> (swap <quote>n</quote> with 
-the interface number). Other variables, except <emphasis>DHCP_HOSTNAME</emphasis>
-are ignored when using DHCP. For example:
+Neste exemplo o endereço IP 192.168.1.1 com a máscara de rede 255.255.255.0 
+é atribuído à primeira interface ethernet (eth0). Se você está usando um 
+servidor DHCP você pode alterar a linha <emphasis>USE_DHCP=""</emphasis> 
+para <emphasis>USE_DHP[n]="yes"</emphasis> (troque <quote>n</quote> pelo 
+número da interface). Outras variáveis, exceto <emphasis>DHCP_HOSTNAME</emphasis>
+são ignoradas quando se usa DHCP. Por exemplo:
 </para>
 
 <screen>
@@ -105,40 +105,37 @@ DHCP_HOSTNAME[1]=""
 </screen>
 
 <para>
-The same applies to other interfaces. You can activate the settings
-by rebooting the system or by executing <command>/etc/rc.d/rc.inet1</command>.
-It is also possible to reconfigure only one interface with
-<command>/etc/rc.d/rc.inet1 ethX_restart</command>, in which
-<emphasis>ethX</emphasis> should be replaced by the name of the interface
-that you would like to reconfigure.
+O mesmo se aplica a outras interfaces. Você pode ativar as configurações 
+reiniciando o sistema ou executando o comando <command>/etc/rc.d/rc.inet1</command>.
+É possível também reconfigurar apenas uma interface com o comando
+<command>/etc/rc.d/rc.inet1 ethX_restart</command>, onde o <emphasis>ethX</emphasis> 
+deve ser substituído pelo nome da interface que você quer reconfigurar.
 </para>
 </sect1>
 
 <sect1>
-<title>Configuration of interfaces (IPv6)</title>
+<title>Configuração de interfaces (IPv6)</title>
 
 <sect2>
-<title>Introduction</title>
+<title>Introdução</title>
 
 <para>
-<acronym>IPv6</acronym> is the next generation internet protocol. One
-of  the advantages is that it has a much larger address space. In IPv4
-(the internet protocol that is commonly used today) addresses are
-32-bit, this address space is almost completely used right now, and
-there is a lack of IPv4 addresses.  IPv6 uses 128-bit addresses, which
-provides an unimaginable huge address space (2^128 addresses). IPv6
-uses another address notation, first of all hex numbers are used
-instead of decimal numbers, and the address is noted in pairs of
-16-bits, separated by a colon (<quote>:</quote>).  Let's have a look
-at an example address: </para>
+<acronym>IPv6</acronym> é a próxima versão do protocolo de internet. Uma das 
+vantagens que ela possui é a grande quantidade de endereços. No IPv4 (o 
+protocolo de internet mais utilizado atualmente) os endereços são de 32 bits, 
+e há uma falta desses endereços. O IPv6 usa endereços de 128 bits, que provê 
+uma inimaginável quantidade de endereços (2^128 endereços). Nele é utilizado 
+outra notação de endereços. São usados números hexadecimais em vez de decimais, 
+e os endereços são organizados em pares de 16 bits, separados por dois pontos 
+(<quote>:</quote>). Vamos dar uma olhada em um exemplo: </para>
 
 <screen>
 fec0:ffff:a300:2312:0:0:0:1
 </screen>
 
 <para>
-A block of zeroes can be replaced by two colons (<quote>::</quote>). Thus,
-thee address above can be written as:
+Um bloco de zeros pode ser substituído por um par de dois pontos. Portanto, 
+o endereço anterior pode ser escrito assim:
 </para>
 
 <screen>
