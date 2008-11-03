@@ -21,7 +21,7 @@ ipsec.xml
 latex.xml
 miscadmin.xml
 mutt.xml
-netconfig.xml
+netconfig.xml - Em andamento (Thiago Coutinho)
 normal.css
 preface.xml - OK
 printing.xml
