@@ -1,141 +1,152 @@
 <!-- $Id: mutt.xml 333 2007-10-21 17:20:54Z danieldk $ -->
 
 <chapter id="email-mutt"> <?dbhtml filename="mutt.html"?>
-  <title>Reading and writing e-mail with mutt</title>
+  <title>Lendo e escrevendo e-mails com o mutt</title>
 
   <indexterm><primary>mutt</primary></indexterm>
 
   <sect1 id="email-mutt-introduction">
-    <title>Introduction</title>
+    <title>Introdução</title>
 
     <indexterm><primary>MUA</primary></indexterm>
-    <indexterm><primary>Mail User Agent</primary></indexterm>
+    <indexterm><primary>Agente Usuário de Correio (<foreignphrase>Mail User Agent</foreignphrase>)</primary></indexterm>
 
     <para>
-      Mutt is a mail user agent (<acronym>MUA</acronym>) that can be used
-      for reading and writing e-mail. Mutt is a text-mode installation,
-      meaning that it can be used on the console, over SSH and in an X
-      terminal. Due to its menu interface, it is very easy to read large
-      amounts of e-mail in a short time, and mutt can be configured to
-      use your favorite text editor.
+      O mutt é um agente usuário de correio (<acronym>MUA</acronym>) que
+      pode ser usado para leitura e escrita de e-mail.  O mutt é uma
+      aplicação em modo texto, significando que ele pode ser usado na
+      console, sobre SSH ou em um terminal do X.  Por meio de sua
+      interface de menu, é muito fácil ler grandes quantidades de
+      mensagens de e-mail em um curto tempo, e o mutt também pode ser
+      configurado para usar seu editor de texto preferido.
     </para>
 
     <para>
-      This chapter will discuss how you can customize mutt for your needs,
-      how to use it, and how PGP/GnuPG support is used.
+      Este capítulo irá discutir como você pode personalizar o mutt para
+      suas necessidades, como utilizá-lo, e como o suporte a PGP/GnuPG é
+      usado.
     </para>
   </sect1>
 
   <sect1 id="email-mutt-usage">
-    <title>Usage</title>
+    <title>Utilização</title>
 
     <para>
-      Mutt is pretty simple to use, though it may take some time to get
-      used to the keys that are used to navigate, read and write e-mails.
-      The next few sections describe some of the more important keys. Mutt
-      provides a more thorough overview of available keys after pressing
-      the &lt;h&gt; key.
+      O mutt é bastante simples de se usar, ainda que possa levar um
+      tempo até você se ambientar com as teclas usadas para navegar, ler
+      e escrever e-mails.  As próximas seções descrevem algumas das
+      teclas mais importantes.  O mutt apresenta uma visão geral mais
+      aprofundada das teclas disponíveis ao se pressional a tecla
+      &lt;h&gt;.
     </para>
 
     <sect2 id="email-mutt-usage-browsing">
-      <title>Browsing the list of e-mails</title>
-      
+      <title>Navegando numa lista de e-mails</title>
+
       <para>
-        After invoking the <command>mutt</command> command, an overview
-        of all e-mails will show up. You can browse through the list of
-        e-mails with the up and down arrow keys, or the &lt;k&gt; and
-        &lt;j&gt; keys. 
+        Depois de invocar o comando <command>mutt</command>, uma visão
+        geral de todos os e-mails será mostrada.  Você pode navegar ao
+        longo da lista de e-mails com as teclas de setas para cima e
+        seta para baixo, ou ainda com as teclas &lt;k&gt; e &lt;j&gt;.
       </para>
 
     </sect2>
 
     <sect2 id="email-mutt-usage-reading">
-      <title>Reading e-mails</title>
-      
+      <title>Lendo e-mails</title>
+
       <para>
-        To read an e-mail, use the &lt;Enter&gt; key, after selecting an
-        e-mail in the overview of e-mails.
-        When reading an e-mail you can use the &lt;Page Up&gt; and
-        &lt;Page Down&gt; to browse through an e-mail. You can still use
-        the navigational keys used to browse the list of e-mail to browse
-        to other e-mails.
+        Para ler um e-mail, use a tecla &lt;Enter&gt; depois de
+        selecionar uma mensagem na lista da visão geral de e-mails.  Ao
+        ler um e-mail você pode usar &lt;Page Up&gt; e &lt;Page Down&gt;
+        para navegar ao longo da mensagem.  Você ainda pode usar as
+        setas de navegação usadas para navegar na lista de e-mails para
+        visualizar outras mensagens.
       </para>
 
       <para>
-        If an e-mail has any attachments, you can see them by pressing
-        the &lt;v&gt; key. You can view individual attachments by selecting
-        them and pressing the &lt;Enter&gt; key. To save an attachment to
-        a file, press the &lt;s&gt; key.
+        Se um e-mail tiver anexos, você pode vê-los pressionando a tecla
+        &lt;v&gt;.  Você pode ver anexos individuais selecionando-os e
+        pressionando a tecla &lt;Enter&gt;.  Para salvar um anexo para
+        um arquivo, pressione a tecla &lt;s&gt;.
       </para>
     </sect2>
-    
+
     <sect2 id="email-mutt-usage-sending">
-      <title>Sending e-mails</title>
+      <title>Enviando e-mails</title>
 
       <para>
-        You can compose a new e-mail with the &lt;c&gt; key, or reply
-        to a selected e-mail with the &lt;r&gt; key. Mutt will ask you
-        to specify the recipient (<emphasis>To:</emphasis>), and a
-        subject (<emphasis>Subject:</emphasis>). After entering this
-        information an editor is launched (<command>vi</command> is used
-        by default), which you can use to compose the e-mail. After saving
-        the e-mail, and quitting the editor, mutt will give you the
-        opportunity to make any changes to the e-mail. If you decide
-        that you want to alter the e-mail, you can restart the editor
-        with the &lt;e&gt; key. You can change the recipient or the
-        subject with respectively &lt;t&gt; or &lt;s&gt;. Finally, you
-        can send the e-mail by pressing &lt;y&gt;. If you would like to
-        cancel the e-mail, press &lt;q&gt;. Mutt will ask you whether you
-        want to postpone the e-mail. If you do so, you will be given the
-        opportunity to re-do the e-mail the next time you compose a
-        message.
+        Você pode compor um novo e-mail com a tecla &lt;c&gt;, ou
+        responder a uma mensagem selecionada com a tecla &lt;r&gt;.  O
+        mutt irá lhe pedir que você especifique um destinatário
+        (<emphasis>To:</emphasis>), e um título de mensagem
+        (<emphasis>Subject:</emphasis>).  Depois de entrar com essas
+        informações, um editor de texto é executado
+        (o <command>vi</command> é usado por padrão), o qual você pode
+        usar para compor a mensgem.  Depois de salvar o conteúdo do
+        e-mail e fechar o editor, o mutt lhe dará a oportunidade de
+        fazer quaisquer alterações no e-mail.  Se você decidir que quer
+        alterar a mensagem, você pode executar novamente o editor com a
+        tecla &lt;e&gt;.  Você pode modificar o destinatário ou título
+        da mensagem, respectivamente, com as teclas &lt;t&gt; ou
+        &lt;s&gt;.  Finalmente, você pode enviar o e-mail pressionando
+        &lt;y&gt;.  Se você quiser cancelar sua mensagem, pressione
+        &lt;q&gt;.  O mutt irá lhe perguntar se você gostaria de
+        postergar o e-mail para depois.  Se você fizer isso, você poderá
+        refazer esse e-mail na próxima vez em que tentar compor uma
+        mensagem.
       </para>
     </sect2>
 
   </sect1>
 
   <sect1 id="email-mutt-basicsetup">
-    <title>Basic setup</title>
+    <title>Configuração básica</title>
 
     <para>
-      There are a few mutt settings you often want to configure. This section
-      describes these settings. User-specific mutt customizations can be made
-      in the <filename>.muttrc</filename> in the user's home directory. You
-      can change global mutt settings in <filename>/etc/mutt/Muttrc</filename>.
+      Há poucas configurações do mutt que você frequentemente deve
+      querer configurar.  Esta seção descreve tais configurações.
+      Configurações do mutt por usuário podem ser feitas no arquivo
+      <filename>.muttrc</filename> dentro do diretório home do usuário.
+      E você também pode modificar configurações globais do mutt em
+      <filename>/etc/mutt/Muttrc</filename>.
     </para>
 
     <sect2 id="email-mutt-basicsetup-headers">
-      <title>Customized headers</title>
+      <title>Cabeçalhos personalizados</title>
 
-      <indexterm><primary>mutt</primary><secondary>headers</secondary></indexterm>
+      <indexterm><primary>mutt</primary><secondary>cabeçalhos</secondary></indexterm>
 
       <para>
-        Each e-mail has headers with various information. For example, the
-        header contains information about the path an e-mail has traversed
-        after it has been sent. The sender (<emphasis>From:</emphasis>) and
-        recipient (<emphasis>To:</emphasis>) e-mail addresses are also stored
-        in the headers, as well as the subject (<emphasis>Subject:</emphasis>)
-        of an e-mail.
+        Cada e-mail possui cabeçalhos com várias informações.  Por
+        exemplo, o cabeçalho contém informações sobre o caminho que um
+        e-mail percorreu depois de ter sido enviado.  Os endereços do
+        remetente (<emphasis>From:</emphasis>) e do destinatário
+        (<emphasis>To:</emphasis>) também são armazenados nos
+        cabeçalhos, bem como o título (<emphasis>Subject:</emphasis>) do
+        e-mail.
       </para>
 
       <note>
         <para>
-          In reality the <emphasis>To:</emphasis> header is not used to
-          determine the destination of an e-mail during the deliverance
-          process of the e-mail. MTAs use the <emphasis>envelope
-          address</emphasis> to determine the destination of the e-mail.
-          Though, most MUAs use the <emphasis>To:</emphasis> address that
-          the user fills in as the envelope address.
+          Na realidade, o cabeçalho <emphasis>To:</emphasis> não é usado
+          para determinar o destino de um e-mail durante o processo de
+          entrega da mensagem.  Os MTAs utilizam o <emphasis>endereço de
+          envelope</emphasis> para determinar o destino de um e-mail.
+          Embora a maioria dos MUAs utilize o endereço em
+          <emphasis>To:</emphasis> para preencher o endereço de
+          envelope.
         </para>
       </note>
 
       <para>
-        You can add your own headers to an e-mail with the
-        <emphasis>my_hdr</emphasis> configuration option. This option
-        has the following syntax: <emphasis>my_hdr &lt;header name&gt;:
-        &lt;header contents&gt;</emphasis>. For example, you can add information
-        about what OS you are running by adding the following line to your
-        mutt configuration:
+        Você pode adicionar seus próprios cabeçalhos a uma mensagem de
+        e-mail com a opção de configuração <emphasis>my_hdr</emphasis>.
+        Esta opção tem a seguinte sintaxe: <emphasis>my_hdr
+        &lt;header name&gt;: &lt;header contents&gt;</emphasis>.  Como
+        exemplo você pode adicionar uma informação sobre que SO você
+        está executando incluindo a seguinte linha em sua configuração
+        do mutt:
       </para>
 
       <screen>
@@ -143,9 +154,9 @@ my_hdr X-Operating-System: Slackware Linux 10.2
       </screen>
 
       <para>
-        You can also override some of the headers that are normally used,
-        such as the sender address that is specified in the
-        <emphasis>From:</emphasis> header:
+        Você também pode sobrescrever alguns dos cabeçalhos que são
+        normalmente usados, como o endereço do remetente que é
+        especificado no cabeçalho <emphasis>From:</emphasis>:
       </para>
 
       <screen>
@@ -154,18 +165,20 @@ my_hdr From: John Doe &lt;john.doe@example.org&gt;
     </sect2>
 
     <sect2>
-      <title>The sendmail binary</title>
+      <title>O binário sendmail</title>
 
-      <indexterm><primary>mutt</primary><secondary>sendmail binary</secondary></indexterm>
+      <indexterm><primary>mutt</primary><secondary>binário sendmail</secondary></indexterm>
 
       <para>
-        By default mutt uses the sendmail MTA to deliver e-mails that
-        were sent. You can use another command to send e-mail by altering
-        the <emphasis>sendmail</emphasis> configuration variable. The
-        sendmail replacement must handle the same parameter syntax
-        as sendmail. For example, if you have installed MSMTP to deliver
-        e-mails, you can configure mutt to use it by adding the following
-        line to your mutt configuration:
+        Por padrão o mutt utiliza o MTA sendmail para entregar as
+        mensagens que forem enviadas.  Você pode usar outro comando para
+        enviar e-mails alterando a variável
+        <emphasis>sendmail</emphasis> da configuração.  O substituto do
+        sendmail deve manipular a mesma sintaxe de parâmetros que o
+        sendmail.  Por exemplo, se você tiver instalado o MSMTP para
+        entrega de e-mails, você pode configurar o mutt para usá-lo
+        adicionando a seguinte linha ao seu arquivo de configuração do
+        mutt:
       </para>
 
       <screen>
@@ -173,24 +186,28 @@ set sendmail="/usr/bin/msmtp"
       </screen>
 
       <para>
-        When you have completely replaced sendmail with another MTA, for
-        instance Postfix, it is usually not needed to set this parameter,
-        because most MTAs provide an alternative sendmail binary file.
+        Quando você tiver substituído completamente o sendmail por outro
+        MTA, por exemplo, o Postfix, quase sempre não é necessário
+        modificar este parâmetro porque a maioria dos MTAs oferecem um
+        arquivo binário alternativo do sendmail.
       </para>
     </sect2>
 
   </sect1>
 
   <sect1 id="email-mutt-imap">
-    <title>Using IMAP</title>
+    <title>Usando IMAP</title>
 
     <para>
-      Normally, mutt reads e-mail from the user's local spool mailbox.
-      However, mutt also has support for using IMAP mailboxes.
-      <acronym>IMAP</acronym> (the Internet Message Access Protocol)
-      is a protocol that is used for accessing e-mail from a remote
-      server, and is supported by many e-mail servers. Mutt uses the
-      following URL format for representing IMAP servers:
+      Normalmente, o mutt lê o e-mail a partir do
+      <foreignphrase>spool</foreignphrase> da caixa de entrada local do
+      usuário.  No entanto, o mutt também dá suporte a caixas de entrada
+      tipo IMAP.  <acronym>IMAP</acronym> (o Protocolo de Acesso a
+      Mensagens via Internet <foreignphrase>Internet Message Access
+      Protocol</foreignphrase>) é um protocolo que é usado para acessar
+      mensagens de e-mail a partir de um servidor remoto, e é suportado
+      por muitos servidores de e-mail.  O mutt utiliza o seguinte
+      formato de URL para representar servidores IMAP:
     </para>
 
     <literallayout>
@@ -198,27 +215,29 @@ imap://[user@]hostname[:port]/[mailbox]
     </literallayout>
 
     <para>
-      Or the following format for IMAP over SSL/TLS:
+      Ou este seguinte formato para IMAP sobre SSL/TLS:
     </para>
-    
+
     <literallayout>
 imaps://[user@]hostname[:port]/[mailbox]
     </literallayout>
 
     <para>
-      You can directly use this syntax in folder-related operatings.
-      For example, if you press <quote>c</quote> to change from folder,
-      you can enter an IMAP URL. This is a bit tedious, so it is easier
-      to store this information in your <filename>.muttrc</filename> file.
+      Você pode usar diretamente esta sintaxe nas operações relativas a
+      pastas.  Por exemplo, se você pressionar <quote>c</quote> para
+      modificar a pasta from, você pode entrar com uma URL IMAP.  Isso é
+      um pouco chato, de forma que é mais fácil armazenar esta
+      informação em seu arquivo <filename>.muttrc</filename>.
     </para>
 
     <para>
-      If you use only one IMAP account, you can set the INBOX folder
-      of this account as the spool mailbox, and the main IMAP account
-      as the e-mail folder. For example, adding the following lines
-      to your <filename>.muttrc</filename> configurion file will set
-      up mutt to log in to the <emphasis>imap.example.org</emphasis>
-      server as the <emphasis>me</emphasis> user.
+      Se você usa apenas uma conta IMAP, você pode configurar a pasta
+      INBOX desta conta como um caixa de entrada local, e a conta IMAP
+      principal como pasta de e-mail.  Por exemplo, adicionando as
+      seguintes linhas a seu arquivo de configuração
+      <filename>.muttrc</filename> irá fazer com que o mutt se conecte
+      ao servidor <emphasis>imap.example.org</emphasis> como usuário
+      <emphasis>me</emphasis>.
     </para>
 
     <screen>
@@ -229,42 +248,46 @@ set spoolfile=imap://me@imap.example.org/INBOX
   </sect1>
 
   <sect1 id="email-mutt-gnupg">
-    <title>Signing/encrypting e-mails</title>
+    <title>Assinando/criptografando e-mails</title>
 
     <sect2 id="email-mutt-gnupg-introduction">
-      <title>Introduction</title>
+      <title>Introdução</title>
 
       <para>
-        Mutt provides excellent support for signing or encrypting e-mails
-        with GnuPG. One might wonder why he or she should use one of these
-        techniques. While most people do not feel the need to encrypt most
-        of their e-mails, it generally is a good idea to sign your e-mails.
-        There are, for example, a lot of viruses these days that use other
-        people's e-mail addresses in the From: field of viruses. If the
-        people who you are communicating with know that you sign your e-mails,
-        they will not open fake e-mail from viruses. Besides that it looks
-        much more professional if people can check your identity, especially
-        in business transactions. For example, who would you rather trust,
-        vampire_boy93853@hotmail.com, or someone using a professional e-mail
-        address with digitally signed e-mails?
+        O mutt oferece um excelente suporte para assinatura ou
+        criptografia de e-mails com o GnuPG.  Alguém poderia perguntar
+        porque deveríamos utilizar essas técnicas.  Apesar de a maioria
+        das pessoas não sentir necessidade de criptografar a maioria de
+        seus e-mails, é geralmente uma boa idéia assinar suas mensagens.
+        Há, por exemplo, muitos vírus hoje em dia que utilizam endereços
+        de e-mail de outras pessoas no campo From: de mensagens com
+        vírus.  Mas se você se comunica com pessoas que assinam seus
+        e-mails, você nunca irá abrir e-mails falsos enviados por vírus.
+        Sem contar que dá um ar muito mais profissional se as pessoas
+        puderem confirmar sua identidade, especialmente em transações de
+        negócios.  Por exemplo, em quem você preferiria confiar: em
+        vampire_boy93853@hotmail.com, ou alguma outra pessoa usando um
+        e-mail profissional e assinado digitalmente?
       </para>
 
       <para>
-        This section describes how you can use GnuPG with mutt, for more
-        information about GnuPG read
-        <xref linkend="basics-filesystem-gnupg" />.
+        Esta seção descreve como você pode usar o GnuPG com o mutt, para
+        mais informações sobre o GnuPG, leia <xref
+        linkend="basics-filesystem-gnupg" />.
       </para>
     </sect2>
 
     <sect2 id="email-mutt-gnupg-configuration">
-      <title>Configuration</title>
+      <title>Configuração</title>
 
       <para>
-        An example configuration for using GnuPG in mutt can be found
-        in <filename>/usr/share/doc/mutt/samples/gpg.rc</filename>.
-        In general the contents of this file to your mutt configuration will
-        suffice. From the shell you can add the contents of this file
-        to you <filename>.muttrc</filename> with the following command:
+        Uma configuração de exemplo de uso do GnuPG com o mutt pode ser
+        encontrada em
+        <filename>/usr/share/doc/mutt/samples/gpg.rc</filename>.  Em
+        geral, copiar o conteúdo deste arquivo para sua configuração do
+        mutt será suficiente.  A partir do shell você pode adicionar o
+        conteúdo deste arquivo ao seu <filename>.muttrc</filename> com o
+        seguinte comando:
       </para>
 
       <screen>
@@ -272,9 +295,9 @@ $ <command>cat /usr/share/doc/mutt/samples/gpg.rc >> ~/.muttrc</command>
       </screen>
 
       <para>
-        There are some handy parameters that you can additionally set.
-        For example, if you always want to sign e-mails, add the following
-        line to your mutt configuration:
+        Há alguns parâmetros úteis que você também pode configurar.  Por
+        exemplo, se você quiser sempre assinar seus e-mails, adicione a
+        linha a seguir à sua configuração do mutt:
       </para>
 
       <screen>
@@ -282,10 +305,10 @@ set crypt_autosign = yes
       </screen>
 
       <para>
-        Another handy option is <emphasis>crypt_replyencrypt</emphasis>,
-        which will automatically encrypt replies to messages that were
-        encrypted. To enable this, add the following line to your mutt
-        configuration:
+        Outra opção útil é <emphasis>crypt_replyencrypt</emphasis>, que
+        irá automaticamente criptografar respostas a mensagens que
+        vierem criptografadas.  Para habilitar isto, adicione a seguinte
+        linha à sua configuração do mutt:
       </para>
 
       <screen>
@@ -294,18 +317,20 @@ set crypt_replyencrypt = yes
     </sect2>
 
     <sect2 id="email-mutt-gnupg-usage">
-      <title>Usage</title>
+      <title>Utilização</title>
 
       <para>
-        If you have set some of the automatical options, like
-        <emphasis>crypt_autosign</emphasis> GnuPG usage of mutt is mostly
-        automatic. If not, you can press the &lt;p&gt; key during the
-        final step of sending an e-mail. In the bottom of the screen
-        various GnuPG/PGP options will appear, which you can access
-        via the letters that are enclosed in parentheses. For example,
-        &lt;s&gt; signs e-mails, and &lt;e&gt; encrypts an e-mail.
-        You can always clear any GnuPG option you set by pressing
-        &lt;p&gt; and then &lt;c&gt;.
+        Se você definiu algumas dessas opções automática, como
+        <emphasis>crypt_autosign</emphasis>, a utilização do GnuPG no
+        mutt se torna quase que automática.  Se não, você pode
+        pressionar a tecla &lt;p&gt; no último passo antes ao enviar um
+        e-mail.  Na parte de baixo da tela irão aparecer várias opções
+        do GnuPG/PGP que você pode acessar através das letras que
+        estiverem destacadas entre parênteses.  Por exemplo, &lt;s&gt;
+        é para assinar (sign) e-mails, e &lt;e&gt; para criptografar
+        (encrypt) a mensagem.  Você pode sempre limpar qualquer opção do
+        GnuPG que definir pressionando a tecla &lt;p&gt; e então a
+        tecla &lt;c&gt;.
       </para>
     </sect2>
   </sect1>
