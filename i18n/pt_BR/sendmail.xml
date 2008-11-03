@@ -9,10 +9,10 @@
     <title>Introdução</title>
 
     <indexterm><primary>MTA</primary></indexterm>
-    <indexterm><primary>Agente de Transferência de Mensagem (<foreignphrase>Mail Transfer Agent</foreignphrase>)</primary></indexterm>
+    <indexterm><primary>Agente de Transferência de Correio (<foreignphrase>Mail Transfer Agent</foreignphrase>)</primary></indexterm>
 
     <para>
-      O Sendmail é o Agente de Transferência de Mensagem
+      O Sendmail é o Agente de Transferência de Correio
       (<acronym>MTA</acronym>) que o Slackware Linux utiliza.  O
       sendmail foi escrito originalmente por Eric Allman, que ainda
       é o mantenedor do projeto.  O principal papel do MTA sendmail é
