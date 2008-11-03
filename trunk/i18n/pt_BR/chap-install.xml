@@ -1,197 +1,204 @@
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
-	 xml:id="chap-install">
-  <title>Installing Slackware Linux</title>
+     xml:id="chap-install">
+  <title>Instalando o Slackware Linux</title>
 
   <sect1 xml:id="chap-install-bootcd">
-    <title>Booting the installation CD-ROM</title>
+    <title>Inicializando pelo CD-ROM de instalação</title>
 
     <para>
-      The easiest method for booting the installation system is by
-      using the installation CD-ROM. The Slackware Linux installation
-      CD-ROM is a bootable CD, which means that the BIOS can boot the
-      CD, just like it can boot, for example, a floppy disk. Most
-      modern systems have a BIOS which supports CD-ROM booting.
+      O método mais fácil para iniciar a instalação do sistema é
+      utilizar o CD-ROM de instalação.  O CD-ROM de instalação do
+      Slackware Linux é um CD inicializável, o que quer dizer que a BIOS
+      pode inicializar a partir do CD, tal como poderia inicializar, por
+      exemplo, a partir de um disco flexível.  A grande maioria dos
+      sistemas modernos possuem BIOS com suporte a inicialização pelo
+      CD-ROM.
     </para>
 
     <para>
-      If the CD is not booted when you have the CD inserted in the
-      CD-ROM drive during the system boot, the boot sequence is
-      probably not correctly configured in the BIOS. Enter the BIOS
-      setup (usually this can be done by holding the &lt;Del&gt; or
-      &lt;Esc&gt; key when the BIOS screen appears) and make sure the
-      CD-ROM is on the top of the list in the boot sequence.  If you
-      are using a SCSI CD-ROM you may have to set the boot sequence in
-      the SCSI BIOS instead of the system BIOS. Consult the SCSI card
-      manual for more information.
-    </para> 
+      Se o CD não for inicializado quando você puder o CD no drive de
+      CD-ROM durante a inicialização do sistema, provavelmente a
+      sequência de inicialização não está adequadamente configurada na
+      BIOS.  Entre na configuração da BIOS, também chamada de
+      Setup (normalmente isto pode ser feito segurando-se a tecla
+      &lt;Del&gt; ou então &lt;Esc&gt; quando a tela da BIOS aparece
+      logo ao ligar o computador) e certifique-se de que CD-ROM esteja
+      no topo da lista na sequência de inicialização.  Se você estiver
+      usando um CD-ROM SCSI, você pode ter que definir a sequência de
+      inicialização na BIOS SCSI ao invés de na BIOS do sistema.
+      Consulte o manual de sua placa SCSI para mais informações.
+    </para>
 
     <para>
-      When the CD-ROM is booted, a pre-boot screen will
-      appear. Normally you can just press &lt;ENTER&gt; to proceed
-      loading the default (<filename>hugesmp.s</filename>) Linux
-      kernel. This kernel requires at least a Pentium Pro CPU. You can
-      boot an alternative kernel by entering the kernel name on the
-      prompt, and pressing &lt;ENTER&gt;.  The following table lists
-      the different kernels that are available from the Slackware
-      Linux CD or DVD.
+      Quando o CD-ROM é inicializado, uma tela inicial irá aparecer.
+      Normalmente você apenas pressiona &lt;ENTER&gt; carregando o
+      kernel Linux padrão (<filename>hugesmp.s</filename>).  Este kernel
+      precisa pelo menos de uma CPU Pentim Pro.  Você pode carregar um
+      kernel alternativo digitando o nome do kernel no prompt, e
+      pressionando &lt;ENTER&gt;.  A tabela a seguir lista os diferentes
+      kernels que estão disponíveis no CD ou DVD do Slackware Linux.
     </para>
 
     <table xml:id="chap-install-bootcd-installkernels">
-      <title>Installation kernels</title>
+      <title>Kernels de installation</title>
 
       <tgroup cols="2">
-	<thead>
-	  <row>
-	    <entry>Linux</entry><entry>Description</entry>
-	  </row>
-	</thead>
-	<tbody>
-	  <row>
-	    <entry>huge.s</entry>
-	    <entry>
-	      Previously, there were specific kernels for different
-	      sets of disk controlers. The new huge kernels include
-	      support for all common ATA, SATA and SCSI
-	      controllers. This kernel does not have SMP support, and
-	      works on i486 and newer CPUs. If you have a Pentium Pro
-	      or newer CPU, it is recommended to use the
-	      <emphasis>hugesmp.s</emphasis> kernel, even on
-	      uniprocessor systems.
-	    </entry>
-	  </row>
-	  <row>
-	    <entry>hugesmp.s</entry>
-	    <entry>
-	      The <emphasis>hugesmp.s</emphasis> kernel has support
-	      for common ATA, SATA, and SCSI
-	      controllers. Additionally, this kernel has SMP
-	      support. This is the recommended kernel on Pentium Pro
-	      and newer CPUs.
-	    </entry>
-	  </row>
-	  <row>
-	    <entry>speakup.s</entry>
-	    <entry>
-	      This kernel is comparable to the
-	      <emphasis>huge.s</emphasis> kernel, but also includes
-	      support for hardware speech synthesizers.
-	    </entry>
-	  </row>
-	</tbody>
+    <thead>
+      <row>
+        <entry>Linux</entry><entry>Descrição</entry>
+      </row>
+    </thead>
+    <tbody>
+      <row>
+        <entry>huge.s</entry>
+        <entry>
+          Anteriormente, havia kernels específicos para diferentes tipos
+          de controladores de disco.  O novo kernel huge inclui suporte
+          para todos os controladores ATA, SATA e SCSI mais comuns.
+          Este kernel não tem suporte a SMP, e funciona em CPUs i486 ou
+          superiores.  Se você tiver uma CPU Pentium Pro ou mais
+          recente, é recomendado usar o kernel
+          <emphasis>hugesmp.s</emphasis>, mesmo em sistemas com apenas
+          um processador.
+        </entry>
+      </row>
+      <row>
+        <entry>hugesmp.s</entry>
+        <entry>
+          O kernel <emphasis>hugesmp.s</emphasis> também tem suporte aos
+          controladores ATA, SATA, e SCSI mais comuns.  Adicionalmente,
+          este kernel oferece suporte a SMP.  Este é o kernel
+          recomendado para CPUs Pentium Pro ou mais recentes.
+        </entry>
+      </row>
+      <row>
+        <entry>speakup.s</entry>
+        <entry>
+          Este kernel é comparável ao <emphasis>huge.s</emphasis>, mas
+          também inclui suporte a hardwares sintetizadores de voz.
+        </entry>
+      </row>
+    </tbody>
       </tgroup>
     </table>
 
     <para>
-      After booting the installation system, you will be asked whether
-      you are using a special (national) keyboard layout or not. If
-      you have a normal US/International keyboard, which is the most
-      common, you can just press &lt;Enter&gt; at this question. After
-      that the login prompt will appear. Log on as
-      <quote>root</quote>, no password will be requested.  After
-      login, the shell is started and you can begin installing
-      Slackware Linux. The installation procedure will be explained
-      briefly in this chapter.
+      Depois de inicializar o sistema de instalação, você questionado
+      sobre se está usando um leiaute de teclado especial (nacional) ou
+      não.  Se você tiver um teclado US/Internacional normal, que é o
+      tipo mais comum, você pode apenas apertar &lt;Enter&gt; nesta
+      questão.  Depois disso, um prompt de login vai aparecer.  Efetue o
+      login como usuário <quote>root</quote>, não será solicitada
+      nenhuma senha.  Depois do login, o shell é iniciado e você pode
+      começar a instalar o Slackware Linux.  O procedimento de
+      instalação será explicado brevemente neste capítulo.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-install-partitioning">
-    <title>Partitioning a hard disk</title>
+    <title>Particionando um disco rígido</title>
 
     <para>
-      Installing Slackware Linux requires at least one Linux
-      partition, creating a swap partition is also recommended. To be
-      able to create a partition there has to be free unpartitioned
-      space on the disk. There are some programs that can resize
-      partitions. For example, FIPS can resize FAT partitions.
-      Commercial programs like Partition Magic can also resize other
-      partition types.
+      Instalar o Slackware Linux requer pelo menos uma partição Linux,
+      mas a criação de uma partição de swap também é recomendada.  Para
+      se criar uma partição, deve haver espaço livre não particionado no
+      disco.  Há alguns programas que podem redimensionar partições.
+      Como exemplo, o FIPS pode redimensionar partições FAT.  Programas
+      comerciais como o Partition Magic também podem redimensionar
+      outros tipos de partição.
     </para>
 
     <para>
-      After booting the Slackware Linux CD-ROM and logging on, there
-      are two partitioning programs at your disposal:
-      <command>fdisk</command> and
-      <command>cfdisk</command>. <command>cfdisk</command> is the
-      easiest of both, because it is controlled by a menu
-      interface. This section describes the <command>cfdisk</command>
-      program.
+      Depois de iniciar pelo CD-ROM do Slackware Linux e efetuar o
+      login, haverá dois programas de particionamento à sua disposição:
+      o <command>fdisk</command> e o<command>cfdisk</command>.  O
+      <command>cfdisk</command> é o mais fácil dos dois, pois é
+      controlado a partir de uma interface mais intuitiva com menus.
+      Esta seção descreve o programa <command>cfdisk</command>.
     </para>
 
     <para>
-      To partition the first harddisk you can simply execute
-      <command>cfdisk</command>. If you want to partition another disk
-      or a SCSI disk you have to specify which disk you want to
-      partition (<command>cfdisk /dev/device</command>). ATA hard
-      disks have the following device naming:
-      <filename>/dev/hdn</filename>, with <quote>n</quote> replaced by
-      a character. E.g. the <quote>primary master</quote> is named
-      <filename>/dev/hda</filename>, the <quote>secondary
-      slave</quote> is named <filename>/dev/hdd</filename>. SCSI disks
-      are named in the following way: <filename>/dev/sdn</filename>,
-      with <quote>n</quote> replaced by the device character (the
-      first SCSI disk = a, the fourth SCSI disk = d).
+      Para particionar o primeiro disco rígido você pode simplesmente
+      executar <command>cfdisk</command>.  Se você quiser particionar
+      outro disco ou um disco SCSI você tem que especificar qual disco
+      você quer particionar (<command>cfdisk /dev/device</command>).
+      Discos com hardware ATA têm dispositivos nomeados da seguinte
+      forma: <filename>/dev/hdn</filename>, sendo <quote>n</quote>
+      substituído por um caracter.  P.ex., o disco <quote>primário
+      mestre</quote> (<foreignphrase>primary master</foreignphrase>) é
+      chamado <filename>/dev/hda</filename>, enquanto que o
+      <quote>secundário escravo</quote> (<foreignphrase>secondary
+      slave</foreignphrase>) é chamado <filename>/dev/hdd</filename>.
+      Discos SCSI são nomeados da seguinte forma:
+      <filename>/dev/sdn</filename>, sendo <quote>n</quote> substituído
+      por um caracter de dispositivo (com o primeiro disco SCSI = a, e
+      o quarto disco SCSI = d).
     </para>
 
     <figure xml:id="chap-install-partitioning-cfdisk">
-      <title>The cfdisk parition tool</title>
+      <title>A ferramenta de particionamento cfdisk</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/cfdisk.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/cfdisk.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      After starting <command>cfdisk</command>, the currently existing
-      partitions are shown, as well as the amount of free space. The
-      list of partitions can be navigated with the <quote>up</quote>
-      and <quote>down</quote> arrow keys.  At the bottom of the screen
-      some commands are displayed, which can be browsed with the
-      <quote>left</quote> and <quote>right</quote> arrow keys.  A
-      command can be executed with the &lt;Enter&gt; key.
+      Depois de executar o <command>cfdisk</command>, as partições
+      atualmente existentes são mostradas, bem como o total de espaço
+      livre.  A lista de partições pode ser navegada com as teclas de
+      <quote>seta para cima</quote> e <quote>seta para baixo</quote>.
+      Na parte de baixo da tela, são exibidos alguns comandos que podem
+      ser navegados com as teclas de <quote>seta para esquerda</quote> e
+      <quote>seta para direita</quote>.  Um comando pode ser executado
+      com a tecla &lt;Enter&gt;.
     </para>
 
     <para>
-      You can create a Linux partition by selecting <quote>Free
-      Space</quote> and executing the <quote>New</quote>
-      command. <command>cfdisk</command> will ask you whether you want
-      to create a primary or logical partition.  The number of primary
-      partitions is limited to four. Linux can be installed on both
-      primary and logical partitions. If you want to install other
-      operating systems besides Slackware Linux that require primary
-      partitions, it is a good idea to install Slackware Linux onto a
-      logical partition.  The type of the new partition is
-      automatically set to <quote>Linux Native</quote>, so it is not
-      necessary to set the partition type.
+      Você pode criar uma partição Linux selecionando o <quote>Free
+      Space</quote> e executando o comando <quote>New</quote>.  O
+      <command>cfdisk</command> irá lhe perguntar se você quer criar uma
+      partição primária ou lógica.  Podem existir no máximo quatro
+      partições primárias.  O Linux pode ser instalado tanto em
+      partições primárias quanto em partições lógicas.  Se você quiser
+      instalar outros sistemas operacionais além do Slackware Linux e
+      que precise de uma partição lógica, é uma boa idéia instalar o
+      Slackware Linux em uma partição lógica.  O tipo da nova partição é
+      automaticamente definido como <quote>Linux Native</quote>, então
+      não é necessário definir o tipo da partição.
     </para>
 
     <para>
-      The creation of a swap partition involves the same steps as a
-      normal Linux partition, but the type of the partition has to be
-      changed to <quote>Linux Swap</quote> after the partition is
-      created. The suggested size of the swap partition depends on
-      your own needs. The swap partition is used to store programs if
-      the main (RAM) memory is full. If you have a harddisk of a
-      reasonable size, it is a good idea to make a 256MB or 512MB swap
-      partition, which should be enough for normal usage.  After
-      creating the partition, the partition type can be changed to
-      <quote>Linux Swap</quote> by selecting the <quote>Type</quote>
-      command. The <command>cfdisk</command> program will ask for the
-      type number. <quote>Linux Swap</quote> partitions have type
-      number 82.  Normally number 82 is already selected, so you can
-      go ahead by pressing the &lt;Enter&gt; key.
-    </para> 
+      A criação de uma partição de troca
+      (<foreignphrase>swap</foreignphrase>) envolve os mesmos passos que
+      uma partição Linux normal, mas o tipo da partição deve ser trocado
+      para <quote>Linux Swap</quote> depois que a partição for criada.
+      O tamanho sugerido para uma partição de swap depende de suas
+      próprias necessidades.  A partição de swap é usada para guardar
+      programas se a memória principal (RAM) estiver cheia.  Se você
+      tiver um disco rígido de tamanho razoável, é uma boa idéia deixar
+      256MB ou 512MB para uma partição de swap, que deve ser o bastante
+      para uso normal do computador.  Depois de criar a partição, o tipo
+      da partição pode ser trocado para <quote>Linux Swap</quote>
+      selecionando-se o comando <quote>Type</quote>.  O programa
+      <command>cfdisk</command> irá lhe perguntar pelo número do tipo de
+      partição.  Partições <quote>Linux Swap</quote> são do tipo número
+      82.  Normalmente o número 82 já estará selecionado, então você
+      pode prosseguir apenas pressionando a tecla &lt;Enter&gt;.
+    </para>
 
     <para>
-      If you are satisfied with the partitioning you can save the
-      changes by executing the <quote>Write</quote> command. This
-      operation has to be confirmed by entering
-      <command>yes</command>. After saving the changes you can quite
-      <command>cfdisk</command> with the <command>Quit</command>
-      command. It is a good idea to reboot the computer before
-      starting the installation, to make sure that the partitioning
-      changes are active.  Press &lt;ctrl&gt; + &lt;alt&gt; +
-      &lt;del&gt; to shut Linux down and restart the computer.
+      Se você estiver satisfeito com o particionamento, você pode salvar
+      as alterações executando o comando <quote>Write</quote>.  Esta
+      operação precisa ser confirmada digitando-se
+      <command>yes</command>.  Depois de salvar as alterações você pode
+      sair do <command>cfdisk</command> com o comando
+      <command>Quit</command>.  É recomendado reiniciar o computador
+      antes de começar a instalação, para assegurar que as alterações do
+      particionamento sejam efetivadas.  Pressione &lt;ctrl&gt; +
+      &lt;alt&gt; + &lt;del&gt; para desativar o Linux e reiniciar o
+      computador.
     </para>
   </sect1>
 
@@ -210,11 +217,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-setup">
-      <title>The setup tool</title>
+      <title>A ferramenta setup</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/setup.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/setup.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -229,11 +236,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-addswap">
-      <title>Setting up the swap partition</title>
+      <title>Definindo uma partição de swap</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/addswap.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/addswap.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -246,11 +253,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-partselect">
-      <title>Selecting a partition to initialize</title>
+      <title>Selecionando uma partição para inicializar</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/partselect.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/partselect.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -264,11 +271,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-fscheck">
-      <title>Formatting the partition</title>
+      <title>Formatando a partição</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/fscheck.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/fscheck.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -291,11 +298,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-filesystem">
-      <title>Selecting a filesystem type</title>
+      <title>Selecionando um tipo de sistema de arquivos</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/filesystem.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/filesystem.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -333,14 +340,14 @@
       device yourself (<quote>Manual</quote>). If you select
       <quote>Manual</quote> the setup tool will show a list of
       devices. Select the device holding the Slackware Linux CD-ROM.
-    </para> 
+    </para>
 
     <figure xml:id="chap-install-installing-medium">
-      <title>Selecting the source medium</title>
+      <title>Selecionando a mídia de instalação</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/medium.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/medium.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -353,11 +360,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-disksets">
-      <title>Selecting the disk sets</title>
+      <title>Selecionando as séries de discos de instalação</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/disksets.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/disksets.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -389,11 +396,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-installkernel">
-      <title>Installing the kernel</title>
+      <title>Instalando o kernel</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/kernel.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/kernel.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -405,11 +412,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-bootdisk">
-      <title>Creating a bootdisk</title>
+      <title>Criando um disco de inicialização</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/bootdisk.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/bootdisk.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -423,11 +430,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-modem">
-      <title>Selecting the default modem</title>
+      <title>Selecionando o modem padrão</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/modem.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/modem.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -441,11 +448,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-hotplug">
-      <title>Enabling hotplugging</title>
+      <title>Ativando conexões <quote>a quente</quote></title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/hotplug.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/hotplug.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -459,11 +466,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-liloinstall">
-      <title>Selecting the kind of LILO installation</title>
+      <title>Selecionando o tipo de instalação do LILO</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/lilo.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/lilo.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -481,11 +488,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-framebuffer">
-      <title>Choosing the framebuffer resolution</title>
+      <title>Escolhendo uma resolução de framebuffer</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/framebuffer.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/framebuffer.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -498,11 +505,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-kernel-param">
-      <title>Adding kernel parameters</title>
+      <title>Adicionando parâmetros ao kernel</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/kernel-param.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/kernel-param.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -520,11 +527,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-lilo-dest">
-      <title>Choosing where LILO should be installed</title>
+      <title>Escolhendo onde o LILO deve ser instalado</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/lilo-dest.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/lilo-dest.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -535,11 +542,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-mouse">
-      <title>Configuring a mouse</title>
+      <title>Configurando um mouse</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/mouse.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/mouse.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -552,11 +559,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-ask-load-gpm">
-      <title>Choosing whether GPM should be started or not</title>
+      <title>Escolhendo se o GPM deve ser iniciado ou não</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/ask-load-gpm.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/ask-load-gpm.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -571,12 +578,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-ask-configure-network">
-      <title>Choosing whether you would like to configure network
-      connectivity</title>
+      <title>Escolhendo se você quer configurar conexões de rede</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/ask-configure-network.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/ask-configure-network.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -591,9 +597,9 @@
     <figure xml:id="chap-install-installing-hostname">
       <title>Setting the host name</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/hostname.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/hostname.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -604,11 +610,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-domainname">
-      <title>Setting the domain name</title>
+      <title>Definindo o nome de domínio</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/domainname.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/domainname.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -633,11 +639,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-set-ipconfig-type">
-      <title>Manual or automatic IP address configuration</title>
+      <title>Configuração manual ou automática do endereço de IP</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/set-ipconfig-type.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/set-ipconfig-type.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -648,11 +654,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-ipaddr">
-      <title>Setting the IP addres</title>
+      <title>Definindo o endereço IP</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/ipaddr.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/ipaddr.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -664,11 +670,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-netmask">
-      <title>Setting the netmask</title>
+      <title>Definindo a máscara de rede</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/netmask.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/netmask.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -681,11 +687,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-gateway">
-      <title>Setting the gateway</title>
+      <title>Definindo o gateway</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/gateway.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/gateway.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -702,11 +708,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-ask-nameserver">
-      <title>Choosing whether you want to use a nameserver or not</title>
+      <title>Escolhendo se você quer ou não usar um servidor de nomes</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/ask-nameserver.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/ask-nameserver.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -717,11 +723,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-nameserver">
-      <title>Setting the nameserver(s)</title>
+      <title>Definindo o(s) servidor(es) de nomes</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/nameserver.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/nameserver.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -736,9 +742,9 @@
     <figure xml:id="chap-install-installing-network-confirm">
       <title>Confirming the network settings</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/network-confirm.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/network-confirm.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -750,11 +756,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-startup-services">
-      <title>Enabling/disabling startup services</title>
+      <title>Habilitando/desabilitando serviços na inicialização</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/startup-services.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/startup-services.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -772,11 +778,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-ask-clock-utc">
-      <title>Choosing whether the clock is set to UTC</title>
+      <title>Escolhendo se o relógio será ajustado para UTC</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/ask-clock-utc.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/ask-clock-utc.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -789,11 +795,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-timezone">
-      <title>Setting the timezone</title>
+      <title>Configurando o fuso horário</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/timezone.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/timezone.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -807,11 +813,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-defaultwm">
-      <title>Choosing the default window manager</title>
+      <title>Escolhendo o gerenciador de janelas padrão</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/defaultwm.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/defaultwm.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -824,11 +830,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-rootpasswd">
-      <title>Setting the root password</title>
+      <title>Definindo a senha do superusuário</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/rootpasswd.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/rootpasswd.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
 
@@ -839,11 +845,11 @@
     </para>
 
     <figure xml:id="chap-install-installing-finished">
-      <title>Finished</title>
+      <title>Concluído</title>
       <mediaobject>
-	<imageobject>
-	  <imagedata fileref="../images/finished.png" format="PNG" width="100%" scalefit="1"/>
-	</imageobject>
+    <imageobject>
+      <imagedata fileref="../images/finished.png" format="PNG" width="100%" scalefit="1"/>
+    </imageobject>
       </mediaobject>
     </figure>
   </sect1>
