@@ -1,7 +1,7 @@
 apache.xml - OK
 bind.xml - OK
 chap-book.xml - OK
-chap-filesystem.xml - Em andamento
+chap-filesystem.xml - OK
 chap-help.xml - OK
 chap-init.xml
 chap-install.xml
@@ -12,11 +12,11 @@ chap-procmgmt.xml
 chap-shell.xml
 chap-textproc.xml
 chap-usermgmt.xml
-chap-x11.xml
+chap-x11.xml - OK
 concepts.xml
 custom-installation.xml
 default.css
-inetd.xml
+inetd.xml - OK
 ipsec.xml
 latex.xml
 miscadmin.xml
@@ -25,7 +25,7 @@ netconfig.xml
 normal.css
 preface.xml - OK
 printing.xml
-security.xml
+security.xml - OK
 sendmail.xml
-services.xml
+services.xml - OK
 slackware-basics.xml - OK
