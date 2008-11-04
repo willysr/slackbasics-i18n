@@ -3,7 +3,7 @@ bind.xml - OK
 chap-book.xml - OK
 chap-filesystem.xml - OK
 chap-help.xml - OK
-chap-init.xml
+chap-init.xml - Em andamento (mfandrade)
 chap-install.xml
 chap-intro.xml - OK
 chap-kernel.xml
