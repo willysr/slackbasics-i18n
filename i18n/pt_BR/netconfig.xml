@@ -1,7 +1,7 @@
 <!-- $Id: netconfig.xml 295 2007-09-18 23:03:49Z danieldk $ -->
 
 <chapter id="sysadmin-netconfig"> <?dbhtml filename="netconfig.html"?>
-<title>Configuração de rede</title>
+<title>ConfiguraÃ§Ã£o de rede</title>
 
 <sect1 id="sysadmin-netconfig-hardware">
 <title>Hardware</title>
@@ -9,21 +9,21 @@
 <bridgehead>Placas de rede</bridgehead>
 
 <para>
-Os drivers para a placa de rede são instalados como módulos do kernel. 
-O módulo para a sua placa é carregada durante a inicialização do 
-Slackware Linux. Na maioria do sistemas a placa de rede é automaticamente
-detectada e configurada durante a instalação do Slackware Linux. Você
-pode reconfigurá-la utilizando o comando <command>netconfig</command>.
-O <command>netconfig</command> adiciona o driver (módulo) para a placa
+Os drivers para a placa de rede sÃ£o instalados como mÃ³dulos do kernel. 
+O mÃ³dulo para a sua placa Ã© carregada durante a inicializaÃ§Ã£o do 
+Slackware Linux. Na maioria do sistemas a placa de rede Ã© automaticamente
+detectada e configurada durante a instalaÃ§Ã£o do Slackware Linux. VocÃª
+pode reconfigurÃ¡-la utilizando o comando <command>netconfig</command>.
+O <command>netconfig</command> adiciona o driver (mÃ³dulo) para a placa
 detectada no arquivo <filename>/etc/rc.d/rc.netdevice</filename>.
 </para>
 
 <para>
-Também é possível configurar quais módulos devem ser carregados durante a
-inicialização do sistema. Isto pode ser feito adicionando uma linha com
+TambÃ©m Ã© possÃ­vel configurar quais mÃ³dulos devem ser carregados durante a
+inicializaÃ§Ã£o do sistema. Isto pode ser feito adicionando uma linha com
 o comando <command>modprobe</command> no arquivo 
-<filename>/etc/rc.d/rc.modules</filename>. Por exemplo, se você precisa
-carregar o módulo para as placas 3Com 59x (3c59x.o), adicione a seguinte 
+<filename>/etc/rc.d/rc.modules</filename>. Por exemplo, se vocÃª precisa
+carregar o mÃ³dulo para as placas 3Com 59x (3c59x.o), adicione a seguinte 
 linha no arquivo <filename>/etc/rc.d/rc.modules</filename> 
 </para>
 
@@ -34,20 +34,20 @@ linha no arquivo <filename>/etc/rc.d/rc.modules</filename>
 <bridgehead>Placas PCMCIA</bridgehead>
 
 <para>
-Placas PCMCIA suportadas são detectadas automaticamente pelo software
-responsável por este tipo de placa. Os pacotes pcmcia-cs do conjunto 
-<quote>a</quote> do CD provê todas as funcionalidades para placas PCMCIA 
+Placas PCMCIA suportadas sÃ£o detectadas automaticamente pelo software
+responsÃ¡vel por este tipo de placa. Os pacotes pcmcia-cs do conjunto 
+<quote>a</quote> do CD provÃª todas as funcionalidades para placas PCMCIA 
 para o Slackware Linux.
 </para> 
 
 </sect1>
 
 <sect1>
-<title>Configuração das interfaces</title>
+<title>ConfiguraÃ§Ã£o das interfaces</title>
 
 <para>
-Placas de rede disponíveis no Linux são chamadas de <quote>interfaces</quotes>.
-O comando <command>ifconfig</command> pode ser usado para mostrar as interfaces disponíveis:
+Placas de rede disponÃ­veis no Linux sÃ£o chamadas de <quote>interfaces</quotes>.
+O comando <command>ifconfig</command> pode ser usado para mostrar as interfaces disponÃ­veis:
 </para>
 
 <screen>
@@ -71,13 +71,13 @@ lo        Link encap:Local Loopback
 </screen>
 
 <para>
-As placas de rede recebem o nome ethn, onde o n é um número, começando 
-em 0. No exemplo anterior, a primeira placa de rede (eth0) já possui um
-endereço IP. Mas placas desconfiguradas não possuem endereço IP, o comando 
-<command>ifconfig</command> não irá mostrar endereços IP para interfaces 
+As placas de rede recebem o nome ethn, onde o n Ã© um nÃºmero, comeÃ§ando 
+em 0. No exemplo anterior, a primeira placa de rede (eth0) jÃ¡ possui um
+endereÃ§o IP. Mas placas desconfiguradas nÃ£o possuem endereÃ§o IP, o comando 
+<command>ifconfig</command> nÃ£o irÃ¡ mostrar endereÃ§os IP para interfaces 
 desconfiguradas. As interfaces podem ser configuradas no arquivo 
-<filename>/etc/rc.d/rc.inet1.conf</filename>. Você pode simplesmente ler 
-os comentários, e preencher as informações necessárias. Por exemplo:
+<filename>/etc/rc.d/rc.inet1.conf</filename>. VocÃª pode simplesmente ler 
+os comentÃ¡rios, e preencher as informaÃ§Ãµes necessÃ¡rias. Por exemplo:
 </para>
 
 <screen>
@@ -89,12 +89,12 @@ DHCP_HOSTNAME[0]=""
 </screen>
 
 <para>
-Neste exemplo o endereço IP 192.168.1.1 com a máscara de rede 255.255.255.0 
-é atribuído à primeira interface ethernet (eth0). Se você está usando um 
-servidor DHCP você pode alterar a linha <emphasis>USE_DHCP=""</emphasis> 
-para <emphasis>USE_DHP[n]="yes"</emphasis> (troque <quote>n</quote> pelo 
-número da interface). Outras variáveis, exceto <emphasis>DHCP_HOSTNAME</emphasis>
-são ignoradas quando se usa DHCP. Por exemplo:
+Neste exemplo o endereÃ§o IP 192.168.1.1 com a mÃ¡scara de rede 255.255.255.0 
+Ã© atribuÃ­do Ã  primeira interface ethernet (eth0). Se vocÃª estÃ¡ usando um 
+servidor DHCP vocÃª pode alterar a linha <emphasis>USE_DHCP=""</emphasis> 
+para <emphasis>USE_DHCP[n]="yes"</emphasis> (troque <quote>n</quote> pelo 
+nÃºmero da interface). Outras variÃ¡veis, exceto <emphasis>DHCP_HOSTNAME</emphasis>
+sÃ£o ignoradas quando se usa DHCP. Por exemplo:
 </para>
 
 <screen>
@@ -105,28 +105,28 @@ DHCP_HOSTNAME[1]=""
 </screen>
 
 <para>
-O mesmo se aplica a outras interfaces. Você pode ativar as configurações 
+O mesmo se aplica a outras interfaces. VocÃª pode ativar as configuraÃ§Ãµes 
 reiniciando o sistema ou executando o comando <command>/etc/rc.d/rc.inet1</command>.
-É possível também reconfigurar apenas uma interface com o comando
+Ã‰ possÃ­vel tambÃ©m reconfigurar apenas uma interface com o comando
 <command>/etc/rc.d/rc.inet1 ethX_restart</command>, onde <emphasis>ethX</emphasis> 
-deve ser substituído pelo nome da interface que você quer reconfigurar.
+deve ser substituÃ­do pelo nome da interface que vocÃª quer reconfigurar.
 </para>
 </sect1>
 
 <sect1>
-<title>Configuração de interfaces (IPv6)</title>
+<title>ConfiguraÃ§Ã£o de interfaces (IPv6)</title>
 
 <sect2>
-<title>Introdução</title>
+<title>IntroduÃ§Ã£o</title>
 
 <para>
-<acronym>IPv6</acronym> é a próxima versão do protocolo de internet. Uma das 
-vantagens que ela possui é a grande quantidade de endereços. No IPv4 (o 
-protocolo de internet mais utilizado atualmente) os endereços são de 32 bits, 
-e há uma falta desses endereços. O IPv6 usa endereços de 128 bits, que provê 
-uma inimaginável quantidade de endereços (2^128 endereços). Nele é utilizado 
-outra notação de endereços. São usados números hexadecimais em vez de decimais, 
-e os endereços são organizados em pares de 16 bits, separados por dois pontos 
+<acronym>IPv6</acronym> Ã© a prÃ³xima versÃ£o do protocolo de internet. Uma das 
+vantagens que ela possui Ã© a grande quantidade de endereÃ§os. No IPv4 (o 
+protocolo de internet mais utilizado atualmente) os endereÃ§os sÃ£o de 32 bits, 
+e hÃ¡ uma falta desses endereÃ§os. O IPv6 usa endereÃ§os de 128 bits, que provÃª 
+uma inimaginÃ¡vel quantidade de endereÃ§os (2^128 endereÃ§os). Nele Ã© utilizado 
+outra notaÃ§Ã£o de endereÃ§os. SÃ£o usados nÃºmeros hexadecimais em vez de decimais, 
+e os endereÃ§os sÃ£o organizados em pares de 16 bits, separados por dois pontos 
 (<quote>:</quote>). Vamos dar uma olhada em um exemplo: </para>
 
 <screen>
@@ -134,8 +134,8 @@ fec0:ffff:a300:2312:0:0:0:1
 </screen>
 
 <para>
-Um bloco de zeros pode ser substituído por um par de dois pontos. Portanto, 
-o endereço anterior pode ser escrito assim:
+Um bloco de zeros pode ser substituÃ­do por um par de dois pontos. Portanto, 
+o endereÃ§o anterior pode ser escrito assim:
 </para>
 
 <screen>
@@ -143,17 +143,17 @@ fec0:ffff:a300:2312::1
 </screen>
 
 <para>
-Cada endereço IPv6 possui um prefixo. Normalmente ele consiste de dois 
-elementos: um de 32 bits identificando o espaço de endereço que o provedor 
-lhe provê e um número de 16 bits que especifíca a rede. Estes dois elementos
-formam o prefixo, e neste caso o tamanho do prefixo é 32 + 16 = 48 bits. 
-Entretanto, se você tiver um prefixo /48 você pode fazer 2^16 subnets e 
-ter 2^80 máquinas em cada subnet. A imagem abaixo mostra a estrutura de 
-um endereço IPv6 com um prefixo de 48 bits:
+Cada endereÃ§o IPv6 possui um prefixo. Normalmente ele consiste de dois 
+elementos: um de 32 bits identificando o espaÃ§o de endereÃ§o que o provedor 
+lhe provÃª e um nÃºmero de 16 bits que especifica a rede. Estes dois elementos
+formam o prefixo, e neste caso o tamanho do prefixo Ã© 32 + 16 = 48 bits. 
+Entretanto, se vocÃª tiver um prefixo /48 vocÃª pode fazer 2^16 subredes e 
+ter 2^80 mÃ¡quinas em cada subredes. A imagem abaixo mostra a estrutura de 
+um endereÃ§o IPv6 com um prefixo de 48 bits:
 </para>
 
 <figure id="ipv6address">
-<title>A anatomia de um endereço IPv6</title>
+<title>A anatomia de um endereÃ§o IPv6</title>
 <mediaobject>
 <imageobject>
 <imagedata fileref="../images/ipv6addr.png" format="PNG" />
@@ -162,7 +162,7 @@ um endereço IPv6 com um prefixo de 48 bits:
 </figure>
 
 <para>
-Há alguns prefixos especiais reservados, os mais notáveis são:
+HÃ¡ alguns prefixos especiais reservados, os mais notÃ¡veis sÃ£o:
 </para>
 
 <table>
@@ -170,7 +170,7 @@ Há alguns prefixos especiais reservados, os mais notáveis são:
 <tgroup cols="2">
 <thead>
 <row>
-<entry>Prefixo</entry><entry>Descrição</entry>
+<entry>Prefixo</entry><entry>DescriÃ§Ã£o</entry>
 </row>
 </thead>
 <tbody>
@@ -192,9 +192,9 @@ Há alguns prefixos especiais reservados, os mais notáveis são:
 <title>Suporte a IPv6 no Slackware Linux</title>
 
 <para>
-O binários do kernel Linux incluídos no Slackware Linux não suportam
-IPv6 por padrão, porém o suporte é incluído como um módulo do kernel.
-Este módulo pode ser carregado usando-se o comando <command>modprobe</command>:
+O binÃ¡rios do kernel Linux incluÃ­dos no Slackware Linux nÃ£o suportam
+IPv6 por padrÃ£o, porÃ©m o suporte Ã© incluÃ­do como um mÃ³dulo do kernel.
+Este mÃ³dulo pode ser carregado com o comando <command>modprobe</command>:
 </para>
 
 <screen>
@@ -202,8 +202,8 @@ Este módulo pode ser carregado usando-se o comando <command>modprobe</command>:
 </screen>
 
 <para>
-Você pode verificar se o suporte ao IPv6 está carregado corretamente
-verificando a saída do kernel, com o comando <command>dmesg</command>:
+VocÃª pode verificar se o suporte ao IPv6 estÃ¡ carregado corretamente
+verificando a saÃ­da do kernel, com o comando <command>dmesg</command>:
 </para>
 
 <screen>
@@ -213,7 +213,7 @@ IPv6 v0.8 for NET4.0
 </screen>
 
 <para>
-O suporte ao iPv6 pode ser ativado permanentemente adicionando-se a 
+O suporte ao IPv6 pode ser ativado permanentemente adicionando-se a 
 seguinte linha ao arquivo <filename>/etc/rc.d/rc.modules</filename>:
 </para>
 
@@ -223,24 +223,24 @@ seguinte linha ao arquivo <filename>/etc/rc.d/rc.modules</filename>:
 
 <para>
 As interfaces podem ser configuradas usando o comando <command>ifconfig</command>.
-Porém é recomendado que se faça as configurações de IPv6 usando o
+PorÃ©m Ã© recomendado que se faÃ§a as configuraÃ§Ãµes de IPv6 usando o
 comando <command>ip</command>, o qual faz parte do pacote <command>iputils</command>
-e que pode ser localizado no diretório <filename>extra/</filename> do 
+e que pode ser localizado no diretÃ³rio <filename>extra/</filename> do 
 Slackware Linux.
 </para>
 </sect2>
 
 <sect2>
-<title>Adicionando um endereço IPv6 em uma interface</title>
+<title>Adicionando um endereÃ§o IPv6 em uma interface</title>
 
 <para>
-Se existir algum roteador na rede, há uma possibilidade de que a
-interface de rede, já tenha recebido um endereço IPv6, caso o 
-suporte a IPv6 esteja carregado no kernel.  Se este não for o caso
-pode-se adicionar um endereço IPv6 a uma interface usando o
-utilitário <command>ip</command>. Suponha que vamos adicionar o
-endereço <quote>fec0:0:0:bebe::1</quote> com um prefixo de comprimento
-64 (<quote>fec0:0:0:bebe</quote> este é o prefixo). Isto pode ser
+Se existir algum roteador na rede, hÃ¡ uma possibilidade de que a
+interface de rede, jÃ¡ tenha recebido um endereÃ§o IPv6, caso o 
+suporte a IPv6 esteja carregado no kernel.  Se este nÃ£o for o caso
+pode-se adicionar um endereÃ§o IPv6 a uma interface usando o
+utilitÃ¡rio <command>ip</command>. Suponha que vamos adicionar o
+endereÃ§o <quote>fec0:0:0:bebe::1</quote> com um prefixo de comprimento
+64 (<quote>fec0:0:0:bebe</quote> este Ã© o prefixo). Isto pode ser
 feito com o seguinte comando:
 </para>
 
@@ -264,14 +264,14 @@ Por Exemplo:
 <title>Interfaces de Rede Sem Fio (<foreignphrase>Wireless</foreignphrase>)</title>
 
 <para>
-As interfaces de rede sem fio geralmente requerem algumas configurações
-adicionais, como configuração de ESSID, chaves WEP e o modo de wireless.
-A especificação das configurações para as interfaces wireless pode ser
+As interfaces de rede sem fio geralmente requerem algumas configuraÃ§Ãµes
+adicionais, como configuraÃ§Ã£o de ESSID, chaves WEP e o modo de wireless.
+A especificaÃ§Ã£o das configuraÃ§Ãµes para as interfaces wireless pode ser
 feita no arquivo <filename>/etc/rc.d/rc.wireless.conf</filename>. O
 script <command>/etc/rc.d/rc.wireless</command> configura as interfaces
-de rede sem fio com base nas descrições do arquivo <filename>/etc/rc.d/rc.wireless.conf</command>.
-Neste arquivo, as cofigurações são feitas pelo endereço MAC da Inteface.
-Por default, este arquivo possui uma seção que localiza qualquer interface:
+de rede sem fio com base nas descriÃ§Ãµes do arquivo <filename>/etc/rc.d/rc.wireless.conf</command>.
+Neste arquivo, as configuraÃ§Ãµes sÃ£o feitas pelo endereÃ§o MAC da interface.
+Por padr o, este arquivo possui uma seÃ§Ã£o que localiza qualquer interface:
 </para>
 
 <screen>
@@ -286,12 +286,12 @@ Por default, este arquivo possui uma seção que localiza qualquer interface:
 </screen>
 
 <para>
-Comumente é uma boa idéia remover esta seção e fazer uma configuração
-por placa. Se você tiver somente uma placa wireless, poderá deixar esta
-seção e adicionar apenas os parâmetros de configuração necessários.
-Uma vez que esta seção integra a interface sem fio com a placa
-de rede sem fio correspondente e configurada. Você poderá adicionar uma seção
-para sua interface sem fio. Onde cada seção terá o seguinte formato:
+Comumente Ã© uma boa idÃ©ia remover esta seÃ§Ã£o e fazer uma configuraÃ§Ã£o
+por placa. Se vocÃª tiver somente uma placa wireless, poderÃ¡ deixar esta
+seÃ§Ã£o e adicionar apenas os parÃ¢metros de configuraÃ§Ã£o necessÃ¡rios.
+Uma vez que esta seÃ§Ã£o integra a interface sem fio com a placa
+de rede sem fio correspondente e configurada. VocÃª poderÃ¡ adicionar uma seÃ§Ã£o
+para sua interface sem fio. Onde cada seÃ§Ã£o terÃ¡ o seguinte formato:
 </para>
 
 <screen>
@@ -301,10 +301,10 @@ para sua interface sem fio. Onde cada seção terá o seguinte formato:
 </screen>
 
 <para>
-Você pode localizar o endereço MAC de uma interface conferindo a saída
-para a interface através do comando <command>ifconfig</command>. Por
+VocÃª pode localizar o endereÃ§o MAC de uma interface conferindo a saÃ­da
+para a interface atravÃ©s do comando <command>ifconfig</command>. Por
 exemplo, se uma placa de rede sem fio tiver o nome da interface <emphasis>eth1</emphasis>,
-voce poderá localizar o endereço MAC com o seguinte caminho:
+vocÃª poderÃ¡ localizar o endereÃ§o MAC com o seguinte caminho:
 </para>
 
 <screen>
@@ -320,10 +320,10 @@ eth1      Link encap:Ethernet  HWaddr <emphasis>00:01:F4:EC:A5:32</emphasis>
 </screen>
 
 <para>
-O endereço hexadecimal que é mostrado após <emphasis>HWaddr</emphasis>
-é o endereço MAC, neste exemplo <emphasis>00:01:F4:EC:A5:32</emphasis>.
-Quando você tiver localizado o endereço MAC da interface poderá adicionar
-uma seção para o dispositivo no arquivo <filename>/etc/rc.d/rc.wireless.conf</filename>.
+O endereÃ§o hexadecimal que Ã© mostrado apÃ³s <emphasis>HWaddr</emphasis>
+Ã© o endereÃ§o MAC, neste exemplo <emphasis>00:01:F4:EC:A5:32</emphasis>.
+Quando vocÃª tiver localizado o endereÃ§o MAC da interface poderÃ¡ adicionar
+uma seÃ§Ã£o para o dispositivo no arquivo <filename>/etc/rc.d/rc.wireless.conf</filename>.
 Por exemplo:
 </para>
 
@@ -338,19 +338,19 @@ Por exemplo:
 </screen>
 
 <para>
-Esta seção irá configurar a interface com o endereço MAC
+Esta seÃ§Ã£o irÃ¡ configurar a interface com o endereÃ§o MAC
 <emphasis>00:01:F4:EC:A5:32</emphasis> para usar o ESSID
 <emphasis>home</emphasis>, trabalhar em modo <emphasis>Managed</emphasis>
-no canal <emphasis>8</emphasis>. A chave usada para criptografia WEP é
-<emphasis>1234-5678-AB</emphasis>. Há outros parâmetros que podem ser
-configurados. Para uma visualização de todos os parâmetros, verifique
-o último exemplo no arquivo <filename>rc.wireless.conf</filename>.
+no canal <emphasis>8</emphasis>. A chave usada para criptografia WEP Ã©
+<emphasis>1234-5678-AB</emphasis>. HÃ¡ outros parÃ¢metros que podem ser
+configurados. Para uma visualizaÃ§Ã£o de todos os parÃ¢metros, verifique
+o Ãºltimo exemplo no arquivo <filename>rc.wireless.conf</filename>.
 </para>
 
 <para>
-Depois de configurar a interface sem fio, você poderá ativar as
-modificações executando o script de inicialização de rede
-<command>/etc/rc.d/rc.inet1</command>. Você poderá ver as configurações
+Depois de configurar a interface sem fio, vocÃª poderÃ¡ ativar as
+modificaÃ§Ãµes executando o script de inicializaÃ§Ã£o de rede
+<command>/etc/rc.d/rc.inet1</command>. VocÃª poderÃ¡ ver as configuraÃ§Ãµes
 atuais da wireless com o comando <command>iwconfig</command>:
 </para>
 
@@ -374,23 +374,23 @@ eth1      IEEE 802.11-DS  ESSID:"home"  Nickname:"HERMES I"
 <bridgehead>nome de host (<foreignphrase>hostname</foreignphrase></bridgehead>
 
 <para>
-Cada computador na internet tem um nome de host. Se você não tiver um
-hostname o qual é resolvido com DNS, seria uma boa idéia configurá-lo,
-pois alguns softwares o utilizam. Você pode configurar seu nome de host
+Cada computador na internet tem um nome de host. Se vocÃª nÃ£o tiver um
+hostname o qual Ã© resolvido com DNS, seria uma boa idÃ©ia configurÃ¡-lo,
+pois alguns softwares o utilizam. VocÃª pode configurar seu nome de host
 no arquivo <filename>/etc/HOSTNAME</filename>.  Uma linha simples com
-o nome de host da maquina será suficiente. Normalmente esse nome tem o
+o nome de host da maquina serÃ¡ suficiente. Normalmente esse nome tem o
 seguinte formato: host.domain.tld, por exemplo, darkstar.slackfans.org.
 Esteja ciente de que ter um hostname para resolver significa que GNU/Linux
-está apto a converter o nome de host em um endereço IP. Se você tiver
-certeza de que o endereço é resolvível pode adiconá-lo ao arquivo
-<filename>/etc/hosts</filename>. Leia a seguinte seção para
-mais informações sobre este arquivo.
+estÃ¡ apto a converter o nome de host em um endereÃ§o IP. Se vocÃª tiver
+certeza de que o endereÃ§o Ã© resolvÃ­vel pode adicion -lo ao arquivo
+<filename>/etc/hosts</filename>. Leia a seguinte seÃ§Ã£o para
+mais informaÃ§Ãµes sobre este arquivo.
 </para>
 
 <bridgehead>/etc/hosts</bridgehead>
 
 <para>
-<filename>/etc/hosts</filename> é uma tabela de endereços IP
+<filename>/etc/hosts</filename> Ã© uma tabela de endereÃ§os IP
 com nomes associados. Este arquivo pode ser usado para nomes
 de computadores em uma pequena rede. Vamos verificar um
 exemplo do arquivo <filename>/etc/hosts</filename>:
@@ -405,14 +405,14 @@ exemplo do arquivo <filename>/etc/hosts</filename>:
 <para>
 A linha <emphasis>localhost</emphasis> deve estar sempre presente. Ela define o nome <emphasis>localhost</emphasis>
 a uma interface especial, chamada loopback. Neste exemplo os nomes <emphasis>tazzy.slackfans.org</emphasis> e
-<emphasis>tazzy</emphasis> estão definidos para o endereço IP 192.168.1.1, e o nome
-<emphasis>flux.slackfans.org</emphasis> está definido para o endereço IP 192.168.1.169. No sistema que está
-utilizando este arquivo, ambos os computadores estão disponíveis através dos hostnames mencionados.
+<emphasis>tazzy</emphasis> estÃ£o definidos para o endereÃ§o IP 192.168.1.1, e o nome
+<emphasis>flux.slackfans.org</emphasis> estÃ¡ definido para o endereÃ§o IP 192.168.1.169. No sistema que estÃ¡
+utilizando este arquivo, ambos os computadores estÃ£o disponÃ­veis atravÃ©s dos nomes de host mencionados.
 </para>
 
 <para>
-É também possível adicionar um endereço IPv6, que será usado caso seu sistema
-esteja configurado para usar IPv6. Este é um exemplo do arquivo
+Ã‰ tambÃ©m possÃ­vel adicionar um endereÃ§o IPv6, que serÃ¡ usado caso seu sistema
+esteja configurado para usar IPv6. Este Ã© um exemplo do arquivo
 <filename>/etc/hosts</filename> com entradas IPv4 e IPv6: 
 </para>
 
@@ -428,20 +428,20 @@ fec0:0:0:bebe::2	flux.slackfans.org
 </screen>
 
 <para>
-Perceba que <quote>::1</quote> é o endereço padrão de
+Perceba que <quote>::1</quote> Ã© o endereÃ§o padrÃ£o de
 <foreignphrase>loopback</foreignphrase> para IPv6.
 </para>
 
 <bridgehead>/etc/resolv.conf</bridgehead>
 
 <para>
-O arquivo <filename>/etc/resolv.conf</filename> é usado para especificar
-quais servidores de nomes o sistema poderá utilizar. Um servidor de nomes
-converte hostnames para um endereço IP. Seu provedor deveria informar
-pelo menos dois endereços de servidores de nomes (Servidores DNS). Você
-poderá adicionar estes servidores de nomes ao arquivo
-<filename>/etc/resolv.conf</filename> utilizando uma sequência
-<emphasis>nameserver endereçoIP</emphasis> para cada servidor de nomes.
+O arquivo <filename>/etc/resolv.conf</filename> Ã© usado para especificar
+quais servidores de nomes o sistema poderÃ¡ utilizar. Um servidor de nomes
+converte nomes de host para um endereÃ§o IP. Seu provedor deveria informar
+pelo menos dois endereÃ§os de servidores de nomes (Servidores DNS). VocÃª
+poderÃ¡ adicionar estes servidores de nomes ao arquivo
+<filename>/etc/resolv.conf</filename> utilizando uma sequÃªncia
+<emphasis>nameserver endereÃ§oIP</emphasis> para cada servidor de nomes.
 Por exemplo:
 </para>
 
@@ -451,8 +451,8 @@ nameserver 192.168.1.169
 </screen>
 
 <para>
-Você poderá chegar quais nomes de host estão respondendo corretamente ou
-não com o comando <command>host hostname</command>. Troque o argumento 
+VocÃª poderÃ¡ chegar quais nomes de host estÃ£o respondendo corretamente ou
+nÃ£o com o comando <command>host hostname</command>. Troque o argumento 
 <emphasis>hostname</emphasis> por um nome de host existente, por exemplo
 o website de seu provedor de internet.
 </para>
@@ -463,9 +463,9 @@ o website de seu provedor de internet.
 
 <para>
 IPv4 forwarding conecta duas ou mais redes, enviando pacotes que
-chegam a uma interface para outra. Isto permite que uma máquina
-GNU/Linux funcione como um roteador. Por exemplo, você pode conectar
-múltiplas redes, ou sua rede doméstica com a internet. Vamos
+chegam a uma interface para outra. Isto permite que uma mÃ¡quina
+GNU/Linux funcione como um roteador. Por exemplo, vocÃª pode conectar
+mÃºltiplas redes, ou sua rede domÃ©stica com a internet. Vamos
 ver um exemplo:
 </para> 
 
@@ -479,11 +479,11 @@ ver um exemplo:
 </figure>
 
 <para>
-No exemplo acima, há duas redes, 192.168.1.0 e 192.168.2.0. Três hosts
-estão conectados a ambas redes. Um destes hosts está conectado em ambas
+No exemplo acima, hÃ¡ duas redes, 192.168.1.0 e 192.168.2.0. TrÃªs hosts
+estÃ£o conectados a ambas redes. Um destes hosts estÃ¡ conectado em ambas
 as redes com diferentes interfaces. A interface na rede 192.168.1.0 tem
-o endereço IP 192.168.1.3, a interface na rede 192.168.2.0 tem o
-endereço IP 192.168.2.3. Como o host funciona com um roteador entre
+o endereÃ§o IP 192.168.1.3, a interface na rede 192.168.2.0 tem o
+endereÃ§o IP 192.168.2.3. Como o host funciona com um roteador entre
 ambas as redes ele encaminha pacotes da rede 192.168.1.0 para a
 rede 192.168.2.0 e vice-versa. Roteamento de pacotes TCP/IP IPv4 podem
 ser habilitados, ativando IPv4 forwarding.
@@ -492,18 +492,18 @@ ser habilitados, ativando IPv4 forwarding.
 <para>
 IPv4 forwarding
 pode ser habilitado ou desabilitado no Slackware Linux, mudando o
-bit executável do arquivo <filename>/etc/rc.d/rc.ip_forward</filename>.
-Se o bit executável estiver configurado neste arquivo, IP forwarding
-estará habilitando durante o boot do sistema, caso contrario não
-estará habilitado. Voce poderá checar se o bit executável está habilitado
-com o comando <command>ls -l</command> (uma descrição do
+bit executÃ¡vel do arquivo <filename>/etc/rc.d/rc.ip_forward</filename>.
+Se o bit executÃ¡vel estiver configurado neste arquivo, IP forwarding
+estarÃ¡ habilitando durante o a inicializa  o do sistema, caso contrario nÃ£o
+estarÃ¡ habilitado. VocÃª poderÃ¡ checar se o bit executÃ¡vel estÃ¡ habilitado
+com o comando <command>ls -l</command> (uma descriÃ§Ã£o do
 <command>ls</command> pode ser encontrada em 
 <xref linkend="chap-filesystems-analyzing-listing" />). 
 </para>
 
 <para>
-Também é possível habilitar IPv4 forwarding num sistema em execução
-com o seguinte comando (0 desabilita forwardin, 1 habilita forwarding):
+TambÃ©m Ã© possÃ­vel habilitar IPv4 forwarding num sistema em execuÃ§Ã£o
+com o seguinte comando (0 desabilita forwarding, 1 habilita forwarding):
 </para>
 
 <screen>
@@ -511,16 +511,16 @@ com o seguinte comando (0 desabilita forwardin, 1 habilita forwarding):
 </screen>
 
 <para>
-Muito Cuidado! Por padrão, não há nenhum filtro de pacotes. O que
-significa que outros poderão acessar outras redes. O tráfego pode
-ser filtrado e logado com o filtro de pacotes iptables. Iptables
-pode ser administrado através do comando <command>iptables</command>.
+Muito Cuidado! Por padrÃ£o, nÃ£o hÃ¡ nenhum filtro de pacotes. O que
+significa que outras pessoas poderÃ£o acessar as demais redes. O trÃ¡fego pode
+ser filtrado e registrado com o filtro de pacotes iptables. O iptables
+pode ser administrado atravÃ©s do comando <command>iptables</command>.
 NAT (<foreignphrase>Network Address Translation</foreignphrase> ou
-tradução de endereços de rede) também é um subconjunto do iptables
-e pode ser controlado e habilitado através do comando
-<command>iptables</command>. NAT torna possível <quote>ocultar</quote>
-uma rede atrás de um  endereço IP. O que permite a você utilizar a
-internet em uma rede inteira com somente um endereço IP.
+traduÃ§Ã£o de endereÃ§os de rede) tambÃ©m Ã© um subconjunto do iptables
+e pode ser controlado e habilitado atravÃ©s do comando
+<command>iptables</command>. NAT torna possÃ­vel <quote>ocultar</quote>
+uma rede atrÃ¡s de um  endereÃ§o IP. O que permite a vocÃª utilizar a
+internet em uma rede inteira tendo apenas um endereÃ§o IP.
 </para>
 </sect1>
 
