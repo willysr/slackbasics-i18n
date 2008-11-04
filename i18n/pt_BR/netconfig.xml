@@ -108,7 +108,7 @@ DHCP_HOSTNAME[1]=""
 O mesmo se aplica a outras interfaces. Você pode ativar as configurações 
 reiniciando o sistema ou executando o comando <command>/etc/rc.d/rc.inet1</command>.
 É possível também reconfigurar apenas uma interface com o comando
-<command>/etc/rc.d/rc.inet1 ethX_restart</command>, onde o <emphasis>ethX</emphasis> 
+<command>/etc/rc.d/rc.inet1 ethX_restart</command>, onde <emphasis>ethX</emphasis> 
 deve ser substituído pelo nome da interface que você quer reconfigurar.
 </para>
 </sect1>
@@ -143,17 +143,17 @@ fec0:ffff:a300:2312::1
 </screen>
 
 <para>
-Each IPv6 address has a prefix. Normally this consists of two elements:
-32 bits identifying the address space the provider provides you, and a
-16-bit number that specifies the network. These two elements form the
-prefix, and in this case the prefixlength is 32 + 16 = 48 bits. Thus,
-if you have a /48 prefix you can make 2^16 subnets and have 2^80 hosts
-on each subnet. The image below shows the structure of an IPv6 address
-with a 48-bit prefix.
+Cada endereço IPv6 possui um prefixo. Normalmente ele consiste de dois 
+elementos: um de 32 bits identificando o espaço de endereço que o provedor 
+lhe provê e um número de 16 bits que especifíca a rede. Estes dois elementos
+formam o prefixo, e neste caso o tamanho do prefixo é 32 + 16 = 48 bits. 
+Entretanto, se você tiver um prefixo /48 você pode fazer 2^16 subnets e 
+ter 2^80 máquinas em cada subnet. A imagem abaixo mostra a estrutura de 
+um endereço IPv6 com um prefixo de 48 bits:
 </para>
 
 <figure id="ipv6address">
-<title>The anatomy of an IPv6 address</title>
+<title>A anatomia de um endereço IPv6</title>
 <mediaobject>
 <imageobject>
 <imagedata fileref="../images/ipv6addr.png" format="PNG" />
@@ -162,15 +162,15 @@ with a 48-bit prefix.
 </figure>
 
 <para>
-There are a some specially reserved prefixes, most notable include:
+Há alguns prefixos especiais reservados, os mais notáveis são:
 </para>
 
 <table>
-<title>Important IPv6 Prefixes</title>
+<title>Prefixos IPv6 Importantes</title>
 <tgroup cols="2">
 <thead>
 <row>
-<entry>Prefix</entry><entry>Description</entry>
+<entry>Prefixo</entry><entry>Descrição</entry>
 </row>
 </thead>
 <tbody>
