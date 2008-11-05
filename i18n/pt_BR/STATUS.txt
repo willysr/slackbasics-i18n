@@ -7,7 +7,7 @@ chap-init.xml - Em andamento (mfandrade)
 chap-install.xml
 chap-intro.xml - OK
 chap-kernel.xml
-chap-pkgmgmt.xml
+chap-pkgmgmt.xml - Em andamento (Tiago Pasqualini)
 chap-procmgmt.xml
 chap-shell.xml
 chap-textproc.xml
