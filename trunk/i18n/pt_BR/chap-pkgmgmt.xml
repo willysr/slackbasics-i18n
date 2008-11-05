@@ -11,15 +11,15 @@
       <title>Introdução</title>
 
       <para>
-	Slackware Linux does not use a complex package system, unlike
-	many other Linux distributions. Package have the
-	<filename>.tgz</filename> extension, and are usually ordinary
-	tarballs which contain two extra files: an installation script
-	and a package description file.  Due to the simplicity of the
-	packages the Slackware Linux package tools do not have the
-	means to handle dependencies. But many Slackware Linux users
-	prefer this approach, because dependencies often cause more
-	problems than they solve.
+	O Slackware não usa um gerenciador de pacotes complexo, 
+	diferente de muitas outras distribuições Linux. Os pacotes
+	têm a extensão
+	<filename>.tgz</filename>, e são normalmente um pacote normal
+	com dois arquivos a mais: um script de instalação e um arquivo
+	de descrição do pacote. Devido à simplicidade dos pacotes, o
+	Slackware não trata as dependências. Mas muitos usuários do
+	Slackware preferem esse sistema, pois geralmente as dependências
+	causam mais problemas do que soluções.
       </para>
 
       <para>
