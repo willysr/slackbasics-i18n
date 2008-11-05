@@ -9,7 +9,7 @@ chap-intro.xml - OK
 chap-kernel.xml
 chap-pkgmgmt.xml - Em andamento (Tiago Pasqualini)
 chap-procmgmt.xml
-chap-shell.xml
+chap-shell.xml - Em andamento (thiagoc)
 chap-textproc.xml
 chap-usermgmt.xml
 chap-x11.xml - OK

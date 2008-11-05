@@ -2,17 +2,17 @@
 
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:id="chap-shell">
-  <title>The shell</title>
+  <title>O shell</title>
 
   <sect1 xml:id="chap-shell-intro">
-    <title>Introduction</title>
+    <title>Introdução</title>
 
     <para>
-      In this chapter we will look at the traditional working
-      environment of UNIX systems: the shell. The shell is an
-      interpreter that can be used interactively and
-      non-interactively. When the shell is used non-interactively it
-      functions as a simple, but powerful scripting language.
+      Neste capítulo iremos ver um ambiente tradicional em sistemas 
+      UNIX: o shell. O shell é um interpretador que pode ser usado 
+      interativamente e não-interativamente. Quando o shell é usado 
+      não-interativamente, ele funciona como uma simples, porém 
+      poderosa linguagem de script.
     </para>
 
     <para>
