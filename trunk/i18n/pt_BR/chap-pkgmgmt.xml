@@ -2,13 +2,13 @@
 
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:id="chap-pkgmgmt">
-  <title>Package Management</title>
+  <title>Gerenciamento de Pacotes</title>
 
   <sect1 xml:id="chap-pkgmgmt-pkgtools">
     <title>Pkgtools</title>
 
     <sect2 xml:id="chap-pkgmgmt-pkgtools-intro">
-      <title>Introduction</title>
+      <title>Introdução</title>
 
       <para>
 	Slackware Linux does not use a complex package system, unlike
