@@ -1,26 +1,25 @@
 <chapter id="getstarted-custominstall"> <?dbhtml filename="custom-installation.html" ?>
-  <title>Custom installation</title>
+  <title>Instalação personalizada</title>
 
   <para>
-    Sometimes you may want to do a custom installation of Slackware Linux,
-    for example to get better understanding of how GNU/Linux systems work,
-    or to prepare an automatic installation script. This chapter outlines
-    the steps that are required to install Slackware Linux manually. A
-    sample installation script is also provided in <xref
+    Você pode querer executar uma instalação personalizada do Slackware Linux,
+    por exemplo, para entender melhor como o sistema GNU/Linux funciona,
+    ou para preparar um script para instalação automática. Este capítulo esboça
+    os passos necessários para instalar o Slackware Linux manualmente. Um exemplo de 
+    script de instalação pode ser encontrado em <xref
     linkend="getstarted-custominstall-script" />.
   </para>
 
   <sect1 id="getstarted-custominstall-partition">
-    <title>Partitioning a hard disk</title>
+    <title>Particionando o disco rígido</title>
 
     <para>
-      If you have performed a normal installation, you should not
-      have any problems partitioning a disk. You can use the
-      <command>fdisk</command> and <command>cfdisk</command>
-      commands to partition disks. If you are scripting the
-      installation of Slackware Linux it is useful to know that
-      you can pipe <command>fdisk</command> commands to
-      <command>fdisk</command>. For example:
+      Se você executou uma instalação normal, não teria motivos para ter
+      qualquer problema particionando um disco. Você pode usar os comandos 
+      <command>fdisk</command> e <command>cfdisk</command>
+      para particionar o disco. Se você está instalando o Slackware Linux via script
+      pode ser útil saber que você pode enviar comandos (pipe) <command>fdisk</command> para o 
+      <command>fdisk</command>. Por exemplo:
     </para>
 
     <screen>
@@ -43,11 +42,11 @@ EOF</command>
     </screen>
 
     <para>
-      These commands create a primary Linux partition of 10000MB, and
-      a primary Linux swap partition of 512MB. You could store the
-      <command>fdisk</command> commands in different disk profiles,
-      and use one of the profiles based on the specific deployment
-      (e.g.  the disk size). For example:
+      Estes comandos criam uma partição primária do tipo Linux com 10000MB, e
+      uma partição primária do tipo swap com 512MB. Você poderia armazenar comandos
+      <command>fdisk</command> em diferentes perfis de disco e
+      usar um desses perfis baseado em um critério específico 
+      (ex:  tamanho do disco). Por exemplo (entende-se 'smalldisk' como 'disco pequeno):
     </para>
 
     <screen>
@@ -56,15 +55,15 @@ EOF</command>
   </sect1>
 
   <sect1 id="getstarted-custominstall-initfs">
-    <title>Initializing and mounting filesystems</title>
+    <title>Inicializando e montando sistemas de arquivos</title>
 
     <para>
-      After making at least a swap and a Linux partition, you can
-      initialize the filesystem and swap space and make use of this
-      storage. On systems that are short on memory, you should initialize,
-      and use swap first. We will use the partition layout used in
-      the partitioning example listed above in the following examples.
-      To set up and use swap, execute:
+      Após criar ao menos uma partição do tipo Linux e outra do tipo swap, você pode
+      inicializar o sistema de arquivos e swap, e utilizar o normalmente o disco.
+      Em sistemas com pouca memória, você deveria inicializar a partição swap primeiro.
+      Nós vamos usar o esquema de particionamento demonstrado aqui e que
+      está listado abaixo no exemplo: 
+      Para inicializar uma partição swap, execute:
     </para>
 
     <screen>
@@ -73,32 +72,33 @@ EOF</command>
     </screen>
 
     <para>
-      The meaning of these commands is quite obvious. <command>mkswap</command>
-      initializes the swap space, and <command>swapon</command> puts it to
-      use. You will only have to execute <command>mkswap</command> once,
-      but <command>swapon</command> has to be executed during every system
-      boot. This can be done automatically by adding an entry for the
-      swap partition to <filename>/etc/fstab</filename>, which we will
-      do during a later step. 
+      O significado desses comandos é bastante óbvio. <command>mkswap</command>
+      formata a partição swap e <command>swapon</command> a incializa  (e passa portanto
+      a estar disponível para uso).
+      Você precisa executar o comando <command>mkswap</command> apenas uma vez,
+      mas, o comando <command>swapon</command> deve ser executado em cada inicialização (boot) do sistema.
+      Isto pode ser feito automaticamente se você adicionar uma linha para a
+      partição swap no <filename>/etc/fstab</filename>, que nós vamos
+      abordar em uma leitura mais adiante.
     </para>
 
     <para>
-      For now, it is important to initialize the target partitions. This
-      can be done with the <command>mkfs</command> command. You can
-      specify which filesystem should be used by adding the <parameter
-      class="command">-t</parameter> parameter. <command>mkfs</command>
-      will automatically invoke a <command>mkfs.filesystem</command>
-      command based on the filesystem that you have chosen. Be aware that
-      the filesystems that can be used depends on the installation
-      kernel that you have booted. If you have booted the
-      <emphasis>bare.i</emphasis> kernel, you can use the
-      <emphasis>ext2</emphasis>, <emphasis>ext3</emphasis> and
-      <emphasis>reiserfs</emphasis> filesystems.
+      Por enquanto, é importante inicializar a partição de destino. Isto 
+      pode ser feito com o comando <command>mkfs</command>. Você pode
+      especificar qual sistemas de arquivos de ser utilizado adicionando o parâmetro <parameter
+      class="command">-t</parameter>. <command>mkfs</command>
+      automaticamente executará o comando <command>mkfs.filesystem</command>
+      baseado no sistema de arquivos que você escolheu. Tenha em mente que 
+      o sistema de arquivos que pode ser usado depende da instalação do kernel que 
+      você carregou. Se você carregou o kernel
+      <emphasis>bare.i</emphasis>, então você pode utilizar os sistemas de arquivos  
+      <emphasis>ext2</emphasis>, <emphasis>ext3</emphasis> e 
+      <emphasis>reiserfs</emphasis>.
     </para>
 
     <para>
-      To initialize an <emphasis>ext3</emphasis> filesystem, and mount it,
-      you should execute the following commands:
+      Para incializar e montar um sistema de arquivos <emphasis>ext3</emphasis>
+      você deve executar os seguintes comandos:
     </para>
 
     <screen>

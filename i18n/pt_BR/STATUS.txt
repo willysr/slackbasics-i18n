@@ -14,7 +14,7 @@ chap-textproc.xml
 chap-usermgmt.xml
 chap-x11.xml - OK
 concepts.xml
-custom-installation.xml
+custom-installation.xml - Em andamento (AlexanDER Franca)
 default.css
 inetd.xml - OK
 ipsec.xml
