@@ -16,28 +16,28 @@
     </para>
 
     <para>
-      The procedure for starting the shell depends on whether you use
-      a graphical or text-mode login. If you are logging on in
-      text-mode the shell is immediately started after entering the
-      (correct) password.  If you use a graphical login manager like
-      KDM, log on as you would normally, and look in your window
-      manager or desktop environment menu for an entry named
-      <quote>XTerm</quote>, <quote>Terminal</quote> or
-      <quote>Konsole</quote>. XTerm is a terminal emulator, after the
-      terminal emulator is started the shell comes up.
+      O procedimento para começar com o shell depende se você loga 
+      no sistema em modo gráfico ou em modo texto. Se você utiliza 
+      o modo texto, o shell é imediatamente iniciado depois que você 
+      digita a senha corretamente. Se você usa um gerenciador gráfico 
+      de login como o KDM, faça o login como você faz normalmente e 
+      procure no menu do seu gerenciador de janelas por um item 
+      chamado <quote>XTerm</quote>, <quote>Terminal</quote> ou 
+      <quote>Konsole</quote>. XTerm é um emulador de terminal que após 
+      iniciado abre o shell.
     </para>
-		
+
     <para>
-      Before we go any further, we have to warn you that Slackware
-      Linux provides more than just one shell. There are two shell
-      flavors that have become popular over time, the Bourne shell and
-      the C shell.  In this chapter we will describe Bourne shells
-      that conform to the IEEE 1003.1 standard. The Bash (Bourne Again
-      Shell) and ksh (Korn Shell) shells conform well to these
-      standards. So, it is a good idea to use one of these two
-      shells. You can easily see what shell the system is running by
-      executing <command>echo $SHELL</command>.  This is what a Bash
-      shell may report:
+      Antes de irmos adiante, temos que alertar você que o Slackware 
+      Linux dispõe de mais de um shell. Há dois sabores de shell que 
+      se tornaram populares ao longo do tempo, o Bourne shell e o 
+      C shell. Neste capítulo iremos tratar do Bourne shells que 
+      seguem o padrão IEEE 1003.1. Os shells Bash (Bourne Again Shell) 
+      e ksh (Korn Shell) seguem bem este padrão. Então é uma boa idéia 
+      utilizar um destes dois. Você pode facilmente ver qual o shell o 
+      seu sistema está utilizando executando 
+      <command>echo $SHELL</command>. Isto é o que um shell Bash irá 
+      mostrar:
     </para>
 
     <screen>
@@ -46,10 +46,10 @@ $ <userinput>echo $SHELL</userinput>
     </screen>
 		
     <para>
-      If you are using a different shell, you can change your default
-      shell. Before setting a different shell, you have to establish
-      the full path of the shell. You can do this with the
-      <command>which</command> command. For example:
+      Se você está usando um shell diferente, você pode alterar o seu 
+      shell padrão. Antes de mudar, você tem que saber o caminho 
+      completo para o shell. Você pode fazer isso com o comando 
+      <command>which</command>. Por exemplo:
     </para>
 
     <screen>
@@ -60,11 +60,11 @@ $ <userinput>which ksh</userinput>
     </screen>
 
     <para>
-      On this Slackware system, the full path to the bash shell is
-      <filename>/bin/bash</filename>, and to the ksh shell
-      <filename>/bin/ksh</filename>. With this information, and the
-      <command>chsh</command> command you change the default
-      shell. The following example will set the default shell to bash:
+      Neste sistema Slackware, o caminho completo do shell bash é 
+      <filename>/bin/bash</filename>, e do shell ksh é 
+      <filename>/bin/ksh</filename>. Com esta informação e o comando 
+      <command>chsh</command> você pode mudar o seu shell padrão. O 
+      exemplo seguinte irá definir o bash como shell padrão:
     </para>
 
     <screen>
@@ -75,65 +75,61 @@ Shell changed.
     </screen>
 
     <para>
-      The new shell will be activated after logging out from the
-      current shell (with <command>logout</command> or
-      <command>exit</command>), or by opening a new X terminal window
-      if you are running X11.
+      O novo shell irá ser ativado após fechar a sessão do shell 
+      atual (com <command>logout</command> ou <command>exit</command>), 
+      ou abrindo outra janela de terminal se você estiver rodando o X11.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-shell-executing">
-    <title>Executing commands</title>
+    <title>Executando comandos</title>
 
     <para>
-      An interactive shell is used to start programs by executing
-      commands.  There are two kinds of commands that a shell can
-      start:
+      Um shell interativo é usado para iniciar programas executando 
+      um comando. Há dois tipos de comando que o shell pode iniciar:
     </para>
 
     <itemizedlist>
       <listitem>
 	<para>
-	  <emphasis>Built-in commands:</emphasis> built-in commands
-	  are integrated in the shell. Commonly used built-in commands
-	  are: <command>cd</command>, <command>fg</command>,
-	  <command>bg</command>, and <command>jobs</command>.
+      <emphasis>Comandos embutidos:</emphasis> comandos embutidos 
+      são integrados ao shell. Os mais comuns são:
+	  <command>cd</command>, <command>fg</command>,
+	  <command>bg</command>, e <command>jobs</command>.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  <emphasis>External commands:</emphasis> external commands
-	  are programs that are not part of the shell program, and are
-	  separately stored on the filesystem. Commonly used external
-	  commands are: <command>ls</command>, <command>cat</command>,
-	  <command>rm</command>, and <command>mkdir</command>.
+      <emphasis>Comandos externos:</emphasis> comandos externos 
+      são programas que não fazem parte do shell, e são guardados 
+      em diretórios separados. Os mais comuns são:
+	  <command>ls</command>, <command>cat</command>,
+	  <command>rm</command>, e <command>mkdir</command>.
 	</para>
       </listitem>
     </itemizedlist>
 
     <para>
-      All shell commands are executed with the same syntax:
+      Todos os comandos shell são executados utilizando a mesma sintaxe:
     </para>
 		
     <screen>
-<command>commandname [argument1 argument2 ... argumentn]</command>
+<command>nomedocomando [argumento1 argumento2 ... argumenton]</command>
     </screen>
 
     <para>
-      The number of arguments is arbitrary, and are always passed to
-      the command. The command can decide what it does with these
-      arguments.
+      O número de argumentos é arbitrário e sempre são passados para o 
+      comando. O comando decide o que fazer com eles.
     </para>
 
     <para>
-      All built-in commands can always be executed, because they are
-      part of the shell. External commands can be executed by name
-      when the program is in the search path of the shell. Otherwise,
-      you will have to specify the path to the program. The search
-      path of the shell is stored in a variable named
-      <emphasis>PATH</emphasis>.  A variable is a named piece of
-      memory, of which the contents can be changed. We can see the
-      contents of the PATH variable in the following manner:
+      Todos os comandos embutidos podem ser executados, porque eles 
+      fazem parte do shell. Comando externos podem ser executados pelo 
+      nome quando o programa está em um caminho que o shell procura. 
+      Este caminho é armazenado em uma variável chamada 
+      <emphasis>PATH</emphasis>. Uma variável é uma parte da memória 
+      que possui um nome, e seu conteúdo pode ser alterado. Nós podemos 
+      ver o conteúdo da variável PATH da seguinte maneira:
     </para>
 
     <screen>
@@ -142,12 +138,12 @@ $ <userinput>echo $PATH</userinput>
     </screen>
 
     <para>
-      The directory paths in the <emphasis>PATH</emphasis> variable
-      are separated with the colon (<emphasis>:</emphasis>)
-      character. You can use the <command>which</command> command to
-      check whether a given command is in the current shell path. You
-      can do this by providing the command as an argument to
-      <command>which</command>. For example:
+      Os caminhos dos diretórios na variável <emphasis>PATH</emphasis> 
+      são separados pelo caracter dois-pontos (<emphasis>:</emphasis>).
+      Você pode usar o comando <commando>which</command> para verificar 
+      se um comando está no caminho de pesquisa do shell atual. Você 
+      pode fazer isto passando um argumento para o 
+      <command>which</command>. Por exemplo:
     </para>
 
     <screen>
@@ -158,30 +154,29 @@ $ <userinput>which sysstat</userinput>
     </screen>
 
     <para>
-      If a program is not in the path, you can still run it by
-      entering its absolute or relative path.
+      Se o programa não está no caminho de pesquisa, você pode 
+      digitar o seu caminho absoluto ou relativo.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-shell-moving">
-    <title>Moving around</title>
+    <title>Movimentando-se</title>
 
     <para>
-      It is often necessary to jump through various parts of a line,
-      and to alter it, when you are editing larger commands. Both
-      <command>bash</command> and <command>ksh</command> have keyboard
-      shortcuts for doing common operations.  There are two shell
-      modes, in which the shortcut keys differ. These modes correspond
-      with two popular editors for UNIX in their behavior.  These
-      editors are <command>vi</command> and
-      <command>emacs</command>. In this book we will only cover the
-      EMACS-like keystrokes. You can check in which mode a shell is
-      running by printing the <emphasis>SHELLOPTS</emphasis>
-      variable. In the first example the shell is used in
-      <emphasis>emacs</emphasis> mode, in the second example the
-      <emphasis>vi</emphasis> mode is used. You identify the mode by
-      looking for the <emphasis>emacs</emphasis> or
-      <emphasis>vi</emphasis> strings in the contents of the variable.
+      Muitas vezes, é necessário saltar por várias partes de uma linha, 
+      e então alterá-la, quando você está editando comandos longos. 
+      Ambos <command>bash</command> and <command>ksh</command> possuem 
+      atalhos para operações comuns. Há dois modos no shell, em que os 
+      atalhos diferem. Estes modos correspondem em seu comportamento à 
+      dois populares editores do UNIX. Os editores são o <command>vi</command> 
+      e o <command>emacs</command>. Neste livro nós iremos apenas ver 
+      os atalhos correspondentes ao modo EMACS. Você pode ver qual o 
+      modo que o seu shell está rodando imprimindo a variável 
+      <emphasis>SHELLOPTS</emphasis>. Neste primeiro exemplo o shell 
+      é utilizado no modo <emphasis>emacs</emphasis>, e no segundo 
+      é utilizado o modo <emphasis>vi</emphasis>. Você pode verificar 
+      o modo utilizado procurando por <emphasis>emacs</emphasis> ou 
+      <emphasis>vi</emphasis> no conteúdo da variável.
     </para>
 
     <screen>
@@ -195,9 +190,9 @@ braceexpand:hashall:histexpand:history:interactive-comments:monitor:vi
     </screen>
 
     <para>
-      If your shell is currently using the <emphasis>vi</emphasis>
-      mode, you can switch to the <emphasis>emacs</emphasis> mode by
-      setting the <emphasis>emacs</emphasis> option:
+      Se o seu shell estiver utilizando o modo <emphasis>vi</emphasis>, 
+      você pode mudar para o modo <emphasis>emacs</emphasis> setando a 
+      opção <emphasis>emacs</emphasis>:
     </para>
 
     <screen>
