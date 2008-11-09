@@ -200,51 +200,50 @@ $ <userinput>set -o emacs</userinput>
     </screen>
 
     <para>
-      With the <emphasis>emacs</emphasis> editing mode enabled, you
-      can start using shortcuts. We will look at three kinds of
-      shortcuts: character editing shortcuts, word editing shortcuts,
-      and line editing shortcuts. Later in this chapter, we will also
-      have a look at some shortcuts that are used to retrieve entries
-      from the command history.
+      Com o modo de edição <emphasis>emacs</emphasis> habilitado, você pode
+      começar a usar atalhos.  Vamos ver aqui três tipos de atalhos: atalhos
+      edição de caracter, atalhos de edição de palavra, e atalhos de edição de
+      linha.  Posteriormente neste capítulo, vamos ver também alguns atalhos
+      que são usados para obter entradas a partir do histórico de comandos.
     </para>
 
     <sect2 xml:id="chap-shell-moving-char">
-      <title>Character editing</title>
+      <title>Edição de caracter</title>
 
       <para>
-	The first group of shortcuts have characters as their logic
-	unit, meaning that they allow command line editing operations
-	on characters.  <xref
-	linkend="chap-shell-moving-char-shortcuts-move" /> provides an
-	overview of the shortcuts that are used to move through a line
-	by character.
+       O primeiro grupo de atalhos usam caracteres como sua unidade lógica,
+       significando que eles lhe permitem operações de edição de caracteres em
+       linha de comando.  <xref
+       linkend="chap-shell-moving-char-shortcuts-move" /> dá uma visão geral
+       dos atalhos que podem ser usados para se movimentar em uma linha a
+       distância de alguns caracteres.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-move">
-	<title>Moving by character</title>
+	<title>Movimentando-se por um caracter</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry><entry>Description</entry>
+	      <entry>Teclas</entry><entry>Descrição</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-b</entry>
-	      <entry>Move a character backwards.</entry>
+	      <entry>Move-se um caracter para trás.</entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-f</entry>
-	      <entry>Move a character forward.</entry>
+	      <entry>Move-se um caracter para frente.</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <para>
-	These shortcuts are simple, and don't do anything unexpected.
-	Suppose that you have typed the following line:
+       Esses atalhos são simples, e não fazem nada de inesperado.  Suponha que
+       você tenha digitado a seguinte linha:
       </para>
 
       <screen>
@@ -252,8 +251,8 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	The cursor will be at the end. You can now move to the start
-	of the line by holding <emphasis>Ctrl-b</emphasis>:
+       O cursor estará ao final.  Agora você pode mover-se para o começo da linha
+       segurando <emphasis>Ctrl-b</emphasis>:
       </para>
 
       <screen>
@@ -261,39 +260,39 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	Likewise, you can go back again to the end by holding
-	<emphasis>Ctrl-f</emphasis>. There is an error in this line,
-	since there is one erroneous dash. To remove this dash, you
-	can use one of the character deletion shortcuts.
+       Da mesma forma, você também pode retornar ao final da linha segurando 
+       <emphasis>Ctrl-f</emphasis>.  Há um erro nessa linha, pois há um hífen
+       incorreto.  Para remover este hífem, você pode usar um dos atalhos de
+       exclusão de caracter.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-delete">
-	<title>Deleting characters</title>
+	<title>Excluindo caracteres</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry><entry>Description</entry>
+	      <entry>Teclas</entry><entry>Descrição</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-h</entry>
-	      <entry>Delete a character before the cursor. This has
-	      the same effect as using the Backspace key on most
-	      personal computers.</entry>
+          <entry>Exclui um caracter antes do cursor.  Isto tem o mesmo efeito
+             de se usar a tecla Backspace na maioria dos computadores
+             pessoais.</entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-d</entry>
-	      <entry>Delete the character the cursor is on.</entry>
+	      <entry>Exclui o caracter que está sob o cursor.</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <para>
-	You can delete the dash in two manners. The first way is to
-	move the cursor to the dash:
+       Você pode excluir o hífem de duas maneiras.  A primeira é mover o cursor
+       até o hífen:
       </para>
 
       <screen>
@@ -301,9 +300,8 @@ find ~/music <emphasis role="cursor">-</emphasis> -name '*.ogg' -print
       </screen>
 
       <para>
-	and then press <emphasis>Ctrl-d</emphasis> twice. This will
-	delete the dash character, and the space that follows the
-	dash:
+       e então pressionar <emphasis>Ctrl-d</emphasis> duas vezes.  Isto irá
+       excluir o caracter hífem e o espaço logo após ele:
       </para>
 
       <screen>
@@ -311,8 +309,8 @@ find ~/music <emphasis role="cursor">-</emphasis>name '*.ogg' -print
       </screen>
 
       <para>
-	Looking at the original fragment, the other approach is to
-	position the cursor on the space after the dash:
+       Olhando para o fragmento original, a outra maneira de fazer a mesma coisa é
+       posicionar o cursor no espaço após o hífem:
       </para>
 
       <screen>
@@ -320,10 +318,9 @@ find ~/music -<emphasis role="cursor">&#32;</emphasis> -name '*.ogg' -print
       </screen>
 
       <para>
-	and then press <emphasis>Ctrl-h</emphasis> twice to delete the
-	two preceding characters, namely the dash and the space before
-	the dash. The result will be the same, except that the cursor
-	will move:
+       e então pressionar <emphasis>Ctrl-h</emphasis> duas vezes para excluir os
+       dois caracteres anteriores, o hífem em si e o espaço imediatamente
+       anterior.  O resultado será o mesmo, exceto pela movimentação do cursor:
       </para>
 
       <screen>
@@ -331,35 +328,35 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
       </screen>
 
       <para>
-	One of the nice features of most modern shells is that you can
-	transpose (swap) characters. This is handy if you make a
-	typing error in which two characters are swapped.  <xref
-	linkend="chap-shell-moving-char-shortcuts-swap" /> lists the
-	shortcut for transposing characters.
+       Uma das melhores características da maioria dos shells modernos é que você
+       pode transpor (trocar) caracteres.  Isso é útil se você teve um erro de
+       digitação invertendo dois caracteres.  <xref
+       linkend="chap-shell-moving-char-shortcuts-swap" /> lista o atalho para
+       transposição de caracteres.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-swap">
-	<title>Swapping characters</title>
+	<title>Trocando caracteres</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry><entry>Description</entry>
+	      <entry>Teclas</entry><entry>Descrição</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-t</entry>
-	      <entry>Swap (transpose) the characters the cursor is on,
-	      and the character before the cursor. This is handy for
-	      quickly correcting typing errors.</entry>
+          <entry>Troca (transpõe) o caracter que está sob o cursor, e o
+          caracter imediatamente antes do cursor.  Isso é útil para corrigir
+          erros de digitação rapidamente.</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <para>
-	Suppose that you have typed the following command:
+       Suponha que você tenha digitado o seguinte comando:
       </para>
 
       <screen>
@@ -367,11 +364,10 @@ cat myreport.ttx
       </screen>
 
       <para>
-	The extension contains a typing error if you intended to
-	<command>cat</command> <filename>myreport.txt</filename>. This
-	can be corrected with the character transpose shortcut. First
-	move to the second character of the pair of characters that
-	are in the wrong order:
+       A extensão contém um erro de digitação se você pretendia executar
+       <command>cat</command> <filename>myreport.txt</filename>.  Isto pode ser
+       corrigido com o atalho de transposição de caracteres.  Primeiro, mova-se
+       para o segundo caracter dos dois que estão trocados:
       </para>
 
       <screen>
@@ -379,9 +375,9 @@ cat myreport.tt<emphasis role="cursor">x</emphasis>
       </screen>
 
       <para>
-	You can then press <emphasis>Ctrl-t</emphasis>. The characters
-	will be swapped, and the cursor will be put behind the swapped
-	characters:
+       Agora você pode pressionar <emphasis>Ctrl-t</emphasis>.  Os caracteres
+       serão trocados, e o cursor se posicionará após os caracteres que foram
+       trocados:
       </para>
 
       <screen>
@@ -408,8 +404,8 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
-	      <entry>Description</entry>
+	      <entry>Teclas</entry>
+	      <entry>Descrição</entry>
 	    </row>
 	  </thead>
 	  <tbody>
@@ -488,8 +484,8 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
-	      <entry>Description</entry>
+	      <entry>Teclas</entry>
+	      <entry>Descrição</entry>
 	    </row>
 	  </thead>
 	  <tbody>
@@ -525,8 +521,8 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
-	      <entry>Description</entry>
+	      <entry>Teclas</entry>
+	      <entry>Descrição</entry>
 	    </row>
 	  </thead>
 	  <tbody>
@@ -635,8 +631,8 @@ find ~/music -name '*.ogg' -print
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
-	      <entry>Description</entry>
+	      <entry>Teclas</entry>
+	      <entry>Descrição</entry>
 	    </row>
 	  </thead>
 	  <tbody>
@@ -697,8 +693,8 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
-	      <entry>Description</entry>
+	      <entry>Teclas</entry>
+	      <entry>Descrição</entry>
 	    </row>
 	  </thead>
 	  <tbody>
