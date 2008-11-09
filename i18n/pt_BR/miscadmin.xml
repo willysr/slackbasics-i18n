@@ -240,10 +240,10 @@ using_dma    =  0 (off)
       <title>vmstat</title>
 
       <para>
-        <command>vmstat</command> is a command that can provide
-        statistics about various parts of the virtual memory system.
-        Without any extra parameters <command>vmstat</command>
-        provides a summary of some relevant statistics:
+        O <command>vmstat</command> é um comando que pode prover
+	estatísticas sobre várias partes do sistema de memória virtual.
+	Sem nenhum parâmetro extra, o <command>vmstat</command> produz
+	um sumário de algumas estatísticas relevantes:
       </para>
 
       <screen>
@@ -254,56 +254,58 @@ procs -----------memory---------- ---swap-- -----io---- --system-- ----cpu----
       </screen>
 
       <para>
-        Since we are only looking at memory usage in this section, we will
-        only have a look at the <emphasis>memory</emphasis> and
-        <emphasis>swap</emphasis> fields.
+        Uma vez que, nesta seção, você está apenas interessado em
+	utilização de memória, vamos dar uma olhada apenas nos campos
+        <emphasis>memory</emphasis> e <emphasis>swap</emphasis>.
       </para>
 
       <itemizedlist>
         <listitem>
           <para>
-            <emphasis>swpd</emphasis>: The amount of virtual memory
-            being used.
+            <emphasis>swpd</emphasis>: O total de memória virtual sendo
+	    usada.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis>free</emphasis>: The amount of memory that is not
-            used at the moment.
+            <emphasis>free</emphasis>: O total de memória que não está
+	    sendo usada no momento.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis>buff</emphasis>: The amount of memory used as
+            <emphasis>buff</emphasis>: O total de memória usada como
             buffers.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis>cache</emphasis>: The amount of memory used as
-            cached.
+            <emphasis>cache</emphasis>: O total de memória que é usada
+	    para cache.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis>si</emphasis>: The amount of memory that is
-            swapped in from disk per second.
+            <emphasis>si</emphasis>: O total de memória que é trazida
+	    (<foreignphrase>swapped</foreignphrase>) a partir do disco
+	    por segundo.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis>si</emphasis>: The amount of memory that is
-            swapped to disk per second.
+            <emphasis>so</emphasis>: O total de memória que é levada
+	    para o disco por segundo.
           </para>
         </listitem>
       </itemizedlist>
 
       <para>
-        It is often useful to see how memory usage changes over time.
-        You can add an interval as a parameter to <command>vmstat</command>,
-        to run <command>vmstat</command> continuously, printing the current
-        statistics. This interval is in seconds. So, if you want to get
-        updated statistics every second, you can execute:
+        Frequentemente é útil ver como a utilização de memória se alteram ao
+        longo do tempo.  Você pode adicionar um intervalo como parâmetro para o
+        <command>vmstat</command>, para executá-lo continuamente, exibindo as
+        estatísticas no momento atual.  Este intervalo é dado em segundos.
+        Então, se você quiser ter estatísticas atualizadas a cada segundo, você
+        pode executar:
       </para>
 
       <screen>
@@ -317,11 +319,11 @@ procs -----------memory---------- ---swap-- -----io---- --system-- ----cpu----
       </screen>
 
       <para>
-        Additionally, you can tell <command>vmstat</command> how many times
-        it should output these statistics (rather than doing this infinitely).
-        For example, if you would like to print these statistics every
-        two seconds, and five times in total, you could execute
-        <command>vmstat</command> in the following manner:
+        Adicionalmente, você pode dizer ao <command>vmstat</command> quantas
+        vezes ele deveria mostrar estas estatísticas (ao invés de ficar fazendo
+        isso indefinidamente).  Por exemplo, se você quiser exibir estatísticas
+        a cada dois segundos, e cinco vezes no total, você poderia executar o
+        <command>vmstat</command> da seguinte maneira:
       </para>
 
       <screen>
