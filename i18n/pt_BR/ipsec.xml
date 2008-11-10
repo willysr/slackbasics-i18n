@@ -4,44 +4,44 @@
   <title>IPsec</title>
 
   <sect1>
-    <title>Theory</title>
+    <title>Teoria</title>
 
     <para>
-      <acronym>IPsec</acronym> is a standard for securing IP communication
-      through authentication, and encryption. Besides that it can compress
-      packets, reducing traffic.  The following protocols are part of the
-      IPsec standard:
+      <acronym>IPsec</acronym> é um padrão para comunicação IP segura
+      através de autenticação e encriptação. Além disso, também é possível
+      compactar os pacotes e com isso reduzir o tráfego. Os seguintes protocolos são parte do
+      padrão IPsec:
     </para>
 
     <itemizedlist>
       <listitem>
         <para>
-          <acronym>AH</acronym> (Authentication Header) provides authenticity
-          guarantee for transported packets. This is done by checksumming the
-          packages using a cryptographic algorithm. If the checksum is found to
-          be correct by the receiver, the receiver can be assured that the 
-	  packet is not modified, and that the packet really originated from 
-	  the reported sender (provided that the keys are only known by the 
-	  sender and receiver). 
+          <acronym>AH</acronym> (Authentication Header) garante a autenticidade dos
+          pacotes transportados. Isto é feito usando um algoritmo de criptografia
+          que gera um checksum dos pacotes. Se o checksum for considerado correto
+          pelo receptor, o receptor pode então ter certeza de que o pacote não foi modificado e que 
+          o pacote realmente veio do emissor identificado (desde que as chaves sejam de conhecimento
+          apenas do emissor e do receptor).
         </para>
       </listitem>
       <listitem>
         <para>
-          <acronym>ESP</acronym> (Encapsulating Security Payload) is used to
-          encrypt packets. This makes the data of the packet confident, and
-	  only readable by the host with the right decryption key.
+          <acronym>ESP</acronym> (Encapsulating Security Payload) é usado para 
+          encriptar pacotes. Isto torna confiáveis os dados dos pacotes e também
+          somente leitura pelo host que tem a chave correta de decriptação.
         </para>
       </listitem>
       <listitem>
         <para>
-          <acronym>IPcomp</acronym> (IP payload compression) provides
-	  compression before a packet is encrypted. This is useful, because
-	  encrypted data generally compresses worse than unencrypted data.
+           <acronym>IPcomp</acronym> (IP payload compression) provê 
+           uma compressão antes de o pacotes ser encriptado. Isto é útil 
+           porque dados encriptados normalmente são mais difíceis de compactar
+           do que dados não criptografados.
         </para>
       </listitem>
       <listitem>
         <para>
-          <acronym>IKE</acronym> (Internet Key Exchange) provides the means to
+          <acronym>IKE</acronym> (Internet Key Exchange) fornece provides the means to
           negotiate keys in secrecy. Please note that IKE is optional, keys can
           be configured manually.
         </para>
