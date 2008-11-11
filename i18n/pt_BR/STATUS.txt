@@ -1,31 +1,31 @@
-linhas arquivo			trad	1a-rev	2a-rev	form
-------+------------------------+-------+-------+-------+------
-    38 preface.xml		OK	.	.	.
-    85 chap-book.xml		OK	.	.	.
-   117 bind.xml			OK	.	.	.
-   131 chap-x11.xml		OK	.	.	.
-   135 services.xml		OK	.	.	.
-   143 slackware-basics.xml	OK	.	.	.
-   149 inetd.xml		OK	.	.	.
-   156 apache.xml		OK	.	.	.
-   181 security.xml		OK	.	.	.
-   216 chap-help.xml		OK	.	.	.
-   258 sendmail.xml		OK	.	.	.
-   265 chap-intro.xml		OK	.	.	.
-   310 printing.xml		OK	.	.	.
-   338 mutt.xml			.	.	.	.
-   341 miscadmin.xml		parcial	.	.	.
-   377 latex.xml		.	.	.	.
-   398 concepts.xml		.	.	.	.
-   444 chap-kernel.xml		OK	.	.	.
-   485 chap-usermgmt.xml	.	.	.	.
-   527 netconfig.xml		OK	.	.	.
-   630 ipsec.xml		parcial	.	.	.
-   652 chap-pkgmgmt.xml		parcial	.	.	.
-   703 chap-init.xml		OK	.	.	.
-   758 custom-installation.xml	OK	.	.	.
-   780 chap-procmgmt.xml	.	.	.	.
-   868 chap-install.xml		OK	.	.	.
-  1044 chap-shell.xml		parcial	.	.	.
-  1921 chap-textproc.xml	.	.	.	.
-  3475 chap-filesystem.xml	OK	.	.	.
+linhas arquivo                  trad     1a-rev  2a-rev
+------+------------------------+--------+-------+-------
+    38 preface.xml              OK       -       -
+    85 chap-book.xml            OK       -       -
+   117 bind.xml                 OK       -       -
+   131 chap-x11.xml             OK       -       -
+   135 services.xml             OK       -       -
+   143 slackware-basics.xml     OK       -       -
+   149 inetd.xml                OK       -       -
+   156 apache.xml               OK       -       -
+   181 security.xml             OK       -       -
+   216 chap-help.xml            OK       -       -
+   258 sendmail.xml             OK       -       -
+   265 chap-intro.xml           OK       -       -
+   310 printing.xml             OK       -       -
+   338 mutt.xml                 OK       -       -
+   341 miscadmin.xml            OK       -       -
+   377 latex.xml                -        -       -
+   398 concepts.xml             -        -       -
+   444 chap-kernel.xml          OK       -       -
+   485 chap-usermgmt.xml        -        -       -
+   527 netconfig.xml            OK       -       -
+   630 ipsec.xml                -        -       -
+   652 chap-pkgmgmt.xml         parcial  -       -
+   703 chap-init.xml            OK       -       -
+   758 custom-installation.xml  OK       -       -
+   780 chap-procmgmt.xml        -        -       -
+   868 chap-install.xml         OK       -       -
+  1044 chap-shell.xml           parcial  -       -
+  1921 chap-textproc.xml        -        -       -
+  3475 chap-filesystem.xml      OK       -       -
