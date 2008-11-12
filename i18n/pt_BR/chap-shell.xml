@@ -386,20 +386,19 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
     </sect2>
 
     <sect2 xml:id="chap-shell-moving-word">
-      <title>Word editing</title>
+      <title>Edição de palavra</title>
 
       <para>
-	It if often tedious to move at character level. Fortunately
-	the Korn and Bash shells can also move through lines at a word
-	level.  Words are sequences of characters that are separated
-	by a special character, such as a space.
-	<xref linkend="chap-shell-moving-word-shortcuts-move" />
-	summarizes the shortcuts that can be used to navigate through
-	a line by word.
+       Na maioria das vezes é muito tedioso se mover em nível de caracter.
+       Felizmente os shell Korn e Bash também permitem movimentações em nível
+       de palavras.  Palavras são sequências de caracteres separadas por um
+       caracter especial, como um espaço em branco.  <xref
+       linkend="chap-shell-moving-word-shortcuts-move" /> resume os atalhos que
+       podem ser usados para mover-se pelas palavras de uma linha.
       </para>
 
       <table xml:id="chap-shell-moving-word-shortcuts-move">
-	<title>Moving by word</title>
+	<title>Movendo-se uma palavra</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
@@ -412,15 +411,13 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
 	    <row>
 	      <entry>Esc b</entry>
 	      <entry>
-		Move back to the start of the current or previous
-		word.
+		Move-se de volta para o começo da palavra atual ou da anterior.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Esc f</entry>
 	      <entry>
-		Move forward to the last character of the current or
-		next word.
+		Avança para o último caracter da palavra atual ou da próxima palavra.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -428,13 +425,12 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
       </table>
 
       <para>
-	As you can see the letters in these shortcuts are equal to
-	those of moving forward and backwards by character. The
-	movement logic is a bit curious. Moving forward puts the
-	cursor to the end of the current word, not to the first
-	character of the next word as you may have predicted. Let's
-	look at a quick example. In the beginning the cursor is on the
-	first character of the line.
+       Como você pode ver, as letras nesses atalhos são iguais àquelas da
+       movimentação para frente e para trás em nível de caracter.  A lógica de
+       movimentação é um pouco curiosa.  Mover-se para frente coloca o cursor
+       ao final da palavra atual, e não no primeiro caracter da próxima palavra
+       como você poderia supor.  Vamos ver um breve exemplo.  No início, o
+       cursor está no primeiro caracter da linha.
       </para>
 
       <screen>
@@ -442,9 +438,9 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	Pressing <emphasis>Esc f</emphasis> will move the cursor
-	behind the last character of the first word, which is
-	<emphasis>find</emphasis> in this case:
+       Digitar <emphasis>Esc f</emphasis> irá mover o cursor para depois do
+       último caracter da primeira palavra, que neste caso é
+       <emphasis>find</emphasis>:
       </para>
 
       <screen>
@@ -452,8 +448,8 @@ find<emphasis role="cursor">&#32;</emphasis>~/music -name '*.ogg' -print
       </screen>
 
       <para>
-	Going forward once more will put the cursor behind
-	<emphasis>~/music</emphasis>:
+       Avançar mais uma vez irá posicionar o cursor depois de
+       <emphasis>~/music</emphasis>:
       </para>
 
       <screen>
@@ -461,11 +457,11 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
       </screen>
 
       <para>
-	Backwards movement puts the cursor on the first character of
-	the current word, or on the first character of the previous
-	word if the cursor is currently on the first character of a
-	word. So, moving back one word in the previous example will
-	put the cursor on the first letter of <quote>music</quote>:
+       Um movimento para trás pôe o cursor no primeiro caracter da palavra
+       atual, ou no primeiro caracter da palavra anterior se no momento o
+       cursor estiver no primeiro caracter da palavra.  Então, mover-se uma
+       palavra para trás no exemplo anterior irá pôr o cursor na primeira letra
+       de <quote>music</quote>:
       </para>
 
       <screen>
@@ -473,14 +469,14 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
       </screen>
 
       <para>
-	Deleting words works equal to moving by word, but the
-	characters that are encountered are deleted.  <xref
-	linkend="chap-shell-moving-word-shortcuts-delete" /> lists the
-	shortcuts that are used to delete words.
+       Excluir palavras funciona da mesma forma que se mover pelas palavras,
+       sendo que os caracteres que são encontrados são excluídos.  <xref
+       linkend="chap-shell-moving-word-shortcuts-delete" /> lista os atalhos
+       usados para excluir palavras.
       </para>
 
       <table  xml:id="chap-shell-moving-word-shortcuts-delete">
-	<title>Deleting words</title>
+	<title>Excluindo palavras</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
@@ -494,7 +490,7 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 		Alt-d
 	      </entry>
 	      <entry>
-		Delete the word, starting at the current cursor position.
+		Exclui a palavra, a partir da posição atual do cursor.
 	      </entry>
 	    </row>
 	    <row>
@@ -502,8 +498,8 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 		Alt-Backspace
 	      </entry>
 	      <entry>
-		Delete every character from the current cursor position
-		to the first character of a word that is encountered.
+		Exclui cada caracter a partir da posição atual do cursor até o primeiro
+		caracter que é encontrado na palavra.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -511,13 +507,13 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
       </table>
 
       <para>
-	Finally, there are some shortcuts that are useful to
-	manipulate words. These shortcuts are listed in <xref
-	linkend="chap-shell-moving-word-shortcuts-modify" />.
+       Finalmente, há alguns atalhos que são úteis para manipular palavras.
+       Esses atalhos estão listados em <xref
+       linkend="chap-shell-moving-word-shortcuts-modify" />.
       </para>
 
       <table  xml:id="chap-shell-moving-word-shortcuts-modify">
-	<title>Modifying words</title>
+	<title>Modificando palavras</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
@@ -529,28 +525,28 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 	    <row>
 	      <entry>Alt-t</entry>
 	      <entry>
-		Swap (transpose) the current word with the previous word.
+		Troca (transpôe) a palavra atual pela palavra anterior.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Alt-u</entry>
 	      <entry>
-		Make the word uppercase, starting at the current cursor
-		position.
+		Converte a palavra para maiúsculas, a partir da posição atual do 
+		cursor.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Alt-l</entry>
 	      <entry>
-		Make the word lowercase, starting at the current
-		cursor position.
+		Converte a palavra para minúsculas, a partir da posição atual do
+		cursor.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Alt-c</entry>
 	      <entry>
-		Capitalize the current word character or the next word
-		character that is encountered.
+		Capitaliza (deixa a inicial em caixa alta) a palavra atual ou o próximo
+		caracter encontrado na palavra.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -558,9 +554,9 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
       </table>
 
       <para>
-	Transposition swaps words. If normal words are used, it's
-	behavior is predictable. For instance, if we have the
-	following line with the cursor on <quote>two</quote>
+       Transposição é uma troca de palavras.  Se palavras normais são usadas, é
+       um comportamento predizível.  Por exemplo, se tivermos a linha a seguir
+       com o cursor em <quote>two</quote>
       </para>
 
       <screen>
@@ -568,8 +564,8 @@ one <emphasis role="cursor">t</emphasis>wo three
       </screen>
 
       <para>
-	Word transposition will swap <quote>two</quote> and
-	<quote>one</quote>:
+       A transposição irá permutar as palavras <quote>two</quote> e
+       <quote>one</quote>:
       </para>
 
       <screen>
@@ -577,12 +573,11 @@ two one three
       </screen>
 
       <para>
-	But if there are any non-word characters, the shell will swap
-	the word with the previous word while preserving the order of
-	non-word characters. This is very handy for editing arguments
-	to commands. Suppose that you made an error, and mixed up the
-	file extension you want to look for, and the
-	<emphasis>print</emphasis> parameter:
+       Mas se houver caracteres não-alfabéticos, o shell irá trocar a palavra
+       com sua anterior preservando a ordem dos caracteres não-alfabéticos.
+       Isso é muito adequado para editar argumentos para comandos.  Suponha que
+       você tenha se enganado, trocando a extensão do arquivo que você queria
+       procurar e o parâmetro <emphasis>print</emphasis>:
       </para>
 
       <screen>
@@ -590,9 +585,9 @@ find ~/music -name '*.print' -ogg
       </screen>
 
       <para>
-	You can fix this by putting the cursor on the second faulty
-	word, in this case <quote>ogg</quote>, and transposing the two
-	words. This will give the result that we want:
+       Você pode corrigir isto colocando o cursor na segunda palavra
+       problemática (neste caso, <quote>ogg</quote>) e transpondo as duas
+       palavras.  Isto irá resultar no que efetivamente queríamos:
       </para>
 
       <screen>
@@ -600,34 +595,32 @@ find ~/music -name '*.ogg' -print
       </screen>
 
       <para>
-	Finally, there are some shortcuts that change the
-	capitalization of words. The Alt-u shortcut makes all
-	characters uppercase, starting at the current cursor position
-	till the end of the word. So, if we have the lowercase name
-	<quote>alice</quote>, uppercasing the name with the cursor on
-	<quote>i</quote> gives <quote>alICE</quote>. Alt-l has the
-	same behavior, but changes letters to lowercase. So, using
-	Alt-l on <quote>alICE</quote> with the cursor on
-	<quote>I</quote> will change the string to
-	<quote>alice</quote>. Alt-c changes just the character the
-	cursor is on, or the next word character that is encountered,
-	to uppercase. For instance, pressing Alt-c with the cursor on
-	<quote>a</quote> in <quote>alice</quote> will yield
-	<quote>Alice</quote>.
+       Finalmente, há alguns atalhos que trocam a capitalização de palavras.  O
+       atalho Alt-u deixa todos os caracteres em maiúsculas, desde a posição
+       atual do cursor até o final da palavra.  Então, se nós tivermos o nome
+       <quote>alice</quote> em minúsculas, deixar o nome em maiúsculas, com o
+       cursor em <quote>i</quote> resultará em <quote>alICE</quote>.  Alt-l tem
+       o mesmo comportamento, mas troca as letras para minúsculas.  Então,
+       usar Alt-l em <quote>alICE</quote> com o cursor em <quote>I</quote> irá
+       resultar na string <quote>alice</quote>.  Alt-c troca apenas o caracter
+       no qual o cursor estiver, ou o caracter inicial da próxima palavra
+       encontrada para maiúsculas.  Por exemplo, pressionando-se Alt-c com o
+       cursor no <quote>a</quote> de <quote>alice</quote> irá resultar em
+       <quote>Alice</quote>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-shell-moving-line">
-      <title>Line editing</title>
+      <title>Edição de linha</title>
 
       <para>
-	The highest level we can edit is the line itself.
-	<xref linkend="chap-shell-moving-line-shortcuts-move" />
-	lists the two movement shortcuts.
+       O nível mais alto de edição que podemos ter é editar a própria linha de
+       comando em si.  <xref linkend="chap-shell-moving-line-shortcuts-move" />
+       relaciona os dois atalhos para movimentação em nível de linha.
       </para>
 
       <table xml:id="chap-shell-moving-line-shortcuts-move">
-	<title>Moving through lines</title>
+	<title>Movendo-se por linhas</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
@@ -639,13 +632,13 @@ find ~/music -name '*.ogg' -print
 	    <row>
 	      <entry>Ctrl-a</entry>
 	      <entry>
-		Move to the beginning of the current line.
+		Move-se para o começo da linha atual.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-e</entry>
 	      <entry>
-		Move to the end of the current line.
+		Move-se para o final da linha atual.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -653,7 +646,8 @@ find ~/music -name '*.ogg' -print
       </table>
 
       <para>
-	Suppose that the cursor is somewhere halfway a line:
+       Suponha que o cursor esteja em algum lugar no meio de uma linha de
+       comando:
       </para>
 
       <screen>
@@ -661,8 +655,8 @@ find ~/music -name<emphasis role="cursor">&#32;</emphasis>'*.ogg' -print
       </screen>
 
       <para>
-	Pressing Ctrl-e once will move the cursor to the end of the
-	line:
+       Pressionando-se Ctrl-e uma vez irá mover o cursor para o final da linha
+       de comando:
       </para>
 
       <screen>
@@ -670,7 +664,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	Pressing Ctrl-a will move the cursor to the beginning of the line:
+       Pressionar Ctrl-a irá mover o cursor para o começo da linha:
       </para>
 
       <screen>
@@ -678,18 +672,17 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	You can also delete characters by line level. The shortcuts
-	are listed in <xref
-	linkend="chap-shell-moving-line-shortcuts-delete" />.  These
-	shortcuts work like movement, but deletes all characters that
-	are encountered. Ctrl-k will delete the character the cursor
-	is on, but Ctrl-x Backspace will not. Moving to the beginning
-	of the line with Ctrl-a, followed by Ctrl-k, is a fast trick
-	to remove a line completely.
+       Você também pode excluir caracteres em nível de linha.  Os atalhos estão
+       listados em <xref linkend="chap-shell-moving-line-shortcuts-delete" />.
+       Esses atalhos funcionam como os de movimentação, mas excluem todos os
+       caracteres que forem encontrados.  Ctrl-k irá excluir o caracter sob o
+       cursor, mas Ctrl-x Backspace não.  Mover-se para o começo da linha com
+       Ctrl-a, seguido de um Ctrl-k, é um truque rápido para remover a linha
+       completamente.
       </para>
 
       <table xml:id="chap-shell-moving-line-shortcuts-delete">
-	<title>Deleting lines</title>
+	<title>Excluindo linhas</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
@@ -701,15 +694,13 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
 	    <row>
 	      <entry>Ctrl-k</entry>
 	      <entry>
-		Delete all characters in the line, starting at the
-		cursor position.
+		Exclui todos os caracteres na linha, a partir da posição do cursor.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-x Backspace</entry>
 	      <entry>
-		Delete all characters in the line up till the current
-		cursor position.
+		Exclui todos os caractres na linha até a posição atual do cursor.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -719,21 +710,21 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
   </sect1>
 
   <sect1 xml:id="chap-shell-history">
-    <title>Command history</title>
+    <title>Histórico de comandos</title>
 
     <para>
-      It often happens that you have to execute commands that you
-      executed earlier. Fortunately, you do not have to type them all
-      over again.  You can browse through the history of executed
-      commands with the up and down arrows. Besides that it is also
-      possible to search for a command. Press Control-r and start
-      typing the command you want to execute. You will notice that
-      bash will display the first match it can find. If this is not
-      the match you were looking for you can continue typing the
-      command (until it is unique and a match appears), or press
-      Control-r once more to get the next match. When you have found
-      the command you were looking for, you can execute it by pressing
-      &lt;Enter&gt;.
+      É muito comum você ter que executar comandos que já tinha executado
+      anteriormente.  Felizmente, você não precisa digitá-los todos de novo.
+      Você sempre pode navegar pelo histórico de comandos executados com as
+      teclas de seta para cima e seta para baixo.  Além disso, também é
+      possível procurar por um comando.  Pressione Control-r e comece a digitar
+      o comando que você quer executar.  Você irá perceber que o bash irá
+      mostrar a primeira correspondência que puder encontrar no histórico de
+      comandos.  Se isso não resultar no comando que você estava procurando
+      você pode continuar digitando o comando (até que um resultado único
+      apareça), ou pressionar Control-r mais uma vez para obter a próxima
+      ocorrência.  Quando você tiver encontrado o comando pelo qual estava
+      procurando, você pode executá-lo pressionando &lt;Enter&gt;.
     </para>
   </sect1>
 
