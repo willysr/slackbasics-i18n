@@ -41,51 +41,47 @@
       </listitem>
       <listitem>
         <para>
-          <acronym>IKE</acronym> (Internet Key Exchange) fornece provides the means to
-          negotiate keys in secrecy. Please note that IKE is optional, keys can
-          be configured manually.
+           <acronym>IKE</acronym> (Internet Key Exchange) fornece os meios para
+           negociar chaves sigilosamente.
+           Tenha em mente que o IKE é opcional, chaves podem ser configuradas manualmente.
         </para>
       </listitem>
     </itemizedlist>
 
     <para>
-      There are actually two modes of operation: <emphasis>transport
-      mode</emphasis> is used to encrypt normal connections between two 
-      hosts, <emphasis>tunnel mode</emphasis> encapsulates the original
-      package in a new header. In this chapter we are going to look at the 
-      transport mode, because the primary goal of this chapter is to show 
-      how to set up a secure connection between two hosts.
+        De fato existem dois modos de operação: <emphasis>transport mode</emphasis> é usado
+        para encriptar conexões normais entre dois hosts, <emphasis>tunnel mode</emphasis> encapsula
+        o pacote original em um novo cabeçalho. Neste capítulo nós vamos ver o <foreignphrase>transport mode</foreignphrase>
+        porque o principal motivo deste capítulo é mostrar como configurar uma conexão segura entre dois hosts.
     </para>
 
     <para>
-      There are also two major methods of authentication. You can use manual
-      keys, or an Internet Key Exchange (IKE) daemon, like racoon, that 
-      automatically exchanges keys securely betwoon two hosts. In both cases
-      you need to set up a policy in the Security Policy Database (SPD). This
-      database is used by the kernel to decide what kind of security policy
-      is needed to communicate with another host. If you use manual keying you
-      also have to set up Security Association Database (SAD) entries, which
-      specifies what encryption algorithmn and key should be used for secure
-      communication with another host. If you use an IKE daemon the security
-      associations are automatically established.
+      Existem também dois principais métodos de autenticação. Você pode usar
+      chaves manuais ou um daemon <foreignphrase>Internet Key Exchange (IKE)</foreignphrase> 
+      como por exemplo o <foreignphrase>racoon</foreignphrase> que troca chaves
+      automaticamente entre dois hosts. Em ambos os casos você vai precisar configurar
+      uma política de segurança no <foreignphrase>Security Policy Database (SPD)</foreignphrase>.
+      Esse banco de dados é usado pelo kernel para decidir qual tipo de política
+      é necessária para se comunicar com outro host. Se você optou por utilizar chaves
+      manuais, você também precisará configurar o banco de dados <foreignphrase>Security Association Database (SAD)</foreignphrase>
+      para especificar qual algoritmo de encriptação e chave deverão ser utilizados para uma comunicação
+      segura com outro host. Se você usar o daemon IKE as associações de segurança serão automaticamente estabelecidas.
     </para>
   </sect1>
 
   <sect1>
-    <title>Linux configuration</title>
+    <title>Configuração do Linux</title>
 
     <para>
-      Native IPsec support is only available in Linux 2.6.x kernels.
-      Earlier kernels have no native IPsec support. So, make sure that
-      you have a 2.6.x kernel. The 2.6 kernel is available in
-      Slackware Linux 10.0, 10.1, and 10.2 from the
-      <filename>testing</filename> directory on CD2 of the Slackware
-      Linux CD sets, or any of the official Slackware Linux mirrors.
-      The 2.6 kernel is the default kernel since Slackware Linux 12.0.
-      The default Slackware Linux 2.6 kernel has support for AH, ESP
-      and IPcomp in for both IPv4 and IPv6. If you are compiling a
-      custom kernel enable use at least the following options in your
-      kernel configuration:
+      O suporte nativo ao IPsec está disponível apenas nos kernels Linux 2.6.x.
+      Kernels mais antigos não possuem suporte nativo ao IPsec. Portanto, tenha certeza
+      de que está utilizando um kernel 2.6.x. O kernel 2.6 está disponível no Slackware Linux
+      10.0, 10.1 e 10.2 no diretório <filename>testing</filename> do CD2 do conjunto de CDs do
+      Slackware Linux, ou em qualquer espelho (mirror) oficial do Slackawre Linux.
+      O kernel 2.6 é padrão desde o Slackware Linux 12.0.
+      O kernel 2.6 padrão do Slackware Linux possui suporte para AH, ESP e IPcomp em
+      ambos IPv4 e IPv6. Se você vai usar um kernel personalizado, habilite ao menos
+      as seguintes opções:
     </para>
 
     <screen>
@@ -95,7 +91,7 @@ CONFIG_INET_IPCOMP=y
     </screen>
 
     <para>
-      Or you can compile support for IPsec protocols as a module:
+      Você também pode compilar o suporte aos protocolos IPsec como módulos:
     </para>
 
     <screen>
@@ -106,37 +102,34 @@ CONFIG_INET_IPCOMP=m
 
 
     <para>
-      In this chapter we are only going to use AH and ESP transformations, but
-      it is not a bad idea to enable IPComp transformation for further 
-      configuration of IPsec. Besides support for the IPsec protocols, you
-      have to compile kernel support for the encryption and hashing algorithms
-      that will be used by AH or ESP. Linux or module support for these
-      algorithms can be enabled by twiddling the various
-      <emphasis>CONFIG_CRYPTO</emphasis> options. It does not hurt to
-      compile all ciphers and hash algorithms as a module. 
+        Neste capítulo nós vamos apenas usar as modificações AH e ESP, mas 
+        não é uma má idéia habilitar as modificações IPComp para futuras configurações do IPsec.
+        Além do suporte ao protocolos IPsec você precisa compilar o suporte no kernel aos 
+        algoritmos de encriptação e <foreignphrase>hashing</foreignphrase> que serão utilizados
+        pelo AH e ESP. O suporte para esses algoritmos (tanto como módulo ou <foreignphrase>built-in<foreignphrase>) 
+        pode ser habilitado nas várias opções <emphasis>CONFIG_CRYPTO</emphasis>. Não há mal nenhum
+        em compilar todos algoritmos de encriptação e <foreignphrase>hashing</foreignphrase> como módulo.
     </para>
 
     <para>
-      When you choose to compile IPsec support as a module, make sure
-      that the required modules are loaded. For example, if you are going
-      to use ESP for IPv4 connections, load the <emphasis>esp4</emphasis>
-      module.
+      Se você optou por compilar o suporte ao IPsec como módulo, tenha certeza
+      de que os módulos necessários foram carregados. Por exemplo, se você
+      vai usar ESP para conexões IPv4, carregue o módulo <emphasis>esp4</emphasis>.
     </para>
 
     <para>
-      Compile the kernel as usual and boot it.
+      Compile o kernel normalmente e inicie ele.
     </para>
   </sect1>
 
   <sect1>
-    <title>Installing IPsec-Tools</title>
+    <title>Instalando ferramentas IPsec (IPsec-Tools)</title>
 
     <para>
-      The next step is to install the
+      O próximo passo é instalar o pacote
       <ulink url="http://ipsec-tools.sourceforge.net">IPsec-Tools</ulink>.
-      These tools are ports of
-      the <ulink url="http://www.kame.net">KAME</ulink> IPsec utilities.
-      Download the latest sources and unpack, configure and install them:
+      Essas ferramentas são <foreignphrase>ports</foreignphrase> dos utilitários IPsec em <ulink url="http://www.kame.net">KAME</ulink>.
+      Faça o download do último código fonte, descompacte, configure e instale.
     </para>
 
     <screen>
@@ -156,51 +149,47 @@ CONFIG_INET_IPCOMP=m
     </screen>
 
       <para>
-        Replace <emphasis>x.y.z</emphasis> with the version of the
-	downloaded sources. The most notable flags that we specify
-	during the configuration of the sources are:
+          Altere <emphasis>x.y.z</emphasis> pela versão do código fonte que
+          você baixou.
+          Os parâmetros mais relevantes que foram configurados no pacote são:
       </para>
 
       <itemizedlist>
         <listitem>
 	  <para>
-	    <emphasis>--enable-dpd</emphasis>: enables
-	    dead peer detection (DPD). DPD is a method for detecting
-	    wether any of the hosts for which security associations
-	    are set up is unreachable. When this is the case the
-	    security associations to that host can be removed.
+	    <emphasis>--enable-dpd</emphasis>: habilita 
+        o <foreignphrase>dead peer detection (DPD)<foreignphrase>. O DPD é um método
+        para detectar se algum dos hosts associados na comunicação segura está indisponível.
+        Quando isso acontece a associação desse host pode ser removida.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    <emphasis>--enable-natt</emphasis>: enables NAT traversal
-	    (NAT-T). Since NAT alters the IP headers, this causes
-	    problems for guaranteeing authenticity of a packet. NAT-T
-	    is a method that helps overcoming this problem. Configuring
-	    NAT-T is beyond the scope of this article.
+          <emphasis>--enable-natt</emphasis>: habilita o <foreignphrase>NAT traversal
+          (NAT-T)</foreignphrase>. Como o NAT alterar o cabeçalho IP, isso pode gerar
+          problemas para garantir a autenticidade de um pacote. O NAT-T é um método que ajuda
+          a superar esse problema. Configurar o NAT-T está além do escopo deste artigo.
 	  </para>
 	</listitem>
       </itemizedlist>
   </sect1>
 
   <sect1>
-    <title>Setting up IPsec with manual keying</title>
+    <title>Configurando o use de chaves manuais no IPsec</title>
 
     <sect2>
-      <title>Introduction</title>
+      <title>Introdução</title>
 
       <para>
-        We will use an example as the guideline for setting up an encrypted
-        connection between to hosts. The hosts have the IP addresses 
-        <emphasis>192.168.1.1</emphasis> and <emphasis>192.168.1.169</emphasis>.
-        The <quote>transport mode</quote> of operation will be used with
-        AH and ESP transformations and manual keys.
+        Nós vamos usar um exemplo como guia para configurar uma conexão
+        encriptada entre dois hosts. Os hosts possuem os IPs <emphasis>192.168.1.1</emphasis> e <emphasis>192.168.1.169</emphasis>.
+        O modo <quote>transport mode</quote> será utilizado com AH and ESP e chaves manuais.
       </para>
       
     </sect2>
 
     <sect2>
-      <title>Writing the configuration file</title>
+      <title>Criando o arquivo de configuração</title>
 
       <para>
         The first step is to write a configuration file we will name
