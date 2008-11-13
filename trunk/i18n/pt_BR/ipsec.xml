@@ -192,10 +192,10 @@ CONFIG_INET_IPCOMP=m
       <title>Criando o arquivo de configuração</title>
 
       <para>
-        The first step is to write a configuration file we will name
-        <filename>/etc/setkey.conf</filename>. On the first host
-        (192.168.1.1) the following <filename>/etc/setkey.conf</filename>
-        configuration will be used:
+        O primeiro passo é criar um arquivo de configuração cujo nome será
+        <filename>/etc/setkey.conf</filename>. No primeiro host
+        (192.168.1.1) o seguinte arquivo de configuração <filename>/etc/setkey.conf</filename>
+        será utilizado:
       </para>
 
       <screen>
@@ -225,22 +225,22 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </screen>
 
       <para>
-        The first line (a line ends with a <quote>;</quote>) adds a key
-        for the header checksumming for packets coming from 192.168.1.1 
-        going to 192.168.1.169. The second line does the same for packets
-        coming from 192.168.1.169 to 192.168.1.1. The third and the fourth line
-        define the keys for the data encryption the same way as the
-        first two lines. Finally the <quote>spadd</quote> lines define
-        two policies, namely packets going out from 192.168.1.1 to 192.168.1.169
-        should be (require) encoded (esp) and <quote>signed</quote> with
-        the authorization header. The second policy is for incoming packets
-        and it is the same as outgoing packages.
+        A primeira linha (uma linha termina com um <quote>;</quote>) adiciona
+        uma chave para a verificação (<foreignphrase>checksumming</foreignphrase>) de cabeçalho
+        para os pacotes do 192.168.1.1 que vão para 192.168.169. A segunda linha faz a 
+        mesma coisa com os pacotes de 192.168.1.169 que vão para 192.168.1.1.
+        A terceira e quarta linha definem as chaves para encriptação de dados 
+        seguinto a mesma lógica da primeira e seguna linha.
+        Por fim, as linhas <quote>spadd</quote> definem duas políticas, que são, primeiramente:
+        pacotes que saem de 192.168.1.1 para 192.168.1.169 deveriam (<emphasis>require</emphasis>) ser 
+        codificados (<emphasis>esp</emphasis>) e assinados com o cabeçalho de autorização. A segunda
+        política é para pacotes recebidos e a lógica da configuração é a mesma dos pacotes que estão saindo.
       </para>
 
       <para>
-        Please be aware that you should not use these keys, but your own
-        secretly kept unique keys. You can generate keys using the
-        <filename>/dev/random</filename> device:
+        Tenha em mente que você não deve utilizar as chaves mostradas acima e sim
+        criar/manter secretamente suas próprias chaves.
+        Você pode gerar as chaves usando o device: <filename>/dev/random</filename>:
       </para>
 
       <screen>
@@ -248,8 +248,8 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </screen>
 
       <para>
-        This command uses dd to output 16 bytes from 
-        <filename>/dev/random</filename>. Don't forget to add <quote>0x</quote>
+        O comando acima usa o dd para retornar 16 bytes do <filename>/dev/random</filename>.
+        Não se esqueça de adicionar o <quote>0x</quote> no início da linha do seu arquivo de configuração.
         at the beginning of the line in the configuration files. You can use 
         the 16 byte (128 bits) for the hmac-md5 algorithm that is used for AH.
         The 3des-cbc algorithm that is used for ESP in the example should be fed 
