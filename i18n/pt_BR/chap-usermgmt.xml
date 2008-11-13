@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:lang="en" xml:id="chap-usermgmt">
-  <title>User management</title>
+  <title>Gerenciamento de Usuários</title>
 
   <sect1 xml:id="chap-usermgmt-intro">
-    <title>Introduction</title>
+    <title>Introdução</title>
 
     <para>
+      O GNU/Linux é um sistema operacional multi-usuário. Isto quer 
+      dizer que vários usuários podem usar o sistema, e eles podem 
+      usá-lo simultaneamente. Os conceitos de gerenciamento de 
+      usuários no GNU/Linux são bastante simples. Primeiro de tudo, 
+      existem várias contas de usuário em cada sistema.
+
       GNU/Linux is a multi-user operating system. This means that
       multiple users can use the system, and they can use the system
       simultaneously. The GNU/Linux concepts for user management are
