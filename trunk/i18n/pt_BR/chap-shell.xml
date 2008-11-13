@@ -729,109 +729,107 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
   </sect1>
 
   <sect1 xml:id="chap-shell-completion">
-    <title>Completion</title>
+    <title>Completação de comandos</title>
 
     <para>
-      Completion is one of the most useful functionalities of
-      UNIX-like shells.  Suppose that you have a directory with two
-      files named <filename>websites</filename> and
-      <filename>recipe</filename>. And suppose you want to
-      <command>cat</command> the file <filename>websites</filename>
-      (<command>cat</command> shows the contents of a file), by
-      specifying <filename>websites</filename> as a parameter to
-      cat. Normally you would type <quote>cat websites</quote>, and
-      execute the command. Try typing <quote>cat w</quote>, and hit
-      the &lt;Tab&gt; key. Bash will automatically expand what you
-      typed to <quote>cat websites</quote>.
+      Completação é uma das funcionalidade mais úteis dos shells em sistemas
+      UNIX-like.  Suponha que você tenha um diretório com dois arquivos
+      chamados <filename>websites</filename> e <filename>recipe</filename>. E
+      suponha que você queira executar um <command>cat</command> no arquivo
+      <filename>websites</filename> (o comando <command>cat</command> exibe o
+      conteúdo de um arquivo), especificando <filename>websites</filename> como
+      um parâmetro para o cat.  Normalmente você deveria digitar <quote>cat
+      websites</quote>, e executar o comando.  Mas experimente digitar
+      <quote>cat w</quote>, e teclar &lt;Tab&gt;.  O Bash irá automaticamente
+      expandir o que você digitou para <quote>cat websites</quote>.
     </para>
 
     <para>
-      But what happens if you have files that start with the same
-      letter? Suppose that you have the
-      <filename>recipe1.txt</filename> and
-      <filename>recipe2.txt</filename> files. Type <quote>cat
-      r</quote> and hit &lt;Tab&gt;, Bash will complete the filename
-      as far as it can. It would leave you with <quote>cat
-      recipe</quote>. Try hitting &lt;Tab&gt; again, and Bash will
-      show you a list of filenames that start with
-      <quote>recipe</quote>, in this case both recipe files. At this
-      point you have to help Bash by typing the next character of the
-      file you need.  Suppose you want to <command>cat</command>
-      <filename>recipe2</filename>, you can push the &lt;2&gt;
-      key. After that there are no problems completing the filename,
-      and hitting &lt;Tab&gt; completes the command to <quote>cat
-      recipe2.txt</quote>.
+      Mas e se você tiver mais de um arquivo começando com a mesma letra?
+      Suponha que você tenha os arquivos <filename>recipe1.txt</filename> e 
+      <filename>recipe2.txt</filename>.  Ao digitar <quote>cat r</quote> e
+      teclar &lt;Tab&gt;, o Bash irá completar o nome do arquivo conforme você
+      digitar.  O Bash deve deixar você com <quote>cat recipe</quote>.
+      Experimente teclar &lt;Tab&gt; outra vez e o Bash irá lhe mostrar uma
+      lista dos nomes de arquivos que iniciam com <quote>recipe</quote>, no
+      caso, os dois arquivos recipe.  Neste ponto, você tem que ajudar o Bash
+      digitando o próximo caracter do arquivo que você quer.  Suponha que você
+      queira executar <command>cat</command> <filename>recipe2</filename>, você
+      pode então digitar a tecla &lt;2&gt;.  Depois disso, então, você não terá
+      problemas para completar o nome do arquivo, e teclar &lt;Tab&gt;
+      novamente completará o comando para <quote>cat recipe2.txt</quote>.
     </para>
 
     <para>
-      It is worth noting that completion also works with
-      commands. Most GNU/Linux commands are quite short, so it will
-      not be of much use most of the time.
+      É interessante notar que essa completação também funciona para comandos.
+      Muitos comandos do GNU/Linux já são bem curtos, então eles não vão tomar
+      muito de seu tempo na maioria das vezes.
     </para>
 
     <para>
-      It is a good idea to practice a bit with completion, it can save
-      alot of keystrokes if you can handle completion well. You can
-      make some empty files to practice with using the
-      <command>touch</command> command.  For example, to make a file
-      named <filename>recipe3.txt</filename>, execute <command>touch
-      recipe3.txt</command>.
+      É uma boa idéia praticar um pouco a completação, pois é possível
+      economizar diversos toques no teclado se você souber usar bem este
+      recurso.  Você pode criar alguns arquivos vazios com os quais praticar
+      usando o comando <command>touch</command>.  Por exemplo, para criar um
+      arquivo chamado <filename>recipe3.txt</filename>, apenas execute
+      <command>touch recipe3.txt</command>.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-shell-wildcards">
-    <title>Wildcards</title>
+    <title>Caracteres coringa</title>
 
     <para>
-      Most shells, including Bash and ksh, support
-      wildcards. Wildcards are special characters that can be used to
-      do pattern matching. The table listed below displays some
-      commonly used wildcards. We are going to look at several
-      examples to give a general idea how wildcards work.
+      A maioria dos shells, incluindo Bash e o ksh, dão suporte a caractres
+      coringa.  Coringas são caracteres especiais que podem ser usados para
+      fazer casamento de padrões.  A tabela listada abaixo mostra alguns dos
+      coringas mais comumente utilizados.  Vamos dar uma olhada em alguns
+      exemplos para ter uma idéia geral de como os caracteres coringa
+      funcionam.
     </para>
 
     <table xml:id="chap-shell-wildcards-thewildcards">
-      <title>Bash wildcards</title>
+      <title>Coringas do shell Bash</title>
 
       <tgroup cols="2" align="left" colsep="1" rowsep="1">
 	<thead>
 	  <row>
-	    <entry>Wildcard</entry> <entry>Matches</entry>
+	    <entry>Coringa</entry> <entry>Corresponde a</entry>
 	  </row>
 	</thead>
 	<tbody>
 	  <row>
 	    <entry>*</entry>
-	    <entry>A string of characters</entry>
+	    <entry>Uma string de caracteres</entry>
 	  </row>
 	  <row>
 	    <entry>?</entry>
-	    <entry>A single character</entry>
+	    <entry>Um único caracter</entry>
 	  </row>
 	  <row>
 	    <entry>[]</entry>
-	    <entry>A character in an array of characters</entry>
+	    <entry>Um caracter dentro de um conjunto de caracteres</entry>
 	  </row>
 	</tbody>
       </tgroup>
     </table>
 
     <sect2 xml:id="chap-shell-wildcards-string">
-      <title>Matching a string of characters</title>
+      <title>Correspondência com uma string de caracteres</title>
 
       <para>
-	As you can see in the table above the <quote>*</quote>
-	character matches a string of characters. For example,
-	<emphasis>*.html</emphasis> matches everything ending with
-	<emphasis>.html</emphasis>, <emphasis>d*.html</emphasis>
-	matches everything starting with a <emphasis>d</emphasis> and
-	ending with <emphasis>.html</emphasis>.
+       Como você pode ver na tabela acima, o caracter <quote>*</quote> irá
+       corresponder com uma string de caracteres.  Por exemplo, o padrão
+       <emphasis>*.html</emphasis> corresponde com tudo o que termine com
+       <emphasis>.html</emphasis>, já <emphasis>d*.html</emphasis> corresponde
+       com tudo aquilo que comece com um <emphasis>d</emphasis> e termine com
+       <emphasis>.html</emphasis>.
       </para>
 
       <para>
-	Suppose that you would like to list all files in the current
-	directory with the <emphasis>.html</emphasis> extension, the
-	following command will do the job:
+       Suponha que você gostaria de listar todos os arquivos com a extensão
+       <emphasis>.html</emphasis> que estejam no diretório atual.  O seguinte
+       comando fará esta tarefa:
       </para>
 
       <screen>
@@ -843,8 +841,8 @@ help.html        slackware-basics.html shell.html
       </screen>
 
       <para>
-	Likewise we could remove all files starting with an
-	<emphasis>in</emphasis>:
+       Dessa forma, nós poderíamos remover todos os arquivos que contenham 
+       <emphasis>in</emphasis>:
       </para>
 
       <screen>
@@ -853,55 +851,52 @@ $ <userinput>rm in*</userinput>
     </sect2>
 
     <sect2 xml:id="chap-shell-wildcards-single">
-      <title>Matching single characters</title>
+      <title>Correspondência com um único caractere</title>
 
       <para>
-	The <quote>?</quote> wildcard works as the <quote>*</quote>
-	wildcard, but matches single characters. Suppose that we have
-	three files, <filename>file1.txt</filename>,
-	<filename>file2.txt</filename> and
-	<filename>file3.txt</filename>. The string
-	<emphasis>file?.txt</emphasis> matches all three of these
-	files, but it does not match <filename>file10.txt</filename>
-	(<quote>10</quote> are two characters).
+       O caracter <quote>?</quote> funciona da mesma forma que o
+       <quote>*</quote>, mas corresponde a apenas um único caracter.  Suponha
+       que nós tenhamos três arquivos, <filename>file1.txt</filename>,
+       <filename>file2.txt</filename> e <filename>file3.txt</filename>.  A
+       string <emphasis>file?.txt</emphasis> corresponde a todos estes três
+       arquivos, mas não corresponde a <filename>file10.txt</filename> (já que
+       <quote>10</quote> são dois caracteres).
       </para>
     </sect2>
 
     <sect2 xml:id="chap-shell-wildcards-set">
-      <title>Matching characters from a set</title>
+      <title>Correspondência com conjuntos de caracteres</title>
 
       <para>
-	The <quote>[]</quote> wildcard matches every character between
-	the brackets.  Suppose we have the files from the previous
-	example, <filename>file1.txt</filename>,
-	<filename>file2.txt</filename> and
-	<filename>file3.txt</filename>. The string
-	<emphasis>file[23].txt</emphasis> matches
-	<filename>file2.txt</filename> and
-	<filename>file3.txt</filename>, but not
-	<filename>file1.txt</filename>.
+       <quote>[]</quote> é um coringa que corresponde a cada caracter que
+       esteja entre os colchetes.  Suponha que tenhamos os arquivos do exemplo
+       anterior, <filename>file1.txt</filename>, <filename>file2.txt</filename>
+       e <filename>file3.txt</filename>.  A string
+       <emphasis>file[23].txt</emphasis> faz correspondência com os arquivos 
+       <filename>file2.txt</filename> e <filename>file3.txt</filename>, mas não
+       com <filename>file1.txt</filename>.
       </para>
     </sect2>
   </sect1>
 
   <sect1 xml:id="chap-shell-inout">
-    <title>Redirections and pipes</title>
+    <title>Redirecionamentos e dutos</title>
 
     <para>
-      One of the main features of UNIX-like shells are redirections
-      and pipes.  Before we start to look at both techniques we have
-      to look how most UNIX-like commands work. When a command is not
-      getting data from a file, it will open a special pseudo-file
-      named <emphasis>stdin</emphasis>, and wait for data to appear on
-      it. The same principle can be applied for command output, when
-      there is no explicit reason for saving output to a file, the
-      pseudo-file <emphasis>stdout</emphasis> will be opened for
-      output of data. This principle is shown schematically in <xref
+      Uns dos principais recursos dos shells UNIX-like são os redirecionamentos
+      e os dutos.  Antes de começarmos a ver ambas estas técnicas, temos que
+      ver como a maioria dos comandos UNIX-like funcionam.  Quando um comando
+      não está obtendo dados a partir de um arquivo, ele abre um pseudo-arquivo
+      especial chamado <emphasis>stdin</emphasis>, e espera que os dados surjam
+      a partir dele.  O mesmo princípio pode ser aplicado para a saída de um
+      comando.  Quando não houver uma razão explícita para salvar a saída para
+      um arquivo, o pseudo-arquivo <emphasis>stdout</emphasis> será aberto para
+      saída de dados.  Este princípio é mostrado esquematicamente em <xref
       linkend="fig-shell-inout" />
     </para>
 
     <figure xml:id="fig-shell-inout">
-      <title>Standard input and output</title>
+      <title>Saída e entrada padrão</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../images/shell-inout.png" format="PNG"/>
@@ -910,15 +905,13 @@ $ <userinput>rm in*</userinput>
     </figure>
 
     <para>
-      You can see <emphasis>stdin</emphasis> and
-      <emphasis>stdout</emphasis> in action with the
-      <command>cat</command> command. If cat is started without any
-      parameters it will just wait for input on
-      <emphasis>stdin</emphasis> and output the same data on
-      <emphasis>stdout</emphasis>. If no redirection is used keyboard
-      input will be used for <emphasis>stdin</emphasis>, and
-      <emphasis>stdout</emphasis> output will be printed to the
-      terminal:
+      Você pode ver <emphasis>stdin</emphasis> e <emphasis>stdout</emphasis> em
+      ação com o comando <command>cat</command>.  Se o cat for iniciado sem
+      quaiquer parâmetros ele irá apenas arguardar pela entrada em
+      <emphasis>stdin</emphasis> e dar saída nos mesmos dados em 
+      <emphasis>stdout</emphasis>.  Se nenhum redirecionamento for usado, a
+      entrada do teclado será usada como <emphasis>stdin</emphasis>, e a saída
+      obtida de <emphasis>stdout</emphasis> será exibida no terminal:
     </para>
 
     <screen>
@@ -928,21 +921,21 @@ Hello world!
     </screen>
 
     <para>
-      As you can see cat will print data to
-      <emphasis>stdout</emphasis> after inputting data to
-      <emphasis>stdin</emphasis> using the keyboard.
+      Como você pode ver, o cat irá exibir os dados em
+      <emphasis>stdout</emphasis> depois de ler dados de entrada em 
+      <emphasis>stdin</emphasis> a partir do teclado.
     </para>
 
     <sect2 xml:id="chap-shell-inout-redir">
-      <title>Redirection</title>
+      <title>Redirecionamento</title>
 
       <para>
-	The shell allows you to take use of <emphasis>stdin</emphasis>
-	and <emphasis>stdout</emphasis> using the <quote>&lt;</quote>
-	and <quote>&gt;</quote>. Data is redirected in which way the
-	sharp bracket points. In the following example we will
-	redirect the md5 summaries calculated for a set of files to a
-	file named <filename>md5sums</filename>:
+       O shell permite que você faça uso de <emphasis>stdin</emphasis> e
+       <emphasis>stdout</emphasis> usando <quote>&lt;</quote> e
+       <quote>&gt;</quote>.  Os dados são redirecionados no sentido apontado
+       pelas chaves angulares.  No exemplo a seguir, vamos redirecionar as
+       somas md5 calculadas para um conjunto de arquivos, armazenando-as em um
+       arquivo chamado <filename>md5sums</filename>:
       </para>
 
       <screen>
@@ -954,10 +947,10 @@ $ <userinput>cat md5sums</userinput>
       </screen>
 
       <para>
-	As we can see in the <command>cat</command> output the output
-	of the <command>md5sum *</command> output was redirected to
-	the <filename>md5sums</filename> file. We can also use
-	redirection to provide input to a command:
+       Como podemos ver pela saída do comando <command>cat</command>, a saída
+       do comando <command>md5sum *</command> foi redirecionada para o arquivo
+       <filename>md5sums</filename>.  Nós também podemos usar o
+       redirecionamento para fornecer entrada para um comando:
       </para>
 
       <screen>
@@ -966,26 +959,28 @@ $ <userinput>md5sum &lt; test1</userinput>
       </screen>
 
       <para>
-	This feeds the contents of the <filename>test1</filename> to
-	<command>md5sum</command>.
+       Isto alimenta o <command>md5sum</command> com o conteúdo do arquivo
+       <filename>test1</filename>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-shell-inout-pipes">
-      <title>Pipes</title>
+      <title>Dutos</title>
 
       <para>
-	You can also connect the input and output of commands using
-	so-called <emphasis>pipes</emphasis>. A pipe between commands
-	can be made with the <quote>|</quote> character. Two or more
-	combined commands are called a
-	<emphasis>pipeline</emphasis>. <xref
-	linkend="fig-shell-pipeline" /> shows a schematic overview of
-	a pipeline consisting of two commands.
+       Você também pode conectar a entrada e a saída de comando usando os assim
+       chamados <emphasis>dutos</emphasis> (em inglês,
+       <foreignphrase>pipes</foreignphrase>).  Um duto entre comandos pode ser
+       feito com o caractere <quote>|</quote>.  A combinação de dois ou mais
+       comandos é chamada de
+       <emphasis>canalização</emphasis> (ou
+       <foreignphrase>pipeline</foreignphrase>, em inglês).   <xref
+       linkend="fig-shell-pipeline" /> exibe uma visão geral como um diagrama
+       de uma canalização de dois comandos.
       </para>
 
       <figure xml:id="fig-shell-pipeline">
-	<title>A pipeline</title>
+	<title>Uma canalização</title>
 	<mediaobject>
 	  <imageobject>
 	    <imagedata fileref="../images/shell-pipeline.png" format="PNG"/>
@@ -994,10 +989,10 @@ $ <userinput>md5sum &lt; test1</userinput>
       </figure>
 
       <para>
-	The <quote>syntax</quote> of a pipeline is: <command>command1
-	| command2 ... | commandn</command>. If you know how the most
-	basic UNIX-like commands work you can now let these commands
-	work together. Let's look at a quick example:
+       A <quote>sintaxe</quote> de uma canalização é: <command>command1 | command2
+       ... | commandn</command>.  Se você sabe como os mais básicos dos comandos
+       UNIX-like funcionam, você agora pode deixar esses comandos trabalhando
+       juntos.  Vamos ver um exemplo rápido:
       </para>
 
       <screen>
@@ -1006,25 +1001,22 @@ $ <userinput>cat /usr/share/dict/american-english | grep "aba" | wc -l</userinpu
       </screen>
 
       <para>
-	The first command, <command>cat</command>, reads the
-	dictionary file
-	<filename>/usr/share/dict/american-english</filename>. The
-	output of the <command>cat</command> command is piped to
-	<command>grep</command>, which prints out all files containing
-	the phrase <quote>aba</quote>.  In turn, the output of
-	<quote>grep</quote> is piped to <command>wc -l</command>,
-	which counts the number of lines it receives from
-	<emphasis>stdin</emphasis>. Finally, when the stream is
-	finished <command>wc</command> prints the number of lines it
-	counted. So, combined three commands to count the number of
-	words containing the phrase <quote>aba</quote> in this
-	particular dictionary.
+       O primeiro comando, <command>cat</command>, lê o arquivo de dicionário 
+       <filename>/usr/share/dict/american-english</filename>.  A saída do
+       comando <command>cat</command> é canalizada até o
+       <command>grep</command>, o qual exibe todos os arquivos contendo a frase
+       <quote>aba</quote>.  Por sua vez, a saída do <quote>grep</quote> é
+       canalizada para o <command>wc -l</command>, que conta o número de linhas
+       que recebe a partir de <emphasis>stdin</emphasis>.  Finalmente, quando o
+       fluxo terminar, o <command>wc</command> exibe o número de linha que
+       contou.  Então, os três comandos combinados contam o número de palavras
+       que contém a frase <quote>aba</quote> neste dicionário em particular.
       </para>
 
       <para>
-	There are hundreds of small utilities that handle specific
-	tasks. As you can imagine, together these commands provide a
-	very powerful toolbox by making combinations using pipes.
+       Há centenas de pequenos utilitários relacionados a tarefas específicas.
+       Como você pode imaginar, juntos estes comandos se tornam uma poderosa
+       caixa de ferramentas através de combinações por meio de dutos.
       </para>
     </sect2>
   </sect1>
