@@ -249,11 +249,10 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
 
       <para>
         O comando acima usa o dd para retornar 16 bytes do <filename>/dev/random</filename>.
-        Não se esqueça de adicionar o <quote>0x</quote> no início da linha do seu arquivo de configuração.
-        at the beginning of the line in the configuration files. You can use 
-        the 16 byte (128 bits) for the hmac-md5 algorithm that is used for AH.
-        The 3des-cbc algorithm that is used for ESP in the example should be fed 
-        with a 24 byte (192 bits) key. These keys can be generated with:
+        Não se esqueça de adicionar o <quote>0x</quote> no início da linha em seu arquivo de configuração.
+        Você pode usar 16 bytes (128 bits) para o algoritmo hmac-md5 que é usado para o AH.
+        O algoritmo 3des-cbc que é usado no exemplo para o ESP deve ser preenchido com uma chave de 24 bytes (192 bits).
+        Essa chave pode ser gerada com:
       </para>
 
       <screen>
@@ -261,9 +260,9 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </screen>  
 
       <para>
-        Make sure that the <filename>/etc/setkey.conf</filename> file can only
-        be read by the root user. If normal users can read the keys IPsec
-        provides no security at all. You can do this with:
+          Tenha certeza de que o arquivo <filename>/etc/setkey.conf</filename> possa ser lido apenas pelo usuário root.
+          Se usuários normais puderem ler a chave, significa que o IPsec não está fornecendo nenhuma segurança.
+          Você configura isso com:
       </para>
 
       <screen>
@@ -271,10 +270,10 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </screen>
 
       <para>
-        The same <filename>/etc/setkey.conf</filename> can be created on the
-        192.168.1.169 host, with inverted <parameter class="command">-P 
-        in</parameter> and <parameter class="command">-P out</parameter> options. So, 
-        the <filename>/etc/setkey.conf</filename> will look like this:
+          O mesmo arquivo <filename>/etc/setkey.conf</filename> pode ser criado no host
+          192.168.1.169, mas invertendo as opções <parameter class="command">-P 
+          in</parameter> e <parameter class="command">-P out</parameter>.
+          O arquivo <filename>/etc/setkey.conf</filename> ficará assim:
       </para>
 
       <screen>
@@ -305,11 +304,10 @@ spdadd 192.168.1.169 192.168.1.1 any -P out ipsec
     </sect2>
 
     <sect2>
-      <title>Activating the IPsec configuration</title>
+      <title>Ativando o IPsec</title>
 
       <para>
-        The IPsec configuration can be activated with the 
-	<command>setkey</command> command:
+        O IPsec pode ser ativado com o comando <command>setkey</command>:
       </para>
 
       <screen>
@@ -317,8 +315,8 @@ spdadd 192.168.1.169 192.168.1.1 any -P out ipsec
       </screen>
 
       <para>
-        If you want to enable IPsec permanently you can add the following line
-        to <filename>/etc/rc.d/rc.local</filename> on both hosts:
+        Se você quer habilitar o IPsec de forma permanente, você pode adicionar a seguinte linha
+        no arquivo <filename>/etc/rc.d/rc.local</filename> de ambos os hosts:
       </para>
 
       <screen>
@@ -326,10 +324,9 @@ spdadd 192.168.1.169 192.168.1.1 any -P out ipsec
       </screen>
 
       <para>
-        After configuring IPsec you can test the connection by running
-        <command>tcpdump</command> and simultaneously pinging the other
-        host. You can see if AH and ESP are actually used in the 
-        <command>tcpdump</command> output:
+          Após configurar o IPsec você está apto a testar a conexão rodando o comando <command>tcpdump</command> 
+          e simultâneamente pingando o outro host.
+        Você pode conferir se o AH e o ESP estão mesmo sendo utilizados analisando a saída do comando <command>tcpdump</command>:
       </para>
 
       <screen>
@@ -344,73 +341,65 @@ tcpdump: listening on eth0
   </sect1>
   
   <sect1>
-    <title>Setting up IPsec with automatic key exchanging</title>
+    <title>Configurando o IPsec para fazer troca automática de chaves</title>
 
     <sect2>
-      <title>Introduction</title>
+      <title>Introdução</title>
     
       <para>
-        The subject of automatical key exchange is already touched shortly
-	in the introduction of this chapter. Put simply, IPsec with IKE
-	works in the following steps.
+        A troca automática de chaves já foi brevemente citada no início deste capítulo.
+        Basicamente o IPsec com IKE funciona da seguinte maneira.
       </para>
       
       <orderedlist>
         <listitem>
 	  <para>
-	    Some process on the host wants to connect to another host. The
-	    kernel checks whether there is a security policy set up for
-	    the other host. If there already is a security association
-	    corresponding with the policy the connection can be made,
-	    and will be authenticated, encrypted and/or compressed as defined
-	    in the security association. If there is no security association,
-	    the kernel will request a user-land IKE daemon to set up the
-	    necessary security association(s).
+        Algum process em um host deseja se conectar a outro host. O kernel então verifica
+        se existe uma política de segurança para o outro host. Se já existe uma associação segura
+        correspondente à política, a conexão pode ser feita e será autenticada, encriptada e/ou comprimida
+        conforme tenha sido definido na associação segura.
+        Se não existe uma associação segura, o kernel vai então requisitar ao daemon IKE (que roda em modo usuário)
+        que configure a associação segura necessária.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    During the first phase of the key exchange the IKE daemon
-	    will try to verify the authenticity of the other host. This
-	    is usually done with a preshared key or certificate. If
-	    the authentication is successful a secure channel is set up
-	    between the two hosts, usually called a IKE security
-	    association, to continue the key exchange.
+        Durante a primeira fase de troca de chave o daemon IKE tentará verificar
+        a autenticidade do outro host. Isso é normalmente feito com uma chave ou certificado
+        pré-compartilhado.
+        Se houver êxito nesse verificação, um canal seguro será criado entre os dois hosts, normalmente
+        chamado de associação segura IKE, e a troca de chaves continuará entre os dois hosts. 
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    During the second phase of the key exchange the security
-	    associations for communication with the other host are set
-	    up. This involves choosing the encryption algorithm to be
-	    used, and generating keys that are used for encryption
-	    of the communication.
+        Durante a segunda fazer de troca de chave, é criada a associação segura para a comunicação
+        com o outro host. Isso envolve a escolha do algoritmo de encriptação que será utilizado e a
+       geração de chaves que serão usadas para encriptar a comunicação. 
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    At this point the first step is repeated again, but since
-	    there are now security associations the communication can
-	    proceed.
+        Neste ponto a primeira fase é executada novamente, mas como
+        agora existem associações seguras, a comunicação pode continuar normalmente. 
 	  </para>
 	</listitem>
       </orderedlist>
       
       <para>
-        The <command>racoon</command> IKE daemon is included with the KAME IPsec tools,
-	the sections that follow explain how to set up racoon.
+          O daemon IKE <command>racoon</command> está disponível no pacote KAME IPsec Tools.
+          Esta seção vai explicar como configurar o racoon.
       </para>
     </sect2>
     
     <sect2>
-      <title>Using racoon with a preshared key</title>
+      <title>Usando o racoon com uma chave pré-compartilhada</title>
       
       <para>
-        As usual the first step to set up IPsec is to define security
-	policies. In contrast to the manual keying example you should
-	not set up security associations, because racoon will make them
-	for you. We will use the same host IPs as in the example above.
-	The security policy rules look like this:
+        Como sempre, o rimeiro passo para configurar o IPsec é definir as políticas de segurança.
+        Diferentemente do exemplo que utiliza chaves manuais, você não deve configurar uma associação segura pois
+        o racoon vai fazer isso por você. Nós vamos aqui usar os mesmos IPs do exemplo anterior.
+        As regras de política de segurança são como:
       </para>
 
       <screen>
@@ -428,12 +417,10 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </screen>
 
       <para>
-        Cautious souls have probably noticed that AH policies are missing
-        in this example. In most situations this is no problem, ESP can
-        provide authentication. But you should be aware that the authentication
-        is more narrow; it does not protect information outside the ESP
-        headers. But it is more efficient than encapsulating ESP packets
-        in AH.
+        Almas cautelosas provavelmente notaram que estão faltando políticas AH no exemplo.
+        Na maioria das situações isso não é um problema, o ESP pode prover a autenticação. Mas
+        você deve ter em mente que a autenticação é mais limitada; não protege informações fora
+        do cabeçalho ESP. Mas isso é mais eficiente do que encapsular pacotes ESP no AH.
       </para>
 
       <para>
