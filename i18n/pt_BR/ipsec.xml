@@ -396,7 +396,7 @@ tcpdump: listening on eth0
       <title>Usando o racoon com uma chave pré-compartilhada</title>
       
       <para>
-        Como sempre, o rimeiro passo para configurar o IPsec é definir as políticas de segurança.
+        Como sempre, o primeiro passo para configurar o IPsec é definir as políticas de segurança.
         Diferentemente do exemplo que utiliza chaves manuais, você não deve configurar uma associação segura pois
         o racoon vai fazer isso por você. Nós vamos aqui usar os mesmos IPs do exemplo anterior.
         As regras de política de segurança são como:
@@ -424,16 +424,13 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </para>
 
       <para>
-        With the security policies set up you can configure <command>racoon</command>.
-        Since the connection-specific information, like the authentication
-        method is specified in the phase one configuration. We can use a
-        general phase two configuration. It is also possible to make specific
-        phase two settings for certain hosts. But generally speaking a
-        general configuration will often suffice in simple setups. We
-        will also add paths for the preshared key file, and certification
-        directory. This is an example of 
-        <filename>/etc/racoon.conf</filename> with the paths
-        and a general phase two policy set up:
+        Com as políticas de segurança já configuradas você pode então configurar o <command>racoon</command>.
+        Já que informações específicas de conexão, como o método de autenticação, foram especificadas
+        na fase um da configuração, nós podemos, de um modo geral, usar a fase dois da configuração.
+        Também é possível fazer a configuração da fase especificamente para alguns hosts. Mas de um modo geral
+        uma configuração genérica é suficiente para um cenário simples. Nós também vamos adicionar caminhos para
+        o arquivo de chave pré-compartilhada e diretório de certificado.
+        Segue abaixo um exemplo do <filename>/etc/racoon.conf</filename> com os caminhos e uma configuração (de fase dois) genérica de políticas: 
       </para>
 
       <screen>
@@ -451,30 +448,26 @@ sainfo anonymous {
       </screen>
 
       <para>
-        The <parameter>sainfo</parameter> identifier is used to make a
-        block that specifies the settings for security associations. Instead
-        of setting this for a specific host, the <parameter>anonymous</parameter>
-        parameter is used to specify that these settings should be used
-        for all hosts that do not have a specific configuration. The
-        <parameter>pfs_group</parameter> specifies which group of
-        Diffie-Hellman exponentiations should be used. The different
-        groups provide different lengths of base prime numbers that are
-        used for the authentication process. Group 2 provides a 1024 bit
-        length if you would like to use a greater length, for increased
-        security, you can use another group (like 14 for a 2048 bit
-        length). The <parameter>encryption_algorithm</parameter> specifies
-        which encryption algorithms this host is willing to use for
-        ESP encryption. The <parameter>authentication_algorithm</parameter>
-        specifies the algorithm to be used for ESP Authentication or
-        AH. Finally, the <parameter>compression_algorithm</parameter>
-        is used to specify which compression algorithm should be used
-        when IPcomp is specified in an association.
+        O identificador <parameter>sainfo</parameter> é usado para criar um
+        bloco de configurações para uma associação de segurança específica.
+        Ao invés de configurar isto para um host específico, o parâmetro <parameter>anonymous</parameter>
+        é usado para especificar que as configurações devem se usadas por todos os hosts
+        que não possuem sua própria configuração particular.
+        O parâmetro <parameter>pfs_group</parameter> qual grupo de exponenciação Diffie-Hellman deve ser usado.
+        Grupos diferente provêem diferentes tamanhos de números primos base que são usados no
+        processo de autenticação.
+        Grupo 2 provê um tamanho de 1024 bits. Se você quiser usar um tamanho maior, para aumentar a segurança, 
+        pode usar outro grupo (como o 14 para 2048 bits). O parâmetro <parameter>encryption_algorithm</parameter> 
+        especifica qual algoritmo de encriptação este host se dispõe a usar na encriptação ESP.
+        O parâmetro <parameter>authentication_algorith</parameter> especifica que o algoritmo
+        que será usado pela autenticação ESP ou AH. Por fim, o parâmetro <parameter>compression_algorithm</parameter>
+        é usado para especifica qual algoritmo de compressão deve ser usado quando o IPcomp é especificado em uma associação segura.
       </para>
 
       <para>
-        The next step is to add a phase one configuration for the key
-        exchange with the other host to the <filename>racoon.conf</filename> configuration file.
-        For example:
+          O próximo passo é adicionar no arquivo de configuração <filename>racoon.conf</filename> a fase um de configuração para a troca de 
+          chaves com outro host.
+          Por exemplo:
       </para>
 
       <screen>
@@ -492,34 +485,29 @@ remote 192.168.1.169
       </screen>
 
       <para>
-        The <parameter>remote</parameter> block specifies a phase one
-        configuration. The <parameter>exchange_mode</parameter> is
-        used to configure what exchange mode should be used for
-        phase. You can specify more than one exchange mode, but the
-        first method is used if this host is the initiator of the
-        key exchange. The <parameter>my_identifier</parameter> option
-        specifies what identifier should be sent to the remote host.
-        If this option committed <parameter>address</parameter> is used,
-        which sends the IP address as the identifier. The 
-        <parameter>proposal</parameter> block specifies parameter that
-        will be proposed to the other host during phase one authentication.
-        The <parameter>encryption_algorithm</parameter>, and
-        <parameter>dh_group</parameter> are explained above. The
-        <parameter>hash_algorithm</parameter> option is mandatory, and
-        configures the hash algorithm that should be used. This
-        can be <parameter>md5</parameter>, or <parameter>sha1</parameter>.
-        The <parameter>authentication_method</parameter> is crucial for
-        this configuration, as this parameter is used to specify that
-        a preshared key should be used, with 
-        <parameter>pre_shared_key</parameter>.
+          O bloco <parameter>remote</parameter> especifica a configuração da fase um.
+          O parâmetro <parameter>exchange_mode</parameter> é usado para configurar qual modo
+          de troca deve ser usado nesta fase.
+          Você pode especificar mais de um modo de troca, mas o primeiro método será usado
+          se o host é quem inicia a troca de chaves.
+          O parâmetro <parameter>my_identifier</parameter> especifica qual identificador
+          deve ser enviado para o host remoto. Se a opção <parameter>address</parameter> for usada para o parâmetro
+          <parameter>my_identifier</parameter>, então o endereço IP será a identificação utilizada.
+          O bloco <parameter>proposal</parameter> especifica parâmetros que serão propostos
+          para o outro host durante a fase de autenticação.
+          Os parâmetros <parameter>encryption_algorithm</parameter> e <parameter>dh_group</parameter> foram explicados anteriormente.
+          O parâmetro <parameter>hash_algorithm</parameter> é obrigatório e configura o algoritmo de hash que será utilizado. Os valores podem
+          ser <parameter>md5</parameter> ou <parameter>sha1</parameter>.
+          O parâmetro <parameter>authentication_method</parameter> é crucial para a configuração já que especifica
+          que uma chave pré-compartilhada deverá ser usada (como foi assinalado com <parameter>pre_shared_key</parameter>).
       </para>
 
       <para>
-        With racoon set up there is one thing left to do, the preshared
-        key has to be added to <filename>/etc/racoon/psk.txt</filename>.
-        The syntax is very simple, each line contains a host IP address
-        and a key. These parameters are separated with a tab.
-        For example:
+        Como o racoon configurado falta apenas uma coisa para fazer: a chave pré-compartilhada
+        deve ser adicionada ao arquivo <filename>/etc/racoon/psk.txt</filename>.
+        A sintaxe é muito simples, cada linha contém um endereço IP e uma chave. Estes parâmetros
+        são separados com um caracter de tabulação.
+        Por exemplo:
       </para>
 
       <screen>
@@ -528,15 +516,14 @@ remote 192.168.1.169
     </sect2>
 
     <sect2>
-      <title>Activating the IPsec configuration</title>
+      <title>Ativando a configuração do IPsec</title>
 
       <para>
-        At this point the configuration of the security policies and racoon
-        is complete, and you can start to test the configuration. It is a
-        good idea to start <command>racoon</command> with the
-        <parameter class="command">-F</parameter> parameter. This will run
-        <command>racoon</command> in the foreground, making it easier to catch error
-        messages. To wrap it up:
+          Neste ponto as configurações de políticas de segurança e do racoon estão prontas. Você pode portanto
+          iniciar o teste das configurações. É uma boa idéia iniciar o <command>racoon</command> como parâmetro
+          <parameter class="command">-F</parameter>. Isto fará o racoon executar em primeiro
+          plano, o que tornará mais fácil capturar mensagens de erro.
+          Para encerrar a história:
       </para>
 
       <screen>
@@ -545,10 +532,10 @@ remote 192.168.1.169
       </screen>
 
       <para>
-        Now that you have added the security policies to the security policy
-        database, and started <command>racoon</command>, you can test your IPsec configuration.
-        For instance, you could ping the other host to start with. The
-        first time you ping the other host, this will fail:
+        Agora que você adicionou as políticas de segurança ao banco de dados de políticas de segurança, e iniciou
+        o <command>racoon</command>, você pode testar o funcionamento da sua configuração do IPsec.
+        Neste momento você pode pingar o outro host para iniciar o teste.
+        Vai ocorrer uma falha na primeira vez em que você pingar o outro host:
       </para>
 
       <screen>
@@ -557,13 +544,12 @@ connect: Resource temporarily unavailable
       </screen>
 
       <para>
-        The reason for this is that the security associations still
-        have to be set up. But the ICMP packet will trigger the key exchange.
-        ping will trigger the key exchange. You can see whether the exchange
-        was succesful or not by looking at the <command>racoon</command> log messages in
-        <filename>/var/log/messages</filename>, or the output on the terminal
-        if you started <command>racoon</command> in the foreground. A succesful key
-	exhange looks like this:
+        O motivo disto é que a associação de segurança ainda precisa ser estabelecida. Ma o pacote
+        ICMP vai disparar a troca de chave.
+        Você pode ver se houve êxito na troca dando uma olhada nas mensagens de log do <command>racoon</command>
+        no arquivo <filename>/var/log/messages</filename>, ou no própria tela do terminal
+        caso você tenha inciado o <command>racoon</command> em primeiro plano.
+        Uma troca de chave com êxito se parece com o seguinte:
       </para>
 
       <screen>
@@ -579,16 +565,13 @@ connect: Resource temporarily unavailable
       </screen>
 
       <para>
-        After the key exchange, you
-        can verify that IPsec is set up correctly by analyzing the packets
-        that go in and out with <command>tcpdump</command>. <command>tcpdump</command> is
-        available in the <emphasis>n</emphasis> diskset. Suppose that
-        the outgoing connection to the other host goes through the
-        <emphasis>eth0</emphasis> interface, you can analyze the packats
-        that go though the <emphasis>eth0</emphasis> interface with
-        <command>tcpdump -i eth0</command>. If the outgoing packets are
-        encrypted with ESP, you can see this in the <command>tcpdump</command>
-        output. For example:
+          Após a troca de chave, você pode verificar se a configuração do IPsec foi executada corretamente 
+          analisando com o <command>tcpdump</command> os pacotes que entram e saem.
+          O <command>tcpdump</command> está disponível no grupo <emphasis>n</emphasis> da mídia de instalação do Slackware.
+          Supondo que uma conexão com outro hosts se dê através da interface <emphasis>eth0</emphasis>,
+          você pode então analisar os pacotes com <command>tcpdump -i eth0</command>. Se os pacotes
+          estão encriptados com ESP você poderá conferir isto pelo o que é mostrado do <command>tcpdump</command>.
+          Por exemplo:
       </para>
 
       <screen>
