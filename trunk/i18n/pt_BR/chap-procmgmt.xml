@@ -4,15 +4,25 @@
 	 xmlns:xl="http://www.w3.org/1999/xlink" xml:lang="en"
 	 xml:id="chap-procmgmt">
 
-  <title>Process management</title>
+  <title>Gerência de processos</title>
 
   <sect1 xml:id="chap-procmgmt-theory">
-    <title>Theory</title>
+    <title>Teoria</title>
 
     <sect2 xml:id="chap-procmgmt-theory-proc">
-      <title>Processes</title>
+      <title>Processos</title>
 
       <para>
+    Uma instância de um programa que está executando é 
+    chamada de <emphasis>processo</emphasis>. Cada processo
+    tem sua própria área de memória chamada de <emphasis>espaço de 
+        endereçamento</emphasis> do processo. Esse espaço de endereçamento
+    é constituído de duas áreas: <emphasis>área de texto</emphasis> e <emphasis>área de dados</emphasis>.
+    A área de texto contém o código do programa e diz ao sistema o que deve ser feito. A área de dados
+    armazena constantes e dados em tempo de execução do processo. Como existem vários processos em um 
+    sistema e apenas um ou poucos processadores, o kernel do sistema precisa dividir
+    o tempo de processamento entre os processos. Essa tarefa é chamada de:
+
 	A running instance of a program is called a
 	<emphasis>process</emphasis>. Each process has its own
 	protected memory, named the <emphasis>process address
