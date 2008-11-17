@@ -1,0 +1,15 @@
+digraph structs {
+	node [shape=record];
+	rankdir=LR
+
+	subgraph cluster0 {
+		style=dashed;
+		dirent1 [label="filename1|<f2> 2737963"];
+		dirent2 [label="filename2|<f2> 2737963"];
+		label = "Directory entries";
+	}
+
+	inode [label="inode 2737963|links_count 2"];
+	dirent1:f2 -> inode;
+	dirent2:f2 -> inode;
+}
