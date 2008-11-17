@@ -1,0 +1,30 @@
+digraph structs {
+	node [shape=record];
+	rankdir=LR;
+	ranksep=1;
+
+	subgraph cluster0 {
+		style=dashed;
+		dirent1 [label="<name> filename|<f2> 2737963"];
+		dirent2 [label="symlink|<f2> 2739293"];
+		label = "Directory entries";
+	}
+
+	subgraph cluster1{
+		style=dashed;
+		inode1 [label="2737963"];
+		inode2 [label="2739293"];
+		label = "inodes";
+	}
+
+	subgraph cluster2{
+		style=dashed;
+		block1 [label="data"];
+		block2 [label="data"];
+		label = "Data blocks";
+	}
+
+	dirent1:f2 -> inode1 -> block1;
+	dirent2:f2 -> inode2 -> block2;
+	block2 -> dirent1:name:e [weight=0, constraint=false];
+}

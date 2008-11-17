@@ -1,0 +1,17 @@
+digraph structs {
+	started [label="Started"];
+
+	ready [label="Ready"];
+	running [label="Running"];
+	blocked [label="Blocked"];
+
+	ready -> running;
+	running -> ready;
+	running -> blocked;
+	blocked -> ready;
+
+	terminated [label="Terminated"];
+
+	started -> ready;
+	running -> terminated;
+}
