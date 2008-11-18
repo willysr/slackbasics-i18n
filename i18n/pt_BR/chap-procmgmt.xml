@@ -21,51 +21,35 @@
     A área de texto contém o código do programa e diz ao sistema o que deve ser feito. A área de dados
     armazena constantes e dados em tempo de execução do processo. Como existem vários processos em um 
     sistema e apenas um ou poucos processadores, o kernel do sistema precisa dividir
-    o tempo de processamento entre os processos. Essa tarefa é chamada de:
-
-	A running instance of a program is called a
-	<emphasis>process</emphasis>. Each process has its own
-	protected memory, named the <emphasis>process address
-	space</emphasis>. This address space consists of two areas:
-	the <emphasis>text area</emphasis> and the <emphasis>data
-	area</emphasis>. The text area contains the actual program
-	code, and tells the system what to do. The data area stores
-	constant and runtime data of a process. Since there are many
-	processes on a system, and only one or a few processors, the
-	operating system kernel divides processor time between
-	processes. This process is called
-	<emphasis>time-sharing</emphasis>.
+    o tempo de processamento entre os processos. Essa tarefa é chamada de: <emphasis>compartilhamento de tempo</emphasis>.
       </para>
 
       <table xml:id="chap-procmgmt-theory-proc-struct">
-	<title>The structure of a process</title>
+	<title>A estrutura de um processo</title>
 
 	<tgroup cols="2">
 	  <thead>
-	    <row><entry>Field</entry><entry>Description</entry></row>
+	    <row><entry>Campo</entry><entry>Descrição</entry></row>
 	  </thead>
 
 	  <tbody>
 	    <row>
-	      <entry>pid</entry><entry>The numeric process identifier</entry>
+	      <entry>pid</entry><entry>O identificador numérico do processo</entry>
 	    </row>
 	    <row>
-	      <entry>ppid</entry><entry>The process identifier of the
-	      parent process</entry>
+	      <entry>ppid</entry><entry>O identificador do processo</entry>
 	    </row>
 	    <row>
-	      <entry>euid</entry><entry>The effective user ID of the
-	      process.</entry>
+	      <entry>euid</entry><entry>O ID efetivo (nome do usuário) que está executando o processo</entry>
 	    </row>
 	    <row>
-	      <entry>ruid</entry><entry>The real user ID of the process</entry>
+	      <entry>ruid</entry><entry>O ID real (id numérico) do usuário que está executando o processo</entry>
 	    </row>
 	    <row>
-	      <entry>egid</entry><entry>The group ID of the process</entry>
+	      <entry>egid</entry><entry>O ID do grupo (nome do grupo) do processo</entry>
 	    </row>
 	    <row>
-	      <entry>rgid</entry><entry>The real group ID of the
-	      process</entry>
+	      <entry>rgid</entry><entry>O ID real do grupo (id numérico) do processo</entry>
 	    </row>
 	    <row>
 	      <entry>fd</entry><entry>Pointer to the list of open file
