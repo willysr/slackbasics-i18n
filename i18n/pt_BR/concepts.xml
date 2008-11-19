@@ -1,49 +1,51 @@
 <!-- $Id: concepts.xml 333 2007-10-21 17:20:54Z danieldk $ -->
 
 <chapter id="concepts"> <?dbhtml filename="concepts.html"?>
-  <title>General concepts</title>
+  <title>Conteitos gerais</title>
 
   <para>
-    This chapter gives an introduction to some general UNIX and GNU/Linux 
-    concepts. It is important to read this chapter thoroughly if you do
-    not have any UNIX or GNU/Linux experience. Many concepts covered in
-    this chapter are used in this book and in GNU/Linux.
+    Este capítulo introduz alguns conceitos gerais sobre UNIX e GNU/Linux. 
+    É importante ler este capítulo cuidadosamente se você não tem nenhuma 
+    experiência com estes sistemas. Muitos conceitos vistos aqui são usados 
+    neste livro e no GNU/Linux.
   </para>
 
   <sect1 id="concepts-multitasking">
-    <title>Multitasking</title>
+    <title>Multitarefa</title>
 
     <sect2 id="concepts-multitasking-intro">
-      <title>Introduction</title>
+      <title>Introdução</title>
 
       <para>
-        One of UNIX's traditional strengths is multitasking. Multitasking
-        means that multiple programs can be run at the same time.
-        You may wonder why this is important, because most people use
-        only one application at a time. Multitasking is a bare necessity
-        for UNIX-like systems. Even if you have not started any applications,
-        there are programs that run in the background. For instance,
-        some programs provide network services, while others show a login
-        prompt and wait until a user logs in on a (virtual) terminal. Programs
-        that are running in the background are often called <emphasis>daemon
-        processes</emphasis><footnote>
+        Uma das principais vantagens dos sistemas UNIX é a multitarefa. 
+        Multitarefa quer dizer que vários programas podem rodar ao mesmo 
+        tempo. Talvez você não saiba o quão isto é importante, porque a 
+        maioria das pessoas usam apenas uma aplicação por vez. A multitarefa 
+        é uma necessidade vital para sistemas UNIX e derivados. Mesmo que 
+        você não tenha iniciado nenhuma aplicação, existem programas que 
+        rodam em segundo plano. Por exemplo, alguns programas provêm serviços 
+        de rede, enquanto outros mostram a tela de autenticação e esperam até que 
+        o usuário se autentique em um terminal (virtual). Programas que 
+        rodam em segundo plano muitas vezes são chamados de 
+        <emphasis>daemon</emphasis>
+        <footnote>
           <para>
-            The word <emphasis>daemon</emphasis> should not to be confused
-	    with the word <emphasis>demon</emphasis>, the word
-            <emphasis>daemon</emphasis> refers to supernatural beings
-            in Greek mythology.
+	    A palavra <emphasis>daemon</emphasis> não deve ser confundida com 
+	    a palavra <emphasis>demon</emphasis>, a palavra <emphasis>daemon</emphasis> 
+	    refere-se à seres sobrenaturais da mitologia grega.
           </para>
         </footnote>.
       </para>
     </sect2>
 
     <sect2 id="concepts-multitasking-procsthreads">
-      <title>Processes and threads</title>
+      <title>Processos e threads</title>
 
       <para>
-        After a program is loaded from a storage medium, an instance
-        of the program is started. This instance is called a
-        <emphasis>process</emphasis>. A process has its own protected
+        Depois que o programa é carregado da mídia de armazenamento, 
+        uma instância do programa é iniciado. Esta instância é 
+        chamada de <emphasis>process</emphasis>. Um processo tem 
+        A process has its own protected
         memory, named the <emphasis>process address space</emphasis>.
         The process address space has two important areas: the
         <emphasis>text</emphasis> area and the

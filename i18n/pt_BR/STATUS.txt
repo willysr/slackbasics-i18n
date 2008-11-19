@@ -16,7 +16,7 @@ linhas arquivo                  trad     1a-rev  2a-rev
    338 mutt.xml                 OK       -       -
    341 miscadmin.xml            OK       -       -
    377 latex.xml                OK       -       -
-   398 concepts.xml             -        -       -
+   398 concepts.xml             parcial  -       -
    444 chap-kernel.xml          OK       -       -
    485 chap-usermgmt.xml        OK       -       -
    527 netconfig.xml            OK       -       -
