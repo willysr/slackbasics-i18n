@@ -52,19 +52,29 @@
 	      <entry>rgid</entry><entry>O ID real do grupo (id numérico) do processo</entry>
 	    </row>
 	    <row>
-	      <entry>fd</entry><entry>Pointer to the list of open file
-	      descriptors</entry>
+	      <entry>fd</entry><entry>Ponteiro para a lista de descritores de arquivos abertos</entry>
 	    </row>
 	    <row>
-	      <entry>vmspace</entry><entry>Pointer to the process
-	      address space.</entry>
+	      <entry>vmspace</entry><entry>Ponteiro para espaço de endereçamento do processo</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <para>
-	<xref linkend="chap-procmgmt-theory-proc-struct" /> lists the
+          <xref linkend="chap-procmgmt-theory-proc-struct" /> lista os campos mais
+          importantes onde o kernel armazena informações sobre processos. Cada processo
+          pode ser identificado exclusivamente pelo seu <emphasis>PID</emphasis> <foreignphrase>(process identifier)<foreignphrase>,
+          que é nada mais do que um número (sempre positivo).
+          Como veremos mais adiante, um usuário pode facilmente saber o PID de um processo.
+          Cada processo é associado a um <emphasis>UID</emphasis> (user ID) e a um <emphasis>GID</emphasis> (group ID) no sistema.
+          Cada process possui um <emphasis>UID real</emphasis>, que é o UID pelo
+          qual o processo foi iniciado, e um <emphasis>UID efetivo</emphasis>, que é o UID com o qual o
+          processo opera. Normalmente o UID real é igual ao UID efetivo, mas alguns programas
+          pedem ao sistema que troque seu UID efetivo. O UID efetivo é usado para controle de acesso. Isto
+          significa que se um usuário chamado joe executar um comando, ele apenas poderá arquivos onde
+          joe tenha permissão de leitura.  
+          lists the
 	most important fields of information that a kernel stores
 	about a process. Each process can be identified uniquely by
 	its <emphasis>PID</emphasis> (process identifier), which is an
