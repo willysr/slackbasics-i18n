@@ -23,16 +23,16 @@
       </para>
 
       <para>
-        Slackware Linux has a few tools to handle packages. The most
-        important tools will be covered in this chapter. To learn to
-        understand the tools we need to have a look at package
-        naming. Let's have a look at an example, imagine that we have
-        a package with the file name
-        <filename>bash-2.05b-i386-2.tgz</filename>. In this case the
-        name of the package is bash-2.05b-i386-2. In the package name
-        information about the package is separated by the '-'
-        character. A package name has the following meaning:
-        <emphasis>programname-version-architecture-packagerevision</emphasis>
+        O Slackware Linux possui algumas poucas ferramentas para manipular
+        pacotes.  As ferramentas mais importantes serão abordadas neste
+        capítulo.  Para aprender a compreender as ferramentas nós precisamos
+        dar uma olhada na nomenclatura de um pacote.  Vejamos um exemplo,
+        imagine que temos um pacote em um arquivo chamado
+        <filename>bash-2.05b-i386-2.tgz</filename>.  Neste caso o nome do
+        pacote é bash-2.05b-i386-2.  No nome do pacote, as informações sobre o
+        pacote são separadas pelo caracter '-'.  Um nome de pacote possui o
+        seguinte significado: 
+        <emphasis>nomedoprograma-versão-arquitetura-revisãodopacote</emphasis>
       </para>
 
     </sect2>
@@ -41,21 +41,20 @@
       <title>pkgtool</title>
 
       <para>
-	The <command>pkgtool</command> command provides a menu
-	interface for some package operations. De most important menu
-	items are <emphasis>Remove</emphasis> and
-	<emphasis>Setup</emphasis>. The <emphasis>Remove</emphasis>
-	option presents a list of installed packages. You can select
-	which packages you want to remove with the space bar and
-	confirm your choices with the return key. You can also
-	deselect a package for removal with the space bar.
+	O comando <command>pkgtool</command> oferece uma interface de menu para
+    algumas operações de pacotes.  Os itens de menu mais importantes são
+    <emphasis>Remove</emphasis> e <emphasis>Setup</emphasis>.  A opção
+    <emphasis>Remove</emphasis> apresenta uma lista de pacotes instalados.
+    Você pode selecionar quais pacotes você quer remover com a barra de espaço
+    e confirmar suas escolhas com a tecla Enter.  Você também pode desmarcar um
+    pacote marcado para remoção com a barra de espaço.
       </para>
 
       <para>
-	The <emphasis>Setup</emphasis> option provides access to a few
-	tools which can help you with configuring your system, for
-	example: <command>netconfig</command>,
-	<command>pppconfig</command> and <command>xwmconfig</command>.
+	A opção <emphasis>Setup</emphasis> oferece acesso a algumas poucas
+    ferramentas que podem ajudá-lo na configuração de seu sistema, como por
+    exemplo: <command>netconfig</command>, <command>pppconfig</command> e
+    <command>xwmconfig</command>.
       </para>
     </sect2>
 
@@ -63,10 +62,10 @@
       <title>installpkg</title>
 
       <para>
-	The <command>installpkg</command> command is used to install
-	packages.  <command>installpkg</command> needs a package file
-	as a parameter.  For example, if you want to install the
-	package <filename>bash-2.05b-i386-2.tgz</filename> execute:
+	O comando <command>installpkg</command> é usado para instalar pacotes.  O 
+	<command>installpkg</command> precisa de um arquivo de pacote como um
+    parâmetro.  Por exemplo, se você quiser instalar o pacote 
+	<filename>bash-2.05b-i386-2.tgz</filename>, execute:
       </para>
 
       <screen>
@@ -79,12 +78,12 @@
       <title>upgradepkg</title>
 
       <para>
-        <command>upgradepkg</command> can be used to upgrade
-        packages. In contrast to <command>installpkg</command> it only
-        installs packages when there is an older version available on
-        the system. The command syntax is comparable to
-        <command>installpkg</command>. For example, if you want to
-        upgrade packages using package in a directory execute:
+        O <command>upgradepkg</command> pode ser usado para atualizar pacotes.
+        Diferentemente do <command>installpkg</command> ele apenas instala
+        pacotes quando já houver uma versão mais antiga disponível no sistema.
+        A sintaxe do comando é semelhante à do 
+        <command>installpkg</command>.  Por exemplo, se você quiser atualizar
+        pacotes usando os pacotes em um diretório:
       </para>
 
       <screen>
@@ -92,8 +91,8 @@
       </screen>
 
       <para>
-        As said only those packages will be installed of which an other
-        version is already installed on the system.
+        Como já dito, só serão instalados aqueles pacotes cujas versões mais
+        antigas já estiverem instaladas no sistema.
       </para>
     </sect2>
 
@@ -101,10 +100,9 @@
       <title>removepkg</title>
 
       <para>
-	The <command>removepkg</command> can be used to remove
-	installed packages. For example, if you want to remove the
-	<quote>bash</quote> package (it is not recommended to do
-	that!), you can execute:
+	O <command>removepkg</command> pode ser usado para remover pacotes
+    instalados.  Por exemplo, se você quiser remover o pacote
+	<quote>bash</quote> (não é recomendável fazer isso!), você pode executar:
       </para>
 
       <screen>
@@ -112,9 +110,9 @@
       </screen>
 
       <para>
-        As you can see only the name of the package is specified in
-        this example. You can also remove a package by specifying its
-        full name:
+        Como você pode ver, apenas o nome do pacote é especificado neste
+        exemplo.  Você também pode remover um pacote especificando seu nome
+        completo:
       </para>
 
       <screen>
@@ -127,30 +125,29 @@
     <title>Slackpkg</title>
 
     <sect2 xml:id="chap-pkgmgmt-slackpkg-intro">
-      <title>Introduction</title>
+      <title>Introdução</title>
 
       <para>
-        Slackpkg is a package tool written by Roberto F. Batista and
-        Evaldo Gardenali.  It helps users to install and upgrade
-        Slackware Linux packages using one of the Slackware Linux
-        mirrors. Slackpkg is included in the
-        <filename>extra/</filename> directory on the second CD of the
-        Slackware Linux CD set.
+        Slackpkg é uma ferramenta de pacotes escrita por Roberto F. Batista e
+        Evaldo Gardenali.  Ela ajuda os usuários a instalar e atualizar pacotes
+        do Slackware Linux usando um dos repositórios espelhos do Slackware
+        Linux.  O Slackpkg é incluído no diretório 
+        <filename>extra/</filename> no segundo CD do conjunto de CDs do
+        Slackware Linux.
       </para>
 
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-slackpkg-config">
-      <title>Configuration</title>
+      <title>Configuração</title>
 
       <para>
-        Slackpkg is configured through some files in
-        <filename>/etc/slackpkg</filename>. The first thing you should
-        do is configuring which mirror slackpkg should use. This can
-        be done by editing the
-        <filename>/etc/slackpkg/mirrors</filename>. This file already
-        contains a list of mirrors, you can just uncomment a mirror
-        close to you. For example:
+        O Slackpkg é configurado por meio de alguns arquivos em
+        <filename>/etc/slackpkg</filename>.  A primeira coisa que você deveria
+        fazer é configurar o espelho que o slackpkg deve usar.  Isto pode ser
+        feito editando-se o arquivo <filename>/etc/slackpkg/mirrors</filename>.
+        Este arquivo já contém uma relação de espelhos, e você pode apenas
+        descomentar um espelho que esteja próximo de você.  Por exemplo:
       </para>
 
       <screen>
@@ -158,11 +155,11 @@ ftp://ftp.nluug.nl/pub/os/Linux/distr/slackware/slackware-12.0/
       </screen>
 
       <para>
-        This will use the Slackware Linux 12.0 tree on the
-        ftp.nluug.nl mirror. Be sure to use a tree that matches your
-        Slackware Linux version. If you would like to track
-        slackware-current you would uncomment the following line
-        instead (when you would like to use the NLUUG mirror):
+        Isto irá usar a árvore do Slackware Linux 12.0 no espelho
+        ftp.nluug.nl mirror.  Certifique-se de usar uma árvore que inclua sua
+        versão do Slackware Linux.  Se você gostaria de acompanhar o
+        slackware-current, você deve descomentar a seguinte linha no entanto
+        (quando você quiser usar o mesmo espelho NLUUG em questão):
       </para>
 
       <screen>
@@ -170,24 +167,23 @@ ftp://ftp.nluug.nl/pub/os/Linux/distr/slackware/slackware-current/
       </screen>
 
       <para>
-        Slackpkg will only accept one mirror. Commenting out more
-        mirrors will not work.
+        O Slackpkg irá aceitar apenas um espelho.  Descomentar mais de uma
+        linha não irá adiantar.
       </para>
 
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-slackpkg-gpgkey">
-      <title>Importing the Slackware Linux GPG key</title>
+      <title>Importando a chave GPG do Slackware Linux</title>
 
       <para>
-	By default slackpkg checks packages using the package
-	signatures and the public Slackware Linux GPG key. Since this
-	is a good idea from a security point of view, you probably do
-	not want to change this behaviour. To be able to verify
-	packages you have to import the
-	<emphasis>security@slackware.com</emphasis> GPG key. If you
-	have not used GPG before you have to create the GPG directory
-	in the home directory of the <emphasis>root</emphasis> user:
+	Por padrão, o slackpkg verifica os pacotes usando as assinaturas de pacote
+    com a chave pública GPG do Slackware Linux.  Como isto é uma boa idéia do
+    ponto de vista de segurança, você provavelmente não vai querer mudar esse
+    comportamento.  Para ser capaz de verificar os pacotes você precisa
+    importar a chave GPG de <emphasis>security@slackware.com</emphasis>.  Se
+    você nunca tiver usado o GPG antes, você precisa criar o diretório GPG na
+    pasta local do usuário <emphasis>root</emphasis>:
       </para>
 
       <screen>
@@ -195,9 +191,9 @@ ftp://ftp.nluug.nl/pub/os/Linux/distr/slackware/slackware-current/
       </screen>
 
       <para>
-        The next step is to search for the public key of
-        <emphasis>security@slackware.com</emphasis>. We will do this
-        by querying the <emphasis>pgp.mit.edu</emphasis> server:
+        O próximo passo é procurar a chave pública de 
+        <emphasis>security@slackware.com</emphasis>.  Nós faremos isso
+        consultando o servidor <emphasis>pgp.mit.edu</emphasis>:
       </para>
 
       <screen>
@@ -214,9 +210,9 @@ Enter number(s), N)ext, or Q)uit &gt;
       </screen>
 
       <para>
-        As you can see we have got two (identical) hits. Select the
-        first one by entering <quote>1</quote>. GnuPG will import this
-        key in the keyring of the <emphasis>root</emphasis> user:
+        Como você pode ver, nós temos dois (idênticos) registros.  Selecione o
+        primeiro digitando <quote>1</quote>.  O GnuPG irá importar esta chave
+        para o chaveiro do usuário <emphasis>root</emphasis>:
       </para>
 
       <screen>
@@ -229,12 +225,12 @@ gpg:               imported: 1
       </screen>
 
       <para>
-        Be sure to double check the key you received. The key ID and
-        fingerprint of this particular key can be found on the
-        Internet on many trustworthy sites. The key ID is, as
-        mentioned above <emphasis>40102233</emphasis>.  You can get
-        the key fingerprint with the <parameter
-        class="command">--fingerprint</parameter> parameter:
+        Certifique-se de conferir mais de uma vez a chave que você recebeu.  O
+        ID da chave e o resumo desta chave em particular podem ser encontrados
+        na Internet em diversos sites confiáveis.  O ID da chave é, como você
+        pôde ver acima, <emphasis>40102233</emphasis>.  Você pode obter o
+        resumo desta chave com o parâmetro <parameter
+        class="command">--fingerprint</parameter>:
       </para>
 
       <screen>
@@ -245,21 +241,21 @@ sub  1024g/4E523569 2003-02-26 [expires: 2012-12-21]
       </screen>
 
       <para>
-        Once you have imported and checked this key you can start to
-        use slackpkg, and install packages securely.
+        Uma vez que você tenha importado esta chave você pode comecar a usar o
+        slackpkg, e instalar pacotes de forma segura.
       </para>
 
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-slackpkg-updatepkglist">
-      <title>Updating the package lists</title>
+      <title>Atualizando a lista de pacotes</title>
 
       <para>
-        Before upgrading and installing packages you have to let
-        slackpkg download the package lists from the mirror you are
-        using. It is a good idea to do this regularly to keep these
-        lists up to date. The latest package lists can be fetched
-        with:
+        Antes de atualizar e instalar pacotes você tem que deixar o slackpkg
+        fazer o download das listas de pacotes a partir do espelho que você
+        está usando.  É uma boa idéia fazer isto regularmente para manter estas
+        listas sempre em dia.  A última listagem de pacotes pode ser obtida
+        com:
       </para>
 
       <screen>
@@ -268,18 +264,17 @@ $ <userinput>slackpkg update</userinput>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-slackpkg-upgrade">
-      <title>Upgrading packages</title>
+      <title>Atualizando pacotes</title>
 
       <para>
-        The <parameter class="command">upgrade</parameter> parameter
-        is used to upgrade installed packages. You have to add an
-        extra parameter to actually tell <command>slackpkg</command>
-        what you want to upgrade, this differs for a stable Slackware
-        Linux version and slackware-current. Upgrades for stable
-        Slackware Linux releases are in the
-        <filename>patches</filename> directory of FTP mirrors. You can
-        update a slackware-stable installation (e.g. Slackware Linux
-        12.0) with:
+        O parâmetro <parameter class="command">upgrade</parameter> é usado para
+        atualizar pacotes instalados.  Você precisa adicionar uma parâmetro
+        extra para informar ao <command>slackpkg</command> o que você quer
+        atualizar, e isto difere de uma versão estável do Slackware Linux para
+        o slackware-current.  Atualizações para versões estáveis do Slackware
+        Linux estão no diretório <filename>patches</filename> dos espelhos em
+        FTP.  Você pode atualizar uma instalação do slackware-stable (p.ex., o
+        Slackware Linux 12.0) com:
       </para>
 
       <screen>
@@ -287,12 +282,11 @@ $ <userinput>slackpkg update</userinput>
       </screen>
 
       <para>
-        In this case <command>slackpkg</command> will use the packages
-        from the <filename>patches</filename> directory. In
-        slackware-current updated packages are put in the normal
-        <filename>slackware</filename> package sub-directories. So, we
-        can pass that as an parameter to <command>slackpkg
-        upgrade</command>:
+        Neste caso, o <command>slackpkg</command> vai usar os pacotes do
+        diretório <filename>patches</filename>.  Já os pacotes atualizados do
+        slackware-current são colocados nos sub-diretórios normais dos pacotes
+        no diretório <filename>slackware</filename>.  Então, nós podemos
+        passá-los como parâmetro para o <command>slackpkg upgrade</command>:
       </para>
 
       <screen>
@@ -300,8 +294,8 @@ $ <userinput>slackpkg update</userinput>
       </screen>
 
       <para>
-	You can also upgrade individual packages by specifying the name
-        of the package to be upgraded, for example:
+        Você também pode atualizar pacotes individuais especificando o nome do
+        pacote a ser atualizado, por exemplo:
       </para>
 
       <screen>
@@ -311,11 +305,11 @@ $ <userinput>slackpkg update</userinput>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-slackpkg-install">
-      <title>Installing packages</title>
+      <title>Instalando pacotes</title>
 
       <para>
-        The <parameter class="command">install</parameter> is used to
-        install packages:
+        O parâmetro <parameter class="command">install</parameter> é usado para
+        instalar pacotes:
       </para>
 
       <screen>
@@ -323,27 +317,26 @@ $ <userinput>slackpkg update</userinput>
       </screen>
 
       <para>
-        Be aware that neither slackpkg, nor the Slackware Linux
-        package tools do dependency checking. If some program does not
-        work due to missing libraries, you have to add them yourself
-        with slackpkg.
+        Atente que nem o slackpkg, nem as ferramentas de pacotes do Slackware
+        Linux fazem verificação de dependências.  Se algum programa não
+        funcionar devido a ausência de alguma biblioteca, você precisa
+        adicioná-las diretamente com o slackpkg.
       </para>
     </sect2>
   </sect1>
 
   <sect1 xml:id="chap-pkgmgmt-rsync">
-    <title>Getting updates through rsync</title>
+      <title>Obtendo atualizações através de rsync</title>
 
     <para>
-      Another popular method of keeping Slackware Linux up to date is
-      by keeping a local mirror. The ideal way of doing this is via
-      rsync.  rsync is a program that can synchronize two trees of
-      files. The advantage is that rsync only transfers the
-      differences in files, making it very fast. After syncing with a
-      mirror you can upgrade Slackware Linux with
-      <command>upgradepkg</command>, or make a new installation
-      CD. The following example synchronizes a local current tree with
-      an up-to-date tree from on a mirror:
+      Outro método popular para manter o Slackware Linux atualizado é
+      mantendo-se um espelho local.  A maneira ideal de fazer isto é através do
+      rsync.  O rsync é um programa que pode sincronizar duas árvores de
+      arquivos.  A vantagem é que o rsync apenas transfere as diferenças entre
+      arquivos, sendo muito rápido.  Depois de sincronizar com um espelho você
+      pode atualizar o Slackware Linux com <command>upgradepkg</command>, ou
+      criar um novo CD de instalação.  O exemplo a seguir sincroniza uma árvore
+      do current com uma árvore atualizada a partir de um espelho:
     </para>
 
     <screen>
@@ -363,20 +356,22 @@ rsync://fill-in-mirror/pub/slackware/slackware-current/ \
     </screen>
 
     <para>
-      The <parameter class="command">-a</parameter> parameter implies
-      a few other options that try to make a copy that is as exact as
-      possible (in terms of preserving symlinks, permissions and
-      owners). The <parameter class="command">--delete</parameter>
-      deletes files that are not available on the mirror anymore.  It
-      is good idea to use this parameter, because otherwise your tree
-      may get bloated very quickly with older package versions.  With
-      the <parameter class="command">--exclude</parameter> parameter
-      you can specify which files or directories should be ignored.
+      O parâmetro <parameter class="command">-a</parameter> implica em algumas
+      poucas opções que tentam fazer uma cópia que seja tão exata quanto
+      possível (em termos de preservação de links simbólicos, permissões e
+      propriedades de arquivos).  O parâmetro <parameter
+      class="command">--delete</parameter> remove arquivos que não estiverem
+      mais disponíveis no espelho.  É uma boa idéia usar este parâmetro, porque
+      de outra forma sua árvore pode ficar rapidamente entupida com uma porção
+      de versões antigas de arquivos.  Com o parâmetro <parameter
+      class="command">--exclude</parameter> você pode especificar quais
+      arquivos ou diretórios devem ser ignorados.
     </para>
 
     <para>
-      After syncing the tree you can use <command>upgradepkg</command>
-      to update your Slackware Linux installation. For example:
+      Depois de sincronizar a árvore você pode usar
+      <command>upgradepkg</command> para atualizar sua instalação do Slackware
+      Linux.  Por exemplo:
     </para>
 
     <screen>
@@ -388,34 +383,33 @@ rsync://fill-in-mirror/pub/slackware/slackware-current/ \
     <title>Tagfiles</title>
 
     <sect2 xml:id="chap-pkgmgmt-tagfiles-intro">
-      <title>Introduction</title>
+      <title>Introdução</title>
 
       <para>
-        Tagfiles are a relatively unknown feature of Slackware
-        Linux. A tagfile is a file that can be used to instruct
-        <command>installpkg</command> what packages should be
-        installed from a collection of packages. For instance, the
-        Slackware Linux installer generates a tagfile during the
-        <emphasis>Expert</emphasis> and <emphasis>Menu</emphasis>
-        installation methods to store which packages should be
-        installed during the installation process.
+        Tagfiles são um recurso relativamente desconhecido do Slackware Linux.
+        Um tagfile é um arquivo que pode ser usado para informar o 
+        <command>installpkg</command> sobre que pacotes deveriam ser instalados
+        a partir de um conjunto de pacotes.  Por exemplo, o instalador do
+        Slackware Linux gera um arquivo tagfile ao executar os métodos de
+        instalação <emphasis>Expert</emphasis> e <emphasis>Menu</emphasis> para
+        armazenar quais pacotes deveriam ser instalados durante o processo de
+        instalação.
       </para>
 
       <para>
-        The nice aspect of tagfiles is that you can easily create
-        tagfiles yourself. By writing your own tagfiles you can
-        automate the package installation, which is ideal for larger
-        client or server roll-outs (or smaller set-ups if it gives you
-        more comfort than installing packages manually). The easiest
-        way to create your own tagfiles is by starting out with the
-        tagfiles that are part of the official Slackware Linux
-        distribution. In the following sections we are going to look
-        at how this is done.
+        O aspecto positivo dos tagfiles é que você pode facilmente criar estes
+        arquivos você mesmo.  Ao escrever seus próprios tagfiles você
+        automatizar a instalação de pacotes, o que é ideal para instalações em
+        muitos clientes ou manutenção de servidores (ou mesmo configurações
+        menores se isso lhe dá mais conforto que instalar os pacotes
+        manualmente).  A maneira mais fácil de criar seus próprios tagfiles é
+        começando com os tagfiles existentes na distribuição oficial do
+        Slackware Linux.  Nas seções seguintes vamos ver como isto é feito.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-tagfiles-creating">
-      <title>Creating tagfiles</title>
+      <title>Criando tagfiles</title>
 
       <para>
         Tagfiles are simple plain-text files. Each line consists of a
