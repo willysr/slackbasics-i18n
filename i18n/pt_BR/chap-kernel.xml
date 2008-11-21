@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
-     xml:lang="en" xml:id="kernel">
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en"
+xml:id="kernel">
   <title>Construindo um kernel</title>
 
   <sect1 xml:id="chap-kernel-intro">
@@ -18,43 +18,47 @@
 
     <itemizedlist>
       <listitem>
-    <para>
-      <emphasis role="bold">Deixar o kernel mais enxuto</emphasis>:
-      Você pode desabilitar algumas funcionalidades do kernel para
-      reduzir seu tamanho.  Isso é especialmente útil em ambiente em
-      que a memória seja escassa.
-    </para>
+        <para>
+          <emphasis role="bold">Deixar o kernel mais enxuto</emphasis>:
+          Você pode desabilitar algumas funcionalidades do kernel para
+          reduzir seu tamanho.  Isso é especialmente útil em ambiente em
+          que a memória seja escassa.
+        </para>
       </listitem>
+
       <listitem>
-    <para>
-      <emphasis role="bold">Otimizar o kernel</emphasis>: é possível
-      otimizar o kernel.  Por exemplo, compilando-o para seu tipo
-      específico de processador.
-    </para>
+        <para>
+          <emphasis role="bold">Otimizar o kernel</emphasis>: é possível
+          otimizar o kernel.  Por exemplo, compilando-o para um processador
+          específico.
+        </para>
       </listitem>
+
       <listitem>
-    <para>
-      <emphasis role="bold">Suporte de hardware</emphasis>: o suporte
-      para alguns hardwares não está disponível no kernel padrão
-      provido pelo Slackware Linux.  Um exemplo comum é o suporte a
-      sistemas SMP.
-    </para>
+        <para>
+          <emphasis role="bold">Suporte de hardware</emphasis>: o suporte
+          para alguns hardwares não estão habilitados por padrão no kernel
+          provido pelo Slackware Linux.  Um exemplo comum é o suporte a
+          sistemas SMP.
+        </para>
       </listitem>
+
       <listitem>
-    <para>
-      <emphasis role="bold">Utilizar patches específicos</emphasis>: há
-      muitos patches não-oficiais para o kernel Linux.  Falando de uma
-      forma geral, é uma boa idéia evitar patches não-oficiais.  Mas
-      alguns softwares de terceiros, como o <ulink
-      url="http://www.netraverse.com">Win4Lin</ulink>, podem precisar
-      que você instale patches adicionais no kernel.
-    </para>
+        <para>
+          <emphasis role="bold">Utilizar patches específicos</emphasis>: existem
+          muitos patches não-oficiais para o kernel Linux.  Falando de uma
+          forma geral, é uma boa idéia evitar patches não-oficiais.  No entanto
+          alguns softwares de terceiros, como o <ulink
+          url="http://www.netraverse.com">Win4Lin</ulink>, precisam
+          que você instale patches adicionais no kernel.
+        </para>
       </listitem>
+
       <listitem>
-    <para>
-      Pegue os cabeçalhos apropriados e construa a infraestrutura
-      disponível para construir módulos de terceiros.
-    </para>
+        <para>
+          Pegue os cabeçalhos apropriados e construa a infraestrutura
+          disponível para construir módulos de terceiros.
+        </para>
       </listitem>
     </itemizedlist>
 
@@ -68,29 +72,33 @@
 
     <itemizedlist>
       <listitem>
-    <para>
-      Configurar o kernel.
-    </para>
+        <para>
+          Configurar o kernel.
+        </para>
       </listitem>
+
       <listitem>
-    <para>
-      Construir o kernel.
-    </para>
+        <para>
+          Construir o kernel.
+        </para>
       </listitem>
+
       <listitem>
-    <para>
-      Construir os modules.
-    </para>
+        <para>
+          Construir os modules.
+        </para>
       </listitem>
+
       <listitem>
-    <para>
-      Instalar o kernel e os módulos.
-    </para>
+        <para>
+          Instalar o kernel e os módulos.
+        </para>
       </listitem>
+
       <listitem>
-    <para>
-      Atualizar a configuração do LILO.
-    </para>
+        <para>
+          Atualizar a configuração do LILO.
+        </para>
       </listitem>
     </itemizedlist>
 
@@ -134,7 +142,8 @@
     </para>
 
     <screen>
-# <userinput>cp /mnt/cdrom/kernels/hugesmp.s/config /usr/src/linux/.config</userinput>
+      # <userinput>cp /mnt/cdrom/kernels/hugesmp.s/config
+      /usr/src/linux/.config</userinput>
     </screen>
 
     <para>
@@ -148,7 +157,7 @@
     </para>
 
     <screen>
-# <userinput>zcat /proc/config.gz > /usr/src/linux/.config</userinput>
+      # <userinput>zcat /proc/config.gz > /usr/src/linux/.config</userinput>
     </screen>
 
     <para>
@@ -163,7 +172,7 @@
     </para>
 
     <para>
-# <userinput>cd /usr/src/linux ; make oldconfig</userinput>
+      # <userinput>cd /usr/src/linux ; make oldconfig</userinput>
     </para>
 
     <para>
@@ -174,7 +183,7 @@
     </para>
 
     <screen>
-IBM ThinkPad Laptop Extras (ACPI_IBM) [N/m/y/?] (NEW)
+      IBM ThinkPad Laptop Extras (ACPI_IBM) [N/m/y/?] (NEW)
     </screen>
 
     <para>
@@ -186,17 +195,19 @@ IBM ThinkPad Laptop Extras (ACPI_IBM) [N/m/y/?] (NEW)
     </para>
 
     <screen>
-    IBM ThinkPad Laptop Extras (ACPI_IBM) [N/m/y/?] (NEW) <userinput>?</userinput>
+      IBM ThinkPad Laptop Extras (ACPI_IBM) [N/m/y/?] (NEW)
+      <userinput>?</userinput>
 
-This is a Linux ACPI driver for the IBM ThinkPad laptops. It adds
-support for Fn-Fx key combinations, Bluetooth control, video
-output switching, ThinkLight control, UltraBay eject and more.
-For more information about this driver see &lt;file:Documentation/ibm-acpi.txt&gt;
-and &lt;http://ibm-acpi.sf.net/&gt; .
+      This is a Linux ACPI driver for the IBM ThinkPad laptops. It adds
+      support for Fn-Fx key combinations, Bluetooth control, video
+      output switching, ThinkLight control, UltraBay eject and more.
+      For more information about this driver see
+      &lt;file:Documentation/ibm-acpi.txt&gt;
+      and &lt;http://ibm-acpi.sf.net/&gt; .
 
-If you have an IBM ThinkPad laptop, say Y or M here.
+      If you have an IBM ThinkPad laptop, say Y or M here.
 
-    IBM ThinkPad Laptop Extras (ACPI_IBM) [N/m/y/?] (NEW)
+      IBM ThinkPad Laptop Extras (ACPI_IBM) [N/m/y/?] (NEW)
     </screen>
 
     <para>
@@ -225,8 +236,8 @@ If you have an IBM ThinkPad laptop, say Y or M here.
     </para>
 
     <screen>
-# <userinput>cd /usr/src/linux</userinput>
-# <userinput>make menuconfig</userinput>
+      # <userinput>cd /usr/src/linux</userinput>
+      # <userinput>make menuconfig</userinput>
     </screen>
 
     <para>
@@ -254,23 +265,23 @@ If you have an IBM ThinkPad laptop, say Y or M here.
 
     <note>
       <para>
-    É sempre uma boa idéia manter seu kernel antigo com seus respectivos
-    módulos, no caso de haver um erro na sua configuração.  Se o kernel
-    a ser compilado tiver o mesmo número de versão que o kernel
-    atualmente em execução, você deveria considerar seriamente modificar
-    a opção <emphasis>CONFIG_LOCALVERSION</emphasis>.  A string
-    especificada nesta opção é anexada ao número de versão.  Por
-    exemplo, se a versão do kernel for 2.6.21.6, e
-    <emphasis>CONFIG_LOCALVERSION</emphasis> estiver definida como
-    <emphasis>"-smp-ddk"</emphasis>, o kernel será
-    <emphasis>2.6.21.6-smp-ddk</emphasis>.
+        É sempre uma boa idéia manter seu kernel antigo com seus respectivos
+        módulos, no caso de haver um erro na sua configuração.  Se o kernel
+        a ser compilado tiver o mesmo número de versão que o kernel
+        atualmente em execução, você deveria considerar seriamente modificar
+        a opção <emphasis>CONFIG_LOCALVERSION</emphasis>.  A string
+        especificada nesta opção é anexada ao número de versão.  Por
+        exemplo, se a versão do kernel for 2.6.21.6, e
+        <emphasis>CONFIG_LOCALVERSION</emphasis> estiver definida como
+        <emphasis>"-smp-ddk"</emphasis>, o kernel será
+        <emphasis>2.6.21.6-smp-ddk</emphasis>.
       </para>
 
       <para>
-    Se você não modificar a versão do kernel desta maneira, a instalação
-    de módulos do novo kernel irá sobrescrever os módulos de seu kernel
-    atualmente em execução.  E isto é muito inconveniente se você
-    precisar voltar ao kernel anterior.
+        Se você não modificar a versão do kernel desta maneira, a instalação
+        de módulos do novo kernel irá sobrescrever os módulos de seu kernel
+        atualmente em execução.  E isto é muito inconveniente se você
+        precisar voltar ao kernel anterior.
       </para>
     </note>
   </sect1>
@@ -287,8 +298,8 @@ If you have an IBM ThinkPad laptop, say Y or M here.
     </para>
 
     <screen>
-# <userinput>cd /usr/src/linux</userinput>
-# <userinput>make</userinput>
+      # <userinput>cd /usr/src/linux</userinput>
+      # <userinput>make</userinput>
     </screen>
 
     <para>
@@ -307,46 +318,47 @@ If you have an IBM ThinkPad laptop, say Y or M here.
       <title>Instalando o kernel</title>
 
       <para>
-    O próximo passo é instalar o kernel e os módulos do kernel.  Vamos
-    começar com a instalação dos módulos do kernel, já que isso pode ser
-    feito com apenas um comando dentro do diretório dos fontes do
-    kernel:
+        O próximo passo é instalar o kernel e os módulos do kernel.  Vamos
+        começar com a instalação dos módulos do kernel, já que isso pode ser
+        feito com apenas um comando dentro do diretório dos fontes do
+        kernel:
       </para>
 
       <screen>
-# <userinput>make modules_install</userinput>
+        # <userinput>make modules_install</userinput>
       </screen>
 
       <para>
-    Isto irá instalar os módulos em
-    <filename>/lib/modules/&lt;kernelversion&gt;</filename>.  Se você
-    estiver substituindo um kernel exatamente com o mesmo número de
-    versão, é uma boa idéia remover os módulos antigos antes de instalar
-    os nomes.  P.ex.:
+        Isto irá instalar os módulos em
+        <filename>/lib/modules/&lt;kernelversion&gt;</filename>.  Se você
+        estiver substituindo um kernel exatamente com o mesmo número de
+        versão, é uma boa idéia remover os módulos antigos antes de instalar
+        os nomes.  P.ex.:
       </para>
 
       <screen>
-# <userinput>rm -rf /lib/modules/2.6.21.5-smp</userinput>
+        # <userinput>rm -rf /lib/modules/2.6.21.5-smp</userinput>
       </screen>
 
       <para>
-    Você pode <quote>instalar</quote> o kernel apenas copiando-o para o
-    diretório <filename>/boot</filename>.  Você pode dar a ele qualquer
-    nome que você queira, mas é uma boa idéia usar algum tipo de
-    convenção de nomenclatura, como
-    <filename>vmlinuz-version</filename>.  Por exemplo, se você for
-    renomeá-lo como <filename>vmlinuz-2.6.21.5-smp-ddk</filename>, você
-    pode copiá-lo a partir da árvore dos fontes do kernel com:
+        Você pode <quote>instalar</quote> o kernel apenas copiando-o para o
+        diretório <filename>/boot</filename>.  Você pode dar a ele qualquer
+        nome que você queira, mas é uma boa idéia usar algum tipo de
+        convenção de nomenclatura, como
+        <filename>vmlinuz-version</filename>.  Por exemplo, se você for
+        renomeá-lo como <filename>vmlinuz-2.6.21.5-smp-ddk</filename>, você
+        pode copiá-lo a partir da árvore dos fontes do kernel com:
       </para>
 
       <screen>
-# <userinput>cp arch/i386/boot/bzImage /boot/vmlinuz-2.6.21.5-smp-ddk</userinput>
+        # <userinput>cp arch/i386/boot/bzImage
+        /boot/vmlinuz-2.6.21.5-smp-ddk</userinput>
       </screen>
 
       <para>
-    Neste ponto tudo já está concluído.  O último passo é adicionar o
-    novo kernel à configuração do carregador de inicialização do Linux
-    (LILO).
+        Neste ponto tudo já está concluído.  O último passo é adicionar o
+        novo kernel à configuração do carregador de inicialização do Linux
+        (LILO).
       </para>
     </sect2>
 
@@ -400,11 +412,11 @@ image = /boot/vmlinuz
       </screen>
 
       <para>
-    Como você pode ver, a primeira entrada <parameter>image</parameter>
-    aponta para o novo kernel, e o rótulo da segunda entrada foi
-    modificado para <quote>SlackOld</quote>.  O LILO irá iniciar a
-    primeira imagem automaticamente.  Você agora pode instalar esta nova
-    configuração do LILO com o comando <command>lilo</command>:
+        Como você pode ver, a primeira entrada <parameter>image</parameter>
+        aponta para o novo kernel, e o rótulo da segunda entrada foi
+        modificado para <quote>SlackOld</quote>.  O LILO irá iniciar a
+        primeira imagem automaticamente.  Você agora pode instalar esta nova
+        configuração do LILO com o comando <command>lilo</command>:
       </para>
 
       <screen>
@@ -414,30 +426,30 @@ Added SlackOld
       </screen>
 
       <para>
-    Na próxima inicialização do sistema, ambas as entradas estarão
-    disponíveis, e a entrada <quote>Slack</quote> será inicializada por
-    padrão.
+        Na próxima inicialização do sistema, ambas as entradas estarão
+        disponíveis, e a entrada <quote>Slack</quote> será inicializada por
+        padrão.
       </para>
 
       <note>
-    <para>
-      Se você quiser que o LILO mostre um menu com as entradas
-      configuradas no <filename>lilo.conf</filename> a cada
-      inicialização, certifique-se de ter adicionado uma linha contendo
-    </para>
+        <para>
+          Se você quiser que o LILO mostre um menu com as entradas
+          configuradas no <filename>lilo.conf</filename> a cada
+          inicialização, certifique-se de ter adicionado uma linha contendo
+        </para>
 
-    <screen>
+        <screen>
 prompt
-    </screen>
+        </screen>
 
-    <para>
-      ao <filename>lilo.conf</filename>.  De outra forma, o LILO irá
-      inicializar a entrada padrão que estiver definida com
-      <emphasis>default=&lt;name&gt;</emphasis>, ou então a primeira
-      entrada existente quando nenhum kernel padrão for especificado.
-      Você pode acessar o menu com as entradas a qualquer tempo
-      segurando a tecla &lt;Shift&gt; quando o LILO for iniciado.
-    </para>
+        <para>
+          ao <filename>lilo.conf</filename>.  De outra forma, o LILO irá
+          inicializar a entrada padrão que estiver definida com
+          <emphasis>default=&lt;name&gt;</emphasis>, ou então a primeira
+          entrada existente quando nenhum kernel padrão for especificado.
+          Você pode acessar o menu com as entradas a qualquer tempo
+          segurando a tecla &lt;Shift&gt; quando o LILO for iniciado.
+        </para>
       </note>
     </sect2>
   </sect1>

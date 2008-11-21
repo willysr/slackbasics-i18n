@@ -3,37 +3,39 @@
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
   xmlns:xl="http://www.w3.org/1999/xlink" xml:lang="en"
   xml:id="chap-textproc">
-  <title>Text processing</title>
+  <title>Processamento de Texto</title>
 
   <para>
-    Text manipulation is one of the things that UNIX excels at,
-    because it forms the heart of the UNIX philosophy, as described in
-    <xref linkend="chap-intro-unix" />. Most UNIX commands
-    are simple programs that read data from the standard input,
-    performs some operation on the data, and sends the result to the
-    program's standard output. These programs basically act as an
-    filters, that can be connected as a pipeline. This allows the user
-    to put the UNIX tools to uses that the writers never
-    envisioned. In later chapters we will see how you can build simple
-    filters yourself. <!-- XXX - xref -->
+    A manipulação de texto é algo que é o UNIX faz bem, isso porque
+    é parte do coração de sua filosofia, como descrito em
+    <xref linkend="chap-intro-unix" />. A maioria dos comandos UNIX
+    são programas simples que lêem dados da entrada padrão,
+    realizam algumas operações nestes e enviam o resultado para a
+    saída padrão. Esses programas agem basicamente como filtros, que
+    podem se conectar como um duto. Isso permite que o usuário
+    empregue as ferramentas UNIX de modo que seus criadores
+    nunca tenham vislumbrado. Nos capítulos seguintes veremos como
+    você pode construir filtros simples para si mesmo.
+    <!-- XXX - xref -->
   </para>
 
   <para>
-    This chapter describes some simple, but important, UNIX commands
-    that can be used to manipulate text. After that, we will dive into
-    regular expressions, a sublanguage that can be used to match text
-    patterns.
+    Este capítulo descreve alguns comandos UNIX simples, mas
+    importantes, que podem ser utilizados para a manipulação de texto.
+    Depois disso, veremos as expressões regulares, uma sublinguagem
+    que pode ser utilizada para encontrar padrões de correspondência
+    em textos.
   </para>
- 
+
   <sect1 xml:id="chap-textproc-simple">
-    <title>Simple text manipulation</title>
+    <title>Manipulação simples de texto</title>
 
     <sect2 xml:id="chap-textproc-simple-cat">
-      <title>Repeating what is said</title>
+      <title>Repetindo o que foi dito</title>
 
       <para>
-	The most simple text filter is the <command>cat</command>, it
-	does nothing else than sending the data from stdin to stdout:
+    O filtro de texto mais simples é o <command>cat</command>, ele
+    não faz mais que enviar os dados da stdin para a stdout:
       </para>
 
       <screen>
@@ -42,8 +44,8 @@ hello world
       </screen>
 
       <para>
-	Another useful feature is that you can let it send the contents
-	of a file to the standard output:
+    Outra característica útil, é que você pode fazer com que ele
+    envie o conteúdo de um arquivo para a saída padrão:
       </para>
 
       <screen>
@@ -52,12 +54,11 @@ Hello, this is the content of file.txt
       </screen>
 
       <para>
-	<command>cat</command> really lives up to its name when
-	multiple files are added as arguments. This will concatenate
-	the files, in the sense that it will send the contents of all
-	files to the standard output, in the same order as they were
-	specified as an argument. The following screen snippet
-	demonstrates this:
+    <command>cat</command> faz o que seu nome diz quando múltiplos
+    arquivos são adicionados como seus argumentos. Ele concatena os
+    arquivos, no sentido de enviar o conteúdo de todos os arquivos
+    para a saída padrão, na mesma ordem em que foram especificados
+    como argumento. O seguinte trecho de tela demonstra isso:
       </para>
 
       <screen>
@@ -69,43 +70,43 @@ Hello, this is the content of file2.txt
     </sect2>
 
     <sect2 xml:id="chap-textproc-simple-wc">
-      <title>Text statistics</title>
+      <title>Estatísticas de texto</title>
 
       <para>
-	The <command>wc</command> command provides statistics about a
-	text file or text stream. Without any parameters, it will
-	print the number of lines, the number of words, and the number
-	of bytes respectively. A word is delimited by one white space
-	character, or a sequence of whitespace characters.
+    O comando <command>wc</command> provê estatísticas sobre um
+    arquivo texto ou uma stream de texto. Sem parâmetros, irá imprimir
+    o número de linhas, o número de palavras e o número de bytes
+    respectivamente. Uma palavra é delimitada por um caractere de
+    espaço em branco ou uma sequência de caracteres em branco.
       </para>
 
       <para>
-	The following example shows the number of lines, words, and
-	bytes in the canonical <quote>Hello world!</quote> example:
+    O seguinte exemplo mostra o número de linhas, palavras e bytes no
+    exemplo canônico <quote>Hello world!</quote>:
       </para>
 
       <screen>
-$ <userinput>echo "Hello world!" | wc</userinput> 
+$ <userinput>echo "Hello world!" | wc</userinput>
        1       2      13
       </screen>
 
       <para>
-	If you would like to print just one of these components, you
-	can use one of the <parameter class="command">-l</parameter>
-	(lines), <parameter class="command">-w</parameter> (words), or
-	<parameter class="command">-c</parameter> (bytes) parameters.
-	For instance, adding just the <parameter
-	class="command">-l</parameter> parameter will show the number
-	of lines in a file:
+    Se quiser imprimir somente um desses componentes, você pode usar
+    um dos parâmetros <parameter class="command">-l</parameter>
+    (linhas), <parameter class="command">-w</parameter> (palavras) ou
+    <parameter class="command">-c</parameter> (bytes).
+    Por enquanto, adicionando somente o parâmetro <parameter
+    class="command">-l</parameter> mostrará o número de linhas de um
+    arquivo:
       </para>
 
       <screen>
-$ <command>wc -l /usr/share/dict/words</command> 
+$ <command>wc -l /usr/share/dict/words</command>
   235882 /usr/share/dict/words
       </screen>
 
       <para>
-	Or, you can print additional fields by adding a parameter:
+    Ou você pode imprimir campos adicionais adicionando o parâmetro:
       </para>
 
       <screen>
@@ -114,9 +115,9 @@ $ <userinput>wc -lc /usr/share/dict/words</userinput>
       </screen>
 
       <para>
-	Please note that, no matter the order in which the options
-	were specified, the output order will always be the same
-	(lines, words, bytes).
+    Note que, não importa a ordem em que as opções foram
+    especificadas, a ordem de saída será sempre a mesma (linhas,
+    palavras, bytes).
       </para>
 
       <para>
@@ -578,7 +579,7 @@ pear    peer
       </para>
 
       <screen>
-$ <userinput>paste dictionary-en dictionary-nl dictionary-de</userinput> 
+$ <userinput>paste dictionary-en dictionary-nl dictionary-de</userinput>
 apple   appel   Apfel
 banana  banaan  Banane
 pear    peer    Birne
@@ -780,7 +781,7 @@ Herman:NL:3
 Klaus:DE:5
 Heinz:DE:3
       </programlisting>
-     
+
     <para>
       Suppose that we would like to sort the entries in this file by
       the two-letter country name. <command>sort</command> allows us
@@ -1714,7 +1715,7 @@ $ <userinput>ls -l hello.c*</userinput>
 	</sect3>
       </sect2>
 
-      <!--      
+      <!--
       <sect2 xml:id="chap-textproc-regexps-perl"> <title>Perl</title>
       </sect2>
     -->
