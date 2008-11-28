@@ -106,7 +106,7 @@ CONFIG_INET_IPCOMP=m
         não é uma má idéia habilitar as modificações IPComp para futuras configurações do IPsec.
         Além do suporte ao protocolos IPsec você precisa compilar o suporte no kernel aos 
         algoritmos de encriptação e <foreignphrase>hashing</foreignphrase> que serão utilizados
-        pelo AH e ESP. O suporte para esses algoritmos (tanto como módulo ou <foreignphrase>built-in<foreignphrase>) 
+        pelo AH e ESP. O suporte para esses algoritmos (tanto como módulo ou <foreignphrase>built-in</foreignphrase>) 
         pode ser habilitado nas várias opções <emphasis>CONFIG_CRYPTO</emphasis>. Não há mal nenhum
         em compilar todos algoritmos de encriptação e <foreignphrase>hashing</foreignphrase> como módulo.
     </para>
@@ -158,7 +158,7 @@ CONFIG_INET_IPCOMP=m
         <listitem>
 	  <para>
 	    <emphasis>--enable-dpd</emphasis>: habilita 
-        o <foreignphrase>dead peer detection (DPD)<foreignphrase>. O DPD é um método
+        o <foreignphrase>dead peer detection (DPD)</foreignphrase>. O DPD é um método
         para detectar se algum dos hosts associados na comunicação segura está indisponível.
         Quando isso acontece a associação desse host pode ser removida.
 	  </para>
