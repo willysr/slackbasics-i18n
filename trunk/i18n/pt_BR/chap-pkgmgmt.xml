@@ -30,7 +30,7 @@
         imagine que temos um pacote em um arquivo chamado
         <filename>bash-2.05b-i386-2.tgz</filename>.  Neste caso o nome do
         pacote é bash-2.05b-i386-2.  No nome do pacote, as informações sobre o
-        pacote são separadas pelo caracter '-'.  Um nome de pacote possui o
+        pacote são separadas pelo caractere '-'.  Um nome de pacote possui o
         seguinte significado: 
         <emphasis>nomedoprograma-versão-arquitetura-revisãodopacote</emphasis>
       </para>
@@ -241,7 +241,7 @@ sub  1024g/4E523569 2003-02-26 [expires: 2012-12-21]
       </screen>
 
       <para>
-        Uma vez que você tenha importado esta chave você pode comecar a usar o
+        Uma vez que você tenha importado esta chave você pode começar a usar o
         slackpkg, e instalar pacotes de forma segura.
       </para>
 
@@ -284,7 +284,7 @@ $ <userinput>slackpkg update</userinput>
       <para>
         Neste caso, o <command>slackpkg</command> vai usar os pacotes do
         diretório <filename>patches</filename>.  Já os pacotes atualizados do
-        slackware-current são colocados nos sub-diretórios normais dos pacotes
+        slackware-current são colocados nos subdiretórios normais dos pacotes
         no diretório <filename>slackware</filename>.  Então, nós podemos
         passá-los como parâmetro para o <command>slackpkg upgrade</command>:
       </para>
