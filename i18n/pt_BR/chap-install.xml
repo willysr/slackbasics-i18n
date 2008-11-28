@@ -33,7 +33,7 @@
       Quando o CD-ROM é inicializado, uma tela inicial irá aparecer.
       Normalmente você apenas pressiona &lt;ENTER&gt; carregando o
       kernel Linux padrão (<filename>hugesmp.s</filename>).  Este kernel
-      precisa pelo menos de uma CPU Pentim Pro.  Você pode carregar um
+      precisa pelo menos de uma CPU Pentium Pro.  Você pode carregar um
       kernel alternativo digitando o nome do kernel no prompt, e
       pressionando &lt;ENTER&gt;.  A tabela a seguir lista os diferentes
       kernels que estão disponíveis no CD ou DVD do Slackware Linux.
@@ -288,7 +288,7 @@
       recurso de <foreignphrase>journaling</foreignphrase>.  Um journal
       é um arquivo especial ou área na partição nos quais todas as
       operações do sistema de arquivos são registradas.  Quando o
-      sistema tiver um problema, o sistema de arquivos pode ser repadado
+      sistema tiver um problema, o sistema de arquivos pode ser reparado
       rapidamente, porque o kernel pode usar os registros para ver que
       operações de disco foram executadas.  Ext3 é o mesmo sistema de
       arquivos que o Ext2, mas inclui o recurso de journaling.  Reiserfs
@@ -836,7 +836,7 @@
     <para>
       O passo derradeiro é definir a senha do superusuário root (<xref
       linkend="chap-install-installing-rootpasswd" />).  O setup irá lhe
-      perguntar se você gostaria de definí-la ou não.  Não há razão para
+      perguntar se você gostaria de defini-la ou não.  Não há razão para
       não fazer isso, e sem uma senha do superusuário seu sistema estará
       terrivelmente inseguro.
     </para>
