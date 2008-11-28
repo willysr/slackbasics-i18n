@@ -115,7 +115,7 @@ xml:id="kernel">
     </para>
 
     <para>
-      Diferente das versões mais antigas do kernel, não é mais necesário
+      Diferente das versões mais antigas do kernel, não é mais necessário
       usar um link simbólico <filename>/usr/src/linux</filename>.  Se
       você extraiu os fontes do kernel em <filename>/usr/src</filename>,
       você pode construir o kernel em
@@ -187,10 +187,10 @@ xml:id="kernel">
     </screen>
 
     <para>
-      As you can see, the possible options are shown, with the default
-      choice as a capital. If you just press &lt;Enter&gt;, the
-      capitalized option will be used. If you want more information
-      about an option, you can enter the question mark
+      Como você pode ver, as opções possíveis são mostradas, com a opção padrão
+      destacada com letra maiúscula.  Se você apenas apertar &lt;Enter&gt;, a
+      opção com a letra maiúscula será a escolhida.  Se você quiser mais
+      informação sobre uma opção, você pode digitar o sinal de interrogação
       (<emphasis>?</emphasis>):
     </para>
 
