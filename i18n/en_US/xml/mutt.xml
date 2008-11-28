@@ -73,7 +73,7 @@
       <title>Sending e-mails</title>
 
       <para>
-        You can compose a new e-mail with the &lt;c&gt; key, or reply
+        You can compose a new e-mail with the &lt;m&gt; key, or reply
         to a selected e-mail with the &lt;r&gt; key. Mutt will ask you
         to specify the recipient (<emphasis>To:</emphasis>), and a
         subject (<emphasis>Subject:</emphasis>). After entering this
@@ -216,7 +216,7 @@ imaps://[user@]hostname[:port]/[mailbox]
       If you use only one IMAP account, you can set the INBOX folder
       of this account as the spool mailbox, and the main IMAP account
       as the e-mail folder. For example, adding the following lines
-      to your <filename>.muttrc</filename> configurion file will set
+      to your <filename>.muttrc</filename> configuration file will set
       up mutt to log in to the <emphasis>imap.example.org</emphasis>
       server as the <emphasis>me</emphasis> user.
     </para>
@@ -297,8 +297,8 @@ set crypt_replyencrypt = yes
       <title>Usage</title>
 
       <para>
-        If you have set some of the automatical options, like
-        <emphasis>crypt_autosign</emphasis> GnuPG usage of mutt is mostly
+        If you have set some of the automatic options, like
+        <emphasis>crypt_autosign</emphasis>, GnuPG usage of mutt is mostly
         automatic. If not, you can press the &lt;p&gt; key during the
         final step of sending an e-mail. In the bottom of the screen
         various GnuPG/PGP options will appear, which you can access
