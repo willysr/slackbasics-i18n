@@ -167,7 +167,7 @@
   </sect1>
 
   <sect1 xml:id="slackware-features">
-    <title>Caracerísticas do Slackware Linux 12.0</title>
+    <title>Características do Slackware Linux 12.0</title>
 
     <para>
       <itemizedlist>
@@ -186,8 +186,8 @@
 	  <para>
 	    <emphasis role="bold">HAL</emphasis> - o HAL (Hardware
 	    Abstraction Layer) está disponível também. Ele provê uma
-	    API uniforme para que as aplicaçõe usem o hardware. Ele
-	    faz a montagem automática de discos e CDs considerávelmente
+	    API uniforme para que as aplicações usem o hardware. Ele
+	    faz a montagem automática de discos e CDs consideravelmente
 	    fácil sobre o Xfce e o KDE.
 	  </para>
 	</listitem>
