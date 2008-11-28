@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:lang="en" xml:id="chap-usermgmt">
-  <title>Gerenciamento de Usu·rios</title>
+  <title>Gerenciamento de Usu√°rios</title>
 
   <sect1 xml:id="chap-usermgmt-intro">
-    <title>IntroduÁ„o</title>
+    <title>Introdu√ß√£o</title>
 
     <para>
-      O GNU/Linux È um sistema operacional multi-usu·rio. Isto quer 
-      dizer que v·rios usu·rios podem usar o sistema, e eles podem 
-      us·-lo simultaneamente. Os conceitos de gerenciamento de 
-      usu·rios no GNU/Linux s„o bastante simples. Primeiro de tudo, 
-      existem v·rias contas de usu·rio em cada sistema. Mesmo em um 
-      sistema com apenas um usu·rio existem v·rias contas, porque o 
-      GNU/Linux utiliza contas especÌficas para determinadas tarefas. 
-      Usu·rios podem ser membros de grupos. Os grupos s„o usados 
-      para setar permissıes mais genÈricas, por exemplo, vocÍ pode 
+      O GNU/Linux √© um sistema operacional multi-usu√°rio. Isto quer 
+      dizer que v√°rios usu√°rios podem usar o sistema, e eles podem 
+      us√°-lo simultaneamente. Os conceitos de gerenciamento de 
+      usu√°rios no GNU/Linux s√£o bastante simples. Primeiro de tudo, 
+      existem v√°rias contas de usu√°rio em cada sistema. Mesmo em um 
+      sistema com apenas um usu√°rio existem v√°rias contas, porque o 
+      GNU/Linux utiliza contas espec√≠ficas para determinadas tarefas. 
+      Usu√°rios podem ser membros de grupos. Os grupos s√£o usados 
+      para setar permiss√µes mais gen√©ricas, por exemplo, voc√™ pode 
       fazer com que um arquivo seja lido apenas por um certo grupo. 
-      H· alguns poucos usu·rios e grupos que s„o reservados no 
-      sistema. O mais importante deles È o usu·rio 
-      <emphasis>root</emphasis>. O usu·rio <emphasis>root</emphasis>
-      È o administrador do sistema. … uma boa idÈia evitar logar 
-      com este usu·rio, porque isto aumenta muito os riscos em 
-      relaÁ„o ‡ seguranÁa. VocÍ pode logar como um usu·rio normal 
+      H√° alguns poucos usu√°rios e grupos que s√£o reservados no 
+      sistema. O mais importante deles √© o usu√°rio 
+      <emphasis>root</emphasis>. O usu√°rio <emphasis>root</emphasis>
+      √© o administrador do sistema. √â uma boa id√©ia evitar logar 
+      com este usu√°rio, porque isto aumenta muito os riscos em 
+      rela√ß√£o √† seguran√ßa. Voc√™ pode logar como um usu√°rio normal 
       e executar tarefas administrativas utilizando os comandos 
       <command>su</command> e <command>sudo</command>.
     </para>
 
     <para>
-      Os usu·rios disponÌveis no sistema est„o especificados no 
-      arquivo <filename>/etc/passwd</filename>. VocÍ pode olhar este 
-      arquivo para ter uma idÈia de quais as contas de usu·rio s„o 
-      mandatÛrias. VocÍ deve ter percebido que n„o h· senhas neste 
+      Os usu√°rios dispon√≠veis no sistema est√£o especificados no 
+      arquivo <filename>/etc/passwd</filename>. Voc√™ pode olhar este 
+      arquivo para ter uma id√©ia de quais as contas de usu√°rio s√£o 
+      mandat√≥rias. Voc√™ deve ter percebido que n√£o h√° senhas neste 
       arquivo. As senhas ficam em um arquivo separado, 
       <filename>/etc/shadow</filename>, com strings encriptadas. 
-      InformaÁıes sobre grupos ficam no arquivo 
-      <filename>/etc/group</filename>. N„o È uma boa idÈia editar este 
+      Informa√ß√µes sobre grupos ficam no arquivo 
+      <filename>/etc/group</filename>. N√£o √© uma boa id√©ia editar este 
       arquivo diretamente. Existem ferramentas excelentes que podem 
-      ajud·-lo a administrar grupos e usu·rios. Este capÌtulo ir· 
+      ajud√°-lo a administrar grupos e usu√°rios. Este cap√≠tulo ir√° 
       descrever algumas delas.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-usermgmt-user">
-    <title>Adicionando e removendo usu·rios</title>
+    <title>Adicionando e removendo usu√°rios</title>
 
     <sect2 xml:id="chap-usermgmt-user-add">
       <title>useradd</title>
 
       <para>
-      O comando <command>useradd</command> È usado para adicionar 
-      contas de usu·rio no sistema. Rodando este comando com um 
-      nome de usu·rio como par‚metro ir· criar o usu·rio. Por 
+      O comando <command>useradd</command> √© usado para adicionar 
+      contas de usu√°rio no sistema. Rodando este comando com um 
+      nome de usu√°rio como par√¢metro ir√° criar o usu√°rio. Por 
       exemplo:
       </para>
 
@@ -60,10 +60,10 @@
       </screen>
 
       <para>
-      Ir· criar a conta de usu·rio <emphasis>bob</emphasis>. 
-      Tome cuidado pois isto n„o ir· criar o diretÛrio home do 
-      usu·rio. Adicione o par‚metro <parameter class="command">-m</parameter>
-      para criar o diretÛrio. Por exemplo:
+      Ir√° criar a conta de usu√°rio <emphasis>bob</emphasis>. 
+      Tome cuidado pois isto n√£o ir√° criar o diret√≥rio home do 
+      usu√°rio. Adicione o par√¢metro <parameter class="command">-m</parameter>
+      para criar o diret√≥rio. Por exemplo:
       </para>
 
       <screen>
@@ -71,14 +71,14 @@
       </screen>
 
       <para>
-      Isto ir· adicionar o usu·rio <emphasis>bob</emphasis> ao 
-      sistema e criar o diretÛrio home do usu·rio em 
-      <filename>/home/bob</filename>. Normalmente o usu·rio È 
+      Isto ir√° adicionar o usu√°rio <emphasis>bob</emphasis> ao 
+      sistema e criar o diret√≥rio home do usu√°rio em 
+      <filename>/home/bob</filename>. Normalmente o usu√°rio √© 
       criado como membro do grupo <emphasis>users</emphasis>. 
-      Suponha que nÛs queiramos fazer com que o grupo 
-      <emphasis>crew</emphasis> seja o grupo prim·rio do usu·rio 
+      Suponha que n√≥s queiramos fazer com que o grupo 
+      <emphasis>crew</emphasis> seja o grupo prim√°rio do usu√°rio 
 	  <emphasis>bob</emphasis>. Isto pode ser feito usando o 
-      par‚metro <parameter class="command">-g</parameter>. Por 
+      par√¢metro <parameter class="command">-g</parameter>. Por 
       exemplo:
       </para>
 
@@ -87,11 +87,11 @@
       </screen>
 
       <para>
-      TambÈm È possÌvel adicionar este usu·rio a grupos secund·rios 
-      durante a criaÁ„o da conta, utilizando o par‚metro
+      Tamb√©m √© poss√≠vel adicionar este usu√°rio a grupos secund√°rios 
+      durante a cria√ß√£o da conta, utilizando o par√¢metro
 	  <emphasis>-G</emphasis>. Nomes de grupos podem ser separados 
-      por vÌrgula. O seguinte comando ir· criar um usu·rio 
-	  <emphasis>bob</emphasis>, que È membro dos grupos secund·rios 
+      por v√≠rgula. O seguinte comando ir√° criar um usu√°rio 
+	  <emphasis>bob</emphasis>, que √© membro dos grupos secund√°rios 
       <emphasis>crew</emphasis>, <emphasis>www-admins</emphasis> e 
       <emphasis>ftp-admins</emphasis>:
       </para>
@@ -101,8 +101,8 @@
       </screen>
 
       <para>
-      Por padr„o o comando <command>useradd</command> apenas adiciona 
-      usu·rios, ele n„o pode ser usado para definir a senha dos usu·rios 
+      Por padr√£o o comando <command>useradd</command> apenas adiciona 
+      usu√°rios, ele n√£o pode ser usado para definir a senha dos usu√°rios 
       adicionados. As senhas podem ser definidas utilizando o comando 
 	  <command>passwd</command>.
       </para>
@@ -112,10 +112,10 @@
       <title>passwd</title>
 
       <para>
-      Como vocÍ j· sabe, o comando <command>passwd</command> È usado 
-      para definir uma senha para um usu·rio. Rodando este comando 
-      como usu·rio normal e sem par‚metros, ir· definir a senha para 
-      o usu·rio atual. Ele ir· perguntar a senha antida e tambÈm a 
+      Como voc√™ j√° sabe, o comando <command>passwd</command> √© usado 
+      para definir uma senha para um usu√°rio. Rodando este comando 
+      como usu√°rio normal e sem par√¢metros, ir√° definir a senha para 
+      o usu√°rio atual. Ele ir√° perguntar a senha antiga e tamb√©m a 
       senha nova, duas vezes:
       </para>
 
@@ -129,9 +129,9 @@ passwd: password updated successfully
       </screen>
 
       <para>
-      O usu·rio <emphasis>root</emphasis> pode definir senhas para os 
-      usu·rios especificando o nome do usu·rio como par‚metro. O 
-      comando ir· perguntar apenas a nova senha. Por exemplo:
+      O usu√°rio <emphasis>root</emphasis> pode definir senhas para os 
+      usu√°rios especificando o nome do usu√°rio como par√¢metro. O 
+      comando ir√° perguntar apenas a nova senha. Por exemplo:
       </para>
 
       <screen>
@@ -148,9 +148,9 @@ passwd: password updated successfully
       <para>
       O comando <command>adduser</command> combina os comandos 
       <command>useradd</command> e <command>passwd</command> em um 
-      script interativo. Ele ir· pedir que vocÍ preencha algumas 
-      informaÁıes da conta a ser criada e depois criar· uma conta 
-      baseada nestas informaÁıes. Abaixo vocÍ pode ver um exemplo.
+      script interativo. Ele ir√° pedir que voc√™ preencha algumas 
+      informa√ß√µes da conta a ser criada e depois criar√° uma conta 
+      baseada nestas informa√ß√µes. Abaixo voc√™ pode ver um exemplo.
       </para>
 
       <screen>
@@ -206,7 +206,7 @@ Account setup complete.
       </screen>
 
       <para>
-      VocÍ pode usar os valores padrıes, ou deixar alguns campos em 
+      Voc√™ pode usar os valores padr√µes, ou deixar alguns campos em 
       branco pressionando a tecla &lt;Enter&gt;.
       </para>
     </sect2>
@@ -215,11 +215,11 @@ Account setup complete.
       <title>userdel</title>
 
       <para>
-      ¿s vezes È necess·rio remover uma conta de usu·rio do sistema. 
+      √Äs vezes √© necess√°rio remover uma conta de usu√°rio do sistema. 
       O GNU/Linux oferece a ferramenta <command>userdel</command> 
-      para isto. Apenas especifique o nome de usu·rio como par‚metro 
+      para isto. Apenas especifique o nome de usu√°rio como par√¢metro 
       para remover a conta do sistema. Por exemplo, o comando seguinte 
-      ir· remover a conta de usu·rio <emphasis>bob</emphasis> do sistema:
+      ir√° remover a conta de usu√°rio <emphasis>bob</emphasis> do sistema:
       </para>
 
       <screen>
@@ -227,9 +227,9 @@ Account setup complete.
       </screen>
 
       <para>
-      Isto ir· apenas remover a conta de usu·rio, mas n„o o diretÛrio 
-      home do usu·rio e a sua fila de e-mail. Adicione o par‚metro <parameter
-      class="command">-r</parameter> para delet·-los. Por exemplo:
+      Isto ir√° apenas remover a conta de usu√°rio, mas n√£o o diret√≥rio 
+      home do usu√°rio e a sua fila de e-mail. Adicione o par√¢metro <parameter
+      class="command">-r</parameter> para delet√°-los. Por exemplo:
       </para>
 
       <screen>
@@ -239,24 +239,24 @@ Account setup complete.
   </sect1>
 
   <sect1 xml:id="chap-usermgmt-su">
-    <title>Evitando utilizaÁ„o da conta root com o su</title>
+    <title>Evitando utiliza√ß√£o da conta root com o su</title>
 
     <para>
-      … uma boa idÈia evitar logar-se com o usu·rio <emphasis>root</emphasis>. 
-      H· v·rias razÙes para n„o fazer isto. Digitar alguma coisa errada 
-      acidentalmente pode causar sÈrios danos, e programas maliciosos 
-      podem causar uma sÈrie de estragos com se est· logado com o usu·rio 
-      <emphasis>root</emphasis>. Ainda assim, h· v·rias situaÁıes em que 
-      vocÍ precisa ter os privilÈgios deste usu·rio. Por exemplo, para 
-      executar tarefas de administraÁ„o do sistema, ou instalar programas. 
-      Felizmente, o comando <command>su</command> pode dar privilÈgios de 
+      √â uma boa id√©ia evitar logar-se com o usu√°rio <emphasis>root</emphasis>. 
+      H√° v√°rias raz√µes para n√£o fazer isto. Digitar alguma coisa errada 
+      acidentalmente pode causar s√©rios danos, e programas maliciosos 
+      podem causar uma s√©rie de estragos com se est√° logado com o usu√°rio 
+      <emphasis>root</emphasis>. Ainda assim, h√° v√°rias situa√ß√µes em que 
+      voc√™ precisa ter os privil√©gios deste usu√°rio. Por exemplo, para 
+      executar tarefas de administra√ß√£o do sistema, ou instalar programas. 
+      Felizmente, o comando <command>su</command> pode dar privil√©gios de 
       root temporariamente.
     </para>
 
     <para>
-      Usar o <command>su</command> È muito simples. … sÛ executar o comando 
+      Usar o <command>su</command> √© muito simples. √â s√≥ executar o comando 
       <command>su</command> e digitar a senha de root, e um shell com 
-      privilÈgios de root ser· iniciado:
+      privil√©gios de root ser√° iniciado:
     </para>
 
     <screen>
@@ -273,19 +273,19 @@ bob
     </screen>
 
     <para>
-      Neste exemplo o usu·rio <emphasis>bob</emphasis> est· logado, 
-      vocÍ pode ver isso na saÌda do comando <command>whoami</command>. 
-      O usu·rio executa su em digita a senha de <emphasis>root</emphasis>. 
-      O <command>su</command> ir· iniciar um shell com privilÈgios de root, 
-      isto È visto na saÌda do comando <command>whoami</command>. ApÛs sair 
-      do shell do <emphasis>root</emphasis>, o controle È retornado ao 
-      shell original com os privilÈgios do usu·rio <emphasis>bob</emphasis>.
+      Neste exemplo o usu√°rio <emphasis>bob</emphasis> est√° logado, 
+      voc√™ pode ver isso na sa√≠da do comando <command>whoami</command>. 
+      O usu√°rio executa su em digita a senha de <emphasis>root</emphasis>. 
+      O <command>su</command> ir√° iniciar um shell com privil√©gios de root, 
+      isto √© visto na sa√≠da do comando <command>whoami</command>. Ap√≥s sair 
+      do shell do <emphasis>root</emphasis>, o controle √© retornado ao 
+      shell original com os privil√©gios do usu√°rio <emphasis>bob</emphasis>.
     </para>
 
     <para>
-      TambÈm È possÌvel executar apenas um comando com o usu·rio 
-      <emphasis>root</emphasis>, utilizando o par‚metro <parameter
-      class="command">-c</parameter>. O seguinte comando ir· rodar o 
+      Tamb√©m √© poss√≠vel executar apenas um comando com o usu√°rio 
+      <emphasis>root</emphasis>, utilizando o par√¢metro <parameter
+      class="command">-c</parameter>. O seguinte comando ir√° rodar o 
       comando <command>lilo</command>:
     </para>
 
@@ -294,10 +294,10 @@ $ <userinput>su -c lilo</userinput>
     </screen>
 
     <para>
-      Se vocÍ quer passar par‚metros para o comando, utilize aspas 
+      Se voc√™ quer passar par√¢metros para o comando, utilize aspas 
       (e.g. <command>su -c &quot;ls -l&quot;</command>). Sem as aspas o 
-      comando <command>su</command> n„o pode determinar se o par‚metro 
-      passado deve ser usado pelo comando especificado ou pelo prÛprio
+      comando <command>su</command> n√£o pode determinar se o par√¢metro 
+      passado deve ser usado pelo comando especificado ou pelo pr√≥prio
       comando <command>su</command>.
     </para>
 
@@ -305,11 +305,11 @@ $ <userinput>su -c lilo</userinput>
       <title>Restrigindo acesso ao su</title>
 
       <para>
-      VocÍ pode refinar o acesso ao <command>su</command> com o 
-	  <emphasis>suauth</emphasis>. … uma boa pr·tica de seguranÁa 
-      permitir o acesso ao <emphasis>root</emphasis> atravÈs do 
+      Voc√™ pode refinar o acesso ao <command>su</command> com o 
+	  <emphasis>suauth</emphasis>. √â uma boa pr√°tica de seguran√ßa 
+      permitir o acesso ao <emphasis>root</emphasis> atrav√©s do 
       <command>su</command> apenas para membros de um grupo especial.
-      Por exemplo, vocÍ pode restringir membros do grupo 
+      Por exemplo, voc√™ pode restringir membros do grupo 
       <emphasis>wheel</emphasis> de acessar o root com o 
 	  <command>su</command> em um estilo BSD, adicionando a seguinte 
       linha no arquivo <filename>/etc/suauth</filename>:
@@ -325,15 +325,15 @@ root:ALL EXCEPT GROUP wheel:DENY
     <title>Limite de disco</title>
 
     <sect2 xml:id="chap-usermgmt-quota-intro">
-      <title>IntroduÁ„o</title>
+      <title>Introdu√ß√£o</title>
 
       <para>
-      O limite de disco È um mecanismo que permite ao administrador 
-      do sistema restringir o n˙mero de blocos e nÛs de um disco 
-      que um determinado usu·rio e grupo pode usar. Nem todos os 
+      O limite de disco √© um mecanismo que permite ao administrador 
+      do sistema restringir o n√∫mero de blocos e n√≥s de um disco 
+      que um determinado usu√°rio e grupo pode usar. Nem todos os 
       sistemas de arquivos suportados pelo Linux suportam limite de 
-      disco, dentre os mais utilizados que suportam est„o ext2, ext3 
-      e XFS. O limite de disco È ativado e gerenciado pelo sistema 
+      disco, dentre os mais utilizados que suportam est√£o ext2, ext3 
+      e XFS. O limite de disco √© ativado e gerenciado pelo sistema 
       de arquivos.
       </para>
     </sect2>
@@ -344,9 +344,9 @@ root:ALL EXCEPT GROUP wheel:DENY
       <para>
       O limite de disco pode ser ativado pelo sistema de arquivos 
       no arquivo <filename>/etc/fstab</filename>, utilizando as 
-      opÁıes <parameter>usrquota</parameter> e <parameter>grpquota</parameter>. 
-      Por exemplo, suponha que nÛs tenhamos a seguinte entrada para 
-      a partiÁ„o <filename>/home</filename> no arquivo 
+      op√ß√µes <parameter>usrquota</parameter> e <parameter>grpquota</parameter>. 
+      Por exemplo, suponha que n√≥s tenhamos a seguinte entrada para 
+      a parti√ß√£o <filename>/home</filename> no arquivo 
       <filename>/etc/fstab</filename>:
       </para>
 
@@ -355,7 +355,7 @@ root:ALL EXCEPT GROUP wheel:DENY
       </screen>
 
       <para>
-      NÛs podemos ativar o limite de disco adicionado a opÁ„o 
+      N√≥s podemos ativar o limite de disco adicionado a op√ß√£o 
       <parameter>usrquota</parameter>:
       </para>
 
@@ -364,10 +364,10 @@ root:ALL EXCEPT GROUP wheel:DENY
       </screen>
 
       <para>
-      Depois disso a m·quina pode ser reiniciada, para deixar que 
-      os scripts de inicializaÁ„o do Slackware Linux ativem o 
-      limite de disco. VocÍ pode tambÈm ativar o limite de disco 
-      sem reiniciar a m·quina, basta remontar a partiÁ„o e rodar 
+      Depois disso a m√°quina pode ser reiniciada, para deixar que 
+      os scripts de inicializa√ß√£o do Slackware Linux ativem o 
+      limite de disco. Voc√™ pode tamb√©m ativar o limite de disco 
+      sem reiniciar a m√°quina, basta remontar a parti√ß√£o e rodar 
       o comando <command>quotaon</command>:
       </para>
 
@@ -381,11 +381,11 @@ root:ALL EXCEPT GROUP wheel:DENY
       <title>Editando o limite de disco</title>
 
       <para>
-      Limites de disco para usu·rios e grupos podem ser editados 
+      Limites de disco para usu√°rios e grupos podem ser editados 
       com a ferramenta <quote>edquota</quote>. Este programa 
-      permite que vocÍ edite limites de disco interativamente 
-      com o editor <command>vi</command>. A sintaxe mais b·sica 
-      deste comando È <command>edquota username</command>. Por 
+      permite que voc√™ edite limites de disco interativamente 
+      com o editor <command>vi</command>. A sintaxe mais b√°sica 
+      deste comando √© <command>edquota username</command>. Por 
       exemplo:
       </para>
 
@@ -394,9 +394,9 @@ root:ALL EXCEPT GROUP wheel:DENY
       </screen>
 
       <para>
-      Isto ir· iniciar o editor <command>vi</command> com as 
-      informaÁıes de limite de disco para o usu·rio <emphasis>joe</emphasis>. 
-      Ir· parecer mais ou menos assim:
+      Isto ir√° iniciar o editor <command>vi</command> com as 
+      informa√ß√µes de limite de disco para o usu√°rio <emphasis>joe</emphasis>. 
+      Ir√° parecer mais ou menos assim:
       </para>
 
       <screen>
@@ -406,33 +406,33 @@ Disk quotas for user joe (uid 1143):
       </screen>
 
       <para>
-      Neste exemplo, o limite de disco È ativado apenas para um 
+      Neste exemplo, o limite de disco √© ativado apenas para um 
       sistema de arquivos, que fica em <filename>/dev/hda5</filename>. 
-      Como vocÍ pode ver, existem v·rias colunas. A coluna 
-      <emphasis>blocks</emphasis> mostra quantos blocos o usu·rio pode 
-      utilizar, e a coluna <emphasis>inodes</emphasis> o n˙mero de 
-      nÛs que ele ocupa. H· tambÈm as colunas <emphasis>soft</emphasis> 
-      e	<emphasis>hard</emphasis> ambas apÛs 
+      Como voc√™ pode ver, existem v√°rias colunas. A coluna 
+      <emphasis>blocks</emphasis> mostra quantos blocos o usu√°rio pode 
+      utilizar, e a coluna <emphasis>inodes</emphasis> o n√∫mero de 
+      n√≥s que ele ocupa. H√° tamb√©m as colunas <emphasis>soft</emphasis> 
+      e	<emphasis>hard</emphasis> ambas ap√≥s 
       <emphasis>blocks</emphasis> e <emphasis>inodes</emphasis>. 
-      Estas colunas especificam os limites mÌnimo e m·ximo de blocos 
-      e nÛs. Um usu·rio pode exceder o limite mÌnimo por um tempo, 
-      mas nunca pode exceder o limite m·ximo. Se o valor do limite 
-      È <emphasis>0</emphasis>, ent„o n„o h· limite.
+      Estas colunas especificam os limites m√≠nimo e m√°ximo de blocos 
+      e n√≥s. Um usu√°rio pode exceder o limite m√≠nimo por um tempo, 
+      mas nunca pode exceder o limite m√°ximo. Se o valor do limite 
+      √© <emphasis>0</emphasis>, ent√£o n√£o h√° limite.
       </para>
 
       <note>
         <para>
           O termo <quote>blocks</quote> pode ser um pouco confuso neste 
-          contexto. Nas configuraÁıes de limite de disco, um bloco È 
-          1KB, e n„o o tamanho de bloco do sistema de arquivos.
+          contexto. Nas configura√ß√µes de limite de disco, um bloco √© 
+          1KB, e n√£o o tamanho de bloco do sistema de arquivos.
         </para>
       </note>
 
       <para>
-      Vamos dar uma olhada em um exemplo simples. Suponha que nÛs 
-      queiramos definir o limite mÌnimo do usu·rio <emphasis>joe</emphasis> 
-      para <emphasis>250000</emphasis>, e o limite m·ximo para 
-      <emphasis>300000</emphasis>. NÛs podemos alterar o limite de 
+      Vamos dar uma olhada em um exemplo simples. Suponha que n√≥s 
+      queiramos definir o limite m√≠nimo do usu√°rio <emphasis>joe</emphasis> 
+      para <emphasis>250000</emphasis>, e o limite m√°ximo para 
+      <emphasis>300000</emphasis>. N√≥s podemos alterar o limite de 
       disco listado anteriormente:
       </para>
 
@@ -443,25 +443,25 @@ Disk quotas for user joe (uid 1143):
       </screen>
 
       <para>
-        As novas configuraÁıes de limite de disco estar„o ativas 
-        apÛs salvar o arquivo e fechar o <command>vi</command>.
+        As novas configura√ß√µes de limite de disco estar√£o ativas 
+        ap√≥s salvar o arquivo e fechar o <command>vi</command>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-usermgmt-quota-repquota">
-      <title>Colhendo informaÁıes sobre limite de disco</title>
+      <title>Colhendo informa√ß√µes sobre limite de disco</title>
 
       <para>
-      Muitas vezes È ˙til termos estatÌsticas sobre o uso atual 
+      Muitas vezes √© √∫til termos estat√≠sticas sobre o uso atual 
       dos limites de disco. O comando <command>repquota</command> 
-      pode ser usado para saber quais os limites de disco est„o 
-      definidos para cada usu·rio e quanto est· sendo utilizado 
-      por cada um. VocÍ pode ver as configuraÁıes de limite de 
-      disco de uma partiÁ„o especÌfica passando o nome da partÁ„o 
-      como par‚metro. O par‚metro <parameter class="command">-a</parameter> 
-      ir· mostrar informaÁıes de todas as partiÁıes com o limite 
-      de disco ativado. Supondo que vocÍ queira ver as informaÁıes 
-      da partiÁ„o <filename>/dev/hda5</filename>, vocÍ pode 
+      pode ser usado para saber quais os limites de disco est√£o 
+      definidos para cada usu√°rio e quanto est√° sendo utilizado 
+      por cada um. Voc√™ pode ver as configura√ß√µes de limite de 
+      disco de uma parti√ß√£o espec√≠fica passando o nome da parti√ß√£o 
+      como par√¢metro. O par√¢metro <parameter class="command">-a</parameter> 
+      ir√° mostrar informa√ß√µes de todas as parti√ß√µes com o limite 
+      de disco ativado. Supondo que voc√™ queira ver as informa√ß√µes 
+      da parti√ß√£o <filename>/dev/hda5</filename>, voc√™ pode 
       utilizar o seguinte comando:
       </para>
 
