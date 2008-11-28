@@ -4,9 +4,9 @@
   <title>Conteitos gerais</title>
 
   <para>
-    Este capÌtulo introduz alguns conceitos gerais sobre UNIX e GNU/Linux. 
-    … importante ler este capÌtulo cuidadosamente se vocÍ n„o tem nenhuma 
-    experiÍncia com estes sistemas. Muitos conceitos vistos aqui s„o usados 
+    Este cap√≠tulo introduz alguns conceitos gerais sobre UNIX e GNU/Linux. 
+    √â importante ler este cap√≠tulo cuidadosamente se voc√™ n√£o tem nenhuma 
+    experi√™ncia com estes sistemas. Muitos conceitos vistos aqui s√£o usados 
     neste livro e no GNU/Linux.
   </para>
 
@@ -14,25 +14,25 @@
     <title>Multitarefa</title>
 
     <sect2 id="concepts-multitasking-intro">
-      <title>IntroduÁ„o</title>
+      <title>Introdu√ß√£o</title>
 
       <para>
-        Uma das principais vantagens dos sistemas UNIX È a multitarefa. 
-        Multitarefa quer dizer que v·rios programas podem rodar ao mesmo 
-        tempo. Talvez vocÍ n„o saiba o qu„o isto È importante, porque a 
-        maioria das pessoas usam apenas uma aplicaÁ„o por vez. A multitarefa 
-        È uma necessidade vital para sistemas UNIX e derivados. Mesmo que 
-        vocÍ n„o tenha iniciado nenhuma aplicaÁ„o, existem programas que 
-        rodam em segundo plano. Por exemplo, alguns programas provÍm serviÁos 
-        de rede, enquanto outros mostram a tela de autenticaÁ„o e esperam atÈ que 
-        o usu·rio se autentique em um terminal (virtual). Programas que 
-        rodam em segundo plano muitas vezes s„o chamados de 
+        Uma das principais vantagens dos sistemas UNIX √© a multitarefa. 
+        Multitarefa quer dizer que v√°rios programas podem rodar ao mesmo 
+        tempo. Talvez voc√™ n√£o saiba o qu√£o isto √© importante, porque a 
+        maioria das pessoas usam apenas uma aplica√ß√£o por vez. A multitarefa 
+        √© uma necessidade vital para sistemas UNIX e derivados. Mesmo que 
+        voc√™ n√£o tenha iniciado nenhuma aplica√ß√£o, existem programas que 
+        rodam em segundo plano. Por exemplo, alguns programas prov√™m servi√ßos 
+        de rede, enquanto outros mostram a tela de autentica√ß√£o e esperam at√© que 
+        o usu√°rio se autentique em um terminal (virtual). Programas que 
+        rodam em segundo plano muitas vezes s√£o chamados de 
         <emphasis>daemon</emphasis>
         <footnote>
           <para>
-	    A palavra <emphasis>daemon</emphasis> n„o deve ser confundida com 
+	    A palavra <emphasis>daemon</emphasis> n√£o deve ser confundida com 
 	    a palavra <emphasis>demon</emphasis>, a palavra <emphasis>daemon</emphasis> 
-	    refere-se ‡ seres sobrenaturais da mitologia grega.
+	    refere-se √† seres sobrenaturais da mitologia grega.
           </para>
         </footnote>.
       </para>
@@ -42,8 +42,8 @@
       <title>Processos e threads</title>
 
       <para>
-        Depois que o programa È carregado da mÌdia de armazenamento, 
-        uma inst‚ncia do programa È iniciado. Esta inst‚ncia È 
+        Depois que o programa √© carregado da m√≠dia de armazenamento, 
+        uma inst√¢ncia do programa √© iniciado. Esta inst√¢ncia √© 
         chamada de <emphasis>process</emphasis>. Um processo tem 
         A process has its own protected
         memory, named the <emphasis>process address space</emphasis>.
