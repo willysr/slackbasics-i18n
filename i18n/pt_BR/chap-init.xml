@@ -178,7 +178,7 @@ image = /boot/vmlinuz <co xml:id="co-liloconf-kernel-1" />
 
       <para>
     O LILO não lê o arquivo <filename>/etc/lilo.conf</filename> durante
-    seu segundo estário. Assim, você tem que gravar as alterações para
+    seu segundo estágio. Assim, você tem que gravar as alterações para
     o carregador de segunda etapa quando você modificar as configurações
     do LILO. Isso também é necessário se você instalar um novo kernel
     com o mesmo nome de arquivo, uma vez que a posição do kernel no
