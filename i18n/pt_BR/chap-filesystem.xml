@@ -85,7 +85,7 @@
     entre inodes e dados, e especificamente sobre o campo
     <emphasis>i_block</emphasis>: cada inode tem ponteiros para os
     blocos de dados sobre os quais o inode provê informações.  Além
-    disso, o inome e os blocos de dados são o próprio arquivo no sistema
+    disso, o inode e os blocos de dados são o próprio arquivo no sistema
     de arquivos.
       </para>
 
@@ -100,7 +100,7 @@
       </para>
 
       <para>
-    Podemos mostrar de uma forma simplicada como isto tudo funciona
+    Podemos mostrar de uma forma simplificada como isto tudo funciona
     ilustrando o que o kernel faz quando executamos o comando
     <command>cat /home/daniel/note.txt</command>
       </para>
@@ -143,7 +143,7 @@
       <title>Permissões de arquivos</title>
 
       <para>
-    Como descrevemos anteriormente, Linux é um sistema multi-usuário.
+    Como descrevemos anteriormente, Linux é um sistema multiusuário.
     Isto significa que cada usuário tem seus próprios arquivos (que
     usualmente estão localizados no diretório home).  Além disso, os
     usuários podem ser membros de grupos, que podem lhes dar privilégios
@@ -206,7 +206,7 @@
     parênteses e são usadas nesta notação.  No exemplo seguinte, a
     informação sobre um arquivo com permissões <emphasis>0644</emphasis>
     é exibida.  Os números são substituídos por três conjuntos rwx (o
-    primeiro caracter pode listar opções especiais de modo).
+    primeiro caractere pode listar opções especiais de modo).
       </para>
 
       <screen>
@@ -260,7 +260,7 @@ other::---
 
       <para>
     Uma entrada de diretório que aponta para um inode é chamada de
-    <emphasis><foreignphrase>hard linki<foreignphrase></emphasis>.
+    <emphasis><foreignphrase>hard link</foreignphrase></emphasis>.
     Muitos arquivos possuem apenas um único link, mas nada lhe impede de
     criar mais de um link para o arquivo.  Isto irá incrementar o campo
     <emphasis>links_count</emphasis> do inode.  Esta é uma bela maneira
@@ -285,7 +285,7 @@ other::---
 
       <para>
     Hard links possuem duas limitações.  Em primeiro lugar, hard links
-    não podem linkar entre diferentes sistemas de arquivos, uma vez que
+    não podem lincar entre diferentes sistemas de arquivos, uma vez que
     eles apontam para inodes.  Cada sistema de arquivo tem seus próprios
     inodes e números de inode correspondentes.  Além disso, muitos
     sistemas de arquivos não permitem que você crie hard links para
@@ -329,7 +329,7 @@ other::---
       poderia criar hard links para binários.  No caso de um programa
       vulnerável ser atualizado, o link no diretório home do usuário
       permanecerá apontando para o programa binário antigo, efetivamente
-      dadno ao usuário acesso contínuo ao binário vulnerável.
+      dando ao usuário acesso contínuo ao binário vulnerável.
     </para>
 
         <para>
@@ -425,7 +425,7 @@ drwxrwxr-x   2 daniel daniel  4096 Sep  4 15:55 papers
     tudo, o arquivo <filename>.settings</filename> agora é mostrado.
     Além disso você pode ver as duas entradas de diretório adicionais,
     <filename>.</filename> e <filename>..</filename>.  Estas representam
-    o diretório atual e o diregório pai, respectivamente.
+    o diretório atual e o diretório pai, respectivamente.
       </para>
 
       <para>
@@ -518,7 +518,7 @@ $ <userinput>file -L /usr/X11R6/bin/X</userinput>
 
       <para>
     Esta entrada diz que se um arquivo iniciar com o longo número mágico
-    hexadecimal <emphasis>0xcafebabe</emphasis><footnote><
+    hexadecimal <emphasis>0xcafebabe</emphasis><footnote>
         <para>Sim, você pode ser criativo com os números mágicos
         também!</para> </footnote>, é um arquivo que contém dados
         compilados de uma classe Java (<quote><foreignphrase>compiled
@@ -540,7 +540,7 @@ $ <userinput>file -L /usr/X11R6/bin/X</userinput>
     verificar se um arquivo não sofreu modificações (por exemplo, depois
     de baixar um arquivo de um servidor).  Você pode especificar o
     arquivos para cálculo do CRC como um parâmetro para o
-    <command>cksum</cksum>, e o <command>cksum</command> irá exibir o
+    <command>cksum</command>, e o <command>cksum</command> irá exibir o
     valor do CRC, o tamanho em bytes e o nome do arquivo:
       </para>
 
@@ -551,7 +551,7 @@ $ <userinput>cksum myfile</userinput>
 
       <para>
     O Slackware Linux também possui utilitários para cálculo de somas de
-    verificação baseadas em algorítmos de via única (por exemplo, MD5 ou
+    verificação baseadas em algoritmos de via única (por exemplo, MD5 ou
     SHA-1).
     <!-- XXX - elaborar -->
       </para>
@@ -567,7 +567,7 @@ $ <userinput>cksum myfile</userinput>
     primitiva de ver o conteúdo de um arquivo é através do
     <command>cat</command>.  O comando <command>cat</command> lê
     os arquivos que forem especificados como parâmetros linha por linha,
-    e irá exibí-las na saída padrão.  Então, você pode imprimir o
+    e irá exibi-las na saída padrão.  Então, você pode imprimir o
     conteúdo do arquivo <filename>note.txt</filename> para o terminal
     com <filename>cat note.txt</filename>.  Ainda que alguns sistemas e
     muitos emuladores de terminal tenham suporte a barras de rolagem,
@@ -705,7 +705,7 @@ $ <userinput>du ~/qconcord</userinput>
         números de blocos de 1024 bytes.  Você pode especificar
         explicitamente que o <command>du</command> deva usar unidades de
         1024 bytes adicionando a opção <parameter
-        class="command">-k</command>.  Isto é útil para escrever
+        class="command">-k</parameter>.  Isto é útil para escrever
     scripts, pois o padrão de alguns outros sistemas é usar blocos de
     512 bytes.  Por exemplo:
       </para>
@@ -741,7 +741,7 @@ $ <userinput>du -k -a ~/qconcord</userinput>
       </screen>
 
       <para>
-    Você também pode usar o nome de um arquivo um caracter curinga como
+    Você também pode usar o nome de um arquivo um caractere curinga como
     parâmetro.  Mas isto não vai exibir os tamanhos dos arquivos em
     subdiretórios, a menos que <parameter class="command">-a</parameter>
     seja usado:
@@ -810,7 +810,7 @@ drwxrwxr-x  2 daniel daniel  4096 Sep  4 15:55 papers
     Se um nome de diretório, ou se um coringa for especificado, o
     <command>ls</command> irá listar o conteúdo do diretório, os dos
     diretórios que casem com o coringa respectivamente.  Por exemplo, se
-    houver um diretóro <filename>papers</filename>, <command>ls
+    houver um diretório <filename>papers</filename>, <command>ls
     paper*</command> vai listar o conteúdo deste diretório
     <filename>papers</filename>.  O parâmetro <parameter
     class="command">-d</parameter> evita que esta recursão
@@ -823,7 +823,7 @@ drwxrwxr-x  2 daniel daniel  4096 Sep  4 15:55 papers
       </screen>
 
       <para>
-    Você também pode listar recursivament o conteúdo de um diretório, e
+    Você também pode listar recursivamente o conteúdo de um diretório, e
     de seus subdiretórios com o parâmetro <parameter
     class="command">-R</parameter>:
       </para>
@@ -990,8 +990,8 @@ usage: cp [-R [-H | -L | -P]] [-f | -i] [-pv] src target
     Se <parameter class="command">-P</parameter> for usado, links
     simbólicos não serão seguidos, resultando efetivamente na cópia do
     link em si.  Se <parameter class="command">-H</parameter> for usado,
-    links simbólicos especificdos como um parâmetro para o
-    <command>cp</command> podem ser seguidos, dependendo di tipo do
+    links simbólicos especificados como um parâmetro para o
+    <command>cp</command> podem ser seguidos, dependendo do tipo do
     arquivo.  Se <parameter class="command">-L</parameter> for usado,
     links simbólicos especificados como parâmetro para o
     <command>cp</command> e links simbólicos que forem encontrados
@@ -1000,7 +1000,7 @@ usage: cp [-R [-H | -L | -P]] [-f | -i] [-pv] src target
       </para>
 
       <para>
-    Se você quer preservar a propriedade, os buts SGID/SUID, e os
+    Se você quer preservar a propriedade, os bits SGID/SUID, e os
     momentos de modificação e acesso do arquivo, você pode usar
     o <parameter>-p</parameter>.  Isto tentará preservar estas
     propriedades nas cópias dos arquivos ou diretórios.  Boas
@@ -1071,6 +1071,7 @@ $ <userinput>mv arquivo1 diretorio1 destinodir</userinput>
         blocos no disco podem ser requisitados por novos arquivos.  Os
         arquivos podem ser removidos informando o nome destes arquivos
         como parâmetro para o
+       <citerefentry>
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
         </citerefentry>.  Se o arquivo não for gravável, o <citerefentry>
@@ -1201,7 +1202,7 @@ $ <userinput>chown -R john:staff notas</userinput>
           <manvolnum>1</manvolnum>
         </citerefentry>.  Esta conversão baseia-se comumente na base de dados de senhas do sistema.  Se você
         está trabalhando em um sistema de arquivos que usa outra base de dados de senhas (p.ex. se você montou
-        um sistema de arquivos raíz a partir de outro sistema para recuperação), frequentemente é útil mudar a
+        um sistema de arquivos raiz a partir de outro sistema para recuperação), frequentemente é útil mudar a
         propriedade usando o ID de usuário ou de grupo.  Desta maneira, você pode manter o mapeamento do nome
         do usuário/grupo intacto.  Assim, alterar a propriedade de <filename>nota.txt</filename> para o UID 1000 e
         GUID 1000 é feito da seguinte (e deduzível) maneira: </para>
@@ -1231,7 +1232,7 @@ $ <userinput>chmod 0644 notas.txt</userinput>
       </screen>
 
       <para> Torna o arquivo <filename>notas.txt</filename> legível e gravável para o dono do arquivo, e
-        regível para o grupo do arquivo e outros. </para>
+        legível para o grupo do arquivo e outros. </para>
 
       <para> Permissões simbólicas se prestam a adicionar ou remover permissões, e permitem alterações
         relativas nas permissões de arquivo.  A sintaxe para permissões simbólicas é: </para>
@@ -1272,7 +1273,7 @@ $ <userinput>chmod -R ugo+r notas</userinput>
       <para> Cuidados extras devem ser tomados com diretórios, porque a permissão <emphasis>x</emphasis>
         tem um significado especial no contexto de diretórios.  Usuários com permissão de execução em diretórios
         podem acessar o diretório.  Usuários que não têm permissões de execução em diretórios não podem.  Devido
-        a este comportamente particular, é quase sempre mais fácil mudar as permissões de uma estrutura de
+        a este comportamento particular, é quase sempre mais fácil mudar as permissões de uma estrutura de
         diretório e de seus arquivos com ajuda do comando <citerefentry>
           <refentrytitle>find</refentrytitle>
           <manvolnum>1</manvolnum>
@@ -1325,7 +1326,7 @@ $ <userinput>chmod g+t /tmp</userinput>
 
       <para>
     A pergunta que não quer calar é quais as permissões são usadas
-    quando um arquvo é criado.  Isto depende de dois fatores: a flag de
+    quando um arquivo é criado.  Isto depende de dois fatores: a flag de
     modo que for passada para a chamada de sistema
     <emphasis>open(2)</emphasis>, que é usada para criar um arquivo, e a
     máscara de criação de arquivo ativa.  A máscara de criação de arquivos
@@ -1350,7 +1351,7 @@ $ <userinput>chmod g+t /tmp</userinput>
       <para>
         O valor da máscara de criação de arquivos pode ser consultado com
         o comando <command>umask</command>, que normalmente já existe
-        como comando do próprio shell.  A máscara eftiva pode ser exibida
+        como comando do próprio shell.  A máscara efetiva pode ser exibida
         executando <command>umask</command> sem nenhum parâmetro:
       </para>
 
@@ -1388,7 +1389,7 @@ $ <userinput>ls -l test</userinput>
     extensão às permissões de arquivos tradicionais do UNIX que permitem
     um controle de acesso mais específico.  Muitos sistemas que suportam
     sistemas de arquivos ACLs as implementam tal como especificado nos
-    projetos das espeficicações POSIX.1e e POSIX.2c.  Exemplos de
+    projetos das especificações POSIX.1e e POSIX.2c.  Exemplos de
     sistemas UNIX e UNIX-like que implementam ACLs de acordo com estas
     especificações são FreeBSD, Solaris e Linux.
       </para>
@@ -1400,7 +1401,7 @@ $ <userinput>ls -l test</userinput>
     e execução adicionais para usuários ou grupos.  Diferentemente das
     permissões de arquivo tradicionais, listas de controle de acesso
     adicionais não são armazenadas diretamente no inode, mas em
-    atributos extendidos que são associados aos arquivos.  Duas coisas
+    atributos estendidos que são associados aos arquivos.  Duas coisas
     com que precisamos ter cuidado ao usar listas de controle de acesso
     é que nem todos os sistemas as suportam, e também nem todos os
     programas dão suporte a elas.
@@ -1726,7 +1727,7 @@ $ <userinput>setfacl -x group:friends: report.txt</userinput>
       </screen>
 
       <para>
-        O caracter dois-pontos do final é opcional e pode ser omitido.
+        O caractere dois-pontos do final é opcional e pode ser omitido.
       </para>
     </sect4>
 
@@ -1872,7 +1873,7 @@ $ <userinput>getfacl report.txt | setfacl -b -M - report2.txt</userinput>
     inicia com um hífen (<emphasis>-</emphasis>), ponto de exclamação
     (<emphasis>!</emphasis>, ou abre-parênteses (<emphasis>(</emphasis>,
     significa o início da expressão.  A expressão pode consistir de
-    vários operandos.  De forma simplificiada, a sintaxe do
+    vários operandos.  De forma simplificada, a sintaxe do
     <command>find</command> e: <emphasis>find caminhos expressão</emphasis>.
       </para>
 
@@ -1940,8 +1941,8 @@ technical/report2.txt
     <note>
       <para>
         Ao usar o <command>find</command> você vai querer passar o
-        caracter coringa ao <command>find</command>, ao invés de deixar
-        o shell expandí-lo.  Assim, certifique-se de que os padrões ou
+        caractere coringa ao <command>find</command>, ao invés de deixar
+        o shell expandi-lo.  Assim, certifique-se de que os padrões ou
         sejam delimitados por aspas, ou que os coringas sejam escapados.
       </para>
     </note>
@@ -1969,7 +1970,7 @@ technical/report2.txt
         <entry>b</entry><entry>Arquivo de dispositivo de block</entry>
           </row>
           <row>
-        <entry>c</entry><entry>Arquivo de dispositivo de caracter</entry>
+        <entry>c</entry><entry>Arquivo de dispositivo de caractere</entry>
           </row>
           <row>
         <entry>d</entry><entry>Diretório</entry>
@@ -2028,7 +2029,7 @@ $ <userinput>find . -name 'eco*' -type d</userinput>
 
     <para>
       Além de casar objetos por seus nomes ou tipos, você também pode
-      procurá-los por suas permissoes ativas ou pela propriedade do
+      procurá-los por suas permissões ativas ou pela propriedade do
       objeto.  Isto frequentemente é útil para encontrar arquivos que
       tenham permissões ou propriedade incorretas.
     </para>
@@ -2119,7 +2120,7 @@ $ <userinput>find /dev -perm -0002</userinput>
       a mesma notação que o comando <command>chmod</command>.
       Permissões simbólicas são construídas com um modo de arquivo em
       que todos os bits são zerados, então nunca será preciso usar um
-      hífen para descarcar permissões.  Isto também evita abiquidade que
+      hífen para desmarcar permissões.  Isto também evita ambiguidade que
       poderia se ter com o uso do prefixo hífen de permissões.  Como a
       sintaxe octal, prefixar a permissão com um hífen irá casar com
       objetos que tenham pelo menos os bits de permissão especificados.
@@ -2358,7 +2359,7 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} \;</userinput>
      completa será avaliada para falso.  Então, o operando
      <emphasis>-exec</emphasis> só será avaliado se o primeiro operando
      for verdadeiro.  Outra particularidade é que o ponto-e-vírgula que
-     encerra o <emphasis>-exec</emphasis> é escapado para previnir que o
+     encerra o <emphasis>-exec</emphasis> é escapado para prevenir que o
      shell tente interpretá-lo.
     </para>
 
@@ -2488,7 +2489,7 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} +</userinput>
     <para>
       Uma vez que tanto os parênteses quanto a exclamação são
       interpretados pela maioria dos shells, comumente eles devem ser
-      precedidos de um caracter de escape.
+      precedidos de um caractere de escape.
     </para>
 
     <para>
@@ -3047,7 +3048,7 @@ proc             /proc            proc        defaults         0   0
       Se <quote>fs_freq</quote> for definido para o valor 1 ou mais
       alto, ele indica depois de quantos dias um despejo
       (<foreignphrase>dump</foreignphrase>, backup) será feito.  Esta
-      opção só é usada quand o <ulink
+      opção só é usada quando o <ulink
       url="http://dump.sourceforge.net/">dump</ulink> está instalado e
       configurado adequadamente para manipular este campo do arquivo.
     </para>
@@ -3074,7 +3075,7 @@ proc             /proc            proc        defaults         0   0
 
       <para>
     Há dois mecanismos de para segurança de arquivos: assinatura digital
-    e criptografia.  Asinar um arquivo significa que uma assinatura
+    e criptografia.  Assinar um arquivo significa que uma assinatura
     digital especial é gerada para o arquivo.  Você, ou outras pessoas
     podem usar a assinatura para verificar a integridade do arquivo.  Já
     a criptografia codifica o arquivo de tal maneira que apenas a pessoa
@@ -3088,7 +3089,7 @@ proc             /proc            proc        defaults         0   0
     significa que alguém pode enviar essa chave pública para outras
     pessoas.  Os outros podem usar essa chave para enviar arquivos
     criptografados, que apenas a pessoa com a respectiva chave privada
-    possa decodificar.  É claro, isto quer dizer que a securança desse
+    possa decodificar.  É claro, isto quer dizer que a segurança desse
     sistema depende do quão a chave privada seja mantida secreta.
       </para>
 
@@ -3160,7 +3161,7 @@ What keysize do you want? (1024) <userinput>2048</userinput>
 
       <para>
     A próxima pergunta é simples de responder, apenas escolha a que
-    melhor lhe agradar.  Falando de uma forma geran, não é uma má idéia
+    melhor lhe agradar.  Falando de uma forma geral, não é uma má idéia
     fazer com que a chave seja válida indefinidamente.  Você sempre pode
     desativar a chave com um certificado especial de revogação.
       </para>
@@ -3291,7 +3292,7 @@ Key is valid for? (0) <userinput>0</userinput>
 
       <para>
     E confirme se a informação estiver correta.  Depois que a chave for
-    gerada você pode deixar o prompt de comando do GnuPGm e salvar a
+    gerada você pode deixar o prompt de comando do GnuPG e salvar a
     nova chave com o comando <command>save</command>:
       </para>
 
@@ -3427,7 +3428,7 @@ gpg: BAD signature from "John Doe (Work) &lt;john@doe.com&gt;"
     chave.  Você pode criptografar um arquivo com a chave pública de
     outra pessoa, e aquela outra pessoa pode descriptografá-lo com sua
     chave privada.  Você pode criptografar arquivos com <parameter
-    class="command">--encrypt</parameter>.  Se você não especifcar um ID
+    class="command">--encrypt</parameter>.  Se você não especificar um ID
     de usuário, o GnuPG irá solicitá-lo.  Você pode especificar o ID de
     usuário com o parâmetro <parameter class="command">-r</parameter>.
     No exemplo seguinte, o arquivo <filename>secret.txt</filename> será
