@@ -46,7 +46,7 @@ para o Slackware Linux.
 <title>Configuração das interfaces</title>
 
 <para>
-Placas de rede disponíveis no Linux são chamadas de <quote>interfaces</quotes>.
+Placas de rede disponíveis no Linux são chamadas de <quote>interfaces</quote>.
 O comando <command>ifconfig</command> pode ser usado para mostrar as interfaces disponíveis:
 </para>
 
@@ -269,7 +269,7 @@ adicionais, como configuração de ESSID, chaves WEP e o modo de wireless.
 A especificação das configurações para as interfaces wireless pode ser
 feita no arquivo <filename>/etc/rc.d/rc.wireless.conf</filename>. O
 script <command>/etc/rc.d/rc.wireless</command> configura as interfaces
-de rede sem fio com base nas descrições do arquivo <filename>/etc/rc.d/rc.wireless.conf</command>.
+de rede sem fio com base nas descrições do arquivo <filename>/etc/rc.d/rc.wireless.conf</filename>.
 Neste arquivo, as configurações são feitas pelo endereço MAC da interface.
 Por padr o, este arquivo possui uma seção que localiza qualquer interface:
 </para>
