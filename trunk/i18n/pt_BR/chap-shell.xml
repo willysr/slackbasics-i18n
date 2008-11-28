@@ -140,7 +140,7 @@ $ <userinput>echo $PATH</userinput>
     <para>
       Os caminhos dos diretórios na variável <emphasis>PATH</emphasis> 
       são separados pelo caracter dois-pontos (<emphasis>:</emphasis>).
-      Você pode usar o comando <commando>which</command> para verificar 
+      Você pode usar o comando <command>which</command> para verificar 
       se um comando está no caminho de pesquisa do shell atual. Você 
       pode fazer isto passando um argumento para o 
       <command>which</command>. Por exemplo:
@@ -262,7 +262,7 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
       <para>
        Da mesma forma, você também pode retornar ao final da linha segurando 
        <emphasis>Ctrl-f</emphasis>.  Há um erro nessa linha, pois há um hífen
-       incorreto.  Para remover este hífem, você pode usar um dos atalhos de
+       incorreto.  Para remover este hífen, você pode usar um dos atalhos de
        exclusão de caracter.
       </para>
 
@@ -291,7 +291,7 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
       </table>
 
       <para>
-       Você pode excluir o hífem de duas maneiras.  A primeira é mover o cursor
+       Você pode excluir o hífen de duas maneiras.  A primeira é mover o cursor
        até o hífen:
       </para>
 
@@ -301,7 +301,7 @@ find ~/music <emphasis role="cursor">-</emphasis> -name '*.ogg' -print
 
       <para>
        e então pressionar <emphasis>Ctrl-d</emphasis> duas vezes.  Isto irá
-       excluir o caracter hífem e o espaço logo após ele:
+       excluir o caracter hífen e o espaço logo após ele:
       </para>
 
       <screen>
@@ -310,7 +310,7 @@ find ~/music <emphasis role="cursor">-</emphasis>name '*.ogg' -print
 
       <para>
        Olhando para o fragmento original, a outra maneira de fazer a mesma coisa é
-       posicionar o cursor no espaço após o hífem:
+       posicionar o cursor no espaço após o hífen:
       </para>
 
       <screen>
@@ -319,7 +319,7 @@ find ~/music -<emphasis role="cursor">&#32;</emphasis> -name '*.ogg' -print
 
       <para>
        e então pressionar <emphasis>Ctrl-h</emphasis> duas vezes para excluir os
-       dois caracteres anteriores, o hífem em si e o espaço imediatamente
+       dois caracteres anteriores, o hífen em si e o espaço imediatamente
        anterior.  O resultado será o mesmo, exceto pela movimentação do cursor:
       </para>
 
@@ -457,7 +457,7 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
       </screen>
 
       <para>
-       Um movimento para trás pôe o cursor no primeiro caracter da palavra
+       Um movimento para trás põe o cursor no primeiro caracter da palavra
        atual, ou no primeiro caracter da palavra anterior se no momento o
        cursor estiver no primeiro caracter da palavra.  Então, mover-se uma
        palavra para trás no exemplo anterior irá pôr o cursor na primeira letra
@@ -700,7 +700,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
 	    <row>
 	      <entry>Ctrl-x Backspace</entry>
 	      <entry>
-		Exclui todos os caractres na linha até a posição atual do cursor.
+		Exclui todos os caracteres na linha até a posição atual do cursor.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -780,7 +780,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
     <title>Caracteres coringa</title>
 
     <para>
-      A maioria dos shells, incluindo Bash e o ksh, dão suporte a caractres
+      A maioria dos shells, incluindo Bash e o ksh, dão suporte a caracteres
       coringa.  Coringas são caracteres especiais que podem ser usados para
       fazer casamento de padrões.  A tabela listada abaixo mostra alguns dos
       coringas mais comumente utilizados.  Vamos dar uma olhada em alguns
@@ -907,7 +907,7 @@ $ <userinput>rm in*</userinput>
     <para>
       Você pode ver <emphasis>stdin</emphasis> e <emphasis>stdout</emphasis> em
       ação com o comando <command>cat</command>.  Se o cat for iniciado sem
-      quaiquer parâmetros ele irá apenas arguardar pela entrada em
+      quaisquer parâmetros ele irá apenas aguardar pela entrada em
       <emphasis>stdin</emphasis> e dar saída nos mesmos dados em 
       <emphasis>stdout</emphasis>.  Se nenhum redirecionamento for usado, a
       entrada do teclado será usada como <emphasis>stdin</emphasis>, e a saída
