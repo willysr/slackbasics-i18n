@@ -64,7 +64,7 @@
       <para>
           <xref linkend="chap-procmgmt-theory-proc-struct" /> lista os campos mais
           importantes onde o kernel armazena informações sobre processos. Cada processo
-          pode ser identificado exclusivamente pelo seu <emphasis>PID</emphasis> <foreignphrase>(process identifier)<foreignphrase>,
+          pode ser identificado exclusivamente pelo seu <emphasis>PID</emphasis> <foreignphrase>(process identifier)</foreignphrase>,
           que é nada mais do que um número (sempre positivo).
           Como veremos mais adiante, um usuário pode facilmente saber o PID de um processo.
           Cada processo é associado a um <emphasis>UID</emphasis> (user ID) e a um <emphasis>GID</emphasis> (group ID) no sistema.
@@ -73,25 +73,8 @@
           processo opera. Normalmente o UID real é igual ao UID efetivo, mas alguns programas
           pedem ao sistema que troque seu UID efetivo. O UID efetivo é usado para controle de acesso. Isto
           significa que se um usuário chamado joe executar um comando, ele apenas poderá arquivos onde
-          joe tenha permissão de leitura.  
-          lists the
-	most important fields of information that a kernel stores
-	about a process. Each process can be identified uniquely by
-	its <emphasis>PID</emphasis> (process identifier), which is an
-	unsigned number. As we will see later, a user can easily
-	retrieve the PID of a process. Each process is associated with
-	a <emphasis>UID</emphasis> (user ID) and
-	<emphasis>GID</emphasis> (group ID) on the system. Each
-	process has a <emphasis>real UID</emphasis>, which is the UID
-	as which the process was started, and the <emphasis>effective
-	UID</emphasis>, which is the UID as which the process
-	operates. Normally, the effective UID is equal to the real
-	UID, but some programs ask the system to change its effective
-	UID. The effective UID determines is used for access
-	control. This means that if a user named joe starts a command,
-	say less, less can only open files that joe has read rights
-	for. In parallel, a process also has an <emphasis>real
-	GID</emphasis> and an <emphasis>effective GID</emphasis>.
+          joe tenha permissão de leitura.  Além disso, um processo também tem
+          um <emphasis>GID real</emphasis> e um <emphasis>GID efetivo</emphasis>.
       </para>
 
       <para>
