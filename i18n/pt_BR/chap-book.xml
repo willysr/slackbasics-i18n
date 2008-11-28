@@ -6,24 +6,24 @@
 
     <para>
       Este livro foi escrito em DocBook/XML, e convertido para HTML e 
-      XSL:FO com <command>xsltproc</command>. A ˙ltima vers„o 
-      deste livro est· disponÌvel em: <ulink
+      XSL:FO com <command>xsltproc</command>. A √∫ltima vers√£o 
+      deste livro est√° dispon√≠vel em: <ulink
       url="http://www.slackbasics.org/" />.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-book-conventions">
-    <title>ConvenÁıes</title>
+    <title>Conven√ß√µes</title>
 
     <para>
-      Esta seÁ„o d· um breve resumo das convenÁıes utilizadas neste livro.
+      Esta se√ß√£o d√° um breve resumo das conven√ß√µes utilizadas neste livro.
     </para>
 
     <sect2 xml:id="chap-book-conventions-filenames">
       <title>Nomes de arquivos</title>
 
       <para>
-	Nomes de arquivos ou diretÛrios s„o mostrados como:
+	Nomes de arquivos ou diret√≥rios s√£o mostrados como:
 	<filename>/caminho/para/arquivo</filename>. Por exemplo:
 	<filename>/etc/fstab</filename>
       </para>
@@ -33,36 +33,36 @@
       <title>Comandos</title>
 
       <para>
-	Comandos s„o mostrados em negrito. Por exemplo: <command>ls
+	Comandos s√£o mostrados em negrito. Por exemplo: <command>ls
 	-l</command>
       </para>
     </sect2>
 
     <sect2 xml:id="chap-book-conventions-screenoutput">
-      <title>Impressıes de tela</title>
+      <title>Impress√µes de tela</title>
 
       <para>
-	Impressıes de tela s„o mostradas assim:
+	Impress√µes de tela s√£o mostradas assim:
       </para>
 
       <screen>
-Ol· mundo!
+Ol√° mundo!
       </screen>
 
       <para>
 	Se algum comando tem que ser digitado na tela, o comando
-	ser· mostrado em negrito:
+	ser√° mostrado em negrito:
       </para>
 
       <screen>
 $ <command>comando</command>
-SaÌda
+Sa√≠da
       </screen>
 
       <para>
-	Se um comando for executado como root, o shell ir· mostrar um
-	<quote>#</quote>. Se o comando for executado como um usu·rio
-	normal, o shell ir· mostrar um <quote>$</quote>.
+	Se um comando for executado como root, o shell ir√° mostrar um
+	<quote>#</quote>. Se o comando for executado como um usu√°rio
+	normal, o shell ir√° mostrar um <quote>$</quote>.
       </para>
     </sect2>
 
@@ -70,14 +70,14 @@ SaÌda
       <title>Notas</title>
 
       <para>
-	Algumas seÁıes contÈm notas extras. N„o È necess·rio ler estas
-	notas, mas elas podem prover informaÁıes ˙teis. Notas s„o
+	Algumas se√ß√µes cont√©m notas extras. N√£o √© necess√°rio ler estas
+	notas, mas elas podem prover informa√ß√µes √∫teis. Notas s√£o
 	mostradas assim:
       </para>
 
       <note>
 	<para>
-	  Isto È uma nota.
+	  Isto √© uma nota.
 	</para>
       </note>
     </sect2>
