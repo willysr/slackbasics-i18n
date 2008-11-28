@@ -16,9 +16,9 @@
       that Slackware Linux uses. sendmail was originally written by Eric
       Allman, who still maintains sendmail. The primary role of the sendmail
       MTA is delivering messages, either locally or remotely. Delivery
-      is usually done through the SMTP protocol. The means that sendmail
+      is usually done through the SMTP protocol. This means that sendmail
       can accept e-mail from remote sites through the SMTP port, and that
-      sendmail delivers site destined for remote sites to other SMTP
+      sendmail delivers mail destined for remote sites to other SMTP
       servers.
     </para>
   </sect1>
@@ -226,7 +226,7 @@ john.doe@mail.example.org        john
         also possible to deliver some e-mail destined for a domain
         that is hosted on the server to another e-mail address,
         by specifying the e-mail address to deliver the e-mail to
-        in the second in the second column. For example:
+        in the second column. For example:
       </para>
 
       <screen>
