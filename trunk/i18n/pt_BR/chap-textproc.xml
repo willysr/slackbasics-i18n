@@ -6,36 +6,36 @@
   <title>Processamento de Texto</title>
 
   <para>
-    A manipulação de texto é algo que é o UNIX faz bem, isso porque
-    é parte do coração de sua filosofia, como descrito em
+    A manipulaÃ§Ã£o de texto Ã© algo que Ã© o UNIX faz bem, isso porque
+    Ã© parte do coraÃ§Ã£o de sua filosofia, como descrito em
     <xref linkend="chap-intro-unix" />. A maioria dos comandos UNIX
-    são programas simples que lêem dados da entrada padrão,
-    realizam algumas operações nestes e enviam o resultado para a
-    saída padrão. Esses programas agem basicamente como filtros, que
-    podem se conectar como um duto. Isso permite que o usuário
+    sÃ£o programas simples que lÃªem dados da entrada padrÃ£o,
+    realizam algumas operaÃ§Ãµes nestes e enviam o resultado para a
+    saÃ­da padrÃ£o. Esses programas agem basicamente como filtros, que
+    podem se conectar como um duto. Isso permite que o usuÃ¡rio
     empregue as ferramentas UNIX de modo que seus criadores
-    nunca tenham vislumbrado. Nos capítulos seguintes veremos como
-    você pode construir filtros simples para si mesmo.
+    nunca tenham vislumbrado. Nos capÃ­tulos seguintes veremos como
+    vocÃª pode construir filtros simples para si mesmo.
     <!-- XXX - xref -->
   </para>
 
   <para>
-    Este capítulo descreve alguns comandos UNIX simples, mas
-    importantes, que podem ser utilizados para a manipulação de texto.
-    Depois disso, veremos as expressões regulares, uma sublinguagem
-    que pode ser utilizada para encontrar padrões de correspondência
+    Este capÃ­tulo descreve alguns comandos UNIX simples, mas
+    importantes, que podem ser utilizados para a manipulaÃ§Ã£o de texto.
+    Depois disso, veremos as expressÃµes regulares, uma sub-linguagem
+    que pode ser utilizada para encontrar padrÃµes de correspondÃªncia
     em textos.
   </para>
 
   <sect1 xml:id="chap-textproc-simple">
-    <title>Manipulação simples de texto</title>
+    <title>ManipulaÃ§Ã£o simples de texto</title>
 
     <sect2 xml:id="chap-textproc-simple-cat">
       <title>Repetindo o que foi dito</title>
 
       <para>
-    O filtro de texto mais simples é o <command>cat</command>, ele
-    não faz mais que enviar os dados da stdin para a stdout:
+    O filtro de texto mais simples Ã© o <command>cat</command>, ele
+    nÃ£o faz mais que enviar os dados da stdin para a stdout:
       </para>
 
       <screen>
@@ -44,8 +44,8 @@ hello world
       </screen>
 
       <para>
-    Outra característica útil, é que você pode fazer com que ele
-    envie o conteúdo de um arquivo para a saída padrão:
+    Outra caracterÃ­stica Ãºtil, Ã© que vocÃª pode fazer com que ele
+    envie o conteÃºdo de um arquivo para a saÃ­da padrÃ£o:
       </para>
 
       <screen>
@@ -54,10 +54,10 @@ Hello, this is the content of file.txt
       </screen>
 
       <para>
-    <command>cat</command> faz o que seu nome diz quando múltiplos
-    arquivos são adicionados como seus argumentos. Ele concatena os
-    arquivos, no sentido de enviar o conteúdo de todos os arquivos
-    para a saída padrão, na mesma ordem em que foram especificados
+    <command>cat</command> faz o que seu nome diz quando mÃºltiplos
+    arquivos sÃ£o adicionados como seus argumentos. Ele concatena os
+    arquivos, no sentido de enviar o conteÃºdo de todos os arquivos
+    para a saÃ­da padrÃ£o, na mesma ordem em que foram especificados
     como argumento. O seguinte trecho de tela demonstra isso:
       </para>
 
@@ -70,19 +70,19 @@ Hello, this is the content of file2.txt
     </sect2>
 
     <sect2 xml:id="chap-textproc-simple-wc">
-      <title>Estatísticas de texto</title>
+      <title>EstatÃ­sticas de texto</title>
 
       <para>
-    O comando <command>wc</command> provê estatísticas sobre um
-    arquivo texto ou uma stream de texto. Sem parâmetros, irá imprimir
-    o número de linhas, o número de palavras e o número de bytes
-    respectivamente. Uma palavra é delimitada por um caractere de
-    espaço em branco ou uma sequência de caracteres em branco.
+    O comando <command>wc</command> provÃª estatÃ­sticas sobre um
+    arquivo texto ou uma stream de texto. Sem parÃ¢metros, irÃ¡ imprimir
+    o nÃºmero de linhas, o nÃºmero de palavras e o nÃºmero de bytes
+    respectivamente. Uma palavra Ã© delimitada por um caractere de
+    espaÃ§o em branco ou uma sequÃªncia de caracteres em branco.
       </para>
 
       <para>
-    O seguinte exemplo mostra o número de linhas, palavras e bytes no
-    exemplo canônico <quote>Hello world!</quote>:
+    O seguinte exemplo mostra o nÃºmero de linhas, palavras e bytes no
+    exemplo canÃ´nico <quote>Hello world!</quote>:
       </para>
 
       <screen>
@@ -91,12 +91,12 @@ $ <userinput>echo "Hello world!" | wc</userinput>
       </screen>
 
       <para>
-    Se quiser imprimir somente um desses componentes, você pode usar
-    um dos parâmetros <parameter class="command">-l</parameter>
+    Se quiser imprimir somente um desses componentes, vocÃª pode usar
+    um dos parÃ¢metros <parameter class="command">-l</parameter>
     (linhas), <parameter class="command">-w</parameter> (palavras) ou
     <parameter class="command">-c</parameter> (bytes).
-    Por enquanto, adicionando somente o parâmetro <parameter
-    class="command">-l</parameter> mostrará o número de linhas de um
+    Por enquanto, adicionando somente o parÃ¢metro <parameter
+    class="command">-l</parameter> mostrarÃ¡ o nÃºmero de linhas de um
     arquivo:
       </para>
 
@@ -106,7 +106,7 @@ $ <command>wc -l /usr/share/dict/words</command>
       </screen>
 
       <para>
-    Ou você pode imprimir campos adicionais adicionando o parâmetro:
+    Ou vocÃª pode imprimir campos adicionais adicionando o parÃ¢metro:
       </para>
 
       <screen>
@@ -115,8 +115,8 @@ $ <userinput>wc -lc /usr/share/dict/words</userinput>
       </screen>
 
       <para>
-    Note que, não importa a ordem em que as opções foram
-    especificadas, a ordem de saída será sempre a mesma (linhas,
+    Note que, nÃ£o importa a ordem em que as opÃ§Ãµes foram
+    especificadas, a ordem de saÃ­da serÃ¡ sempre a mesma (linhas,
     palavras, bytes).
       </para>
 
