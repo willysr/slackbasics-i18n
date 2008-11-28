@@ -60,7 +60,7 @@ ajudá-lo a rastrear essas portas que estiverem abertas, e fechá-las.
 
 <para>
 Portas abertas podem ser encontradas com o auxílio de um varredor de
-portas (<foreignphrase>port scanner</foreignphrase>).  Provavelmente o
+portas (port scanner).  Provavelmente o
 varredor de portais mais famoso para GNU/Linux seja o
 <command>nmap</command>.  O <command>nmap</command> está disponível
 dentro da série <quote>n</quote> dos discos de instalação.

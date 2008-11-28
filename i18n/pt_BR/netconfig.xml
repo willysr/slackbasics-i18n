@@ -261,7 +261,7 @@ Por Exemplo:
 </sect1>
 
 <sect1>
-<title>Interfaces de Rede Sem Fio (<foreignphrase>Wireless</foreignphrase>)</title>
+<title>Interfaces de Rede Sem Fio (Wireless)</title>
 
 <para>
 As interfaces de rede sem fio geralmente requerem algumas configurações
@@ -371,7 +371,7 @@ eth1      IEEE 802.11-DS  ESSID:"home"  Nickname:"HERMES I"
 <sect1>
 <title>Resolvendo nomes</title>
 
-<bridgehead>nome de host (<foreignphrase>hostname</foreignphrase></bridgehead>
+<bridgehead>nome de host (hostname)</bridgehead>
 
 <para>
 Cada computador na internet tem um nome de host. Se você não tiver um
@@ -429,7 +429,7 @@ fec0:0:0:bebe::2	flux.slackfans.org
 
 <para>
 Perceba que <quote>::1</quote> é o endereço padrão de
-<foreignphrase>loopback</foreignphrase> para IPv6.
+loopback para IPv6.
 </para>
 
 <bridgehead>/etc/resolv.conf</bridgehead>
@@ -459,7 +459,7 @@ o website de seu provedor de internet.
 </sect1>
 
 <sect1>
-<title>Redirecionamentos IPv4 (<foreignphrase>IPv4 Forwarding</foreignphrase>)</title>
+<title>Redirecionamentos IPv4 (IPv4 Forwarding)</title>
 
 <para>
 IPv4 forwarding conecta duas ou mais redes, enviando pacotes que
@@ -515,7 +515,7 @@ Muito Cuidado! Por padrão, não há nenhum filtro de pacotes. O que
 significa que outras pessoas poderão acessar as demais redes. O tráfego pode
 ser filtrado e registrado com o filtro de pacotes iptables. O iptables
 pode ser administrado através do comando <command>iptables</command>.
-NAT (<foreignphrase>Network Address Translation</foreignphrase> ou
+NAT (Network Address Translation ou
 tradução de endereços de rede) também é um subconjunto do iptables
 e pode ser controlado e habilitado através do comando
 <command>iptables</command>. NAT torna possível <quote>ocultar</quote>

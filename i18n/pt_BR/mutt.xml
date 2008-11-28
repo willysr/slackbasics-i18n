@@ -9,7 +9,7 @@
     <title>Introdução</title>
 
     <indexterm><primary>MUA</primary></indexterm>
-    <indexterm><primary>Agente Usuário de Correio (<foreignphrase>Mail User Agent</foreignphrase>)</primary></indexterm>
+    <indexterm><primary>Agente Usuário de Correio (Mail User Agent)</primary></indexterm>
 
     <para>
       O mutt é um agente usuário de correio (<acronym>MUA</acronym>) que
@@ -200,11 +200,11 @@ set sendmail="/usr/bin/msmtp"
 
     <para>
       Normalmente, o mutt lê o e-mail a partir do
-      <foreignphrase>spool</foreignphrase> da caixa de entrada local do
+      spool da caixa de entrada local do
       usuário.  No entanto, o mutt também dá suporte a caixas de entrada
       tipo IMAP.  <acronym>IMAP</acronym> (o Protocolo de Acesso a
-      Mensagens via Internet <foreignphrase>Internet Message Access
-      Protocol</foreignphrase>) é um protocolo que é usado para acessar
+      Mensagens via Internet (Internet Message Access
+      Protocol) é um protocolo que é usado para acessar
       mensagens de e-mail a partir de um servidor remoto, e é suportado
       por muitos servidores de e-mail.  O mutt utiliza o seguinte
       formato de URL para representar servidores IMAP:

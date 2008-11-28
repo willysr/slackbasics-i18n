@@ -125,10 +125,10 @@
       Discos com hardware ATA têm dispositivos nomeados da seguinte
       forma: <filename>/dev/hdn</filename>, sendo <quote>n</quote>
       substituído por um caracter.  P.ex., o disco <quote>primário
-      mestre</quote> (<foreignphrase>primary master</foreignphrase>) é
+      mestre</quote> (primary master) é
       chamado <filename>/dev/hda</filename>, enquanto que o
-      <quote>secundário escravo</quote> (<foreignphrase>secondary
-      slave</foreignphrase>) é chamado <filename>/dev/hdd</filename>.
+      <quote>secundário escravo</quote> (secondary
+      slave) é chamado <filename>/dev/hdd</filename>.
       Discos SCSI são nomeados da seguinte forma:
       <filename>/dev/sdn</filename>, sendo <quote>n</quote> substituído
       por um caracter de dispositivo (com o primeiro disco SCSI = a, e
@@ -171,7 +171,7 @@
 
     <para>
       A criação de uma partição de troca
-      (<foreignphrase>swap</foreignphrase>) envolve os mesmos passos que
+      (swap) envolve os mesmos passos que
       uma partição Linux normal, mas o tipo da partição deve ser trocado
       para <quote>Linux Swap</quote> depois que a partição for criada.
       O tamanho sugerido para uma partição de swap depende de suas
@@ -265,7 +265,7 @@
       Depois de selecionar uma partição, a ferramenta setup irá
       perguntar se você quer formatar uma partição ou não, e se você
       quiser formatá-la, se quer também verificar o disco em busca de
-      setores defeituosos (<foreignphrase>bad blocks</foreignphrase>) ou
+      setores defeituosos (bad blocks) ou
       não (<xref linkend="chap-install-installing-fscheck"/>).
       Verificar setores defeituosos no disco pode levar muito tempo.
     </para>
@@ -285,7 +285,7 @@
       linkend="chap-install-installing-filesystem"/>).  Normalmente você
       pode escolher os tipos ext2, ext3 ou reiserfs.  Ext2 foi o sistema
       de arquivos padrão do Linux por muitos anos, mas não suporta o
-      recurso de <foreignphrase>journaling</foreignphrase>.  Um journal
+      recurso de journaling.  Um journal
       é um arquivo especial ou área na partição nos quais todas as
       operações do sistema de arquivos são registradas.  Quando o
       sistema tiver um problema, o sistema de arquivos pode ser reparado
@@ -323,7 +323,7 @@
       menor.  Além do que, é mais seguro criar um sistema de arquivos em
       separado para <filename>/home</filename>.  Se um programa tiver
       uma vulnerabilidade de segurança, um usuário poderia criar um
-      <foreignphrase>hard link</foreignphrase> para o binário daquele
+      hard link para o binário daquele
       programa, se o diretório <filename>/home</filename> estiver no
       mesmo sistema de arquivos que os diretórios
       <filename>/{s}bin</filename> <filename>/usr/{s}bin</filename>, ou
@@ -598,7 +598,7 @@
       Neste ponto será solicitado a você informar o nome do host (<xref
       linkend="chap-install-installing-hostname" />).  Por favor,
       observe que este não é o nome de domínio completamente qualificado
-      (<foreignphrase>fully qualified domain name</foreignphrase>,
+      (fully qualified domain name,
       FQDN), mas apenas a parte que representa o host (normalmente, os
       caracteres antes do primeiro ponto em um FQDN).
     </para>

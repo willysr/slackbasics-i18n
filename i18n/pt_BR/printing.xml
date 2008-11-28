@@ -152,8 +152,8 @@ ifhp
     <para>
       O sistema de impressão CUPS oferece uma interface de configuração
       web, e acesso a impressoras remotas por meio do Protocolo de
-      Impressão via Internet (<foreignphrase>Internet Printing
-      Protocol</foreignphrase>, <acronym>IPP</acronym>).  Os arquivos de
+      Impressão via Internet (Internet Printing
+      Protocol, <acronym>IPP</acronym>).  Os arquivos de
       configuração do CUPS permitem que você configure controle de
       acesso mais detalhado para impressoras.  Por padrão, o acesso às
       impressoras é limitado apenas ao <emphasis>localhost</emphasis>
@@ -231,7 +231,7 @@ Allow From 192.168.1.203
       Ghostscript é usado para converter PostScript e PDF para formatos
       rasterizados que podem ser exibidos na tela ou imprimidos.  Muitos
       programas UNIX geram saídas em PostScript, o
-      <foreignphrase>spooler</foreignphrase> do CUPS usa GhostScript
+      spooler do CUPS usa GhostScript
       para converter este PostScript para o formato rasterizado que uma
       impressora entenda.
     </para>
@@ -281,8 +281,8 @@ Allow From 192.168.1.203
       Também é possível usar outro tamanho de papel além de Carta ou A4
       substituindo <emphasis>a4</emphasis> no exemplo acima pelo tamanho
       de papel que você quer usar.  Por exemplo, você pode configurar o
-      tamanho de papel padrão para Ofício US (<foreignphrase>Legal
-      US</foreignphrase>):
+      tamanho de papel padrão para Ofício US (Legal
+      US):
     </para>
 
     <screen>

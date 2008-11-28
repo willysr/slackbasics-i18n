@@ -75,7 +75,7 @@ $ <userinput>startx</userinput>
 
     <para>
       A <quote>aparência e comportamento</quote>
-      (<foreignphrase>look-and-feel</foreignphrase>) do X11 é gerenciada
+      (look-and-feel) do X11 é gerenciada
       por um, assim chamado, gerenciador de janelas.  O Slackware Linux
       dispõe dos seguintes gerenciadores de janelas, que são os mais
       largamente usados:

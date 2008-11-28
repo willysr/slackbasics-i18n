@@ -51,19 +51,19 @@
     <para>
         De fato existem dois modos de operação: <emphasis>transport mode</emphasis> é usado
         para encriptar conexões normais entre dois hosts, <emphasis>tunnel mode</emphasis> encapsula
-        o pacote original em um novo cabeçalho. Neste capítulo nós vamos ver o <foreignphrase>transport mode</foreignphrase>
+        o pacote original em um novo cabeçalho. Neste capítulo nós vamos ver o transport mode
         porque o principal motivo deste capítulo é mostrar como configurar uma conexão segura entre dois hosts.
     </para>
 
     <para>
       Existem também dois principais métodos de autenticação. Você pode usar
-      chaves manuais ou um daemon <foreignphrase>Internet Key Exchange (IKE)</foreignphrase> 
-      como por exemplo o <foreignphrase>racoon</foreignphrase> que troca chaves
+      chaves manuais ou um daemon Internet Key Exchange (IKE) 
+      como por exemplo o racoon que troca chaves
       automaticamente entre dois hosts. Em ambos os casos você vai precisar configurar
-      uma política de segurança no <foreignphrase>Security Policy Database (SPD)</foreignphrase>.
+      uma política de segurança no Security Policy Database (SPD).
       Esse banco de dados é usado pelo kernel para decidir qual tipo de política
       é necessária para se comunicar com outro host. Se você optou por utilizar chaves
-      manuais, você também precisará configurar o banco de dados <foreignphrase>Security Association Database (SAD)</foreignphrase>
+      manuais, você também precisará configurar o banco de dados Security Association Database (SAD)
       para especificar qual algoritmo de encriptação e chave deverão ser utilizados para uma comunicação
       segura com outro host. Se você usar o daemon IKE as associações de segurança serão automaticamente estabelecidas.
     </para>
@@ -105,10 +105,10 @@ CONFIG_INET_IPCOMP=m
         Neste capítulo nós vamos apenas usar as modificações AH e ESP, mas 
         não é uma má idéia habilitar as modificações IPComp para futuras configurações do IPsec.
         Além do suporte ao protocolos IPsec você precisa compilar o suporte no kernel aos 
-        algoritmos de encriptação e <foreignphrase>hashing</foreignphrase> que serão utilizados
-        pelo AH e ESP. O suporte para esses algoritmos (tanto como módulo ou <foreignphrase>built-in</foreignphrase>) 
+        algoritmos de encriptação e hashing que serão utilizados
+        pelo AH e ESP. O suporte para esses algoritmos (tanto como módulo ou built-in) 
         pode ser habilitado nas várias opções <emphasis>CONFIG_CRYPTO</emphasis>. Não há mal nenhum
-        em compilar todos algoritmos de encriptação e <foreignphrase>hashing</foreignphrase> como módulo.
+        em compilar todos algoritmos de encriptação e hashing como módulo.
     </para>
 
     <para>
@@ -128,7 +128,7 @@ CONFIG_INET_IPCOMP=m
     <para>
       O próximo passo é instalar o pacote
       <ulink url="http://ipsec-tools.sourceforge.net">IPsec-Tools</ulink>.
-      Essas ferramentas são <foreignphrase>ports</foreignphrase> dos utilitários IPsec em <ulink url="http://www.kame.net">KAME</ulink>.
+      Essas ferramentas são ports dos utilitários IPsec em <ulink url="http://www.kame.net">KAME</ulink>.
       Faça o download do último código fonte, descompacte, configure e instale.
     </para>
 
@@ -158,15 +158,15 @@ CONFIG_INET_IPCOMP=m
         <listitem>
 	  <para>
 	    <emphasis>--enable-dpd</emphasis>: habilita 
-        o <foreignphrase>dead peer detection (DPD)</foreignphrase>. O DPD é um método
+        o dead peer detection (DPD). O DPD é um método
         para detectar se algum dos hosts associados na comunicação segura está indisponível.
         Quando isso acontece a associação desse host pode ser removida.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-          <emphasis>--enable-natt</emphasis>: habilita o <foreignphrase>NAT traversal
-          (NAT-T)</foreignphrase>. Como o NAT alterar o cabeçalho IP, isso pode gerar
+          <emphasis>--enable-natt</emphasis>: habilita o NAT traversal
+          (NAT-T). Como o NAT alterar o cabeçalho IP, isso pode gerar
           problemas para garantir a autenticidade de um pacote. O NAT-T é um método que ajuda
           a superar esse problema. Configurar o NAT-T está além do escopo deste artigo.
 	  </para>
@@ -226,7 +226,7 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
 
       <para>
         A primeira linha (uma linha termina com um <quote>;</quote>) adiciona
-        uma chave para a verificação (<foreignphrase>checksumming</foreignphrase>) de cabeçalho
+        uma chave para a verificação (checksumming) de cabeçalho
         para os pacotes do 192.168.1.1 que vão para 192.168.169. A segunda linha faz a 
         mesma coisa com os pacotes de 192.168.1.169 que vão para 192.168.1.1.
         A terceira e quarta linha definem as chaves para encriptação de dados 

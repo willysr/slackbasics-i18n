@@ -9,7 +9,7 @@
     <title>Introdução</title>
 
     <indexterm><primary>MTA</primary></indexterm>
-    <indexterm><primary>Agente de Transferência de Correio (<foreignphrase>Mail Transfer Agent</foreignphrase>)</primary></indexterm>
+    <indexterm><primary>Agente de Transferência de Correio (Mail Transfer Agent)</primary></indexterm>
 
     <para>
       O Sendmail é o Agente de Transferência de Correio

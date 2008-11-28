@@ -249,8 +249,7 @@ other::---
     Para tornar as coisas ainda mais complexas (e mais sofisticadas),
     alguns sistemas GNU/Linux adicionam controle de acesso ainda mais
     específico por meio de Frameworks de Controle de Acesso Obrigatório
-    (<foreignphrase>Mandatory Access Control Frameworks,
-    MAC</foreignphrase>) como o SELinux e o AppArmor.  Mas estes
+    (Mandatory Access Control Frameworks, MAC) como o SELinux e o AppArmor.  Mas estes
     frameworks de controle de acesso estão fora do escopo deste livro.
       </para>
     </sect2>
@@ -260,7 +259,7 @@ other::---
 
       <para>
     Uma entrada de diretório que aponta para um inode é chamada de
-    <emphasis><foreignphrase>hard link</foreignphrase></emphasis>.
+    <emphasis>hard link</emphasis>.
     Muitos arquivos possuem apenas um único link, mas nada lhe impede de
     criar mais de um link para o arquivo.  Isto irá incrementar o campo
     <emphasis>links_count</emphasis> do inode.  Esta é uma bela maneira
@@ -304,7 +303,7 @@ other::---
         operacional irá seguir o caminho daquele link.  Links simbólicos
         também podem se referir a arquivos que não existem, uma vez que
         contém apenas um nome.  Links deste tipo são chamados de
-        <foreignphrase>dangling links</foreignphrase>.
+        dangling links.
       </para>
 
       <figure xml:id="chap-filesystems-introduction-links-symlink">
@@ -521,8 +520,8 @@ $ <userinput>file -L /usr/X11R6/bin/X</userinput>
     hexadecimal <emphasis>0xcafebabe</emphasis><footnote>
         <para>Sim, você pode ser criativo com os números mágicos
         também!</para> </footnote>, é um arquivo que contém dados
-        compilados de uma classe Java (<quote><foreignphrase>compiled
-        Java class data</foreignphrase></quote>).  o número curto que se
+        compilados de uma classe Java (<quote>compiled
+        Java class data</quote>).  o número curto que se
         segue determina a versão do formato do arquivo class.
       </para>
     </sect2>
@@ -572,7 +571,7 @@ $ <userinput>cksum myfile</userinput>
     com <filename>cat note.txt</filename>.  Ainda que alguns sistemas e
     muitos emuladores de terminal tenham suporte a barras de rolagem,
     esta não é uma maneira prática de visualizar arquivos grandes.  Você
-    pode criar um duto (<foreignphrase>pipe</foreignphrase>) com a saída
+    pode criar um duto (pipe) com a saída
     do <command>cat</command> para o paginador <command>less</command>:
       </para>
 
@@ -1832,7 +1831,7 @@ $ <userinput>setfacl -b -M ref report2.txt</userinput>
 
       <para>
         É claro, não é necessário sequer usar este arquivo por completo.
-        Podemos canalizar (<foreignphrase>pipe</foreignphrase>) a saída
+        Podemos canalizar (pipe) a saída
         de <command>getfacl</command> diretamente para
         <command>setfacl</command>, usando o nome simbólico para a
         entrada padrão (<emphasis>-</emphasis>), ao invés de um nome de
@@ -3047,7 +3046,7 @@ proc             /proc            proc        defaults         0   0
     <para>
       Se <quote>fs_freq</quote> for definido para o valor 1 ou mais
       alto, ele indica depois de quantos dias um despejo
-      (<foreignphrase>dump</foreignphrase>, backup) será feito.  Esta
+      (dump, backup) será feito.  Esta
       opção só é usada quando o <ulink
       url="http://dump.sourceforge.net/">dump</ulink> está instalado e
       configurado adequadamente para manipular este campo do arquivo.
@@ -3340,7 +3339,7 @@ $ <userinput>gpg --output key.gpg --export john@doe.com</userinput>
       <para>
     Isto salva a chave num formato binário.  Quase sempre é mais
     conveniente usar a assim chamada <quote>saída codificada em
-    ASCII</quote> (<foreignphrase>ASCII armored</foreignphrase>), a qual
+    ASCII</quote> (ASCII armored), a qual
     é mais adequada para publicação da chave em e-mails ou websites.
     Você exporta uma versão codificada em ASCII da chave adicionando o
     parâmetro <parameter class="command">--armor</parameter>:

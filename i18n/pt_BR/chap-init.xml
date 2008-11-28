@@ -11,7 +11,7 @@
   </para>
 
   <sect1 xml:id="chap-init-lilo">
-    <title><foreignphrase>Bootloader</foreignphrase>, o carregador de
+    <title>Bootloader, o carregador de
       inicialização</title>
 
     <para>
@@ -30,7 +30,7 @@
       que é o que efetivamente faz o trabalho. O carregador de
       inicialização é dividido em duas etapas em máquinas x86 porque a
       BIOS só pode carregar um setor (assim chamado, setor de
-      inicialização (<foreignphrase>boot</foreignphrase>) que só tem 512
+      inicialização (boot) que só tem 512
       bytes de tamanho.
     </para>
 
@@ -211,7 +211,7 @@ Added Slack
       O arquivo <filename>/etc/inittab</filename> é muito bem
       documentado. Ele especifica que scripts o sistema deve executar
       nos diferentes níveis de execução
-      (<foreignphrase>runlevels</foreignphrase>). Um nível de execução
+      (runlevels). Um nível de execução
       é um estado em que o sistema está executando. Por exemplo, o
       runlevel 1 é o modo monousuário, e o runlevel 3 é o modo
       multiusuário. Vamos dar uma rápida olhada em uma linha do
@@ -363,7 +363,7 @@ fi
 
   <sect1 xml:id="chap-init-udev">
     <title>Conexão <quote>a quente</quote>
-      (<foreignphrase>hotplugging</foreignphrase>) e gerenciamento de
+      (hotplugging) e gerenciamento de
       nós de dispositivos</title>
 
     <para>
@@ -403,7 +403,7 @@ fi
     <para>
       Se o udev carregar automaticamente módulos que você não quiser
       carregar, você pode adicionar uma <emphasis>lista negra</emphasis>
-      (<foreignphrase>blacklist</foreignphrase>) na configuração de seu
+      (blacklist) na configuração de seu
       <command>modprobe</command> em
       <filename>/etc/modprobe.d/blacklist</filename>. Por exemplo, se
       você quiser evitar o carregamento do módulo
