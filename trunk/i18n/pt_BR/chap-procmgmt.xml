@@ -64,7 +64,7 @@
       <para>
           <xref linkend="chap-procmgmt-theory-proc-struct" /> lista os campos mais
           importantes onde o kernel armazena informações sobre processos. Cada processo
-          pode ser identificado exclusivamente pelo seu <emphasis>PID</emphasis> <foreignphrase>(process identifier)</foreignphrase>,
+          pode ser identificado exclusivamente pelo seu <emphasis>PID</emphasis> (process identifier),
           que é nada mais do que um número (sempre positivo).
           Como veremos mais adiante, um usuário pode facilmente saber o PID de um processo.
           Cada processo é associado a um <emphasis>UID</emphasis> (user ID) e a um <emphasis>GID</emphasis> (group ID) no sistema.

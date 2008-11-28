@@ -287,7 +287,7 @@ procs -----------memory---------- ---swap-- -----io---- --system-- ----cpu----
         <listitem>
           <para>
             <emphasis>si</emphasis>: O total de memória que é trazida
-	    (<foreignphrase>swapped</foreignphrase>) a partir do disco
+	    (swapped) a partir do disco
 	    por segundo.
           </para>
         </listitem>

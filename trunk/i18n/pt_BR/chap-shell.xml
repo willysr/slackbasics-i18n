@@ -970,11 +970,11 @@ $ <userinput>md5sum &lt; test1</userinput>
       <para>
        Você também pode conectar a entrada e a saída de comando usando os assim
        chamados <emphasis>dutos</emphasis> (em inglês,
-       <foreignphrase>pipes</foreignphrase>).  Um duto entre comandos pode ser
+       pipes).  Um duto entre comandos pode ser
        feito com o caractere <quote>|</quote>.  A combinação de dois ou mais
        comandos é chamada de
        <emphasis>canalização</emphasis> (ou
-       <foreignphrase>pipeline</foreignphrase>, em inglês).   <xref
+       pipeline, em inglês).   <xref
        linkend="fig-shell-pipeline" /> exibe uma visão geral como um diagrama
        de uma canalização de dois comandos.
       </para>
