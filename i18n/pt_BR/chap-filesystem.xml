@@ -3325,10 +3325,10 @@ Command&gt; <userinput>save</userinput>
     idéia especificar o parâmetro <parameter
     class="command">--output</parameter>, isto irá salvar a chave em um
     arquivo.  O comando a seguir deveria salvar a chave pública de
-    <emphasis>John Doe</emphasis><footnote>N.T.: John Doe é um nome
+    <emphasis>John Doe</emphasis><footnote><para>N.T.: John Doe é um nome
     fictício genérico usado na língua inglesa para se referir a alguém
     inespecífico.  Algo mais ou menos equivalente ao nosso
-    <quote>João Ninguém</quote>.</footnote>, usado nos exemplos
+    <quote>João Ninguém</quote>.</para></footnote>, usado nos exemplos
     anteriores, para o arquivo <filename>key.gpg</filename>:
       </para>
 
