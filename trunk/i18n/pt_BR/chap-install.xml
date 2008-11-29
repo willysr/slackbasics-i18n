@@ -524,7 +524,7 @@
       deve ser instalado (<xref
       linkend="chap-install-installing-lilo-dest" />).
       <emphasis>MBR</emphasis> é o registro mestre de inicialização
-      (<foreignprase>master boot record</foreignprase>), o principal
+      (<foreignphrase>master boot record</foreignphrase>), o principal
       registro de inicialização dos PCs.  Use esta opção se você quiser
       usar o Slackware Linux como seu único SO, ou se você quer usar o
       LILO para inicializar outros sistemas operacionais.  A opção
