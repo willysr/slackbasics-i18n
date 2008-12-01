@@ -78,17 +78,16 @@
       </para>
 
       <para>
-	Many processes open files, the handle used to operate on a
-	file is called a <emphasis>file descriptor</emphasis>. The
-	kernel manages a list of open file descriptors for each
-	process. The <emphasis>fd</emphasis> field contains a pointer
-	to the list of open files. The <emphasis>vmspace</emphasis>
-	field points to the process address space of the process.
+          Muitos processos abrem arquivos. O <foreignphrase>handle</foreignphrase> utilizado
+          para operar o arquivo é chamado de descritor de arquivo. O kernel manipula
+          uma lista de descritores de arquivo para cada processo. O campo <emphasis>fd</emphasis> contém
+          um ponteiro para a lista de arquivos abertos. O campo <emphasis>vmspace</emphasis> aponta o espaço
+          de endereçamento do processo.
       </para>
 
       <!-- XXX - make more sophisticated (swap)? -->
       <figure xml:id="chap-procmgmt-theory-proc-procstates">
-	<title>Process states</title>
+	<title>Estados do Processo</title>
 
 	<mediaobject>
 	  <imageobject>
@@ -101,37 +100,31 @@
       </figure>
 
       <para>
-	Not every process is in need of CPU time at a given
-	moment. For instance, some processes maybe waiting for some
-	<emphasis>I/O</emphasis> (Input/Output) operation to complete
-	or may be terminated. Not taking subtleties in account,
-	processes are normally <emphasis>started</emphasis>,
-	<emphasis>running</emphasis>, <emphasis>ready</emphasis> (to
-	run), <emphasis>blocked</emphasis> (waiting for I/O), or
-	<emphasis>terminated</emphasis>. <xref
-	linkend="chap-procmgmt-theory-proc-procstates" /> shows the
-	lifecycle of a process. A process that is terminated, but for
-	which the process table entry is not reclaimed, is often
-	called a <emphasis>zombie process</emphasis>. Zombie processes
-	are useful to let the parent process read the exit status of
-	the process, or reserve the process table entry temporarily.
+    Nem todo processo precisa da CPU em um dado momento. Em um
+    determinado momento um(ns) processo(s) pode(m) estar aguardando o término de uma operação
+    de Entrada/Saída (<emphasis>I/O</emphasis>). 
+    Sem levar em consideração pequenos detalhes, os processos normalmente possuem os 
+    seguintes estados: <emphasis>iniciado</emphasis>, <emphasis>executando</emphasis>, <emphasis>bloqueado</emphasis>, 
+    <emphasis>pronto</emphasis> (para executar), <emphasis>bloqueado</emphasis> (aguardando por I/O) ou 
+    <emphasis>terminado</emphasis>.
+    <xref linkend="chap-procmgmt-theory-proc-procstates" /> mostra o ciclo de vida
+    de um processo. Um processo que é terminado mas cuja tabela de informações não foi
+    removida é normalmente chamado de <emphasis>processo zumbi</emphasis>. Processos
+    zumbi são úteis para permitir que o processo pai leia o status de saída do processo, ou 
+    então para reservar temporariamente a entrada na tabela de processos.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-procmgmt-theory-proc-new">
-      <title>Creating new processes</title>
+      <title>Criando novos processos</title>
 
       <para>
-	New processes are created with the <emphasis>fork()</emphasis>
-	system call. This system call copies the process address space
-	and process information of the caller, and gives the new
-	process, named the child process, a different PID. The child
-	process will continue execution at the same point as the
-	parent, but will get a different return value from the
-	<emphasis>fork()</emphasis> system call. Based on this return
-	value the code of the parent and child can decide how to
-	continue executing. The following piece of C code shows a
-	<emphasis>fork()</emphasis> call in action:
+    Novos processos são criados com a chamada de sistema (<foreignphrase>system call</foreignphrase>) <emphasis>fork()</emphasis>.
+    Essa chamada de sistema copia o espaço de endereçamento e informações do processo que a executou e cria o novo
+    processo, chamado processo filho, com um PID diferente. O processo filho continuará
+    a execução a partir do mesmo ponto que o processo pai, mas vai obter um valor de retorno diferente da chamada
+    de sistema <emphasis>fork()</emphasis>. Baseado nesse valor de retorno o processo pai
+    pode decidir como continuar a execução. O trecho de código C a seguir mostra como funciona uma chamada a <emphasis>form()</emphasis>: 
       </para>
 
       <programlisting>
@@ -151,18 +144,22 @@ int main() {
       </programlisting>
 
       <para>
-.	This little program calls <emphasis>fork()</emphasis>, storing
-	the return value of <emphasis>fork()</emphasis> in the
-	variable
-	<emphasis>pid</emphasis>. <emphasis>fork()</emphasis> returns
-	the value <emphasis>0</emphasis> to the child, and the PID of
-	the child to the parent. Since this is the case, we can use a
-	simple conditional structure to check the value of the
-	<emphasis>pid</emphasis> variable, and print an appropriate
-	message.
+          .	
+          Este pequeno programa executa a <emphasis>fork()</emphasis> e armazena
+          o valor retornado por <emphasis>fork()</emphasis> na variável pid. <emphasis>fork()</emphasis> o
+          valor <emphasis>0</emphasis> para o processo filho e o PID do processo filho para o processo pai.
+          Desde que isso tenha ocorrido, nós podemos uma simples estrutura condicional para verificar
+          o valor da variável <emphasis>pid</emphasis> e exibir a mensagem que for mais apropriada.
       </para>
 
       <para>
+    Você deve estar admirado em como é possível iniciar novos programas já
+    que a chamada a <emphasis>fork()</emphasis> duplica um processo existente. 
+    Essa é uma boa questão já que utilizando apenas <emphasis>fork()</emphasis> não é 
+    possível executar novos programas. O kernel UNIX fornece um conjunto de chamadas
+    de sistema, a começar pela <emphasis>exec</emphasis>, que carrega um novo programa no
+    no processo corrente. Nós dissemos no início deste capítulo que um processo
+   é um programa em execução 
 	You may wonder how it is possible to start new programs, since
 	the <emphasis>fork()</emphasis> call duplicates an existing
 	process. That is a good questions, since with
