@@ -17,10 +17,10 @@
       <title>Introdução</title>
 
       <para>
-        Uma das principais vantagens dos sistemas UNIX é a multitarefa. 
-        Multitarefa quer dizer que vários programas podem rodar ao mesmo 
-        tempo. Talvez você não saiba o quão isto é importante, porque a 
-        maioria das pessoas usam apenas uma aplicação por vez. A multitarefa 
+        Uma das principais vantagens dos sistemas UNIX é ser multitarefa. 
+        Isso quer dizer que vários programas podem rodar ao mesmo tempo. 
+        Talvez você não saiba o quão isto é importante, porque a 
+        maioria das pessoas usam apenas uma aplicação por vez. Isto 
         é uma necessidade vital para sistemas UNIX e derivados. Mesmo que 
         você não tenha iniciado nenhuma aplicação, existem programas que 
         rodam em segundo plano. Por exemplo, alguns programas provêm serviços 
@@ -44,38 +44,38 @@
       <para>
         Depois que o programa é carregado da mídia de armazenamento, 
         uma instância do programa é iniciado. Esta instância é 
-        chamada de <emphasis>process</emphasis>. Um processo tem 
-        A process has its own protected
-        memory, named the <emphasis>process address space</emphasis>.
-        The process address space has two important areas: the
-        <emphasis>text</emphasis> area and the
-        <emphasis>data</emphasis> area. The <emphasis>text</emphasis>
-        area is the actual program code; it is used to tell the system
-        what to do. The <emphasis>data</emphasis> area is used to
-        store constant and runtime data. The operating system gives
-        every process time to execute. On single processor systems
-        processes are not really running simultaneously. In reality a
-        smart scheduler in the kernel divides CPU time among
-        processes, giving the illusion that processes run
-        simultaneously. This process is called
-        <emphasis>time-sharing</emphasis>. On systems with more than
-        one CPU or CPU cores, more than one process can run
-        simultaneously, but time-sharing is still used to divide the
-        available CPU time among processes.
+        chamada de <emphasis>processo</emphasis>. Um processo têm o 
+        seu próprio espaço na memória, conhecido como 
+        <emphasis>espaço de endereçamento da memória</emphasis>.
+        Este espaço possui duas áreas importantes: a área de 
+        <emphasis>texto</emphasis> e a área de 
+        <emphasis>dados</emphasis>. A área de <emphasis>texto</emphasis>
+        é o código do programa. É usada para dizer ao sistema o que fazer. 
+        Já a área de <emphasis>dados</emphasis> é usada guardar constantes 
+        e dados de tempo de execução. O sistema operacional dá a cada 
+        processo um tempo para executar. Em sistemas com um único 
+        processador, os processos não rodam simultaneamente. Na verdade 
+        um pequeno gerenciador no kernel divide o tempo da CPU entre os 
+        processos, dando a ilusão de os processos estarem executando 
+        simultaneamente. Esta tarefa é chamada de 
+        <emphasis>time-sharing</emphasis>. Em sistemas com mais de uma 
+        CPU ou mais de um núcleo, mais de um processo pode rodar 
+        simultaneamente, mas mesmo assim o time-sharing é utilizado 
+        para dividir o tempo da CPU disponível entre os processos.
       </para>
 
       <para>
-        New processes are created by duplicating a running process
-        with the <command>fork</command> system call. <xref
-        linkend="fork" /> shows a fork() call in action
-        schematically. The parent process issues a fork() call. The
-        kernel will respond to this call by duplicating the process,
-        and naming one process the <emphasis>parent</emphasis>, and
-        the other process the <emphasis>child</emphasis>.
+        Novos processos são criados através da duplicação de processos 
+        existentes utilizando a chamada de sistema <command>fork</command>. 
+        <xref linkend="fork" /> mostra esquematicamente uma chamada 
+        fork() em ação. O processo pai solicita uma chamada fork(). O 
+        kernel irá responder a esta chamada duplicando o processo e 
+        nomeando um processo de <emphasis>pai</emphasis> e os outros 
+        processos de <emphasis>filhos</emphasis>.
       </para>
 
       <figure id="fork">
-        <title>Forking of a process</title>
+        <title>Duplicando um processo</title>
         <mediaobject>
           <imageobject>
             <imagedata fileref="../images/fork.png" format="PNG"/>
@@ -84,41 +84,42 @@
       </figure>
 
       <para>
-        Forking can be used by a program to create two processes that
-        can run simultaneously on multiprocessor machines. However,
-        this is often not ideal, because both processes will have
-        their own process address space.  The initial duplication of
-        the process memory takes relatively much time, and it is
-        difficult to share data between two processes. This problem is
-        solved by a concept named
-        <emphasis>multithreading</emphasis>. Multithreading means that
-        multiple instances of the text area can run at the same time,
-        sharing the data area. These instances, named threads, can be
-        executed in parallel on multiple CPUs.
+        A duplicação de processos pode ser usada para criar dois processos
+        que podem rodar simultaneamente em máquinas com mais de um 
+        processador. Entretanto, isto não é exatamente o ideal, porque 
+        ambos os processos terão o seu próprio espaço de endereçamento. A 
+        duplicação inicial da memória de um processo leva relativamente 
+        muito tempo, e é muito difícil compartilhar dados entre os processos. 
+        Este problema é resolvido com um conceito chamado 
+        <emphasis>multithreading</emphasis>. Multithreading quer dizer que
+        múltiplas instâncias de uma área de texto por rodar ao mesmo tempo, 
+        compartilhando a área de dados. Essas instâncias, chamadas de threads, 
+        podem ser executadas em paralelo em múltiplos processadores.
       </para>
     </sect2>
   </sect1>
 
   <sect1 id="concepts-fshierarchy">
-    <title>Filesystem hierarchy</title>
+    <title>Hierarquia do sistema de arquivos</title>
 
     <sect2 id="concepts-fshierarchy-structure">
-      <title>Structure</title>
+      <title>Estrutura</title>
 
       <para>
-        Operating systems store data in filesystems. A filesystem is
-        basically a tree-like structure of directories that hold
-        files, like the operating system, user programs and user
-        data. Most filesystems can also store various metadata about
-        files and directories, for instance access and modification
-        times. In GNU/Linux there is only one filesystem hierarchy, this
-        means GNU/Linux does not have drive letters (e.g. A:, C:, D:) for
-        different filesystems, like DOS and Windows. The filesystem
-        looks like a tree, with a root directory (which has no parent
-        directory), branches, and leaves (directories with no
-        subdirectories). The root directory is alway denoted with a
-        slash (<quote>/</quote>). Directories are separated by the
-        same character.
+        Sistemas operacionais guardam os dados em sistemas de arquivos. 
+        Um sistema de arquivos é basicamente diretórios em uma 
+        estrutura em forma similar à de uma árvore que guardam arquivos, 
+        como o sistema operacional, programas e dados do usuário. A 
+        maioria dos sistemas de arquivo podem guardar várias 
+        meta-informações sobre os arquivos e diretórios, como por exemplo 
+        a data de execução ou alteração. No GNU/Linux há apenas uma 
+        hierarquia no sistema de arquivos, isto quer dizer que não há 
+        letras para as mídias (e.g. A:, C:, D:) para diferentes sistemas 
+        de arquivos, como no DOS e no Windows. O sistema de arquivos é 
+        similar à uma árvore, com um diretório raiz (que não possui 
+        diretório pai), ramos e folhas (diretórios sem um subdiretório). 
+        O diretório raiz é sempre representado por uma barra (<quote>/</quote>). 
+        Eles são separados por este caracter também.
       </para>
 
       <figure id="filesystem-structure">
