@@ -153,30 +153,19 @@ int main() {
       </para>
 
       <para>
-    Você deve estar admirado em como é possível iniciar novos programas já
+    Você deve estar curioso para saber como é possível iniciar novos programas já
     que a chamada a <emphasis>fork()</emphasis> duplica um processo existente. 
-    Essa é uma boa questão já que utilizando apenas <emphasis>fork()</emphasis> não é 
-    possível executar novos programas. O kernel UNIX fornece um conjunto de chamadas
+    Essa é uma boa questão já que não é possível executar novos programas utilizando apenas <emphasis>fork()</emphasis>.
+    O kernel UNIX fornece um conjunto de chamadas
     de sistema, a começar pela <emphasis>exec</emphasis>, que carrega um novo programa no
-    no processo corrente. Nós dissemos no início deste capítulo que um processo
-   é um programa em execução 
-	You may wonder how it is possible to start new programs, since
-	the <emphasis>fork()</emphasis> call duplicates an existing
-	process. That is a good questions, since with
-	<emphasis>fork()</emphasis> alone, it is not possible to
-	execute new programs. UNIX kernels also provide a set of
-	system calls, starting with <emphasis>exec</emphasis>, that
-	load a new program image in the current process. We saw at the
-	start of this chapter that a process is a running program -- a
-	process was constructed in memory from the program image that
-	is stored on a storage medium. So, the
-	<emphasis>exec</emphasis> family of system calls gives a
-	running process the facilities to replace its contents with a
-	program stored on some medium. In itself, this is not wildly
-	useful, because every time the an <emphasis>exec</emphasis>
-	call is done, the original calling code (or program) is
-	removed from the process. This can be witnessed in the following
-	C program:
+    no processo corrente. Nós vimos no início deste capítulo que um processo
+    é um programa em execução -- um processo foi construído na memória a partir de uma imagem
+    de um programa que é armazenado em uma mídia de armazenamento. A chamada
+    de sistema <emphasis>exec</emphasis> então oferece a um processo em execução a facilidade
+    de substituir seu conteúdo com um programa armazenado em alguma mídia. Por si só isto não
+    é realmente muito útil visto que cada vez que a chamada de sistema <emphasis>exec</emphasis> é
+    executada o código (programa) original é removido do processo. Isso pode ser conferido
+    com o código C a seguir:
       </para>
 
       <programlisting>
@@ -194,15 +183,12 @@ int main() {
       </programlisting>
 
       <para>
-	This program executes <command>ls</command> with the
-	<emphasis>execve()</emphasis> call. The message printed with
-	<emphasis>printf()</emphasis> will never be shown, because the
-	running program image is replaced with that of
-	<command>ls</command>. Though, a combination of
-	<emphasis>fork()</emphasis> and the <emphasis>exec</emphasis>
-	functions are very powerful. A process can fork itself, and
-	let the child <quote>sacrifice</quote> itself to run another
-	program. The following program demonstrates this pattern:
+          Esse programa executa um <command>ls</command> usando a chamada de sistema <emphasis>execve()</emphasis>.
+          A mensagem mostrada com <emphasis>printf()</emphasis> nunca será mostrada porque a imagem do 
+          programa em execução será substituída pelo <command>ls</command>.
+          A combinação de <emphasis>fork()</emphasis> e <emphasis>exec</emphasis> é bem poderosa.
+          Um processo pode fazer um fork dele mesmo e deixar que o processo filho <quote>encerre</quote> por conta
+          própria para executar outro programa. O programa a seguir demonstra esse funcionamento:
       </para>
 
       <programlisting>
@@ -222,18 +208,17 @@ int main() {
       </programlisting>
 
       <para>
-	This program forks itself first. The program image of the
-	child process will be replaced with <command>ls</command>,
-	while the parent process prints the <quote>Hello world!</quote>
-	message to the screen and returns.
+    Este programa primeiramente faz um fork de si próprio. A imagem do programa do processo 
+    filho será substituída pelo <command>ls</command>, enquanto que o processo
+    pai mostra na tela a mensagem <quote>Hello world!</quote> e encerra a execução.
       </para>
 
       <para>
-	This procedure is followed by many programs, including the
-	shell, when a command is executed from the shell prompt. In
-	fact all processes on a UNIX system are directly or indirectly
-	derrived from the <emphasis>init</emphasis> process, which is
-	the first program that is started on a UNIX system.
+    Esse procedimento é seguido por muitos programas, incluindo 
+    o shell, quando um comando é executado a partir de um prompt de comando.
+    De fato, todos os processos em um sistema UNIX são direta ou indiretamente
+    derivados do processo <emphasis>init</emphasis> que é o primeiro programa
+    iniciado em um sistema UNIX.
       </para>
 
       <!-- XXX - Describe what is inherited when exec is called. -->
@@ -243,23 +228,24 @@ int main() {
       <title>Threads</title>
 
       <para>
-	Although forks are very useful to build some
-	parallelism<footnote><para>For instance, a web server could
-	fork multiple child processes to handle
-	requests</para></footnote>, they can be to expensive for some
-	purposes. Copying the whole process takes some time, and there
-	is cost involved if processes want to share data. This is
-	solved by offering a more lightweight alternative, namely
-	allowing more than one thread of execution. Each thread of
-	execution is executed separately, but the process data is
-	shared between the threads.
+    Apesar de forks serem muito úteis para permitir
+    um certo paralelismo<footnote><para>Por exemplo um servidor
+    web pode fazer fork de vários processos filhos para 
+    gerenciar requisições</para></footnote>, eles podem
+    ser dispendiosos em alguns casos. Copiar todo um processo
+    consome algum tempo e ainda há o custo envolvido caso os processos
+    compartilhem dados. Essa situação é resolvida com uma alternativa
+    mais leve, já sabida, que é utilizar mais de uma thread de execução. Cada
+    thread pode ser executada separadamente, porém, os dados do processo são
+    compartilhados entre as threads.
       </para>
 
       <para>
-	Writing good <emphasis>multithreaded</emphasis> programs
-	requires good knowledge of data sharing and locking. Since all
-	data is shared, uncareful programming can lead to bugs like
-	race conditions.
+          Escrever bons <emphasis>programas multi-thread</emphasis> requer bons
+          conhecimentos sobre comparilhamento de dados e técnicas
+          de <foreignphrase>locking</foreignphrase> (gerenciar a disputa por uma mesma área).
+          Já que todos os dados são compartilhados, um programa mal feito pode caminhar
+          para problemas de disputa.
       </para>
     </sect2>
 
