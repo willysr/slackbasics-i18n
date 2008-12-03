@@ -107,10 +107,10 @@
 
       <para>
         Sistemas operacionais guardam os dados em sistemas de arquivos. 
-        Um sistema de arquivos é basicamente diretórios em uma 
-        estrutura em forma similar à de uma árvore que guardam arquivos, 
+        Um sistema de arquivos é basicamente um conjunto de diretórios em 
+        uma estrutura similar à de uma árvore e guardam arquivos, 
         como o sistema operacional, programas e dados do usuário. A 
-        maioria dos sistemas de arquivo podem guardar várias 
+        maioria dos sistemas de arquivos podem guardar várias 
         meta-informações sobre os arquivos e diretórios, como por exemplo 
         a data de execução ou alteração. No GNU/Linux há apenas uma 
         hierarquia no sistema de arquivos, isto quer dizer que não há 
@@ -119,11 +119,11 @@
         similar à uma árvore, com um diretório raiz (que não possui 
         diretório pai), ramos e folhas (diretórios sem um subdiretório). 
         O diretório raiz é sempre representado por uma barra (<quote>/</quote>). 
-        Eles são separados por este caracter também.
+        Os subdiretórios são separados por este caracter também.
       </para>
 
       <figure id="filesystem-structure">
-        <title>The filesystem structure</title>
+        <title>A estrutura do sistema de arquivos</title>
         <mediaobject>
           <imageobject>
             <imagedata fileref="../images/fs-structure.png" format="PNG"/>
@@ -132,17 +132,17 @@
       </figure>
 
       <para>
-        <xref linkend="filesystem-structure"/> shows the structure of
-        a filesystem.  You can see that the root directory
-        <filename>/</filename> has two child directories:
-        <filename>bin</filename> and <filename>home</filename>. The
-        <filename>home</filename> directory has two child directories,
-        <filename>joe</filename> and <filename>jack</filename>. The
-        diagram shows the full pathname of each directory.  The same
-        notation is used for files. Suppose that there is a file named
-        <filename>memo.txt</filename> in the
-        <filename>/home/jack</filename> directory, the full path of
-        the file is <filename>/home/jack/memo.txt</filename>.
+        <xref linkend="filesystem-structure"/> mostra a estrutura de um 
+        sistema de arquivos. Você pode ver que o diretório raiz 
+        <filename>/</filename> possui dois subdiretórios:
+        <filename>bin</filename> e <filename>home</filename>. O 
+        <filename>home</filename> possui dois subdiretórios,
+        <filename>joe</filename> e <filename>jack</filename>. O diagrama 
+        mostra o caminho completo de cada diretório. A mesma notação 
+        é usada para arquivos. Suponha que haja um arquivo chamado 
+        <filename>memo.txt</filename> no diretório 
+        <filename>/home/jack</filename>, o caminho completo do arquivo 
+        é <filename>/home/jack/memo.txt</filename>.
       </para>
 
       <para>
