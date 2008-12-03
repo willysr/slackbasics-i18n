@@ -253,28 +253,28 @@ int main() {
   </sect1>
 
   <sect1 xml:id="chap-procmanagement-analyzing">
-    <title>Analyzing running processes</title>
+    <title>Analisando processos em execução</title>
 
     <sect2 xml:id="chap-procmanagement-analyzing-listing">
-      <title>Listing running processes</title>
+      <title>Listando processos em execução</title>
 
       <para>
-	UNIX systems provide the <command>ps</command> command to show
-	a list of running processes. Unfortunately, this command is an
-	example of the pains of the lack of standardization. The BSD
-	and System V variants of <command>ps</command> have their own
-	sets of options. Fortunately, GNU/Linux implements both the
-	System V and BSD-style parameters, as well as some (GNU-style)
-	long options. Options preceded by a dash are interpreted as
-	System V options and options without a dash as BSD options.
-	We will describe the System V-style options in this section.
+    Sistemas UNIX fornecem o comando <command>ps</command> para exibir
+    uma lista de processos que estão em execução. Infelizmente 
+    esse é um exemplo dos problemas da falta de padronização. O BSD
+    e variantes do System V possuem o <command>ps</command> com seu 
+    próprio conjunto de opções. Felizmente o GNU/Linux implementa ambos
+    os conjuntos de opção, do BSD e System V, e também, algumas opções
+    a mais no estilo GNU. Opções precedidas com um traço são interpretadas
+    como opções do System V e opções sem o traço são tratadas como opções BSD.
+    Nós vamos descrever as opções do System V nesta seção.
       </para>
 
       <para>
-	If <command>ps</command> is used without any parameters, it
-	shows all processes owned by the user that invokes
-	<command>ps</command> and that are attached to the same
-	controlling terminal. For example:
+          Se for executado o comando <command>ps</command> sem qualquer parâmetro,
+          o resultado será uma lista de todos os processos que pertencem
+          ao usuário que executou o <command>ps</command> e que são relativos
+         ao terminal que está sendo utilizado. Por exemplo:
       </para>
 
       <screen>
@@ -285,25 +285,22 @@ $ <userinput>ps</userinput>
       </screen>
 
       <para>
-	A lot of useful information can be distilled from this
-	output. As you can see, two processes are listed: the shell
-	that we used to call <command>ps</command>
-	(<emphasis>bash</emphasis>), and the <command>ps</command>
-	command itself. In this case there are four information
-	fields. <emphasis>PID</emphasis> is the process ID of a
-	process, <emphasis>TTY</emphasis> the controlling terminal,
-	<emphasis>TIME</emphasis> the amount of CPU time the proces
-	has used, and <command>CMD</command> the command or program of
-	which a copy is running. The fields that are shown by default
-	may vary a bit per system, but usually at least these fields
-	are shown, with somewhat varying field labels.
+    Muitas informações podem ser extraídas do resultado obtido. Como
+    você pode ver, dois processos são listados, o shell que usamos
+    para executar o <command>ps</command> (<emphasis>bash</emphasis>) e o
+    próprio comando <command>ps</command>. Nesse caso existem quatro campos
+    de informação. <emphasis>PID</emphasis> é o ID do processo, <emphasis>TTY</emphasis> é
+    o terminal onde foi executado o comando, <emphasis>TIME</emphasis> é o tempo gasto pelo
+    processador e <emphasis>CMD</emphasis> é o comando ou programa cuja cópia está rodando.
+    Os campos que são mostrados por padrão podem variar de acordo com o sistema, mas ao menos
+    os mostrados anteriormente serão exibidos (talvez variando um pouco o nome dos campos).
       </para>
 
       <para>
-	Sometime you may want to have a broader view of processes that
-	are running. Adding the <parameter
-	class="command">-a</parameter> option shows all processes that
-	are associated with terminals. For instance:
+    Talvez você queira uma visão maior dos processos que estão em execução.
+    Ao adicionar a opção <parameter class="command">-a</parameter> você verá todos os processos
+   associados a qualquer erminal. 
+   Por exemplo:
       </para>
 
       <screen>
@@ -315,6 +312,10 @@ $ <userinput>ps -a</userinput>
       </screen>
 
       <para>
+    Como você pode ver, processos de diferentes terminais foram exibidos. 
+
+
+
 	As you can see, processes with different controlling terminals
 	are shown. Though, in contrast to the plain
 	<command>ps</command> output, only processes that control the
