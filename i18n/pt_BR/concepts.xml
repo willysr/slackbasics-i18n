@@ -112,7 +112,7 @@
         como o sistema operacional, programas e dados do usuário. A 
         maioria dos sistemas de arquivos podem guardar várias 
         meta-informações sobre os arquivos e diretórios, como por exemplo 
-        a data de execução ou alteração. No GNU/Linux há apenas uma 
+        a data de execução ou alteração. No Linux há apenas uma 
         hierarquia no sistema de arquivos, isto quer dizer que não há 
         letras para as mídias (e.g. A:, C:, D:) para diferentes sistemas 
         de arquivos, como no DOS e no Windows. O sistema de arquivos é 
@@ -146,134 +146,136 @@
       </para>
 
       <para>
-        Each directory has two special entries,
-        <quote><filename>.</filename></quote>, and
-        <quote><filename>..</filename></quote>.  The first refers to
-        the directory itself, the second to the parent
-        directory. These entries can be used for making relative
-        paths. If you are working in the <filename>jack</filename>
-        directory, you can refer to the the
-        <filename>/home/joe</filename> directory with
+        Cada diretório possui duas entradas especiais
+        <quote><filename>.</filename></quote>, e 
+        <quote><filename>..</filename></quote>.  A primeira refere-se 
+        ao próprio diretório, e a segunda ao diretório anterior. Estas 
+        entradas podem ser usadas para criar caminhos relativos. Se 
+        você está no diretório <filename>jack</filename>, voce pode 
+        referir-se ao diretório <filename>/home/joe</filename> como 
         <filename>../joe</filename>.
       </para>
     </sect2>
 
     <sect2 id="concepts-fshierarchy-mounting">
-      <title>Mounting</title>
+      <title>Montando</title>
 
       <para>
-        You might wonder how it is possible to access other devices
-        or partitions than the hard disk partition which holds the
-        root filesystem. Linux uses the same approach as UNIX for
-        accessing other filesystems. Linux allows the system
-        administrator to connect a device to any directory in the
-        filesystem structure. This process is named
-        <emphasis>mounting</emphasis>.  For example, one could mount
-        the CD-ROM drive to the <filename>/cdrom</filename>
-        directory. If the mount is correct, the files on the CD-ROM
-        can be accessed through this directory. The mounting process
-        is described in detail in <xref
-        linkend="basics-filesystem-mounting"/>.
+        Você deve estar se perguntando como é possível acessar outros 
+        dispositivos ou partições fora da partição do disco em que a 
+        raiz do sistema se encontra. O Linux usa o mesmo conceito 
+        do UNIX para acessar outros sistemas de arquivos. Ele permite 
+        que o administrador do sistema conecte um dispositivo à 
+        qualquer diretório na estrutura do sistema de arquivos. Este 
+        processo é chamado de <emphasis>montar</emphasis>. Por exemplo, 
+        podemos montar o drive de CD-ROM no diretório 
+        <filename>/cdrom</filename>. Se montar corretamente, os arquivos 
+        do CD-ROM poderão ser acessados através deste diretório. Os 
+        detalhes sobre a montagem podem ser vistas em 
+        <xref linkend="basics-filesystem-mounting"/>.
       </para>
     </sect2>
 
     <sect2 id="concepts-fshierarchy-commondirs">
-      <title>Common directories</title>
+      <title>Diretórios comuns</title>
 
       <para>
-        The Filesystem Hierarchy Standard Group has attempted to
-        create a standard that describes which directories should
-        be available on a GNU/Linux system. Currently, most major
-        distributions use the Filesystem Hierarchy Standard (FHS)
-        as a guideline. This section describes some mandatory
-        directories on GNU/Linux systems.
+        O Filesystem Hierarchy Standard Group (Grupo de Padrões para Sistema de
+        arquivos Hierárquico) tem procurado um padrão que descreva quais
+        diretórios devem estar disponíveis em sistemas GNU/Linux. Atualmente 
+        as maiores distribuições utilizam como base o Padrão para Sistema 
+        de arquivos Hierárquico (do inglês FHS - Filesystem Hierarchy
+        Standard). Esta seção mostra alguns diretórios obrigatórios em 
+        sistemas GNU/Linux.
       </para>
 
       <para>
-        Please note that GNU/Linux does not have a separate directory
-        for each application (like Windows). Instead, files are ordered by
-        function and type. For example, the binaries for most
-        common user programs are stored in
-        <filename>/usr/bin</filename>, and their libraries in
-        <filename>/usr/lib</filename>. This is a short overview of
-        the important directories on a Slackware Linux system:
+        Por favor, note que o GNU/Linux não possui um diretório separado 
+        para cada aplicação (como no Windows). Em vez disso, os arquivos 
+        ficam ordenados por função e tipo. Por exemplo, os binários da 
+        maioria dos programas mais comuns ficam armazenados em 
+        <filename>/usr/bin</filename>, e suas bibliotecas em 
+        <filename>/usr/lib</filename>. Esta é uma pequena mostra dos 
+        diretórios mais importantes em um sistema Slackware Linux:
       </para>
 
 
       <itemizedlist>
         <listitem>
           <para>
-            <emphasis role="bold">/bin</emphasis>: essential
-            user binaries that should still be available in case the 
-            <filename>/usr</filename> is not mounted.
+            <emphasis role="bold">/bin</emphasis>: binários
+            essenciais que devem sempre estar disponíveis para o caso 
+            de o <filename>/usr</filename> não montar.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/dev</emphasis>: device files.
-            These are special files used to access certain devices.
+            <emphasis role="bold">/dev</emphasis>: arquivos de dispositivos.
+            Estes são arquivos especiais usados para acessar certos
+            dispositivos.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/etc</emphasis>: the
-            <filename>/etc</filename> directory contains all important
-            configuration files.
+            <emphasis role="bold">/etc</emphasis>: o diretório 
+            <filename>/etc</filename> contém todos os arquivos de 
+            configuração importantes.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/home</emphasis>: contains home
-            directories for individual users.
+            <emphasis role="bold">/home</emphasis>: contém o diretório 
+            padrão de cada usuário.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/lib</emphasis>: essential system
-            libraries (like glibc),
-            and kernel modules.
+            <emphasis role="bold">/lib</emphasis>: bibliotecas essenciais 
+            para o sistema (como o glibc), e módulos do kernel.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/root</emphasis>: home directory for the 
-            <emphasis>root</emphasis> user.
+            <emphasis role="bold">/root</emphasis>: diretório padrão do 
+            usuário <emphasis>root</emphasis>.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/sbin</emphasis>: essential binaries
-            that are used for system administration.
+            <emphasis role="bold">/sbin</emphasis>: binários essenciais
+            utilizados para a adminitração do sistema.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/tmp</emphasis>: a world-writable
-            directory for temporary files.
+            <emphasis role="bold">/tmp</emphasis>: um diretório que pode 
+            ser modificado por qualquer usuário, utilizado para arquivos 
+            temporários.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/usr/bin</emphasis>: stores the majority
-            of the user binaries.
+            <emphasis role="bold">/usr/bin</emphasis>: guarda a maioria dos 
+            binários dos usuários.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/usr/lib</emphasis>: libraries that are
-            not essential for the system to boot.
+            <emphasis role="bold">/usr/lib</emphasis>: bibliotecas que não são
+            essenciais para a inicialização do sistema.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/usr/sbin</emphasis>: nonessential
+            <emphasis role="bold">/usr/sbin</emphasis>: binários que não são 
+            essenciais para a administração do sistema.
             system administration binaries.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/var</emphasis>: variable data files,
-            like logs.
+            <emphasis role="bold">/var</emphasis>: arquivos de dados que variam,
+            como logs.
           </para>
         </listitem>
       </itemizedlist>
@@ -281,21 +283,22 @@
   </sect1>
 
   <sect1 id="concepts-devices">
-    <title>Devices</title>
+    <title>Dispositivos</title>
 
     <sect2 id="concepts-devices-intro">
-      <title>Introduction</title>
+      <title>Introdução</title>
 
       <para>
-        In GNU/Linux virtually everything is represented as a file, including
-        devices. Every GNU/Linux system has a directory with special files, named
-        <filename>/dev</filename>. Each file in the <filename>/dev</filename>
-        directory represents a device or pseudo-device. A device file
-        has two special numbers associated with it, the
-        <emphasis>major</emphasis> and the <emphasis>minor</emphasis>
-        device number. The kernel knows which device a device
-        file represents by these device numbers. The following example shows
-        the device numbers for the <filename>/dev/zero</filename> device file:
+        No GNU/Linux, praticamente tudo é representado por arquivos, incluindo 
+        dispositivos. Cada sistema GNU/Linux possui um diretório com arquivos 
+        especiais, chamado <filename>/dev</filename>. Cada arquivo no
+        diretório <filename>/dev</filename> representa um dispositivo ou 
+        pseudo-dispositivo. Esse arquivo contém dois números especiais 
+        associados à ele, o número de dispositivo 
+        <emphasis>principal</emphasis> e o <emphasis>secundário</emphasis>. 
+        O kernel utiliza estes números para saber qual dispositivo um arquivo de 
+        dispositivo representa. O exemplo a seguir mostra os números de
+        dispositivo do arquivo de dispositivo <filename>/dev/zero</filename>:
       </para>
 
       <screen>
@@ -304,19 +307,19 @@ $ <command>file /dev/zero</command>
       </screen>
 
       <para>
-        The <command>file</command> command can be used to determine the
-        type of a file. This particular file is recognized as a device file
-        that has <emphasis>1</emphasis> as the major device number,
-        and <emphasis>5</emphasis> as the minor device number.
+        O comando <command>file</command> pode ser utilizado para determinar 
+        o tipo do arquivo. Este arquivo em particular é reconhecido como um 
+        arquivo de dispositivo com o número <emphasis>1</emphasis> 
+        representando o número de dispositivo principal e <emphasis>5</emphasis> 
+        representando o número de dispositivo secundário.
       </para>
 
       <para>
-        If you have installed the kernel source package, you can find
-        a comprehensive list of all major devices with their minor and
-        major numbers in
-        <filename>/usr/src/linux/Documentation/devices.txt</filename>. An
-        up-to-date list is also available on-line through the Linux
-        Kernel Archives<footnote>
+        Se você instalou o pacote do código-fonte do kernel, você pode 
+        encontrar uma lista com a maioria dos dispositivos e seus números 
+        de dispositivos primários e secundários em 
+        <filename>/usr/src/linux/Documentation/devices.txt</filename>. Uma 
+        lista mais atualizada pode ser encontrada on-line no Linux Kernel Archives<footnote>
           <para>
             <ulink url="ftp://ftp.kernel.org/pub/linux/docs/device-list/" />
           </para>
@@ -324,77 +327,77 @@ $ <command>file /dev/zero</command>
       </para>
 
       <para>
-        The Linux kernel handles two types of devices:
-        <emphasis>character</emphasis> and <emphasis>block</emphasis>
-        devices. Character devices can be read byte by byte,
-        block devices can not. Block devices are read per block (for example
-        4096 bytes at a time). Whether a device is a character or block device
-        is determined by the nature of the device. For example, most storage
-        media are block devices, and most input devices are character devices.
-        Block devices have one distinctive advantage, namely that they can be
-        cached. This means that commonly read or written blocks are stored in
-        a special area of the system memory, named the cache. Memory is much
-        faster than most storage media, so much performance can be gained
-        by performing common block read and write operations in memory.
-        Of course, eventually changes have to be written to the storage
-        media to reflect the changes that were made in the cache.
+        O kernel do Linux manipula dois tipos de dispositivos:
+        <emphasis>caracter</emphasis> e <emphasis>bloco</emphasis>.
+        Dispositivos de caracter podem ser lidos byte a byte, dispositivos 
+        de bloco não. Este é lido bloco a bloco (4096 bytes de cada vez, 
+        por exemplo). O tipo do dispositivo é determinado pela sua natureza. 
+        Por exemplo, a maioria das mídias de armazenamento são dispositivos 
+        de bloco, e a maioria dos dispositivos de entrada são dispositivos 
+        de caracter. Dispositivos de bloco tem uma vantagem única, eles 
+        podem ser utilizados em cache. Isto quer dizer que blocos lidos e 
+        escritos são armazenados em uma área especial da memória do sistema 
+        chamada de cache. A memória é muito mais rápida que a maioria das 
+        mídias de armazenamento, então ganha-se muita performance lendo e 
+        escrevendo na memória. É claro que eventualmente as mudanças tem 
+        de ser escritas na mídia de armazenamento para refletir as mudanças 
+        feitas no cache.
       </para>
     </sect2>
 
     <sect2 id="concepts-devices-atascsi">
-      <title>ATA and SCSI devices</title>
+      <title>Dispositivos ATA e SCSI</title>
 
       <para>
-        There are two kinds of block devices that we are going to look into
-        in detail, because understanding the naming of these devices is
-        crucial for  partitioning a hard disk and mounting. Almost all modern
-        computers with an x86 architecture use ATA hard disks and CD-ROMs.
-        Under Linux these devices are named in the following manner:
+        Existem dois tipo de dispositivos de blocos que nós iremos ver com 
+        detalhes, porque entender a nomenclatura destes dispositivos é 
+        crucial para o particionar um disco e montá-lo. Quase todos os 
+        computadores modernos da arquitetura x86 utilizam discos ATA e CD-ROMs. 
+        No Linux estes dispositivos são nomeados da seguinte maneira:
       </para>
 
       <screen>
-/dev/hda - master device on the first ATA channel
-/dev/hdb - slave device on the first ATA channel
-/dev/hdc - master device on the second ATA channel
-/dev/hdd - slave device on the second ATA channel
+/dev/hda - dispositivo principal no primeiro canal ATA
+/dev/hdb - dispositivo secundário no primeiro canal ATA
+/dev/hdc - dispositivo principal no segundo canal ATA
+/dev/hdd - dispositivo secundário no segundo canal ATA
       </screen>
 
       <para>
-        On most computers with a single hard disk, the hard disk is the master
-        device on the first ATA channel (<filename>/dev/hda</filename>), and
-        the CD-ROM is the master device on the second ATA channel. Hard disk
-        partitions are named after the disk that holds them plus a number.
-        For example, <filename>/dev/hda1</filename> is the first partition
-        of the disk represented by the <filename>/dev/hda</filename>
-        device file.
+        Na maioria dos computadores com um único disco, o disco é o dispositivo 
+        principal no primeiro canal ATA (<filename>/dev/hda</filename>), e 
+        o CD-ROM é o dispositivo principal do segundo canal ATA. As partições
+        do disco são nomeados com o nome do disco mais um número. Por exemplo, 
+        <filename>/dev/hda1</filename> é a primeira partição do disco representado 
+        pelo arquivo de dispositivo <filename>/dev/hda</filename>
       </para>
 
       <para>
-        SCSI hard disks and CD-ROM drives follow an other naming convention.
-        SCSI is not commonly used in most low-end machines, but USB drives
-        and Serial ATA (SATA) drives are also represented as SCSI disks. The
-        following device notation is used for SCSI drives:
+        Os discos SCSI e CD-ROMs seguem uma outra convenção de nomes. O SCSI 
+        não é muito utilizado em máquinas de baixo custo, mas dispositivos USB
+        e Serial ATA (SATA) também são representados como discos SCSI. A
+        seguinte notação é utilizada para dispositivos SCSI:
       </para>
 
       <screen>
-/dev/sda - First SCSI disk
-/dev/sdb - Second SCSI disk
-/dev/sdc - Third SCSI disk
-/dev/scd0 - First CD-ROM
-/dev/scd1 - Second CD-ROM
-/dev/scd2 - Third CD-ROM
+/dev/sda - Primeiro disco SCSI
+/dev/sdb - Segundo disco SCSI
+/dev/sdc - Terceiro disco SCSI
+/dev/scd0 - Primeiro CD-ROM
+/dev/scd1 - Segundo CD-ROM
+/dev/scd2 - Terceiro CD-ROM
       </screen>
 
       <para>
-        Partitions names are constructed in the same way as ATA disks;
-        <filename>/dev/sda1</filename> is the first partition on the first
-        SCSI disk.
+        Os nomes das partições são feitos da mesma maneira que os discos ATA; 
+        <filename>/dev/sda1</filename> é a primeira partição do primeiro disco
+        SCSI
       </para>
 
       <para>
-        If you use the software RAID implementation of the Linux kernel, RAID
-        volumes are available as <filename>/dev/mdn</filename>, in which
-        <emphasis>n</emphasis> is the volume number starting at 0.
+        Se você está usando a implementação de RAID via software, os volumes do
+        RAID estão disponíveis como <filename>/dev/mdn</filename>, onde o 
+        <emphasis>n</emphasis> é o número do volume, iniciando em 0.
       </para>
     </sect2>
   </sect1>
