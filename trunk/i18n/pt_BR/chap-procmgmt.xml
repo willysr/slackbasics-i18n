@@ -312,21 +312,16 @@ $ <userinput>ps -a</userinput>
       </screen>
 
       <para>
-    Como você pode ver, processos de diferentes terminais foram exibidos. 
-
-
-
-	As you can see, processes with different controlling terminals
-	are shown. Though, in contrast to the plain
-	<command>ps</command> output, only processes that control the
-	terminal at the moment are shown. For instance, the shell that
-	was used to call <command>ps</command> is not shown.
+    Como você pode ver, processos de diferentes terminais foram exibidos, embora,
+    em contraste com a saída da execução de um simples <command>ps</command>, apenas
+    processos do terminal corrente são mostrados. Por exemplo, o shell que executou o
+    <command>ps</command> não foi exibido.
       </para>
 
       <para>
-	You can also print all processes that are running, including
-	processes that are not associated with a terminal, by using the
-	<parameter class="command">-A</parameter> option:
+    Você também pode exibir todos os processos que estão em execução, inclusive
+    processos que não estão associados ao terminal onde você está executando o <command>ps</command>
+    Para isso você pode usar a opção <parameter class="command">-A</parameter>:
       </para>
 
       <screen>
