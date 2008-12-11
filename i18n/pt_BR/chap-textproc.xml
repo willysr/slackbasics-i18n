@@ -121,28 +121,29 @@ $ <userinput>wc -lc /usr/share/dict/words</userinput>
       </para>
 
       <para>
-	Since <parameter class="command">-c</parameter> prints the
-	number bytes, this parameter may not represent the number of
-	characters that a text holds, because the character set in use
-	maybe be wider than one byte. To this end, the <parameter
-	class="command">-m</parameter> parameter has been added which
-	prints the number of characters in a text, independent of the
-	character set. <parameter class="command">-c</parameter> and
-	<parameter class="command">-m</parameter> are substitutes, and
-	can never be used at the same time.
+    O parâmetro <parameter class="command">-c</parameter> imprime o
+    número de bytes, esse parâmetro pode não representar o número de
+    caracteres que um texto possui, porque o conjunto de caracteres
+    em uso pode ser de comprimento maior que um byte. Finalmente, o
+    parâmetro <parameter class="command">-m</parameter> foi adicionado
+    e imprime o número de caracteres no texto, independentemente do
+    conjunto de caracteres. Os parâmetros <parameter
+    class="command">-c</parameter> e <parameter class="command">-m
+    </parameter> são substitutos e podem nunca serem utilizados ao
+    mesmo tempo.
       </para>
 
       <para>
-	The statistics that <command>wc</command> provides are more
-	useful than they may seem on the surface. For example, the
-	<parameter class="command">-l</parameter> parameter is often
-	used as a counter for the output of a command. This is
-	convenient, because many commands seperate logical units by a
-	newline.  Suppose that you would like to count the number of
-	files in your home directory having a filename ending with
-	<filename>.txt</filename>. You could do this by combining
-	<command>find</command> to find the relevant files and
-	<command>wc</command> to count the number of occurences:
+    As estatísticas que <command>wc</command> provê são mais úteis
+    que podem aparentar. Por exemplo, o parâmetro <parameter
+    class="command">-l</parameter> é utilizado geralmente em
+    contagens da saída de um comando. Isso é conveniente, pois muitos
+    comandos separam unidades lógicas por novas linhas. Suponha que
+    você queira contar o número de arquivos em seu diretorio home
+    que possuam seu nome terminado com <filename>.txt</filename>.
+    Você poderia fazer isso combinando <command>find</command> para
+    encontrar arquivos relevantes e <command>wc</command> para contar
+    o número de ocorrências:
       </para>
 
       <screen>
@@ -151,26 +152,27 @@ $ <userinput>find ~ -name '*.txt' -type f | wc -l</userinput>
     </sect2>
 
     <sect2 xml:id="chap-textproc-simple-tr">
-      <title>Manipulating characters</title>
+      <title>Manipulando caracteres</title>
 
       <para>
-	The <command>tr</command> command can be used to do common
-	character operations, like swapping characters, deleting
-	characters, and squeezing character sequences. Depending on
-	the operation, one or two sets of characters should be
-	specified. Besides normal characters, there are some special
-	character sequences that can be used:
+	O comando <command>tr</command> pode ser utilizado para operações
+    comuns a caracteres, como troca de caracteres, remoção de
+    caracteres e misturando sequências de caracteres. Dependendo da
+    operação, um ou mais conjuntos de caracteres podem ser
+    especificados. Com exceção dos caracteres normais, existem algumas
+    sequências de caracteres especiais que podem ser utilizadas:
       </para>
 
       <variablelist>
 	<varlistentry>
-	  <term>\character</term>
+	  <term>\caractere</term>
 	  <listitem>
 	    <para>
-	      This notation is used to specify characters that need
-	      escaping, most notably <emphasis>\n</emphasis>
-	      (newline), <emphasis>\t</emphasis> (horizontal tab), and
-	      <emphasis>\\</emphasis> (backslash).
+          Essa notação é utilizada para especificar caracteres que
+          precisam ser escapados, mais notavelmente <emphasis>\n
+          </emphasis> (nova linha), <emphasis>\t</emphasis>
+          (tabulação horizontal), e <emphasis>\\</emphasis> (barra
+          invertida).
 	    </para>
 	  </listitem>
 	</varlistentry>
@@ -178,15 +180,15 @@ $ <userinput>find ~ -name '*.txt' -type f | wc -l</userinput>
 	  <term>character1-character2</term>
 	  <listitem>
 	    <para>
-	      Implicitly insert all characters from
-	      <emphasis>character1</emphasis> to
-	      <emphasis>character2</emphasis>. This notation should be
-	      used with care, because it does not always give the
-	      expected result. For instance, the sequence
-	      <emphasis>a-d</emphasis> may yield
-	      <emphasis>abcd</emphasis> for the POSIX locale (language
-	      setting), but this may not be true for other locales.
-	      <!-- XXX - locale footnote -->
+	      Insere implicitamente todos os caracteres de
+	      <emphasis>character1</emphasis> até
+	      <emphasis>character2</emphasis>. Essa notação deve ser usada
+	      com cuidado, pois nem sempre gera o resultado esperado. Por
+          exemplo, a sequência <emphasis>a-d</emphasis> pode
+          substituir <emphasis>abcd</emphasis> pela localidade POSIX
+          (configurações de linguagem), mas isso pode não ser verdade
+          para outras localidades.
+	      <!-- XXX - notas de cabeçalho sobre localidade -->
 	    </para>
 	  </listitem>
 	</varlistentry>
@@ -194,8 +196,8 @@ $ <userinput>find ~ -name '*.txt' -type f | wc -l</userinput>
 	  <term>[:class:]</term>
 	  <listitem>
 	    <para>
-	      Match a predefined class of characters. All possible
-	      classes are shown in <xref
+	      Acerta uma classe de caracteres pré-definidos. Todas as
+          possíveis classes são mostradas em <xref
 	      linkend="chap-textproc-simple-tr-charclasses" />.
 	    </para>
 	  </listitem>
