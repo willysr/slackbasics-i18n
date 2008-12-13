@@ -456,23 +456,24 @@ $ <userinput>kill -SIGKILL 15631</userinput>
 
     <sect2 xml:id="chap-procmanagement-managing-nice">
         <title>Sendo gentil<footnote><para>N.T.: <emphasis>Being nice with
-        other</emphasis>.  A tradução <emphasis>gentil</emphasis>
+        others</emphasis>.  A tradução <emphasis>gentil</emphasis>
         refere-se ao nome do comando:
         <quote>nice</quote>.</para></footnote> com os outros</title>
 
       <para>
-	In an act of altruism you can be nice to other users of
-	computer resources. If you plan to run a CPU-time intensive
-	process, but do not want that to interfere with work of other
-	users on the system (or other processes), you can assign some
-	grade of 'niceness' to a process. Practically, this means that
-	you will be able to influence the scheduling priority of a
-	process. Nicer processes get a lower scheduling priority. The
-	normal niceness of a process is <emphasis>0</emphasis>, and
-	can be changed by executing a program with the
-	<command>nice</command> command. The <emphasis>-n
-	[niceness]</emphasis> option can be used to specify the
-	niceness:
+       Em um ato de autruísmo você pode ser gentil com os outros
+       usuários dos recursos do computador.  Se você planeja executar um
+       processo que irá fazer uso extensivo de tempo de CPI, mas não
+       quer que isso interfira no trabalho dos outros usuários no
+       sistema (ou de outros processos), você pode associar algum grau
+       de 'gentileza' para um processo.  Praticamente, isto significa
+       que você será capaz de influenciar a prioridade de escalonamento
+       de seu processo.  Processos mais gentis possuem uma prioridade
+       menor de escalonamento.  A prioridade normal de um processo é 
+       <emphasis>0</emphasis>, e pode ser modificada executando-se um
+       programa com o comando <command>nice</command>.  A opção
+       <emphasis>-n [niceness]</emphasis> pode ser usada para
+       especificar o grau de gentileza:
       </para>
 
       <screen>
@@ -480,36 +481,37 @@ $ <userinput>nice -n 20 cputimewaster</userinput>
       </screen>
 
       <para>
-	The maximum number for niceness is
-	implementation-dependent. If a program was started with
-	<command>nice</command>, but no niceness was specified, the
-	niceness will be set to <emphasis>10</emphasis>. In case you
-	were wondering: yes, you can also be rude, but this right is
-	restricted to the <emphasis>root</emphasis> user. You can
-	boost the priority of a process by specifying a negative value
-	as the niceness.
+       O valor máximo deste grau de gentileza é dependente de
+       plataforma.  Se um programa tiver sido iniciado pelo comando 
+       <command>nice</command>, mas nenhum valor for especificado, será
+       atribuído o valor padrão de <emphasis>10</emphasis>.  Se você
+       estiver pensando: sim, você também pode ser 'fominha' e requerer
+       mais prioridade para seu processo, mas esta permissão é restrita
+       ao usuário <emphasis>root</emphasis>.  No caso, você pode
+       aumentar a prioridade de um processo especificando um valor
+       negativo do grau de gentileza.
       </para>
 
       <para>
-	You can also modify the niceness of a running processes with
-	the <command>renice</command> command. This can be done for
-	specific process IDs (<parameter class="command">-p
-	PIDs</parameter>), users (<parameter class="command">-u
-	user/uid</parameter>), and effective groups (<parameter
-	class="command">-g group/gid</parameter>). The new niceness
-	is specified as the first parameter.
+       Você também pode modificar o grau de gentileza de um processo em
+       execução com o comando <command>renice</command>.  Isto pode ser
+       feito por IDs de processo (<parameter class="command">-p
+       PIDs</parameter>), por usuários (<parameter class="command">-u
+       user/uid</parameter>), e por grupos efetivos (<parameter
+       class="command">-g group/gid</parameter>).  O novo valor é
+       especificado como primeiro parâmetro do comando.
       </para>
 
       <para>
-	The niceness of a process can only be increased. And, of
-	course, no user except for <emphasis>root</emphasis> can
-	affect the niceness of processes of other users.
+       O grau de gentileza de um processo só pode ser aumentado.  E, é
+       claro, nenhum usuário além do <emphasis>root</emphasis> pode
+       modificar a prioridade de processos de outros usuários.
       </para>
 
       <para>
-	Lets look at an example, to set the niceness of a process with
-	PID <emphasis>3108</emphasis> to <emphasis>14</emphasis>, you
-	could use the following command:
+       Vamos ver um exemplo, para definir o grau de gentileza do
+       processo com PID <emphasis>3108</emphasis> para
+       <emphasis>14</emphasis>, você pode usar o seguinte comando:
       </para>
 
       <screen>
