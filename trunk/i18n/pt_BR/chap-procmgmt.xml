@@ -339,12 +339,12 @@ $ <userinput>ps -A | head -n 10</userinput>
       </screen>
 
       <para>
-	You can print all processes with a certain user ID, with the
-	<emphasis>-U</emphasis> option. This option accepts a user
-	name as a parameter, or multiple user names that are separated
-	by a comma. The following command shows all processes that
-	have <emphasis>xfs</emphasis> or <emphasis>rpc</emphasis> as
-	their user ID:
+       Você pode mostrar todos os processos com um dado ID de usuário com a
+       opção <emphasis>-U</emphasis>.  Esta opção aceita um nome de usuário
+       como parâmetro, ou múltiplos nomes de usuários que são separados por
+       uma vírgula.  O seguinte comando mostra todos os processos cujo ID
+       de usuário seja <emphasis>xfs</emphasis> ou
+       <emphasis>rpc</emphasis>:
       </para>
 
       <screen>
@@ -355,8 +355,8 @@ $ <userinput>ps -U xfs,rpc</userinput>
       </screen>
 
       <para>
-	Likewise, you can also print processes with a particular group
-	ID, with the <emphasis>-G</emphasis> option:
+       Da mesma forma, você também pode exibir os processos com um
+       determinado ID de grupo com a opção <emphasis>-G</emphasis>:
       </para>
 
       <screen>
@@ -369,9 +369,9 @@ $ <userinput>ps -G messagebus,haldaemon</userinput>
       </screen>
 
       <para>
-	If you would like to have a list for a physical or
-	pseudo-terminal, you can use the <parameter
-	class="command">-t</parameter> option:
+       Se você preferir ter uma listagem dos terminais físicos ou de
+       pseudo-terminais, você pode usar a opção <parameter
+	class="command">-t</parameter>:
       </para>
 
       <screen>
@@ -383,50 +383,52 @@ $ <userinput>ps -t tty2</userinput>
   </sect1>
 
   <sect1 xml:id="chap-procmanagement-managing">
-    <title>Managing processes</title>
+    <title>Gerenciando processos</title>
 
     <sect2 xml:id="chap-procmanagement-managing-signals">
-      <title>Sending singals to a process</title>
+      <title>Enviando sinais a um processo</title>
 
       <para>
-	Signals are a crude, but effective form of inter-process
-	communication (IPC). A signal is basically a number that is
-	delivered to a process that has a special meaning. For all
-	signals there are default signal handlers. Processes can
-	install their own signal handlers, or choose to ignore
-	signals. Some signals (normally SIGKILL and SIGSTOP) can not
-	be ignored. All signals have convenient symbolic names.
+       Sinais são uma forma crua, porém efetiva de comunicação
+       inter-processos (IPC).  Basicamente, um sinal é um número com um
+       significado especial que é informado a um processo.  Para todos os
+       sinais, há manipuladores padrão de sinal.  Os processos podem
+       instalar seus próprios manipuladores de sinal, ou optar por ignorar
+       sinais.  Alguns sinais (normalmente o SIGKILL e SIGSTOP) não podem
+       ser ignorados.  Todos os sinais possuem convenientes nomes
+       significativos.
       </para>
 
       <para>
-	Only a few signals are normally interesting for interactive
-	use on UNIX(-like) systems. These are (followed by their number):
+       Apenas alguns poucos sinais normalmente são interessantes para uso
+       interativo em sistemas UNIX(-like).  São estes (seguidos de seus
+       respectivos números):
       </para>
 
       <itemizedlist>
 	<listitem>
-	  <para><emphasis>SIGKILL (9):</emphasis> forcefully kill
-	  a process.</para>
+	  <para><emphasis>SIGKILL (9):</emphasis> mata um processo
+      abruptamente.</para>
 	</listitem>
 	<listitem>
-	  <para><emphasis>SIGTERM (15):</emphasis> request a process
-	  to terminate. Since this is a request, a program could ignore
-	  it, in contrast to <emphasis>SIGKILL</emphasis>.</para>
+	  <para><emphasis>SIGTERM (15):</emphasis> solicita o término de um
+      processo.  Como é uma solicitação, um programa pode ignorá-lo,
+      diferentemente do <emphasis>SIGKILL</emphasis>.</para>
 	</listitem>
 	<listitem>
-	  <para><emphasis>SIGHUP (1):</emphasis> Traditionally, this
-	  has signalled a terminal hangup. But nowadays some daemons
-	  (e.g. <emphasis>inetd</emphasis>) reread their configuration
-	  when this signal is sent.</para>
+	  <para><emphasis>SIGHUP (1):</emphasis> Tradicionalmente, este
+      significava a suspensão de um terminal.  Mas hoje em dia, alguns
+      daemons (como o <emphasis>inetd</emphasis>) relêem suas
+      configurações quando este sinal é enviado.</para>
 	</listitem>
       </itemizedlist>
 
       <para>
-	The <command>kill</command> command is used to send a signal
-	to a process. By default, <command>kill</command> sends the
-	<emphasis>SIGTERM</emphasis> signal. To send this signal, the
-	process ID of the process that you would like to send this
-	signal to should be added as a parameter. For instance:
+       O comando <command>kill</command> é usado para enviar um sinal a um
+       processo.  Por padrão, o <command>kill</command> envia o sinal
+       <emphasis>SIGTERM</emphasis>.  Para enviar este sinal, o ID do
+       processo para o qual você enviar o sinal deve ser informado como
+       parâmetro.  Por exemplo:
       </para>
 
       <screen>
@@ -434,11 +436,11 @@ $ <userinput>kill 15631</userinput>
       </screen>
 
       <para>
-	To send another signal, you can use one of two options:
-	<emphasis>-signalnumber</emphasis> or
-	<emphasis>-signalname</emphasis>. So, the following commands
-	both send the <emphasis>SIGKILL</emphasis> signal to the process
-	with process ID <emphasis>15631</emphasis>:
+       Para enviar um outro sinal, você pode usar uma das seguintes opções:
+	   <emphasis>-númerodosinal</emphasis> ou
+       <emphasis>-nomedosinal</emphasis>.  Então, ambos os comandos a seguir
+       enviam o sinal <emphasis>SIGKILL</emphasis> ao processo que possui o
+       ID <emphasis>15631</emphasis>:
       </para>
 
       <screen>
@@ -453,7 +455,10 @@ $ <userinput>kill -SIGKILL 15631</userinput>
     </sect2>
 
     <sect2 xml:id="chap-procmanagement-managing-nice">
-      <title>Being nice to others</title>
+        <title>Sendo gentil<footnote><para>N.T.: <emphasis>Being nice with
+        other</emphasis>.  A tradução <emphasis>gentil</emphasis>
+        refere-se ao nome do comando:
+        <quote>nice</quote>.</para></footnote> com os outros</title>
 
       <para>
 	In an act of altruism you can be nice to other users of
