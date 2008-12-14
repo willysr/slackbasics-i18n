@@ -136,7 +136,7 @@
       <title>The cfdisk parition tool</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/cfdisk.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/cfdisk.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -213,7 +213,7 @@
       <title>The setup tool</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/setup.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/setup.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -232,7 +232,7 @@
       <title>Setting up the swap partition</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/addswap.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/addswap.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -249,7 +249,7 @@
       <title>Selecting a partition to initialize</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/partselect.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/partselect.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -267,7 +267,7 @@
       <title>Formatting the partition</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/fscheck.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/fscheck.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -294,7 +294,7 @@
       <title>Selecting a filesystem type</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/filesystem.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/filesystem.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -339,7 +339,7 @@
       <title>Selecting the source medium</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/medium.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/medium.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -356,7 +356,7 @@
       <title>Selecting the disk sets</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/disksets.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/disksets.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -392,7 +392,7 @@
       <title>Installing the kernel</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/kernel.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/kernel.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -408,7 +408,7 @@
       <title>Creating a bootdisk</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/bootdisk.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/bootdisk.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -426,7 +426,7 @@
       <title>Selecting the default modem</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/modem.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/modem.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -444,7 +444,7 @@
       <title>Enabling hotplugging</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/hotplug.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/hotplug.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -462,7 +462,7 @@
       <title>Selecting the kind of LILO installation</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/lilo.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/lilo.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -484,7 +484,7 @@
       <title>Choosing the framebuffer resolution</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/framebuffer.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/framebuffer.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -501,7 +501,7 @@
       <title>Adding kernel parameters</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/kernel-param.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/kernel-param.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -523,7 +523,7 @@
       <title>Choosing where LILO should be installed</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/lilo-dest.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/lilo-dest.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -538,7 +538,7 @@
       <title>Configuring a mouse</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/mouse.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/mouse.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -555,7 +555,7 @@
       <title>Choosing whether GPM should be started or not</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/ask-load-gpm.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/ask-load-gpm.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -575,7 +575,7 @@
       connectivity</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/ask-configure-network.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/ask-configure-network.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -592,7 +592,7 @@
       <title>Setting the host name</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/hostname.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/hostname.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -607,7 +607,7 @@
       <title>Setting the domain name</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/domainname.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/domainname.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -636,7 +636,7 @@
       <title>Manual or automatic IP address configuration</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/set-ipconfig-type.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/set-ipconfig-type.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -651,7 +651,7 @@
       <title>Setting the IP addres</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/ipaddr.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/ipaddr.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -667,7 +667,7 @@
       <title>Setting the netmask</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/netmask.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/netmask.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -684,7 +684,7 @@
       <title>Setting the gateway</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/gateway.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/gateway.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -705,7 +705,7 @@
       <title>Choosing whether you want to use a nameserver or not</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/ask-nameserver.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/ask-nameserver.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -720,7 +720,7 @@
       <title>Setting the nameserver(s)</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/nameserver.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/nameserver.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -737,7 +737,7 @@
       <title>Confirming the network settings</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/network-confirm.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/network-confirm.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -753,7 +753,7 @@
       <title>Enabling/disabling startup services</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/startup-services.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/startup-services.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -775,7 +775,7 @@
       <title>Choosing whether the clock is set to UTC</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/ask-clock-utc.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/ask-clock-utc.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -792,7 +792,7 @@
       <title>Setting the timezone</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/timezone.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/timezone.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -810,7 +810,7 @@
       <title>Choosing the default window manager</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/defaultwm.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/defaultwm.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -827,7 +827,7 @@
       <title>Setting the root password</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/rootpasswd.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/rootpasswd.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -842,7 +842,7 @@
       <title>Finished</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/finished.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/finished.png" format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>

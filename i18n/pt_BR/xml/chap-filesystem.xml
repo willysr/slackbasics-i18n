@@ -274,10 +274,10 @@ other::---
 
         <mediaobject>
           <imageobject>
-            <imagedata format="PNG" fileref="../images/hardlink.png"/>
+            <imagedata format="PNG" fileref="../../images/hardlink.png"/>
           </imageobject>
           <imageobject>
-            <imagedata format="SVG" fileref="../images/hardlink.svg"/>
+            <imagedata format="SVG" fileref="../../images/hardlink.svg"/>
           </imageobject>
         </mediaobject>
       </figure>
@@ -311,10 +311,10 @@ other::---
 
         <mediaobject>
           <imageobject>
-            <imagedata format="PNG" fileref="../images/symlink.png"/>
+            <imagedata format="PNG" fileref="../../images/symlink.png"/>
           </imageobject>
           <imageobject>
-            <imagedata format="SVG" fileref="../images/symlink.svg"/>
+            <imagedata format="SVG" fileref="../../images/symlink.svg"/>
           </imageobject>
         </mediaobject>
       </figure>

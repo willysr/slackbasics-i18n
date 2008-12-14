@@ -899,7 +899,7 @@ $ <userinput>rm in*</userinput>
       <title>Saída e entrada padrão</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/shell-inout.png" format="PNG"/>
+	  <imagedata fileref="../../images/shell-inout.png" format="PNG"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -983,7 +983,7 @@ $ <userinput>md5sum &lt; test1</userinput>
 	<title>Uma canalização</title>
 	<mediaobject>
 	  <imageobject>
-	    <imagedata fileref="../images/shell-pipeline.png" format="PNG"/>
+	    <imagedata fileref="../../images/shell-pipeline.png" format="PNG"/>
 	  </imageobject>
 	</mediaobject>
       </figure>

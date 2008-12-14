@@ -922,7 +922,7 @@ $ <userinput>rm in*</userinput>
       <title>Standard input and output</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../images/shell-inout.png" format="PNG"/>
+	  <imagedata fileref="../../images/shell-inout.png" format="PNG"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -1006,7 +1006,7 @@ $ <userinput>md5sum &lt; test1</userinput>
 	<title>A pipeline</title>
 	<mediaobject>
 	  <imageobject>
-	    <imagedata fileref="../images/shell-pipeline.png" format="PNG"/>
+	    <imagedata fileref="../../images/shell-pipeline.png" format="PNG"/>
 	  </imageobject>
 	</mediaobject>
       </figure>
