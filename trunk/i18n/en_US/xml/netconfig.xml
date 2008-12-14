@@ -159,7 +159,7 @@ with a 48-bit prefix.
 <title>The anatomy of an IPv6 address</title>
 <mediaobject>
 <imageobject>
-<imagedata fileref="../images/ipv6addr.png" format="PNG" />
+<imagedata fileref="../../images/ipv6addr.png" format="PNG" />
 </imageobject>
 </mediaobject>
 </figure>
@@ -474,7 +474,7 @@ Let's have a look at an example:
 <title>Router example</title>
 <mediaobject>
 <imageobject>
-<imagedata fileref="../images/router.png" format="PNG" />
+<imagedata fileref="../../images/router.png" format="PNG" />
 </imageobject>
 </mediaobject>
 </figure>

@@ -139,7 +139,7 @@
       <title>A ferramenta de particionamento cfdisk</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/cfdisk.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/cfdisk.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -220,7 +220,7 @@
       <title>A ferramenta setup</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/setup.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/setup.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -239,7 +239,7 @@
       <title>Definindo uma partição de swap</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/addswap.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/addswap.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -256,7 +256,7 @@
       <title>Selecionando uma partição para inicializar</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/partselect.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/partselect.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -274,7 +274,7 @@
       <title>Formatando a partição</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/fscheck.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/fscheck.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -304,7 +304,7 @@
       <title>Selecionando um tipo de sistema de arquivos</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/filesystem.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/filesystem.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -351,7 +351,7 @@
       <title>Selecionando a mídia de instalação</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/medium.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/medium.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -368,7 +368,7 @@
       <title>Selecionando as séries de discos de instalação</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/disksets.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/disksets.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -403,7 +403,7 @@
       <title>Instalando o kernel</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/kernel.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/kernel.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -420,7 +420,7 @@
       <title>Criando um disco de inicialização</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/bootdisk.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/bootdisk.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -437,7 +437,7 @@
       <title>Selecionando o modem padrão</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/modem.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/modem.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -456,7 +456,7 @@
       <title>Ativando o hotplug</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/hotplug.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/hotplug.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -475,7 +475,7 @@
       <title>Selecionando o tipo de instalação do LILO</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/lilo.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/lilo.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -497,7 +497,7 @@
       <title>Escolhendo uma resolução de framebuffer</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/framebuffer.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/framebuffer.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -514,7 +514,7 @@
       <title>Adicionando parâmetros ao kernel</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/kernel-param.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/kernel-param.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -538,7 +538,7 @@
       <title>Escolhendo onde o LILO deve ser instalado</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/lilo-dest.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/lilo-dest.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -553,7 +553,7 @@
       <title>Configurando um mouse</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/mouse.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/mouse.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -570,7 +570,7 @@
       <title>Escolhendo se o GPM deve ser iniciado ou não</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/ask-load-gpm.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/ask-load-gpm.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -589,7 +589,7 @@
       <title>Escolhendo se você quer configurar conexões de rede</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/ask-configure-network.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/ask-configure-network.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -607,7 +607,7 @@
       <title>Configurando o nome do host</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/hostname.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/hostname.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -622,7 +622,7 @@
       <title>Definindo o nome de domínio</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/domainname.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/domainname.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -651,7 +651,7 @@
       <title>Configuração manual ou automática do endereço de IP</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/set-ipconfig-type.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/set-ipconfig-type.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -666,7 +666,7 @@
       <title>Definindo o endereço IP</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/ipaddr.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/ipaddr.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -682,7 +682,7 @@
       <title>Definindo a máscara de rede</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/netmask.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/netmask.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -699,7 +699,7 @@
       <title>Definindo o gateway</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/gateway.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/gateway.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -720,7 +720,7 @@
       <title>Escolhendo se você quer ou não usar um servidor de nomes</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/ask-nameserver.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/ask-nameserver.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -735,7 +735,7 @@
       <title>Definindo o(s) servidor(es) de nomes</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/nameserver.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/nameserver.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -752,7 +752,7 @@
       <title>Confirmando as configurações de rede</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/network-confirm.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/network-confirm.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -769,7 +769,7 @@
       <title>Habilitando/desabilitando serviços na inicialização</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/startup-services.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/startup-services.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -792,7 +792,7 @@
       <title>Escolhendo se o relógio será ajustado para UTC</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/ask-clock-utc.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/ask-clock-utc.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -809,7 +809,7 @@
       <title>Configurando o fuso horário</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/timezone.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/timezone.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -828,7 +828,7 @@
       <title>Escolhendo o gerenciador de janelas padrão</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/defaultwm.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/defaultwm.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -845,7 +845,7 @@
       <title>Definindo a senha do superusuário</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/rootpasswd.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/rootpasswd.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>
@@ -860,7 +860,7 @@
       <title>Concluído</title>
       <mediaobject>
     <imageobject>
-      <imagedata fileref="../images/finished.png" format="PNG" width="100%" scalefit="1"/>
+      <imagedata fileref="../../images/finished.png" format="PNG" width="100%" scalefit="1"/>
     </imageobject>
       </mediaobject>
     </figure>

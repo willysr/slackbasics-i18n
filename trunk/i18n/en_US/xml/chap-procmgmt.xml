@@ -105,10 +105,10 @@
 
 	<mediaobject>
 	  <imageobject>
-	    <imagedata format="PNG" fileref="../images/procstates.png"/>
+	    <imagedata format="PNG" fileref="../../images/procstates.png"/>
 	  </imageobject>
 	  <imageobject>
-	    <imagedata format="SVG" fileref="../images/procstates.svg"/>
+	    <imagedata format="SVG" fileref="../../images/procstates.svg"/>
 	  </imageobject>
 	</mediaobject>
       </figure>

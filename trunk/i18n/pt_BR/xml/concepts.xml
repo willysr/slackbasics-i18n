@@ -78,7 +78,7 @@
         <title>Duplicando um processo</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="../images/fork.png" format="PNG"/>
+            <imagedata fileref="../../images/fork.png" format="PNG"/>
           </imageobject>
         </mediaobject>
       </figure>
@@ -126,7 +126,7 @@
         <title>A estrutura do sistema de arquivos</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="../images/fs-structure.png" format="PNG"/>
+            <imagedata fileref="../../images/fs-structure.png" format="PNG"/>
           </imageobject>
         </mediaobject>
       </figure>
