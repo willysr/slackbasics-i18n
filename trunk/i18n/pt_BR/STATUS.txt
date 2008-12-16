@@ -24,7 +24,7 @@ linhas arquivo                  trad     1a-rev  2a-rev
    652 chap-pkgmgmt.xml         OK       -       -
    703 chap-init.xml            OK       -       -
    758 custom-installation.xml  OK       -       -
-   780 chap-procmgmt.xml        parcial  -       -
+   780 chap-procmgmt.xml        OK       -       -
    868 chap-install.xml         OK       -       -
   1044 chap-shell.xml           OK       -       -
   1924 chap-textproc.xml        iniciada -       -
