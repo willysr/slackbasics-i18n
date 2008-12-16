@@ -521,26 +521,28 @@ $ <command>renice 14 -p 3108</command>
   </sect1>
 
   <sect1 xml:id="chap-procmanagement-jobcontrol">
-    <title>Job control</title>
+    <title>Controle de tarefas</title>
 
     <para>
-      It is often useful to group processes to allow operations on a
-      set of processes, for instance to distribute a signal to all
-      processes in a group rather than a single process. Not too
-      suprisingly, these sets of processes are called
-      <emphasis>program groups</emphasis> in UNIX. After a fork, a
-      child process is automatically a member of the process group of
-      the parent. Though, new process groups can be created by making
-      one process a process group leader, and adding other processes
-      to the group. The process group ID is the PID of the process
-      group leader.
+      Frequentemente é útil pode agrupar processos para executar
+      operações em um conjunto de processos, por exemplo, para
+      distribuir um sinal a todos os processos em um grupo ao invés
+      de apenas para um único processo.  Não é surpresa que estes
+      conjuntos de processos sejam chamados de <emphasis>grupos de
+      programas</emphasis> no UNIX.  Depois de um fork, um processo
+      filho passa automaticamente a ser um membro do grupo de
+      processo de seu pai.  Além disso, novos grupos de processos
+      podem ser criados promovendo-se um processo a líder do grupo
+      de processos, e adicionando outros processos ao grupo.  O ID
+      do grupo de processos é o mesmo PID do processo líder do grupo.
     </para>
 
     <para>
-      Virtually all modern UNIX shells give processes that are created
-      through the invocation of a command their own process group. All
-      processes in a pipeline are normally added to one process group.
-      If the following commands that create a pipepine are executed
+      Virtualmente, todos os shells de sistemas UNIX modernos dispõem
+      de processos que são criados através da chamada de um comando de
+      seu próprio grupo de processo.  Todos os processo em um duto
+      (pipeline) normalmente são adicionados a um grupo de processo.
+      Se os comandos que criam o duto seguinte forem executados
     </para>
 
     <screen>
@@ -548,56 +550,57 @@ cat | tr -s ' ' | egrep 'foob.r'
     </screen>
 
     <para>
-      the shell roughly performs the following steps:
+      o shell prontamente executará os seguintes passos:
     </para>
 
     <orderedlist>
       <listitem>
 	<para>
-	  Three child processes are forked.
+	  Três processos filhos são criados.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  The first process in the pipeline is put in a process group
-	  with its own PID as the process group ID, making it the
-	  process leader. The other processes in the pipeline are added
-	  to the process group.
+	  O primeiro processo no duto é colocado em um grupo de processo
+	  com seu próprio PID como o ID do grupo de processo, o que o 
+	  torna o processo líder.  Os outros processos no duto são
+	  adicionados ao grupo do processo.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  The file descriptors of the processes in the pipeline are
-	  reconfigured to form a pipeline.
+	  Os descritores de arquivos dos processo são reconfigurados de
+	  acordo para formar o duto.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  The programs in the pipeline are executed.
+	  Os programas no duto são enfim executados.
 	</para>
       </listitem>
     </orderedlist>
 
     <para>
-      The shell uses process groups to implement <emphasis>job
-      control</emphasis>. A shell can run multiple jobs in the
-      background, there can be multiple stopped job, and one job can
-      be in the foreground. A foreground job is wired to the terminal
-      for its standard input (meaning that it is the job the gets user
-      input).
+      O shell usa grupos de processo para implementar <emphasis>controle
+      de tarefas</emphasis>.  Um shell pode executar múltiplas tarefas em
+      segundo plano, pode haver diversas tarefas paradas e uma tarefa
+      pode estar em primeiro plano.  Uma tarefa em primeiro plano é levada
+      ao terminal por sua entrada padrão (o que significa que ela é a
+      tarefa que obtém uma entrada do usuário).
     </para>
 
     <sect2 xml:id="chap-procmgmt-jobcontrol-stopping">
-      <title>Stopping and continuing a job</title>
+      <title>Parando e continuando uma tarefa</title>
       
       <para>
-	A job that is in the foreground (thus, a job that potentially
-	accepts userinput from the terminal) can be stopped by
-	pressing <emphasis>Ctrl-z</emphasis> (pressing both the 'Ctrl' and
-	'z' keys simultaneously). This will stop the job,
-	and will handle control over the terminal back to the shell.
-	Let's try this with the <command>sleep</command> command, which
-	waits for the number of seconds provided as an argument:
+	Uma tarefa que está em primeiro plano (ou seja, uma tarefa que
+	esteja potencialmente aceitando entradas do usuário a partir do
+	terminal) pode ser parada pressionando-se <emphasis>Ctrl-z</emphasis>
+	(pressionando ambas as teclas 'Ctrl' e 'z' ao mesmo tempo).  Isto
+	irá parar a tarefa e devolverá o controle do terminal de volta para o
+	shell.  Vamos experimentar isto com o comando <command>sleep</command>,
+	o qual causa uma espera pela quantidade de segundo informada como
+	argumento:
       </para>
 
       <screen>
@@ -607,11 +610,10 @@ $ <userinput>sleep 3600</userinput>
       </screen>
 
       <para>
-	The process group, which we will refer to as a job has been
-	stopped now, meaning the the <command>sleep</command> has
-	stopped counting - it's execution is completely stopped. You
-	can retrieve a list of jobs with the <command>jobs</command>
-	command:
+	O grupo de processo, ao qual nos referíamos como uma tarefa, agora
+	foi parado, significando que o <command>sleep</command> parou sua
+	contagem - sua execução está completamente parada.  Você pode obter
+	uma lista de tarefas com o comando <command>jobs</command>:
       </para>
 
       <screen>
@@ -620,10 +622,10 @@ $ <userinput>jobs</userinput>
       </screen>
 
       <para>
-	This shows the job number (<emphasis>1</emphasis>), its state,
-	and the command that was used to start this job. Let's run
-	another program, stop that too, and have another look at the
-	job listing.
+	Isto mostra o número da tarefa (<emphasis>1</emphasis>), seu estado,
+	e o comando que foi usado para iniciá-la.  Agora vamos executar um
+	outro programa, pará-lo também, e dar outra olhada na listagem de
+	tarefas.
       </para>
 
       <screen>
@@ -636,28 +638,28 @@ $ <userinput>jobs</userinput>
       </screen>
 
       <para>
-	As expected, the second job is also stopped, and was assigned
-	job number <emphasis>2</emphasis>. The plus sign
-	(<emphasis>+</emphasis>) following the first job has changed
-	to a minus (<emphasis>-</emphasis>) sign, while the second job
-	is now marked by a plus sign. The plus sign is used to
-	indicate the <emphasis>current job</emphasis>. The
-	<command>bg</command> and <command>fg</command> commands that
-	we will look at shortly, will operate on the current job
-	if no job was specified as a parameter.
+	Como esperado, a segunda tarefa também está parada, e a ela foi
+	associado o número <emphasis>2</emphasis> como número de tarefa. O
+	sinal de mais (<emphasis>+</emphasis>) depois do número da primeira
+	tarefa foi trocado por um sinal de menos (<emphasis>-</emphasis>),
+	e 	a segunda tarefa agora está marcada com um sinal de mais.  
+	O sinal	de mais é usado para indicar a <emphasis>tarefa
+	atual</emphasis>.  Os comandos <command>bg</command> e
+	<command>fg</command>, que veremos em instantes, irão operar sobre
+	a tarefa atual quando nenhuma tarefa for informada como parâmetro.
       </para>
      
       <!-- XXX - Document under what circumstances a job becomes the
                  current job. -->
 
       <para>
-	Usually, when you are working with jobs, you will want to move
-	jobs to the foreground again. This is done with the
-	<command>fg</command> command. Executing <command>fg</command>
-	without a parameter will put the current job in the
-	foreground.  Most shells will print the command that is moved
-	to the foreground to give an indication of what process was
-	moved to the foreground:
+        Normalmente, quando você está trabalhando com tarefas, você irá
+        querer mover tarefas para o primeiro plano novamente.  Isto é feito
+        com o comando <command>fg</command>.  Executar <command>fg</command>
+        sem nenhum parâmetro irá trazer a tarefa atual para o primeiro
+        plano.  Muitos shells irão exibir o comando que foi movido para o
+        primeiro plao para lhe dar uma indicação de sobre qual processo
+        estamos nos referindo:
       </para>
 
       <screen>
@@ -666,10 +668,10 @@ cat
       </screen>
 
       <para>
-	Of course, it's not always useful to put the current job in
-	the foreground. You can put another job in the foreground by
-	adding the job number preceded by the percentage sign
-	(<emphasis>%</emphasis>) as an argument to
+	É claro que nem sempre é útil colocar a tarefa atual no primeiro
+	plano.  Você pode colocar outra tarefa no primeiro plano informando
+	o número da tarefa junto com um sinal de porcentagem
+	(<emphasis>%</emphasis>) como um argumetno para o comando 
 	<command>fg</command>:
       </para>
 
@@ -679,30 +681,31 @@ sleep 3600
       </screen>
 
       <para>
-	Switching jobs my stopping them and putting them in the
-	foreground is often very useful when the shell is used
-	interactively. For example, suppose that you are editing a
-	file with a text editor, and would like to execute some other
-	command and then continue editing. You could stop the editor
-	with <emphasis>Ctrl-z</emphasis>, execute a command, and put
-	the editor in the foreground again with <command>fg</command>.
+	Chavear tarefas parando-as e então recolocando-as em primeiro plano
+	é quase sempre muito útil quando o shell é usado interativamente.  
+	Por exemplo, suponha que você está editando um arquivo com um editor
+	de texto, e que você gostaria de executar algum outro comando e
+	então continuar editando.  Você poderia parar o editor com
+	<emphasis>Ctrl-z</emphasis>, executar um comando, e colocar o editor
+	em primeiro plano de novo com <command>fg</command>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-procmgmt-jobcontrol-background">
-      <title>Background jobs</title>
+      <title>Tarefas em segundo plano</title>
 
       <para>
-	Besides running in the foreground, jobs can also run in the
-	background. This means that they are running, but input from
-	the terminal is not redirected to background processes. Most
-	shells do configure background jobs to direct output to the
-	terminal of the shell where they were started.
+	Além de executar em primeiro plano, tarefas também podem ser
+	executadas em segundo plano, ou background.  Isto significa que ela
+	ainda continuarão rodando, mas a entrada do terminal não é
+	redirecionada para processos em segundo plano.  A maioria dos shells
+	configuram tarefas em segundo plano para direcionar sua saída para o
+	terminal de shell onde as tarefas foram iniciadas.
       </para>
 
       <para>
-	A process that is stopped can be continued in the background
-	with the <command>bg</command> command:
+	Um processo que esteja parado pode ser continuado em segundo plano
+	com o comando <command>bg</command> command:
       </para>
 
       <screen>
@@ -715,7 +718,7 @@ $
       </screen>
 
       <para>
-	You can see that the job is indeed running with
+	Você pode ver que a tarefa está de fato executando com o comando
 	<command>jobs</command>:
       </para>
 
@@ -725,9 +728,9 @@ $ <userinput>jobs</userinput>
       </screen>
 
       <para>
-	Like <command>fg</command>, you can also move another job than
-	the current job to the background by specifying its job
-	number:
+	Como para o <command>fg</command>, você também pode mover outra tarefa
+	além da tarefa atual para segundo plano especificando seu número de
+	tarefa para o comando <command>bg</command>:
       </para>
 
       <screen>
@@ -736,9 +739,9 @@ $ <command>bg %1</command>
       </screen>
 
       <para>
-	You can also run put a job directly in the background when it is
-	started, by adding an trailing ampersand (&amp;) to a command
-	or pipeline. For instance:
+	Você também pode colocar uma tarefa em segundo plano diretamente ao
+	iniciá-la, adicionando um <emphasis><quote>e</quote> comercial</emphasis>
+	(&amp;) ao comando ou a um duto de comando.  Por exemplo:
       </para>
 
       <screen>
