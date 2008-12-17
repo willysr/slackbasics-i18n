@@ -206,9 +206,10 @@ $ <userinput>find ~ -name '*.txt' -type f | wc -l</userinput>
 	  <term>[character*]</term>
 	  <listitem>
 	    <para>
-	      Repeat <emphasis>character</emphasis> until the second
-	      set is as long as the first set of characters. This
-	      notation can only be used in the second set.
+	      Repete o <emphasis>character</emphasis> até que o segundo
+          conjunto seja tão longo quanto o primeiro conjunto de
+          caracteres.  Esta notação só pode ser usada no segundo
+          conjunto.
 	    </para>
 	  </listitem>
 	</varlistentry>
@@ -216,86 +217,88 @@ $ <userinput>find ~ -name '*.txt' -type f | wc -l</userinput>
 	  <term>[character*n]</term>
 	  <listitem>
 	    <para>
-	      Repeat <emphasis>character</emphasis>
-	      <emphasis>n</emphasis> times.
+	      Repete o <emphasis>character</emphasis> 
+	      <emphasis>n</emphasis> vezes.
 	    </para>
 	  </listitem>
 	</varlistentry>
       </variablelist>
 
       <table xml:id="chap-textproc-simple-tr-charclasses">
-	<title>tr character classes</title>
+	<title>Classes de caracteres do tr</title>
 
 	<tgroup cols="2">
 	  <thead>
-	    <row><entry>Class</entry><entry>Meaning</entry></row>
+	    <row><entry>Classe</entry><entry>Significado</entry></row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>[:alnum:]</entry>
-	      <entry>All letters and numbers.</entry>
+	      <entry>Todas as letras e números.</entry>
 	    </row>
 	    <row>
 	      <entry>[:alpha:]</entry>
-	      <entry>Letters.</entry>
+	      <entry>Letras.</entry>
 	    </row>
 	    <row>
 	      <entry>[:blank:]</entry>
-	      <entry>Horizontal whitespace (e.g. spaces and tabs).</entry>
+	      <entry>Espaços horizontais (p.ex., espaços em branco e
+          tabulações).</entry>
 	    </row>
 	    <row>
 	      <entry>[:cntrl:]</entry>
-	      <entry>Control characters.</entry>
+	      <entry>Caracteres de controle.</entry>
 	    </row>
 	    <row>
 	      <entry>[:digit:]</entry>
-	      <entry>All digits (0-9).</entry>
+	      <entry>Todos os dígitos (0-9).</entry>
 	    </row>
 	    <row>
 	      <entry>[:graph:]</entry>
-	      <entry>All printable characters, except whitespace.</entry>
+	      <entry>Todos os caracteres imprimíveis, exceto os espaços em
+          branco.</entry>
 	    </row>
 	    <row>
 	      <entry>[:lower:]</entry>
-	      <entry>Lowercase letters.</entry>
+	      <entry>Letras minúsculas.</entry>
 	    </row>
 	    <row>
 	      <entry>[:print:]</entry>
-	      <entry>All printable characters, including horizontal
-	      whitespace, but excluding vertical whitespace.</entry>
+	      <entry>Todos os caracteres imprimíveis, incluindo espaços em
+          branco, mas excluindo espaços verticais.</entry>
 	    </row>
 	    <row>
 	      <entry>[:punct:]</entry>
-	      <entry>Punctuation characters.</entry>
+	      <entry>Caracteres de pontuação.</entry>
 	    </row>
 	    <row>
 	      <entry>[:space:]</entry>
-	      <entry>All whitespace.</entry>
+          <entry>Todos os caracteres de espaço.</entry>
 	    </row>
 	    <row>
 	      <entry>[:upper:]</entry>
-	      <entry>Uppercase letters.</entry>
+	      <entry>Letras maiúsculas.</entry>
 	    </row>
 	    <row>
 	      <entry>[:xdigit:]</entry>
-	      <entry>Hexadecimal digits (0-9, a-f).</entry>
+	      <entry>Dígitos hexadecimais (0-9, a-f).</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <sect3 xml:id="chap-textproc-simple-tr-swapping">
-	<title>Swapping characters</title>
+	<title>Trocando caracteres</title>
 
-	<para>
-	  The default operation of <command>tr</command> is to swap
-	  (translate) characters. This means that the
-	  <emphasis>n</emphasis>-th character in the first set is
-	  replaced with the <emphasis>n</emphasis>-th character in the
-	  second set. For example, you can replace all
-	  <emphasis>e</emphasis>'s with <emphasis>i</emphasis>'s and
-	  <emphasis>o</emphasis>'s with <emphasis>a</emphasis>'s with
-	  one <command>tr</command> operation:
+    <para>
+      A operação padrão do <command>tr</command> é trocar
+      (traduzir) caracteres.  Isso quer dizer que o
+      <emphasis>n</emphasis>-ésimo caracter no primeiro conjunto é
+      substituído pelo <emphasis>n</emphasis>-ésimo caracter no segundo
+      conjunto.  Por exemplo, você pode substituir todos os 
+	  <emphasis>e</emphasis>'s por <emphasis>i</emphasis>'s e todos os
+	  <emphasis>o</emphasis>'s por <emphasis>a</emphasis>'s com uma
+      execução do <command>tr</command>:
 	</para>
 
 	<screen>
@@ -304,13 +307,12 @@ Hilla warld!
 	</screen>
 
 	<para>
-	  When the second set is not as large as the first set,
-	  the last character in the second set will be repeated.
-	  Though, this does not necessarily apply to other UNIX
-	  systems. So, if you want to use
-	  <command>tr</command> in a system-independent manner,
-	  explicitly define what character should be repeated. For
-	  instance
+      Quando o segundo conjunto for menor que o primeiro, o último
+      caracter no segundo conjunto será considerado repetido.  Porém,
+      isto não é necessariamente aplicável a outros sistemas UNIX.
+      Assim, se você quiser usar o <command>tr</command> de uma forma
+      independente de sistema, defina explicitamente que caracter deve
+      ser repetido.  Por exemplo
 	</para>
 
 	<screen>
@@ -319,21 +321,21 @@ H@ll@ w@rld!
 	</screen>
 
 	<para>
-	  Another particularity is the use of the repetition syntax in
-	  the middle of the set. Suppose that set 1 is
-	  <emphasis>abcdef</emphasis>, and set 2
-	  <emphasis>@[-*]!</emphasis>. <command>tr</command> will replace
-	  <emphasis>a</emphasis> with <emphasis>@</emphasis>,
+      Outra peculiaridade é o uso da sintaxe de repetição no meio do
+      conjunto.  Suponha que o conjunto 1 seja 
+	  <emphasis>abcdef</emphasis>, e que o conjunto 2 seja
+	  <emphasis>@[-*]!</emphasis>.  O <command>tr</command> irá
+      substituir o <emphasis>a</emphasis> por <emphasis>@</emphasis>,
 	  <emphasis>b</emphasis>, <emphasis>c</emphasis>,
-	  <emphasis>d</emphasis>, and <emphasis>e</emphasis> with
-	  <emphasis>-</emphasis>, and <emphasis>f</emphasis> with
+	  <emphasis>d</emphasis>, e <emphasis>e</emphasis> por
+	  <emphasis>-</emphasis>, <emphasis>f</emphasis> e
 	  <emphasis>!</emphasis>.
-	  Though some other UNIX systems follow replace
-	  <emphasis>a</emphasis> with
-	  <emphasis>@</emphasis>, and the rest of the set characters
-	  with <emphasis>-</emphasis>. So, a more correct notation
-	  would be the more explicit <emphasis>@[-*4]!</emphasis>,
-	  which gives the same results on virtually all UNIX systems:
+      Alguns outros sistemas UNIX seguiria substituindo 
+      <emphasis>a</emphasis> por <emphasis>@</emphasis>, e os demais
+      caracteres do conjunto por <emphasis>-</emphasis>.  Então, uma
+      notação mais correta deveria ser <emphasis>@[-*4]!</emphasis>, que
+      é mais explícita e tem o mesmo resultado virtualmente em todos os
+      sistemas UNIX:
 	</para>
 
 	<screen>
