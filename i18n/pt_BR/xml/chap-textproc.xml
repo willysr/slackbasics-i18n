@@ -635,29 +635,30 @@ Apfel   Banane  Birne
     </sect2>
 
     <sect2 xml:id="chap-textproc-simple-sort">
-      <title>Sorting text</title>
+      <title>Ordenando texto</title>
 
       <para>
-	UNIX offers the <command>sort</command> command to sort
-	text. <command>sort</command> can also check whether a file is
-	in sorted order, and merge two sorted
-	files. <command>sort</command> can sort in dictionary and
-	numerical orders. The default sort order is the dictionary
-	order. This means that text lines are compared character by
-	character, sorted as specified in the current collating
-	sequence (which is specified through the LC_COLLATE
-	environment variable). This has a catch when you are sorting
-	numbers, for instance, if you have the numbers 1 to 10 on
-	different lines, the sequence will be 1, 10, 2, 3, etc.  This
-	is caused by the per-character interpretation of the
-	dictionary sort. If you want to sort lines by number, use the
-	numerical sort.
+        O UNIX oferece o comando <command>sort</command> para ordenação
+        de texto.  O <command>sort</command> também pode verificar se
+        um arquivo já está ordenado, e também mesclar dois arquivos
+        ordenados.  O <command>sort</command> também pode fazer tanto
+        ordenação léxica (ordem do dicionário) quanto numérica.  A
+        ordem padrão é a ordem do dicionário.  Isso quer dizer que as
+        linhas de texto são comparadas caracter a caracter, e ordenadas
+        como especificado pela sequência collate da localização atual
+        (que é definida pela variável de ambiente LC_COLLATE).  Isto
+        pode ser uma pegadinha quando você estiver ordenando números,
+        por exemplo, se você tem os números de 1 a 10 em diferentes
+        linhas, a sequência será 1, 10, 2, 3, etc.  Isto se deve a
+        interpretação por caracter da ordem de dicionário.  Se você
+        quiser ordenar as linhas pela numeração, utilize a ordenação
+        numérica.
       </para>
 
       <para>
-	If no additional parameters are specified,
-	<command>sort</command> sorts the input lines in dictionary
-	order. For instance:
+        Se nenhum parâmetro adicional for especificado, o
+        <command>sort</command> ordena as linhas de entrada na ordem do
+        dicionário.  Por exemplo:
       </para>
 
       <screen>
@@ -672,10 +673,11 @@ orange
       </screen>
 
       <para>
-	As you can see, the input is correctly ordered. Sometimes
-	there are two identical lines. You can merge identical lines
-	by adding the <parameter class="command">-u</parameter>
-	parameter. The two samples listed below illustrate this.
+        Como você pode ver, a entrada é ordenada corretamente.  Algumas
+        vezes pode haver linhas idênticas.  Você pode mesclar linhas
+        idênticas adicionando o parâmetro
+        <parameter class="command">-u</parameter>.  Os dois exemplos
+        listados abaixo ilustram isso.
       </para>
 
       <screen>
@@ -701,50 +703,49 @@ orange
       </screen>
 
       <para>
-	There are some additional parameters that can be helpful to
-	modify the results a bit:
+        Há alguns parâmetros adicionais que podem ser úteis para
+        modificar um pouco o resultado:
       </para>
 
       <itemizedlist>
 	<listitem>
 	  <para>
-	    The <parameter class="command">-f</parameter> parameter
-	    makes the sort case-insensitive.
+        O parâmetro <parameter class="command">-f</parameter> faz com
+        que a ordenação seja insensível a maiúsculas e minúsculas.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    If <parameter class="command">-d</parameter> is added,
-	    only blanks and alphanumeric characters are used to
-	    determine the order.
+	    Se <parameter class="command">-d</parameter> for adicionado,
+	    apenas caracteres em branco e alfanuméricos são usados para
+	    determinar a ordem.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    The <parameter class="command">-i</parameter> parameter
-	    makes <command>sort</command> ignore non-printable
-	    characters.
+	    O parâmetro <parameter class="command">-i</parameter> faz com
+	    que o <command>sort</command> ignore caracteres não imprimíveis.
 	  </para>
 	</listitem>
       </itemizedlist>
 
 
       <para>
-	You can sort files numerically by adding the <parameter
-	class="command">-n</parameter> parameter. This parameter stops
-	reading the input line when a non-numeric character was found.
-	The leading minus sign, decimal point, thousands separator,
-	radix character (that separates an exponential from a normal
-	number), and blanks can be used as a part of a number. These
-	characters are interpreted where applicable.
+        Você pode ordenar arquivos numericamente adicionando o parâmetro
+        <parameter class="command">-n</parameter>.  Este parâmetro pára
+        de ler a entrada quando um caracter não numérico for encontrado.
+        O sinal de menos, ponto decimal, separador de milhar, caracter
+        de base (que diferente um número exponencial de um número
+        normal), e espaços em branco podem ser usados como partes de um
+        número.  Esses caracteres são interpretados adequadamente.
       </para>
 
       <para>
-	The following example shows numerical sort in action, by
-	piping the output of <command>du</command> to
-	<command>sort</command>. This works because
-	<command>du</command> specifies the size of each file as the
-	first field.
+        O exemplo a seguir mostra a ordenação numérica em ação,
+        canalizando a saída de um comando <command>du</command> para o
+        <command>sort</command>.  Isso funciona porque o 
+        <command>du</command> especifica o tamanho de cada arquivo como
+        o primeiro campo.
       </para>
 
       <screen>
@@ -759,11 +760,11 @@ $ <userinput>du -a /bin | sort -n</userinput>
       </screen>
 
       <para>
-	In this case, the output is probably not useful if you want to
-	read the output in a paginator, because the smallest files are
-	listed first. This is where the <parameter
-	class="command">-r</parameter> parameter becomes handy. This
-	reverses the sort order.
+        Neste caso, a saída provavelmente não é muito útil se você
+        quiser ler a saída em um paginador, porqur os arquivos menores
+        são listados primeiro.  É aí que entra o parâmetro <parameter
+        class="command">-r</parameter>.  Isso reverte a ordem de
+        ordenação.
       </para>
 
       <screen>
@@ -778,15 +779,15 @@ $ <userinput>du -a /bin | sort -nr</userinput>
       </screen>
 
       <para>
-	The <parameter class="command">-r</parameter> parameter also
-	works with dictionary sorts.
+        O parâmetro <parameter class="command">-r</parameter> também
+        funciona com a ordenação léxica.
       </para>
 
       <para>
-	Quite often, files use a layout with multiple columns, and you
-	may want to sort a file by a different column than the first
-	column. For instance, consider the following score file named
-	<filename>score.txt</filename>:
+        Frequentemente, os arquivos utilizam estrutura de múltiplas
+        comuns, e você pode querer ordenar um arquivo por uma outra
+        coluna que não a primeira.  Por exemplo, considere o seguinte
+        arquivo de pontuação chamado <filename>score.txt</filename>:
       </para>
 
       <programlisting>
@@ -797,37 +798,38 @@ Heinz:DE:3
       </programlisting>
 
     <para>
-      Suppose that we would like to sort the entries in this file by
-      the two-letter country name. <command>sort</command> allows us
-      to sort a file by a column with the <parameter
-      class="command">-k col1[,col2]</parameter> parameter.  Where
-      <emphasis>col1</emphasis> up to <emphasis>col2</emphasis> are
-      used as fields for sorting the input. If
-      <emphasis>col2</emphasis> is not specified, all fields up till
-      the end of the line are used. So, if you want to use just one
-      column, use <parameter class="command">-k col1,col1</parameter>.
-      You can also specify the the starting character within a column
-      by adding a period (<emphasis>.</emphasis>) and a character
-      index. For instance, <parameter class="command">-k
-      2.3,4.2</parameter> means that the second column starting from
-      the third character, the third column, and the fourth column up
-      to (and including) the second character.
+      Suponha que queiramos ordenar as entradas deste arquivo pelo campo
+      de duas letras do país.  O <command>sort</command> nos permite 
+      ordenar um arquivo por uma coluna com o parâmetro <parameter
+      class="command">-k col1[,col2]</parameter>.  Sendo que as colunas
+      de <emphasis>col1</emphasis> a <emphasis>col2</emphasis> são
+      usadas como campos para ordenação da entrada.  Se 
+      <emphasis>col2</emphasis> não for especificada, todos os campos
+      até o final da linha são considerados.  Assim, se você quiser usar
+      apenas uma coluna, utilize
+      <parameter class="command">-k col1,col1</parameter>.  Você também
+      pode especificar o caracter inicial de uma coluna adicionando um
+      ponto (<emphasis>.</emphasis>) e um caracter de índice.  Por
+      exemplo, <parameter class="command">-k 2.3,4.2</parameter>
+      se refere à segunda coluna começando no terceiro caracter, a
+      terceira coluna e a quarta coluna até (e incluindo) o segundo
+      caracter.
     </para>
 
     <!-- XXX - document -b? Mentioned lateron (-k) -->
 
     <para>
-      There is yet another particularity when it comes to sorting by
-      columns: by default, <command>sort</command> uses a blank as the
-      column separator. If you use a different separator character,
-      you will have to use the <parameter>-t char</parameter>
-      parameter, that is used to specify the field separator.
+      Ainda há uma outra peculiaridade sobre ordenação de colunas: por
+      padrão, o <command>sort</command> usa um caracter em branco como
+      separador de colunas.  Se você usar um caracter separador
+      distinto, você tem que usar o parâmetro <parameter>-t
+      char</parameter> para especificar o separador de campos.
     </para>
 
     <para>
-      With the <parameter class="command">-t</parameter> and
-      <parameter class="command">-k</parameter> parameters combined,
-      we can sort the scores file by country code:
+      Combinando os parâmetros <parameter class="command">-t</parameter>
+      e <parameter class="command">-k</parameter>, podemos ordenar o
+      arquivo de pontuação pelo código do país:
     </para>
 
     <screen>
@@ -839,25 +841,26 @@ John:US:4
     </screen>
 
     <para>
-      So, how can we sort the file by the score? Obviously, we have to
-      ask sort to use the third column. But sort uses a dictionary
-      sort by default<footnote><para>Of course, that will not really
-      matter in this case, because we don't use numbers higher than 9,
-      and virtually all character sets have numbers in a numerical
-      order).</para></footnote>. You could use the <parameter
-      class="command">-n</parameter>, but <command>sort</command> also
-      allows a more sophisticated approach. You can append the one or
-      more of the <emphasis>n</emphasis>, <emphasis>r</emphasis>>,
+      Então, como podemos ordenar o arquivo pela pontuação em si?  
+      Obviamente, podemos indicar para que o sort use a terceira coluna.
+      Mas o sorte usa um dicionário de ordenação por
+      padrão<footnote><para>É claro, isso realmente não faz diferença
+      neste caso, pois não usamos números maiores que 9, e virtualmente
+      todos os conjuntos de caracteres representam números em ordem
+      numérica).</para></footnote>.  Você poderia usar o <parameter
+      class="command">-n</parameter>, mas o <command>sort</command> 
+      também permite uma abordagem mais sofisticada.  Você pode incluir
+      <emphasis>n</emphasis>, <emphasis>r</emphasis>,
       <emphasis>f</emphasis>, <emphasis>d</emphasis>,
-      <emphasis>i</emphasis>, or <emphasis>b</emphasis> to the column
-      specifier. These letters represent the <command>sort</command>
-      parameters with the same name. If you add just the starting
-      column, append it to that column, otherwise, add it to the
-      ending column.
+      <emphasis>i</emphasis>, ou <emphasis>b</emphasis> como
+      especificador de coluna.  Essas letras representam parâmetros do
+      <command>sort</command> com mesmo nome.  Se você adicionar apenas
+      a coluna inicial, inclua-o àquela coluna, ou então, adicione-o à
+      coluna final.
     </para>
 
     <para>
-      The following command sorts the file by score:
+      O comando a seguir ordena o arquivo pela pontuação:
     </para>
 
     <screen>
@@ -869,26 +872,27 @@ Klaus:DE:5
     </screen>
 
     <para>
-      It is good to follow this approach, rather than using the
-      parameter variants, because <command>sort</command> allows you
-      to use more than one <parameter class="command">-k</parameter>
-      parameter. And, adding these flags to the column specification,
-      will allow you to sort by different columns in different ways.
-      For example using <command>sort</command> with the <parameter
-      class="command">-k 3,3n -k 2,2</parameter> parameters will sort
-      all lines numerically by the third column. If some lines have
-      identical numbers in the third column, these lines can be sorted
-      further with a dictionary sort of the second column.
+      É uma boa seguir esta abordagem, ao invés de usar as variantes de
+      parâmetros, pois o <command>sort</command> permite que você use
+      mais parâmetros que o <parameter class="command">-k</parameter>.
+      E, adicionando essas opções à especificação de coluna também vai
+      lhe permitir fazer ordenação por diferentes colunas de diferentes
+      maneiras.  Por exemplo, usar o <command>sort</command> com os
+      parâmetros <parameter class="command">-k 3,3n -k 2,2</parameter> 
+      irá ordenar todas as linhas numericamente a partir da terceira
+      coluna.  Se algumas linhas tiverem números idênticos nessa coluna,
+      a ordenação dessas linhas será feita lexicamente a partir da 
+      segunda coluna.
     </para>
 
     <para>
-      If you want to check whether a file is already sorted, you can
-      use the <parameter class="command">-c</parameter> parameter.  If
-      the file was in a sorted order, sort will return the value
-      <emphasis>0</emphasis>, otherwise <emphasis>1</emphasis>. We can
-      check this by echoing the value of the <emphasis>?</emphasis>
-      variable, which holds the return value of the last executed
-      command.
+      Se você quiser apenas verificar se um arquivo já está ordenado, 
+      você pode usar o parâmetro
+      <parameter class="command">-c</parameter>.  Se o arquivo já
+      estiver ordenado, o sort retornará o valor <emphasis>0</emphasis>, 
+      e caso contrário, <emphasis>1</emphasis>.  Podemos conferir isso
+      exibindo a variável <emphasis>?</emphasis>, que armazena o valor
+      de retorno do último comando executado.
     </para>
 
     <screen>
@@ -899,16 +903,16 @@ $ <userinput>sort scores.txt | sort -c ; echo $?</userinput>
     </screen>
 
     <para>
-      The second command shows that this actually works, by piping the
-      output of the sort of <filename>scores.txt</filename> to
+      O segundo comando mostra que funciona, canalizando a saída da
+      ordenação do arquivo <filename>scores.txt</filename> para o
       <command>sort</command>.
     </para>
 
     <para>
-      Finally, you can merge two sorted files with the <parameter
-      class="command">-m</parameter> parameter, keeping the correct
-      sort order. This is faster than concatenating both files, and
-      resorting them.
+      Finalmente, você pode mesclar dois arquivos ordenados com o
+      parâmetro <parameter class="command">-m</parameter>, mantendo a
+      ordem correta.  Isso é mais rápido que concatenar dois arquivos
+      e reordená-los.
     </para>
 
     <screen>
