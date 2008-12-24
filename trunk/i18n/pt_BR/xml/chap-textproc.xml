@@ -345,14 +345,14 @@ $ <userinput>echo 'abcdef' | tr 'abcdef' '@[-*4]!'</userinput>
       </sect3>
 
       <sect3 xml:id="chap-textproc-simple-tr-squeezing">
-	<title>Squeezing character sequences</title>
+	<title>Espremendo sequências de caracteres</title>
 
 	<para>
-	  When the <parameter class="command">-s</parameter> parameter
-	  is used, <command>tr</command> will squeeze all characters
-	  that are in the second set. This means that a sequence of the
-	  same characters will be reduced to one character. Let's
-	  squeeze the character &quot;<emphasis>e</emphasis>&quot;:
+      Quando o parâmetro <parameter class="command">-s</parameter> é
+      usado, o <command>tr</command> irá espremer todos os caracteres
+      que estão no segundo conjunto.  Isto quer dizer que uma sequência
+      de mesmos caracteres será reduzida a um caracter.  Vamos espremer
+      o caracter &quot;<emphasis>e</emphasis>&quot;:
 	</para>
 
 	<screen>
@@ -361,13 +361,12 @@ Let's squeze this.
 	</screen>
 
 	<para>
-	  We can combine this with translation to show a useful
-	  example of <command>tr</command> in action. Suppose that we
-	  would like to mark al vowels with the
-	  <emphasis>at</emphasis> sign (<emphasis>@</emphasis>), with
-	  consecutive vowels represented by one
-	  <emphasis>at</emphasis> sign. This can easily be done by
-	  piping two <command>tr</command> commands:
+      Vamos combinar isto com a substituição para mostrar um exemplo
+      útil do <command>tr</command> em ação.  Suponha que queiramos
+      marcar todas as vogais com o símbolo de
+      <emphasis>arroba</emphasis> (<emphasis>@</emphasis>), com vogais
+      consecutivas representadas por um <emphasis>at</emphasis>.  Isto
+      pode ser feito canalizando-se dois comandos <command>tr</command>:
 	</para>
 
 	<screen>
@@ -377,13 +376,13 @@ $ <userinput>echo "eenie meenie minie moe" | tr 'aeiou' '[@*]' | tr -s '@'</user
       </sect3>
 
       <sect3 xml:id="chap-textproc-simple-tr-deleting">
-	<title>Deleting characters</title>
+	<title>Excluindo caracteres</title>
 
 	<para>
-	  Finally, <command>tr</command> can be used to delete
-	  characters. If the <parameter class="command">-d</parameter>
-	  parameter is used, all characters from the first set are
-	  removed:
+      Finalmente, o <command>tr</command> pode ser usado para excluir
+      caracteres.  Se o parâmetro <parameter
+      class="command">-d</parameter> for usado, todos os caracteres do
+      primeiro conjunto são removidos:
 	</para>
 
 	<screen>
@@ -394,57 +393,60 @@ Heo wod!
     </sect2>
 
     <sect2 xml:id="chap-textproc-cutpaste">
-      <title>Cutting and pasting text columns</title>
+      <title>Recortando e colando colunas de texto</title>
 
       <para>
-	The <command>cut</command> command is provided by UNIX systems
-	to <quote>cut</quote> one or more columns from a file or
-	stream, printing it to the standard output. It is often useful
-	to selectively pick some information from a
-	text. <command>cut</command> provides three approaches to
-	cutting information from files:
+        O comando <command>cut</command> está disponível em sistemas
+        UNIX a partir de um arquivo ou de um fluxo de caracteres,
+        imprimindo-o para a saída padrão.  Frequentemente é útil obter
+        seletivamente alguma informação de um texto.  O
+        <command>cut</command> possui três opções para recortar
+        informação de arquivos:
       </para>
 
       <orderedlist>
 	<listitem>
 	  <para>
-	    By byte.
+	    Byte a byte.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    By character, which is not the same as cutting by byte on
-	    systems that use a character set that is wider than eight
-	    bits.
+        Por caracter, o que não é o mesmo que o recorte por byte em
+        sistemas que utilizem uma codificação de caracteres maior que
+        oito bits.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    By field, that is delimited by a character.
+	    Por campo, que é delimitado por um caracter.
 	  </para>
 	</listitem>
       </orderedlist>
 
       <para>
-	In all three approaches, you can specify the element to choose
-	by its number starting at <emphasis>1</emphasis>. You can
-	specify a range by using a dash (<emphasis>-</emphasis>). So,
-	<emphasis>M-N</emphasis> means the Mth to the Nth
-	element. Leaving M out (<emphasis>-N</emphasis>) selects all
-	elements from the first element to the Nth element. Leaving N
-	out (<emphasis>M-</emphasis>) selects the Mth element to the
-	last element. Multiple elements or ranges can be combined by
-	separating them by commas (<emphasis>,</emphasis>). So, for
-	instance, <emphasis>1,3-</emphasis> selects the first element
-	and the third to the last element.
+        Em todas essas três abordagens, você pode especificar o elemento
+        escolhido a partir de seu número começando em
+        <emphasis>1</emphasis> ou especificar um intervalo usando um
+        hífen (<emphasis>-</emphasis>).  Dessa forma,
+        <emphasis>M-N</emphasis> se refere ao intervalo do M-ésimo ao
+        N-ésimo elemento.  Se deixarmos M de fora,
+        (<emphasis>-N</emphasis>) seleciona todos os elementos desde o
+        primeiro até o N-ésimo elemento.  Deixar N de fora
+        (<emphasis>M-</emphasis>) vai selecionar do M-ésimo até o último
+        elemento.  Múltiplos elementos ou intervalos de elementos podem
+        ser combinados se separados por vírgulas
+        (<emphasis>,</emphasis>).  Assim, por exemplo,
+        <emphasis>1,3-</emphasis> seleciona o primeiro elemento além dos
+        que estiverem entre o terceiro e o último elemento.
       </para>
 
       <para>
-	Data can be cut by field with the <parameter
-	class="command">-f fields</parameter> parameter. By default,
-	the horizontal tab is used a separator. Let's have a look at
-	<command>cut</command> in action with a tiny Dutch to English
-	dictionary:
+        Os dados podem ser recortados por campo usando-se o parâmetro
+        <parameter class="command">-f campos</parameter>.  Por padrão,
+        uma tabulação horizontal é usada como separador.  Vamos dar uma
+        olhada no comando <command>cut</command> em ação em um pequeno
+        dicionário alemão-inglês:
       </para>
 
       <screen>
@@ -455,7 +457,8 @@ peer    pear
       </screen>
 
       <para>
-	We can get all English words by selecting the first field:
+        Podemos obter todas as palavras em inglês selecionando o
+        segundo campo:
       </para>
 
       <screen>
@@ -466,11 +469,11 @@ pear
       </screen>
 
       <para>
-	That was quite easy. Now let's do the same thing with a file
-	that has a colon as the field separator. We can easily try
-	this by converting the dictionary with the
-	<command>tr</command> command that we have seen earlier,
-	replacing all tabs with colons:
+        Isso foi bem fácil.  Agora vamos fazer a mesma coisa com um
+        arquivo que usa o caracter de dois-pontos como separados.
+        Podemos facilmente tentar isso convertendo o dicionário com o
+        próprio <command>tr</command> que já vimos para substituir todas
+        as tabulações por dois-pontos:
       </para>
 
       <screen>
@@ -482,8 +485,8 @@ peer:pear
       </screen>
 
       <para>
-	If we use the same command as in the previous example, we do
-	not get the correct output:
+        Agora se usarmos o mesmo comando do exemplo anterior não teremos
+        uma saída correta:
       </para>
 
       <screen>
@@ -494,19 +497,20 @@ peer:pear
       </screen>
 
       <para>
-	What happens here is that the delimiter could not be found.
-	If a line does not contain the delimiter that is being used,
-	the default behavior of <command>cut</command> is to print the
-	complete line. You can prevent this with the <parameter
-	class="command">-s</parameter> parameter.
+        O que aconteceu aqui é que o delimitador não pôde ser
+        encontrado.  Se uma linha não contiver o delimitador que está
+        sendo usado, o comportamento padrão do <command>cut</command> é
+        exibir a linha completa.  Você pode evitar isso com o parâmetro 
+        <parameter class="command">-s</parameter>.
       </para>
 
       <para>
-	To use a different delimiter than the horizontal tab, add the
-	<parameter class="command">-d delimter_char</parameter>
-	parameter to set the delimiting character. So, in this case of
-	our <filename>dictionary-new</filename> file, we will ask
-	<command>cut</command> to use the colon as a delimiter:
+        Para usar um delimitador diferente da tabulação horizontal
+        padrão, inclua o parâmetro <parameter class="command">-d
+        caracter_delimitador</parameter> para definir o caracter
+        delimitador.  Então, no caso do nosso arquivo 
+        <filename>dictionary-new</filename>, vamos fazer o
+        <command>cut</command> usar o dois-pontos como um delimitador:
       </para>
 
       <screen>
@@ -517,30 +521,34 @@ pear
       </screen>
 
       <para>
-	If a field that was specified does not exist in a line, that
-	particular field is not printed.
+        Se um campo que foi especificado não existir na linha, tal campo
+        em particular não é exibido.
       </para>
 
       <para>
-	The <parameter class="command">-b bytes</parameter> and
-	<parameter class="command">-c characters</parameter>
-	respectively select bytes and characters from the text. On
-	older systems a character used to be a byte wide. But newer
-	systems can provide character sets that are wider than one
-	byte. So, if you want to be sure to grab complete characters,
-	use the <parameter class="command">-c</parameter> parameter.
-	An entertaining example of seeing the <parameter
-	class="command">-c</parameter> parameter in action is to find
-	the ten most common sets of the first three characters of a
-	word. Most UNIX systems provide a list of words that are
-	separated by a new line. We can use <command>cut</command> to
-	get the first three characters of the words in the word list,
-	add <parameter class="command">uniq</parameter> <!-- XXX -
-	where? --> to count identical three character sequences, and
-	use <command>sort</command> to sort them reverse-numerically
-	(<command>sort</command> is described in <xref
-	linkend="chap-textproc-simple-sort" />). Finally, we will use
-	<command>head</command> to get the ten most frequent sequences:
+        As opções <parameter class="command">-b bytes</parameter> e
+        <parameter class="command">-c caracteres</parameter>
+        selecionam, respectivamente, bytes e caracteres a partir do
+        texto.  Em sistemas mais antigos, um caracter costuma
+        corresponder a um byte.  Mas novos sistemas podem dispor de
+        codificações de caracteres que sejam maiores que apenas um byte.
+        Assim, se você quiser se assegurar de obter caracteres
+        completos, use sempre o parâmetro <parameter
+        class="command">-c</parameter>.  Um exemplo divertido para
+        vermos o parâmetro <parameter class="command">-c</parameter> em
+        ação consiste em procurarmos os dez conjuntos mais comuns para
+        os três primeiros caracteres de uma palavras.  A maioria dos
+        sistemas UNIX possui uma lista de palavras que são separadas por
+        caracteres de nova linha.  Podemos usar o comando
+        <command>cut</command> para obter os primeiros três caracteres
+        das palavras da lista, adicionar o comando <parameter
+        class="command">uniq</parameter> <!-- XXX a where? --> para
+        contar sequências idênticas de três caracteres, e usar o comando         
+        <command>sort</command> para ordená-las numericamente em ordem
+        descrescente (o <command>sort</command> é descrito em <xref
+        linkend="chap-textproc-simple-sort" />).  Por fim, vamos usar o
+        comando <command>head</command> para filtrar as dez sequências
+        mais comuns:
       </para>
 
       <screen>
@@ -558,17 +566,17 @@ $ <userinput>cut -c 1-4 /usr/share/dict/words | uniq -c | sort -nr | head</useri
       </screen>
 
       <para>
-	Having concluded with that nice piece of UNIX commands in
-	action, we will move on to the <command>paste</command>
-	command, which combines files in columns in a single text
-	stream.
+        Agora que vimos essa simples e poderosa utilização de comandos
+        do UNIX em ação, vamos ver agora o comando
+        <command>paste</command>, o qual combina arquivos em colunas em
+        um único fluxo de texto.
       </para>
 
       <para>
-	Usage of <command>paste</command> is very simple, it will
-	combine all files given as an argument, separated by a tab.
-	With the list of English and Dutch words, we can generate
-	a tiny dictionary:
+        O uso do <command>paste</command> é muito simples, ele irá
+        combinar todos os arquivos dados como um argumento, separados
+        por uma tabulação.  Com a lista de palavras em inglês e em
+        alemão, podemos gerar um dicionário simples:
       </para>
 
       <screen>
@@ -579,7 +587,7 @@ pear    peer
       </screen>
 
       <para>
-	You can also combine more than two files:
+        Você também pode combinar mais de dois arquivos:
       </para>
 
       <screen>
@@ -590,15 +598,16 @@ pear    peer    Birne
       </screen>
 
       <para>
-	If one of the files is longer, the column order is maintained,
-	and empty entries are used to fill up the entries of the
-	shorter files.
+        Se um dos arquivos for mais longo, a ordem das colunas é
+        mantida, e espaços vazios são usados para preencher as entradas
+        correspondentes que faltarem nos arquivos menores.
       </para>
 
       <para>
-	You can use another delimiter by adding the <parameter
-	class="command">-d delimiter</parameter> parameter. For
-	example, we can make a colon-separated dictionary:
+        Você pode usar outro delimitador incluindo o parâmetro
+        <parameter class="command">-d delimitador</parameter>.  Por
+        exemplo, se quisermos que nosso dicionário tenha palavras
+        separadas por dois-pontos:
       </para>
 
       <screen>
@@ -609,11 +618,12 @@ pear:peer
       </screen>
 
       <para>
-	Normally, <command>paste</command> combines files as different
-	columns. You can also let <command>paste</command> use the
-	lines of each file as columns, and put the columns of each
-	file on a separate line. This is done with the <parameter
-	class="command">-s</parameter> parameter:
+        Normalmente o <command>paste</command> combina arquivos em
+        diferentes colunas.  Você também pode fazer o
+        <command>paste</command> usar as linhas de cada arquivo como
+        colunas, e deixar as colunas de cada arquivo em linhas
+        separadas.  Isto é feito com o parâmetro <parameter
+        class="command">-s</parameter>:
       </para>
 
       <screen>
