@@ -921,25 +921,23 @@ $ <userinput>sort scores.txt | sort -c ; echo $?</userinput>
   </sect2>
 
     <sect2 xml:id="chap-textproc-simple-diff">
-      <title>Differences between files</title>
+      <title>Diferenças entre arquivos</title>
 
       <para>
-	Since text streams, and text files are very important in UNIX,
-	it is often useful to show the differences between two text
-	files. The main utilities for working with file differences
-	are <command>diff</command> and
-	<command>patch</command>. <command>diff</command> shows the
-	differences between files. The output of
-	<command>diff</command> can be processed by
-	<command>patch</command> to apply the changes between two
-	files to a file. <quote>diffs</quote> are also form the base
-	of version/source management systems. <!-- XXX - xref to
-	version management chapters --> The following sections
-	describe <command>diff</command> and <command>patch</command>.
-	To have some material to work with, the following two C source
-	files are used to demonstrate these commands. These files are
-	named <filename>hello.c</filename> and
-	<filename>hello2.c</filename> respectively.
+	Como fluxos e arquivos de texto são algo muito importante no UNIX, é
+	bastante útl poder mostrar as diferenças entre dois arquivos de texto.  
+	Os principais utilitários para se trabalhar com diferenças em arquivos
+	são o <command>diff</command> e o <command>patch</command>.  O comando
+	<command>diff</command> mostra as diferenças entre arquivos.  A saída do
+	<command>diff</command> pode ser processada pelo 
+	<command>patch</command> para se aplicar as diferenças entre os dois 
+	arquivos de entrada para um arquivo.  Essas diferenças entre arquivos
+	(<quote>diffs</quote>) também são a base para sistemas de gerenciamento
+	e controle de versão. <!-- XXX - xref to version management chapters -->
+	As seções seguintes descrevem os comandos <command>diff</command> e <command>patch</command>.  Para ter algum material com o qual trabalhar,
+	os dois seguintes arquivos fontes em C são usados para demonstrar esses
+	comandos.  Estes arquivos são chamados <filename>hello.c</filename> ane
+	<filename>hello2.c</filename>, respectivamente.
       </para>
 
       <programlisting>
@@ -992,24 +990,22 @@ void usage(char *programName) {
       </programlisting>
 
       <sect3 xml:id="chap-textproc-simple-diff-diff">
-	<title>Listing differences between files</title>
+	<title>Listando as diferenças entre arquivos</title>
 
 	<para>
-	  Suppose that you received the program
-	  <filename>hello.c</filename> from a friend, and you modified
-	  it to give the user the current date and time. You could
-	  just send your friend the updated program. But if a file
-	  grows larger, the can become uncomfortable, because the
-	  changes are harder to spot. Besides that, your friend may
-	  have also received modified program sources from other
-	  persons. This is a typical situation where
-	  <command>diff</command> becomes
-	  handy. <command>diff</command> shows the differences between
-	  two files. It most basic syntax is <command>diff file
-	  file2</command>, which shows the differences between
-	  <filename>file</filename> and
-	  <filename>file2</filename>. Let's try this with the our
-	  source files:
+	  Suponha que você tenha recebido o programa
+	  <filename>hello.c</filename> de um amigo, e que você o tenha
+	  modificado para informar ao usuário a data e hora atuais.  Você
+	  poderia apenas enviar o programa atualizado de volta para seu amigo.
+	  Mas se um arquivo crescer muito, isso pode se tornar inconveniente, 
+	  pois as mudanças ficam mais difíceis de se gerenciar.  Além disso, seu
+	  amigo pode também ter recebido versões modificadas do progama de
+	  outras pessoas.  Estas é uma situação típica em que o 
+	  <command>diff</command> se torna útil.  O <command>diff</command>
+	  mostra as diferenças entre dois arquivos.  Sua sintaxe mais básica é
+	  <command>diff file file2</command>, que mostra as diferenças entre os
+	  arquivos <filename>file</filename> e <filename>file2</filename>.  
+	  Vamos tentar isto com nossos arquivos fontes:
 	</para>
 
 	<screen>
@@ -1023,41 +1019,41 @@ $ diff hello.c hello2.c
 	</screen>
 
 	<para>
-	  The additions from <filename>hello2.c</filename> are visible
-	  in this output, but the format may look a bit
-	  strange. Actually, these are commands that can be
-	  interpreted by the <command>ed</command> line editor. We will
-	  look at a more comfortable output format after touching the
-	  surface of the default output format.
+	  As adições de <filename>hello2.c</filename> são visíveis nesta
+	  saída, mas o formato pode lhe ser um pouco estranho.  Atualmente, 
+	  estes são comandos que podem ser interpretados pelo editor de linha
+	  de comando, <command>ed</command>.  Vamos ver um formato de saída
+	  mais confortável depois de examinar o básico do formato de saída
+	  padrão.
 	</para>
 
 	<para>
-	  Two different elements can be distilled from this output:
+	  Dois elementos distintos podem ser destacados nesta saída:
 	</para>
 
 	<calloutlist>
 	  <callout arearefs="co-diff-append">
 	    <para>
-	      This is an <application>ed</application> command that
-	      specified that text should be appended
-	      (<literal>a</literal>) after line <literal>2</literal>.
+	      Este é um comando do <application>ed</application> que é
+	      especificado que especifica que o texto deve ser anexado 
+	      (<literal>a</literal>) depois da linha <literal>2</literal>.
 	    </para>
 	  </callout>
 	  <callout arearefs="co-diff-incoming">
 	    <para>
-	      This is the actual text to be appended after the second
-	      line. The <quote><emphasis>&gt;</emphasis></quote> sign
-	      is used to mark lines that are added.
+	      Este é o texto atual a ser anexado depois da segunda linha.  O 
+	      sinal <quote><emphasis>&gt;</emphasis></quote> é usado para marcar
+	      as linhas a serem adicionadas.
 	    </para>
 	  </callout>
 	</calloutlist>
 
 	<para>
-	  The same elements are used to add the second block of text.
-	  What about lines that are removed? We can easily see how
-	  they are represented by swapping the two parameters to
-	  <command>diff</command>, showing the differences between
-	  <filename>hello2.c</filename> and
+	  Os mesmos elementos são usados para adicionar o segundo bloco de
+	  texto.  Mas e sobre as linhas que são removidas?  Podemos facilmente
+	  ver como elas são representadas trocando os dois parâmetros do comando
+	  <command>diff</command>, mostrando as diferenças entre 
+	  <filename>hello2.c</filename> e
 	  <filename>hello.c</filename>:
 	</para>
 
@@ -1072,22 +1068,22 @@ $ <userinput>diff hello2.c hello.c</userinput>
 	</screen>
 
 	<para>
-	  The following elements can be distinguished:
+	  Os seguintes elementos podem ser destacados:
 	</para>
 
 	<calloutlist>
 	  <callout arearefs="co-diff-delete">
 	    <para>
-	      This is the <application>ed</application> delete command
-	      (<literal>d</literal>), stating that line 2 should be
-	      deleted. The second delete command uses a range (line 14
-	      to 17).
+	      Este é o comando de exclusão do <application>ed</application>
+	      (<literal>d</literal>), indicando que a linha 2 deveria ser
+	      excluída.  O segundo comando de exclusão utiliza um intervalo 
+	      (da linha 14 à linha 17).
 	    </para>
 	  </callout>
 	  <callout arearefs="co-diff-outgoing">
 	    <para>
-	      The text that is going to be removed is preceded by the
-	      <quote>&lt;</quote> sign.
+	      O texto que está para ser removido é precedido por um sinal de 
+	      <quote>&lt;</quote>.
 	    </para>
 	  </callout>
 	</calloutlist>
@@ -1095,12 +1091,12 @@ $ <userinput>diff hello2.c hello.c</userinput>
 	<!-- XXX - Changed lines? -->
 
 	<para>
-	  That's enough of the <application>ed</application>-style
-	  output. The GNU diff program included in Slackware Linux
-	  supports so-called unified diffs. Unified diffs are very
-	  readable, and provide context by
-	  default. <command>diff</command> can provide unified output
-	  with the <parameter class="command">-u</parameter> flag:
+	  Isso é o suficiente para a saída no estilo do comando 
+	  <application>ed</application>.  O programa GNU diff incluído no
+	  Slackware Linux suporta os, assim chamados, diffs unificados.  Diffs
+	  unificados são bastante legíveis, e provêem um contexto por padrão. 
+	  O <command>diff</command> pode gerar saída no padrão de diff unificado
+	  com a opção <parameter class="command">-u</parameter>:
 	</para>
 
 	<screen>
@@ -1126,58 +1122,57 @@ $ diff -u hello.c hello2.c
 	</screen>
 
 	<para>
-	  The following elements can be found in the output
+	  Os seguintes elementos podemm ser encontrados na saída:
 	</para>
 
 	<calloutlist>
 	  <callout arearefs="co-udiff-origfile">
 	    <para>
-	      The name of the original file, and the timestamp of the
-	      last modification time.
+	      O nome do arquivo original, e o registro de tempo do horário da
+	      última modificação.
 	    </para>
 	  </callout>
 	  <callout arearefs="co-udiff-newfile">
 	    <para>
-	      The name of the changed file, and the timestamp of the
-	      last modification time.
+	      O nome do arquivo modificado, e o registro de tempo do horário da
+	      última modificação.
 	    </para>
 	  </callout>
 	  <callout arearefs="co-udiff-lines">
 	    <para>
-	      This pair of numbers show the location and size of the
-	      chunk that the text below affects in the original file
-	      and the modified file. So, in this case the numbers mean
-	      that in the affected chunk in the original file starts
-	      at line 1, and is four lines long. In the modified file
-	      the affected chunk starts at line 1, and is five lines
-	      long. Different chunks in diff output are started by
-	      this header.
+	      Este par de números mostra a localização e o tamanho do trecho 
+	      cujo texto abaixo foi afetado no arquivo original e no arquivo
+	      modificada.  Assim, neste caso os números significam que o trecho
+	      modificado começa na linha 1, e tem o tamanho de quatro linhas.
+	      No arquivo modificado, o trecho respectivo começa na linha 1, e 
+	      tem o tamanho de cinco linhas.  Trechos diferentes na saída do
+	      diff começam com este cabeçalho.
 	    </para>
 	  </callout>
 	  <callout arearefs="co-udiff-unmodified">
 	    <para>
-	      A line that is not preceded by a minus
-	      (<emphasis>-</emphasis>) or plus
-	      (<emphasis>+</emphasis>) sign is unchanged. Unmodified
-	      lines are included because they give contextual
-	      information, and to avoid that too many chunks are
-	      made. If there are only a few unmodified lines between
-	      changes, <command>diff</command> will choose to make
-	      only one chunk, rather than two chunks.
+	      Uma linha que não inicie por um sinal de menos 
+	      (<emphasis>-</emphasis>) ou por um sinal de mais
+	      (<emphasis>+</emphasis>) foi mantida intacta.  Linhas que não
+	      foram modificadas são incluídas para dar alguma informação
+	      contextual, e para evitar a listagem de muitos trechos
+	      modificados em sequência.  Se houver algumas poucas linhas
+	      intactas entre as modificações, o <command>diff</command> irá
+	      considerar apenas um único trecho, ao invés de dois trechos.
 	    </para>
 	  </callout>
 	  <callout arearefs="co-udiff-add">
 	    <para>
-	      A line that is preceded by a plus sign
-	      (<emphasis>+</emphasis>) is an addition to the modified
-	      file, compared to the original file.
+	      Uma linha inicada por um sinal de mais 
+	      (<emphasis>+</emphasis>) é uma adição ao arquivo modificado, em
+	      relação ao arquivo original.
 	    </para>
 	  </callout>
 	</calloutlist>
 
 	<para>
-	  As with the ed-style <command>diff</command> format, we can
-	  see some removals by swapping the file names:
+	  Tal como fizemos com o formato no estilo do editor ed, podemos ver
+	  algumas exclusões trocando os nomes dos arquivos:
 	</para>
 
 	<screen>
@@ -1205,20 +1200,19 @@ $ <userinput>diff -u hello2.c hello.c</userinput>
 	</screen>
 
 	<para>
-	  As you can see from this output, lines that are removed from
-	  the modified file, in contrast to the original file are
-	  preceded by the minus (<emphasis>-</emphasis>) sign.
+	  Como você vê nesta saída, as linhas que são excluídas do arquivo
+	  modificado em relação ao arquivo original são iniciadas com um sinal
+	  de menos (<emphasis>-</emphasis>).
 	</para>
 
 	<para>
-	  When you are working on larger sets of files, it's often
-	  useful to compare whole directories. For instance, if you
-	  have the original version of a program source in a directory
-	  named <filename>hello.orig</filename>, and the modified
-	  version in a directory named <filename>hello</filename>, you
-	  can use the <parameter class="command">-r</parameter>
-	  parameter to recursively compare both directories. For
-	  instance:
+	  Quando você estiver trabalhando com conjuntos maiores de arquivos, 
+	  quase sempre é útil comparar diretórios inteiros.  Como exemplo, se
+	  você tem uma versão original dos fontes de um programa em um diretório
+	  chamado <filename>hello.orig</filename>, e uma versão modificada do
+	  mesmo em um diretório chamado <filename>hello</filename>, você pode
+	  usar o parâmetro <parameter class="command">-r</parameter> para fazer
+	  uma comparação recursiva de ambos os diretórios.  Por exemplo:
 	</para>
 
 	<screen>
@@ -1247,16 +1241,15 @@ diff -ru hello.orig/hello.c hello/hello.c
 	</screen>
 
 	<para>
-	  It should be noted that this will only compare files that
-	  are available in both directories. The GNU version of diff,
-	  that is used by Slackware Linux provides the
-	  <parameter class="command">-N</parameter> parameter. This
-	  parameters treats files that exist in only one of both
-	  directories as if it were an empty file. So for instance,
-	  if we have added a file named <filename>Makefile</filename>
-	  to the <filename>hello</filename> directory, using the
-	  <parameter class="command">-N</parameter> parameter will
-	  give the following output:
+	  Deve-se notar que isto irá comparar apenas os arquivos que estiverem
+	  presentes em ambos os diretórios.  A versão GNU do diff, que é a 
+	  utilizada pelo Slackware Linux, dispõe do parâmetro 
+	  <parameter class="command">-N</parameter>.  Este parâmetro trata
+	  arquivos que existem em apenas um dos diretórios como se estivessem
+	  vazios no outro.  Assim, no caso, se adicionarmos um arquivo chamado
+	  <filename>Makefile</filename> ao diretório <filename>hello</filename>,
+	  usar o parâmetro <parameter class="command">-N</parameter> nos daria a
+	  seguinte saída:
 	</para>
 
 	<screen>
@@ -1291,17 +1284,17 @@ diff -ruN hello.orig/Makefile hello/Makefile
 	</screen>
 
 	<para>
-	  As you can see the chunk indicator says that the chunk in
-	  the original file starts at line 0, and is 0 lines long.
+	  Como você pode ver, o indicador de trechos diz que o trecho no arquivo
+	  original inicia na linha 0 e tem um tamanho de 0 linhas.
 	</para>
 
 	<para>
-	  UNIX users often exchange the output of
-	  <command>diff</command>, usually called <quote>diffs</quote>
-	  or <quote>patches</quote>. The next section will show you
-	  how you can handle diffs. But you are now able to create
-	  them yourself, by redirecting the output of diff to a file.
-	  For example:
+	  Usuários de UNIX quase sempre utilizam a saída do comando 
+	  <command>diff</command>, chamados de <quote>diffs</quote> ou de 
+	  <quote>patches</quote>.  A próxima seção irá lhe mostrar como você
+	  pode manipular esses arquivos de diffs.  Mas agora você mesmo já é
+	  capaz de criar tais arquivos, redirecionando a saída do comando diff
+	  para um arquivo.  Por exemplo:
 	</para>
 
 	<screen>
@@ -1309,8 +1302,8 @@ $ <userinput>diff -u hello.c hello2.c > hello_add_date.diff</userinput>
 	</screen>
 
 	<para>
-	  If you have multiple diffs, you can easily combine them to
-	  one diff, by concatenating the diffs:
+	  Se você tiver múltplos diffs, você pode combiná-los facilmente para
+	  apenas um diff, concatenando-os:
 	</para>
 
 	<screen>
@@ -1318,9 +1311,9 @@ $ <userinput>cat diff1 diff2 diff3 > combined_diff</userinput>
 	</screen>
 
 	<para>
-	  But make sure that they were created from the same directory
-	  if you want to use the <command>patch</command> utility that
-	  is covered in the next section.
+	  Mas, assegure-se de que os arquivos tenham sido criados a partir do
+	  mesmo diretório se você quiser usar o utilitário
+	  <command>patch</command>, abordado na próxima seção.
 	</para>
       </sect3>
 
@@ -1328,20 +1321,19 @@ $ <userinput>cat diff1 diff2 diff3 > combined_diff</userinput>
 	<title>Modifying files with diff output</title>
 
 	<para>
-	  Suppose that somebody would send you the output of
-	  <command>diff</command> for a file that you have created. It
-	  would be tedious to manually incorporate all the changes
-	  that were made. Fortunately, the <command>patch</command>
-	  can do this for you. <command>patch</command> accepts diffs
-	  on the standard input, and will try to change the original
-	  file, according to the differences that are registered in
-	  the diff. So, for instance, if we have the
-	  <filename>hello.c</filename> file, and the patch that we
-	  produced previously based on the changes between
-	  <filename>hello.c</filename> and
-	  <filename>hello2.c</filename>, we can patch
-	  <filename>hello.c</filename> to become equal to its
-	  counterpart:
+	  Suponha que alguém lhe envie a saída de um <command>diff</command>
+	  para um arquivo que você tenha criado.  Seria tedioso tentar
+	  incorporar manualmente todas as modificações que foram feitas.  
+	  Felizmente, o comando <command>patch</command> pode fazer isso para
+	  você.  O <command>patch</command> aceita diffs na entrada padrão, e
+	  tentará aplicar as modificações no arquivo original, tal como
+	  registradas no arquivo diff.  Então, por exemplo, se temos o arquivo
+	  <filename>hello.c</filename>, e o patch que geramos com as
+	  modificações que fizemos anteriormente baseadas nas modificações entre
+	  nossos arquivos <filename>hello.c</filename> e
+	  <filename>hello2.c</filename>, podemos aplicar as modificações ao 
+	  <filename>hello.c</filename> para que este fique igual à sua
+	  contraparte:
 	</para>
 
 	<screen>
@@ -1359,10 +1351,10 @@ $ <userinput>diff -u hello.c hello2.c</userinput>
 	</screen>
 
 	<para>
-	  There is no output, so this is the case. One of the nice
-	  features of <command>patch</command> is that it can revert
-	  the changes made through a diff, by using the <parameter
-	  class="command">-R</parameter> parameter:
+	  Não há nenhuma saída, mas é assim mesmo.  Uma das melhores coisas
+	  sobre o <command>patch</command> é que ele pode reverter as alterações
+	  feitas a partir de um diff, usando o parâmetro <parameter
+	  class="command">-R</parameter>:
 	</para>
 
 	<screen>
@@ -1370,10 +1362,10 @@ $ <userinput>patch -R &lt; hello_add_date.diff</userinput>
 	</screen>
 
 	<para>
-	  In these examples, the original file is patched. Sometimes
-	  you may want to want to apply the patch to a file with a
-	  different name. You can do this by providing the name of
-	  a file as the last argument:
+	  Nestes exemplos, alterações são aplicadas ao arquivo original.  
+	  Algumas vezes, você pode querer aplicar o patch a um arquivo com um
+	  nome diferente.  Você pode fazer isso informando o nome de um arquivo
+	  como último argumento:
 	</para>
 
 	<screen>
@@ -1382,11 +1374,11 @@ patching file helloworld.c
 	</screen>
 
 	<para>
-	  You can also use <command>patch</command> with diffs that
-	  were generated with the <parameter
-	  class="command">-r</parameter> parameter, but you have to
-	  take a bit of care. Suppose that the header of a particular
-	  file in the diff is as follows:
+	  Você também pode usar o comando <command>patch</command> com diffs que
+	  tiverem sido gerados com o parâmetro <parameter
+	  class="command">-r</parameter>, mas você precisa ter um pouco de
+	  cuidado.  Suponha que o cabeçalho de um dado arquivo no diff seja o
+	  seguinte:
 	</para>
 
 	<literallayout>
@@ -1398,26 +1390,26 @@ patching file helloworld.c
 	</literallayout>
 
 	<para>
-	  If you process this diff with <command>patch</command>, it
-	  will attempt to change <filename>hello.c</filename>. So, the
-	  directory that holds this file has to be the active
-	  directory. You can use the full pathname with the <parameter
-	  class="command">-p n</parameter>, where
-	  <emphasis>n</emphasis> is the number of pathname components
-	  that should be stripped. A value of <emphasis>0</emphasis>
-	  will use the path as it is specified in the patch,
-	  <emphasis>1</emphasis> will strip the first pathname
-	  component, etc. In this example, stripping the first
-	  component will result in patching of
-	  <filename>hello.c</filename>. According to the Single UNIX
-	  Specification version 3 standard, the path that is preceded
-	  by <emphasis>---</emphasis> should be used to construct the
-	  file that should be patched. The GNU version of patch does
-	  not follow the standard here. So, it is best to strip off to
-	  the point where both directory names are equal (this is
-	  usually the top directory of the tree being changed). In
-	  most cases where relative paths are used this can be done
-	  by using <emphasis>-p 1</emphasis>. For instance:
+	  Se você processar este diff com o <command>patch</command>, ele
+	  tentará modificar o arquivo <filename>hello.c</filename>.  Assim, o
+	  diretório que contém este arquivo precisa ser o diretório atual.  Você
+	  pode usar o caminho completo com o parâmetro <parameter
+	  class="command">-p n</parameter>, sendo <emphasis>n</emphasis> o
+	  número de componentes do caminho que devem ser considerados.
+	  <!-- is the number of pathname components that should be stripped -->
+	  Um valor <emphasis>0</emphasis> implicará no uso do caminho como
+	  especificado pelo arquivo do patch, um valor <emphasis>1</emphasis>
+	  vai considerar o primeiro componente do caminho, e etc.  Neste
+	  exemplo, considerar o primeiro componente irá resultar na execução de
+	  um patch em <filename>hello.c</filename>.  De acordo com a versão 3 do 
+	  padrão Single UNIX Specification, um caminho que for precedido por
+	  <emphasis>---</emphasis> deveria ser usado para construir o arquivo
+	  no qual o patch deveria ser aplicado.  A versão GNU do comando patch
+	  não segue este padrão aqui.  Então, é melhor é considerar sempre um
+	  ponto onde ambos os nomes de diretórios forem iguais (normalmente o 
+	  diretório pai da árvore que está sendo modificada).  Na maioria dos 
+	  casos em que caminhos relativos são usados, isto pode ser feito 
+	  especificando-se <emphasis>-p 1</emphasis>.  Por exemplo:
 	</para>
 
 	<!-- XXX - add more examples for -p n -->
@@ -1428,9 +1420,9 @@ $ <userinput>patch -p 1 &lt; ../hello.diff</userinput>
 	</screen>
 
 	<para>
-	  Or, you can use the <parameter
-	  class="command">-d</parameter> parameter to specify in which
-	  directory the change has to be applied:
+	  Ou, você pode usar o parâmetro <parameter
+	  class="command">-d</parameter> para especificar em qual diretório as
+	  modificações devem ser aplicadas:
 	</para>
 
 	<screen>
@@ -1440,12 +1432,11 @@ patching file Makefile
 	</screen>
 
 	<para>
-	  If you want to keep a backup when you are changing a file,
-	  you can use the <parameter class="command">-b</parameter>
-	  parameter of <command>patch</command>. This will make a copy
-	  of every affected file named
-	  <filename>filename.orig</filename>, before actually changing
-	  the file:
+	  Se você quiser manter um backup ao aplicar as modificações a um
+	  arquivo, você pode usar o parâmetro <parameter class="command">-b</parameter> do comando <command>patch</command>.  
+	  Isto irá fazer uma cópia de segurança de cada arquivo afetado chamada
+	  <filename>filename.orig</filename>, antes de efetivamente modificar o
+	  arquivo:
 	</para>
 
 	<screen>
@@ -1456,13 +1447,14 @@ $ <userinput>ls -l hello.c*</userinput>
 	</screen>
 
 	<para>
-	  Sometimes a file can not be patched. For instance, if it has
-	  already been patched, it has changed to much to apply the
-	  patch cleanly, or if the file does not exist at all. In this
-	  case, the chunks that could not be saved are stored in a
-	  file with the name <filename>filename.rej</filename>, where
-	  <emphasis>filename</emphasis> is the file that
-	  <command>patch</command> tried to modify.
+	  Algumas vezes, modificações não podem ser aplicadas a arquivos.  Por
+	  exemplo, se o arquivo já tiver sofrido um patch, se as modificações
+	  realizadas foram tantas a ponto de dificultar uma clara criação de um
+	  patch, ou se o arquivo meramente não existir.  Nesses casos, os
+	  trechos que não puderem ser salvos são armazenados em um arquivo
+	  chamado <filename>filename.rej</filename>, sendo 
+	  <emphasis>filename</emphasis> o nome do arquivo de 
+	  <command>patch</command> que se tentou aplicar.
 	</para>
       </sect3>
     </sect2>
