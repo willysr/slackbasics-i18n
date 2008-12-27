@@ -1461,266 +1461,263 @@ $ <userinput>ls -l hello.c*</userinput>
   </sect1>
 
   <sect1 xml:id="chap-textproc-regexps">
-    <title>Regular expressions</title>
+    <title>Expressões regulares</title>
 
     <sect2 xml:id="chap-textproc-regexps-intro">
-      <title>Introduction</title>
+      <title>Introdução</title>
 
-      <para> In daily life, you will often want to some text that
-      matches to a certain pattern, rather than a literal string. Many
-      UNIX utilities implement a language for matching text patterns,
-      <emphasis>regular expressions</emphasis> (regexps). Over time
-      the regular expression language has grown, there are now
-      basically three regular expression syntaxes: </para>
+      <para>Nos dias de hoje, frequentemente você pode querer manipular textos
+      que casem com um determinado padrão, ao invés de com uma string literal.
+      Muitos utilitários UNIX implementam uma linguagem para tratamento de 
+      padrões de texto, as <emphasis>regular expressions</emphasis> (regexps). 
+      Ao longo do tempo, expressões regulares se desenvolveram, sendo que hoje 
+      existem basicamente três sintaxes para expressões regulares:</para>
 
       <itemizedlist>
         <listitem>
-          <para> Traditional UNIX regular expressions. </para>
+          <para>Expressões regulares tradicionais tipo UNIX.</para>
         </listitem>
         <listitem>
-          <para> POSIX extended regular expressions. </para>
+          <para>Expressões regulares extendidas do padrão POSIX. </para>
         </listitem>
         <listitem>
-          <para> Perl-compatible regular expressions (PCRE). </para>
+          <para>Expressões regulares compatíveis com Perl (do inglês,
+          <foreignphrase>Perl-compatible regular expressions</foreignphrase>, ou
+	  (PCRE).</para>
         </listitem>
       </itemizedlist>
 
       <para>
-	POSIX regexps are mostly a superset of traditional UNIX
-	regexps, and PCREs a superset of POSIX regexps. The syntax
-	that an application supports differs per application, but
-	almost all applications support at least POSIX
-	regexps.
+	Expressões regulares no padrão POSIX são praticamente um superconjunto
+	das expressões tradicionais tipo UNIX, e as PCREs são um superconjunto
+	das expressões regulares POSIX.  A sintaxe a que um dado aplicativo vai 
+	dar suporte em geral fica a cargo dos próprios aplicativos, mas a
+	maioria dos programas existentes suporta pelo menos as expressões no
+	padrão POSIX.
       </para>
 
       <para>
-	Each syntactical unit in a regexp expresses one of the
-	following things:
+	Cada unidade sintática em uma expressão regular pode representar um dos
+	seguintes itens:
       </para>
 
       <itemizedlist>
         <listitem>
           <para>
-            <emphasis role="bold">A character</emphasis>: this is the
-            basis of every regular expression, a character or a set of
-            characters to be matched. For instance, the letter
-            <emphasis>p</emphasis> or the the sign
-            <emphasis>,</emphasis>. </para>
+            <emphasis role="bold">Um caracter</emphasis>: esta é a unidade
+	    básica de cada expressão regular: um caracter ou um conjunto de 
+	    caracteres.  Uma letra <emphasis>p</emphasis> ou o 
+	    símbolo <emphasis>,</emphasis>, são exemplos de caracteres. </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">Quantification</emphasis>: a
-            quantifier specifies how many times the preceding
-            character or set of characters should be matched. </para>
+            <emphasis role="bold">Quantificação</emphasis>: um quantificador 
+	    especifica quantas vezes o caracter ou o conjunto de caracteres que
+	    o precede pode constar no padrão. </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">Alternation</emphasis>: alternation
-            is used to match <quote>a or b</quote> in which
-            <emphasis>a</emphasis> and <emphasis>b</emphasis> can be a
-            character or a regexp. </para>
+            <emphasis role="bold">Alternância</emphasis>: alternância é usada 
+	    para fazer a correspondência <quote>a ou b</quote>, em que 
+            <emphasis>a</emphasis> e <emphasis>b</emphasis> podem ser ambos
+	    caractres ou expressões regulares.</para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">Grouping</emphasis>: this is used to
-            group subexpressions, so that quantification or
-            alternation can be applied to the group. </para>
+            <emphasis role="bold">Agrupamento</emphasis>: é usado para agrupar
+	    sub-expressões, de forma que um quantificador ou um indicador de
+	    alternância podem ser aplicados a um grupo.</para>
         </listitem>
       </itemizedlist>
     </sect2>
 
     <sect2 xml:id="chap-textproc-regexps-traditional">
-      <title>Traditional UNIX regexps</title>
+      <title>Expressões regulares tradicionais do tipo UNIX</title>
 
       <para>
-	This section describes traditional UNIX regexps. Because of a
-	lack of standardisation, the exact syntax may differ a bit per
-	utility. Usually, the manual page of a command provides more
-	detailed information about the supported basic or traditional
-	regular expressions. It is a good idea to learn traditional
-	regexps, but to use POSIX regexps for your own
-	scripts.
+	Esta seção descreve as expressões regulares tradicionais do tipo UNIX. 
+	Por uma falta de padronização, a sintaxe exata pode ser um pouco
+	diferente dependendo do programa utilitário em questão.  Normalmente, a
+	página de manual ou a ajuda do comando dispõe de informação detalhada
+	sobre o suporte a expressões regulares básicas ou tradicionais.  É uma
+	boa idéia aprender as expressões regulares tradicionais, mas prefira
+	utilizar as do padrão POSIX ao criar seus próprios scripts.
       </para>
 
       <sect3 xml:id="chap-textproc-regexps-traditional-characters">
-        <title>Matching characters</title>
+        <title>Correspondência de caracteres</title>
 
         <para>
-	  Characters are matched by themselves. If a specific
-	  character is used as a syntactic character for regexps, you
-	  can match that character by adding a backslash. For
-	  instance, <emphasis>\+</emphasis> matches the plus
-	  character. </para>
+	  Caracteres fazem correspondência consigo próprios.  Se um caracter
+	  específico for usado como um caracter sintático para expressões
+	  regulares, você pode referenciar àquele caracter adicionando uma
+	  barra invertida na frente.  Por exemplo, <emphasis>\+</emphasis> 
+	  corresponde com o sinal de mais.</para>
 
         <para>
-	  A period (<emphasis>.</emphasis>) matches any character, for
-	  instance, the regexp <emphasis>b.g</emphasis> matches
-	  <emphasis>bag</emphasis>, <emphasis>big</emphasis>, and
-	  <emphasis>blg</emphasis>, but not
+	  Um ponto (<emphasis>.</emphasis>) corresponde a qualquer caracter, por
+	  exemplo, a expressão <emphasis>b.g</emphasis> corresponde com 
+	  <emphasis>bag</emphasis>, <emphasis>big</emphasis>, e com
+	  <emphasis>blg</emphasis>, mas não com
 	  <emphasis>bit</emphasis>. </para>
 
         <para>
-	  The period character, often provides too much freedom. You
-	  can use square brackets (<emphasis>[]</emphasis>) to specify
-	  characters which can be matched. For instance, the regexp
-	  <emphasis>b[aei]g</emphasis> matches
-	  <emphasis>bag</emphasis>, <emphasis>beg</emphasis>, and
-	  <emphasis>big</emphasis>, but nothing else. You can also
-	  match any character but the characters in a set by using the
-	  square brackets, and using the caret
-	  (<emphasis>^</emphasis>) as the first character. For
-	  instance, <emphasis>b[^aei]g</emphasis> matches any three
-	  character string that starts with <emphasis>b</emphasis> and
-	  ends with <emphasis>g</emphasis>, with the exception of
-	  <emphasis>bag</emphasis>, <emphasis>beg</emphasis>, and
-	  <emphasis>big</emphasis>. It is also possible to match a
-	  range of characters with a dash
-	  (<emphasis>-</emphasis>). For example,
-	  <emphasis>a[0-9]</emphasis> matches a followed by a single
-	  number character. </para>
+	  O caracter ponto, quase sempre acaba lhe dando muita liberdade.  Você
+	  pode usar colchetes (<emphasis>[]</emphasis>) para especificar 
+	  caracteres que podem constar no padrão.  Por exemplo, a expressão
+	  <emphasis>b[aei]g</emphasis> casa com
+	  <emphasis>bag</emphasis>, <emphasis>beg</emphasis>, e com
+	  <emphasis>big</emphasis>, mas com nada mais.  Você também pode fazer a
+	  correspondência com qualquer caracter exceto os de um dado conjunto
+	  usando colchetes com um circunflexo (<emphasis>^</emphasis>) como 
+	  primeiro caracter.  Por exemplo, <emphasis>b[^aei]g</emphasis> vai 
+	  casar com qualquer strings de três caracteres que comecem com
+	  <emphasis>b</emphasis> e terminem com <emphasis>g</emphasis>, exceto
+	  as sequências <emphasis>bag</emphasis>, <emphasis>beg</emphasis>, e
+	  <emphasis>big</emphasis>.  Também é possível especificar uma
+	  sequência de caracteres para correspondência com um hífen 
+	  (<emphasis>-</emphasis>).  Por exemplo,  <emphasis>a[0-9]</emphasis> 
+	  casa com uma letra a seguida de um único dígito caracter de 0 a 9.</para>
 
         <para>
-	  Two special characters, the caret (<emphasis>^</emphasis>)
-	  and the dollar sign (<emphasis>$</emphasis>), respectively
-	  match the start and end of a line. This is very handy for
-	  parsing files. For instance, you can match all lines that
-	  start with a hash (<emphasis>#</emphasis>) with the regexp
+	  Dois caracteres especiais, o circunflexo (<emphasis>^</emphasis>) e
+	  o cifrão (<emphasis>$</emphasis>) correspondem, respectivamente com o
+	  começo e com o final de uma linha.  Isto é muito útil ao analisar
+	  arquivos.  Por exemplo, você pode encontrar todas as linhas que 
+	  comecem com uma cerquilha (<emphasis>#</emphasis>) com a expressão
 	  <emphasis>^#</emphasis>. </para>
       </sect3>
 
       <sect3 xml:id="chap-textproc-regexps-traditional-quantification">
-        <title>Quantification</title>
+        <title>Quantificação</title>
 
         <para>
-	  The simplest quantification sign that traditional regular
-	  expressions support is the (Kleene) star
-	  (<emphasis>*</emphasis>). This matches zero or arbitrary
-	  instances of the preceding character. For instance,
-	  <emphasis>ba*</emphasis> matches <emphasis>b</emphasis>,
-	  <emphasis>ba</emphasis><emphasis>baa</emphasis>, etc. You
-	  should be aware that a single character folowed by a star
-	  without any context matches every string, because
-	  <emphasis>c*</emphasis> also matches a string that has zero
-	  <emphasis>c</emphasis> characters. </para>
+	  O sinal mais simples de quantificação que uma expressão regular
+	  tradicional suporta é o asterisco, ou também chamada de estrela de
+	  Kleene (<emphasis>*</emphasis>).  Este quantificador especifica
+	  zero ou mais correspondências do caracter precedente.  Por exemplo,
+	  <emphasis>ba*</emphasis> corresponde às sequências
+	  <emphasis>b</emphasis>, <emphasis>ba</emphasis>,
+	  <emphasis>baa</emphasis>, etc.  Você deve atentar que um único 
+	  caracter seguido por uma estrela sem qualquer contexto pode 
+	  corresponder a qualquer string, pois <emphasis>c*</emphasis> também
+	  corresponde à string que não possui nenhum caracter
+	  <emphasis>c</emphasis>.</para>
 
         <para>
-	  More specific repetitions can be specified with
-	  backslash-escaped curly braces.
-	  <emphasis>\{x,y\}</emphasis> matches the preceding character
-	  at least <emphasis>x</emphasis> times, but not more than
-	  <emphasis>y</emphasis> times. So,
-	  <emphasis>ba\{1,3\}</emphasis> matches
-	  <emphasis>ba</emphasis>, <emphasis>baa</emphasis>, and
-	  <emphasis>baaa</emphasis>. </para>
+	  Repetições mais específicas podem ser especificadas por sinais de
+	  abre e fecha chaves, devidamente escapados com barras invertidas.
+	  <emphasis>\{x,y\}</emphasis> casa com o caracter precedente repetido
+	  pelo menos <emphasis>x</emphasis> vezes, mas não mais que
+	  <emphasis>y</emphasis> vezes.  Assim, <emphasis>ba\{1,3\}</emphasis> 
+	  corresponderá às sequências <emphasis>ba</emphasis>,
+	  <emphasis>baa</emphasis>, e <emphasis>baaa</emphasis>. </para>
       </sect3>
 
       <sect3 xml:id="chap-textproc-regexps-traditional-grouping">
-        <title>Grouping</title>
+        <title>Agrupamento</title>
 
         <para>
-	  Backslash-escaped parentheses group various characters
-	  together, so that you can apply quantification or
-	  alternation to a group of characters. For instance,
-	  <emphasis>\(ab\)\{1,3\}</emphasis> matches
-	  <emphasis>ab</emphasis>, <emphasis>abab</emphasis>, and
+	  Parênteses escapados com barras invertidas agrupam vários caracteres
+	  juntos, de forma que você pode aplicar quantificadoes ou indicadores
+	  de alternância a um grupo de caracteres.  Por exemplo,
+	  <emphasis>\(ab\)\{1,3\}</emphasis> vai corresponder a 
+	  <emphasis>ab</emphasis>, <emphasis>abab</emphasis>, e
 	  <emphasis>ababab</emphasis>. </para>
       </sect3>
 
       <sect3 xml:id="chap-textproc-regexps-traditional-alternation">
-        <title>Alternation</title>
+        <title>Alternância</title>
 
         <para>
-	  A backslash-escaped pipe vertical bar
-	  (<emphasis>\|</emphasis>) allows you to match either of two
-	  expressions. This is not useful for single characters,
-	  because <emphasis>a\|b</emphasis> is equivalent to
-	  <emphasis>[ab]</emphasis>, but it is very useful in
-	  conjunction with grouping. Suppose that you would like an
-	  expression that matches <emphasis>apple</emphasis> and
-	  <emphasis>pear</emphasis>, but nothing else. This can be
-	  done easily with the vertical bar:
+	  Uma barra vertical (pipe) escapada com uma barra invertida 
+	  (<emphasis>\|</emphasis>) permite que você faça correspondência com
+	  apenas uma dentre duas expressões.  Isso não é muito útil para
+	  caracters isolados já que <emphasis>a\|b</emphasis> é equivalente a
+	  <emphasis>[ab]</emphasis>, mas é muito útil quando usado com
+	  agrupamento.  Suponha que você quer uma expressão que corresponda a
+	  <emphasis>apple</emphasis> e a <emphasis>pear</emphasis>, e nada mais.
+	  Isto pode ser feito facilmente com a barra vertical:
 	  <emphasis>(apple)|(pear)</emphasis>. </para>
       </sect3>
     </sect2>
 
       <sect2 xml:id="chap-textproc-regexps-posix">
-	<title>POSIX extended regular expressions</title>
+	<title>Expressões regulares extendidas do padrão POSIX</title>
 
 	<para>
-	  POSIX regular expressions build upon traditional regular
-	  expressions, adding some other useful primitives. Another
-	  comforting difference is that grouping parenthesises,
-	  quantification accolades, and the alternation sign
-	  (<emphasis>|</emphasis>) are not backslash-escaped.  If they
-	  are escaped, they will match the literal characters instead,
-	  thus resulting in the opposite behavior of traditional
-	  regular expressions. Most people find POSIX extended regular
-	  expressions much more comfortable, making them more widely
-	  used.
+	  Expressões regulares POSIX foram construídas em cima das expressões
+	  tradicionais do UNIX, adicionando algumas outras primitivas úteis.
+	  Outra diferença confortável é que os parênteses de agrupamento, os
+	  quantificadores e o indicador de alternância (<emphasis>|</emphasis>)
+	  não precisam ser escapados.  Porém, se forem escapados, esses símbolos 
+	  irão corresponder literalmente com os próprios caracteres, resultando
+	  no comportamento oposto ao das expressões regulares tradicionais.  A
+	  maioria das pessoas consideram as expressões regulares POSIX muito
+	  mais confortáveis, o que faz com que elas sejam mais comumente usadas.
 	</para>
 
 	<sect3 xml:id="chap-textproc-regexps-posix-characters">
-	  <title>Matching characters</title>
+	<title>Correspondência de caracteres</title>
 
 	  <para>
-	    Normal character matching has not changed compared to the
-	    traditional regular expressions described in <xref
+	    A correspondência de caracteres normais não muda em nada nas
+	    expressões regulares POSIX quando comparadas com as tradicionais
+	    descritas em <xref
 	    linkend="chap-textproc-regexps-traditional-characters" />
 	  </para>
 	</sect3>
 
 	<sect3 xml:id="chap-textproc-regexps-posix-quantification">
-	  <title>Quantification</title>
+	  <title>Quantificação</title>
 
 	  <para>
-	    Besides the Kleene star (<emphasis>*</emphasis>), that
-	    matches the preceding character or group zero or more
-	    times, POSIX extended regular expressions add two new
-	    simple quantification primitives. The plus sign
-	    (<emphasis>+</emphasis>) matches the preceding character
-	    or group one or more times. For example,
-	    <emphasis>a+</emphasis>, matches <emphasis>a</emphasis>
-	    (or any string with more consecutive
-	    <emphasis>a</emphasis>'s), but does not match zero
-	    <emphasis>a</emphasis>'s. The questions mark character
-	    (<emphasis>?</emphasis>) matches the preceding character
-	    zero or one time. So, <emphasis>ba?d</emphasis> matches
-	    <emphasis>bd</emphasis> and <emphasis>bad</emphasis>, but
-	    not <emphasis>baad</emphasis> or <emphasis>bed</emphasis>.
+	    Além da estrela de Kleene (<emphasis>*</emphasis>), que corresponde
+	    a repetição de zero ou mais vezes do caracter ou grupo precedente,
+	    expressões regulares POSIX incluem mais dois novos quantificadores.
+	    O sinal de mais (<emphasis>+</emphasis>) faz correspondência com o 
+	    caracter ou grupo precedente repetido pelo menos uma ou mais vezes.  
+	    Por exemplo, a expressão <emphasis>a+</emphasis>, corresponde à
+	    string <emphasis>a</emphasis> (bem como com qualquer outra string
+	    que contenha sequências de <emphasis>a</emphasis>'s repetidos), mas
+	    não faz correspondência com a sequência vazia de zero
+	    <emphasis>a</emphasis>'s.  O caracter de interrogação
+	    (<emphasis>?</emphasis>) faz correspondência do caracter precedente
+	    por zero ou uma vez.  Assim, <emphasis>ba?d</emphasis> corresponde a
+	    <emphasis>bd</emphasis> e <emphasis>bad</emphasis>, mas não com
+	    not <emphasis>baad</emphasis> nem com <emphasis>bed</emphasis>.
 	  </para>
 
 	  <para>
-	    Curly braces are used for repetition, like traditional
-	    regular expressions. Though the backslash should be
-	    omitted. To match <emphasis>ba</emphasis> and
-	    <emphasis>baa</emphasis>, one should use
-	    <emphasis>ba{1,2}</emphasis> rather than
-	    <emphasis>ba\{1,2\}</emphasis>.
+	    Chaves são usadas para repetição, como nas expressões regulares
+	    tradicionais.  Porém a barra invertida para escape pode ser omitida.
+	    Para corresponder às strings <emphasis>ba</emphasis> e
+	    <emphasis>baa</emphasis>, alguém poderia usar 
+	    <emphasis>ba{1,2}</emphasis> ao invés de 
+	    <emphasis>ba\{1,2\}</emphasis> nas expressões tradicionais.
 	  </para>
 	</sect3>
 
 	<sect3 xml:id="chap-textproc-regexps-posix-grouping">
-	  <title>Grouping</title>
+	  <title>Agupamento</title>
 
 	  <para>
-	    Grouping is done in the same manner as traditional regular
-	    expressions, leaving out the escape-backslashes before the
-	    parenthesises. For example, <emphasis>(ab){1,3}</emphasis>
-	    matches <emphasis>ab</emphasis>,
-	    <emphasis>abab</emphasis>, and
+	    Agrupamento é feito da mesma maneira que em expressões regulares
+	    tradicionais, também dispensando as barras invertidas para escape
+	    antes dos parênteses.  Por exemplo, <emphasis>(ab){1,3}</emphasis>
+	    corresponde a <emphasis>ab</emphasis>, <emphasis>abab</emphasis>, e
 	    <emphasis>ababab</emphasis>.
 	  </para>
 	</sect3>
 
 	<sect3 xml:id="chap-textproc-regexps-posix-alternation">
-	  <title>Alternation</title>
+	<title>Alternância</title>
 
 	  <para>
-	    Alternation is done in the same manner as with traditional
-	    regular expressions, leaving out the escape-backslashes
-	    before the vertical bar. So,
-	    <emphasis>(apple)|(pear)</emphasis> matches
-	    <emphasis>apple</emphasis> and <emphasis>pear</emphasis>.
+	    Alternância também é feita da mesma maneira que nas expressões
+	    regulares tradicionas, também dispensando as barras invertidas para
+	    escape antes da barra vertical.  Assim, a expressão 	    <emphasis>(apple)|(pear)</emphasis> corresponde a 
+	    <emphasis>apple</emphasis> e também a <emphasis>pear</emphasis>.
 	  </para>
 	</sect3>
       </sect2>
