@@ -27,5 +27,5 @@ linhas arquivo                  trad     1a-rev  2a-rev
    780 chap-procmgmt.xml        OK       -       -
    868 chap-install.xml         OK       -       -
   1044 chap-shell.xml           OK       -       -
-  1924 chap-textproc.xml        iniciada -       -
+  1924 chap-textproc.xml        OK       -       -
   3475 chap-filesystem.xml      OK       -       -
