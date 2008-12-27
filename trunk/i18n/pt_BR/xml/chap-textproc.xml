@@ -1736,22 +1736,21 @@ $ <userinput>ls -l hello.c*</userinput>
     <!-- XXX - document -c, -l, -x, -n, -q parameters -->
 
     <sect2 xml:id="chap-textproc-grep-basic">
-      <title>Basic grep usage</title>
+      <title>Utilização básica do grep</title>
 
       <para>
-	We have now arrived at one of the most important utilties of
-	the UNIX System, and the first occasion to try and use regular
-	expressions. The <command>grep</command> command is used to
-	search a text stream or a file for a pattern. This pattern is
-	a regular expression, and can either be a basic regular
-	expression or a POSIX extended regular expression (when the
-	<parameter class="command">-E</parameter> parameter is
-	used). By default, <command>grep</command> will write the
-	lines that were matched to the standard output. In the most
-	basic syntax, you can specify a regular expression as an
-	argument, and <command>grep</command> will search matches in
-	the text from the standard input. This is a nice manner to
-	practice a bit with regular expressions.
+	Chegamos agora a um dos mais importantes utilitários dos sistemas UNIX,
+	e à nossa primeira oportunidade de utilizar expressões regulares.  O 
+	comando <command>grep</command> é usado para procurar padrões de textos
+	em fluxos ou em arquivo de texto.  Esses tais padrões são expressões
+	regulares, e podem ser tanto as expressões regulares básicas como
+	expressões extendidas do padrão POSIX (quando o parâmetro
+	<parameter class="command">-E</parameter> for usado).  Por padrão, o 
+	<command>grep</command> irá escrever na saída as linhas onde ocorrem
+	correspondências.  Em sua sintaxe mais básica, você pode especificar uma
+	expressão regular como argumento, e o <command>grep</command> irá
+	procurar ocorrências do padrão no texto dado na entrada padrão.  Esta é
+	uma boa maneira de praticar um pouco com expressões regulares.
       </para>
 
       <screen>
@@ -1765,12 +1764,11 @@ ababab
       </screen>
 
       <para>
-	The example listed above shows a basic regular expression in
-	action, that matches a line solely consisting of two or three
-	times the <emphasis>ab</emphasis> string. You can do the same
-	thing with POSIX extended regular expressions, by adding the
-	<parameter class="command">-E</parameter> (for extended)
-	parameter:
+	O exemplo listado acima mostra em ação uma expressão regular básica que
+	faz correspondência em uma linha que consiste apenas na repetição da
+	string <emphasis>ab</emphasis> por duas ou três vezes.  Você pode fazer
+	o mesmo com expressões regulares extendidas POSIX, adicionando o
+	parâmetro <parameter class="command">-E</parameter> (de Extendida):
       </para>
 
       <screen>
@@ -1784,13 +1782,12 @@ ababab
       </screen>
 
       <para>
-	Since the default behavior of <command>grep</command> is to
-	read from the standard input, you can add it to a pipeline to
-	get the interesting parts of the output of the preceding
-	commands in the pipeline. For instance, if you would like to
-	search for the string <emphasis>2006</emphasis> in the third
-	column in a file, you could combine the <command>cut</command>
-	and <command>grep</command> command:
+	Como o comportamentro padrão do <command>grep</command> é ler da entrada
+	padrão, você pode colocá-lo em um duto (ou pipeline) para pegar partes
+	interessantes da saída de comandos precedentes em um pipeline.  Por 
+	exemplo, se você quiser procurar pela string <emphasis>2006</emphasis> 
+	na tereira coluna de um arquivo, você pode combinar o
+	<command>grep</command> com o comando <command>cut</command>:
       </para>
 
       <screen>
@@ -1799,15 +1796,15 @@ $ <userinput>cut -f 3 | grep '2006'</userinput>
     </sect2>
 
     <sect2 xml:id="chap-textproc-grep-files">
-      <title>grepping files</title>
+      <title>Executando o grep com arquivos</title>
 
       <para>
-	Naturally, <command>grep</command> can also directly read a
-	file, rather than the standard input. As usual, this is done
-	by adding the files to be read as the last arguments. The
-	following example will print all lines from the
-	<filename>/etc/passwd</filename> file that start with the
-	string <emphasis>daniel:</emphasis>.
+	Naturalmente, o <command>grep</command> também pode ler diretamente sua
+	entrada a partir de um arquivo, ao invés da entrada padrão.  Isso é
+	feito normalmente incluindo-se os arquivos a serem lidos como últimos
+	argumentos do grep.  O exemplo a seguir vai imprimir todas as linha do
+	arquivo <filename>/etc/passwd</filename> que comecem com a string 
+	<emphasis>daniel:</emphasis>.
       </para>
 
       <screen>
@@ -1818,13 +1815,13 @@ daniel:*:1001:1001:Daniel de Kok:/home/daniel:/bin/sh
       <!-- XXX - filename notation when multiple files are specified -->
 
       <para>
-        With the <parameter class="command">-r</parameter> option,
-	<command>grep</command> will recursively traverse a directory
-	structure, trying to find matches in each file that was encountered
-	during the traversal.
-	Though, it is better to combine <command>grep</command> with
-	<command>find</command> and the <emphasis>-exec</emphasis>
-	operand in scripts that have to be portable.
+        Com a opção <parameter class="command">-r</parameter>, o 
+	<command>grep</command> irá percorrer uma estrutura de diretórios
+	recursivamente, tentando procurar por correspondências em cada arquivo
+	que encontrar durante o percurso.  No entanto, é melhor combinar o 
+	<command>grep</command> com o comando <command>find</command> e o
+	operando <emphasis>-exec</emphasis> em scripts que precisam ser
+	portáveis.
       </para>
 
       <screen>
@@ -1832,7 +1829,7 @@ $ <userinput>grep -r 'somepattern' somedir</userinput>
       </screen>
 
       <para>
-	is the non-portable functional equivalent of
+	é uma forma não-portável que faz a mesma coisa que seu equivalente
       </para>
 
       <screen>
@@ -1841,12 +1838,12 @@ $ <userinput>find /somedir -type f -exec grep 'somepattern' {} \; -print</userin
     </sect2>
 
     <sect2 xml:id="chap-textproc-grep-pattern">
-      <title>Pattern behavior</title>
+      <title>Comportamentos de padrões</title>
 
       <para>
-	<command>grep</command> can also print all lines that do not
-	match the pattern that was used.  This is done by adding the
-	<parameter class="command">-v</parameter> parameter:
+	O <command>grep</command> também pode exibir todas as linhas que não
+	correspondem com o padrão especificado.  Isso é feito adicionando-se o
+	parâmetro <parameter class="command">-v</parameter>:
       </para>
 
       <screen>
@@ -1860,9 +1857,9 @@ abababab
       </screen>
 
       <para>
-	If you want to use the pattern in a case-insensitive manner,
-	you can add the <parameter class="command">-i</parameter>
-	parameter. For example:
+	Se você quiser usar o padrão de uma forma insensível à caixa (não
+	diferenciando maiúsculas e minúsculas), você pode adicionar o parâmetro
+	<parameter class="command">-i</parameter>.  Por exemplo:
       </para>
 
       <screen>
@@ -1874,8 +1871,8 @@ A
       </screen>
 
       <para>
-	You can also match a string literally with the <parameter
-	class="command">-F</parameter> parameter:
+	Você também pode fazer correspondências de strings literais com o
+	parâmetro <parameter class="command">-F</parameter>:
       </para>
 
       <screen>
@@ -1887,19 +1884,20 @@ aa*
     </sect2>
 
     <sect2 xml:id="chap-textproc-grep-multiplepatterns">
-      <title>Using multiple patterns</title>
+      <title>Usando múltiplos padrões</title>
 
       <para>
-	As we have seen, you can use the alternation character
-	(<emphasis>|</emphasis>) to match either of two or more
-	subpatterns. If two patterns that you would like to match
-	differ a lot, it is often more comfortable to make two
-	separate patterns. <command>grep</command> allows you to use
-	more than one pattern by separating patterns with a newline
-	character. So, for example, if you would like to print lines
-	that match either the <emphasis>a</emphasis> or
-	<emphasis>b</emphasis> pattern, this can be done easily by
-	starting a new line:
+	Como já vimos, você pode usar o caracter de alternância
+	(<emphasis>|</emphasis>) para fazer correspondências com um de dois
+	ou mais subpadrões.  Se dois padrôes com os quais você gostaria de
+	encontrar correspondências diferirem muito, pode ser mais adequado
+	deixá-los como dois padrões separados.  O <command>grep</command> 
+	permite que você utilize mais do que um padrão ao mesmo tempo,
+	separando-os por uma quebra de linha.  Assim, por exemplo, se você
+	quiser exibir as linhas que correspondam tanto com o padrão 
+	<emphasis>a</emphasis> quanto com o padrão
+	<emphasis>b</emphasis>, isso pode ser feito facilmente iniando uma
+	nova linha, como:
       </para>
 
       <screen>
@@ -1913,13 +1911,13 @@ c
       </screen>
 
       <para>
-	This works, because quotes are used, and the shell passes
-	quoted parameters literally. Though, it must be admitted that
-	this is not quite pretty. <command>grep</command> accepts one
-	or more <parameter class="command">-e pattern</parameter>
-	parameters, giving the opportunity to specify more than one
-	parameter on one line. The <command>grep</command> invocation
-	in the previous example could be rewritten as:
+	Este exemplo funciona porque aspas simples foram usadas, e o shell
+	interpreta parâmetros entre aspas literalmente.  Porém, é de se esperar
+	que isso pode não ser muito adequado.  O <command>grep</command> aceita
+	um ou mais parâmetros como <parameter class="command">-e
+	pattern</parameter>, dando-lhe a oportunidade de especificar mais do que
+	um parâmetro em uma linha.  Uma execução equivalente do comando 
+	<command>grep</command> do exemplo anterior poderia ser feita como:
       </para>
 
       <screen>
