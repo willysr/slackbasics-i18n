@@ -1716,7 +1716,8 @@ $ <userinput>ls -l hello.c*</userinput>
 	  <para>
 	    Alternância também é feita da mesma maneira que nas expressões
 	    regulares tradicionas, também dispensando as barras invertidas para
-	    escape antes da barra vertical.  Assim, a expressão 	    <emphasis>(apple)|(pear)</emphasis> corresponde a 
+	    escape antes da barra vertical.  Assim, a expressão
+	    <emphasis>(apple)|(pear)</emphasis> corresponde a 
 	    <emphasis>apple</emphasis> e também a <emphasis>pear</emphasis>.
 	  </para>
 	</sect3>
