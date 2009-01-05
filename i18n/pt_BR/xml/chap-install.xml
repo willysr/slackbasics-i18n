@@ -245,11 +245,11 @@
     </figure>
 
     <para>
-      After setting up the swap space the <quote>TARGET</quote> menu
-      is launched, which you can see in <xref
-      linkend="chap-install-installing-partselect"/>. It is used to
-      initialize the Slackware Linux partitions. Setup will display
-      all partitions with the <quote>Linux Native</quote> type.
+      Depois de configurar o espaço de swap, o menu <quote>TARGET</quote>
+      é exibido, como mostrado em  <xref
+      linkend="chap-install-installing-partselect"/>.  Este menu lhe
+      permite inicializar partições do Slackware Linux.  O Setup irá
+      exibir todas as partições do tipo <quote>Linux Native</quote>.
     </para>
 
     <figure xml:id="chap-install-installing-partselect">
