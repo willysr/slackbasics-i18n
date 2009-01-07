@@ -124,14 +124,14 @@
       você quer particionar (<command>cfdisk /dev/device</command>).
       Discos com hardware ATA têm dispositivos nomeados da seguinte
       forma: <filename>/dev/hdn</filename>, sendo <quote>n</quote>
-      substituído por um caracter.  P.ex., o disco <quote>primário
+      substituído por um caractere.  P.ex., o disco <quote>primário
       mestre</quote> (primary master) é
       chamado <filename>/dev/hda</filename>, enquanto que o
       <quote>secundário escravo</quote> (secondary
       slave) é chamado <filename>/dev/hdd</filename>.
       Discos SCSI são nomeados da seguinte forma:
       <filename>/dev/sdn</filename>, sendo <quote>n</quote> substituído
-      por um caracter de dispositivo (com o primeiro disco SCSI = a, e
+      por um caractere de dispositivo (com o primeiro disco SCSI = a, e
       o quarto disco SCSI = d).
     </para>
 
@@ -336,7 +336,7 @@
       O próximo passo é selecionar a mídia de instalação (<xref
       linkend="chap-install-installing-medium"/>).  Este diálogo permite
       diversas opções, como instalar o Slackware Linux a partir de um
-      CD-ROM ou através de um compatilhamento NFS.  O Slackware Linux
+      CD-ROM ou através de um compartilhamento NFS.  O Slackware Linux
       normalmente é instalado a partir do CD-ROM, então isto é o que nós
       vamos fazer.  Depois de selecionar <quote>CD-ROM</quote> você será
       questionado se quer deixar o setup procurar pelo CD-ROM
