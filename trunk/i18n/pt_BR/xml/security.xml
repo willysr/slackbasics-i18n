@@ -50,7 +50,7 @@ servidor web, ele não deveria ter portas abertas (isto é, serviços) de
 FTP ou SMTP.  Com mais portas abertas, os riscos de segurança aumentam
 muito rapidamente, pois há maiores chances de que um software que esteja
 disponibilizando um serviço numa porta tenha uma vulnerabilidade, ou
-mesmo que esteja mal configurado.  As poucas seçõe seguintes irão
+mesmo que esteja mal configurado.  As poucas seções seguintes irão
 ajudá-lo a rastrear essas portas que estiverem abertas, e fechá-las.
 </para>
 </sect2>
@@ -151,7 +151,7 @@ controle de acesso baseado em hosts.
 </para>
 
 <para>
-Serviços podem ser desabilitados adicionando-se o caracter de comentário
+Serviços podem ser desabilitados adicionando-se o caractere de comentário
 (#) no começo da linha.  É uma boa idéia desabilitar todos os serviços e
 deixar habilitados apenas aqueles que você precisar a cada momento.
 Depois de modificar o <filename>/etc/inetd.conf</filename>, o

@@ -56,7 +56,7 @@ xml:id="kernel">
 
       <listitem>
         <para>
-          Pegue os cabeçalhos apropriados e construa a infraestrutura
+          Pegue os cabeçalhos apropriados e construa a infra-estrutura
           disponível para construir módulos de terceiros.
         </para>
       </listitem>
@@ -85,7 +85,7 @@ xml:id="kernel">
 
       <listitem>
         <para>
-          Construir os modules.
+          Construir os módulos.
         </para>
       </listitem>
 
@@ -214,7 +214,7 @@ xml:id="kernel">
       A saída deste comando pode ser um tanto quanto verbosa, já que as
       opções que foram usadas no arquivo de configuração, e estão
       disponíveis no kernel em execução também são mostradas, mas suas
-      confgurações serão preenchidas automaticamente baseadas no arquivo
+      configurações serão preenchidas automaticamente baseadas no arquivo
       de configuração.
     </para>
 
