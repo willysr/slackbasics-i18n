@@ -124,7 +124,7 @@
     processo, chamado processo filho, com um PID diferente. O processo filho continuará
     a execução a partir do mesmo ponto que o processo pai, mas vai obter um valor de retorno diferente da chamada
     de sistema <emphasis>fork()</emphasis>. Baseado nesse valor de retorno o processo pai
-    pode decidir como continuar a execução. O trecho de código C a seguir mostra como funciona uma chamada a <emphasis>form()</emphasis>: 
+    pode decidir como continuar a execução. O trecho de código C a seguir mostra como funciona uma chamada a <emphasis>fork()</emphasis>: 
       </para>
 
       <programlisting>
@@ -242,7 +242,7 @@ int main() {
 
       <para>
           Escrever bons <emphasis>programas multi-thread</emphasis> requer bons
-          conhecimentos sobre comparilhamento de dados e técnicas
+          conhecimentos sobre compartilhamento de dados e técnicas
           de <foreignphrase>locking</foreignphrase> (gerenciar a disputa por uma mesma área).
           Já que todos os dados são compartilhados, um programa mal feito pode caminhar
           para problemas de disputa.
@@ -299,7 +299,7 @@ $ <userinput>ps</userinput>
       <para>
     Talvez você queira uma visão maior dos processos que estão em execução.
     Ao adicionar a opção <parameter class="command">-a</parameter> você verá todos os processos
-   associados a qualquer erminal. 
+   associados a qualquer terminal. 
    Por exemplo:
       </para>
 
@@ -437,8 +437,8 @@ $ <userinput>kill 15631</userinput>
 
       <para>
        Para enviar um outro sinal, você pode usar uma das seguintes opções:
-	   <emphasis>-númerodosinal</emphasis> ou
-       <emphasis>-nomedosinal</emphasis>.  Então, ambos os comandos a seguir
+	   <emphasis>-numero_do_sinal</emphasis> ou
+       <emphasis>-nome_do_sinal</emphasis>.  Então, ambos os comandos a seguir
        enviam o sinal <emphasis>SIGKILL</emphasis> ao processo que possui o
        ID <emphasis>15631</emphasis>:
       </para>
@@ -461,7 +461,7 @@ $ <userinput>kill -SIGKILL 15631</userinput>
         <quote>nice</quote>.</para></footnote> com os outros</title>
 
       <para>
-       Em um ato de autruísmo você pode ser gentil com os outros
+       Em um ato de altruísmo você pode ser gentil com os outros
        usuários dos recursos do computador.  Se você planeja executar um
        processo que irá fazer uso extensivo de tempo de CPI, mas não
        quer que isso interfira no trabalho dos outros usuários no
@@ -658,7 +658,7 @@ $ <userinput>jobs</userinput>
         com o comando <command>fg</command>.  Executar <command>fg</command>
         sem nenhum parâmetro irá trazer a tarefa atual para o primeiro
         plano.  Muitos shells irão exibir o comando que foi movido para o
-        primeiro plao para lhe dar uma indicação de sobre qual processo
+        primeiro plano para lhe dar uma indicação de sobre qual processo
         estamos nos referindo:
       </para>
 
@@ -671,7 +671,7 @@ cat
 	É claro que nem sempre é útil colocar a tarefa atual no primeiro
 	plano.  Você pode colocar outra tarefa no primeiro plano informando
 	o número da tarefa junto com um sinal de porcentagem
-	(<emphasis>%</emphasis>) como um argumetno para o comando 
+	(<emphasis>%</emphasis>) como um argumento para o comando 
 	<command>fg</command>:
       </para>
 
@@ -705,7 +705,7 @@ sleep 3600
 
       <para>
 	Um processo que esteja parado pode ser continuado em segundo plano
-	com o comando <command>bg</command> command:
+	com o comando <command>bg</command>  :
       </para>
 
       <screen>
