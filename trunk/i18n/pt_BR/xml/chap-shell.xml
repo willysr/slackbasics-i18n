@@ -114,7 +114,7 @@ Shell changed.
     </para>
 		
     <screen>
-<command>nomedocomando [argumento1 argumento2 ... argumenton]</command>
+<command>nome_do_comando [argumento1 argumento2 ... argumenton]</command>
     </screen>
 
     <para>
@@ -139,7 +139,7 @@ $ <userinput>echo $PATH</userinput>
 
     <para>
       Os caminhos dos diretórios na variável <emphasis>PATH</emphasis> 
-      são separados pelo caracter dois-pontos (<emphasis>:</emphasis>).
+      são separados pelo caractere dois-pontos (<emphasis>:</emphasis>).
       Você pode usar o comando <command>which</command> para verificar 
       se um comando está no caminho de pesquisa do shell atual. Você 
       pode fazer isto passando um argumento para o 
@@ -165,7 +165,7 @@ $ <userinput>which sysstat</userinput>
     <para>
       Muitas vezes, é necessário saltar por várias partes de uma linha, 
       e então alterá-la, quando você está editando comandos longos. 
-      Ambos <command>bash</command> and <command>ksh</command> possuem 
+      Ambos <command>bash</command> e <command>ksh</command> possuem 
       atalhos para operações comuns. Há dois modos no shell, em que os 
       atalhos diferem. Estes modos correspondem em seu comportamento à 
       dois populares editores do UNIX. Os editores são o <command>vi</command> 
@@ -202,13 +202,13 @@ $ <userinput>set -o emacs</userinput>
     <para>
       Com o modo de edição <emphasis>emacs</emphasis> habilitado, você pode
       começar a usar atalhos.  Vamos ver aqui três tipos de atalhos: atalhos
-      edição de caracter, atalhos de edição de palavra, e atalhos de edição de
+      edição de caractere, atalhos de edição de palavra, e atalhos de edição de
       linha.  Posteriormente neste capítulo, vamos ver também alguns atalhos
       que são usados para obter entradas a partir do histórico de comandos.
     </para>
 
     <sect2 xml:id="chap-shell-moving-char">
-      <title>Edição de caracter</title>
+      <title>Edição de caractere</title>
 
       <para>
        O primeiro grupo de atalhos usam caracteres como sua unidade lógica,
@@ -220,7 +220,7 @@ $ <userinput>set -o emacs</userinput>
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-move">
-	<title>Movimentando-se por um caracter</title>
+	<title>Movimentando-se por um caractere</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
@@ -231,11 +231,11 @@ $ <userinput>set -o emacs</userinput>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-b</entry>
-	      <entry>Move-se um caracter para trás.</entry>
+	      <entry>Move-se um caractere para trás.</entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-f</entry>
-	      <entry>Move-se um caracter para frente.</entry>
+	      <entry>Move-se um caractere para frente.</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
@@ -263,7 +263,7 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
        Da mesma forma, você também pode retornar ao final da linha segurando 
        <emphasis>Ctrl-f</emphasis>.  Há um erro nessa linha, pois há um hífen
        incorreto.  Para remover este hífen, você pode usar um dos atalhos de
-       exclusão de caracter.
+       exclusão de caractere.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-delete">
@@ -278,13 +278,13 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-h</entry>
-          <entry>Exclui um caracter antes do cursor.  Isto tem o mesmo efeito
+          <entry>Exclui um caractere antes do cursor.  Isto tem o mesmo efeito
              de se usar a tecla Backspace na maioria dos computadores
              pessoais.</entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-d</entry>
-	      <entry>Exclui o caracter que está sob o cursor.</entry>
+	      <entry>Exclui o caractere que está sob o cursor.</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
@@ -301,7 +301,7 @@ find ~/music <emphasis role="cursor">-</emphasis> -name '*.ogg' -print
 
       <para>
        e então pressionar <emphasis>Ctrl-d</emphasis> duas vezes.  Isto irá
-       excluir o caracter hífen e o espaço logo após ele:
+       excluir o caractere hífen e o espaço logo após ele:
       </para>
 
       <screen>
@@ -347,8 +347,8 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-t</entry>
-          <entry>Troca (transpõe) o caracter que está sob o cursor, e o
-          caracter imediatamente antes do cursor.  Isso é útil para corrigir
+          <entry>Troca (transpõe) o caractere que está sob o cursor, e o
+          caractere imediatamente antes do cursor.  Isso é útil para corrigir
           erros de digitação rapidamente.</entry>
 	    </row>
 	  </tbody>
@@ -367,7 +367,7 @@ cat myreport.ttx
        A extensão contém um erro de digitação se você pretendia executar
        <command>cat</command> <filename>myreport.txt</filename>.  Isto pode ser
        corrigido com o atalho de transposição de caracteres.  Primeiro, mova-se
-       para o segundo caracter dos dois que estão trocados:
+       para o segundo caractere dos dois que estão trocados:
       </para>
 
       <screen>
@@ -389,10 +389,10 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
       <title>Edição de palavra</title>
 
       <para>
-       Na maioria das vezes é muito tedioso se mover em nível de caracter.
+       Na maioria das vezes é muito tedioso se mover em nível de caractere.
        Felizmente os shell Korn e Bash também permitem movimentações em nível
        de palavras.  Palavras são sequências de caracteres separadas por um
-       caracter especial, como um espaço em branco.  <xref
+       caractere especial, como um espaço em branco.  <xref
        linkend="chap-shell-moving-word-shortcuts-move" /> resume os atalhos que
        podem ser usados para mover-se pelas palavras de uma linha.
       </para>
@@ -417,7 +417,7 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
 	    <row>
 	      <entry>Esc f</entry>
 	      <entry>
-		Avança para o último caracter da palavra atual ou da próxima palavra.
+		Avança para o último caractere da palavra atual ou da próxima palavra.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -426,11 +426,11 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
 
       <para>
        Como você pode ver, as letras nesses atalhos são iguais àquelas da
-       movimentação para frente e para trás em nível de caracter.  A lógica de
+       movimentação para frente e para trás em nível de caractere.  A lógica de
        movimentação é um pouco curiosa.  Mover-se para frente coloca o cursor
-       ao final da palavra atual, e não no primeiro caracter da próxima palavra
+       ao final da palavra atual, e não no primeiro caractere da próxima palavra
        como você poderia supor.  Vamos ver um breve exemplo.  No início, o
-       cursor está no primeiro caracter da linha.
+       cursor está no primeiro caractere da linha.
       </para>
 
       <screen>
@@ -439,7 +439,7 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
 
       <para>
        Digitar <emphasis>Esc f</emphasis> irá mover o cursor para depois do
-       último caracter da primeira palavra, que neste caso é
+       último caractere da primeira palavra, que neste caso é
        <emphasis>find</emphasis>:
       </para>
 
@@ -457,9 +457,9 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
       </screen>
 
       <para>
-       Um movimento para trás põe o cursor no primeiro caracter da palavra
-       atual, ou no primeiro caracter da palavra anterior se no momento o
-       cursor estiver no primeiro caracter da palavra.  Então, mover-se uma
+       Um movimento para trás põe o cursor no primeiro caractere da palavra
+       atual, ou no primeiro caractere da palavra anterior se no momento o
+       cursor estiver no primeiro caractere da palavra.  Então, mover-se uma
        palavra para trás no exemplo anterior irá pôr o cursor na primeira letra
        de <quote>music</quote>:
       </para>
@@ -498,8 +498,8 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 		Alt-Backspace
 	      </entry>
 	      <entry>
-		Exclui cada caracter a partir da posição atual do cursor até o primeiro
-		caracter que é encontrado na palavra.
+		Exclui cada caractere a partir da posição atual do cursor até o primeiro
+		caractere que é encontrado na palavra.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -525,7 +525,7 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 	    <row>
 	      <entry>Alt-t</entry>
 	      <entry>
-		Troca (transpôe) a palavra atual pela palavra anterior.
+		Troca (transpõe) a palavra atual pela palavra anterior.
 	      </entry>
 	    </row>
 	    <row>
@@ -546,7 +546,7 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 	      <entry>Alt-c</entry>
 	      <entry>
 		Capitaliza (deixa a inicial em caixa alta) a palavra atual ou o próximo
-		caracter encontrado na palavra.
+		caractere encontrado na palavra.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -602,8 +602,8 @@ find ~/music -name '*.ogg' -print
        cursor em <quote>i</quote> resultará em <quote>alICE</quote>.  Alt-l tem
        o mesmo comportamento, mas troca as letras para minúsculas.  Então,
        usar Alt-l em <quote>alICE</quote> com o cursor em <quote>I</quote> irá
-       resultar na string <quote>alice</quote>.  Alt-c troca apenas o caracter
-       no qual o cursor estiver, ou o caracter inicial da próxima palavra
+       resultar na string <quote>alice</quote>.  Alt-c troca apenas o caractere
+       no qual o cursor estiver, ou o caractere inicial da próxima palavra
        encontrada para maiúsculas.  Por exemplo, pressionando-se Alt-c com o
        cursor no <quote>a</quote> de <quote>alice</quote> irá resultar em
        <quote>Alice</quote>.
@@ -675,7 +675,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
        Você também pode excluir caracteres em nível de linha.  Os atalhos estão
        listados em <xref linkend="chap-shell-moving-line-shortcuts-delete" />.
        Esses atalhos funcionam como os de movimentação, mas excluem todos os
-       caracteres que forem encontrados.  Ctrl-k irá excluir o caracter sob o
+       caracteres que forem encontrados.  Ctrl-k irá excluir o caractere sob o
        cursor, mas Ctrl-x Backspace não.  Mover-se para o começo da linha com
        Ctrl-a, seguido de um Ctrl-k, é um truque rápido para remover a linha
        completamente.
@@ -753,7 +753,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
       Experimente teclar &lt;Tab&gt; outra vez e o Bash irá lhe mostrar uma
       lista dos nomes de arquivos que iniciam com <quote>recipe</quote>, no
       caso, os dois arquivos recipe.  Neste ponto, você tem que ajudar o Bash
-      digitando o próximo caracter do arquivo que você quer.  Suponha que você
+      digitando o próximo caractere do arquivo que você quer.  Suponha que você
       queira executar <command>cat</command> <filename>recipe2</filename>, você
       pode então digitar a tecla &lt;2&gt;.  Depois disso, então, você não terá
       problemas para completar o nome do arquivo, e teclar &lt;Tab&gt;
@@ -804,11 +804,11 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
 	  </row>
 	  <row>
 	    <entry>?</entry>
-	    <entry>Um único caracter</entry>
+	    <entry>Um único caractere</entry>
 	  </row>
 	  <row>
 	    <entry>[]</entry>
-	    <entry>Um caracter dentro de um conjunto de caracteres</entry>
+	    <entry>Um caractere dentro de um conjunto de caracteres</entry>
 	  </row>
 	</tbody>
       </tgroup>
@@ -818,7 +818,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
       <title>Correspondência com uma string de caracteres</title>
 
       <para>
-       Como você pode ver na tabela acima, o caracter <quote>*</quote> irá
+       Como você pode ver na tabela acima, o caractere <quote>*</quote> irá
        corresponder com uma string de caracteres.  Por exemplo, o padrão
        <emphasis>*.html</emphasis> corresponde com tudo o que termine com
        <emphasis>.html</emphasis>, já <emphasis>d*.html</emphasis> corresponde
@@ -854,8 +854,8 @@ $ <userinput>rm in*</userinput>
       <title>Correspondência com um único caractere</title>
 
       <para>
-       O caracter <quote>?</quote> funciona da mesma forma que o
-       <quote>*</quote>, mas corresponde a apenas um único caracter.  Suponha
+       O caractere <quote>?</quote> funciona da mesma forma que o
+       <quote>*</quote>, mas corresponde a apenas um único caractere.  Suponha
        que nós tenhamos três arquivos, <filename>file1.txt</filename>,
        <filename>file2.txt</filename> e <filename>file3.txt</filename>.  A
        string <emphasis>file?.txt</emphasis> corresponde a todos estes três
@@ -868,7 +868,7 @@ $ <userinput>rm in*</userinput>
       <title>Correspondência com conjuntos de caracteres</title>
 
       <para>
-       <quote>[]</quote> é um coringa que corresponde a cada caracter que
+       <quote>[]</quote> é um coringa que corresponde a cada caractere que
        esteja entre os colchetes.  Suponha que tenhamos os arquivos do exemplo
        anterior, <filename>file1.txt</filename>, <filename>file2.txt</filename>
        e <filename>file3.txt</filename>.  A string
