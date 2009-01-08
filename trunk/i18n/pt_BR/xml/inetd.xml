@@ -1,7 +1,7 @@
 <!-- $Id: inetd.xml 283 2007-09-18 20:14:31Z danieldk $ -->
 
 <chapter> <?dbhtml filename="inetd.html"?>
-<title>O super servidor Internet</title>
+<title>O super servidor de Internet</title>
 
 <sect1>
 <title>Introdução</title>
@@ -17,7 +17,7 @@ software servidor responsável por aquele tipo de conexão.  A vantagem
 dessa abordagem é que ela adiciona uma camada extra de segurança e torna
 mais fácil o log de conexões entrantes.  A desvantagem é que acaba sendo
 mais lento que usar um daemon independente.  Então, será uma boa idéia
-usar o servidor como daemon indepentente, por exemplo, em um servidor
+usar o servidor como daemon independente, por exemplo, em um servidor
 FTP bastante carregado.
 </para>
 
@@ -51,7 +51,7 @@ controle de acesso baseado em hosts.
 </para>
 
 <para>
-Serviços podem ser desabilitados adicionando-se o caracter de comentário
+Serviços podem ser desabilitados adicionando-se o caractere de comentário
 (#) no começo da linha.  É uma boa idéia desabilitar todos os serviços e
 deixar habilitados apenas aqueles que você precisar a cada momento.
 Depois de modificar o <filename>/etc/inetd.conf</filename>, o
@@ -109,7 +109,7 @@ service: hosts
 </screen>
 
 <para>
-Os hosts podem ser espeficiados pelo nome de host ou por seu endereço
+Os hosts podem ser especificados pelo nome de host ou por seu endereço
 IP.  A palavra-chave ALL significa todos os hosts ou todos os serviços.
 </para>
 

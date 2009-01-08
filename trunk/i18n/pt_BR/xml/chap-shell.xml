@@ -8,35 +8,35 @@
     <title>Introdução</title>
 
     <para>
-      Neste capítulo iremos ver um ambiente tradicional em sistemas 
-      UNIX: o shell. O shell é um interpretador que pode ser usado 
-      interativamente e não-interativamente. Quando o shell é usado 
-      não-interativamente, ele funciona como uma simples, porém 
+      Neste capítulo iremos ver um ambiente tradicional em sistemas
+      UNIX: o shell. O shell é um interpretador que pode ser usado
+      interativamente e não-interativamente. Quando o shell é usado
+      não-interativamente, ele funciona como uma simples, porém
       poderosa linguagem de script.
     </para>
 
     <para>
-      O procedimento para começar com o shell depende se você loga 
-      no sistema em modo gráfico ou em modo texto. Se você utiliza 
-      o modo texto, o shell é imediatamente iniciado depois que você 
-      digita a senha corretamente. Se você usa um gerenciador gráfico 
-      de login como o KDM, faça o login como você faz normalmente e 
-      procure no menu do seu gerenciador de janelas por um item 
-      chamado <quote>XTerm</quote>, <quote>Terminal</quote> ou 
-      <quote>Konsole</quote>. XTerm é um emulador de terminal que após 
+      O procedimento para começar com o shell depende se você loga
+      no sistema em modo gráfico ou em modo texto. Se você utiliza
+      o modo texto, o shell é imediatamente iniciado depois que você
+      digita a senha corretamente. Se você usa um gerenciador gráfico
+      de login como o KDM, faça o login como você faz normalmente e
+      procure no menu do seu gerenciador de janelas por um item
+      chamado <quote>XTerm</quote>, <quote>Terminal</quote> ou
+      <quote>Konsole</quote>. XTerm é um emulador de terminal que após
       iniciado abre o shell.
     </para>
 
     <para>
-      Antes de irmos adiante, temos que alertar você que o Slackware 
-      Linux dispõe de mais de um shell. Há dois sabores de shell que 
-      se tornaram populares ao longo do tempo, o Bourne shell e o 
-      C shell. Neste capítulo iremos tratar do Bourne shells que 
-      seguem o padrão IEEE 1003.1. Os shells Bash (Bourne Again Shell) 
-      e ksh (Korn Shell) seguem bem este padrão. Então é uma boa idéia 
-      utilizar um destes dois. Você pode facilmente ver qual o shell o 
-      seu sistema está utilizando executando 
-      <command>echo $SHELL</command>. Isto é o que um shell Bash irá 
+      Antes de irmos adiante, temos que alertar você que o Slackware
+      Linux dispõe de mais de um shell. Há dois sabores de shell que
+      se tornaram populares ao longo do tempo, o Bourne shell e o
+      C shell. Neste capítulo iremos tratar dos Bourne shells que
+      seguem o padrão IEEE 1003.1. Os shells Bash (Bourne Again Shell)
+      e ksh (Korn Shell) seguem bem este padrão. Então é uma boa idéia
+      utilizar um destes dois. Você pode facilmente ver qual o shell o
+      seu sistema está utilizando executando
+      <command>echo $SHELL</command>. Isto é o que um shell Bash irá
       mostrar:
     </para>
 
@@ -44,11 +44,11 @@
 $ <userinput>echo $SHELL</userinput>
 /bin/bash
     </screen>
-		
+
     <para>
-      Se você está usando um shell diferente, você pode alterar o seu 
-      shell padrão. Antes de mudar, você tem que saber o caminho 
-      completo para o shell. Você pode fazer isso com o comando 
+      Se você está usando um shell diferente, você pode alterar o seu
+      shell padrão. Antes de mudar, você tem que saber o caminho
+      completo para o shell. Você pode fazer isso com o comando
       <command>which</command>. Por exemplo:
     </para>
 
@@ -60,10 +60,10 @@ $ <userinput>which ksh</userinput>
     </screen>
 
     <para>
-      Neste sistema Slackware, o caminho completo do shell bash é 
-      <filename>/bin/bash</filename>, e do shell ksh é 
-      <filename>/bin/ksh</filename>. Com esta informação e o comando 
-      <command>chsh</command> você pode mudar o seu shell padrão. O 
+      Neste sistema Slackware, o caminho completo do shell bash é
+      <filename>/bin/bash</filename>, e do shell ksh é
+      <filename>/bin/ksh</filename>. Com esta informação e o comando
+      <command>chsh</command> você pode mudar o seu shell padrão. O
       exemplo seguinte irá definir o bash como shell padrão:
     </para>
 
@@ -75,8 +75,8 @@ Shell changed.
     </screen>
 
     <para>
-      O novo shell irá ser ativado após fechar a sessão do shell 
-      atual (com <command>logout</command> ou <command>exit</command>), 
+      O novo shell irá ser ativado após fechar a sessão do shell
+      atual (com <command>logout</command> ou <command>exit</command>),
       ou abrindo outra janela de terminal se você estiver rodando o X11.
     </para>
   </sect1>
@@ -85,14 +85,14 @@ Shell changed.
     <title>Executando comandos</title>
 
     <para>
-      Um shell interativo é usado para iniciar programas executando 
+      Um shell interativo é usado para iniciar programas executando
       um comando. Há dois tipos de comando que o shell pode iniciar:
     </para>
 
     <itemizedlist>
       <listitem>
 	<para>
-      <emphasis>Comandos embutidos:</emphasis> comandos embutidos 
+      <emphasis>Comandos embutidos:</emphasis> comandos embutidos
       são integrados ao shell. Os mais comuns são:
 	  <command>cd</command>, <command>fg</command>,
 	  <command>bg</command>, e <command>jobs</command>.
@@ -100,8 +100,8 @@ Shell changed.
       </listitem>
       <listitem>
 	<para>
-      <emphasis>Comandos externos:</emphasis> comandos externos 
-      são programas que não fazem parte do shell, e são guardados 
+      <emphasis>Comandos externos:</emphasis> comandos externos
+      são programas que não fazem parte do shell, e são guardados
       em diretórios separados. Os mais comuns são:
 	  <command>ls</command>, <command>cat</command>,
 	  <command>rm</command>, e <command>mkdir</command>.
@@ -112,23 +112,23 @@ Shell changed.
     <para>
       Todos os comandos shell são executados utilizando a mesma sintaxe:
     </para>
-		
+
     <screen>
-<command>nome_do_comando [argumento1 argumento2 ... argumenton]</command>
+<command>nomedocomando [argumento1 argumento2 ... argumentoN]</command>
     </screen>
 
     <para>
-      O número de argumentos é arbitrário e sempre são passados para o 
+      O número de argumentos é arbitrário e sempre são passados para o
       comando. O comando decide o que fazer com eles.
     </para>
 
     <para>
-      Todos os comandos embutidos podem ser executados, porque eles 
-      fazem parte do shell. Comando externos podem ser executados pelo 
-      nome quando o programa está em um caminho que o shell procura. 
-      Este caminho é armazenado em uma variável chamada 
-      <emphasis>PATH</emphasis>. Uma variável é uma parte da memória 
-      que possui um nome, e seu conteúdo pode ser alterado. Nós podemos 
+      Todos os comandos embutidos podem ser executados, porque eles
+      fazem parte do shell. Comando externos podem ser executados pelo
+      nome quando o programa está em um caminho que o shell procura.
+      Este caminho é armazenado em uma variável chamada
+      <emphasis>PATH</emphasis>. Uma variável é uma parte da memória
+      que possui um nome, e seu conteúdo pode ser alterado. Nós podemos
       ver o conteúdo da variável PATH da seguinte maneira:
     </para>
 
@@ -138,11 +138,11 @@ $ <userinput>echo $PATH</userinput>
     </screen>
 
     <para>
-      Os caminhos dos diretórios na variável <emphasis>PATH</emphasis> 
+      Os caminhos dos diretórios na variável <emphasis>PATH</emphasis>
       são separados pelo caractere dois-pontos (<emphasis>:</emphasis>).
-      Você pode usar o comando <command>which</command> para verificar 
-      se um comando está no caminho de pesquisa do shell atual. Você 
-      pode fazer isto passando um argumento para o 
+      Você pode usar o comando <command>which</command> para verificar
+      se um comando está no caminho de pesquisa do shell atual. Você
+      pode fazer isto passando um argumento para o
       <command>which</command>. Por exemplo:
     </para>
 
@@ -154,7 +154,7 @@ $ <userinput>which sysstat</userinput>
     </screen>
 
     <para>
-      Se o programa não está no caminho de pesquisa, você pode 
+      Se o programa não está no caminho de pesquisa, você pode
       digitar o seu caminho absoluto ou relativo.
     </para>
   </sect1>
@@ -163,19 +163,19 @@ $ <userinput>which sysstat</userinput>
     <title>Movimentando-se</title>
 
     <para>
-      Muitas vezes, é necessário saltar por várias partes de uma linha, 
-      e então alterá-la, quando você está editando comandos longos. 
-      Ambos <command>bash</command> e <command>ksh</command> possuem 
-      atalhos para operações comuns. Há dois modos no shell, em que os 
-      atalhos diferem. Estes modos correspondem em seu comportamento à 
-      dois populares editores do UNIX. Os editores são o <command>vi</command> 
-      e o <command>emacs</command>. Neste livro nós iremos apenas ver 
-      os atalhos correspondentes ao modo EMACS. Você pode ver qual o 
-      modo que o seu shell está rodando imprimindo a variável 
-      <emphasis>SHELLOPTS</emphasis>. Neste primeiro exemplo o shell 
-      é utilizado no modo <emphasis>emacs</emphasis>, e no segundo 
-      é utilizado o modo <emphasis>vi</emphasis>. Você pode verificar 
-      o modo utilizado procurando por <emphasis>emacs</emphasis> ou 
+      Muitas vezes, é necessário saltar por várias partes de uma linha,
+      e então alterá-la, quando você está editando comandos longos.
+      Ambos <command>bash</command> e <command>ksh</command> possuem
+      atalhos para operações comuns. Há dois modos no shell, em que os
+      atalhos diferem. Estes modos correspondem em seu comportamento à
+      dois populares editores do UNIX. Os editores são o <command>vi</command>
+      e o <command>emacs</command>. Neste livro nós iremos apenas ver
+      os atalhos correspondentes ao modo EMACS. Você pode ver qual o
+      modo que o seu shell está rodando imprimindo a variável
+      <emphasis>SHELLOPTS</emphasis>. Neste primeiro exemplo o shell
+      é utilizado no modo <emphasis>emacs</emphasis>, e no segundo
+      é utilizado o modo <emphasis>vi</emphasis>. Você pode verificar
+      o modo utilizado procurando por <emphasis>emacs</emphasis> ou
       <emphasis>vi</emphasis> no conteúdo da variável.
     </para>
 
@@ -190,8 +190,8 @@ braceexpand:hashall:histexpand:history:interactive-comments:monitor:vi
     </screen>
 
     <para>
-      Se o seu shell estiver utilizando o modo <emphasis>vi</emphasis>, 
-      você pode mudar para o modo <emphasis>emacs</emphasis> setando a 
+      Se o seu shell estiver utilizando o modo <emphasis>vi</emphasis>,
+      você pode mudar para o modo <emphasis>emacs</emphasis> setando a
       opção <emphasis>emacs</emphasis>:
     </para>
 
@@ -215,8 +215,8 @@ $ <userinput>set -o emacs</userinput>
        significando que eles lhe permitem operações de edição de caracteres em
        linha de comando.  <xref
        linkend="chap-shell-moving-char-shortcuts-move" /> dá uma visão geral
-       dos atalhos que podem ser usados para se movimentar em uma linha a
-       distância de alguns caracteres.
+       dos atalhos que podem ser usados para se movimentar através de uma linha
+       pelos caracteres.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-move">
@@ -260,7 +260,7 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-       Da mesma forma, você também pode retornar ao final da linha segurando 
+       Da mesma forma, você também pode retornar ao final da linha segurando
        <emphasis>Ctrl-f</emphasis>.  Há um erro nessa linha, pois há um hífen
        incorreto.  Para remover este hífen, você pode usar um dos atalhos de
        exclusão de caractere.
@@ -391,7 +391,7 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
       <para>
        Na maioria das vezes é muito tedioso se mover em nível de caractere.
        Felizmente os shell Korn e Bash também permitem movimentações em nível
-       de palavras.  Palavras são sequências de caracteres separadas por um
+       de palavras.  Palavras são seqüências de caracteres separadas por um
        caractere especial, como um espaço em branco.  <xref
        linkend="chap-shell-moving-word-shortcuts-move" /> resume os atalhos que
        podem ser usados para mover-se pelas palavras de uma linha.
@@ -531,7 +531,7 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 	    <row>
 	      <entry>Alt-u</entry>
 	      <entry>
-		Converte a palavra para maiúsculas, a partir da posição atual do 
+		Converte a palavra para maiúsculas, a partir da posição atual do
 		cursor.
 	      </entry>
 	    </row>
@@ -598,7 +598,7 @@ find ~/music -name '*.ogg' -print
        Finalmente, há alguns atalhos que trocam a capitalização de palavras.  O
        atalho Alt-u deixa todos os caracteres em maiúsculas, desde a posição
        atual do cursor até o final da palavra.  Então, se nós tivermos o nome
-       <quote>alice</quote> em minúsculas, deixar o nome em maiúsculas, com o
+       <quote>alice</quote> em minúsculas, deixando o nome em maiúsculas, com o
        cursor em <quote>i</quote> resultará em <quote>alICE</quote>.  Alt-l tem
        o mesmo comportamento, mas troca as letras para minúsculas.  Então,
        usar Alt-l em <quote>alICE</quote> com o cursor em <quote>I</quote> irá
@@ -746,7 +746,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
 
     <para>
       Mas e se você tiver mais de um arquivo começando com a mesma letra?
-      Suponha que você tenha os arquivos <filename>recipe1.txt</filename> e 
+      Suponha que você tenha os arquivos <filename>recipe1.txt</filename> e
       <filename>recipe2.txt</filename>.  Ao digitar <quote>cat r</quote> e
       teclar &lt;Tab&gt;, o Bash irá completar o nome do arquivo conforme você
       digitar.  O Bash deve deixar você com <quote>cat recipe</quote>.
@@ -841,7 +841,7 @@ help.html        slackware-basics.html shell.html
       </screen>
 
       <para>
-       Dessa forma, nós poderíamos remover todos os arquivos que contenham 
+       Dessa forma, nós poderíamos remover todos os arquivos que contenham
        <emphasis>in</emphasis>:
       </para>
 
@@ -872,7 +872,7 @@ $ <userinput>rm in*</userinput>
        esteja entre os colchetes.  Suponha que tenhamos os arquivos do exemplo
        anterior, <filename>file1.txt</filename>, <filename>file2.txt</filename>
        e <filename>file3.txt</filename>.  A string
-       <emphasis>file[23].txt</emphasis> faz correspondência com os arquivos 
+       <emphasis>file[23].txt</emphasis> faz correspondência com os arquivos
        <filename>file2.txt</filename> e <filename>file3.txt</filename>, mas não
        com <filename>file1.txt</filename>.
       </para>
@@ -908,7 +908,7 @@ $ <userinput>rm in*</userinput>
       Você pode ver <emphasis>stdin</emphasis> e <emphasis>stdout</emphasis> em
       ação com o comando <command>cat</command>.  Se o cat for iniciado sem
       quaisquer parâmetros ele irá apenas aguardar pela entrada em
-      <emphasis>stdin</emphasis> e dar saída nos mesmos dados em 
+      <emphasis>stdin</emphasis> e dar saída nos mesmos dados em
       <emphasis>stdout</emphasis>.  Se nenhum redirecionamento for usado, a
       entrada do teclado será usada como <emphasis>stdin</emphasis>, e a saída
       obtida de <emphasis>stdout</emphasis> será exibida no terminal:
@@ -922,7 +922,7 @@ Hello world!
 
     <para>
       Como você pode ver, o cat irá exibir os dados em
-      <emphasis>stdout</emphasis> depois de ler dados de entrada em 
+      <emphasis>stdout</emphasis> depois de ler dados de entrada em
       <emphasis>stdin</emphasis> a partir do teclado.
     </para>
 
@@ -940,7 +940,7 @@ Hello world!
 
       <screen>
 $ <userinput>md5sum * &gt; md5sums</userinput>
-$ <userinput>cat md5sums</userinput> 
+$ <userinput>cat md5sums</userinput>
 6be249ef5cacb10014740f61793734a8  test1
 220d2cc4d5d5fed2aa52f0f48da38ebe  test2
 631172a1cfca3c7cf9e8d0a16e6e8cfe  test3
@@ -1001,7 +1001,7 @@ $ <userinput>cat /usr/share/dict/american-english | grep "aba" | wc -l</userinpu
       </screen>
 
       <para>
-       O primeiro comando, <command>cat</command>, lê o arquivo de dicionário 
+       O primeiro comando, <command>cat</command>, lê o arquivo de dicionário
        <filename>/usr/share/dict/american-english</filename>.  A saída do
        comando <command>cat</command> é canalizada até o
        <command>grep</command>, o qual exibe todos os arquivos contendo a frase
