@@ -4,20 +4,20 @@
 <title>Serviços de rede</title>
 
 <sect1>
-<title>O super servidor internet</title>
+<title>O super servidor de Internet</title>
 
 <para>
 Há duas maneiras de disponibilizar serviços TCP/IP: executando as
 aplicações servidoras de forma independente como daemon ou usando o
 super servidor internet, <command>inetd</command>.  O
 <command>inetd</command> é um daemon que monitora um intervalo de
-portas.  Se um cliente tenta se conectar a uma porta,o
+portas.  Se um cliente tenta se conectar a uma porta, o
 <command>inetd</command> manipula a conexão e a encaminha para o
 software servidor responsável por aquele tipo de conexão.  A vantagem
 dessa abordagem é que ela adiciona uma camada extra de segurança e torna
 mais fácil o log de conexões entrantes.  A desvantagem é que acaba sendo
 mais lento que usar um daemon independente.  Então, será uma boa idéia
-usar o servidor como daemon indepentente, por exemplo, em um servidor
+usar o servidor como daemon independente, por exemplo, em um servidor
 FTP bastante carregado.
 </para>
 
@@ -46,7 +46,7 @@ controle de acesso baseado em hosts.
 </para>
 
 <para>
-Serviços podem ser desabilitados adicionando-se o caracter de comentário
+Serviços podem ser desabilitados adicionando-se o caractere de comentário
 (#) no começo da linha.  É uma boa idéia desabilitar todos os serviços e
 deixar habilitados apenas aqueles que você precisar a cada momento.
 Depois de modificar o <filename>/etc/inetd.conf</filename>, o
@@ -70,7 +70,7 @@ Um cache de servidor de nomes disponibiliza os serviços de DNS para uma
 máquina ou uma rede, mas não fornece DNS para um domínio.  Isto
 significa que tal servidor pode ser usado apenas para converter nomes de
 hosts em endereços IP.  Configurar um servidor de nomes no Slackware
-Linux é muito fácil, pois o BIND já é definido como ser usado como cache
+Linux é muito fácil, pois o BIND já é definido para ser usado como cache
 de servidor de nomes por padrão.  Habilitar o cache de servidor de nomes
 leva apenas dois passos: você tem que instalar o BIND e alterar os
 scripts de inicialização.  O BIND pode ser instalado adicionando-se o
@@ -102,7 +102,7 @@ adicionando-se o pacote <filename>apache</filename> a partir do conjunto
 da série <quote>n</quote>.  Se você também quiser usar PHP, os pacotes
 <filename>php</filename> (série <quote>n</quote>) e
 <filename>mysql</filename> (série <quote>ap</quote>) também são
-requeridos.  O MySQL é necessário porque o pacote precompilado do PHP
+requeridos.  O MySQL é necessário porque o pacote pré-compilado do PHP
 depende de bibliotecas compartilhadas do MySQL.  Você não precisa
 executar o MySQL em si.  Depois de instalar o Apache, ele pode ser
 executado automaticamente na inicialização do sistema deixando-se o
