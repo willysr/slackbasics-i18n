@@ -28,4 +28,4 @@ linhas arquivo                  trad     1a-rev  2a-rev
    868 chap-install.xml         OK       OK      -
   1044 chap-shell.xml           OK       OK      -
   1924 chap-textproc.xml        OK       -       -
-  3475 chap-filesystem.xml      OK     PARCIAL   -
+  3475 chap-filesystem.xml      OK       OK      -
