@@ -217,7 +217,7 @@ $ <userinput>ls -l note.txt</userinput>
       <para>
     Com o passar dos anos estas permissões tradicionais do UNIX
     mostraram não serem suficientes em alguns casos.  A especificação
-    POSIX 1003.1e ajudou a extender o modelo de controle de acesso do
+    POSIX 1003.1e ajudou a estender o modelo de controle de acesso do
         UNIX com as <emphasis>Listas de Controle de Acesso</emphasis>
         (ACLs, da sigla em inglês).
     Infelizmente este esforço ficou estagnado, já que só alguns sistemas
@@ -670,7 +670,6 @@ $ <userinput>less note.txt</userinput>
 
       <para>
     O Slackware Linux também possui uma alternativa ao
-    Slackware Linux also provides an alternative to
     <command>less</command>, o antigo comando <quote>more</quote>.
     Não vamos abordar o <emphasis>more</emphasis> aqui pois o
     <command>less</command> é mais confortável e mais popular hoje em
@@ -860,23 +859,23 @@ $ <userinput>mkdir meudir</userinput>
       <para>
     Por padrão, <command>mkdir</command> cria apenas um nível de
     diretório.  Então, se você usar <command>mkdir</command> para criar
-    <filename>meudir/meusubdir</filename>, <command>mkdir</command> vai
+    <filename>meudir/meu_subdir</filename>, <command>mkdir</command> vai
     falhar se <filename>meudir</filename> não existir.  Se você quiser
     criar ambos os diretórios de uma só vez, use o parâmetro
     <parameter class="command">-p</parameter>:
       </para>
 
       <screen>
-$ <userinput>mkdir -p meudir/meusubdir</userinput>
+$ <userinput>mkdir -p meudir/meu_subdir</userinput>
       </screen>
 
       <para>
     <command>rmdir</command> remove um diretório.  Seu comportamento é
     comparável ao do <command>mkdir</command>.  <command>rmdir
-    meudir/meusubdir</command> remove
-    <filename>meudir/meusubdir</filename>, ao passo que <command>rmdir -p
-    meudir/meusubdir</command> remove
-    <filename>meudir/meusubdir</filename> e também
+    meudir/meu_subdir</command> remove
+    <filename>meudir/meu_subdir</filename>, ao passo que <command>rmdir -p
+    meudir/meu_subdir</command> remove
+    <filename>meudir/meu_subdir</filename> e também
     <filename>meudir</filename>.
       </para>
 
@@ -911,7 +910,7 @@ $ <userinput>cp arquivo1 arquivo2</userinput>
       </para>
 
       <screen>
-$ <userinput>cp arquivo1 algumdir/arquivo2</userinput>
+$ <userinput>cp arquivo1 algum_dir/arquivo2</userinput>
 $ <userinput>cp arquivo1 /home/joe/design_documents/arquivo2</userinput>
       </screen>
 
@@ -924,13 +923,13 @@ $ <userinput>cp arquivo1 /home/joe/design_documents/arquivo2</userinput>
       </para>
 
       <screen>
-$ <userinput>cp arquivo1 arquivo2 algumdir</userinput>
+$ <userinput>cp arquivo1 arquivo2 algum_dir</userinput>
       </screen>
 
       <para>
     vai copiar tanto o <filename>arquivo1</filename> quanto o
     <filename>arquivo2</filename> para o diretório
-    <filename>algumdir</filename>.  Você não pode copiar múltiplos
+    <filename>algum_dir</filename>.  Você não pode copiar múltiplos
     arquivos para um arquivo.  Vamos usar o <command>cat</command> para
     isto: <!-- XXX href -->
       </para>
@@ -950,21 +949,21 @@ $ <userinput>cat arquivo1 arquivo2 > arquivo_combinado</userinput>
       </para>
 
       <screen>
-$ <userinput>cp -r minhaarvore arvore_copia</userinput>
+$ <userinput>cp -r minha_arvore arvore_copia</userinput>
 $ <userinput>mkdir arvores</userinput>
-$ <userinput>cp -r minhaarvore arvores</userinput>
+$ <userinput>cp -r minha_arvore arvores</userinput>
       </screen>
 
       <para>
     Depois de executar estes comandos, haverá duas cópias do diretório
-        <filename>minhaarvore</filename>,
+        <filename>minha_arvore</filename>,
         <filename>arvore_copia</filename> e
-        <filename>arvores/minhaarvore</filename>.  Tentar copiar dois
+        <filename>arvores/minha_arvore</filename>.  Tentar copiar dois
         diretórios para um destino inexistente irá falhar:
       </para>
 
       <screen>
-$ <userinput>cp -R minhaarvore minhaarvore2 novodir</userinput>
+$ <userinput>cp -R minha_arvore minha_arvore2 novo_dir</userinput>
 usage: cp [-R [-H | -L | -P]] [-f | -i] [-pv] src target
        cp [-R [-H | -L | -P]] [-f | -i] [-pv] src1 ... srcN directory
       </screen>
@@ -2035,8 +2034,8 @@ $ <userinput>find . -name 'eco*' -type d</userinput>
 
     <para>
       O dono (usuário) ou grupo de um objeto podem ser correspondidos
-      respectivamente com as opções <emphasis>-user username</emphasis>
-      e <emphasis>-group groupname</emphasis>.  O nome do usuário ou
+      respectivamente com as opções <emphasis>-user nome_do_usuario</emphasis>
+      e <emphasis>-group nome_do_grupo</emphasis>.  O nome do usuário ou
       grupo será interpretado como um ID de usuário ou ID de grupo cujo
       nome é decimal, e poderia não ser encontrado no sistema com
       <citerefentry><refentrytitle>getpwnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>
@@ -2328,8 +2327,8 @@ $ <userinput>find . -depth</userinput>
       quando combinado com utilitários externos.  Isto pode ser feito
       com o operando <emphasis>-exec</emphasis>.  Há duas sintaxes para
       o operando <emphasis>-exec</emphasis>.  A primeira sintaxe é
-      <emphasis>-exec utility arguments;</emphasis>.  O comando
-      <emphasis>utility</emphasis> será executado com os argumentos
+      <emphasis>-exec comando argumentos;</emphasis>.  O comando
+      <emphasis>comando</emphasis> será executado com os argumentos
       especificados para cada objeto que estiver sendo avaliado.  Se
       algum dos argumentos for <emphasis>{}</emphasis>, estas chaves
       serão substituídas pelo arquivo que estiver sendo avaliado.  Isto
@@ -2845,8 +2844,8 @@ test/test1
 
       <para>
        O <command>mount</command> é usado para montar sistemas de
-       arquivos.  A sintaxe básica é: <quote>mount /dev/devname
-       /mountpoint</quote>.  O dispositivo pode ser qualquer dispositivo
+       arquivos.  A sintaxe básica é: <quote>mount /dev/nome_do_device
+       /ponto_para_montagem</quote>.  O dispositivo pode ser qualquer dispositivo
        de bloco, como discos rígidos ou drives de CD-ROM.  O ponto de
        montagem pode ser um ponto qualquer no sistema de arquivos raiz.
        Vamos ver um exemplo:
