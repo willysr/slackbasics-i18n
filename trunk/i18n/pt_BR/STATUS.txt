@@ -3,7 +3,7 @@ linhas arquivo                  trad     1a-rev  2a-rev
     38 preface.xml              OK       -       -
     85 chap-book.xml            OK       -       -
    117 bind.xml                 OK       -       -
-   131 chap-x11.xml             OK       -       -
+   131 chap-x11.xml             OK     PARCIAL   -
    135 services.xml             OK       -       -
    143 slackware-basics.xml     OK       -       -
    149 inetd.xml                OK       -       -
