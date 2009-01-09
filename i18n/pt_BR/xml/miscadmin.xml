@@ -36,7 +36,7 @@
 
     <para>Cada entrada no arquivo contrab deve conter 6 campos separados
       por espaços.  Estes campos são o minuto, hora, dia, mês, dia da
-      semana, e comando.  Cada um dos primeiros campos podem contar um
+      semana e comando.  Cada um dos primeiros campos podem contar um
       horário ou um coringa <quote><literal>*</literal></quote> que
       corresponde a todos os valores de horários para aquele campo.  Por
       exemplo, para ter o comando <command>date</command> executando
