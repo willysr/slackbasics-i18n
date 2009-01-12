@@ -302,7 +302,7 @@ $ <userinput>su -c lilo</userinput>
     </para>
 
     <sect2 xml:id="chap-usermgmt-su-restrict">
-      <title>Restrigindo acesso ao su</title>
+      <title>Restringindo acesso ao su</title>
 
       <para>
       Você pode refinar o acesso ao <command>su</command> com o 
