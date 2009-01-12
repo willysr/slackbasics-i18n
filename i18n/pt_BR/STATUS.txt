@@ -18,8 +18,8 @@ linhas arquivo                  trad     1a-rev  2a-rev
    377 latex.xml                OK       -       -
    398 concepts.xml             OK    PARCIAL    -
    444 chap-kernel.xml          OK       OK      -
-   485 chap-usermgmt.xml        OK       -       -
-   527 netconfig.xml            OK    PARCIAL    -
+   485 chap-usermgmt.xml        OK    PARCIAL    -
+   527 netconfig.xml            OK       OK      -
    630 ipsec.xml                OK       -       -
    652 chap-pkgmgmt.xml         OK       -       -
    703 chap-init.xml            OK       -       -
