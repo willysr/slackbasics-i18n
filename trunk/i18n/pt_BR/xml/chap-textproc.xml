@@ -139,7 +139,7 @@ $ <userinput>wc -lc /usr/share/dict/words</userinput>
     class="command">-l</parameter> é utilizado geralmente em
     contagens da saída de um comando. Isso é conveniente, pois muitos
     comandos separam unidades lógicas por novas linhas. Suponha que
-    você queira contar o número de arquivos em seu diretorio home
+    você queira contar o número de arquivos em seu diretório home
     que possuam seu nome terminado com <filename>.txt</filename>.
     Você poderia fazer isso combinando <command>find</command> para
     encontrar arquivos relevantes e <command>wc</command> para contar
@@ -293,8 +293,8 @@ $ <userinput>find ~ -name '*.txt' -type f | wc -l</userinput>
     <para>
       A operação padrão do <command>tr</command> é trocar
       (traduzir) caracteres.  Isso quer dizer que o
-      <emphasis>n</emphasis>-ésimo caracter no primeiro conjunto é
-      substituído pelo <emphasis>n</emphasis>-ésimo caracter no segundo
+      <emphasis>n</emphasis>-ésimo caractere no primeiro conjunto é
+      substituído pelo <emphasis>n</emphasis>-ésimo caractere no segundo
       conjunto.  Por exemplo, você pode substituir todos os 
 	  <emphasis>e</emphasis>'s por <emphasis>i</emphasis>'s e todos os
 	  <emphasis>o</emphasis>'s por <emphasis>a</emphasis>'s com uma
@@ -308,10 +308,10 @@ Hilla warld!
 
 	<para>
       Quando o segundo conjunto for menor que o primeiro, o último
-      caracter no segundo conjunto será considerado repetido.  Porém,
+      caractere no segundo conjunto será considerado repetido.  Porém,
       isto não é necessariamente aplicável a outros sistemas UNIX.
       Assim, se você quiser usar o <command>tr</command> de uma forma
-      independente de sistema, defina explicitamente que caracter deve
+      independente de sistema, defina explicitamente que caractere deve
       ser repetido.  Por exemplo
 	</para>
 
@@ -351,8 +351,8 @@ $ <userinput>echo 'abcdef' | tr 'abcdef' '@[-*4]!'</userinput>
       Quando o parâmetro <parameter class="command">-s</parameter> é
       usado, o <command>tr</command> irá espremer todos os caracteres
       que estão no segundo conjunto.  Isto quer dizer que uma sequência
-      de mesmos caracteres será reduzida a um caracter.  Vamos espremer
-      o caracter &quot;<emphasis>e</emphasis>&quot;:
+      de mesmos caracteres será reduzida a um caractere.  Vamos espremer
+      o caractere &quot;<emphasis>e</emphasis>&quot;:
 	</para>
 
 	<screen>
@@ -412,14 +412,14 @@ Heo wod!
 	</listitem>
 	<listitem>
 	  <para>
-        Por caracter, o que não é o mesmo que o recorte por byte em
+        Por caractere, o que não é o mesmo que o recorte por byte em
         sistemas que utilizem uma codificação de caracteres maior que
         oito bits.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    Por campo, que é delimitado por um caracter.
+	    Por campo, que é delimitado por um caractere.
 	  </para>
 	</listitem>
       </orderedlist>
@@ -470,7 +470,7 @@ pear
 
       <para>
         Isso foi bem fácil.  Agora vamos fazer a mesma coisa com um
-        arquivo que usa o caracter de dois-pontos como separados.
+        arquivo que usa o caractere de dois-pontos como separados.
         Podemos facilmente tentar isso convertendo o dicionário com o
         próprio <command>tr</command> que já vimos para substituir todas
         as tabulações por dois-pontos:
@@ -507,7 +507,7 @@ peer:pear
       <para>
         Para usar um delimitador diferente da tabulação horizontal
         padrão, inclua o parâmetro <parameter class="command">-d
-        caracter_delimitador</parameter> para definir o caracter
+        caractere_delimitador</parameter> para definir o caractere
         delimitador.  Então, no caso do nosso arquivo 
         <filename>dictionary-new</filename>, vamos fazer o
         <command>cut</command> usar o dois-pontos como um delimitador:
@@ -529,7 +529,7 @@ pear
         As opções <parameter class="command">-b bytes</parameter> e
         <parameter class="command">-c caracteres</parameter>
         selecionam, respectivamente, bytes e caracteres a partir do
-        texto.  Em sistemas mais antigos, um caracter costuma
+        texto.  Em sistemas mais antigos, um caractere costuma
         corresponder a um byte.  Mas novos sistemas podem dispor de
         codificações de caracteres que sejam maiores que apenas um byte.
         Assim, se você quiser se assegurar de obter caracteres
@@ -545,7 +545,7 @@ pear
         class="command">uniq</parameter> <!-- XXX a where? --> para
         contar sequências idênticas de três caracteres, e usar o comando         
         <command>sort</command> para ordená-las numericamente em ordem
-        descrescente (o <command>sort</command> é descrito em <xref
+        decrescente (o <command>sort</command> é descrito em <xref
         linkend="chap-textproc-simple-sort" />).  Por fim, vamos usar o
         comando <command>head</command> para filtrar as dez sequências
         mais comuns:
@@ -644,13 +644,13 @@ Apfel   Banane  Birne
         ordenados.  O <command>sort</command> também pode fazer tanto
         ordenação léxica (ordem do dicionário) quanto numérica.  A
         ordem padrão é a ordem do dicionário.  Isso quer dizer que as
-        linhas de texto são comparadas caracter a caracter, e ordenadas
+        linhas de texto são comparadas caractere a caractere, e ordenadas
         como especificado pela sequência collate da localização atual
         (que é definida pela variável de ambiente LC_COLLATE).  Isto
         pode ser uma pegadinha quando você estiver ordenando números,
         por exemplo, se você tem os números de 1 a 10 em diferentes
         linhas, a sequência será 1, 10, 2, 3, etc.  Isto se deve a
-        interpretação por caracter da ordem de dicionário.  Se você
+        interpretação por caractere da ordem de dicionário.  Se você
         quiser ordenar as linhas pela numeração, utilize a ordenação
         numérica.
       </para>
@@ -733,8 +733,8 @@ orange
       <para>
         Você pode ordenar arquivos numericamente adicionando o parâmetro
         <parameter class="command">-n</parameter>.  Este parâmetro pára
-        de ler a entrada quando um caracter não numérico for encontrado.
-        O sinal de menos, ponto decimal, separador de milhar, caracter
+        de ler a entrada quando um caractere não numérico for encontrado.
+        O sinal de menos, ponto decimal, separador de milhar, caractere
         de base (que diferente um número exponencial de um número
         normal), e espaços em branco podem ser usados como partes de um
         número.  Esses caracteres são interpretados adequadamente.
@@ -761,7 +761,7 @@ $ <userinput>du -a /bin | sort -n</userinput>
 
       <para>
         Neste caso, a saída provavelmente não é muito útil se você
-        quiser ler a saída em um paginador, porqur os arquivos menores
+        quiser ler a saída em um paginador, porque os arquivos menores
         são listados primeiro.  É aí que entra o parâmetro <parameter
         class="command">-r</parameter>.  Isso reverte a ordem de
         ordenação.
@@ -808,20 +808,20 @@ Heinz:DE:3
       até o final da linha são considerados.  Assim, se você quiser usar
       apenas uma coluna, utilize
       <parameter class="command">-k col1,col1</parameter>.  Você também
-      pode especificar o caracter inicial de uma coluna adicionando um
-      ponto (<emphasis>.</emphasis>) e um caracter de índice.  Por
+      pode especificar o caractere inicial de uma coluna adicionando um
+      ponto (<emphasis>.</emphasis>) e um caractere de índice.  Por
       exemplo, <parameter class="command">-k 2.3,4.2</parameter>
-      se refere à segunda coluna começando no terceiro caracter, a
+      se refere à segunda coluna começando no terceiro caractere, a
       terceira coluna e a quarta coluna até (e incluindo) o segundo
-      caracter.
+      caractere.
     </para>
 
     <!-- XXX - document -b? Mentioned lateron (-k) -->
 
     <para>
       Ainda há uma outra peculiaridade sobre ordenação de colunas: por
-      padrão, o <command>sort</command> usa um caracter em branco como
-      separador de colunas.  Se você usar um caracter separador
+      padrão, o <command>sort</command> usa um caractere em branco como
+      separador de colunas.  Se você usar um caractere separador
       distinto, você tem que usar o parâmetro <parameter>-t
       char</parameter> para especificar o separador de campos.
     </para>
@@ -881,7 +881,7 @@ Klaus:DE:5
       parâmetros <parameter class="command">-k 3,3n -k 2,2</parameter> 
       irá ordenar todas as linhas numericamente a partir da terceira
       coluna.  Se algumas linhas tiverem números idênticos nessa coluna,
-      a ordenação dessas linhas será feita lexicamente a partir da 
+      a ordenação dessas linhas será feita lexicalmente a partir da 
       segunda coluna.
     </para>
 
@@ -925,7 +925,7 @@ $ <userinput>sort scores.txt | sort -c ; echo $?</userinput>
 
       <para>
 	Como fluxos e arquivos de texto são algo muito importante no UNIX, é
-	bastante útl poder mostrar as diferenças entre dois arquivos de texto.  
+	bastante útil poder mostrar as diferenças entre dois arquivos de texto.  
 	Os principais utilitários para se trabalhar com diferenças em arquivos
 	são o <command>diff</command> e o <command>patch</command>.  O comando
 	<command>diff</command> mostra as diferenças entre arquivos.  A saída do
@@ -999,7 +999,7 @@ void usage(char *programName) {
 	  poderia apenas enviar o programa atualizado de volta para seu amigo.
 	  Mas se um arquivo crescer muito, isso pode se tornar inconveniente, 
 	  pois as mudanças ficam mais difíceis de se gerenciar.  Além disso, seu
-	  amigo pode também ter recebido versões modificadas do progama de
+	  amigo pode também ter recebido versões modificadas do programa de
 	  outras pessoas.  Estas é uma situação típica em que o 
 	  <command>diff</command> se torna útil.  O <command>diff</command>
 	  mostra as diferenças entre dois arquivos.  Sua sintaxe mais básica é
@@ -1122,7 +1122,7 @@ $ diff -u hello.c hello2.c
 	</screen>
 
 	<para>
-	  Os seguintes elementos podemm ser encontrados na saída:
+	  Os seguintes elementos podem ser encontrados na saída:
 	</para>
 
 	<calloutlist>
@@ -1163,7 +1163,7 @@ $ diff -u hello.c hello2.c
 	  </callout>
 	  <callout arearefs="co-udiff-add">
 	    <para>
-	      Uma linha inicada por um sinal de mais 
+	      Uma linha indicada por um sinal de mais 
 	      (<emphasis>+</emphasis>) é uma adição ao arquivo modificado, em
 	      relação ao arquivo original.
 	    </para>
@@ -1302,7 +1302,7 @@ $ <userinput>diff -u hello.c hello2.c > hello_add_date.diff</userinput>
 	</screen>
 
 	<para>
-	  Se você tiver múltplos diffs, você pode combiná-los facilmente para
+	  Se você tiver múltiplos diffs, você pode combiná-los facilmente para
 	  apenas um diff, concatenando-os:
 	</para>
 
@@ -1478,7 +1478,7 @@ $ <userinput>ls -l hello.c*</userinput>
           <para>Expressões regulares tradicionais tipo UNIX.</para>
         </listitem>
         <listitem>
-          <para>Expressões regulares extendidas do padrão POSIX. </para>
+          <para>Expressões regulares estendidas do padrão POSIX. </para>
         </listitem>
         <listitem>
           <para>Expressões regulares compatíveis com Perl (do inglês,
@@ -1504,15 +1504,15 @@ $ <userinput>ls -l hello.c*</userinput>
       <itemizedlist>
         <listitem>
           <para>
-            <emphasis role="bold">Um caracter</emphasis>: esta é a unidade
-	    básica de cada expressão regular: um caracter ou um conjunto de 
+            <emphasis role="bold">Um caractere</emphasis>: esta é a unidade
+	    básica de cada expressão regular: um caractere ou um conjunto de 
 	    caracteres.  Uma letra <emphasis>p</emphasis> ou o 
 	    símbolo <emphasis>,</emphasis>, são exemplos de caracteres. </para>
         </listitem>
         <listitem>
           <para>
             <emphasis role="bold">Quantificação</emphasis>: um quantificador 
-	    especifica quantas vezes o caracter ou o conjunto de caracteres que
+	    especifica quantas vezes o caractere ou o conjunto de caracteres que
 	    o precede pode constar no padrão. </para>
         </listitem>
         <listitem>
@@ -1520,7 +1520,7 @@ $ <userinput>ls -l hello.c*</userinput>
             <emphasis role="bold">Alternância</emphasis>: alternância é usada 
 	    para fazer a correspondência <quote>a ou b</quote>, em que 
             <emphasis>a</emphasis> e <emphasis>b</emphasis> podem ser ambos
-	    caractres ou expressões regulares.</para>
+	    caracteres ou expressões regulares.</para>
         </listitem>
         <listitem>
           <para>
@@ -1548,21 +1548,21 @@ $ <userinput>ls -l hello.c*</userinput>
         <title>Correspondência de caracteres</title>
 
         <para>
-	  Caracteres fazem correspondência consigo próprios.  Se um caracter
-	  específico for usado como um caracter sintático para expressões
-	  regulares, você pode referenciar àquele caracter adicionando uma
+	  Caracteres fazem correspondência consigo próprios.  Se um caractere
+	  específico for usado como um caractere sintático para expressões
+	  regulares, você pode referenciar àquele caractere adicionando uma
 	  barra invertida na frente.  Por exemplo, <emphasis>\+</emphasis> 
 	  corresponde com o sinal de mais.</para>
 
         <para>
-	  Um ponto (<emphasis>.</emphasis>) corresponde a qualquer caracter, por
+	  Um ponto (<emphasis>.</emphasis>) corresponde a qualquer caractere, por
 	  exemplo, a expressão <emphasis>b.g</emphasis> corresponde com 
 	  <emphasis>bag</emphasis>, <emphasis>big</emphasis>, e com
 	  <emphasis>blg</emphasis>, mas não com
 	  <emphasis>bit</emphasis>. </para>
 
         <para>
-	  O caracter ponto, quase sempre acaba lhe dando muita liberdade.  Você
+	  O caractere ponto, quase sempre acaba lhe dando muita liberdade.  Você
 	  pode usar colchetes (<emphasis>[]</emphasis>) para especificar 
 	  caracteres que podem constar no padrão.  Por exemplo, a expressão
 	  <emphasis>b[aei]g</emphasis> casa com
@@ -1584,7 +1584,7 @@ $ <userinput>ls -l hello.c*</userinput>
 	  o cifrão (<emphasis>$</emphasis>) correspondem, respectivamente com o
 	  começo e com o final de uma linha.  Isto é muito útil ao analisar
 	  arquivos.  Por exemplo, você pode encontrar todas as linhas que 
-	  comecem com uma cerquilha (<emphasis>#</emphasis>) com a expressão
+	  comecem com uma tralha (<emphasis>#</emphasis>) com a expressão
 	  <emphasis>^#</emphasis>. </para>
       </sect3>
 
@@ -1619,7 +1619,7 @@ $ <userinput>ls -l hello.c*</userinput>
 
         <para>
 	  Parênteses escapados com barras invertidas agrupam vários caracteres
-	  juntos, de forma que você pode aplicar quantificadoes ou indicadores
+	  juntos, de forma que você pode aplicar quantificadores ou indicadores
 	  de alternância a um grupo de caracteres.  Por exemplo,
 	  <emphasis>\(ab\)\{1,3\}</emphasis> vai corresponder a 
 	  <emphasis>ab</emphasis>, <emphasis>abab</emphasis>, e
@@ -1633,7 +1633,7 @@ $ <userinput>ls -l hello.c*</userinput>
 	  Uma barra vertical (pipe) escapada com uma barra invertida 
 	  (<emphasis>\|</emphasis>) permite que você faça correspondência com
 	  apenas uma dentre duas expressões.  Isso não é muito útil para
-	  caracters isolados já que <emphasis>a\|b</emphasis> é equivalente a
+	  caracteres isolados já que <emphasis>a\|b</emphasis> é equivalente a
 	  <emphasis>[ab]</emphasis>, mas é muito útil quando usado com
 	  agrupamento.  Suponha que você quer uma expressão que corresponda a
 	  <emphasis>apple</emphasis> e a <emphasis>pear</emphasis>, e nada mais.
@@ -1643,7 +1643,7 @@ $ <userinput>ls -l hello.c*</userinput>
     </sect2>
 
       <sect2 xml:id="chap-textproc-regexps-posix">
-	<title>Expressões regulares extendidas do padrão POSIX</title>
+	<title>Expressões regulares estendidas do padrão POSIX</title>
 
 	<para>
 	  Expressões regulares POSIX foram construídas em cima das expressões
@@ -1699,7 +1699,7 @@ $ <userinput>ls -l hello.c*</userinput>
 	</sect3>
 
 	<sect3 xml:id="chap-textproc-regexps-posix-grouping">
-	  <title>Agupamento</title>
+	  <title>Agrupamento</title>
 
 	  <para>
 	    Agrupamento é feito da mesma maneira que em expressões regulares
@@ -1715,7 +1715,7 @@ $ <userinput>ls -l hello.c*</userinput>
 
 	  <para>
 	    Alternância também é feita da mesma maneira que nas expressões
-	    regulares tradicionas, também dispensando as barras invertidas para
+	    regulares tradicionais, também dispensando as barras invertidas para
 	    escape antes da barra vertical.  Assim, a expressão
 	    <emphasis>(apple)|(pear)</emphasis> corresponde a 
 	    <emphasis>apple</emphasis> e também a <emphasis>pear</emphasis>.
@@ -1744,7 +1744,7 @@ $ <userinput>ls -l hello.c*</userinput>
 	comando <command>grep</command> é usado para procurar padrões de textos
 	em fluxos ou em arquivo de texto.  Esses tais padrões são expressões
 	regulares, e podem ser tanto as expressões regulares básicas como
-	expressões extendidas do padrão POSIX (quando o parâmetro
+	expressões estendidas do padrão POSIX (quando o parâmetro
 	<parameter class="command">-E</parameter> for usado).  Por padrão, o 
 	<command>grep</command> irá escrever na saída as linhas onde ocorrem
 	correspondências.  Em sua sintaxe mais básica, você pode especificar uma
@@ -1767,8 +1767,8 @@ ababab
 	O exemplo listado acima mostra em ação uma expressão regular básica que
 	faz correspondência em uma linha que consiste apenas na repetição da
 	string <emphasis>ab</emphasis> por duas ou três vezes.  Você pode fazer
-	o mesmo com expressões regulares extendidas POSIX, adicionando o
-	parâmetro <parameter class="command">-E</parameter> (de Extendida):
+	o mesmo com expressões regulares estendidas POSIX, adicionando o
+	parâmetro <parameter class="command">-E</parameter> (de Estendida):
       </para>
 
       <screen>
@@ -1782,11 +1782,11 @@ ababab
       </screen>
 
       <para>
-	Como o comportamentro padrão do <command>grep</command> é ler da entrada
+	Como o comportamento padrão do <command>grep</command> é ler da entrada
 	padrão, você pode colocá-lo em um duto (ou pipeline) para pegar partes
 	interessantes da saída de comandos precedentes em um pipeline.  Por 
 	exemplo, se você quiser procurar pela string <emphasis>2006</emphasis> 
-	na tereira coluna de um arquivo, você pode combinar o
+	na terceira coluna de um arquivo, você pode combinar o
 	<command>grep</command> com o comando <command>cut</command>:
       </para>
 
@@ -1889,14 +1889,14 @@ aa*
       <para>
 	Como já vimos, você pode usar o caracter de alternância
 	(<emphasis>|</emphasis>) para fazer correspondências com um de dois
-	ou mais subpadrões.  Se dois padrôes com os quais você gostaria de
+	ou mais subpadrões.  Se dois padrões com os quais você gostaria de
 	encontrar correspondências diferirem muito, pode ser mais adequado
 	deixá-los como dois padrões separados.  O <command>grep</command> 
 	permite que você utilize mais do que um padrão ao mesmo tempo,
 	separando-os por uma quebra de linha.  Assim, por exemplo, se você
 	quiser exibir as linhas que correspondam tanto com o padrão 
 	<emphasis>a</emphasis> quanto com o padrão
-	<emphasis>b</emphasis>, isso pode ser feito facilmente iniando uma
+	<emphasis>b</emphasis>, isso pode ser feito facilmente iniciando uma
 	nova linha, como:
       </para>
 
