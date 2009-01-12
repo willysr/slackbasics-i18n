@@ -63,7 +63,7 @@
       </para>
 
       <screen>
-# Início da globao do LILO
+# Início da global do LILO
 boot = /dev/sda <co xml:id="liloconf-global-1" />
 #compact        # mais rápido, mas pode não funcionar em todos os sistemas
 prompt <co xml:id="liloconf-global-2" />
