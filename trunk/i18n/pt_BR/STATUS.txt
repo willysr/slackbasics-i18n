@@ -21,7 +21,7 @@ linhas arquivo                  trad     1a-rev  2a-rev
    485 chap-usermgmt.xml        OK       OK      -
    527 netconfig.xml            OK       OK      -
    630 ipsec.xml                OK       OK      -
-   652 chap-pkgmgmt.xml         OK       -       -
+   652 chap-pkgmgmt.xml         OK       OK      -
    703 chap-init.xml            OK    PARCIAL    -
    758 custom-installation.xml  OK       -       -
    780 chap-procmgmt.xml        OK       OK      -
