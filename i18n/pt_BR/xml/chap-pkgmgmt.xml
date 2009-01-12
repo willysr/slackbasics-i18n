@@ -432,7 +432,7 @@ bin: ADD
 
       <para>
         Cabe ressaltar que você pode adicionar comentários aos tagfiles
-        com o tradicional caracter de comentário (#).  Como você pode
+        com o tradicional caractere de comentário (#).  Como você pode
         ver no trecho acima, existem diversos marcadores.  A tabela
         listada abaixo descreve os quatro tipos existentes.
       </para>
@@ -619,7 +619,7 @@ $ <userinput>sh build-tagfiles.sh .</userinput>
         É claro, tagfiles seriam inúteis se não pudessem ser usados
         durante a instalação do Slackware Linux.  É claro que isso é
         possível: depois de selecionar que séries você quer instalar,
-        você pode escolhar de que forma você quer selecionar os pacotes
+        você pode escolher de que forma você quer selecionar os pacotes
         (o diálogo é chamado <emphasis>SELECT PROMPTING
         MODE</emphasis>.  Escolha <emphasis>tagpath</emphasis> a partir
         deste menu.  Então será solicitado que você informe o caminho do
