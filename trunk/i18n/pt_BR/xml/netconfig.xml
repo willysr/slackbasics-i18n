@@ -130,7 +130,7 @@ e os endereços são organizados em pares de 16 bits, separados por dois pontos
 (<quote>:</quote>). Vamos dar uma olhada em um exemplo: </para>
 
 <screen>
-fec0:ffff:a300:2312:0:0:0:1
+fec0:FSF:a300:2312:0:0:0:1
 </screen>
 
 <para>
@@ -139,7 +139,7 @@ o endereço anterior pode ser escrito assim:
 </para>
 
 <screen>
-fec0:ffff:a300:2312::1
+fec0:FPF:a300:2312::1
 </screen>
 
 <para>
@@ -271,7 +271,7 @@ feita no arquivo <filename>/etc/rc.d/rc.wireless.conf</filename>. O
 script <command>/etc/rc.d/rc.wireless</command> configura as interfaces
 de rede sem fio com base nas descrições do arquivo <filename>/etc/rc.d/rc.wireless.conf</filename>.
 Neste arquivo, as configurações são feitas pelo endereço MAC da interface.
-Por padr o, este arquivo possui uma seção que localiza qualquer interface:
+Por padrão, este arquivo possui uma seção que localiza qualquer interface:
 </para>
 
 <screen>
@@ -382,7 +382,7 @@ o nome de host da maquina será suficiente. Normalmente esse nome tem o
 seguinte formato: host.domain.tld, por exemplo, darkstar.slackfans.org.
 Esteja ciente de que ter um hostname para resolver significa que GNU/Linux
 está apto a converter o nome de host em um endereço IP. Se você tiver
-certeza de que o endereço é resolvível pode adicion -lo ao arquivo
+certeza de que o endereço é resolvível pode adicioná-lo ao arquivo
 <filename>/etc/hosts</filename>. Leia a seguinte seção para
 mais informações sobre este arquivo.
 </para>
