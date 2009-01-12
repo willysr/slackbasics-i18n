@@ -73,7 +73,7 @@ EOF</command>
 
     <para>
       O significado desses comandos é bastante óbvio. <command>mkswap</command>
-      formata a partição swap e <command>swapon</command> a incializa  (e passa portanto
+      formata a partição swap e <command>swapon</command> a inicializa  (e passa portanto
       a estar disponível para uso).
       Você precisa executar o comando <command>mkswap</command> apenas uma vez,
       mas, o comando <command>swapon</command> deve ser executado em cada inicialização (boot) do sistema.
@@ -97,7 +97,7 @@ EOF</command>
     </para>
 
     <para>
-      Para incializar e montar um sistema de arquivos <emphasis>ext3</emphasis>
+      Para inicializar e montar um sistema de arquivos <emphasis>ext3</emphasis>
       você deve executar os seguintes comandos:
     </para>
 
@@ -108,7 +108,7 @@ EOF</command>
 
     <para>
       Se você criou partições separadas para certos diretórios
-      da raíz do sistema (por exemplo <filename>/home</filename>), você 
+      da raiz do sistema (por exemplo <filename>/home</filename>), você 
       pode também inicializar e montá-los agora.
       Por exemplo:
     </para>
@@ -135,7 +135,7 @@ EOF</command>
       Você pode fazer isso executando o comando <command>network</command>
       e inserindo um disco de rede. Você também pode carregar 
       o disco a partir de outra mídia, por exemplo, a partir de um pendrive USB.
-      Supondo que você mountou o pendrive USB em /var/log/mount,
+      Supondo que você montou o pendrive USB em /var/log/mount,
       você pode então carregar o disco de rede com: <command>network
       /var/log/mount/network.dsk</command>. Após carregar o disco de rede
       você deve configurar sua interface de rede. Se o servidor 
@@ -278,7 +278,7 @@ EOF</command>
 
       <para>
         Você pode então instalar o LILO usando <filename>/mnt</filename> como  
-        a raíz para o LILO. Ao usar o <filename>/mnt</filename> como raíz,
+        a raiz para o LILO. Ao usar o <filename>/mnt</filename> como raiz,
         o LILO vai utilizar o arquivo <filename>/etc/lilo.conf</filename> a partir da partição de 
         destino:
       </para>
@@ -417,11 +417,11 @@ EOF</command>
 
       <para>
         Você talvez não conheça o comando <command>chroot</command>; Ele é um comando
-        que executa um comando em uma raíz direfente da raíz atualmente ativa.
-        No exemplo a raíz do sistema foi mudada para
+        que executa um comando em uma raiz diferente da raiz atualmente ativa.
+        No exemplo a riz do sistema foi mudada para
         <filename>/mnt</filename>, e é de lá que o comando <command>chroot</command>
         executa o <command>/sbin/ldconfig</command>. Após terminar sua execução
-        o sistema vai retornar para o shell, que utilizará a raíz original.
+        o sistema vai retornar para o shell, que utilizará a raiz original.
         Para usar o <command>chroot</command> com outros comandos, o  
         <command>ldconfig</command> precisa ser executado uma vez porque
         sem inicializar o "linkador" dinâmico muitos comandos não funcionarão 
@@ -438,7 +438,7 @@ EOF</command>
         para configurar a senha do usuário <emphasis>root</emphasis>. O comando 
         <command>passwd</command> pode ser usado para configurar a senha
         de um usuário existente (o usuário <emphasis>root</emphasis>
-        já se econtra no arquivo <filename>/etc/passwd</filename>). 
+        já se encontra no arquivo <filename>/etc/passwd</filename>). 
         Nós usamos novamente o comando <command>chroot</command>
         para executar o comando na partição do sistema:
       </para>

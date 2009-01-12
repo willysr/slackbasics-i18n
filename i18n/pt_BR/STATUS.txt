@@ -23,9 +23,9 @@ linhas arquivo                  trad     1a-rev  2a-rev
    630 ipsec.xml                OK       OK      -
    652 chap-pkgmgmt.xml         OK       OK      -
    703 chap-init.xml            OK       OK      -
-   758 custom-installation.xml  OK    PARCIAL    -
+   758 custom-installation.xml  OK       OK      -
    780 chap-procmgmt.xml        OK       OK      -
    868 chap-install.xml         OK       OK      -
   1044 chap-shell.xml           OK       OK      -
-  1924 chap-textproc.xml        OK       -       -
+  1924 chap-textproc.xml        OK    PARCIAL    -
   3475 chap-filesystem.xml      OK       OK      -
