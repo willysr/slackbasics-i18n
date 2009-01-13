@@ -15,7 +15,7 @@ linhas arquivo                  trad     1a-rev  2a-rev
    310 printing.xml             OK       OK      -
    338 mutt.xml                 OK       -       -
    341 miscadmin.xml            OK       -       -
-   377 latex.xml                OK       -       -
+   377 latex.xml                OK       OK      -
    398 concepts.xml             OK       OK      -
    444 chap-kernel.xml          OK       OK      -
    485 chap-usermgmt.xml        OK       OK      -
