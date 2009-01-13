@@ -31,7 +31,7 @@
       remover, ou modificar um arquivo individual crontab.  Este arquivo
       contrab especifica comandos ou scripts a serem executados em
       intervalos regulares de tempo.  Linhas em branco no crontab ou
-      linhas que comecem com um sinal de cerquilha
+      linhas que comecem com um sinal de tralha
       (<quote><literal>#</literal></quote>) são ignoradas.</para>
 
     <para>Cada entrada no arquivo contrab deve conter 6 campos separados
