@@ -10,7 +10,7 @@ linhas arquivo                  trad     1a-rev  2a-rev
    156 apache.xml               OK     PARCIAL   -
    181 security.xml             OK       OK      -
    216 chap-help.xml            OK       -       -
-   258 sendmail.xml             OK       -       -
+   258 sendmail.xml             OK       OK      -
    265 chap-intro.xml           OK       OK      -
    310 printing.xml             OK       OK      -
    338 mutt.xml                 OK       OK      -
