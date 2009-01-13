@@ -4,7 +4,7 @@ linhas arquivo                  trad     1a-rev  2a-rev
     85 chap-book.xml            OK       -       -
    117 bind.xml                 OK       -       -
    131 chap-x11.xml             OK       OK      -
-   135 services.xml             OK       -       -
+   135 services.xml             OK       OK      -
    143 slackware-basics.xml     OK       OK      -
    149 inetd.xml                OK       OK      -
    156 apache.xml               OK       OK      -
