@@ -80,7 +80,7 @@ rmdir                (2)  - remove um diretório
 
       <literallayout>
 1   Programas executáveis e comandos shell
-2   Chamadas de sistem (funções providas pelo kernel)
+2   Chamadas de sistema (funções providas pelo kernel)
 3   Chamadas de bibliotecas (funções de bibliotecas de programas)
 4   Arquivos especiais (usualmente encontrados em /dev)
 5   Formatos de arquivos e convenções e.g. /etc/passwd
@@ -123,8 +123,8 @@ $ <userinput>man -t cat | lpr</userinput>
 
     <para>
       Há muitos sites e fóruns relacionados à GNU/Linux e 
-      Slackware LInux na Internet. Mas muitos sites desaparecem
-      tão rápidos quanto aparecem, e a informção em muitos sites
+      Slackware Linux na Internet. Mas muitos sites desaparecem
+      tão rápidos quanto aparecem, e a informação em muitos sites
       é fragmentada. As referências abaixo estão disponíveis há 
       bastante tempo e possuem um bom conteúdo.
     </para>
@@ -157,7 +157,7 @@ $ <userinput>man -t cat | lpr</userinput>
         <listitem>
           <para>
             Há duas listas de discussão que você pode increver-se.
-            A lista <emphasis>slackware-announce</emphasis> é usada
+            A lista <emphasis>inscrever-se</emphasis> é usada
             para anunciar novas versões do Slackware Linux, e as
             atualizações de segurança são anunciadas na lista
             <emphasis>slackware-security</emphasis>.
