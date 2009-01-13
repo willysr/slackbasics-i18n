@@ -60,7 +60,7 @@
     </itemizedlist>
 
     <para>
-      O LaTeX é muito estensível.  Assim, este capítulo vai tocar apenas na
+      O LaTeX é muito extensível.  Assim, este capítulo vai tocar apenas na
       superfície do LaTeX.  Mas isso deve ser o suficiente para que você se
       inicie e seja capaz de criar documentos simples.
     </para>
@@ -95,7 +95,7 @@ This is a basic document. <co id="latex-struct-5" />
 
       <para>
         Você já pode ver a estrutura sintática básica de comandos LaTeX.  Um
-        comando é iniciado com uma contra-barra, seguida do nome do comando.
+        comando é iniciado com uma barra invertida, seguida do nome do comando.
         Cada macro tem um argumento obrigatório que aparece entre chaves, e um
         argumento opcional que é posto entre colchetes.
       </para>
