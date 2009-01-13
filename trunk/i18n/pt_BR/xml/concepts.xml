@@ -119,7 +119,7 @@
         similar à uma árvore, com um diretório raiz (que não possui 
         diretório pai), ramos e folhas (diretórios sem um subdiretório). 
         O diretório raiz é sempre representado por uma barra (<quote>/</quote>). 
-        Os subdiretórios são separados por este caracter também.
+        Os subdiretórios são separados por este caractere também.
       </para>
 
       <figure id="filesystem-structure">
@@ -151,7 +151,7 @@
         <quote><filename>..</filename></quote>.  A primeira refere-se 
         ao próprio diretório, e a segunda ao diretório anterior. Estas 
         entradas podem ser usadas para criar caminhos relativos. Se 
-        você está no diretório <filename>jack</filename>, voce pode 
+        você está no diretório <filename>jack</filename>, você pode 
         referir-se ao diretório <filename>/home/joe</filename> como 
         <filename>../joe</filename>.
       </para>
@@ -243,7 +243,7 @@
         <listitem>
           <para>
             <emphasis role="bold">/sbin</emphasis>: binários essenciais
-            utilizados para a adminitração do sistema.
+            utilizados para a administração do sistema.
           </para>
         </listitem>
         <listitem>
@@ -303,7 +303,7 @@
 
       <screen>
 $ <command>file /dev/zero</command>
-/dev/zero: character special (1/5)
+/dev/zero: caractere especial (1/5)
       </screen>
 
       <para>
@@ -328,13 +328,13 @@ $ <command>file /dev/zero</command>
 
       <para>
         O kernel do Linux manipula dois tipos de dispositivos:
-        <emphasis>caracter</emphasis> e <emphasis>bloco</emphasis>.
-        Dispositivos de caracter podem ser lidos byte a byte, dispositivos 
+        <emphasis>caractere</emphasis> e <emphasis>bloco</emphasis>.
+        Dispositivos de caractere podem ser lidos byte a byte, dispositivos 
         de bloco não. Este é lido bloco a bloco (4096 bytes de cada vez, 
         por exemplo). O tipo do dispositivo é determinado pela sua natureza. 
         Por exemplo, a maioria das mídias de armazenamento são dispositivos 
         de bloco, e a maioria dos dispositivos de entrada são dispositivos 
-        de caracter. Dispositivos de bloco tem uma vantagem única, eles 
+        de caractere. Dispositivos de bloco tem uma vantagem única, eles 
         podem ser utilizados em cache. Isto quer dizer que blocos lidos e 
         escritos são armazenados em uma área especial da memória do sistema 
         chamada de cache. A memória é muito mais rápida que a maioria das 
