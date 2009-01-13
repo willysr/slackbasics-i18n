@@ -72,7 +72,7 @@
       comportamento do sendmail é configurado, e onde outros arquivos
       são incluídos.  A sintaxe do
       <filename>/etc/mail/sendmail.cf</filename>, de certa forma, é bem
-      obscuta, porque este arquivo é compilado a partir de arquivos
+      obscura, porque este arquivo é compilado a partir de arquivos
       <filename>.mc</filename> mais simples e que usam macros M4 que são
       definidas para o sendmail.
     </para>
@@ -232,7 +232,7 @@ john.doe@mail.example.org        john
         Neste exemplo, ambos os e-mails endereçados a
         <emphasis>john.doe@example.org</emphasis> e a
         <emphasis>john.doe@mail.example.org</emphasis> serão entregues à
-        conta do usuário <emphasis>john</emphasis> account.  Também é
+        conta do usuário <emphasis>john</emphasis>  .  Também é
         possível encaminhar algum e-mail endereçado a um domínio
         hospedado no servidor a um outro endereço de e-mail,
         especificando este endereço de e-mail de destino na segunda
