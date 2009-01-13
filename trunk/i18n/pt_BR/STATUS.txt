@@ -1,6 +1,6 @@
 linhas arquivo                  trad     1a-rev  2a-rev
 ------+------------------------+--------+-------+-------
-    38 preface.xml              OK       -       -
+    38 preface.xml              OK       OK      -
     85 chap-book.xml            OK       OK      -
    117 bind.xml                 OK       OK      -
    131 chap-x11.xml             OK       OK      -
