@@ -47,7 +47,7 @@
         <para>
           Os arquivos do LaTeX são de texto plano, e podem ser facilmente
           modificados usando-se ferramentas padrão do UNIX, tais como
-          <command>vi</command>, <command>sed</command> or
+          <command>vi</command>, <command>sed</command> ou
           <command>awk</command>.
         </para>
       </listitem>
