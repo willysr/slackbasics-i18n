@@ -83,7 +83,7 @@
         (<emphasis>Subject:</emphasis>).  Depois de entrar com essas
         informações, um editor de texto é executado
         (o <command>vi</command> é usado por padrão), o qual você pode
-        usar para compor a mensgem.  Depois de salvar o conteúdo do
+        usar para compor a mensagem.  Depois de salvar o conteúdo do
         e-mail e fechar o editor, o mutt lhe dará a oportunidade de
         fazer quaisquer alterações no e-mail.  Se você decidir que quer
         alterar a mensagem, você pode executar novamente o editor com a
