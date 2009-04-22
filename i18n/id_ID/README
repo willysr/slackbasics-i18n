@@ -1,12 +1,12 @@
-Slackware Linux Basics
+Dasar-dasar Slackware Linux
 
-* Installation *
+* Installasi *
 
-The source XMLs can be compiled into other formats (HTML, PDF, ...)
-using the "linuxdoc-tools" and "libxslt" packages, which can be found
-in the ap/ and l/ package directories respectively. FOP is required
-to create PDF files from XSL:FO output.
+Kode sumber XML dapat dikompilasi menjadi format lain (HTML, PDF, ...)
+menggunakan paket "linuxdoc-tools" "libxslt", yang dapat ditemukan pada 
+direktori paket ap/ dan l/. FOP diperlukan untuk membuat berkas PDF
+dari hasil keluaran XSL:FO.
 
-Execute "make" to generate HTML and PDF files. If you do only want to
-generate the HTML files execute "make fmt-html" and
+Jalankan perintah "make" untuk menghasilkan berkas HTML dan PDF. Jika Anda hanya 
+ingin menghasilkan berkas HTML jalankan "make fmt-html" dan 
 "make fmt-html-singlepage".
