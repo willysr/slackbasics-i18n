@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
-	 xml:lang="en" xml:id="chap-usermgmt">
+	 xml:lang="id" xml:id="chap-usermgmt">
   <title>User management</title>
 
   <sect1 xml:id="chap-usermgmt-intro">

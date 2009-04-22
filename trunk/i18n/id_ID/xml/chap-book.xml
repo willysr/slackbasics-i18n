@@ -1,85 +1,84 @@
 <chapter xml:id="chap-book">
-  <title>About this book</title>
+  <title>Tentang buku ini</title>
 
   <sect1 xml:id="chap-book-availability">
-    <title>Availability</title>
+    <title>Ketersediaan</title>
 
     <para>
-      This book was written in DocBook/XML, and converted to HTML and
-      XSL:FO with <command>xsltproc</command>. The latest version of
-      the book is always available from: <ulink
+      Buku ini ditulis dalam DocBook/XML, dan dikonversi ke HTML dan XSL:FO dengan 
+      <command>xsltproc</command>. Versi terbaru dari buku ini selalu ada pada :<ulink
       url="http://www.slackbasics.org/" />.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-book-conventions">
-    <title>Conventions</title>
+    <title>Konvensi</title>
 
     <para>
-      This section gives a short summary of the conventions in this book.
+      Bagian ini memberikan sedikit ringkasan dari konvensi yang ada pada buku ini.
     </para>
 
     <sect2 xml:id="chap-book-conventions-filenames">
-      <title>File names</title>
+      <title>Nama berkas</title>
 
       <para>
-	File or directory names are printed as:
-	<filename>/path/to/file</filename>.  For example:
+	Nama berkas atau direktori akan dicetak sebagai:
+	<filename>/path/menuju/berkas</filename>. Sebagai contoh:
 	<filename>/etc/fstab</filename>
       </para>
     </sect2>
 
     <sect2 xml:id="chap-book-conventions-commands">
-      <title>Commands</title>
+      <title>Perintah</title>
 
       <para>
-	Commands are printed as bold text. For example: <command>ls
+	Perintah akan dicetak sebagai teks tebal. Sebagai contoh: <command>ls
 	-l</command>
       </para>
     </sect2>
 
     <sect2 xml:id="chap-book-conventions-screenoutput">
-      <title>Screen output</title>
+      <title>Hasil keluaran di layar</title>
 
       <para>
-	Screen output is printed like this:
+	Hasil keluaran pada layar akan dicetak sebagai berikut: 
       </para>
 
       <screen>
-Hello world!
+Hallo dunia!
       </screen>
 
       <para>
-	If commands are being entered in the screen output the
-	commands will be printed as bold text:
+	Jika perintah dimasukkan pada layar output, maka 
+	perintah akan dicetak sebagai teks tebal: 
       </para>
 
       <screen>
-$ <command>command</command>
-Output
+$ <command>perintah</command>
+Hasil Keluaran
       </screen>
 
       <para>
-	If a command is executed as root, the shell will be displayed
-	as <quote>#</quote>. If a command is executed as a normal
-	non-privileged user, the shell will be displayed as
+	Jika sebuah perintah dieksekusi sebagai root, shell akan ditampilkan 
+	sebagai <quote>#</quote>. Jika sebuah perintah dieksekusi sebagai 
+	pengguna biasa, shell akan ditampilkan sebagai
 	<quote>$</quote>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-book-conventions-notes">
-      <title>Notes</title>
+      <title>Catatan</title>
 
       <para>
-	Some sections contain extra notes. It is not necessary to know
-	the information in notes, but notes may provide valuable
-	information, or pointers to information. Notes are printed
-	like this:
+	Beberapa bagian mengandung catatan tambahan. Tidaklah penting untuk 
+	melihat informasi pada bagian catatatn, tetapi catatan bisa memberikan 
+	informasi yang berharga, atau penunjuk pada sebuah informasi. Catatan 
+	akan dicetak sebagai berikut:
       </para>
 
       <note>
 	<para>
-	  This is a note.
+	  Ini adalah sebuah catatan.
 	</para>
       </note>
     </sect2>
