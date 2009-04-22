@@ -1,79 +1,70 @@
 <!-- $Id: concepts.xml 333 2007-10-21 17:20:54Z danieldk $ -->
 
 <chapter id="concepts"> <?dbhtml filename="concepts.html"?>
-  <title>General concepts</title>
+  <title>Konsep umum</title>
 
   <para>
-    This chapter gives an introduction to some general UNIX and GNU/Linux 
-    concepts. It is important to read this chapter thoroughly if you do
-    not have any UNIX or GNU/Linux experience. Many concepts covered in
-    this chapter are used in this book and in GNU/Linux.
+    Bab ini memberikan perkenalan pada beberapa konsep umum UNIX dan 
+    GNU/Linux. Sangatlah penting untuk membaca bab ini secara mendalam 
+    jika Anda tidak memiliki pengalaman pada UNIX atau GNU/Linux. Banyak 
+    konsep yang dibahas pada bab ini digunakan pada buku ini dan juga pada GNU/Linux.
   </para>
 
   <sect1 id="concepts-multitasking">
     <title>Multitasking</title>
 
     <sect2 id="concepts-multitasking-intro">
-      <title>Introduction</title>
+      <title>Perkenalan</title>
 
       <para>
-        One of UNIX's traditional strengths is multitasking. Multitasking
-        means that multiple programs can be run at the same time.
-        You may wonder why this is important, because most people use
-        only one application at a time. Multitasking is a bare necessity
-        for UNIX-like systems. Even if you have not started any applications,
-        there are programs that run in the background. For instance,
-        some programs provide network services, while others show a login
-        prompt and wait until a user logs in on a (virtual) terminal. Programs
-        that are running in the background are often called <emphasis>daemon
-        processes</emphasis><footnote>
+        Salah satu kekuatan tradisional UNIX adalah multitasking. Multitasking berarti 
+	banyak program dapat dijalankan pada saat yang sama. Anda mungkin heran 
+	kenapa hal ini penting, karena banyak orang hanya menggunakan satu aplikasi 
+	pada waktu yang sama. Multitasking adalah kebutuhan untuk sistem berbasis UNIX. 
+	Meskipun Anda belum menjalankan sembarang aplikasi, terdapat program yang 
+	berjalan di belakang. Sebagai contoh, beberapa program menyediakan layanan 
+	jaringan, sedangkan program yang lain menampilkan prompt login dan menunggu 
+	seorang pengguna login pada sebuah terminal (virtual). Program yang berjalan 
+	di belakang disebut <emphasis>proses daemon</emphasis><footnote>
           <para>
-            The word <emphasis>daemon</emphasis> should not to be confused
-	    with the word <emphasis>demon</emphasis>, the word
-            <emphasis>daemon</emphasis> refers to supernatural beings
-            in Greek mythology.
+            Kata <emphasis>daemon</emphasis> tidak boleh disamakan dengan kata 
+	    <emphasis>demon</emphasis>, kata <emphasis>daemon</emphasis> mengacu pada 
+	    supernatural pada mitologi Yunani. 
           </para>
         </footnote>.
       </para>
     </sect2>
 
     <sect2 id="concepts-multitasking-procsthreads">
-      <title>Processes and threads</title>
+      <title>Proses dan thread</title>
 
       <para>
-        After a program is loaded from a storage medium, an instance
-        of the program is started. This instance is called a
-        <emphasis>process</emphasis>. A process has its own protected
-        memory, named the <emphasis>process address space</emphasis>.
-        The process address space has two important areas: the
-        <emphasis>text</emphasis> area and the
-        <emphasis>data</emphasis> area. The <emphasis>text</emphasis>
-        area is the actual program code; it is used to tell the system
-        what to do. The <emphasis>data</emphasis> area is used to
-        store constant and runtime data. The operating system gives
-        every process time to execute. On single processor systems
-        processes are not really running simultaneously. In reality a
-        smart scheduler in the kernel divides CPU time among
-        processes, giving the illusion that processes run
-        simultaneously. This process is called
-        <emphasis>time-sharing</emphasis>. On systems with more than
-        one CPU or CPU cores, more than one process can run
-        simultaneously, but time-sharing is still used to divide the
-        available CPU time among processes.
+        Setelah sebuah program dimuat dari media penyimpanan, sebuah instance dari program 
+	dijalankan. Instance ini disebut sebuah <emphasis>proses</emphasis>. Sebuah proses 
+	memiliki memorinya sendiri, disebut <emphasis>ruang alamat proses (process address space)</emphasis>.
+        Ruang alaman proses memiliki dua area penting: area <emphasis>teks</emphasis> dan 
+	area <emphasis>data</emphasis>. Area <emphasis>teks</emphasis>  adalah kode 
+	program yang sebenarnya; digunakan untuk memberitahukan sistem apa yang harus 
+	dilakukan. Area <emphasis>data</emphasis> digunakan untuk menyimpan data konstan 
+	dan juga runtime. Sistem operasi memberikan waktu bagi setiap proses untuk dieksekusi. 
+	Pada sistem dengan prosesor tunggal, proses tidak sepenuhnya berjalan secara 
+	bersamaan. Pada kenyataannya, sebuah penjadwal pada kernel membagi waktu CPU pada 
+	semua proses, memberikan sebuah ilusi bahwa proses-proses dijalankan secara bersamaan. 
+	Proses ini disebut dengan <emphasis>time-sharing</emphasis>. Pada sistem dengan 
+	lebih dari satu CPU atau inti CPU, lebih dari satu proses dapat berjalan bersamaan, 
+	tetapi konsep time-sharing masih dipakai untuk membagi waktu CPU yang ada pada setiap proses.
       </para>
 
       <para>
-        New processes are created by duplicating a running process
-        with the <command>fork</command> system call. <xref
-        linkend="fork" /> shows a fork() call in action
-        schematically. The parent process issues a fork() call. The
-        kernel will respond to this call by duplicating the process,
-        and naming one process the <emphasis>parent</emphasis>, and
-        the other process the <emphasis>child</emphasis>.
+        Proses-proses baru dibuat dengan menduplikasi proses yang sedang berjalan dengan system call
+	<command>fork</command> system call. <xref
+        linkend="fork" /> menampilkan skema dari pemanggilan fork(). Proses induk memanggil fork(). 
+	Kernel akan merespon terhadap panggilan ini dengan menduplikasi proses, menamai proses lain 
+	sebagai <emphasis>induk (parent)</emphasis>, dan proses lain sebagai <emphasis>anak (child)</emphasis>.
       </para>
 
       <figure id="fork">
-        <title>Forking of a process</title>
+        <title>Melakukan fork dari sebuah proses</title>
         <mediaobject>
           <imageobject>
             <imagedata fileref="../../images/fork.png" format="PNG"/>
@@ -82,45 +73,37 @@
       </figure>
 
       <para>
-        Forking can be used by a program to create two processes that
-        can run simultaneously on multiprocessor machines. However,
-        this is often not ideal, because both processes will have
-        their own process address space.  The initial duplication of
-        the process memory takes relatively much time, and it is
-        difficult to share data between two processes. This problem is
-        solved by a concept named
-        <emphasis>multithreading</emphasis>. Multithreading means that
-        multiple instances of the text area can run at the same time,
-        sharing the data area. These instances, named threads, can be
-        executed in parallel on multiple CPUs.
+       Fork bisa digunakan oleh sebuah program untuk membuat dua proses yang berjalan secara bersamaan 
+       pada mesin dengan banyak prosesor. Namun, hal ini seringkali tidak ideal, karena kedua proses 
+       akan memiliki alamat ruang prosesnya masing-masing. Duplikasi pertama dari memori proses cukup 
+       memakan waktu, dan sangat susah untuk melakukan share data diantara dua proses. Masalah ini 
+       diselesaikan oleh sebuah konsep yang disebut <emphasis>multithreading</emphasis>. Multithreading 
+       berarti banyak instance dari area teks dapat dijalankan pada waktu yang bersamaan, melakukan 
+       pertukaran area data. Instance ini disebut thread dapat dieksekusi secara parallel pada banyak CPU.
       </para>
     </sect2>
   </sect1>
 
   <sect1 id="concepts-fshierarchy">
-    <title>Filesystem hierarchy</title>
+    <title>Hirarki Sistem Berkas</title>
 
     <sect2 id="concepts-fshierarchy-structure">
-      <title>Structure</title>
+      <title>Struktur</title>
 
       <para>
-        Operating systems store data in filesystems. A filesystem is
-        basically a tree-like structure of directories that hold
-        files, like the operating system, user programs and user
-        data. Most filesystems can also store various metadata about
-        files and directories, for instance access and modification
-        times. In GNU/Linux there is only one filesystem hierarchy, this
-        means GNU/Linux does not have drive letters (e.g. A:, C:, D:) for
-        different filesystems, like DOS and Windows. The filesystem
-        looks like a tree, with a root directory (which has no parent
-        directory), branches, and leaves (directories with no
-        subdirectories). The root directory is alway denoted with a
-        slash (<quote>/</quote>). Directories are separated by the
-        same character.
+        Sistem operasi menyimpan data pada sistem berkas. Sistem berkas adalah sebuah struktur menyerupai 
+	pohon dari direktori yang menyimpan berkas, seperti sistem operasi, program pengguna, dan data 
+	pengguna. Sebagian besar sistem berkas juga dapat menyimpan berbagai macam meta data tentang 
+	berkas dan direktori, misalnya waktu akses dan modifikasi. Pada GNU/Linux hanya terdapat satu 
+	hirarki sistem berkas, yang berarti GNU/Linux tidak memiliki huruf pada drive (misalnya A:, C:, 
+	D:) untuk sistem berkas yang berbeda, seperti DOS dan Windows. Sistem berkas menyerupai sebuah 
+	pohon dengan direktori root (yang tidak memiliki direktori induk)), cabang, dan daun (direktori 
+	tanpa sub direktori). Direktori root ditandai dengan garis miring (slash) (<quote>/</quote>). 
+	Direktori dipisahkan dengan karakter yang sama. 
       </para>
 
       <figure id="filesystem-structure">
-        <title>The filesystem structure</title>
+        <title>Struktur sistem berkas</title>
         <mediaobject>
           <imageobject>
             <imagedata fileref="../../images/fs-structure.png" format="PNG"/>
@@ -129,148 +112,119 @@
       </figure>
 
       <para>
-        <xref linkend="filesystem-structure"/> shows the structure of
-        a filesystem.  You can see that the root directory
-        <filename>/</filename> has two child directories:
-        <filename>bin</filename> and <filename>home</filename>. The
-        <filename>home</filename> directory has two child directories,
-        <filename>joe</filename> and <filename>jack</filename>. The
-        diagram shows the full pathname of each directory.  The same
-        notation is used for files. Suppose that there is a file named
-        <filename>memo.txt</filename> in the
-        <filename>/home/jack</filename> directory, the full path of
-        the file is <filename>/home/jack/memo.txt</filename>.
+        <xref linkend="filesystem-structure"/> menampilkan struktur dari sistem berkas. Anda bisa melihat 
+	bahwa direktori root <filename>/</filename> memiliki dua direktori anak: <filename>bin</filename> 
+	dan <filename>home</filename>. Direktori <filename>home</filename> memiliki dua direktori anak,
+        <filename>joe</filename> dan <filename>jack</filename>. Diagram menampilkan nama path penuh 
+	dari setiap direktori. Notasi yang sama digunakan untuk berkas. Misalkan terdapat sebuah berkas 
+	bernama <filename>memo.txt</filename> pada direktori <filename>/home/jack</filename>, path 
+	lengkap dari berkas tersebut adalah <filename>/home/jack/memo.txt</filename>.
       </para>
 
       <para>
-        Each directory has two special entries,
-        <quote><filename>.</filename></quote>, and
-        <quote><filename>..</filename></quote>.  The first refers to
-        the directory itself, the second to the parent
-        directory. These entries can be used for making relative
-        paths. If you are working in the <filename>jack</filename>
-        directory, you can refer to the the
-        <filename>/home/joe</filename> directory with
-        <filename>../joe</filename>.
+        Setiap direktori memiliki dua catatan khusus, <quote><filename>.</filename></quote>, dan
+        <quote><filename>..</filename></quote>.  Yang pertama mengacu pada direktori itu sendiri, 
+	sedangkan yang kedua mengacu pada direktori induk. Catatan ini bisa digunakan untuk membuat 
+	path relatif. Jika Anda bekerja pada direktori <filename>jack</filename>, Anda bisa mengacu direktori
+        <filename>/home/joe</filename> dengan <filename>../joe</filename>.
       </para>
     </sect2>
 
     <sect2 id="concepts-fshierarchy-mounting">
-      <title>Mounting</title>
+      <title>Melakukan mount</title>
 
       <para>
-        You might wonder how it is possible to access other devices
-        or partitions than the hard disk partition which holds the
-        root filesystem. Linux uses the same approach as UNIX for
-        accessing other filesystems. Linux allows the system
-        administrator to connect a device to any directory in the
-        filesystem structure. This process is named
-        <emphasis>mounting</emphasis>.  For example, one could mount
-        the CD-ROM drive to the <filename>/cdrom</filename>
-        directory. If the mount is correct, the files on the CD-ROM
-        can be accessed through this directory. The mounting process
-        is described in detail in <xref
+        Anda mungkin heran bagaimana mungkin mengakses perangkat atau partisi lain selain partisi hard 
+	disk yang menyimpan sistem berkas root. Linux mengijinkan administrator sistem menghubungkan 
+	sebuah perangkat pada sembarang direktori pada struktur sistem berkas. Proses ini disebut dengan
+        <emphasis>mount</emphasis>.  Sebagai contoh, kita bisa melakukan mount terhadap drive CD-ROM 
+	pada direktori <filename>/cdrom</filename>. Jika proses mount dilakukan dengan benar, berkas 
+	pada CD-ROM bisa diakses pada direktori ini. Proses mount dijelaskan secara detail pada <xref
         linkend="basics-filesystem-mounting"/>.
       </para>
     </sect2>
 
     <sect2 id="concepts-fshierarchy-commondirs">
-      <title>Common directories</title>
+      <title>Direktori-direktori umum</title>
 
       <para>
-        The Filesystem Hierarchy Standard Group has attempted to
-        create a standard that describes which directories should
-        be available on a GNU/Linux system. Currently, most major
-        distributions use the Filesystem Hierarchy Standard (FHS)
-        as a guideline. This section describes some mandatory
-        directories on GNU/Linux systems.
+        Filesystem Hierarchy Standard Group sudah mencoba untuk membuat sebuah standar yang mendeskripsikan 
+	direktori mana yang harus tersedia pada sistem GNU/Linux. Saat ini, sebagian besar distribusi 
+	menggunakan Filesystem Hierarchy Standard (FHS) sebagai panduan. Bagian ini mendeskripsikan beberapa 
+	direktori wajib pada sistem GNU/Linux
       </para>
 
       <para>
-        Please note that GNU/Linux does not have a separate directory
-        for each application (like Windows). Instead, files are ordered by
-        function and type. For example, the binaries for most
-        common user programs are stored in
-        <filename>/usr/bin</filename>, and their libraries in
-        <filename>/usr/lib</filename>. This is a short overview of
-        the important directories on a Slackware Linux system:
+        Harap diperhatikan bahwa GNU/Linux tidak harus memiliki direktori terpisah untuk setiap aplikasi 
+	(seperti Windows). Berkas diurutkan berdasarkan fungsi dan jenisnya. Sebagai contoh, program biner 
+	untuk program user yang umum disimpan pada <filename>/usr/bin</filename>, dan pustakanya pada
+        <filename>/usr/lib</filename>. Ini adalah gambarang singkat dari direktori yang penting pada 
+	sistem Slackware Linux: 
       </para>
 
 
       <itemizedlist>
         <listitem>
           <para>
-            <emphasis role="bold">/bin</emphasis>: essential
-            user binaries that should still be available in case the 
-            <filename>/usr</filename> is not mounted.
+            <emphasis role="bold">/bin</emphasis>: program biner yang esensial yang harus tetap tersedia meskipun
+            <filename>/usr</filename> tidak di-mount. 
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/dev</emphasis>: device files.
-            These are special files used to access certain devices.
+            <emphasis role="bold">/dev</emphasis>: berkas perangkat. Ini adalah berkas khusus yang dipakai untuk
+	    mengakses perangkat-perangkat. 
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/etc</emphasis>: the
-            <filename>/etc</filename> directory contains all important
-            configuration files.
+            <emphasis role="bold">/etc</emphasis>: Direktori <filename>/etc</filename> berisi semua berkas 
+	    konfigurasi yang penting. 
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/home</emphasis>: contains home
-            directories for individual users.
+            <emphasis role="bold">/home</emphasis>: berisi direktori home untuk setiap pengguna individual. 
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/lib</emphasis>: essential system
-            libraries (like glibc),
-            and kernel modules.
+            <emphasis role="bold">/lib</emphasis>: pustaka sistem yang penting (seperti glibc) dan modul kernel. 
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/root</emphasis>: home directory for the 
-            <emphasis>root</emphasis> user.
+            <emphasis role="bold">/root</emphasis>: direktori home untuk pengguna <emphasis>root</emphasis>.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/sbin</emphasis>: essential binaries
-            that are used for system administration.
+            <emphasis role="bold">/sbin</emphasis>: program biner yang penting yang digunakan oleh administrator sistem. 
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/tmp</emphasis>: a world-writable
-            directory for temporary files.
+            <emphasis role="bold">/tmp</emphasis>: Direktori yang dapat ditulis oleh siapa saja untuk berkas temporer. 
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/usr/bin</emphasis>: stores the majority
-            of the user binaries.
+            <emphasis role="bold">/usr/bin</emphasis>: menyimpan sebagian besar dari program biner pengguna. 
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/usr/lib</emphasis>: libraries that are
-            not essential for the system to boot.
+            <emphasis role="bold">/usr/lib</emphasis>: pustaka yang tidak penting untuk sistem untuk melakukan boot. 
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/usr/sbin</emphasis>: nonessential
-            system administration binaries.
+            <emphasis role="bold">/usr/sbin</emphasis>: program biner yang tidak penting untuk administrasi sistem. 
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/var</emphasis>: variable data files,
-            like logs.
+            <emphasis role="bold">/var</emphasis>: berbagai berkas data yang bervariasi, seperti log. 
           </para>
         </listitem>
       </itemizedlist>
@@ -278,21 +232,19 @@
   </sect1>
 
   <sect1 id="concepts-devices">
-    <title>Devices</title>
+    <title>Perangkat</title>
 
     <sect2 id="concepts-devices-intro">
-      <title>Introduction</title>
+      <title>Perkenalan</title>
 
       <para>
-        In GNU/Linux virtually everything is represented as a file, including
-        devices. Every GNU/Linux system has a directory with special files, named
-        <filename>/dev</filename>. Each file in the <filename>/dev</filename>
-        directory represents a device or pseudo-device. A device file
-        has two special numbers associated with it, the
-        <emphasis>major</emphasis> and the <emphasis>minor</emphasis>
-        device number. The kernel knows which device a device
-        file represents by these device numbers. The following example shows
-        the device numbers for the <filename>/dev/zero</filename> device file:
+        Pada GNU/Linux hampir semua direpresentasikan sebagai sebuah berkas, termasuk perangkat. Setiap sistem 
+	GNU/Linux memiliki sebuah direktori dengan berkas kuhusus, yang diberi nama
+        <filename>/dev</filename>. Setiap berkas pada direktori <filename>/dev</filename>
+        merepresentasikan sebuah perangkat atau perangkat pseudo. Sebuah berkas perangkat memiliki dua angka 
+	khusus yang diasosiasikan dengannya, angka perangkat <emphasis>major</emphasis> dan <emphasis>minor</emphasis>. 
+	Kernel tahu perangkat mana yang direpresentasikan oleh berkas perangkat dengan melihat angka-angka ini. 
+	Contoh berikut ini menampilkan angka perangkat untuk berkas perangkat <filename>/dev/zero</filename>:
       </para>
 
       <screen>
@@ -301,19 +253,15 @@ $ <command>file /dev/zero</command>
       </screen>
 
       <para>
-        The <command>file</command> command can be used to determine the
-        type of a file. This particular file is recognized as a device file
-        that has <emphasis>1</emphasis> as the major device number,
-        and <emphasis>5</emphasis> as the minor device number.
+        Perintah <command>file</command> dapat digunakan untuk menentukan jenis dari sebuah berkas. Berkas dikenali 
+	sebagai sebuah berkas perangkat yang memiliki angka perangkat major <emphasis>1</emphasis> dan <emphasis>5</emphasis> 
+	sebagai angka minor.
       </para>
 
       <para>
-        If you have installed the kernel source package, you can find
-        a comprehensive list of all major devices with their minor and
-        major numbers in
-        <filename>/usr/src/linux/Documentation/devices.txt</filename>. An
-        up-to-date list is also available on-line through the Linux
-        Kernel Archives<footnote>
+        Jika Anda sudah menginstall paket sumber kernel, Anda bisa menemukan daftar lengkap dari semua perangkat dengan 
+	angka major dan minornya pada <filename>/usr/src/linux/Documentation/devices.txt</filename>. Sebuah daftar 
+	terbaru juga tersedia secara on-line melalui Arsip Kernel Linux<footnote>
           <para>
             <ulink url="ftp://ftp.kernel.org/pub/linux/docs/device-list/" />
           </para>
@@ -321,77 +269,66 @@ $ <command>file /dev/zero</command>
       </para>
 
       <para>
-        The Linux kernel handles two types of devices:
-        <emphasis>character</emphasis> and <emphasis>block</emphasis>
-        devices. Character devices can be read byte by byte,
-        block devices can not. Block devices are read per block (for example
-        4096 bytes at a time). Whether a device is a character or block device
-        is determined by the nature of the device. For example, most storage
-        media are block devices, and most input devices are character devices.
-        Block devices have one distinctive advantage, namely that they can be
-        cached. This means that commonly read or written blocks are stored in
-        a special area of the system memory, named the cache. Memory is much
-        faster than most storage media, so much performance can be gained
-        by performing common block read and write operations in memory.
-        Of course, eventually changes have to be written to the storage
-        media to reflect the changes that were made in the cache.
+        Kernel Linux menangani dua jenis perangkat: perangkat
+        <emphasis>karakter</emphasis> dan <emphasis>blok</emphasis>. Perangkat karakter dapat membaca per byte, 
+	sedangkan perangkat blok tidak. Perangkat blok membaca per blok (misalnya 4096 byte per satuan waktu). 
+	Sebuah perangkat ditentukan sebagai perangkat blok atau karakter oleh sifat alami dari sebuah perangkat. 
+	Sebagai contoh, sebagian besar media penyimpanan adalah perangkat blok, dan sebagian besar perangkat 
+	masukan adalah perangkat karakter. Perangkat blok memiliki keuntungan terpisah, yaitu mereka dapat disimpan 
+	dalam cache. Ini berarti sebagian besar blok yang dibaca atau ditulis disimpan dalam sebuah area khusus 
+	dari memori sistem, yang bernama cache. Memori jauh lebih cepat dari media penyimpanan secara umum, 
+	sehingga performa bisa ditingkatkan dengan melakukan operasi pembacaan dan penulisan blok pada memori. 
+	Tentu saja, perubahan harus dituliskan pada media penyimpanan untuk merefleksikan perubahan yang dibuat pada cache.
       </para>
     </sect2>
 
     <sect2 id="concepts-devices-atascsi">
-      <title>ATA and SCSI devices</title>
+      <title>Perangkat ATA dan SCSI</title>
 
       <para>
-        There are two kinds of block devices that we are going to look into
-        in detail, because understanding the naming of these devices is
-        crucial for  partitioning a hard disk and mounting. Almost all modern
-        computers with an x86 architecture use ATA hard disks and CD-ROMs.
-        Under Linux these devices are named in the following manner:
+       Terdapat dua jenis perangkat blok yang akan kita lihat lebih detail, karena memahami penamaan dari perangkat 
+       ini sangat penting untuk mempartisi hard disk dan juga melakukan mount. Hampir semua komputer modern 
+       dengan arsitektur x86 menggunakan hard disk dan CD-ROM ATA. Pada Linux, perangkat-perangkat ini diberi nama 
+       sesuai urutannya:
       </para>
 
       <screen>
-/dev/hda - master device on the first ATA channel
-/dev/hdb - slave device on the first ATA channel
-/dev/hdc - master device on the second ATA channel
-/dev/hdd - slave device on the second ATA channel
+/dev/hda - perangkat master pada kanal ATA pertama
+/dev/hdb - perangkat slave pada kanal ATA pertama
+/dev/hdc - perangkat master pada kanal ATA kedua
+/dev/hdd - perangkat slave pada kanal ATA kedua
       </screen>
 
       <para>
-        On most computers with a single hard disk, the hard disk is the master
-        device on the first ATA channel (<filename>/dev/hda</filename>), and
-        the CD-ROM is the master device on the second ATA channel. Hard disk
-        partitions are named after the disk that holds them plus a number.
-        For example, <filename>/dev/hda1</filename> is the first partition
-        of the disk represented by the <filename>/dev/hda</filename>
-        device file.
+        Pada sebagian besar komputer dengan hard disk tunggal, hard disk adalah perangkat master pada kanal ATA 
+	pertama (<filename>/dev/hda</filename>), dan CD-ROM adalah perangkat master untuk kanal ATA kedua. Partisi 
+	hard disk diberi nama sesuai disk yang menampungnya ditambah sebuah angka. Sebagai contoh <filename>/dev/hda1</filename> 
+	adalah partisi pertama dari disk yang direpresentasikan oleh perangkat <filename>/dev/hda</filename>.
       </para>
 
       <para>
-        SCSI hard disks and CD-ROM drives follow an other naming convention.
-        SCSI is not commonly used in most low-end machines, but USB drives
-        and Serial ATA (SATA) drives are also represented as SCSI disks. The
-        following device notation is used for SCSI drives:
+        Hard disk SCSI dan drive CD-ROM mengikuti konvensi penamaan lainnya. SCSI tidak umum dipakai pada mesin biasa, 
+	tetapi perangkat USB dan Serial ATA (SATA) juga direpresentasikan sebagai disk SCSI. Notasi berikut digunakan 
+	untuk perangkat SCSI:
       </para>
 
       <screen>
-/dev/sda - First SCSI disk
-/dev/sdb - Second SCSI disk
-/dev/sdc - Third SCSI disk
-/dev/scd0 - First CD-ROM
-/dev/scd1 - Second CD-ROM
-/dev/scd2 - Third CD-ROM
+/dev/sda - Disk SCSI pertama
+/dev/sdb - Disk SCSI kedua
+/dev/sdc - Disk SCSI ketiga
+/dev/scd0 - CD-ROM pertama
+/dev/scd1 - CD-ROM kedua
+/dev/scd2 - CD-ROM ketiga
       </screen>
 
       <para>
-        Partitions names are constructed in the same way as ATA disks;
-        <filename>/dev/sda1</filename> is the first partition on the first
-        SCSI disk.
+        Nama partisi selalu dibuat dengan cara yang sama dengan disk ATA;
+        <filename>/dev/sda1</filename> adalah partisi pertama pada disk SCSI pertama. 
       </para>
 
       <para>
-        If you use the software RAID implementation of the Linux kernel, RAID
-        volumes are available as <filename>/dev/mdn</filename>, in which
-        <emphasis>n</emphasis> is the volume number starting at 0.
+        Jika Anda menggunakan implementasi perangkat lunak RAID pada kernel Linux, volume RAID tersedia pada <filename>/dev/mdn</filename>, 
+	dimana <emphasis>n</emphasis> adalah nomor volume yang diawali dengan 0.
       </para>
     </sect2>
   </sect1>
