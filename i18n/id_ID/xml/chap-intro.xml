@@ -2,242 +2,228 @@
 
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:id="chap-intro">
-  <title>An introduction to Slackware Linux</title>
+  <title>Perkenalan pada Slackware Linux</title>
 
   <sect1 xml:id="chap-intro-linux">
-    <title>What is Linux?</title>
+    <title>Apa itu Linux?</title>
 
     <para>
-      Linux is a UNIX-like kernel, which is written by Linus Torvalds
-      and other developers. Linux runs on many different
-      architectures, for example on IA32, IA64, Alpha, m68k, SPARC and
-      PowerPC machines. The latest kernel and information about the
-      Linux kernel can be found on the Linux kernel website: <ulink
+      Linux adalah kernel yang bersifat UNIX-like, yang ditulis oleh 
+      Linus Torvalds dan juga para pengembang yang lain. Linux berjalan 
+      pada banyak arsitektur yang berbeda, misalnya pada mesin IA32, IA64, 
+      Alpha, m68k, SPARC dan PowerPC. Kernel terbaru dan juga informasi 
+      tentang kernel Linux dapat ditemukan pada website kernel Linux: <ulink
       url="http://www.kernel.org">http://www.kernel.org</ulink>.
     </para>
 
     <para>
-      The Linux kernel is often confused with the GNU/Linux operating
-      system.  Linux is only a kernel, not a complete operating
-      system. GNU/Linux consists of the GNU operating system with the
-      Linux kernel. The following section gives a more extensive
-      description of GNU/Linux.
+      Kernel Linux seringkali disamakan dengan sistem operasi GNU/Linux. 
+      Linux hanyalah sebuah kernel, bukan sebuah sistem operasi yang 
+      lengkap. GNU/Linux terdiri dari sistem operasi GNU dengan kernel 
+      Linux. Bagian berikut ini memberikan deskripsi yang lebih lengkap 
+      tentang GNU/Linux.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-intro-gnulinux">
-    <title>What is GNU/Linux?</title>
+    <title>Apa itu GNU/Linux?</title>
 
     <para>
-      In 1984 Richard Stallman started an ambitious project with the
-      goal to write a free UNIX-like operating system. The name of
-      this system is <acronym>GNU</acronym>, which is an acronym of
-      <quote>GNU's Not UNIX</quote>.  Around 1990, all major
-      components of the GNU operating system were written, except the
-      kernel. Two years earlier, in 1988, it was decided that the GNU
-      project would use the Mach 3.0 microkernel as the foundation of
-      its kernel.  However, it took until 1991 for Mach 3.0 to be
-      released under a free software license.  In the the same year
-      Linus Torvalds started to fill the kernel gap in the GNU system
-      by writing the Linux kernel. GNU/Linux thus refers to a GNU
-      system running with the Linux kernel.
+      Pada tahun 1984 Richard Stallman memulai sebuah proyek yang 
+      ambisius dengan tujuan yaitu membuat sebuah sistem operasi yang 
+      bersifat UNIX-like dan gratis. Nama dari sistem ini adalah 
+      <acronym>GNU</acronym>, yang merupakan akronim dari
+      <quote>GNU's Not UNIX</quote>.  Sekitar tahun 1990an, sebagian 
+      besar komponen utama dari sistem operasi GNU mulai ditulis, 
+      kecuali kernel. Dua tahun sebelumnya, pada tahun 1988, 
+      sudah ditentukan bahwa proyek GNU akan menggunakan mikro 
+      kernel Mach 3.0 sebagai fondasi dari kernelnya. Namun, 
+      memakan waktu hingga tahun 1991 bagi Mach 3.0 untuk dirilis dibawah 
+      lisensi perangkat lunak bebas. Pada tahun yang sama, Linus 
+      Torvalds memulai mengisi celah pada sistem GNU dengan menuliskan 
+      kernel Linux. GNU/Linux lalu mengacu pada sebuah sistem GNU 
+      yang menjalankan kernel Linux.
     </para>
 
     <para>
-      The GNU kernel, named <quote>HURD</quote> was still under
-      development when this book was written, and is available as the
-      GNU/HURD operating system. There are some other kernels that are
-      ported to the GNU operating system as well. For instance, the
-      Debian project has developed a version of the GNU operating
-      system that works with the NetBSD kernel.
+      Kernel GNU, yang diberi nama <quote>HURD</quote> masih dikembangkan 
+      ketika buku ini sedang ditulis, dan sudah tersedia sebagai sistem 
+      operasi GNU/HURD. Terdapat beberapa kernel lain yang diporting pada 
+      sistem operasi GNU. Sebagai contoh, proyek Debian telah mengembangkan 
+      sebuah versi dari sistem operasi GNU yang bekerja dengan kernel NetBSD.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-intro-slackware">
-    <title>What is Slackware Linux?</title>
+    <title>Apa itu Slackware Linux?</title>
 
     <para>
-      Slackware Linux is a GNU/Linux distribution, which is maintained
-      and developed by Patrick Volkerding. A distribution is a
-      coherent collection of software that provides a usable GNU/Linux
-      system. Volkerding started using GNU/Linux because he needed a
-      LISP interpreter for a project. At the time the dominant
-      GNU/Linux distribution was Softlanding System Linux (SLS
-      Linux). Slackware Linux started out as a private collection of
-      Volkerding's patches for SLS Linux. The first publicly available
-      Slackware Linux release was 1.0, which was released on July 16,
-      1993.
+      Slackware Linux adalah sebuah distribusi GNU/Linux, yang dikelola dan 
+      dikembangkan oleh Patrick Volkerding. Sebuah distribusi adalah koleksi 
+      yang koheren dari perangkat lunak yang menyediakan sistem GNU/Linux yang 
+      dapat digunakan. Volkerding mulai menggunakan GNU/Linux karena memerlukan 
+      sebuah interpreter LISP untuk sebuah proyek. Pada masa itu, distribusi 
+      GNU/Linux yang dominan adalah Softlanding System Linux (SLS Linux). 
+      Slackware Linux dimulai sebagai koleksi pribadi dari hasil perbaikan (patch) yang 
+      dilakukan oleh Volkerding untuk SLS Linux. Versi Slackware Linux pertama 
+      yang tersedia untuk publik adalah rilis 1.0, yang dirilis pada 16 Juli 1993.
     </para>
 
     <para>
-      In contrast to many other GNU/Linux distributions, Slackware
-      Linux adheres to the so-called KISS (Keep It Simple Stupid)
-      principle. This means that Slackware Linux does not have complex
-      graphical tools to configure the system. As a result the
-      learning curve of Slackware Linux can be high for inexperienced
-      GNU/Linux users, but it provides more transparency and
-      flexibility. Besides that you get a deeper understanding of
-      GNU/Linux with no-frills distributions like Slackware Linux.
+      Berbeda dengan kebanyakan distribusi GNU/Linux lainnya, Slackware Linux 
+      mengacu pada prinsip KISS (Keep It Simple Stupid). Hal ini berarti 
+      Slackware Linux tidak memiliki perangkat grafis yang kompleks untuk 
+      mengkonfigurasi sistem. Sebagai hasilnya, kurva pembelajaran dari Slackware 
+      Linux bisa jadi cukup tinggi untuk pengguna GNU/Linux yang belum berpengalaman, 
+      tetapi mampu menyediakan transparansi dan fleksibilitas yang lebih. Selain itu, 
+      Anda juga bisa mendapatkan pemahaman yang lebih dalam tentang GNU/Linux dengan 
+      distribusi seperti Slackware Linux.
     </para>
 
     <para>
-      Another distinguishing aspect of Slackware Linux, that also
-      <quote>complies</quote> with the KISS principle, is the
-      Slackware Linux package manager. Slackware Linux does not have a
-      complex package manager like RPM or dpkg. Packages are normal
-      tgz (tar/gzip) files, often with an additional installation
-      script and a package description file. For novice users tgz is
-      much more powerful than RPM, and avoids dependency
-      problems. Another widely known feature of Slackware Linux is its
-      initialization scripts. In contrast to most other GNU/Linux
-      distributions Slackware Linux does not have a directory for each
-      runlevel with symbolic links to services that have to be started
-      or killed in that runlevel. It uses a simpler approach in which
-      you can enable or disable services by twiddling the executable
-      bit of an initialization script.
+      Aspek lain yang membedakan pada Slackware Linux, yang juga
+      <quote>sesuai</quote> dengan prinsip KISS, adalah pengelola paket Slackware 
+      Linux. Slackware Linux tidak memiliki manajamen paket yang kompleks seperti 
+      RPM atau dpkg. Paket adalah berkas tgz (tar/gzip) normal, seringkali dengan 
+      tambahan script installasi dan juga berkas deskripsi. Untuk pengguna awam, 
+      tgz jauh lebih handal dibandingkan RPM, dan menghindari masalah ketergantungan. 
+      Fitur lain dari Slackware Linux yang cukup dikenal adalah script inisialisasinya. 
+      Berbeda dengan kebanyakan distribusi GNU/Linux lainnya, Slackware Linux tidak 
+      memiliki sebuah direktori untuk setiap runlevel dengan link simbolik pada layanan 
+      yang harus dijalankan atau dihentikan pada runlevel tersebut. Slackware Linux 
+      menggunakan pendekatan yang lebih sederhana, dimana Anda bisa mengaktifkan atau 
+      menonaktifkan layanan dengan memainkan bit executable dari script inisialisasi.
     </para>
 
     <para>
-      The packages in Slackware Linux are compiled with as little
-      modifications as possible. This means you can use most general
-      GNU/Linux documentation.
+      Paket-paket pada Slackware Linux dikompilasi dengan modifikasi sesedikit mungkin.
+      Hal ini berarti Anda bisa menggunakan sebagian besar dokumentasi GNU/Linux pada umumnya.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-intro-unix">
-    <title>The UNIX philosophy</title>
+    <title>Filosofi UNIX</title>
 
     <para>
-      Since GNU/Linux is a free reimplementation of the UNIX operating
-      system, it is a good idea to look at the philosophy that made
-      UNIX widely loved.  Doug McIlroy summarized the UNIX philosophy
-      in three simple rules:
+      Karena GNU/Linux adalah implementasi ulang yang bebas dari sistem operasi UNIX, 
+      disarankan untuk melihat filosofi yang membuat UNIX banyak digunakan. Doug McIlroy 
+      meringkas filosofi UNIX dalam tiga aturan sederhana:
     </para>
 
     <itemizedlist>
       <listitem>
         <para>
-          Write programs that do one thing and do it well.
+         Menulis program yang melakukakan satu hal dan melakukannya dengan baik. 
         </para>
       </listitem>
       <listitem>
         <para>
-          Write programs to work together.
+          Menulis program untuk bekerja bersama-sama.
         </para>
       </listitem>
       <listitem>
         <para>
-          Write programs to handle text streams, because that is a
-          universal interface.
+          Menulis program untuk menangani aliran teks, karena merupakan antarmuka yang universal. 
         </para>
       </listitem>
     </itemizedlist>
 
     <para>
-      Odds are that you do not intend to write programs for
-      GNU/Linux. However, even as a user these basic UNIX rules can
-      mean a lot to you. Once you get to know the essential commands
-      that have been part of UNIX for many years, you will be able to
-      combine simple programs to solve complex problems. Keep this in
-      mind while you learn Slackware Linux; try to get a feeling for
-      how you can divide complex tasks in simple combined operations.
+      Sangatlah aneh jika Anda tidak berniat untuk menulis program untuk GNU/Linux. Namun, 
+      meskipun sebagai pengguna, aturan dasar UNIX ini sangatlah berarti bagi Anda. Setelah 
+      Anda mampu mengetahui perintah dasar yang merupakan bagian dari UNIX selama beberapa 
+      tahun, Anda akan mampu mengkombinasikan beberapa program sederhana untuk menyelesaikan 
+      masalah kompleks. Simpan hal ini dalam pikiran Anda selama Anda mempelajari Slackware 
+      Linux; cobalah untuk mendapatkan gambarang tentang bagaimana Anda bisa membagi tugas 
+      yang kompleks menjadi operasi sederhana yang dikombinasikan.
     </para>
   </sect1>
 
   <sect1 xml:id="free-software">
-    <title>Free and open source software</title>
+    <title>Perangkat Lunak Bebas dan open source</title>
 
     <para>
-      Most packages in Slackware Linux are published under a free
-      software or open source license. Under these licenses software
-      may be used, studied, changed and distributed
-      freely. Practically, this means that the software is available
-      and redistributable in source and binary form. Although the free
-      software and open source software movements share many licenses
-      and principles, there are subtle differences between both
-      movements. The open source movement tends to focus on the
-      economic and technical advantages of sharing source code, while
-      the free software movement puts accent on the ethical side of
-      providing sources and binaries freely. As the GNU website puts
-      it: <quote>Free software is a matter of liberty, not price.  To
-      understand the concept, you should think of free as in free
-      speech, not as in free beer.<footnote>
+      Sebagian besar paket-paket pada Slackware Linux dipublikasikan pada lisensi perangkat 
+      lunak bebas atau open source. Pada lisensi semacam ini, perangkat lunak dapat digunakan, 
+      dipelajari, diubah, dan didistribusikan secara bebas. Secara umum, hal ini berarti 
+      perangkat lunak tersedia dan dapat didistribusikan dalam bentuk kode sumber dan juga 
+      biner. Meskipun pergerakan perangkat lunak bebas dan open source berbagi banyak lisensi 
+      dan prinsip, terdapat sedikit perbedaan antara kedua pergerakan ini. Pergerakan open 
+      source lebih cenderung untuk berfokus pada keuntungan ekonomis dan teknis dari adanya 
+      penggunaan bersama dari kode sumber, sedangkan pergerakan perangkat lunak bebas menekankan 
+      pada sisi etika dari penyediaan kode sumber dan biner secara bebas. Seperti yang ditulis 
+      pada website GNU: <quote>Free software is a matter of liberty, not price. To
+      understand the concept, you should think of free as in free speech, not as in free beer.<footnote>
       <para>
 	<ulink url="http://www.gnu.org/philosophy/free-sw.html" />
       </para>
     </footnote></quote>
 
-      In the spirit of free and open source software the source code
-      of almost all packages is included in the official Slackware
-      Linux CD set or DVD.
+      Dengan semangan software bebas dan open source, kode sumber dari hampir semua paket-paket 
+      disertakan pada CD atau DVD set resmi Slackware Linux.
     </para>
   </sect1>
 
   <sect1 xml:id="slackware-features">
-    <title>Slackware Linux 12.0 features</title>
+    <title>Fitur Slackware Linux 12.0</title>
 
     <para>
       <itemizedlist>
 	<listitem>
 	  <para>
 	    <emphasis role="bold">Linux 2.6.21.5</emphasis> -
-	    Slackware Linux uses as modern high-performance Linux
-	    kernel. The kernel includes support for all modern disk
-	    controllers, LVM, Software RAID, encrypted disks, and
-	    multiple processors/cores. By default,
-	    <emphasis>udev</emphasis> is enabled for automatic
-	    management of device nodes.
+	    Slackware Linux menggunakan kernel Linux yang modern dan memiliki performa tinggi. 
+	    Kernel menyertakan dukungan untuk semua kontroller disk modern, LVM, Perangkat Lunak 
+	    RAID, disk terenkripsi, dan banyak prosessor/core. Secara default,
+	    <emphasis>udev</emphasis> diaktifkan untuk manajemen otomatis dari node perangkat. 
           </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    <emphasis role="bold">HAL</emphasis> - the HAL (Hardware
-	    Abstraction Layer) is now included too. This provides a
-	    uniform API for desktop applications to use hardware.  It
-	    makes automatic mounting of disks and CDs considerably
-	    easier under Xfce and KDE.
+	    <emphasis role="bold">HAL</emphasis> - HAL (Hardware
+	    Abstraction Layer) juga sudah disertakan. Perangkat lunak ini menyediakan API 
+	    yang seragam untuk aplikasi desktop untuk menggunakan perangkat keras. Hal 
+	    ini menyebabkan proses mount secara otomatis terhadap disk dan CD menjadi 
+	    lebih mudah pada Xfce dan KDE.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-            <emphasis role="bold">X11 7.2.0</emphasis> - This is the
-            first version of Slackware Linux to use modular X.  This
-            means that the X11 components are separated in many small
-            packages for easier maintenance and lighter weight
-            upgrades.
+            <emphasis role="bold">X11 7.2.0</emphasis> - Ini merupakan versi pertama dari 
+	    Slackware Linux yang menggunakan X secara modular. Hal ini berarti bahwa 
+	    komponen X11 terpisah-pisah dalam banyak paket-paket kecil untuk perawatan 
+	    yang lebih mudah serta proses upgrade yang lebih ringan.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">GCC 4.1.2</emphasis> - Slackware
-            Linux 12.0 includes a completely revised toolchain based
-            on the GNU Compiler Collection 4.1.2. GCC provides C, C++,
-            Objective-C, Fortran-77/95, and Ada 95
-            compilers. Additionally, version 2.5 of the GNU C library is
-            used.
+            <emphasis role="bold">GCC 4.1.2</emphasis> - Slackware Linux 12.0 menyertakan 
+	    perangkat pengembangan yang sepenuhnya direvisi berbasis pada GNU Compiler 
+	    Collection 4.1.2. GCC menyediakan kompiler untuk C, C++, Objective-C, 
+	    Fortran-77/95, dan Ada 95. Sebagai tambahan, pustaka GNU C versi 2.5 juga 
+	    sudah digunakan.
           </para>
         </listitem>
 	<listitem>
 	  <para>
-	    <emphasis role="bold">Apache 2.2.4</emphasis> - Apache was
-	    upgraded to a new major version. Apache 2.x is a
-	    substantial rewrite of the old 1.3.x series.
+	    <emphasis role="bold">Apache 2.2.4</emphasis> - Apache diupgrade pada 
+	    versi major yang baru. Apache 2.x adalah bentuk penulisan ulang yang cukup 
+	    signifikan dari seri 1.3.x. 
 	  </para>
 	</listitem>
         <listitem>
           <para>
-            <emphasis role="bold">The K Desktop Environment (KDE)
-            3.5.7</emphasis> - The full KDE environment is provided,
-            which includes KOffice, the Konqueror web browser,
-            multimedia programs, development tools, and many more
-            useful applications.
+            <emphasis role="bold">K Desktop Environment (KDE)
+            3.5.7</emphasis> - Lingkungan KDE yang penuh disertakan, termasuk KOffice, 
+	    browser web Konqueror, program multimedia, perangkat pengembangan, dan 
+	    masih banyak aplikasi lain yang berguna.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">Xfce 4.4.1</emphasis> - Xfce is a
-            lightweight desktop environment based on GTK2. It embodies
-            the UNIX spirit of modularity and reusability.
+            <emphasis role="bold">Xfce 4.4.1</emphasis> - Xfce adalah lingkungan 
+	    desktop yang ringan dan berbasis pada GTK2. Aplikasi ini menerapkan semangat 
+	    dari UNIX yaitu modularitas dan reusabilitas.
           </para>
         </listitem>
       </itemizedlist>
@@ -245,28 +231,24 @@
   </sect1>
 
   <sect1 xml:id="chap-intro-getting">
-    <title>Getting Slackware Linux</title>
+    <title>Mendapatkan Slackware Linux</title>
 
     <para>
-      Slackware Linux is freely downloadable from the official
-      Slackware Linux mirrors. The list of Slackware mirrors is
-      available at <ulink url="http://www.slackware.com/getslack/" />.
+      Slackware Linux dapat di-download secara bebas dari mirror Slackware Linux yang 
+      resmi. Daftar dari mirror Slackware Linux tersedia pada <ulink url="http://www.slackware.com/getslack/" />.
     </para>
 
     <para>
-      You can also order Slackware Linux as a CD set or DVD from the
-      Slackware Store.  Many Internet shops also provide Slackware
-      Linux cheaply on CD-ROM or DVD, but you are only supporting
-      Slackware Linux financially if you buy an official CD set or
-      DVD. The Slackware Store also offers Slackware Linux
-      subscriptions.  A subscriber automatically receives new
-      Slackware Linux releases at a reduced price.
+      Anda juga bisa memesan Slackware Linux sebagai sebuah CD atau DVD dari Slackware Store. Banyak toko 
+      di Internet yang juga menawarkan Slackware Linux secara murah pada CD-ROM atau DVD, tetapi Anda akan 
+      membantu mendukung Slackware Linux secara finansial jika Anda membeli CD atau DVD set resmi Slackware 
+      Linux. Slackware Store juga menawarkan layanan Slackware Linux. Seorang pelanggan akan secara otomatis 
+      menerima rilis Slackware Linux yang baru dengan harga yang lebih murah.
     </para>
 
     <para>
-      If you would like to have more information about purchasing
-      Slackware Linux, visit the Slackware Store website at <ulink
-      url="http://store.slackware.com/" />.
+      Jika Anda hendak mendapatkan informasi lebih banyak tentang pembelian Slackware Linux, kunjungi 
+      situs Slackware Store pada  <ulink url="http://store.slackware.com/" />.
     </para>
   </sect1>
 </chapter>
