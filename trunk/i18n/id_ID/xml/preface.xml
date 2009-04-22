@@ -1,35 +1,37 @@
 <preface xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xmlns:xl="http://www.w3.org/1999/xlink"
 	 xml:lang="id" xml:id="preface">
-  <title>Preface</title>
+  <title>Pengantar</title>
 
   <para>
-    This book aims to provide an introduction to Slackware Linux. It
-    addresses people who have little or no GNU/Linux experience, and
-    covers the Slackware Linux installation, basic GNU/Linux commands
-    and the configuration of Slackware Linux. After reading this book,
-    you should be prepared to use Slackware Linux for your daily work,
-    and more than that. Hopefully this book is useful as a reference
-    to more experienced Slackware Linux users as well.
+    Buku ini bertujuan untuk menyediakan sebuah pengantar pada Slackware 
+    Linux. Buku ini berfokus pada orang yang tidak memiliki atau memiliki 
+    sedikit pengetahuan tentang GNU/Linux, dan membahas installasi 
+    Slackware Linux, perintah GNU/Linux dasar, dan juga konfigurasi 
+    Slackware Linux. Setelah membaca buku ini, Anda seharusnya siap untuk 
+    menggunakan Slackware Linux untuk pekerjaan sehari-hari Anda, dan 
+    lebih dari itu. Semoga buku ini juga bisa berguna sebagai sebuah 
+    referensi bagi pengguna Slackware Linux tingkat lanjut.
   </para>
 
   <para>
-    Thanks to the rapid development of open source software, there are
-    now comprehensive desktop environments and applications for
-    GNU/Linux. Most current distributions and books focus on using
-    GNU/Linux with such environments. I chose to ignore most of the
-    graphical applications for this book, and tried to focus this book
-    on helping you, as a reader, to learn using GNU/Linux in a more
-    traditional UNIX-like way. I am convinced that this approach is
-    often more powerful, and helps you to learn GNU/Linux well, and
-    not just one distribution or desktop environment. The UNIX
-    philosophy is described in <link xl:href="#chap-intro-unix">the
-    overview of UNIX philosophy</link>
+    Terima kasih kepada pengembangan yang sangat cepat dari perangkat 
+    lunak open source, sekarang terdapat lingkungan desktop dan 
+    aplikasi yang komprehensif untuk GNU/Linux. Sebagian besar 
+    distribusi dan buku berfokus pada penggunaan GNU/Linux dengan 
+    lingkungan tersebut. Saya memilih untuk mengabaikan sebagian besar 
+    dari aplikasi grafis untuk buku ini, dan mencoba untuk memfokuskan 
+    buku ini untuk membantu Anda, sebagai seorang pembaca, untuk 
+    mempelajari menggunakan GNU/Linux pada cara yang lebih tradisional 
+    (Unix-like). Saya yakin pendekatan ini lebih handal, dan membantu 
+    Anda mempelajari GNU/Linux dengan baik, dan tidak hanya satu 
+    distribusi atau lingkungan desktop. Filosofi UNIX dijelaskan 
+    pada <link xl:href="#chap-intro-unix">Gambaran filosofi UNIX</link>
   </para>
 
   <para>
-    I wish everybody a good time with Slackware Linux, and I hope that
-    you will find this book is useful for you.
+    Saya berharap setiap orang menikmati waktunya dengan Slackware 
+    Linux, dan saya berharap buku ini akan berguna untuk Anda. 
   </para>
 
   <para>

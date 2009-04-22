@@ -3,53 +3,52 @@
          xmlns:xl="http://www.w3.org/1999/xlink"
          xml:lang="id"
          xml:id="chap-help">
-  <title>Sources of help</title>
+  <title>Sumber-sumber bantuan</title>
 
   <para>
-    There is a wealth of information available about many subjects
-    related to GNU/Linux. Most general documentation applies to
-    Slackware Linux, because the software in the distribution has been
-    compiled from source code that has been altered as little as
-    possible. This chapter provides some pointers to information and
-    documentation that can be found on an installed Slackware Linux
-    system, and on the Internet.
+    Terdapat banyak sekali informasi yang tersedia tentang banyak 
+    hal yang berhubungan dengan GNU/Linux. Sebagian besar 
+    dokumentasi berlaku pada Slackware Linux, karena perangkat 
+    lunak pada distribusi ini sudah dikompilasi dari kode sumber 
+    yang dimodifikasi sesedikit mungkin. Bab ini menyediakan beberapa 
+    petunjuk pada informasi dan dokumentasi yang dapat ditemukan sistem 
+    yang terinstall Slackware Linux, dan pada Internet.
   </para>
 
   <sect1 xml:id="chap-help-system">
-    <title>On your system</title>
+    <title>Pada sistem Anda</title>
 
     <sect2 xml:id="chap-help-system-howtos">
-      <title>Linux HOWTO's</title>
+      <title>Linux HOWTO</title>
 
       <para>
-        The Linux HOWTOs are a collection of documents which cover
-        specific subjects related to GNU/Linux. Most Linux HOWTOs are
-        not tailored to a specific distribution, therefore they are
-        very useful for Slackware Linux users. The
-        <emphasis>linux-howtos</emphasis> package in the
-        <quote>f</quote> software set contains the HOWTO
-        collection. After installing this package the HOWTOs are
-        available from the <filename>/usr/doc/Linux-HOWTOs/</filename>
-        directory. Slackware Linux also contains a small collection of
-        Linux-related <acronym>FAQs</acronym> (FAQs are documents that
-        answer Frequently Asked Questions). The Linux FAQs are
-        installed to the <filename>/usr/doc/Linux-FAQs/</filename>
-        directory, and are available from the
-        <emphasis>linux-faqs</emphasis> package, which is also part of
-        the <quote>f</quote> software set.
+        Linux HOWTO adalah koleksi dari dokumen yang membahas subyek 
+	spesifik yang berhubungan dengan GNU/Linux. Sebagian besar 
+	Linux HOWTO tidak dibuat untuk distribusi tertentu, sehingga 
+	sangat berguna bagi pengguna Slackware Linux. Paket
+        <emphasis>linux-howtos</emphasis> pada set perangkat lunak
+        <quote>f</quote> berisi koleksi HOWTO. Setelah menginstall 
+	paket ini, maka HOWTO akan dapat tersedia pada direktori 
+	<filename>/usr/doc/Linux-HOWTOs/</filename>. Slackware Linux 
+	juga berisi sekumpulan koleksi <acronym>FAQs</acronym> 
+	yang berhubungan dengan Linux (FAQ adalah dokumen yang menjawab 
+	Frequently Asked Questions - Pertanyaan yang Sering Diajukan). 
+	Linux FAQ terinstall pada direktori<filename>/usr/doc/Linux-FAQs/</filename>, 
+	dan tersedia dari paket <emphasis>linux-faqs</emphasis>yang 
+	juga bagian dari set <quote>f</quote>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-help-system-manpages">
-      <title>Manual pages</title>
+      <title>Halaman manual</title>
 
       <para>
-        Most UNIX-like commands are covered by a traditional UNIX help
-        system called the <emphasis>manual pages</emphasis>. You can
-        read the manual page of a program with the
-        <command>man</command> command. Executing
-        <command>man</command> with the name of a command as an
-        argument shows the manual page for that command. For instance,
+        Sebagian besar perintah UNIX-like dibahas pada sistem bantuan 
+	tradisional UNIX yang disebut <emphasis>halaman manual</emphasis>. Anda 
+	bisa membaca halaman manual sebuah program dengan perintah
+        <command>man</command>. Mengeksekusi 
+        <command>man</command> dengan nama sebuah perintah sebagai argumen 
+	akan menampilkan halaman manual untuk perintah tersebut. Sebagai contoh,
       </para>
 
       <screen>
@@ -57,14 +56,14 @@ $ <userinput>man ls</userinput>
       </screen>
 
       <para>
-	shows the manual page of the <command>ls</command> command.
+	menampilkan halaman manual dari perintah <command>ls</command>.
       </para>
 
       <para>
-	If you do not know the exact name of a manual page or command,
-	you can search through the manual pages with a keyword. The
-	<parameter class="command">-k</parameter> option is provided
-	to make use of this facility:
+	Jika Anda tidak tahu nama pasti dari sebuah halaman manual atau 
+	perintah, Anda bisa mencari halaman manual dengan kata kunci. Opsi
+	<parameter class="command">-k</parameter> disediakan untuk 
+	menggunakan fasilitas ini: 
       </para>
 
       <screen>
@@ -75,30 +74,29 @@ rmdir                (2)  - delete a directory
       </screen>
 
       <para>
-        The manual page collection is very extensive, and covers more
-        subjects than just commands. The following sections of manual
-        pages are available:
+        Koleksi halaman manual sangatlah banyak, dan membahas lebih 
+	banyak subyek dibandingkan perintah. Berikut ini bagian 
+	dari halaman manual:
       </para>
 
       <literallayout>
-1   Executable programs or shell commands
-2   System calls (functions provided by the kernel)
-3   Library calls (functions within program libraries)
-4   Special files (usually found in /dev)
-5   File formats and conventions eg /etc/passwd
-6   Games
-7   Miscellaneous  (including  macro  packages and conven-
-    tions), e.g. man(7), groff(7)
-8   System administration commands (usually only for root)
-9   Linux routines [Non standard]
+1   Program yang dapat dieksekusi atau perintah shell
+2   System call (fungsi yang disediakan oleh kernel)
+3   Library call (fungsi didalam pustaka program)
+4   Berkas khusus (biasanya ditemukan pada /dev)
+5   Format berkas dan konvensi, misalnya /etc/passwd
+6   Permainan
+7   Lain-lain (termasuk paket makro dan konvensi), misalnya man(7), groff(7)
+8   Perintah administrasi sistem (biasanya untuk root)
+9   Rutin Linux [tidak baku]
       </literallayout>
 
       <para>
-        If there is more than one section that has a manual page with
-        a specific name, as with for instance
-        <command>rmdir</command>, you can choose what page you want to
-        see by adding the section number of the manual page before the
-        manual page name. For example:
+       Jika terdapat lebih dari satu bagian yang memiliki halaman 
+       manual dengan nama tertentu, seperti contoh
+        <command>rmdir</command>, Anda bisa memilih halaman yang Anda 
+	inginkan dengan menambahkan nomor bagian dari halaman 
+	manual sebelum nama halaman manual. Sebagai contoh: 
       </para>
 
       <screen>
@@ -106,14 +104,14 @@ rmdir                (2)  - delete a directory
       </screen>
 
       <para>
-        If you would like to print a manual page to a printer that you
-        have set up, you can pipe the output of <command>man</command>
-        to the <command>lpr</command> command. When the <parameter
-        class="command">-t</parameter> option of the
-        <command>man</command> command is used, <command>man</command>
-        will output the manual page in Postscript format, rather than
-        ASCII. For example, you can use the following command to print
-        the <command>cat</command> manual page:
+        Jika Anda hendak mencetak halaman manual pada printer yang 
+	telah Anda setting, Anda bisa mengirimkan hasil keluaran pipe dari <command>man</command>
+        ke perintah <command>lpr</command>. Ketika opsi <parameter
+        class="command">-t</parameter> dari 
+        <command>man</command> digunakan, <command>man</command>
+       akan menghasilkan halaman manual dalam format Postscript, dan 
+       bukan ASCII. Sebagai contoh, Anda bisa menggunakan perintah berikut 
+       untuk mencetak halaman manual<command>cat</command>:
       </para>
 
       <screen>
@@ -123,68 +121,62 @@ $ <userinput>man -t cat | lpr</userinput>
   </sect1>
 
   <sect1 xml:id="chap-help-internet">
-    <title>On the Internet</title>
+    <title>Di Internet</title>
 
     <para>
-      There are many websites and forums related to GNU/Linux and
-      Slackware Linux on the Internet. But many sites often disappear
-      as fast as they appeared, and the information on many web sites
-      is fragmentary. The following resources have been around for a
-      longer time, and provide good content.
+      Terdapat banyak sekali situs dan forum yang berhubungan dengan GNU/Linux 
+      dan Slackware Linux di Internet. Tetapi banyak situs seringkali menghilang 
+      secepat kehadirannya, dan informasi pada banyak situs menjadi terfragmentasi. 
+      Sumber-sumber berikut sudah ada cukup lama dan menyediakan isi yang bagus.
     </para>
 
     <sect2 xml:id="chap-help-internet-slacksite">
-      <title>The Slackware Linux website</title>
+      <title>Website Slackware Linux</title>
 
       <para>
-        The Slackware Linux website may be a bit outdated at times,
-        but it provides many useful resources:
+        Website Slackware Linux mungkin cukup ketinggalan, tetapi menyediakan 
+	banyak sumber yang berguna: 
       </para>
 
       <itemizedlist>
 	<listitem>
 	  <para>
-            A news page that announces new releases and lists other
-            important news that is relevant to Slackware Linux.
+            Halaman berita yang mengumumkan rilis baru dan menampilkan berita 
+	    penting lain yang relevan terhadap Slackware Linux.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-            An overview of the changes to the distribution is provided
-            in a structured format called a
-            <emphasis>ChangeLog</emphasis>. ChangeLogs are provided
-            for the current development version, as well as the latest
-            stable release.
+            Gambaran dari perubahan pada distribusi disediakan pada format 
+	    yang terstruktur yang disebut <emphasis>ChangeLog</emphasis>. ChangeLog 
+	    disediakan untuk versi pengembangan (current) dan juga rilis stabil terbaru. 
           </para>
         </listitem>
         <listitem>
           <para>
-            There are two mailing lists to which you can
-            subscribe. The <emphasis>slackware-announce</emphasis>
-            list is used to announce new Slackware Linux releases, and
-            security updates are announced on the
-            <emphasis>slackware-security</emphasis> list.
+            Terdapat dua mailing list yang dapat Anda gunakan. Mailing list 
+	    <emphasis>slackware-announce</emphasis> digunakan untuk mengumumkan rilis 
+	    Slackware Linux baru, dan update keamanan diumumkan pada 
+            <emphasis>slackware-security</emphasis>.
           </para>
         </listitem>
         <listitem>
           <para>
-            A list of mirrors where you can download Slackware
-            Linux. The mirrors are indexed per country. Additional
-            information such as the download protocols the mirrors
-            support, and the speed of the mirrors is also included.
+           Sejumlah mirror dimana Anda bisa mendownload Slackware Linux. Mirror di
+	   perluas per negara. Informasi tambahan seperti protokol download yang 
+	   didukung mirror, dan kecepatan mirror juga disertakan.
           </para>
         </listitem>
         <listitem>
           <para>
-            Documentation of various kinds, including a list of
-            frequently asked questions and the <emphasis>Slackware
-            Linux Essentials</emphasis> book.
+            Dokumentasi dari berbagai jenis, termasuk daftar pertanyaan yang sering 
+	    diajukan, dan juga buku  <emphasis>Slackware Linux Essentials</emphasis>.
           </para>
         </listitem>
       </itemizedlist>
 
       <para>
-	The Slackware Linux website is available at:
+	Situs Slackware Linux tersedia pada :
 	<link xl:href="http://www.slackware.com/" />
       </para>
     </sect2>
@@ -193,11 +185,10 @@ $ <userinput>man -t cat | lpr</userinput>
       <title>LinuxQuestions</title>
 
       <para>
-        LinuxQuestions is a large GNU/Linux forum with many helpful
-        members.  Particularly interesting is the Slackware Linux
-        subforum, where you can seek assistance to help you with
-        problems that you may have with Slackware Linux. The
-        LinuxQuestions forum is available at: 
+        LinuxQuestions adalah forum GNU/Linux yang besar dengan banyak anggota yang 
+	bisa membantu. Yang menarik adalah sub forum Slackware Linux, dimana Anda 
+	bisa meminta bantuan untuk membantu Anda dengan masalah yang Anda hadapi dengan 
+	Slackware Linux. Forum LinuxQuestions tersedia pada :
 	<link xl:href="http://www.linuxquestions.org/" />
       </para>
     </sect2>
@@ -206,13 +197,12 @@ $ <userinput>man -t cat | lpr</userinput>
       <title>alt.os.linux.slackware</title>
 
       <para>
-        <emphasis>alt.os.linux.slackware</emphasis> is a Slackware
-        Linux newsgroup. You can read newsgroups with a newsreader
-        like tin or slrn, through the newsgroup server of your
-        Internet service provider. On this newsgroup it is expected
-        that you have read all necessary documentation before posting
-        questions. If you have not done that, the chance of getting
-        <quote>flamed</quote> is large.
+        <emphasis>alt.os.linux.slackware</emphasis> adalah newsgroup Slackware Linux. 
+	Anda bisa membaca newsgroups dengan newsreader seperti tin atau slrn, melalui 
+	server newsgroup dari penyedia layanan Internet Anda. Pada newsgroup ini, 
+	Anda diharapkan sudah membaca semua dokumentasi yang diperlukan sebelum 
+	mengirimkan pertanyaan. Jika Anda belum melakukannya, peluang untuk mendapatkan
+        <quote>flamed</quote> cukup besar.
       </para>
     </sect2>
   </sect1>
