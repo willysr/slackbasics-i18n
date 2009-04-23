@@ -353,7 +353,7 @@ EOF</command>
       </screen>
 
       <para>
-	You may wat to make a backup of the old
+	You may want to make a backup of the old
 	<filename>rc.inet1.conf</filename> file first, because it
 	contains many useful comments. Or you can use
 	<command>sed</command> to change this specific option:
