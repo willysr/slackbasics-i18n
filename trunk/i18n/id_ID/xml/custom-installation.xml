@@ -120,19 +120,15 @@ EOF</command>
     </screen>
 
     <para>
-      Using NFS as the installation medium requires some more steps.
-      First of all, you will have to load the network disk.
-      You can do this by running the <command>network</command>
-      command and inserting a network disk. You can also load
-      this disk from another medium, for example from an USB memory stick.
-      Suppose that you have mounted a USB memory stick on /var/log/mount,
-      you can load the network disk with: <command>network
-      /var/log/mount/network.dsk</command>. After loading the network
-      disk, you will have to configure the network interface. If the
-      NFS server is on the same network, you will only have to assign
-      an IP address to the network interface. For example, to use
-      the address <emphasis>192.168.2.201</emphasis>, you could execute
-      the following command:
+      Menggunakan NFS sebagai media installasi membutuhkan beberapa langkah tambahan.
+      Pertama, Anda harus memuat disk jaringan. Anda bisa melakukannya dengan menjalankan 
+      perintah <command>network</command> dan memasukkan disk jaringan. Anda bisa memuat disk ini 
+      dari media lain, misalnya dari memori USB. Misalnya Anda telah melakukan mount dari memori USB
+      pada /var/log/mount, Anda bisa memuat disk jaringan dengan: <command>network
+      /var/log/mount/network.dsk</command>. Setelah memuat disk jaringan, Anda harus mengkonfigurasi
+      antarmuka jaringan. Jika server NFS berada pada jaringan yang sama, Anda hanya perlu memberikan
+      alamat IP pada antarmuka jaringan. Misalnya, untuk menggunakan alamat  <emphasis>192.168.2.201</emphasis>, 
+      Anda bisa menjalankan perintah berikut:
     </para>
 
     <screen>
@@ -140,8 +136,7 @@ EOF</command>
     </screen>
 
     <para>
-      You can then load the portmapper, which is necessary for the
-      NFS client to function correctly:
+      Anda bisa memuat portmapper, yang diperlukan agar klien NFS bisa bekerja dengan benar:
     </para>
 
     <screen>
@@ -149,14 +144,11 @@ EOF</command>
     </screen>
 
     <para>
-      If the portmapper started correctly, you can mount the
-      NFS volume. But, first make sure that you unmount any filesystem
-      that you have previously mounted at <filename>/var/log/mount</filename>.
-      If no other filesystems are mounted at
-      <filename>/var/log/mount</filename>, you can proceed with mounting
-      the NFS volume. Suppose, that you want to mount
-      <emphasis>192.168.2.1:/home/pub/slackware-current</emphasis>,
-      you should issue the following command:
+      Jika portmapper berjalan dengan baik, Anda bisa melakukan mount terhadap isi NFS. Tetapi, pastikan Anda sudah 
+      melakukan unmount semua sistem berkas yang Anda mount pada <filename>/var/log/mount</filename>. Jika tidak 
+      ada sistem berkas lain yang di-mount pada <filename>/var/log/mount</filename>, Anda bisa melanjutkan dengan 
+      me-mount isi NFS. Misalnya Anda hendak me-mount <emphasis>192.168.2.1:/home/pub/slackware-current</emphasis>,
+      Anda harus menjalankan perintah berikut:
     </para>
 
     <screen>
@@ -164,8 +156,7 @@ EOF</command>
     </screen>
 
     <para>
-      If no errors where printed when the volume was mounted, it should be
-      accessible through <filename>/var/log/mount</filename>
+      Jika tidak ada kesalahan yang dicetak ketika isi di-mount, maka isi akan dapat diakses melalui <filename>/var/log/mount</filename>
     </para>
   </sect1>
 
@@ -187,13 +178,11 @@ EOF</command>
     </screen>
 
     <para>
-      If you have created tagfiles to define which packages should be
-      installed, then you can use them now (tagfiles are described
-      in <xref linkend="chap-pkgmgmt-tagfiles" />). Suppose that you have
-      stored a tagfile for each disk set in
-      <filename>/usr/share/tagfiles/small-desktop</filename>, you
-      can install packages based on the tagfiles in the following
-      manner:
+      Jika Anda telah membuat berkas tag untuk mendefinisikan paket-paket mana yang 
+      harus diinstall, maka Anda bisa menggunakannya sekarang (berkas tag dijelaskan pada 
+      <xref linkend="chap-pkgmgmt-tagfiles" />). Misalkan Anda telah menyimpan berkas tag 
+      untuk setiap set disk pada <filename>/usr/share/tagfiles/small-desktop</filename>, 
+      Anda bisa menginstall paket-paket berdasarkan berkas tag dengan cara berikut:
     </para>
 
     <screen>
