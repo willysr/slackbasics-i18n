@@ -1,80 +1,72 @@
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:id="chap-install">
-  <title>Installing Slackware Linux</title>
+  <title>Menginstall Slackware Linux</title>
 
   <sect1 xml:id="chap-install-bootcd">
-    <title>Booting the installation CD-ROM</title>
+    <title>Boot CD-ROM Installasi</title>
 
     <para>
-      The easiest method for booting the installation system is by
-      using the installation CD-ROM. The Slackware Linux installation
-      CD-ROM is a bootable CD, which means that the BIOS can boot the
-      CD, just like it can boot, for example, a floppy disk. Most
-      modern systems have a BIOS which supports CD-ROM booting.
+      Metode termudah untuk boot sistem installasi dengan menggunakan CD-ROM
+      installasi. CD-ROM installasi Slackware Linux adalah CD yang bersifat
+bootable,      yang berarti BIOS dapat boot dari CD, seperti ia dapat melakukan
+boot dengan      sendirinya, sebagai contoh dari disket. Sebagian besar sistem
+modern memiliki      BIOS yang mendukung boot dari CD-ROM.
     </para>
 
     <para>
-      If the CD is not booted when you have the CD inserted in the
-      CD-ROM drive during the system boot, the boot sequence is
-      probably not correctly configured in the BIOS. Enter the BIOS
-      setup (usually this can be done by holding the &lt;Del&gt; or
-      &lt;Esc&gt; key when the BIOS screen appears) and make sure the
-      CD-ROM is on the top of the list in the boot sequence.  If you
-      are using a SCSI CD-ROM you may have to set the boot sequence in
-      the SCSI BIOS instead of the system BIOS. Consult the SCSI card
-      manual for more information.
+      Jika CD tidak di-boot ketika Anda sudah memasukkan CD pada drive CD-ROM
+      selama boot sistem, maka urutan boot mungkin tidak benar pada BIOS. Masuk pada
+      BIOS (biasanya dengan menekan tombol &lt;Del&gt; atau &lt;Esc&gt; ketika layar BIOS muncul)
+      dan pastikan CD-ROM berada di daftar yang paling atas dari urutan boot. Jika
+      Anda menggunakan CD-ROM SCSI, Anda mungkin harus menentukan urutan boot pada
+      BIOS SCSI dan bukan pada BIOS sistem. Lihat manual kartu SCSI untuk informasi
+      lebih lanjut.
     </para> 
 
     <para>
-      When the CD-ROM is booted, a pre-boot screen will
-      appear. Normally you can just press &lt;ENTER&gt; to proceed
-      loading the default (<filename>hugesmp.s</filename>) Linux
-      kernel. This kernel requires at least a Pentium Pro CPU. You can
-      boot an alternative kernel by entering the kernel name on the
-      prompt, and pressing &lt;ENTER&gt;.  The following table lists
-      the different kernels that are available from the Slackware
-      Linux CD or DVD.
+      Ketika CD-ROM di-boot, sebuah layar pre-boot akan muncul. Biasanya, Anda cukup 
+      menekan  &lt;ENTER&gt; untuk melanjutkan dengan memuat kernel Linux default (<filename>hugesmp.s</filename>). 
+      Kernel ini membutuhkan paling tidak CPU Pentium Pro. Anda bisa boot kernel 
+      alternatif dengan memasukkan nama kernel pada prompt, dan menekan &lt;ENTER&gt;. 
+      Tabel berikut menampilkan kernel yang tersedia dari CD atau DVD Slackware Linux.
     </para>
 
     <table xml:id="chap-install-bootcd-installkernels">
-      <title>Installation kernels</title>
+      <title>Kernel installasi</title>
 
       <tgroup cols="2">
 	<thead>
 	  <row>
-	    <entry>Linux</entry><entry>Description</entry>
+	    <entry>Linux</entry><entry>Deskripsi</entry>
 	  </row>
 	</thead>
 	<tbody>
 	  <row>
 	    <entry>huge.s</entry>
 	    <entry>
-	      Previously, there were specific kernels for different
-	      sets of disk controlers. The new huge kernels include
-	      support for all common ATA, SATA and SCSI
-	      controllers. This kernel does not have SMP support, and
-	      works on i486 and newer CPUs. If you have a Pentium Pro
-	      or newer CPU, it is recommended to use the
-	      <emphasis>hugesmp.s</emphasis> kernel, even on
-	      uniprocessor systems.
+	      Sebelumnya, mereka ada kernel spesifik untuk pengontrol 
+	      disk yang berbeda. Kernel huge yang baru menyertakan 
+	      dukungan untuk semua pengontrol ATA, SATA dan SCSI yang umum. 
+	      Kernel ini tidak memiliki dukungan SMP, dan bekerja pada 
+	      CPU i486 dan yang lebih baru. Jika Anda memiliki Pentium 
+	      Pro atau yang lebih baru, disarankan untuk menggunakan 
+	      kernel <emphasis>hugesmp.s</emphasis>, meskipun pada sistem prosesor tunggal. 	      
 	    </entry>
 	  </row>
 	  <row>
 	    <entry>hugesmp.s</entry>
 	    <entry>
-	      The <emphasis>hugesmp.s</emphasis> kernel has support
-	      for common ATA, SATA, and SCSI
-	      controllers. Additionally, this kernel has SMP
-	      support. This is the recommended kernel on Pentium Pro
-	      and newer CPUs.
+	      Kernel <emphasis>hugesmp.s</emphasis> memiliki dukungan untuk semua 
+	      pengontrol ATA, SATA, dan SCSI yang umum. Sebagai tambahan, kernel 
+	      ini memiliki dukungan SMP. Kernel ini direkomendasikan untuk CPU 
+	      Pentium Pro dan yang lebih baru.
 	    </entry>
 	  </row>
 	  <row>
 	    <entry>speakup.s</entry>
 	    <entry>
-	      This kernel is comparable to the
-	      <emphasis>huge.s</emphasis> kernel, but also includes
-	      support for hardware speech synthesizers.
+	      Kernel ini dapat dibandingkan dengan kernel <emphasis>huge.s</emphasis>, 
+	      tetapi menyertakan dukungan untuk perangkat keras sintesa suara. 	      
 	    </entry>
 	  </row>
 	</tbody>
@@ -82,678 +74,498 @@
     </table>
 
     <para>
-      After booting the installation system, you will be asked whether
-      you are using a special (national) keyboard layout or not. If
-      you have a normal US/International keyboard, which is the most
-      common, you can just press &lt;Enter&gt; at this question. After
-      that the login prompt will appear. Log on as
-      <quote>root</quote>, no password will be requested.  After
-      login, the shell is started and you can begin installing
-      Slackware Linux. The installation procedure will be explained
-      briefly in this chapter.
+      Setelah melakukan boot sistem installasi, Anda akan ditanya apakah Anda menggunakan 
+      layout keyboard khusus atau tidak. Jika Anda menggunakan keyboard US/Internasional 
+      umum, yang merupakan paling umum, Anda bisa menekan &lt;Enter&gt; pada pertanyaan 
+      umum. Login sebagai <quote>root</quote>, tidak ada kata sandi yang akan ditanyakan. Setelah 
+      login, shell akan dijalankan dan Anda bisa memulai proses installasi Slackware 
+      Linux. Prosedur installasi akan dijelaskan pada bab ini.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-install-partitioning">
-    <title>Partitioning a hard disk</title>
+    <title>Mempartisi hard disk</title>
 
     <para>
-      Installing Slackware Linux requires at least one Linux
-      partition, creating a swap partition is also recommended. To be
-      able to create a partition there has to be free unpartitioned
-      space on the disk. There are some programs that can resize
-      partitions. For example, FIPS can resize FAT partitions.
-      Commercial programs like Partition Magic can also resize other
-      partition types.
+      Menginstall Slackware Linux membutuhkan paling tidak satu partisi Linux, membuat 
+      partisi swap juga disarankan. Untuk bisa membuat partisi, harus terdapat ruang 
+      kosong pada disk. Terdapat beberapa program yang dapat melakukan perubahan ukuran 
+      partisi. Sebagai contoh, FIPS bisa merubah ukuran partisi FAT. Program komersial 
+      seperti Partition Magic juga bisa mengubah ukuran jenis partisi lain.
     </para>
 
     <para>
-      After booting the Slackware Linux CD-ROM and logging on, there
-      are two partitioning programs at your disposal:
-      <command>fdisk</command> and
-      <command>cfdisk</command>. <command>cfdisk</command> is the
-      easiest of both, because it is controlled by a menu
-      interface. This section describes the <command>cfdisk</command>
-      program.
+      Setelah boot CD-ROM Slackware Linux dan melakukan login, terdapat dua program 
+      partisi yang bisa Anda gunakan: <command>fdisk</command> dan <command>cfdisk</command>. 
+      <command>cfdisk</command> adalah yang termudah, karena dikendalikan oleh antarmuka 
+      berbasis menu. Bagian ini menjelaskan program <command>cfdisk</command>.       
     </para>
 
     <para>
-      To partition the first harddisk you can simply execute
-      <command>cfdisk</command>. If you want to partition another disk
-      or a SCSI disk you have to specify which disk you want to
-      partition (<command>cfdisk /dev/device</command>). ATA hard
-      disks have the following device naming:
-      <filename>/dev/hdn</filename>, with <quote>n</quote> replaced by
-      a character. E.g. the <quote>primary master</quote> is named
-      <filename>/dev/hda</filename>, the <quote>secondary
-      slave</quote> is named <filename>/dev/hdd</filename>. SCSI disks
-      are named in the following way: <filename>/dev/sdn</filename>,
-      with <quote>n</quote> replaced by the device character (the
-      first SCSI disk = a, the fourth SCSI disk = d).
+      Untuk mempartisi hard disk pertama, Anda cukup menjalankan <command>cfdisk</command>. Jika Anda hendak mempartisi disk lain atau disk SCSI, Anda harus menentukan disk mana yang hendak Anda partisi (<command>cfdisk /dev/device</command>). Disk ATA memiliki penamaan seperti berikut: <filename>/dev/hdn</filename>, dengan <quote>n</quote> diganti oleh sebuah karakter. Contoh <quote>primary master</quote> diberi nama <filename>/dev/hda</filename>, <quote>secondary
+      slave</quote> diberi nama <filename>/dev/hdd</filename>. Disk SCSI diberi nama dengan cara berikut : <filename>/dev/sdn</filename>, dengan <quote>n</quote> diganti oleh karakter perangkat (disk SCSI pertama = a, disk SCSI keempat = d).
     </para>
 
     <figure xml:id="chap-install-partitioning-cfdisk">
-      <title>The cfdisk parition tool</title>
+      <title>Aplikasi partisi cfdisk</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/cfdisk.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/cfdisk.png" format="PNG" width="100%"
+scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      After starting <command>cfdisk</command>, the currently existing
-      partitions are shown, as well as the amount of free space. The
-      list of partitions can be navigated with the <quote>up</quote>
-      and <quote>down</quote> arrow keys.  At the bottom of the screen
-      some commands are displayed, which can be browsed with the
-      <quote>left</quote> and <quote>right</quote> arrow keys.  A
-      command can be executed with the &lt;Enter&gt; key.
+      Setelah memulai <command>cfdisk</command>, partisi yang ada akan ditampilkan, dan juga jumlah ruang kosong. Daftar partisi bisa dinavigasi dengan tombol panah <quote>panah atas</quote> dan <quote>bawah</quote>. Di akhir layar beberapa perintah akan ditampilkan, yang dapat dipilih dengan tombol panah <quote>kiri</quote> dan <quote>kanan</quote>. Sebuah perintah bisa dieksekusi dengan kunci &lt;Enter&gt;.
     </para>
 
     <para>
-      You can create a Linux partition by selecting <quote>Free
-      Space</quote> and executing the <quote>New</quote>
-      command. <command>cfdisk</command> will ask you whether you want
-      to create a primary or logical partition.  The number of primary
-      partitions is limited to four. Linux can be installed on both
-      primary and logical partitions. If you want to install other
-      operating systems besides Slackware Linux that require primary
-      partitions, it is a good idea to install Slackware Linux onto a
-      logical partition.  The type of the new partition is
-      automatically set to <quote>Linux Native</quote>, so it is not
-      necessary to set the partition type.
+      Anda bisa memulai mempartisi Linux dengan memilih <quote>Free
+      Space</quote> dan mengeksekusi perintah <quote>New</quote>. <command>cfdisk</command> akan bertanya apakah Anda akan membuat partisi primer atau logical. Jumlah partisi primer dibatasi hingga empat. Linux bisa diinstall pada kedua jenis partisi. Jika Anda hendak menginstall sistem operasi lain selain Slackware Linux yang membutuhkan partisi primer, disarankan untuk menginstall Slackware pada partisi logical. Jenis dari partisi baru akan ditetapkan sebagai <quote>Linux Native</quote>, sehingga tidak perlu menentukan jenisnya.
     </para>
 
     <para>
-      The creation of a swap partition involves the same steps as a
-      normal Linux partition, but the type of the partition has to be
-      changed to <quote>Linux Swap</quote> after the partition is
-      created. The suggested size of the swap partition depends on
-      your own needs. The swap partition is used to store programs if
-      the main (RAM) memory is full. If you have a harddisk of a
-      reasonable size, it is a good idea to make a 256MB or 512MB swap
-      partition, which should be enough for normal usage.  After
-      creating the partition, the partition type can be changed to
-      <quote>Linux Swap</quote> by selecting the <quote>Type</quote>
-      command. The <command>cfdisk</command> program will ask for the
-      type number. <quote>Linux Swap</quote> partitions have type
-      number 82.  Normally number 82 is already selected, so you can
-      go ahead by pressing the &lt;Enter&gt; key.
+      Pembuatan partisi swap melibatkan urutan yang sama dengan partisi Linux normal, tetapi jenis partisi harus diganti menjadi <quote>Linux Swap</quote> setelah partisi dibuat. Ukuran yang disarankan untuk partisi swap bergantung dari jumlah memori utama (RAM) Anda. Jika Anda memiliki hard disk dengan ukuran yang cukup besar, disarankan untuk membuat partisi swap berukuran 256MB atau 512MB, yang cukup untuk kebutuhan normal. Setelah membuat partisi, jenis partisi bisa diganti menjadi <quote>Linux Swap</quote> dengan memilih perintah <quote>Type</quote>. Program <command>cfdisk</command> akan bertanya tentang nomor jenis. Partisi <quote>Linux Swap</quote> memiliki nomor 82. Biasanya nomor 82 sudah akan terpilih, sehingga Anda bisa melanjutkan dengan menekan tombol &lt;Enter&gt;. 
     </para> 
 
     <para>
-      If you are satisfied with the partitioning you can save the
-      changes by executing the <quote>Write</quote> command. This
-      operation has to be confirmed by entering
-      <command>yes</command>. After saving the changes you can quite
-      <command>cfdisk</command> with the <command>Quit</command>
-      command. It is a good idea to reboot the computer before
-      starting the installation, to make sure that the partitioning
-      changes are active.  Press &lt;ctrl&gt; + &lt;alt&gt; +
-      &lt;del&gt; to shut Linux down and restart the computer.
+      Jika Anda puas dengan partisi, Anda bisa menyimpan perubahan dengan mengeksekusi perintah <quote>Write</quote>. Operasi ini harus dikonfirmasikan dengan memasukkan <command>yes</command>. Setelah menyimpan perubahan, Anda bisa keluar dari <command>cfdisk</command> dengan perintah <command>Quit</command>. Disarankan untuk melakukan reboot komputer sebelum memulai installasi, untuk memastikan perubahan partisi sudah berhasil. Tekan &lt;ctrl&gt; + &lt;alt&gt; +
+      &lt;del&gt; untuk mematikan Linux dan menjalankan ulang komputer.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-install-installing">
-    <title>Installing Slackware Linux</title>
+    <title>Menginstall Slackware Linux</title>
 
     <para>
-      The Slackware Linux installer is started by executing
-      <command>setup</command> in the installation disk shell. Setup
-      will show a menu with several choices.  You can see a screenshot
-      of the installer in <xref
-      linkend="chap-install-installing-setup"/>. Every
-      option is required for a complete Slackware Linux installation,
-      but once you start, the <command>setup</command> program will
-      guide you through the options.
+      Program installer Slackware Linux dijalankan dengan mengeksekusi setup pada shell installasi. <command>setup</command> akan menampilkan sebuah menu dengan beberapa pilihan. Anda bisa melihat tampilan gambar dari installer pada <xref
+      linkend="chap-install-installing-setup"/>. Setiap opsi diperlukan untuk installasi Slackware Linux yang lengkap, tetapi setelah Anda mulai, program <command>setup</command> akan membimbing Anda pada setiap opsi. 
     </para>
 
     <figure xml:id="chap-install-installing-setup">
-      <title>The setup tool</title>
+      <title>Aplikasi setup</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/setup.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/setup.png" format="PNG" width="100%"
+scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      The first part of the installation is named
-      <quote>ADDSWAP</quote>. The <command>setup</command> tool will
-      look for a partition with the <quote>Linux Swap</quote> type,
-      and ask you if you want to format and activate the swap
-      partition (see figure <xref
-      linkend="chap-install-installing-addswap"/>).
-      Normally you can just answer <quote>Yes</quote>.
+      Bagian pertama dari installasi disebut <quote>ADDSWAP</quote>. Aplikasi <command>setup</command> akan melihat partisi dengan jenis <quote>Linux Swap</quote>, dan bertanya kepada Anda apakah Anda memformat dan mengaktifkan partisi swap (lihat gambar <xref linkend="chap-install-installing-addswap"/>). Biasanya Anda cukup menjawab <quote>Ya</quote>.
     </para>
 
     <figure xml:id="chap-install-installing-addswap">
-      <title>Setting up the swap partition</title>
+      <title>Melakukan setting partisi swap</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/addswap.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/addswap.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      After setting up the swap space the <quote>TARGET</quote> menu
-      is launched, which you can see in <xref
-      linkend="chap-install-installing-partselect"/>. It is used to
-      initialize the Slackware Linux partitions. Setup will display
-      all partitions with the <quote>Linux Native</quote> type.
+      Setelah melakukan setting ukuran swap, menu <quote>TARGET</quote> dijalankan, yang dapat Anda lihat pada <xref
+      linkend="chap-install-installing-partselect"/>. Menu ini digunakan untuk menginisialisasi partisi Slackware Linux. Setup akan menampilkan semua partisi dengan jenis <quote>Linux Native</quote>.
     </para>
 
     <figure xml:id="chap-install-installing-partselect">
-      <title>Selecting a partition to initialize</title>
+      <title>Memilih partisi untuk inisialisasi</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/partselect.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/partselect.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      After selecting one partition, the setup tool will ask whether
-      you want to format a partition or not, and if you want to format
-      it, whether you want to check the disk for bad sectors or not
-      (<xref
-      linkend="chap-install-installing-fscheck"/>). Checking
-      the disk can take a lot of time.
+      Setelah memilih satu partisi, aplikasi setup akan bertanya apakah Anda hendak memformat partisi atau tidak, dan jika Anda hendak memformatnya, apakah Anda hendak memeriksa disk untuk sektor yang rusak atau tidak (<xref
+      linkend="chap-install-installing-fscheck"/>). Menguji disk bisa memakan waktu yang cukup lama.
     </para>
 
     <figure xml:id="chap-install-installing-fscheck">
-      <title>Formatting the partition</title>
+      <title>Memformat partisi</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/fscheck.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/fscheck.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      After selecting to format a partition, you can specify which
-      filesystem should be used (<xref
-      linkend="chap-install-installing-filesystem"/>). Normally
-      you can choose the ext2, ext3 and reiserfs filesystems. Ext2 was
-      the standard Linux filesystem for many years, but it does not
-      support journaling. A journal is a special file or area of a
-      partition in which all filesystem operations are logged. When
-      the system crashes, the filesystem can be repaired rapidly,
-      because the kernel can use the log to see what disk operations
-      were performed. Ext3 is the same filesystem as Ext2, but adds
-      journaling. Reiserfs is a filesystem that also provides
-      journaling. Reiserfs uses balanced trees, which make many
-      filesystem operations faster than with Ext2 or Ext3, especially
-      when working with many small files. A disadvantage is that
-      Reiserfs is newer, and can be a bit more unstable.
+      Setelah memilih untuk memformat sebuah partisi, Anda bisa menentukan sistem berkas yang akan digunakan (<xref
+      linkend="chap-install-installing-filesystem"/>). Biasanya Anda bisa memilih sistem berkas ext2, ext3, dan reiserfs. Ext2 adalah sistem berkas Linux standar untuk beberapa tahun, tetapi tidak mendukung journaling. Sebuah jurnal adalah berkas khusus atau area pada partisi dimana semua operasi sistem operasi dicatat. Ketika sistem mengalami crash, sistem berkas bisa diperbaiki dengan cepat, karena kernel bisa menggunakan log untuk melihat operasi disk yang dilakukan. Ext3 merupakan sistem berkas yang sama dengan Ext2, tetapi menambahkan kemampuan journaling. Reiserfs adalah sistem berkas yang juga menyediakan journaling. Reiserfs menggunakan balanced tree, yang membuat operasi sistem berkas lebih cepat dibandingkan Ext2 atau Ext3, terutama jika bekerja dengan berkas yang kecil. Kerugiannya adalah Reiserfs lebih baru, dan mungkin lebih tidak stabil.
     </para>
 
     <figure xml:id="chap-install-installing-filesystem">
-      <title>Selecting a filesystem type</title>
+      <title>Memilih jenis sistem berkas</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/filesystem.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/filesystem.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      The first initialized partition is automatically mounted as the
-      root (/) partition. For other partitions the mount point can be
-      selected after the initialization. You could, for example, make
-      separate partitions for <filename>/</filename>,
-      <filename>/var</filename>, <filename>/tmp</filename>,
-      <filename>/home</filename> and <filename>/usr</filename>. This
-      provides extra protection against crashes. Since
-      <filename>/</filename> is rarely changed after the installation
-      if you create these partitions, the chance that it will be in
-      the middle of a write operation during a crash is much smaller.
-      Besides that, it is safer to create a separate filesystem for
-      <filename>/home</filename>. If a program has a security
-      vulnerability, a user could create a hard link to the binary of
-      that program, if the <filename>/home</filename> directory is on
-      the same filesystem as the <filename>/{s}bin</filename>
-      <filename>/usr/{s}bin</filename>, or
-      <filename>/usr/local/{s}bin</filename> directories. This user
-      will then still be able to access the old, vulnerable binary
-      after the program is upgraded.
+      Partisi pertama yang diinisialisasi secara otomatis di-mount sebagai partisi root (/). Untuk partisi lain, titik mount bisa dipilih setelah inisialisasi. Anda bisa, misalnya membuat partisi terpisah untuk <filename>/</filename>, <filename>/var</filename>, <filename>/tmp</filename>, <filename>/home</filename> dan <filename>/usr</filename>. Hal ini menyediakan proteksi tambahan ketika crash. Karena <filename>/</filename> jarang berubah setelah installasi jika Anda membuat partisi ini, kemungkinan ia akan berada pada saat operasi penulisan ketika crash menjadi lebih kecil. Selain itu, lebih aman untuk membuat sistem berkas terpisah untuk <filename>/home</filename>. Jika sebuah program memiliki kecacatan keamanan, seorang pengguna bisa menciptakan hard link pada biner dari sebuah program, jika direktori <filename>/home</filename> berada pada sistem berkas yang sama dengan <filename>/{s}bin</filename>, <filename>/usr/{s}bin</filename>, atau <filename>/usr/local/{s}bin</filename>. Pengguna ini akan tetap mampu mengakses biner lama setelah program di-upgrade.
     </para>
 
     <para>
-      The next step is to select the source medium (<xref
-      linkend="chap-install-installing-medium"/>). This
-      dialog offers several choices, like installing Slackware Linux
-      from a CD-ROM or installing Slackware Linux via NFS. Slackware
-      Linux is usually installed from CD-ROM, so this is what we are
-      going to look at. After selecting <quote>CD-ROM</quote> you will
-      be asked whether you want to let setup look for the CD-ROM
-      itself (<quote>Auto</quote>) or you want to select the CD-ROM
-      device yourself (<quote>Manual</quote>). If you select
-      <quote>Manual</quote> the setup tool will show a list of
-      devices. Select the device holding the Slackware Linux CD-ROM.
+      Langkah berikutnya adalah memilih media sumber (<xref
+      linkend="chap-install-installing-medium"/>). Dialog ini menawarkan beberapa pilihan, seperti menginstall Slackware Linux dari CD-ROM atau menginstall Slackware Linux via NFS. Slackware Linux biasanya terinstall dari CD-ROM, sehingga ini yang akan kita lihat lebih dalam. Setelah memilih <quote>CD-ROM</quote> Anda akan ditanya apakah Anda mengijinkan setup mencari CD-ROM dengan sendirinya (<quote>Auto</quote>) atau Anda hendak memilih perangkat CD-ROM Anda sendiri (<quote>Manual</quote>). Jika Anda memilih <quote>Manual</quote> aplikasi setup akan menampilkan daftar perangkat. Pilih perangkat yang berisi CD-ROM Slackware Linux. 
     </para> 
 
     <figure xml:id="chap-install-installing-medium">
-      <title>Selecting the source medium</title>
+      <title>Memilih media sumber</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/medium.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/medium.png" format="PNG" width="100%"
+scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      After choosing an installation source the setup tool will ask
-      you which disk sets (series) you want to install packages from
-      (<xref
-      linkend="chap-install-installing-disksets"/>). A
-      short description of each disk set is listed.
+      Setelah memilih sumber installasi, aplikasi setup akan bertanya seri set disk mana yang hendak Anda install (<xref
+      linkend="chap-install-installing-disksets"/>). Sebuah deskripsi singkat dari masing-masing set disk akan ditampilkan.
     </para>
 
     <figure xml:id="chap-install-installing-disksets">
-      <title>Selecting the disk sets</title>
+      <title>Memilih set disk</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/disksets.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/disksets.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      Now it is almost time to start the real installation. The next
-      screen asks how you would like to install. The most obvious
-      choices are <quote>full</quote>, <quote>menu</quote> or
-      <quote>expert</quote>.  Selecting <quote>full</quote> will
-      install all packages in the selected disk sets. This is the
-      easiest way of installing Slackware Linux.  The disadvantage of
-      this choice is that it can take quite much disk space. The
-      <quote>menu</quote> option will ask you for each disk set which
-      packages you want to install. The <quote>expert</quote> option
-      is almost equal to the <quote>menu</quote> option, but allows
-      you to deselect some very important packages from the
-      <quote>a</quote> disk set.
+      Sekarang hampir saatnya untuk memulai installasi yang sebenarnya. Layar berikutnya akan menanyakan bagaimana cara Anda hendak melakukan installasi. Pilihan yang paling jelas adalah <quote>full</quote>, <quote>menu</quote> atau <quote>expert</quote>. Memilih <quote>full</quote> akan menginstall semua paket pada set disk yang dipilih. Ini adalah cara termudah dalam menginstall Slackware Linux. Kerugian dari pilihan ini adalah bisa memakan ruang yang cukup besar. Pilihan <quote>menu</quote> akan bertanya untuk setiap setnya, paket apa yang hendak Anda install. Opsi <quote>expert</quote> hampir sama dengan opsi <quote>menu</quote>, tetapi mengijinkan Anda untuk tidak memilih beberapa paket yang sangat penting dari set disk <quote>a</quote>.
     </para>
 
     <para>
-      After the completion of the installation the setup tool will
-      allow you to configure some parts of the system. The first
-      dialog will ask you where you would like to install the kernel
-      from (see <xref
+      Setelah selesai tahap installasi, aplikasi setup akan mengijinkan And auntuk mengkonfigurasi beberapa bagian dari sistem. Dialog yang muncul pertama kali akan menanyakan dari mana Anda hendak menginstall kernel (lihat <xref
       linkend="chap-install-installing-installkernel"
-      />). Normally it is a good idea to install the kernel from the
-      Slackware Linux CD-ROM, this will select the kernel you
-      installed Slackware Linux with. You can confirm this, or select
-      another kernel.
+      />). Biasanya installasi kernel dilakukan dari CD-ROM Slackware Linux, pilihan ini akan memilih kernel yang Anda pilih untuk Slackware Linux. Anda bisa mengkonfirmasi ini, atau memilih kernel lain.
     </para>
 
     <figure xml:id="chap-install-installing-installkernel">
-      <title>Installing the kernel</title>
+      <title>Menginstall kernel</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/kernel.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/kernel.png" format="PNG" width="100%"
+scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      At this point you can choose to make a bootdisk (<xref
-      linkend="chap-install-installing-bootdisk" />).  It
-      is a good idea to make a bootdisk, you can use it to boot
-      Slackware Linux if the LILO configuration is botched.
+      Pada tahap ini Anda bisa memilih untuk membuat disk boot (<xref
+      linkend="chap-install-installing-bootdisk" />). Disarankan untuk membuat disk boot, Anda bisa menggunakannya untuk melakukan boot Slackware Linux jika konfigurasi LILO salah.
     </para>
 
     <figure xml:id="chap-install-installing-bootdisk">
-      <title>Creating a bootdisk</title>
+      <title>Membuat disk boot</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/bootdisk.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/bootdisk.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      The following dialog can be used to make a link,
-      <filename>/dev/modem</filename>, that points to your modem
-      device. (<xref
-      linkend="chap-install-installing-modem" />). If you
-      do not have a modem you can select <emphasis>no
-      modem</emphasis>.
+      Dialog berikut dapat digunakan untuk membuat sebuah hubungan (link), <filename>/dev/modem</filename>, yang menunjuk pada perangkan modem Anda. (<xref
+      linkend="chap-install-installing-modem" />). Jika Anda tidak memiliki sebuah modem, Anda bisa memilih <emphasis>no
+      modem</emphasis>. 
     </para>
 
     <figure xml:id="chap-install-installing-modem">
-      <title>Selecting the default modem</title>
+      <title>Memilih modem default</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/modem.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/modem.png" format="PNG" width="100%"
+scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      The next step is to select whether you would like to use hotplug
-      (<xref linkend="chap-install-installing-hotplug"
-      />).  Hotplug is used for automatically configuring pluggable
-      USB, PCMCIA and PCI devices. Generally speaking, it is a good
-      idea to enable hotplugging, but some systems may have problems
-      with the probing of the hotplug scripts.
+      Langkah berikutnya adalah memilh apakah Anda hendak menggunakan hotplug (<xref linkend="chap-install-installing-hotplug"
+      />). Hotplug digunakan untuk mengkonfigurasi secara otomatis perangkat-perangkat USB, PCMCIA, dan PCI yang bersifat pluggable. Secara umum, disarankan untuk mengaktifkan hotplugging, tetapi beberapa sistem mungkin mengalami masalah dengan proses probing dari script hotplug.
     </para>
 
     <figure xml:id="chap-install-installing-hotplug">
-      <title>Enabling hotplugging</title>
+      <title>Mengaktifkan hotplugging</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/hotplug.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/hotplug.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      The following steps are important, the next dialogs will assist
-      you with installing LILO, the Linux bootloader. Unless you have
-      experience in configuring LILO it is a good idea to choose to
-      use the <emphasis>simple</emphasis> option for configuration of
-      LILO, which tries to configure LILO automatically (<xref
+      Langkah berikut sangatlah penting, dialog berikutnya akan membantu Anda dalam menginstall LILO, Linux bootloader. Kecuali Anda sudah berpengalaman dalam mengkonfigurasi LILO, disarankan untuk memilih opsi <emphasis>simple</emphasis> untuk konfigurasi LILO, yang mencoba mengkonfigurasi LILO secara otomatis (<xref
       linkend="chap-install-installing-liloinstall" />).
     </para>
 
     <figure xml:id="chap-install-installing-liloinstall">
-      <title>Selecting the kind of LILO installation</title>
+      <title>Memilih jenis installasi LILO</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/lilo.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/lilo.png" format="PNG" width="100%"
+scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      After selecting the <emphasis>simple</emphasis> option the LILO
-      configuration utility will asks you whether you would like to
-      use a framebuffer or not (<xref
-      linkend="chap-install-installing-framebuffer" />).
-      Using a framebuffer will allow you to use the console in several
-      resolutions, with other dimensions than the usual 80x25
-      characters. Some people who use the console extensively prefer
-      to use a framebuffer, which allows them to keep more text on the
-      screen. If you do not want a framebuffer console, or if you are
-      not sure, you can choose <emphasis>standard</emphasis> here.
+      Setelah memilih opsi <emphasis>simple</emphasis> utilitas konfigurasi LILO akan menanyakan apakah Anda hendak menggunakan framebuffer atau tidak ((<xref
+      linkend="chap-install-installing-framebuffer" />). Menggunakan framebuffer mengijinkan Anda untuk menggunakan konsol pada beberapa resolusi, dengan dimensi lain selain 80x25 karakter. Beberapa orang yang menggunakan konsol secara ekstensif memilih untuk menggunakan framebuffer, yang mengijinkan mereka untuk mempertahankan lebih banyak teks pada layar. Jika Anda tidak menginginkan konsol dengan framebuffer, atau jika Anda tidak yakin, Anda bisa memilih <emphasis>standard</emphasis> pada pilihan ini.
     </para>
 
     <figure xml:id="chap-install-installing-framebuffer">
-      <title>Choosing the framebuffer resolution</title>
+      <title>Memilih resolusi framebuffer</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/framebuffer.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/framebuffer.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      After setting the framebuffer you can pass extra parameters to
-      the kernel (<xref
+      Setelah melakukan setting framebuffer, Anda bisa memberikan parameter tambahan pada kernel (<xref
       linkend="chap-install-installing-kernel-param"
-      />). This is normally not necessary, if you do not want to pass
-      extra parameters you can just press the &lt;Enter&gt; key.
+      />). Hal ini biasanya tidak diperlukan, jika Anda tidak ingin menambahkan parameter tambahan, Anda cukup menekan tombol &lt;Enter&gt;.
     </para>
 
     <figure xml:id="chap-install-installing-kernel-param">
-      <title>Adding kernel parameters</title>
+      <title>Menambahkan parameter kernel</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/kernel-param.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/kernel-param.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      The last step of the LILO configuration is selecting where LILO
-      should be installed (<xref
-      linkend="chap-install-installing-lilo-dest"
-      />). <emphasis>MBR</emphasis> is the master boot record, the
-      main boot record of PCs. Use this option if you want use
-      Slackware Linux as the only OS, or if you want to use LILO to
-      boot other operating systems. The <emphasis>Root</emphasis>
-      option will install LILO in the boot record of the Slackware
-      Linux <filename>/</filename> partition. Use this option if you
-      use another bootloader.
+      Langkah terakhir dari konfigurasi LILO adalah memilih dimana LILO akan diinstall <xref
+      linkend="chap-install-installing-lilo-dest" />). <emphasis>MBR</emphasis> adalah master boot record, record boot utama dari PC. Gunakan opsi ini jika Anda hendak menggunakan Slackware Linux sebagai satu-satunya sistem operasi, atau jika Anda hendak menggunakan LILO untuk melakukan boot sistem operasi lain. Opsi <emphasis>Root</emphasis> akan menginstall LILO pada boot record dari Slackware Linux partisi <filename>/</filename>. Gunakan opsi ini jika Anda hendak menggunakan bootloader lain. 
     </para>
 
     <figure xml:id="chap-install-installing-lilo-dest">
-      <title>Choosing where LILO should be installed</title>
+      <title>Memilih dimana LILO akan diinstall</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/lilo-dest.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/lilo-dest.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      You will now be asked to configure your mouse. Select the mouse
-      type from the dialog that appears (<xref
+      Sekarang Anda akan diminta untuk mengkonfigurasi mouse Anda, Pilih jenis mouse dari dialog yang muncul (<xref
       linkend="chap-install-installing-mouse" />).
     </para>
 
     <figure xml:id="chap-install-installing-mouse">
-      <title>Configuring a mouse</title>
+      <title>Mengkonfigurasi mouse</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/mouse.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/mouse.png" format="PNG" width="100%"
+scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      You will then be asked whether the <command>gpm</command>
-      program should be loaded at boot time or not (<xref
-      linkend="chap-install-installing-ask-load-gpm" />).
-      <command>gpm</command> is a daemon that allows you to cut and
-      paste text on the console.
+      Berikutnya Anda akan ditanya apakah program <command>gpm</command> harus dimuat pada saat boot atau tidak (<xref
+      linkend="chap-install-installing-ask-load-gpm" />).  <command>gpm</command> adalah daemon yang mengijinkan Anda untuk melakukan operaasi cut dan paste teks pada konsol.
     </para>
 
     <figure xml:id="chap-install-installing-ask-load-gpm">
-      <title>Choosing whether GPM should be started or not</title>
+      <title>Memilih apakah GPM akan dijalankan atau tidak</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/ask-load-gpm.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/ask-load-gpm.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      The next few steps will configure network connectivity. This is
-      required on almost every networked system. The Slackware Linux
-      setup will ask you if you want to set up network connectivity
-      (<xref
+      Beberapa langkah berikutnya akan mengkonfigurasi konektivitas jaringan. Langkah ini diperlukan untuk hampir semua sistem yang terhubung ke jaringan. Setup Slackware Linux akan bertanya apakah Anda hendak mengkonfigurasi konektivitas jaringan (<xref
       linkend="chap-install-installing-ask-configure-network"
-      />). If you answer <quote>No</quote> you can skip the next few
-      network-related steps.
+      />). Jika Anda menjawab <quote>No</quote> Anda bisa melewatkan beberapa langkah yang berhubungan dengan jaringan.
     </para>
 
     <figure xml:id="chap-install-installing-ask-configure-network">
-      <title>Choosing whether you would like to configure network
-      connectivity</title>
+      <title>Memilih apakah Anda akan mengkonfigurasi konektivitas jaringan</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/ask-configure-network.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/ask-configure-network.png"
+format="PNG" width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      You will now be asked to set the hostname (<xref
-      linkend="chap-install-installing-hostname" />).
-      Please note that this is not the fully qualified domain name
-      (FQDN), just the part that represents the host (normally the
-      characters before the first dot in a FQDN).
+      Anda akan ditanya untuk menentukan nama host (<xref
+      linkend="chap-install-installing-hostname" />). Haarap dicatat bahwa ini bukan fully qualified domain name (FQDN), hanya bagian yang merepresentasikan host (biasanya karakter sebelum titik pertama dalam bentuk FQDN).
     </para>
 
     <figure xml:id="chap-install-installing-hostname">
-      <title>Setting the host name</title>
+      <title>Melakukan setting nama host</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/hostname.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/hostname.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      After setting the host name you can set the domain name part of
-      the fully qualified domain name (FQDN) (<xref
+      Setelah menentukan nama host, Anda bisa mnentukan nama bagian domain dari fully qualified domain name (FQDN) (<xref
       linkend="chap-install-installing-domainname" />).
     </para>
 
     <figure xml:id="chap-install-installing-domainname">
-      <title>Setting the domain name</title>
+      <title>Melakukan setting nama domain</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/domainname.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/domainname.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      The rest of the network configuration steps depend on whether
-      nodes in the network are configured to use a static or a dynamic
-      IP address. Some networks have a DHCP server that automatically
-      assigns an IP address to hosts in the network. If this is the
-      case for the network the machine select
-      <emphasis>DHCP</emphasis> during this step of the installation
-      (<xref linkend="chap-install-installing-set-ipconfig-type"
-      />). When DHCP is selected you will only be asked whether a host
-      name should be sent to the server. Normally you can leave this
-      blank. If you use DHCP you can skip the rest of the network
-      configuration described below.
+      Sisa dari langkah konfigurasi jaringan tergantung dari apakah node pada konfigurasi gambar menggunakan alamat IP statik atau dinamis. Beberapa jaringan memiliki server DHCP yang secara otomatis memberikan alamat IP pada host di jaringan. Jika ini kasusnya, maka pilih <emphasis>DHCP</emphasis> selama langkah installasi (<xref linkend="chap-install-installing-set-ipconfig-type"
+      />). Ketika DHCP dipilih, Anda akan ditanya apakah sebuah nama host harus dikirimkan ke server. Biasanya Anda bisa mengosongkan bagian ini. Jika Anda menggunakan DHCP, Anda bisa melewatkan beberapa bagian dari konfigurasi jaringan yang dijelaskan dibawah ini.
     </para>
 
     <para>
-      If the network does not have a DHCP server you can choose the
-      <emphasis>static IP</emphasis> option, which will allow you to
-      set the IP address and related settings manually.
+      Jika jaringan tidak memiliki server DHCP, Anda bisa memilih opsi  <emphasis>static IP</emphasis>. uamh mengijinkan Anda menentukan alamat IP dan setting yang berhubungan secara manual.
     </para>
 
     <figure xml:id="chap-install-installing-set-ipconfig-type">
-      <title>Manual or automatic IP address configuration</title>
+      <title>Konfigurasi alamat IP manual atau otomatis</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/set-ipconfig-type.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/set-ipconfig-type.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      The first step of the manual configuration is to set the IP
-      address of the first interface (eth0) of the machine (<xref
+      Langkah pertama dari konfigurasi manual adalah menentukan alamat IP dari antarmuka pertama (eth0) dari mesin (<xref
       linkend="chap-install-installing-ipaddr" />).
     </para>
 
     <figure xml:id="chap-install-installing-ipaddr">
-      <title>Setting the IP addres</title>
+      <title>Melakukan setting alamat IP</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/ipaddr.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/ipaddr.png" format="PNG" width="100%"
+scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      After setting the IP address you will be asked to enter the
-      netmask.  The netmask is usually dependent on the IP address
-      class (<xref
-      linkend="chap-install-installing-netmask" />).
+      Setelah melakukan setting alamat IP, Anda akan ditanya untuk memasukan netmask. Netmask biasanya bergantung pada kelas alamat IP (<xref linkend="chap-install-installing-netmask" />). 
     </para>
 
     <figure xml:id="chap-install-installing-netmask">
-      <title>Setting the netmask</title>
+      <title>Melakukan setting netmask</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/netmask.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/netmask.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      You will then be asked to set the address of the gateway (<xref
-      linkend="chap-install-installing-gateway" />). The
-      gateway is the machine on the network that provides access to
-      other networks by routing IP packets. If your network has no
-      gateway you can just hit the &lt;ENTER&gt; key.
+      Berikutnya Anda akan ditanya untuk menentukan alamat dari gateway (<xref
+      linkend="chap-install-installing-gateway" />). Gateway adalah mesin pada jaringan yang menyediakan akses ke jaringan lain dengan merutekan paket IP. Jika jaringan Anda tidak memiliki gateway, Anda cukup menekan tombol &lt;ENTER&gt;.
     </para>
 
     <figure xml:id="chap-install-installing-gateway">
-      <title>Setting the gateway</title>
+      <title>Melakukan setting gateway</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/gateway.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/gateway.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      The next dialog will ask you whether you want to use a
-      nameserver or not (<xref
+      Dialog berikutnya menanyakan kepada Anda apakah Anda hendak menggunakan nameserver atau tidak (<xref
       linkend="chap-install-installing-ask-nameserver"
-      />). A nameserver is a server that can provide the IP address
-      for a hostname. For example, if you surf to
-      <emphasis>www.slackbasics.org</emphasis>, the nameserver will
-      <quote>convert</quote> the
-      <emphasis>www.slackbasics.org</emphasis> name to the
-      corresponding IP address.
+      />). Sebuah nameserver adalah sebuah server yang menyediakan alamat IP dari sebuah nama host. Sebagai contoh, jika Anda berkunjung ke <emphasis>www.slackbasics.org</emphasis>, nameserver akan <quote>convert</quote> nama <emphasis>www.slackbasics.org</emphasis> menjadi alamat IPnya.
     </para>
 
     <figure xml:id="chap-install-installing-ask-nameserver">
-      <title>Choosing whether you want to use a nameserver or not</title>
+      <title>Memilih apakah Anda hendak menggunakan nameserver atau tidak</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/ask-nameserver.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/ask-nameserver.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      If you chose to use a nameserver, you will be given the
-      opportunity to set the IP address of the nameserver (<xref
-      linkend="chap-install-installing-nameserver" />).
+      Jika Anda memilih untuk menggunakan nameserver, Anda akan diberi kesempatan untuk menentukan alamat IP dari nameserver (<xref linkend="chap-install-installing-nameserver" />).
     </para>
 
     <figure xml:id="chap-install-installing-nameserver">
-      <title>Setting the nameserver(s)</title>
+      <title>Melakukan setting nameserver</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/nameserver.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/nameserver.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      The final network settings screen provides an overview of the
-      settings, giving you the opportunity to correct settings that
-      have errors (<xref
-      linkend="chap-install-installing-network-confirm"
-      />).
+      Layar terakhir konfigurasi jaringan menyediakan gambaran dari setting, memberikan kesempatan bagi Anda untuk memperbaiki setting yang memiliki kesalahan (<xref linkend="chap-install-installing-network-confirm" />).
     </para>
 
     <figure xml:id="chap-install-installing-network-confirm">
-      <title>Confirming the network settings</title>
+      <title>Mengkonfirmasi setting jaringan</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/network-confirm.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/network-confirm.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      After the network configuration you can set which services
-      should be started (<xref
-      linkend="chap-install-installing-startup-services"
-      />). You can mark/unmark services with the &lt;SPACE&gt; key.
+      Setelah konfigurasi jaringan, Anda bisa menentukan perangkat mana yang harus dijalankan (Gambar 5.29, ?Mengaktifkan/menonaktifkan layanan yang dijalankan saat startup?). Anda bisa memberikan tanda atau menghilangkan tanda dengan tombol &lt;SPACE&gt;.
     </para>
 
     <figure xml:id="chap-install-installing-startup-services">
-      <title>Enabling/disabling startup services</title>
+      <title>Mengaktifkan/menonaktifkan layanan yang dijalankan saat startup</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/startup-services.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/startup-services.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
@@ -761,88 +573,72 @@
     <!-- try fonts? -->
 
     <para>
-      Traditionally the system clock is set to the UTC timezone on
-      UNIX(-like) systems. If this is the case, select
-      <emphasis>Yes</emphasis> during the next step (<xref
-      linkend="chap-install-installing-ask-clock-utc"
-      />). If you also use a non-UNIX(-like) OS on the same system,
-      like Windows, it is usually a good idea to choose
-      <emphasis>No</emphasis>, because some PC operating systems do
-      not work with a separate system clock and software clock.
+      Biasanya, waktu sistem diset ke zona waktu UTC pada sistem berbasis UNIX. Jika ini kasusnya, pilih <emphasis>Yes</emphasis> pada langkah selanjutnya (<xref linkend="chap-install-installing-ask-clock-utc" />). Jika Anda juga menggunakan sistem operasi yang tidak berbasis UNIX pada sistem yang sama, seperti Windows, disarankan untuk memilih <emphasis>No</emphasis>, karena beberapa sistem operasi PC tidak bekerja dengan waktu sistem dan waktu perangkat lunak yang berbeda.
     </para>
 
     <figure xml:id="chap-install-installing-ask-clock-utc">
-      <title>Choosing whether the clock is set to UTC</title>
+      <title>Memilih apakah jam diset ke UTC</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/ask-clock-utc.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/ask-clock-utc.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      You will then be given the opportunity to select the time zone
-      (<xref linkend="chap-install-installing-timezone"
-      />). This is especially important on systems that have their
-      system clock set to UTC, without selecting the correct timezone
-      the software clock will not match the local time.
+      Anda akan diberi kesempatan untuk memilih zona waktu (<xref linkend="chap-install-installing-timezone" />). Hal ini sangat penting terutama pada sistem yang memiliki waktu sistemnya diset ke UTC, tanpa memilih zona waktu yang benar, maka waktu pada perangkat lunak tidak akan sama dengan waktu lokal.
     </para>
 
     <figure xml:id="chap-install-installing-timezone">
-      <title>Setting the timezone</title>
+      <title>Melakukan setting zona waktu</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/timezone.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/timezone.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      If you installed the X Window System you can now set the default
-      window manager (<xref
-      linkend="chap-install-installing-defaultwm"
-      />). The most basic functionality of a window manager is to
-      provide basic window managing functionality like title bars. But
-      some options, like KDE, provide a complete desktop environment.
+      Jika Anda menginstall X Window System Anda bisa menentukan window manager default (<xref
+      linkend="chap-install-installing-defaultwm" />). Fungsionalitas paling dasar dari window manager adalah menyediakan fungsionalitas window dasar seperti title bar. Tetapi beberapa opsi seperti KDE, menyediakan lingkungan desktop yang lengkap.
     </para>
 
     <figure xml:id="chap-install-installing-defaultwm">
-      <title>Choosing the default window manager</title>
+      <title>Memilih window manager default</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/defaultwm.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/defaultwm.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      The final step is to set the root password (<xref
-      linkend="chap-install-installing-rootpasswd" />).
-      The setup will ask you whether you would like to set it or
-      not. There is no reason not to do this, and without a root
-      password your system is dangerously insecure.
+      Langkah terakhir adalah menentukan kata sandi root (<xref linkend="chap-install-installing-rootpasswd" />). Setup akan menanyakan apakah Anda hendak menentukannya atau tidak. Tidak ada alasan untuk tidak melakukannya, dan tanpa kata sandi root, sistem Anda sangat tidak aman.
     </para>
 
     <figure xml:id="chap-install-installing-rootpasswd">
-      <title>Setting the root password</title>
+      <title>Melakukan setting kata sandi root</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/rootpasswd.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/rootpasswd.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
 
     <para>
-      At this point you have completed the Slackware Linux
-      installation. You can now reboot the system to start your fresh
-      new Slackware Linux system. It wasn't that hard, was it? ;-)
+      Pada tahap ini, Anda sudah menyelesaikan installasi Slackware Linux. Anda bisa reboot sistem untuk memulai sistem Slackware Linux baru Anda. Tidak sulit bukan? ;-)
     </para>
 
     <figure xml:id="chap-install-installing-finished">
-      <title>Finished</title>
+      <title>Selesai</title>
       <mediaobject>
 	<imageobject>
-	  <imagedata fileref="../../images/finished.png" format="PNG" width="100%" scalefit="1"/>
+	  <imagedata fileref="../../images/finished.png" format="PNG"
+width="100%" scalefit="1"/>
 	</imageobject>
       </mediaobject>
     </figure>
