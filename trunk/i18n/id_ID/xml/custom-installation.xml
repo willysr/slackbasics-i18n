@@ -1,26 +1,25 @@
 <chapter id="getstarted-custominstall"> <?dbhtml filename="custom-installation.html" ?>
-  <title>Custom installation</title>
+  <title>Modifikasi installasi</title>
 
   <para>
-    Sometimes you may want to do a custom installation of Slackware Linux,
-    for example to get better understanding of how GNU/Linux systems work,
-    or to prepare an automatic installation script. This chapter outlines
-    the steps that are required to install Slackware Linux manually. A
-    sample installation script is also provided in <xref
+    Seringkali Anda hendak melakukan modifikasi terhadap installasi Slackware Linux,
+    misalnya untuk memahami bagaimana sistem GNU/Linux bekerja, atau mempersiapkan
+    script installasi otomatis. Bab ini membahas langkah-langkah yang diperlukan untuk 
+    menginstall Slackware Linux secara manual. Sebuah contoh script installasi juga 
+    disediakan pada <xref
     linkend="getstarted-custominstall-script" />.
   </para>
 
   <sect1 id="getstarted-custominstall-partition">
-    <title>Partitioning a hard disk</title>
+    <title>Mempartisi hard disk</title>
 
     <para>
-      If you have performed a normal installation, you should not
-      have any problems partitioning a disk. You can use the
-      <command>fdisk</command> and <command>cfdisk</command>
-      commands to partition disks. If you are scripting the
-      installation of Slackware Linux it is useful to know that
-      you can pipe <command>fdisk</command> commands to
-      <command>fdisk</command>. For example:
+      Jika Anda sudah melakukan installasi manual, Anda tidak akan mengalami masalah 
+      dalam mempartisi hard disk. Anda bisa menggunakan perintah 
+      <command>fdisk</command> dan <command>cfdisk</command>
+      untuk mempartisi disk. Jika Anda membuat script installasi Slackware Linux, maka 
+      akan berguna untuk diketahui bahwa Anda bisa menggunakan pipe untuk perintah 
+      <command>fdisk</command> ke <command>fdisk</command>. Sebagai contoh:
     </para>
 
     <screen>
@@ -43,11 +42,10 @@ EOF</command>
     </screen>
 
     <para>
-      These commands create a primary Linux partition of 10000MB, and
-      a primary Linux swap partition of 512MB. You could store the
-      <command>fdisk</command> commands in different disk profiles,
-      and use one of the profiles based on the specific deployment
-      (e.g.  the disk size). For example:
+      Perintah-perintah ini menghasilkan partisi Linux utama sebesar 10000MB, dan 
+      partisi swap Linux utama sebesar 512MB. Anda bisa menyimpan perintah 
+      <command>fdisk</command> pada profil disk yang berbeda dan menggunakan salah satu 
+      profil sesuai kondisi tertentu (misalnya ukuran disk). Sebagai contoh:
     </para>
 
     <screen>
@@ -56,15 +54,14 @@ EOF</command>
   </sect1>
 
   <sect1 id="getstarted-custominstall-initfs">
-    <title>Initializing and mounting filesystems</title>
+    <title>Menginisialisasi dan me-mount sistem berkas</title>
 
     <para>
-      After making at least a swap and a Linux partition, you can
-      initialize the filesystem and swap space and make use of this
-      storage. On systems that are short on memory, you should initialize,
-      and use swap first. We will use the partition layout used in
-      the partitioning example listed above in the following examples.
-      To set up and use swap, execute:
+      Setelah membuat minimal partisi swap dan Linux, Anda bisa menginisialisasi sistem berkas dan
+      ruang swap dan menggunakan ruang penyimpanan ini. Pada sistem dengan jumlah memory 
+      yang terbatas, Anda harus menginisialisasi dan menggunakan swap terlebih dahulu. Kita
+      akan menggunakan layout partisi yang digunakan pada contoh diatas pada contoh berikutnya. Untuk
+      melakukan setting dan menggunakan swap, jalankan:
     </para>
 
     <screen>
@@ -73,32 +70,26 @@ EOF</command>
     </screen>
 
     <para>
-      The meaning of these commands is quite obvious. <command>mkswap</command>
-      initializes the swap space, and <command>swapon</command> puts it to
-      use. You will only have to execute <command>mkswap</command> once,
-      but <command>swapon</command> has to be executed during every system
-      boot. This can be done automatically by adding an entry for the
-      swap partition to <filename>/etc/fstab</filename>, which we will
-      do during a later step. 
+      Arti dari perintah diatas cukup jelas. <command>mkswap</command>
+      menginisialisasi ruang space, dan <command>swapon</command> menggunakannya. Anda hanya perlu 
+      menjalankan <command>mkswap</command> satu kali, tetapi <command>swapon</command> harus dijalankan 
+      setiap kali sistem dijalankan. Hal ini bisa dilakukan secara otomatis dengan menambahkan sebuah entri 
+      untuk partisi swap pada <filename>/etc/fstab</filename>, yang akan kita lakukan nanti.
     </para>
 
     <para>
-      For now, it is important to initialize the target partitions. This
-      can be done with the <command>mkfs</command> command. You can
-      specify which filesystem should be used by adding the <parameter
-      class="command">-t</parameter> parameter. <command>mkfs</command>
-      will automatically invoke a <command>mkfs.filesystem</command>
-      command based on the filesystem that you have chosen. Be aware that
-      the filesystems that can be used depends on the installation
-      kernel that you have booted. If you have booted the
-      <emphasis>bare.i</emphasis> kernel, you can use the
-      <emphasis>ext2</emphasis>, <emphasis>ext3</emphasis> and
-      <emphasis>reiserfs</emphasis> filesystems.
+      Untuk saat ini, sangatlah penting untuk menginisialisasi partisi target. Hal ini bisa dilakukan dengan
+      perintah <command>mkfs</command>. Anda bisa menentukan sistem berkas yang akan digunakan dengan 
+      menambahkan parameter <parameter class="command">-t</parameter>. <command>mkfs</command>
+      akan memanggil perintah <command>mkfs.filesystem</command> secara otomatis sesuai dengan sistem berkas
+      yang Anda pilih. Hati-hati bahwa sistem berkas yang dapat digunakan tergantung dari kernel installasi yang
+      Anda gunakan. Jika Anda menggunakan kernel <emphasis>bare.i</emphasis>, Anda bisa menggunakan sistem
+      berkas <emphasis>ext2</emphasis>, <emphasis>ext3</emphasis> dan <emphasis>reiserfs</emphasis>.
     </para>
 
     <para>
-      To initialize an <emphasis>ext3</emphasis> filesystem, and mount it,
-      you should execute the following commands:
+      Untuk menginisialisasi sistem berkas <emphasis>ext3</emphasis>, dan melakukan proses mount, Anda harus 
+      menjalankan perintah berikut:
     </para>
 
     <screen>
@@ -107,10 +98,9 @@ EOF</command>
     </screen>
 
     <para>
-      If you have made separate partitions for certain directories
-      in the root filesystem, e.g. <filename>/home</filename>, you
-      can also initialize them and mount them at this point. For
-      example:
+      Jika Anda sudah menyediakan partisi yang terpisah untuk beberapa direktori tertentu pada sistem berkas
+      root, misalnya <filename>/home</filename>, Anda bisa melakukan inisialisasi dan melakukan proses mount
+      saat ini. Sebagai contoh:
     </para>
 
     <screen>
@@ -120,9 +110,9 @@ EOF</command>
     </screen>
 
     <para>
-      Finally, you will have to mount your source medium. If you use
-      a CD-ROM, this is easy. Suppose that <filename>/dev/hdc</filename>
-      is the CD-ROM device file, you can mount the CD-ROM with:
+      Akhirnya, Anda harus melakukan mount terhadap media sumber Anda. Jika Anda menggunakan CD-ROM, hal ini 
+      sangatlah mudah. Misalkan <filename>/dev/hdc</filename> adalah berkas untuk CD-ROM, Anda bisa melakukan
+      mount CD-ROM dengan:
     </para>
 
     <screen>
@@ -180,7 +170,7 @@ EOF</command>
   </sect1>
 
   <sect1 id="getstarted-custominstall-packages">
-    <title>Installing packages</title>
+    <title>Menginstal paket-paket</title>
 
     <para>
       Everything is now set up to start installing packages from the
@@ -216,7 +206,7 @@ done</command>
   </sect1>
 
   <sect1 id="getstarted-custominstall-config">
-    <title>Post-install configuration</title>
+    <title>Konfigurasi pasca-installasi</title>
 
     <para>
       The next sections describe the bare minimum of configuration that is
@@ -510,7 +500,7 @@ EOF</command>
   </sect1>
 
   <sect1 id="getstarted-custominstall-script">
-    <title>Automated installation script</title>
+    <title>Script installasi otomatis</title>
 
     <para>
       It is easy to combine the steps of a custom installation into
