@@ -1,5 +1,5 @@
 <chapter id="getstarted-custominstall"> <?dbhtml filename="custom-installation.html" ?>
-  <title>Modifikasi installasi</title>
+  <title>Modifikasi Installasi</title>
 
   <para>
     Seringkali Anda hendak melakukan modifikasi terhadap installasi Slackware Linux,
@@ -164,13 +164,11 @@ EOF</command>
     <title>Menginstal paket-paket</title>
 
     <para>
-      Everything is now set up to start installing packages from the
-      installation medium. Since <command>installpkg</command> is
-      available from the installation system, you can use it to
-      install Slackware Linux packages. To install packages to the
-      target partition(s) mounted on <filename>/mnt</filename>, add
-      the <parameter class="command">-root</parameter> option. The
-      following command installs all packages from the source medium:
+      Semua sudah siap untuk memulai menginstall paket-paket dari media installasi.
+      Karena <command>installpkg</command> tersedia dari sistem installasi, Anda bisa menggunakannya
+      untuk menginstall paket-paket Slackware Linux. Untuk menginstall paket-paket pada partisi target yang 
+      di-mount pada <filename>/mnt</filename>, tambahkan opsi <parameter class="command">-root</parameter>. 
+      Perintah berikut akan menginstall semua paket dari media sumber:
     </para>
 
     <screen>
@@ -198,27 +196,22 @@ done</command>
     <title>Konfigurasi pasca-installasi</title>
 
     <para>
-      The next sections describe the bare minimum of configuration that is
-      necessary to get a running system.
+      Bagian berikutnya menjelaskan konfigurasi minimal yang diperlukan untuk menjalankan sistem.
     </para>
 
     <sect2 id="getstarted-custominstall-config-fstab">
       <title>fstab</title>
 
       <para>
-        One of the necessary configuration steps is to create a <command>fstab</command>
-        file, so that the system can look up what partitions or volumes have
-        to be mounted. The format of the <filename>/etc/fstab</filename> file
-        is described in <xref linkend="basics-filesystem-mounting-fstab" />.
-        As a bare minimum you will have to add entries for the
-        <filename>/</filename> filesystem, the <filename>/proc</filename>
-        pseudo-filesystem, the <filename>devpts</filename> pseudo-filesystem,
-        and the swap partition.
+        Salah satu langkah konfigurasi penting adalah membuat berkas <command>fstab</command>, 
+	sehingga sistem bisa mencari partisi atau isi apa yang harus di-mount. Format dari berkas 
+	<filename>/etc/fstab</filename> dijelaskan pada <xref linkend="basics-filesystem-mounting-fstab" />.
+        Pada batas minimal Anda harus menambahkan isian untuk sistem berkas <filename>/</filename>, 
+	sistem berkas pseudo <filename>/proc</filename>, <filename>devpts</filename>, dan partisi swap.
       </para>
 
       <para>
-        With the sample partitioning used earlier in this chapter, you
-        could create a <filename>/etc/fstab</filename> like this:
+        Dengan contoh partisi yang digunakan di awal bab ini, Anda bisa membuat <filename>/etc/fstab</filename> seperti ini:
       </para>
 
       <screen>
@@ -235,12 +228,11 @@ EOF</command>
       <title>LILO</title>
 
       <para>
-        To make the system bootable you will have to configure and install
-        the Linux Loader (LILO). The configuration of LILO is covered in
-        <xref linkend="chap-init-lilo" />. For this section we will
-        just show a sample LILO configuration, that can be used with
-        the partition layout described in this chapter. The first step
-        is to create the <filename>/etc/lilo.conf</filename> file:
+        Untuk membuat sistem dapat di-boot Anda harus mengkonfigurasi dan menginstall
+        Linux Loader (LILO). Konfigurasi dari LILO dibahas pada <xref linkend="chap-init-lilo" />. 
+	Untuk bagian ini kita hanya akan menunjukan contoh konfigurasi LILO, yang bisa digunakan untuk 
+	skema partisi yang dijelaskan pada bab ini. Langkah pertama adalah membuat berkas 
+	<filename>/etc/lilo.conf</filename>:
       </para>
 
       <screen>
@@ -256,10 +248,9 @@ EOF</command>
       </screen>
 
       <para>
-        You can then install LILO with <filename>/mnt</filename> as the
-        LILO root. With <filename>/mnt</filename> set as the root,
-        LILO will use <filename>/etc/lilo.conf</filename> from the target
-        partition:
+        Anda bisa menginstall LILO dengan <filename>/mnt</filename> sebagai induk LILO. Dengan 
+	<filename>/mnt</filename> sebagai induk, LILO akan menggunakan <filename>/etc/lilo.conf</filename> 
+	dari partisi target:
       </para>
 
       <screen>
@@ -268,19 +259,17 @@ EOF</command>
     </sect2>
 
     <sect2 id="getstarted-custominstall-config-network">
-      <title>Networking</title>
+      <title>Jaringan</title>
 
       <para>
-        The configuration of networking in Slackware Linux is covered in
-        <xref linkend="sysadmin-netconfig" />. This section will cover
-        one example of a host that will use DHCP to get an IP address.
+        Konfigurasi jaringan pada Slackware Linux dibahas pada <xref linkend="sysadmin-netconfig" />. 
+	Bagian ini akan membahas satu contoh dari host yang menggunakan DHCP untuk mendapatkan alamat IP.
       </para>
 
       <para>
-        The <filename>/etc/networks</filename> file contains information
-        about known Internet networks. Because we will get network
-        information via DHCP, we will just use <emphasis>127.0.0.1</emphasis>
-        as the local network.
+        Berkas <filename>/etc/networks</filename> berisi informasi tentang jaringan Internet yang 
+	dikenali. Karena kita akan mendapatkan informasi dari DHCP, kita cukup menggunakan 
+	<emphasis>127.0.0.1</emphasis> sebagai jaringan lokal.
       </para>
 
       <screen>
@@ -291,8 +280,7 @@ EOF</command>
       </screen>
 
       <para>
-        Although we will get a hostname via DHCP, we will still set up
-        a temporary hostname:
+        Meskipun kita akan mendapatkan nama host dari DHCP, kita akan memberikan nama host sementara:
       </para>
 
       <screen>
@@ -302,10 +290,8 @@ EOF</command>
       </screen>
 
       <para>
-        Now that the hostname is configured, the hostname and 
-        <emphasis>localhost</emphasis> should also be made
-        resolvable, by creating a <filename>/etc/hosts</filename>
-        database:
+        Sekarang nama host sudah dikonfigurasi, nama host dan <emphasis>localhost</emphasis> seharusnya
+	bisa di-resolve, dengan menciptakan basis data <filename>/etc/hosts</filename>:
       </para>
 
       <screen>
@@ -316,10 +302,9 @@ EOF</command>
       </screen>
 
       <para>
-        We do not have to create a <filename>/etc/resolv.conf</filename>,
-        since it will be created automatically by <command>dhcpcd</command>,
-        the DHCP client. So, finally, we can set up the interface
-        in <filename>/etc/rc.d/rc.inet1.conf</filename>:
+        Kita tidak perlu membuat <filename>/etc/resolv.conf</filename>, karena akan dibuat secara
+	otomatis oleh <command>dhcpcd</command>, klien DHCP. Jadi, akhirnya kita bisa melakukan setting
+	pada antarmuka pada <filename>/etc/rc.d/rc.inet1.conf</filename>:
       </para>
 
       <screen>
@@ -332,10 +317,9 @@ EOF</command>
       </screen>
 
       <para>
-	You may wat to make a backup of the old
-	<filename>rc.inet1.conf</filename> file first, because it
-	contains many useful comments. Or you can use
-	<command>sed</command> to change this specific option:
+	Anda mungkin perlu membuat salinan dari berkas <filename>rc.inet1.conf</filename> yang lama, 
+	karena berisi banyak sekali komentar yang berguna. Atau Anda bisa menggunakan <command>sed</command> 
+	untuk mengganti opsi spesifik ini:
       </para>
 
       <screen>
@@ -345,14 +329,12 @@ EOF</command>
     </sect2>
 
     <sect2 id="getstarted-custominstall-config-init">
-      <title>Tuning initialization scripts</title>
+      <title>Melakukan penyesuaian script inisialisasi</title>
 
       <para>
-        Depending on the purpose of the system that is being installed,
-        it should be decided which initialization scripts should be started.
-        The number of services that are available depends on what packages
-        you have installed. You can get get a list of available scripts
-        with <command>ls</command>:
+        Tergantung dari tujuan sistem yang akan diinstall, harus ditentukan script inisialisasi mana yang 
+	harus dijalankan. Jumlah layanan yang tersedia tergantung dari paket apa yang telah Anda install. Anda bisa 
+	mendapatkan daftar script yang tersedia dengan <command>ls</command>:
       </para>
 
       <screen>
@@ -360,10 +342,9 @@ EOF</command>
       </screen>
 
       <para>
-        If the executable bits are set on a script, it will be started,
-        otherwise it will not. Obviously you should keep essential scripts
-        executable, including the runlevel-specific scripts. You can set
-        the executable bit on a script with:
+        Jika bit executable (dapat dieksekusi) sudah diaktifkan pada sebuah script, maka akan dijalankan, selain
+	itu tidak. Jelas Anda harus memastikan script yang penting executable, termasuk script untuk run-level tertentu. 
+	Anda bisa mengaktifkan bit executable pada sebuah script dengan:
       </para>
 
       <screen>
@@ -371,7 +352,7 @@ EOF</command>
       </screen>
 
       <para>
-        Or remove it with:
+        atau menghapusnya dengan :
       </para>
 
       <screen>
@@ -380,15 +361,13 @@ EOF</command>
     </sect2>
 
     <sect2 id="getstarted-custominstall-config-ldconfig">
-      <title>Configuring the dynamic linker run-time bindings</title>
+      <title>Mengkonfigurasi binding run-time linker dinamis</title>
 
       <para>
-        GNU/Linux uses a cache for loading dynamic libraries. Besides that
-        many programs rely on generic version numbers of libraries
-        (e.g. <filename>/usr/lib/libgtk-x11-2.0.so</filename>, rather
-        than <filename>/usr/lib/libgtk-x11-2.0.so.0.600.8</filename>).
-        The cache and library symlinks can be updated in one
-        <command>ldconfig</command> run:
+        GNU/Linux menggunakan cache untuk memuat pustaka dinamis. Selain itu banyak program 
+	bergantung pada nomor versi generik dari pustaka (misalnya <filename>/usr/lib/libgtk-x11-2.0.so</filename>, 
+	dan bukan <filename>/usr/lib/libgtk-x11-2.0.so.0.600.8</filename>).
+        Cache dan symlink pustaka dapat diupdate pada satu perintah <command>ldconfig</command>:
       </para>
 
       <screen>
@@ -396,32 +375,26 @@ EOF</command>
       </screen>
 
       <para>
-        You may not know the <command>chroot</command> command; it is
-        a command that executes a command with a different root than
-        the active root. In this example the root directory is changed
-        to <filename>/mnt</filename>, and from there <command>chroot</command>
-        runs <command>/sbin/ldconfig</command> binary. After the command has
-        finished the system will return to the shell, which uses the original
-        root. To use <command>chroot</command> with other commands this
-        <command>ldconfig</command> command has to be executed once first,
-        because without initializing the dynamic linker run-time bindings
-        most commands will not execute, due to unresolvable library
-        dependencies.
+        Anda mungkin tidak tahu perintah <command>chroot</command>; ini adalah perintah yang mengeksekusi 
+        sebuah perintah dengan root yang berbeda dengan root yang aktif. Pada contoh ini direktori root 
+	diganti menjadi <filename>/mnt</filename>, dan dari sana <command>chroot</command>
+        menjalankan biner <command>/sbin/ldconfig</command>. Setelah perintah selesai, sistem akan kembali 
+	ke shell, yang menggunakan root awal. Untuk menggunakan <command>chroot</command> dengan perintah lain, 
+        perintah <command>ldconfig</command> harus dijalankan dahulu minimal satu kali, karena tanpa melakukan 
+	inisialisasi, sebagian besar perintah tidak akan dieksekusi, karena ketergantungan pustaka yang tidak dapat
+	diselesaikan.
       </para>
     </sect2>
 
     <sect2 id="getstarted-custominstall-config-rootpasswd">
-      <title>Setting the root password</title>
+      <title>Menentukan kata sandi root</title>
 
       <para>
-        Now that the dynamic library cache and links are set up, you
-        can execute commands on the installed system. We will make use
-        of this to set the <emphasis>root</emphasis> password.  The
-        <command>passwd</command> command can be used to set the
-        password for an existing user (the <emphasis>root</emphasis>
-        user is part of the initial <filename>/etc/passwd</filename>
-        file). We will use the <command>chroot</command> command again
-        to execute the command on the target partition:
+        Sekarang cache pustaka dinamis dan link sudah selesai, Anda bisa menjalankan perintah pada sistem 
+	yang terinstall. Kita akan memanfaatkannya untuk menentukan kata sandi <emphasis>root</emphasis>.  
+	Perintah <command>passwd</command> bisa digunakan untuk menentukan kata sandi untuk pengguna yang sudah 
+	ada (pengguna <emphasis>root</emphasis> adalah bagian dari berkas <filename>/etc/passwd</filename> awal).
+	Kita akan menggunakan perintah <command>chroot</command> lagi untuk mengeksekusi perintah pada partisi target:
       </para>
 
       <screen>
@@ -430,21 +403,17 @@ EOF</command>
     </sect2>
 
     <sect2 id="getstarted-custominstall-config-timezone">
-      <title>Setting the timezone</title>
+      <title>Menentukan zona waktu</title>
 
       <para>
-        On UNIX-like systems it is important to set the timezone correctly,
-        because it is used by various parts of the system. For instance,
-        the timezone is used by NTP to synchronize the system time correctly,
-        or by different networking programs to compute the time difference
-        between a client and a server. On Slackware Linux the timezone can be
-        set by linking <filename>/etc/localtime</filename> to a timezone file.
-        You can find the timezone for your region by browsing the
-        <filename>/mnt/usr/share/zoneinfo</filename> directory.
-        Most timezones can be found in the subdirectories of their
-        respective regions. For example to use
-        <emphasis>Europe/Amsterdam</emphasis> as the timezone, you can
-        execute the following commands:
+        Pada sistem UNIX-like, sangatlah penting untuk menentukan zona waktu dengan benar, karena digunakan oleh banyak 
+	bagian dari sistem. Sebagai contoh, zona waktu digunakan oleh NTP untuk melakukan sinkronisasi waktu sistem 
+	dengan benar, atau oleh banyak program jaringan lainnya untuk menghitung perbedaan waktu antara klien dan server.
+	Pada Slackware Linux zona waktu bisa ditentukan dengan menghubungkan <filename>/etc/localtime</filename> 
+	dengan berkas zona waktu. Anda bisa menemukan zona waktu untuk regional Anda dengan mengunjungi direktori 
+        <filename>/mnt/usr/share/zoneinfo</filename>. Sebagian besar zona waktu dapat ditemukan pada sub direktori dari regional
+	masing-masing. Sebagai contoh untuk menggunakan <emphasis>Europe/Amsterdam</emphasis> sebagai zona waktu, Anda bisa 
+	mengeksekusi perintah berikut:
       </para>
 
       <screen>
@@ -454,18 +423,13 @@ EOF</command>
       </screen>
 
       <para>
-        After setting the time zone, programs still do not know whether
-        the hardware clock is set to the local time, or to the Coordinated
-        Universal Time (UTC) standard. If you use another operating system
-        on the same machine that does not use UTC it is best to set the
-        hardware clock to the local time. On UNIX-like systems it is a
-        custom to set the system time to UTC. You can set what time the
-        system clock uses, by creating the file
-        <filename>/etc/hardwareclock</filename>, and putting the word
-        <emphasis>localtime</emphasis> in it if your clock is set to the
-        local time, or <emphasis>UTC</emphasis> when it is set to UTC.
-        For example, to use UTC, you can create
-        <filename>/etc/hardwareclock</filename> in the following manner:
+        Setelah menentukan zona waktu, program masih tidak tahu apakah jam perangkat keras ditentukan ke waktu lokal 
+	atau ke standar Coordinated Universal Time (UTC). Jika Anda menggunakan sistem operasi lain pada mesin yang sama yang 
+	tidak ditentukan ke UTC, maka lebih baik menentukan jam perangkat keras ke waktu lokal. Pada sistem UNIX-like 
+	sangatlah biasa untuk menentukan jam sistem ke UTC. Anda bisa menentukan waktu sistem yang digunakan dengan 
+	menciptakan berkas <filename>/etc/hardwareclock</filename>, dan memberikan isi <emphasis>localtime</emphasis> 
+	didalamnya jika waktu Anda ditentukan ke waktu lokal, atau <emphasis>UTC</emphasis> jika menggunakan UTC.
+        Sebagai contoh, untuk menggunakan UTC, Anda bisa menciptakan <filename>/etc/hardwareclock</filename> dengan cara berikut:
       </para>
 
       <screen>
@@ -474,12 +438,11 @@ EOF</command>
     </sect2>
 
     <sect2 id="getstarted-custominstall-fonts">
-      <title>Creating the X11 font cache</title>
+      <title>Membuat cache font X11</title>
 
       <para>
-        If you are going to use X11, you will have to initialize the
-        font cache for TrueType and Type1 fonts. This can be done
-        with the <command>fc-cache</command> command:
+        Jika Anda hendak menggunakan X11, Anda harus melakukan inisialisasi cache font untuk jenis font TrueType dan Type1. 
+	Hal ini bisa dilakukan dengan perintah <command>fc-cache</command>:
       </para>
 
       <screen>
@@ -492,21 +455,17 @@ EOF</command>
     <title>Script installasi otomatis</title>
 
     <para>
-      It is easy to combine the steps of a custom installation into
-      one script, which performs the custom steps automatically. This is ideal
-      for making default server installs or conducting mass roll-outs of
-      Linux clients. This sections contains a sample script that was
-      written by William Park. It is easy to add an installation script
-      to the Slackware Linux medium, especially if you use an installation
-      CD-ROM or boot the installation system from an USB flash drive.
+      Sangatlah mudah untuk mengkombinasikan langkah-langkah dari installasi modifikasi pada satu script, 
+      yang melakukan langkah-langkah secara otomatis. Hal ini ideal untuk membuat installasi server default
+      atau melakukan installasi masal pada klien Linux. Bagian ini berisi contoh script yang ditulis oleh 
+      William Park. Sangatlah mudah untuk menambahkan script installasi pada media Slackware Linux, terutama 
+      jika Anda menggunakan installasi CD-ROM atau melakukan boot sistem installasi dari flash drive USB.
     </para>
 
     <para>
-      The installation system is stored in one compressed image file,
-      that is available on the distribution medium as
-      <filename>isolinux/initrd.img</filename>. You can make a copy
-      of this image to your hard disk, and decompress it with
-      <command>gunzip</command>:
+      Sistem installasi tersimpan didalam satu citra terkompres, yang tersedia pada media distribusi sebagai 
+      <filename>isolinux/initrd.img</filename>. Anda bisa membuat salinan dari citra ini pada hard disk Anda, dan 
+      melakukan dekompresi dengan <command>gunzip</command>:
     </para>
 
     <screen>
@@ -515,8 +474,7 @@ EOF</command>
     </screen>
 
     <para>
-      After decompressing the image, you can mount the file as
-      a disk, using the loopback device:
+      Setelah mendekompresi citra, Anda bisa melakukan mount berkas sebagai disk, menggunakan loopback:
     </para>
 
     <screen>
@@ -524,10 +482,8 @@ EOF</command>
     </screen>
 
     <para>
-      You can now add a script to the initrd file by adding it to
-      the directory structure that is available under the mount point.
-      After making the necessary changes, you can unmount the
-      filesystem and compress it:
+      Anda bisa menambahkan script pada berkas initrd dengan menambahkannya pada struktur direktori yang tersedia dibawah 
+      mount point. Setelah melakukan perubahan yang diperlukan, Anda bisa unmount sistem berkas dan mengkompresnya kembali:
     </para>
 
     <screen>
@@ -537,8 +493,7 @@ EOF</command>
     </screen>
 
     <para>
-      You can then put the new <filename>initrd.img</filename> file on
-      the installation medium, and test the script.
+      Anda bisa meletakkan berkas <filename>initrd.img</filename> yang baru pada media installasi, dan mencoba script.
     </para>
 
     <programlisting>
