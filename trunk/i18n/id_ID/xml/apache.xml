@@ -4,30 +4,29 @@
 <title>Apache</title>
 
 <sect1>
-<title>Introduction</title>
+<title>Perkenalan</title>
 
 <para>
-Apache is the most popular web server since April 1996. It was originally
-based on NCSA httpd, and has grown into a full-featured HTTP server.
-Slackware Linux currently uses the 1.3.x branch of Apache. This chapter is 
-based on Apache 1.3.x. 
+Apache adalah server web yang paling populer sejak April 1996. 
+Aplikasi ini awalnya berbasis pada NCSA httpd, dan telah berkembang menjadi server 
+HTTP yang lengkap dengan fitur-fitur. Slackware Linux saat ini menggunakan 
+seri 1.3.xdari Apache. Bab ini berdasarkan pada Apache 1.3.x. 
 </para>
 
 </sect1>
 
 <sect1>
-<title>Installation</title>
+<title>Instalasi</title>
 
 <para>
-Apache can be installed by
-adding the <filename>apache</filename> package from the <quote>n</quote> disk set.
-If you also want to use PHP, the <filename>php</filename> (<quote>n</quote> disk set)
-and <filename>mysql</filename> (<quote>ap</quote> disk set) are also required.
-MySQL is required, because the precompiled PHP depends on MySQL shared 
-libraries. You do not have to run MySQL itself. After installing Apache
-it can be started automatically while booting the system by making
-the <filename>/etc/rc.d/rc.httpd</filename> file executable. You
-can do this by executing: 
+Apache bisa diinstall dengan menambahkan paket <filename>apache</filename> package from the <quote>n</quote> dari set disk.
+Jika Anda juga hendak menggunakan PHP, paket  <filename>php</filename> (set disk <quote>n</quote>)
+dan <filename>mysql</filename> (set disk <quote>ap</quote>) juga diperlukan.
+MySQL diperlukan, karena PHP bergantung dari pustaka MySQL. 
+Anda tidak harus menjalankan MySQL. Setelah diinstall Apache bisa djalankan 
+secara otomatis saat boot dengan membuat 
+berkas <filename>/etc/rc.d/rc.httpd</filename> bersifat executable. 
+Anda bisa melakukan hal ini dengan mengeksekusi: 
 </para>
 
 <screen>
@@ -35,13 +34,13 @@ can do this by executing:
 </screen> 
 
 <para>
-The Apache configuration can be altered in the 
-<filename>/etc/apache/httpd.conf</filename> file. Apache can be
-stopped/started/restarted every moment with the <command>apachectl</command>
-command, and the <parameter class="command">stop</parameter>, 
+Konfigurasi Apache bisa di rubah di file  
+<filename>/etc/apache/httpd.conf</filename>. Apache bisa di
+stop/start/restart setiap saat dengan perintah <command>apachectl</command>,
+ digabung dengan parameter-parameter <parameter class="command">stop</parameter>, 
 <parameter class="command">start</parameter> and 
-<parameter class="command">restart</parameter> parameters. For example,
-execute the following command to restart Apache:
+<parameter class="command">restart</parameter>. Sebagai contoh,
+jalankan perintah berikut untuk me-restart Apache:
 </para>
 
 <screen>
@@ -52,15 +51,14 @@ execute the following command to restart Apache:
 </sect1>
 
 <sect1>
-<title>User directories</title>
+<title>Direktori pemakai (user)</title>
 
 <para>
-Apache provides support for so-call user directories. This means every
-user gets web space in the form of <emphasis>http://host/~user/</emphasis>. The
-contents of <quote>~user/</quote> is stored in a subdirectory in the
-home directory of the user. This directory can be specified using the
-<quote>UserDir</quote> option in <filename>httpd.conf</filename>, for
-example:
+Apache menyediakan dukungan untuk direktori pemakai. Ini berarti setiap pemakai
+mendapat ruang web dalam bentuk <emphasis>http://host/~user/</emphasis>. Isi
+dari <quote>~user/</quote> disimpan di subdirektori dalam direktori home dari pemakai.
+DIrektori ini dapat ditentukan dengan menggunakan pilihan
+<quote>UserDir</quote> di <filename>httpd.conf</filename>, sebagai contoh:
 </para>
 
 <screen>
@@ -68,9 +66,9 @@ UserDir public_html
 </screen>
 
 <para>
-This specifies that the <filename>public_html</filename> directory should
-be used for storing the web pages. For example, the web pages at URL 
-<emphasis>http://host/~snail/</emphasis> are stored in 
+Ini menerangkan bahwa direktori <filename>public_html</filename> digunakan 
+untuk menyimpan halaman-halaman web. Sebagai contoh, halaman web di URL 
+<emphasis>http://host/~snail/</emphasis> disimpan di 
 <filename>/home/snail/public_html</filename>.
 </para>
 
@@ -80,24 +78,24 @@ be used for storing the web pages. For example, the web pages at URL
 <title>Virtual hosts</title>
 
 <para>
-The default documentroot for Apache under Slackware Linux is
-<filename>/var/www/htdocs</filename>. Without using virtual hosts
-every client connecting to the Apache server will receive the
-website in this directory. So, if we have two hostnames pointing
-to the server, <quote>www.example.org</quote> and 
-<quote>forum.example.org</quote>, both will display the same website.
-You can make separate sites for different hostnames by using
+Default documentroot untuk Apache di Slackware Linux adalah
+<filename>/var/www/htdocs</filename>. Tanpa menggunakan virtual hosts
+setiap klien yang terhubung ke server Apache akan menerima situs web dalam
+direktori ini Jadi, jika kita mempunyai dua hostname yang menunjuk ke server 
+<quote>www.example.org</quote> dan 
+<quote>forum.example.org</quote>, keduanya akan menampilkan situs web yang sama.
+Anda dapat membuat situs terpisah untuk hostname yang berbeda dengan menggunakan
 virtual hosts.
 </para>
 
 <para>
-In this example we are going to look how you can make two virtual
-hosts, one for <quote>www.example.org</quote>, with the documentroot
-<filename>/var/www/htdocs-www</filename>, and <quote>forum.example.org</quote>,
-with the documentroot <filename>/var/www/htdocs-forum</filename>. First
-of all we have to specify which IP addresses Apache should listen to.
-Somewhere in the <filename>/etc/apache/httpd.conf</filename> configuration
-file you will find the following line:
+Dalam contoh ini kita akan melihat bagaimana membuat dua virtual host, 
+satu untuk <quote>www.example.org</quote>, dengan documentroot
+<filename>/var/www/htdocs-www</filename>, dan <quote>forum.example.org</quote>,
+dengan documentroot <filename>/var/www/htdocs-forum</filename>. Petama-tama
+kita harus menentukan Apache harus mendengarkan (listen) di alamat IP mana.
+Di suatu bagian di file konfigurasi <filename>/etc/apache/httpd.conf</filename> anda akan
+menemukan baris:
 </para>
 
 <screen>
@@ -105,13 +103,12 @@ file you will find the following line:
 </screen>
 
 <para>
-This line has to be commented out to use name-based virtual hosts.
-Remove the comment character
-(#) and change the parameter to <quote>BindAddress IP:port</quote>, or
-<quote>BindAddress *:port</quote> if you want Apache to bind to all IP addresses
-the host has. Suppose we want to provide virtual hosts for IP address 
-192.168.1.201 port 80 (the default Apache port),
-we would change the line to:
+Baris ini harus dihilangkan tanda komentarnya untuk bisa menggunakan name-based virtual hosts.
+Hapus komentar karakter (#) dan ganti parameternya ke <quote>BindAddress IP:port</quote>, atau
+<quote>BindAddress *:port</quote> jika anda ingin mem-bind Apache ke semua alamat IP
+yang dipunyai host. Seandainya kita ingin menyediakan virtual host untuk alamat IP 192.168.1.201 
+port 80 (default port dari Apache),
+kita harus mengganti barisnya menjadi:
 </para>
 
 <screen>
@@ -119,8 +116,7 @@ NameVirtualHost 192.168.1.201:80
 </screen>
 
 <para>
-Somewhere below the NameVirtualHost line you can find a commented example
-of a virtualhost:
+Disuatu bagian dibawah baris NameVirtualHost anda dapat menemukan contoh virtual host yg di tandai komentar karakter (#) :
 </para>
 
 <screen>
@@ -134,9 +130,9 @@ of a virtualhost:
 </screen>
 
 <para>
-You can use this example as a guideline. For example, if we want to use
-all the default values, and we want to write the logs for both virtual
-hosts to the default Apache logs, we would add these lines:
+Anda dapat menggunakan contoh ini sebagai pedoman. Sebagai contoh, jika kita ingin
+menggunakan semua nilai default, dan kita ingin menulis log-log dari kedua virtual host
+ke default log Apache, kita dapat menambahkan baris ini:
 </para>
 
 <screen>
