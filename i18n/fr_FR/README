@@ -1,0 +1,12 @@
+Slackware Linux Basics
+
+* Installation *
+
+Les fichiers XMLs source peuvent être compilés sous d'autres formats
+(HTML, PDF, ...) en utilisant les paquets "linuxdoc-tools" et "libxslt",
+qui se trouvent respectivement dans les répertoires de paquets ap/ et l/
+FOP est requis pour créer les fichiers PDF depuis la sortie de XSL:FO.
+
+Exécuter "make" pour générer les fichiers HTML et PDF. Si vous ne voulez
+générer que les fichiers HTML, exécuter "make fmt-html" et
+"make fmt-html-singlepage".
