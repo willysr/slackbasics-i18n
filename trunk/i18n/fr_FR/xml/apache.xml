@@ -1,0 +1,156 @@
+<!-- $Id: apache.xml 283 2007-09-18 20:14:31Z danieldk $ -->
+
+<chapter> <?dbhtml filename="apache.html"?>
+<title>Apache</title>
+
+<sect1>
+<title>Introduction</title>
+
+<para>
+Apache is the most popular web server since April 1996. It was originally
+based on NCSA httpd, and has grown into a full-featured HTTP server.
+Slackware Linux currently uses the 1.3.x branch of Apache. This chapter is 
+based on Apache 1.3.x. 
+</para>
+
+</sect1>
+
+<sect1>
+<title>Installation</title>
+
+<para>
+Apache can be installed by
+adding the <filename>apache</filename> package from the <quote>n</quote> disk set.
+If you also want to use PHP, the <filename>php</filename> (<quote>n</quote> disk set)
+and <filename>mysql</filename> (<quote>ap</quote> disk set) are also required.
+MySQL is required, because the precompiled PHP depends on MySQL shared 
+libraries. You do not have to run MySQL itself. After installing Apache
+it can be started automatically while booting the system by making
+the <filename>/etc/rc.d/rc.httpd</filename> file executable. You
+can do this by executing: 
+</para>
+
+<screen>
+# <command>chmod a+x /etc/rc.d/rc.httpd</command>
+</screen> 
+
+<para>
+The Apache configuration can be altered in the 
+<filename>/etc/apache/httpd.conf</filename> file. Apache can be
+stopped/started/restarted every moment with the <command>apachectl</command>
+command, and the <parameter class="command">stop</parameter>, 
+<parameter class="command">start</parameter> and 
+<parameter class="command">restart</parameter> parameters. For example,
+execute the following command to restart Apache:
+</para>
+
+<screen>
+# <command>apachectl restart</command>
+/usr/sbin/apachectl restart: httpd restarted
+</screen>
+
+</sect1>
+
+<sect1>
+<title>User directories</title>
+
+<para>
+Apache provides support for so-call user directories. This means every
+user gets web space in the form of <emphasis>http://host/~user/</emphasis>. The
+contents of <quote>~user/</quote> is stored in a subdirectory in the
+home directory of the user. This directory can be specified using the
+<quote>UserDir</quote> option in <filename>httpd.conf</filename>, for
+example:
+</para>
+
+<screen>
+UserDir public_html
+</screen>
+
+<para>
+This specifies that the <filename>public_html</filename> directory should
+be used for storing the web pages. For example, the web pages at URL 
+<emphasis>http://host/~snail/</emphasis> are stored in 
+<filename>/home/snail/public_html</filename>.
+</para>
+
+</sect1>
+
+<sect1>
+<title>Virtual hosts</title>
+
+<para>
+The default documentroot for Apache under Slackware Linux is
+<filename>/var/www/htdocs</filename>. Without using virtual hosts
+every client connecting to the Apache server will receive the
+website in this directory. So, if we have two hostnames pointing
+to the server, <quote>www.example.org</quote> and 
+<quote>forum.example.org</quote>, both will display the same website.
+You can make separate sites for different hostnames by using
+virtual hosts.
+</para>
+
+<para>
+In this example we are going to look how you can make two virtual
+hosts, one for <quote>www.example.org</quote>, with the documentroot
+<filename>/var/www/htdocs-www</filename>, and <quote>forum.example.org</quote>,
+with the documentroot <filename>/var/www/htdocs-forum</filename>. First
+of all we have to specify which IP addresses Apache should listen to.
+Somewhere in the <filename>/etc/apache/httpd.conf</filename> configuration
+file you will find the following line:
+</para>
+
+<screen>
+#NameVirtualHost *:80
+</screen>
+
+<para>
+This line has to be commented out to use name-based virtual hosts.
+Remove the comment character
+(#) and change the parameter to <quote>BindAddress IP:port</quote>, or
+<quote>BindAddress *:port</quote> if you want Apache to bind to all IP addresses
+the host has. Suppose we want to provide virtual hosts for IP address 
+192.168.1.201 port 80 (the default Apache port),
+we would change the line to:
+</para>
+
+<screen>
+NameVirtualHost 192.168.1.201:80
+</screen>
+
+<para>
+Somewhere below the NameVirtualHost line you can find a commented example
+of a virtualhost:
+</para>
+
+<screen>
+#&lt;VirtualHost *:80&gt;
+#    ServerAdmin webmaster@dummy-host.example.com
+#    DocumentRoot /www/docs/dummy-host.example.com
+#    ServerName dummy-host.example.com
+#    ErrorLog logs/dummy-host.example.com-error_log
+#    CustomLog logs/dummy-host.example.com-access_log common
+#&lt;/VirtualHost&gt;
+</screen>
+
+<para>
+You can use this example as a guideline. For example, if we want to use
+all the default values, and we want to write the logs for both virtual
+hosts to the default Apache logs, we would add these lines:
+</para>
+
+<screen>
+&lt;VirtualHost 192.168.1.201:80&gt;
+	DocumentRoot /var/www/htdocs-www
+	ServerName www.example.org
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost 192.168.1.201:80&gt;
+	DocumentRoot /var/www/htdocs-forum
+	ServerName forum.example.org
+&lt;/VirtualHost&gt;
+</screen>
+
+</sect1>
+
+</chapter>

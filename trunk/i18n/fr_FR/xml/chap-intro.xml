@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
+	 xml:id="chap-intro">
+  <title>An introduction to Slackware Linux</title>
+
+  <sect1 xml:id="chap-intro-linux">
+    <title>What is Linux?</title>
+
+    <para>
+      Linux is a UNIX-like kernel, which is written by Linus Torvalds
+      and other developers. Linux runs on many different
+      architectures, for example on IA32, IA64, Alpha, m68k, SPARC and
+      PowerPC machines. The latest kernel and information about the
+      Linux kernel can be found on the Linux kernel website: <ulink
+      url="http://www.kernel.org">http://www.kernel.org</ulink>.
+    </para>
+
+    <para>
+      The Linux kernel is often confused with the GNU/Linux operating
+      system.  Linux is only a kernel, not a complete operating
+      system. GNU/Linux consists of the GNU operating system with the
+      Linux kernel. The following section gives a more extensive
+      description of GNU/Linux.
+    </para>
+  </sect1>
+
+  <sect1 xml:id="chap-intro-gnulinux">
+    <title>What is GNU/Linux?</title>
+
+    <para>
+      In 1984 Richard Stallman started an ambitious project with the
+      goal to write a free UNIX-like operating system. The name of
+      this system is <acronym>GNU</acronym>, which is an acronym of
+      <quote>GNU's Not UNIX</quote>.  Around 1990, all major
+      components of the GNU operating system were written, except the
+      kernel. Two years earlier, in 1988, it was decided that the GNU
+      project would use the Mach 3.0 microkernel as the foundation of
+      its kernel.  However, it took until 1991 for Mach 3.0 to be
+      released under a free software license.  In the the same year
+      Linus Torvalds started to fill the kernel gap in the GNU system
+      by writing the Linux kernel. GNU/Linux thus refers to a GNU
+      system running with the Linux kernel.
+    </para>
+
+    <para>
+      The GNU kernel, named <quote>HURD</quote> was still under
+      development when this book was written, and is available as the
+      GNU/HURD operating system. There are some other kernels that are
+      ported to the GNU operating system as well. For instance, the
+      Debian project has developed a version of the GNU operating
+      system that works with the NetBSD kernel.
+    </para>
+  </sect1>
+
+  <sect1 xml:id="chap-intro-slackware">
+    <title>What is Slackware Linux?</title>
+
+    <para>
+      Slackware Linux is a GNU/Linux distribution, which is maintained
+      and developed by Patrick Volkerding. A distribution is a
+      coherent collection of software that provides a usable GNU/Linux
+      system. Volkerding started using GNU/Linux because he needed a
+      LISP interpreter for a project. At the time the dominant
+      GNU/Linux distribution was Softlanding System Linux (SLS
+      Linux). Slackware Linux started out as a private collection of
+      Volkerding's patches for SLS Linux. The first publicly available
+      Slackware Linux release was 1.0, which was released on July 16,
+      1993.
+    </para>
+
+    <para>
+      In contrast to many other GNU/Linux distributions, Slackware
+      Linux adheres to the so-called KISS (Keep It Simple Stupid)
+      principle. This means that Slackware Linux does not have complex
+      graphical tools to configure the system. As a result the
+      learning curve of Slackware Linux can be high for inexperienced
+      GNU/Linux users, but it provides more transparency and
+      flexibility. Besides that you get a deeper understanding of
+      GNU/Linux with no-frills distributions like Slackware Linux.
+    </para>
+
+    <para>
+      Another distinguishing aspect of Slackware Linux, that also
+      <quote>complies</quote> with the KISS principle, is the
+      Slackware Linux package manager. Slackware Linux does not have a
+      complex package manager like RPM or dpkg. Packages are normal
+      tgz (tar/gzip) files, often with an additional installation
+      script and a package description file. For novice users tgz is
+      much more powerful than RPM, and avoids dependency
+      problems. Another widely known feature of Slackware Linux is its
+      initialization scripts. In contrast to most other GNU/Linux
+      distributions Slackware Linux does not have a directory for each
+      runlevel with symbolic links to services that have to be started
+      or killed in that runlevel. It uses a simpler approach in which
+      you can enable or disable services by twiddling the executable
+      bit of an initialization script.
+    </para>
+
+    <para>
+      The packages in Slackware Linux are compiled with as little
+      modifications as possible. This means you can use most general
+      GNU/Linux documentation.
+    </para>
+  </sect1>
+
+  <sect1 xml:id="chap-intro-unix">
+    <title>The UNIX philosophy</title>
+
+    <para>
+      Since GNU/Linux is a free reimplementation of the UNIX operating
+      system, it is a good idea to look at the philosophy that made
+      UNIX widely loved.  Doug McIlroy summarized the UNIX philosophy
+      in three simple rules:
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          Write programs that do one thing and do it well.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Write programs to work together.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Write programs to handle text streams, because that is a
+          universal interface.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>
+      Odds are that you do not intend to write programs for
+      GNU/Linux. However, even as a user these basic UNIX rules can
+      mean a lot to you. Once you get to know the essential commands
+      that have been part of UNIX for many years, you will be able to
+      combine simple programs to solve complex problems. Keep this in
+      mind while you learn Slackware Linux; try to get a feeling for
+      how you can divide complex tasks in simple combined operations.
+    </para>
+  </sect1>
+
+  <sect1 xml:id="free-software">
+    <title>Free and open source software</title>
+
+    <para>
+      Most packages in Slackware Linux are published under a free
+      software or open source license. Under these licenses software
+      may be used, studied, changed and distributed
+      freely. Practically, this means that the software is available
+      and redistributable in source and binary form. Although the free
+      software and open source software movements share many licenses
+      and principles, there are subtle differences between both
+      movements. The open source movement tends to focus on the
+      economic and technical advantages of sharing source code, while
+      the free software movement puts accent on the ethical side of
+      providing sources and binaries freely. As the GNU website puts
+      it: <quote>Free software is a matter of liberty, not price.  To
+      understand the concept, you should think of free as in free
+      speech, not as in free beer.<footnote>
+      <para>
+	<ulink url="http://www.gnu.org/philosophy/free-sw.html" />
+      </para>
+    </footnote></quote>
+
+      In the spirit of free and open source software the source code
+      of almost all packages is included in the official Slackware
+      Linux CD set or DVD.
+    </para>
+  </sect1>
+
+  <sect1 xml:id="slackware-features">
+    <title>Slackware Linux 12.0 features</title>
+
+    <para>
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    <emphasis role="bold">Linux 2.6.21.5</emphasis> -
+	    Slackware Linux uses as modern high-performance Linux
+	    kernel. The kernel includes support for all modern disk
+	    controllers, LVM, Software RAID, encrypted disks, and
+	    multiple processors/cores. By default,
+	    <emphasis>udev</emphasis> is enabled for automatic
+	    management of device nodes.
+          </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    <emphasis role="bold">HAL</emphasis> - the HAL (Hardware
+	    Abstraction Layer) is now included too. This provides a
+	    uniform API for desktop applications to use hardware.  It
+	    makes automatic mounting of disks and CDs considerably
+	    easier under Xfce and KDE.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+            <emphasis role="bold">X11 7.2.0</emphasis> - This is the
+            first version of Slackware Linux to use modular X.  This
+            means that the X11 components are separated in many small
+            packages for easier maintenance and lighter weight
+            upgrades.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">GCC 4.1.2</emphasis> - Slackware
+            Linux 12.0 includes a completely revised toolchain based
+            on the GNU Compiler Collection 4.1.2. GCC provides C, C++,
+            Objective-C, Fortran-77/95, and Ada 95
+            compilers. Additionally, version 2.5 of the GNU C library is
+            used.
+          </para>
+        </listitem>
+	<listitem>
+	  <para>
+	    <emphasis role="bold">Apache 2.2.4</emphasis> - Apache was
+	    upgraded to a new major version. Apache 2.x is a
+	    substantial rewrite of the old 1.3.x series.
+	  </para>
+	</listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">The K Desktop Environment (KDE)
+            3.5.7</emphasis> - The full KDE environment is provided,
+            which includes KOffice, the Konqueror web browser,
+            multimedia programs, development tools, and many more
+            useful applications.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">Xfce 4.4.1</emphasis> - Xfce is a
+            lightweight desktop environment based on GTK2. It embodies
+            the UNIX spirit of modularity and reusability.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para> 
+  </sect1>
+
+  <sect1 xml:id="chap-intro-getting">
+    <title>Getting Slackware Linux</title>
+
+    <para>
+      Slackware Linux is freely downloadable from the official
+      Slackware Linux mirrors. The list of Slackware mirrors is
+      available at <ulink url="http://www.slackware.com/getslack/" />.
+    </para>
+
+    <para>
+      You can also order Slackware Linux as a CD set or DVD from the
+      Slackware Store.  Many Internet shops also provide Slackware
+      Linux cheaply on CD-ROM or DVD, but you are only supporting
+      Slackware Linux financially if you buy an official CD set or
+      DVD. The Slackware Store also offers Slackware Linux
+      subscriptions.  A subscriber automatically receives new
+      Slackware Linux releases at a reduced price.
+    </para>
+
+    <para>
+      If you would like to have more information about purchasing
+      Slackware Linux, visit the Slackware Store website at <ulink
+      url="http://store.slackware.com/" />.
+    </para>
+  </sect1>
+</chapter>

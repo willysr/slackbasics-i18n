@@ -1,0 +1,48 @@
+body {
+  font-family: "Lucida Sans Unicode", "Bitstream Vera Sans", Arial, Helvetica, sans-serif;
+  font-size: 90%;
+}
+
+h1 {
+	color: #990000;
+}
+
+tt {
+	command {
+		font-weight: bold;
+	}
+
+	filename {
+		color: #007a00;
+	}
+
+	parameter {
+		color: #000000;
+	}
+
+	userinput {
+		font-weight: bold;
+	}
+}
+
+.acronym {
+	font-style: italic;
+}
+
+.screen, .programlisting {
+	width: 90%;
+	border: 2px solid #b0c4de;
+	background-color: #f0f8ff;
+	color: #000000;
+	padding: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+table.note {
+        width: 90%;
+	font-family: helvetica, arial, sans-serif;
+        border: 2px solid #a0c0a0;
+        background-color: #f0f8f0;
+        color: #000000;
+        padding: 0.5em;
+}
