@@ -4,21 +4,21 @@
 <title>BIND</title>
 
 <sect1>
-<title>Introduction</title>
+<title>Pengenalan</title>
 
 <para>
-The domain name system (<acronym>DNS</acronym>) digunakan untuk mengkonversi nama host yang mudah diingat (sebagai contoh www.slackware.com) menjadi alamat IP. <acronym>BIND</acronym> (Berkeley Internet Name Domain) adalah daemon DNS yang paling banyak digunakan, dan akan dibahas pada bab ini.
+Domain name system (<acronym>DNS</acronym>) digunakan untuk mengkonversi nama host yang mudah diingat (sebagai contoh www.slackware.com) menjadi alamat IP. <acronym>BIND</acronym> (Berkeley Internet Name Domain) adalah daemon DNS yang paling banyak digunakan, dan akan dibahas pada bab ini.
 </para>
 
 <sect2>
 <title>Delegasi</title>
 
 <para>
-Salah satu fitur utama adalah permintaan DNS dapat didelegasikan. Sebagai contoh, misalkan Anda memiliki domain <quote>linuxcorp.com</quote>.  Anda bisa menyediakan nameserver yang memiliki otoritas untuk domain ini, nameserver Anda adalah bersifat otoritatif untuk  <quote>linuxcorp.com</quote>. Misalkan terdapat cabang dari perusahaan Anda, dan Anda hendak memberikan setiap cabang sebuah otoritas pada zona miliknya masing-masing, ini bukanlah masalah dengan DNS. Anda bisa mendelegasikan DNS untuk misalnya <quote>sales.linuxcorp.com</quote> pada nameserver lain dalam konfigurasi DNS untuk zona <quote>linuxcorp.com</quote>.
+Salah satu fitur utama adalah permintaan DNS dapat didelegasikan. Sebagai contoh, misalkan Anda memiliki domain <quote>linuxcorp.com</quote>.  Anda bisa menyediakan nameserver yang memiliki otoritas untuk domain ini, nameserver Anda adalah bersifat otoritatif untuk  <quote>linuxcorp.com</quote>. Misalkan terdapat cabang dari perusahaan Anda, dan Anda hendak memberikan setiap cabang sebuah otoritas pada zona miliknya masing-masing, ini bukanlah masalah bagi DNS. Anda bisa mendelegasikan DNS untuk misalnya <quote>sales.linuxcorp.com</quote> pada nameserver lain dalam konfigurasi DNS untuk zona <quote>linuxcorp.com</quote>.
 </para>
 
 <para>
-Sistem DNS memiliki apa yang disebut server root, yang mendelegasikan DNS untuk jutaan nama domain dan ekstensi (misalnya, ekstensi yang spesifik terhadap sebuah negara, seperti <quote>.nl</quote> atau <quote>.uk</quote>) untuk mengotorisasi server DNS. Sistem ini mengijinkan bentuk pohon delegrasi, yang sangat fleksibel dan mendistribusikan beban DNS.
+Sistem DNS memiliki apa yang disebut server root, yang mendelegasikan DNS untuk jutaan nama domain dan ekstensi (misalnya, ekstensi yang spesifik terhadap sebuah negara, seperti <quote>.nl</quote> atau <quote>.uk</quote>) untuk mengotorisasi server DNS. Sistem ini mengijinkan bentuk pohon delegasi, yang sangat fleksibel dan mendistribusikan beban DNS.
 </para>
 
 </sect2>
@@ -57,7 +57,7 @@ Jenis-jenis berikut adalah jenis catatan DNS yang umum:
 </sect2>
 
 <sect2>
-<title>Masters and slaves</title>
+<title>Master and slave</title>
 
 <para>
 Dua jenis nameserver dapat disediakan untuk sebuah domain: master dan slave. Server DNS master bersifat otoritatif. Server slave mendownload catatan DNSnya dari server master. Menggunakan server slave disamping server master sangatlah disarankan untuk ketersediaan yang tinggi dan juga bisa digunakan untuk pembagian beban.
