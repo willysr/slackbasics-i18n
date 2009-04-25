@@ -2,42 +2,37 @@
 
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:id="chap-shell">
-  <title>The shell</title>
+  <title>Shell</title>
 
   <sect1 xml:id="chap-shell-intro">
-    <title>Introduction</title>
+    <title>Pengenalan</title>
 
     <para>
-      In this chapter we will look at the traditional working
-      environment of UNIX systems: the shell. The shell is an
-      interpreter that can be used interactively and
-      non-interactively. When the shell is used non-interactively it
-      functions as a simple, but powerful scripting language.
+      Pada bab ini kita akan melihat lingkungan kerja tradisional dari sistem UNIX: shell. 
+      Shell adalah sebuah interpreter yang dapat digunakan secara interaktif dan 
+      non-interaktif. Ketika shell digunakan pada mode non-interaktif, fungsinya 
+      sebagai bahasa pemrograman yang sederhana, namun bagus.
     </para>
 
     <para>
-      The procedure for starting the shell depends on whether you use
-      a graphical or text-mode login. If you are logging on in
-      text-mode the shell is immediately started after entering the
-      (correct) password.  If you use a graphical login manager like
-      KDM, log on as you would normally, and look in your window
-      manager or desktop environment menu for an entry named
-      <quote>XTerm</quote>, <quote>Terminal</quote> or
-      <quote>Konsole</quote>. XTerm is a terminal emulator, after the
-      terminal emulator is started the shell comes up.
+      Prosedur untuk menjalankan shell tergantung dari apakah Anda menjalankan login
+      berbasis grafis atau teks. Jika Anda login pada mode teks, maka shell sudah langsung 
+      dijalankan setelah memasukkan kata sandi yang benar. Jika Anda menjalankan manajer 
+      login grafis seperti KDM, lakukan proses login secara normal, dan lihat pada 
+      manajer jendela atau menu desktop untuk sebuah isian bernama <quote>XTerm</quote>, 
+      <quote>Terminal</quote> atau <quote>Konsole</quote>. XTerm adalah emulator terminal, setelah 
+      emulator terminal dijalankan, shell akan muncul.
     </para>
 		
     <para>
-      Before we go any further, we have to warn you that Slackware
-      Linux provides more than just one shell. There are two shell
-      flavors that have become popular over time, the Bourne shell and
-      the C shell.  In this chapter we will describe Bourne shells
-      that conform to the IEEE 1003.1 standard. The Bash (Bourne Again
-      Shell) and ksh (Korn Shell) shells conform well to these
-      standards. So, it is a good idea to use one of these two
-      shells. You can easily see what shell the system is running by
-      executing <command>echo $SHELL</command>.  This is what a Bash
-      shell may report:
+      Sebelum kita pergi lebih jauh, kami harus harus memperingatkan kepada Anda bahwa 
+      Slackware Linux menyediakan lebih dari sekedar satu shell. Terdapat dua rasa shell 
+      yang menjadi populer, Bourne shell dan C shell. Pada bab ini kita akan membahas 
+      Bourne shells yang sesuai dengan standar IEEE 1003.1. Shell Bash (Bourne Again
+      Shell) dan ksh (Korn Shell) sesuai dengan standar ini juga. Jadi merupakan ide bagus
+      untuk menggunakan salah satu dari dua shell ini. Anda bisa melihat shell yang digunakan
+      pada sistem dengan menjalankan <command>echo $SHELL</command>.  Ini yang akan dilaporkan
+      pada shell Bash:
     </para>
 
     <screen>
@@ -46,10 +41,9 @@ $ <userinput>echo $SHELL</userinput>
     </screen>
 		
     <para>
-      If you are using a different shell, you can change your default
-      shell. Before setting a different shell, you have to establish
-      the full path of the shell. You can do this with the
-      <command>which</command> command. For example:
+      Jika Anda menggunakan shell yang berbeda, Anda bisa mengganti shell default Anda. 
+      Sebelum mengganti shell yang berbeda, Anda harus menyediakan path lengkap dari shell. 
+      Anda bisa melakukannya dengan perintah <command>which</command>. Misalnya:
     </para>
 
     <screen>
@@ -60,11 +54,9 @@ $ <userinput>which ksh</userinput>
     </screen>
 
     <para>
-      On this Slackware system, the full path to the bash shell is
-      <filename>/bin/bash</filename>, and to the ksh shell
-      <filename>/bin/ksh</filename>. With this information, and the
-      <command>chsh</command> command you change the default
-      shell. The following example will set the default shell to bash:
+      Pada sistem Slackware, path lengkap terhadap shell bash adalah <filename>/bin/bash</filename>, 
+      dan shell ksh <filename>/bin/ksh</filename>. Dengan informasi ini, dan perintah <command>chsh</command> 
+      Anda bisa mengganti shell default. Contoh berikut mengganti shell default menjadi bash:
     </para>
 
     <screen>
@@ -75,65 +67,56 @@ Shell changed.
     </screen>
 
     <para>
-      The new shell will be activated after logging out from the
-      current shell (with <command>logout</command> or
-      <command>exit</command>), or by opening a new X terminal window
-      if you are running X11.
+      Shell baru akan diaktifkan setelah keluar dari shell yang saat ini sedang dipakai (dengan <command>logout</command> 
+      atau <command>exit</command>), atau dengan membuka jendela terminal X baru jika Anda menjalankan X11.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-shell-executing">
-    <title>Executing commands</title>
+    <title>Mengeksekusi perintah-perintah</title>
 
     <para>
-      An interactive shell is used to start programs by executing
-      commands.  There are two kinds of commands that a shell can
-      start:
+      Shell interaktif digunakan untuk menjalankan program dengan mengeksekusi perintah-perintah. Terdapat 
+      dua jenis perintah yang dapat dijalankan shell:
     </para>
 
     <itemizedlist>
       <listitem>
 	<para>
-	  <emphasis>Built-in commands:</emphasis> built-in commands
-	  are integrated in the shell. Commonly used built-in commands
-	  are: <command>cd</command>, <command>fg</command>,
-	  <command>bg</command>, and <command>jobs</command>.
+	  <emphasis>Perintah bawaan (built-in):</emphasis> perintah built-in terintegrasi pada shell.
+	  Perintah yang paling sering digunakan adalah: <command>cd</command>, <command>fg</command>,
+	  <command>bg</command>, dan <command>jobs</command>.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  <emphasis>External commands:</emphasis> external commands
-	  are programs that are not part of the shell program, and are
-	  separately stored on the filesystem. Commonly used external
-	  commands are: <command>ls</command>, <command>cat</command>,
-	  <command>rm</command>, and <command>mkdir</command>.
+	  <emphasis>Perintah eksternal:</emphasis> perintah eksternal adalah program yang bukan merupakan 
+	  bagian dari program shell, dan disimpan secara terpisah pada sistem berkas. Perintah 
+	  yang paling sering digunakan : <command>ls</command>, <command>cat</command>,
+	  <command>rm</command>, dan <command>mkdir</command>.
 	</para>
       </listitem>
     </itemizedlist>
 
     <para>
-      All shell commands are executed with the same syntax:
+      Semua perintah shell dieksekusi dengan sintaks yang sama:
     </para>
 		
     <screen>
-<command>commandname [argument1 argument2 ... argumentn]</command>
+<command>perintah [argumen1 argumen2 ... argumenN]</command>
     </screen>
 
     <para>
-      The number of arguments is arbitrary, and are always passed to
-      the command. The command can decide what it does with these
-      arguments.
+      Jumlah parameter bebas dan selalu dikirimkan ke perintah. Perintah bisa menentukan apa yang harus
+      dilakukan dengan argumen.
     </para>
 
     <para>
-      All built-in commands can always be executed, because they are
-      part of the shell. External commands can be executed by name
-      when the program is in the search path of the shell. Otherwise,
-      you will have to specify the path to the program. The search
-      path of the shell is stored in a variable named
-      <emphasis>PATH</emphasis>.  A variable is a named piece of
-      memory, of which the contents can be changed. We can see the
-      contents of the PATH variable in the following manner:
+      Semua perintah built-in selalu dapat dieksekusi, karena merupakan bagian 
+      dari shell. Perintah eksternal bisa dieksekusi ketika program masuk didalam pencarian path oleh 
+      shell. Jika tidak, Anda harus menentukan path ke program. Pencarian path dari shell disimpan pada 
+      variabel bernama <emphasis>PATH</emphasis>.  Sebuah varibel adalah bagian dari memory, dimana
+      nilainya bisa diganti. Kita bisa melihat isi dari variabel PATH dengan cara berikut:
     </para>
 
     <screen>
@@ -142,12 +125,10 @@ $ <userinput>echo $PATH</userinput>
     </screen>
 
     <para>
-      The directory paths in the <emphasis>PATH</emphasis> variable
-      are separated with the colon (<emphasis>:</emphasis>)
-      character. You can use the <command>which</command> command to
-      check whether a given command is in the current shell path. You
-      can do this by providing the command as an argument to
-      <command>which</command>. For example:
+      Path direktori pada variabel <emphasis>PATH</emphasis> dipisahkan dengan karakter titik dua 
+      (<emphasis>:</emphasis>). Anda bisa menggunakan perintah <command>which</command> untuk memeriksa 
+      apakah perintah yang diberikan terdapat pada path shell. Anda bisa melakukannya dengan memberikan 
+      perintah sebagai argumen bagi <command>which</command>. Sebagai contoh:
     </para>
 
     <screen>
@@ -158,8 +139,7 @@ $ <userinput>which sysstat</userinput>
     </screen>
 
     <para>
-      If a program is not in the path, you can still run it by
-      entering its absolute or relative path.
+      Jika sebuah program bukan bagian dari path, Anda masih bisa menjalankannya dengan memasukkan path absolut atau relatifnya.
     </para>
   </sect1>
 
