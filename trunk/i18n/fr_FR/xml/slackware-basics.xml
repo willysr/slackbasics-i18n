@@ -6,8 +6,8 @@
   xml:lang="en">
 
   <info>
-    <title>Slackware Linux Basics</title>
-    <subtitle>For Slackware Linux 12.0</subtitle>
+    <title>Les bases de Slackware Linux</title>
+    <subtitle>Pour Slackware Linux 12.0</subtitle>
     <pubdate>Thu Sep 27 10:20:04 CEST 2007</pubdate>
     <authorgroup>
       <author><personname>Dani&#235;l de Kok</personname></author>
@@ -28,25 +28,25 @@
       <title>License</title>
 
       <para>
-	Redistribution and use in textual and binary forms, with or
-	without modification, are permitted provided that the
-	following conditions are met:
+	La redistribution et l'utilisation sous forme texte ou binaire, avec ou
+	sans modification, sont permises seulement si les conditions suivantes
+	sont remplies:
       </para>
 
       <orderedlist>
 	<listitem>
 	  <para>
-	    Redistributions of this book must retain the above
-	    copyright notice, this list of conditions and the
-	    following disclaimer.
+	    La redistribution de ce livre doit garder le copyright ci-dessus,
+	    cette liste de conditions et la limitation de responsabilité
+	    ci-après.
 	  </para>
 	</listitem>
 
 	<listitem>
 	  <para>
-	    The names of the authors may not be used to endorse or
-	    promote products derived from this book without specific
-	    prior written permission.
+	    Le nom des auteurs ne doivent pas être utilisés pour cautionner ou
+	    promouvoir quelconques produits dérivés de ce livre sans
+	    autorisation écrite préalable.
 	  </para>
 	</listitem>
       </orderedlist>
@@ -68,10 +68,9 @@
       </para>
 
       <para>
-	Linux is a registered trademark of Linus Torvalds. Slackware
-	Linux is a registered trademark of Patrick Volkerding and
-	Slackware Linux, Inc.  UNIX is a registered trademark of The
-	Open Group.
+	Linux est une marque déposée au nom de Linus Torvalds. Slackware
+	Linux est une marque déposée au nom de Patrick Volkerding et
+	Slackware Linux, Inc.  UNIX est une marque déposée de The Open Group.
       </para>
     </legalnotice>
   </info>
@@ -81,7 +80,7 @@
   <xi:include href="preface.xml"/>
 
   <part xml:id="getstarted">
-    <title>Getting started</title>
+    <title>Démarrage</title>
 
     <xi:include href="chap-book.xml"/>
     <xi:include href="chap-intro.xml"/>
@@ -92,7 +91,7 @@
   </part>
 
   <part xml:id="basics">
-    <title>Slackware Linux Basics</title>
+    <title>Les bases de Slackware Linux</title>
 
     <xi:include href="chap-shell.xml"/>
     <xi:include href="chap-filesystem.xml"/>
@@ -101,19 +100,19 @@
   </part>
 
   <part xml:id="editing">
-    <title>Editing and typesetting</title>
+    <title>Edition typographique</title>
     <xi:include href="latex.xml"/>
   </part>
 
   <part xml:id="email">
-    <title>Electronic mail</title>
+    <title>Messagerie électronique</title>
     
     <xi:include href="mutt.xml"/>
     <xi:include href="sendmail.xml"/>
   </part>
 
   <part xml:id="sysadmin">
-    <title>System administration</title>
+    <title>Administration système</title>
     
     <xi:include href="chap-usermgmt.xml"/>
     <xi:include href="printing.xml"/>
@@ -126,7 +125,7 @@
    </part>
 
   <part xml:id="netadmin">
-    <title>Network administration</title>
+    <title>Administration réseau</title>
     <xi:include href="netconfig.xml"/>
     <xi:include href="ipsec.xml"/>
     <xi:include href="inetd.xml"/>
