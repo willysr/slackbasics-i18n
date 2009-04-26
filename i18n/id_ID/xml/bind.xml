@@ -4,7 +4,7 @@
 <title>BIND</title>
 
 <sect1>
-<title>Pengenalan</title>
+<title>Perkenalan</title>
 
 <para>
 Domain name system (<acronym>DNS</acronym>) digunakan untuk mengkonversi nama host yang mudah diingat (sebagai contoh www.slackware.com) menjadi alamat IP. <acronym>BIND</acronym> (Berkeley Internet Name Domain) adalah daemon DNS yang paling banyak digunakan, dan akan dibahas pada bab ini.

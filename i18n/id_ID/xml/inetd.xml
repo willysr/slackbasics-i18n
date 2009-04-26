@@ -62,7 +62,7 @@ harus dijalankan kembali untuk mengaktifkan perubahan. Hal ini bisa dilakukan de
 </screen>
 
 <para>
-  Atau anda dapat menggunakan skrip inisialisasi <filename>rc.inetd</filename> untuk menjalankan 
+  Atau Anda dapat menggunakan skrip inisialisasi <filename>rc.inetd</filename> untuk menjalankan 
   kembali <command>inetd</command>:
 </para>
 
@@ -76,7 +76,7 @@ harus dijalankan kembali untuk mengaktifkan perubahan. Hal ini bisa dilakukan de
 <title>TCP wrappers</title>
 
 <para>
-Seperti yang anda lihat pada <filename>/etc/inetd.conf</filename> koneksi untuk 
+Seperti yang Anda lihat pada <filename>/etc/inetd.conf</filename> koneksi untuk 
 sebagian besar protokol dibuat melalui <command>tcpd</command>, bukannya dengan akses langsung pada program layanan. Sebagai contoh:
 </para>
 
