@@ -1,13 +1,13 @@
 <chapter xml:id="chap-book">
-  <title>About this book</title>
+  <title>A propos de ce livre</title>
 
   <sect1 xml:id="chap-book-availability">
-    <title>Availability</title>
+    <title>Disponibilité</title>
 
     <para>
-      This book was written in DocBook/XML, and converted to HTML and
-      XSL:FO with <command>xsltproc</command>. The latest version of
-      the book is always available from: <ulink
+      Ce livre a été écrit en DocBook/XML, et a été converti en HTML et XSL:FO
+      à l'aide de <command>xsltproc</command>. La dernière version de ce livre
+      est constamment disponible sur: <ulink
       url="http://www.slackbasics.org/" />.
     </para>
   </sect1>
@@ -16,33 +16,33 @@
     <title>Conventions</title>
 
     <para>
-      This section gives a short summary of the conventions in this book.
+      Cette section résume les conventions dans ce livre.
     </para>
 
     <sect2 xml:id="chap-book-conventions-filenames">
-      <title>File names</title>
+      <title>Noms de fichiers</title>
 
       <para>
-	File or directory names are printed as:
-	<filename>/path/to/file</filename>.  For example:
+	Les fichiers et répertoires sont écrits ainsi:
+	<filename>/path/to/file</filename>.  Par exemple:
 	<filename>/etc/fstab</filename>
       </para>
     </sect2>
 
     <sect2 xml:id="chap-book-conventions-commands">
-      <title>Commands</title>
+      <title>Commandes</title>
 
       <para>
-	Commands are printed as bold text. For example: <command>ls
+	Les commandes sont écrites en gras. Par exemple: <command>ls
 	-l</command>
       </para>
     </sect2>
 
     <sect2 xml:id="chap-book-conventions-screenoutput">
-      <title>Screen output</title>
+      <title>Sorties d'écran</title>
 
       <para>
-	Screen output is printed like this:
+	Les sorties d'écran sont écrites ainsi:
       </para>
 
       <screen>
@@ -50,8 +50,8 @@ Hello world!
       </screen>
 
       <para>
-	If commands are being entered in the screen output the
-	commands will be printed as bold text:
+	Si dans la sortie écran des saisies de commandes apparaissent celles-ci
+	seront affichées en gras:
       </para>
 
       <screen>
@@ -60,9 +60,9 @@ Output
       </screen>
 
       <para>
-	If a command is executed as root, the shell will be displayed
-	as <quote>#</quote>. If a command is executed as a normal
-	non-privileged user, the shell will be displayed as
+	Si une commande est exécutée en tant que root, le shell sera affiché
+	comme ceci : <quote>#</quote>. Si une commande est exécutée en tant
+	qu'utilisateur non privilégié, le shell sera affiché comme ceci :
 	<quote>$</quote>.
       </para>
     </sect2>
@@ -71,15 +71,15 @@ Output
       <title>Notes</title>
 
       <para>
-	Some sections contain extra notes. It is not necessary to know
-	the information in notes, but notes may provide valuable
-	information, or pointers to information. Notes are printed
-	like this:
+	Certaines sections contiennent des notes. Il n'est pas nécessaire de
+	connaître leur contenu, mais elles peuvent fournir de précieuses
+	informations, ou un lien vers des informations. Les notes sont
+	affichées ainsi :
       </para>
 
       <note>
 	<para>
-	  This is a note.
+	  Ceci est une note.
 	</para>
       </note>
     </sect2>

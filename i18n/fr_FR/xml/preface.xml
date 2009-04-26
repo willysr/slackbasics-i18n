@@ -1,35 +1,35 @@
 <preface xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xmlns:xl="http://www.w3.org/1999/xlink"
 	 xml:lang="en" xml:id="preface">
-  <title>Preface</title>
+  <title>Préface</title>
 
   <para>
-    This book aims to provide an introduction to Slackware Linux. It
-    addresses people who have little or no GNU/Linux experience, and
-    covers the Slackware Linux installation, basic GNU/Linux commands
-    and the configuration of Slackware Linux. After reading this book,
-    you should be prepared to use Slackware Linux for your daily work,
-    and more than that. Hopefully this book is useful as a reference
-    to more experienced Slackware Linux users as well.
+    Le but de ce livre est de fournir une introduction à Slackware Linux.
+    Il s'adresse aux personnes ayant peu ou pas d'expérience GNU/Linux, et
+    couvre l'installation de Slackware Linux, les commandes de base GNU/Linux
+    et la configuration de Slackware Linux. Après la lecture de ce livre, vous
+    devriez être prêts à utiliser Slackware Linux au quotidien, voire même plus.
+    Aussi, ce livre est utile en tant que référence pour des utilisateurs
+    plus expérimentés de Slackware Linux.
   </para>
 
   <para>
-    Thanks to the rapid development of open source software, there are
-    now comprehensive desktop environments and applications for
-    GNU/Linux. Most current distributions and books focus on using
-    GNU/Linux with such environments. I chose to ignore most of the
-    graphical applications for this book, and tried to focus this book
-    on helping you, as a reader, to learn using GNU/Linux in a more
-    traditional UNIX-like way. I am convinced that this approach is
-    often more powerful, and helps you to learn GNU/Linux well, and
-    not just one distribution or desktop environment. The UNIX
-    philosophy is described in <link xl:href="#chap-intro-unix">the
-    overview of UNIX philosophy</link>
+    Grâce au développement rapide des logiciels libres, nous avons maintenant
+    une offre complète d'environnements de bureau et d'applications pour
+    GNU/Linux. La plupart des distributions actuelles et livres sont axés sur
+    l'utilisation de tels environnements. J'ai fait le choix d'ignorer la
+    plupart des applications graphiques dans ce livre, et cherché à faire
+    en sorte que ce livre vous aide, en tant que lecteur, à apprendre à
+    utiliser GNU/Linux dans le style UNIX. Je suis convaincu que cette approche
+    est souvent plus efficace, et vous aide à bien apprendre GNU/Linux, et non
+    à connaitre une distribution ou un environnement de plus. La philosophie
+    UNIX est décrite dans la <link xl:href="#chap-intro-unix">vue d'ensemble de
+    la philosophie UNIX</link>.
   </para>
 
   <para>
-    I wish everybody a good time with Slackware Linux, and I hope that
-    you will find this book is useful for you.
+    Je souhaite à tous de bons moments avec Slackware Linux, et j'espère que
+    vous trouverez que ce livre utile.
   </para>
 
   <para>
