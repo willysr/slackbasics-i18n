@@ -398,7 +398,7 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
       <title>Word editing</title>
 
       <para>
-	It if often tedious to move at character level. Fortunately
+	It is often tedious to move at character level. Fortunately
 	the Korn and Bash shells can also move through lines at a word
 	level.  Words are sequences of characters that are separated
 	by a special character, such as a space.
