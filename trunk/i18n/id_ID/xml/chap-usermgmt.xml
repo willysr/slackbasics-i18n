@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:lang="id" xml:id="chap-usermgmt">
-  <title>User management</title>
+  <title>Manajemen User</title>
 
   <sect1 xml:id="chap-usermgmt-intro">
-    <title>Introduction</title>
+    <title>Perkenalan</title>
 
     <para>
-      GNU/Linux is a multi-user operating system. This means that
-      multiple users can use the system, and they can use the system
-      simultaneously. The GNU/Linux concepts for user management are
-      quite simple. First of all, there are several user accounts on
-      each system. Even on a single user system there are multiple
-      user accounts, because GNU/Linux uses unique accounts for some
-      tasks. Users can be members of groups. Groups are used for more
-      fine grained permissions, for example, you could make a file
-      readable by a certain group. There are a few reserved users and
-      groups on each system. The most important of these is the
-      <emphasis>root</emphasis> account. The <emphasis>root</emphasis>
-      user is the system administrator. It is a good idea to avoid
-      logging in as root, because this greatly enlarges security
-      risks. You can just log in as a normal user, and perform system
-      administration tasks using the <command>su</command> and
-      <command>sudo</command> commands.
+	GNU/LINUX adalah sistem operasi multi-user. Ini berarti banyak
+	User dapat menggunakan sistem, dan mereka dapat menggunakan sistem
+	tersebut secara bersama.Konsep manajemen pengguna dari GNU/Linux 
+	cukup sederhana.Pertama, terdapat beberapa account user pada setiap
+	sistem.Bahkan untuk sistem yang memiliki satu user sekalipun terdapat 
+	beberapa account user,karena GNU/Linux menggunakan account yang unik 
+	untuk melakukan beberapa tugas.Setiap user dapat menjadi anggota dari
+	sebuah  grup. Grup digunakan untuk untuk perijinan yang lebih luas.
+	Sebagai contoh, anda dapat membuat file yang hanya bisa dibaca oleh 
+	grup tertentu.Dalam sebuah sistem terdapat beberapa user dan grup 
+	yang namanya telah dialokasikan. Diantara user yang dialokasikan 
+	tersebut yang paling	penting adalah <emphasis>root</emphasis>. 
+	User <emphasis>root</emphasis> merupakan administrator dari sistem.
+	Adalah ide bagus untuk menghindari login sebagai root, karena dengan
+	login sebagai root akan meningkatkan resiko keamanan. Anda dapat login
+	sebagai user biasa, kemudian melakukan pekerjaan administrasi sistem 
+	menggunakan perintah <command>su</command> dan perintah <command>sudo
+	</command>
     </para>
 
     <para>
