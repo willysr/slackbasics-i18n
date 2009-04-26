@@ -701,68 +701,60 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
     </para>
 
     <para>
-      Merupakan ide yang bagus untuk berlatih dengan pelengkap, karena bisa It is a good idea to practice a bit with completion, it can save
-      alot of keystrokes if you can handle completion well. You can
-      make some empty files to practice with using the
-      <command>touch</command> command.  For example, to make a file
-      named <filename>recipe3.txt</filename>, execute <command>touch
-      recipe3.txt</command>.
+      Merupakan ide yang bagus untuk berlatih dengan pelengkap, karena bisa menghemat banyak penekanan kunci jika Anda 
+      bisa memanfaatkannya. Anda bisa membuat beberapa berkas kosong dengan menggunakan perintah <command>touch</command>.  
+      Misalkan untuk membuat berkas dengan nama <filename>recipe3.txt</filename>, jalankan <command>touch recipe3.txt</command>.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-shell-wildcards">
-    <title>Wildcards</title>
+    <title>Wildcard</title>
 
     <para>
-      Most shells, including Bash and ksh, support
-      wildcards. Wildcards are special characters that can be used to
-      do pattern matching. The table listed below displays some
-      commonly used wildcards. We are going to look at several
-      examples to give a general idea how wildcards work.
+      Sebagian besar shell, termasuk Bash dan ksh, mendukung wildcard. Wildcard adalah karakter spesial yang bisa digunakan 
+      untuk melakukan pencocokan pola. Tabel berikut menampilkan beberapa wildcard yang umum dipakai. Kita akan melihat pada 
+      beberapa contoh untuk memberikan ide tentang bagaimana wildcard bekerja.
     </para>
 
     <table xml:id="chap-shell-wildcards-thewildcards">
-      <title>Bash wildcards</title>
+      <title>Wildcard Bash</title>
 
       <tgroup cols="2" align="left" colsep="1" rowsep="1">
 	<thead>
 	  <row>
-	    <entry>Wildcard</entry> <entry>Matches</entry>
+	    <entry>Wildcard</entry> <entry>Cocok dengan</entry>
 	  </row>
 	</thead>
 	<tbody>
 	  <row>
 	    <entry>*</entry>
-	    <entry>A string of characters</entry>
+	    <entry>Sebuah string dari karakter</entry>
 	  </row>
 	  <row>
 	    <entry>?</entry>
-	    <entry>A single character</entry>
+	    <entry>Karakter tunggal</entry>
 	  </row>
 	  <row>
 	    <entry>[]</entry>
-	    <entry>A character in an array of characters</entry>
+	    <entry>Sebuah karakter dalam sebuah array karakter</entry>
 	  </row>
 	</tbody>
       </tgroup>
     </table>
 
     <sect2 xml:id="chap-shell-wildcards-string">
-      <title>Matching a string of characters</title>
+      <title>Pencocokan string dari karakter</title>
 
       <para>
-	As you can see in the table above the <quote>*</quote>
-	character matches a string of characters. For example,
-	<emphasis>*.html</emphasis> matches everything ending with
-	<emphasis>.html</emphasis>, <emphasis>d*.html</emphasis>
-	matches everything starting with a <emphasis>d</emphasis> and
-	ending with <emphasis>.html</emphasis>.
+	Seperti yang Anda lihat pada tabel diatas, karakter <quote>*</quote>
+	cocok dengan string dari karakter. Sebagai contoh <emphasis>*.html</emphasis> cocok dengan 
+	semua yang diakhiri dengan <emphasis>.html</emphasis>, <emphasis>d*.html</emphasis>
+	cocok dengan semua yang diawali dengan <emphasis>d</emphasis> dan diakhiri dengan <emphasis>.html</emphasis>.
       </para>
 
       <para>
-	Suppose that you would like to list all files in the current
-	directory with the <emphasis>.html</emphasis> extension, the
-	following command will do the job:
+	Misalkan Anda hendak menampilkan semua berkas pada direktori aktual dengan ekstensi <emphasis>.html</emphasis>, 
+	perintah berikut akan melakukan pekerjaan tersebut:
       </para>
 
       <screen>
@@ -774,8 +766,7 @@ help.html        slackware-basics.html shell.html
       </screen>
 
       <para>
-	Likewise we could remove all files starting with an
-	<emphasis>in</emphasis>:
+	Kita juga bisa menghapus semua berkas diawali dengan <emphasis>in</emphasis>:
       </para>
 
       <screen>
@@ -784,55 +775,46 @@ $ <userinput>rm in*</userinput>
     </sect2>
 
     <sect2 xml:id="chap-shell-wildcards-single">
-      <title>Matching single characters</title>
+      <title>Pencocokan satu karakter</title>
 
       <para>
-	The <quote>?</quote> wildcard works as the <quote>*</quote>
-	wildcard, but matches single characters. Suppose that we have
-	three files, <filename>file1.txt</filename>,
-	<filename>file2.txt</filename> and
-	<filename>file3.txt</filename>. The string
-	<emphasis>file?.txt</emphasis> matches all three of these
-	files, but it does not match <filename>file10.txt</filename>
-	(<quote>10</quote> are two characters).
+	Wildcard <quote>?</quote> bekerja seperti <quote>*</quote>, tetapi hanya cocok 
+	untuk satu karakter saja. Misalkan kita memiliki tiga berkas, <filename>file1.txt</filename>,
+	<filename>file2.txt</filename> dan <filename>file3.txt</filename>. String <emphasis>file?.txt</emphasis> 
+	cocok dengan semua berkas ini, tetapi tidak cocok dengan <filename>file10.txt</filename>
+	(<quote>10</quote> adalah dua karakter).
       </para>
     </sect2>
 
     <sect2 xml:id="chap-shell-wildcards-set">
-      <title>Matching characters from a set</title>
+      <title>Pencocokan karakter dari sekumpulan</title>
 
       <para>
-	The <quote>[]</quote> wildcard matches every character between
-	the brackets.  Suppose we have the files from the previous
-	example, <filename>file1.txt</filename>,
-	<filename>file2.txt</filename> and
-	<filename>file3.txt</filename>. The string
-	<emphasis>file[23].txt</emphasis> matches
-	<filename>file2.txt</filename> and
-	<filename>file3.txt</filename>, but not
+	Wildcard <quote>[]</quote> cocok dengan semua karakter diantara kurung siku. Misalkan kita memiliki
+	berkas dari contoh sebelumnya, <filename>file1.txt</filename>, <filename>file2.txt</filename> 
+	dan <filename>file3.txt</filename>. String <emphasis>file[23].txt</emphasis> cocok dengan 
+	<filename>file2.txt</filename> dan <filename>file3.txt</filename>, tetapi tidak untuk 
 	<filename>file1.txt</filename>.
       </para>
     </sect2>
   </sect1>
 
   <sect1 xml:id="chap-shell-inout">
-    <title>Redirections and pipes</title>
+    <title>Pengalihan dan pipe</title>
 
     <para>
-      One of the main features of UNIX-like shells are redirections
-      and pipes.  Before we start to look at both techniques we have
-      to look how most UNIX-like commands work. When a command is not
-      getting data from a file, it will open a special pseudo-file
-      named <emphasis>stdin</emphasis>, and wait for data to appear on
-      it. The same principle can be applied for command output, when
-      there is no explicit reason for saving output to a file, the
-      pseudo-file <emphasis>stdout</emphasis> will be opened for
-      output of data. This principle is shown schematically in <xref
+      Salah satu fitur utama dari shell UNIX-like adalah pengalihan dan pipe. Sebelum kita mulai melihat 
+      kedua teknik, kita harus melihat bagaimana perintah UNIX-like bekerja. Ketika sebuah perintah tidak 
+      mendapatkan data dari sebuah berkas, maka akan membuka sebuah berkas-pseudo khusus bernama 
+      <emphasis>stdin</emphasis>, dan menunggu data yang muncul. Prinsip yang sama bisa diterapkan pada 
+      hasil keluaran sebuah perintah, ketika tidak ada alasan khusus untuk menyimpan hasil keluaran ke 
+      sebuah berkas, berkas-pseudo <emphasis>stdout</emphasis> akan dibuka untuk keluaran data. Prinsip ini
+      ditampilkan secara sistematis pada <xref
       linkend="fig-shell-inout" />
     </para>
 
     <figure xml:id="fig-shell-inout">
-      <title>Standard input and output</title>
+      <title>Masukan dan keluaran standar</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/shell-inout.png" format="PNG"/>
@@ -841,15 +823,11 @@ $ <userinput>rm in*</userinput>
     </figure>
 
     <para>
-      You can see <emphasis>stdin</emphasis> and
-      <emphasis>stdout</emphasis> in action with the
-      <command>cat</command> command. If cat is started without any
-      parameters it will just wait for input on
-      <emphasis>stdin</emphasis> and output the same data on
-      <emphasis>stdout</emphasis>. If no redirection is used keyboard
-      input will be used for <emphasis>stdin</emphasis>, and
-      <emphasis>stdout</emphasis> output will be printed to the
-      terminal:
+      Anda bisa melihat <emphasis>stdin</emphasis> dan <emphasis>stdout</emphasis> bekerja dengan perintah 
+      <command>cat</command>. Jika cat dimulai tanpa sembarang parameter, maka dia akan menunggu masukkan dari 
+      <emphasis>stdin</emphasis> dan menampilkan data yang sama pada <emphasis>stdout</emphasis>. Jika tidak ada
+      pengalihan yang digunakan, masukan dari keyboard akan digunakan untuk <emphasis>stdin</emphasis>, dan keluaran 
+      <emphasis>stdout</emphasis> akan dicetak ke terminal:
     </para>
 
     <screen>
@@ -859,21 +837,18 @@ Hello world!
     </screen>
 
     <para>
-      As you can see cat will print data to
-      <emphasis>stdout</emphasis> after inputting data to
-      <emphasis>stdin</emphasis> using the keyboard.
+      Seperti yang Anda lihat, cat akan mencetak data ke <emphasis>stdout</emphasis> setelah memasukkan data ke 
+      <emphasis>stdin</emphasis> menggunakan keyboard.
     </para>
 
     <sect2 xml:id="chap-shell-inout-redir">
-      <title>Redirection</title>
+      <title>Pengalihan</title>
 
       <para>
-	The shell allows you to take use of <emphasis>stdin</emphasis>
-	and <emphasis>stdout</emphasis> using the <quote>&lt;</quote>
-	and <quote>&gt;</quote>. Data is redirected in which way the
-	sharp bracket points. In the following example we will
-	redirect the md5 summaries calculated for a set of files to a
-	file named <filename>md5sums</filename>:
+	Shell mengijinkan Anda untuk menggunakan <emphasis>stdin</emphasis> dan <emphasis>stdout</emphasis> 
+	menggunakan <quote>&lt;</quote> dan <quote>&gt;</quote>. Data dialihkan ke arah anak panah. Pada contoh 
+	berikut kita akan mengalihkan hasil md5 yang dihitung untuk sekumpulan berkas pada sebuah berkas bernama
+	<filename>md5sums</filename>:
       </para>
 
       <screen>
@@ -885,10 +860,9 @@ $ <userinput>cat md5sums</userinput>
       </screen>
 
       <para>
-	As we can see in the <command>cat</command> output the output
-	of the <command>md5sum *</command> output was redirected to
-	the <filename>md5sums</filename> file. We can also use
-	redirection to provide input to a command:
+	Seperti yang bisa kita lihat pada keluaran perintah <command>cat</command>, hasil keluaran dari perintah  
+	<command>md5sum *</command> dialihkan ke berkas <filename>md5sums</filename>. Kita juga bisa menggunakan 
+	pengalihan untuk menyediakan masukkan ke sebuah perintah:
       </para>
 
       <screen>
@@ -897,26 +871,23 @@ $ <userinput>md5sum &lt; test1</userinput>
       </screen>
 
       <para>
-	This feeds the contents of the <filename>test1</filename> to
-	<command>md5sum</command>.
+	Hal ini memberikan isi dari <filename>test1</filename> ke <command>md5sum</command>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-shell-inout-pipes">
-      <title>Pipes</title>
+      <title>Pipe</title>
 
       <para>
-	You can also connect the input and output of commands using
-	so-called <emphasis>pipes</emphasis>. A pipe between commands
-	can be made with the <quote>|</quote> character. Two or more
-	combined commands are called a
+	Anda juga bisa menghubungkan masukan dan keluaran dari perintah menggunakan <emphasis>pipe</emphasis>. 
+	Sebuah pipe dapat dibuat dengan karakter <quote>|</quote>. Dua atau lebih perintah yang digabungkan disebut 
 	<emphasis>pipeline</emphasis>. <xref
-	linkend="fig-shell-pipeline" /> shows a schematic overview of
-	a pipeline consisting of two commands.
+	linkend="fig-shell-pipeline" /> menampilkan sistematis bagaimana sebuah pipeline yang terdiri dari 
+	dua perintah.
       </para>
 
       <figure xml:id="fig-shell-pipeline">
-	<title>A pipeline</title>
+	<title>Sebuah pipeline</title>
 	<mediaobject>
 	  <imageobject>
 	    <imagedata fileref="../../images/shell-pipeline.png" format="PNG"/>
@@ -925,10 +896,9 @@ $ <userinput>md5sum &lt; test1</userinput>
       </figure>
 
       <para>
-	The <quote>syntax</quote> of a pipeline is: <command>command1
-	| command2 ... | commandn</command>. If you know how the most
-	basic UNIX-like commands work you can now let these commands
-	work together. Let's look at a quick example:
+	<quote>Sintaks</quote> dari pipeline adalah: <command>perintah1
+	| perintah2 ... | perintahN</command>. Jika Anda tahu bagaimana sebagian besar perintah UNIX bekerja, Anda bisa 
+	menggabungkannya. Mari kita lihat dalam sebuah contoh:
       </para>
 
       <screen>
@@ -937,25 +907,18 @@ $ <userinput>cat /usr/share/dict/american-english | grep "aba" | wc -l</userinpu
       </screen>
 
       <para>
-	The first command, <command>cat</command>, reads the
-	dictionary file
-	<filename>/usr/share/dict/american-english</filename>. The
-	output of the <command>cat</command> command is piped to
-	<command>grep</command>, which prints out all files containing
-	the phrase <quote>aba</quote>.  In turn, the output of
-	<quote>grep</quote> is piped to <command>wc -l</command>,
-	which counts the number of lines it receives from
-	<emphasis>stdin</emphasis>. Finally, when the stream is
-	finished <command>wc</command> prints the number of lines it
-	counted. So, combined three commands to count the number of
-	words containing the phrase <quote>aba</quote> in this
-	particular dictionary.
+	Perintah pertama, <command>cat</command>, membaca berkas kamus <filename>/usr/share/dict/american-english</filename>. 
+	Hasil keluaran dari perintah <command>cat</command> dikirimkan melalui pipe ke <command>grep</command>, yang akan 
+	mencetak semua berkas yang mengandung frase <quote>aba</quote>.  Berikutnya, keluaran dari <quote>grep</quote> akan 
+	dikirimkan melalui pipe ke <command>wc -l</command>, yang akan menghitung jumlah baris yang diterima dari 
+	<emphasis>stdin</emphasis>. Akhirnya, ketika aliran sudah selesai, <command>wc</command> mencetak jumlah baris yang 
+	dihitung. Jadi ketiga perintah yang digabung akan menghitung jumlah kata yang mengandung frase <quote>aba</quote> pada 
+	kamus ini.
       </para>
 
       <para>
-	There are hundreds of small utilities that handle specific
-	tasks. As you can imagine, together these commands provide a
-	very powerful toolbox by making combinations using pipes.
+	Terdapat banyak sekali utilitas kecil yang menangani tugas-tugas yang spesifik. Seperti yang Anda bayangkan, perintah-perintah 
+	ini bisa menyediakan sebuah kotak kerja yang hebat dengan membuat kombinasi dengan pipe.
       </para>
     </sect2>
   </sect1>
