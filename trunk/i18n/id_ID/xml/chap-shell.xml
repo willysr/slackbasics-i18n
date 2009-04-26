@@ -144,24 +144,19 @@ $ <userinput>which sysstat</userinput>
   </sect1>
 
   <sect1 xml:id="chap-shell-moving">
-    <title>Moving around</title>
+    <title>Berpindah-pindah</title>
 
     <para>
-      It is often necessary to jump through various parts of a line,
-      and to alter it, when you are editing larger commands. Both
-      <command>bash</command> and <command>ksh</command> have keyboard
-      shortcuts for doing common operations.  There are two shell
-      modes, in which the shortcut keys differ. These modes correspond
-      with two popular editors for UNIX in their behavior.  These
-      editors are <command>vi</command> and
-      <command>emacs</command>. In this book we will only cover the
-      EMACS-like keystrokes. You can check in which mode a shell is
-      running by printing the <emphasis>SHELLOPTS</emphasis>
-      variable. In the first example the shell is used in
-      <emphasis>emacs</emphasis> mode, in the second example the
-      <emphasis>vi</emphasis> mode is used. You identify the mode by
-      looking for the <emphasis>emacs</emphasis> or
-      <emphasis>vi</emphasis> strings in the contents of the variable.
+      Seringkali kita perlu melompat pada berbagai bagian dari sebuah baris dan mengubahnya, 
+      ketika Anda mengedit perintah yang besar. Baik <command>bash</command> dan <command>ksh</command> 
+      memiliki jalan pintas (shortcut) untuk melakukan beberapa operasi umum. Terdapat dua mode shell,
+      yang memiliki dua kunci shortcut yang berbeda. Mode ini bersesuaian dengan dua editor UNIX 
+      yang populer. Editor ini adalah <command>vi</command> dan <command>emacs</command>. 
+      Pada buku ini kita hanya akan membahas kunci EMACS-like. Anda bisa melihat pada mode apa yang digunakan 
+      oleh shell yang sedang digunakan dengan mencetak variabel <emphasis>SHELLOPTS</emphasis>. 
+      Pada contoh pertama shell digunakan pada mode <emphasis>emacs</emphasis>, pada contoh kedua
+      digunakan mode <emphasis>vi</emphasis>. Anda bisa mengidentifikasi mode dengan melihat pada string 
+      <emphasis>emacs</emphasis> atau <emphasis>vi</emphasis> pada isi dari variabel.
     </para>
 
     <screen>
@@ -175,9 +170,8 @@ braceexpand:hashall:histexpand:history:interactive-comments:monitor:vi
     </screen>
 
     <para>
-      If your shell is currently using the <emphasis>vi</emphasis>
-      mode, you can switch to the <emphasis>emacs</emphasis> mode by
-      setting the <emphasis>emacs</emphasis> option:
+      Jika shell Anda menggunakan mode <emphasis>vi</emphasis>, Anda bisa berpindah ke mode 
+      <emphasis>emacs</emphasis> dengan menentukan opsi <emphasis>emacs</emphasis>:
     </para>
 
     <screen>
@@ -185,51 +179,47 @@ $ <userinput>set -o emacs</userinput>
     </screen>
 
     <para>
-      With the <emphasis>emacs</emphasis> editing mode enabled, you
-      can start using shortcuts. We will look at three kinds of
-      shortcuts: character editing shortcuts, word editing shortcuts,
-      and line editing shortcuts. Later in this chapter, we will also
-      have a look at some shortcuts that are used to retrieve entries
-      from the command history.
+      Dengan mode pengeditan <emphasis>emacs</emphasis> diaktifkan, Anda bisa menjalankan dengan shortcut. 
+      Kita akan melihat tiga jenis shortcut: pengeditan karakter, pengeditan kata, dan pengeditan baris.
+      Pada bagian lain dari bab ini, kita juga akan emlihat pada beberapa shortcut yang digunakan untuk 
+      mengambil isian dari sejarah perintah.
     </para>
 
     <sect2 xml:id="chap-shell-moving-char">
-      <title>Character editing</title>
+      <title>Pengeditan karakter</title>
 
       <para>
-	The first group of shortcuts have characters as their logic
-	unit, meaning that they allow command line editing operations
-	on characters.  <xref
-	linkend="chap-shell-moving-char-shortcuts-move" /> provides an
-	overview of the shortcuts that are used to move through a line
-	by character.
+	Grup pertama dari shortcut menggunakan karakter sebagai unit logisnya, berarti mereka mengijinkan 
+	operasi pengeditan perintah baris pada karakter.  <xref
+	linkend="chap-shell-moving-char-shortcuts-move" /> menyediakan gambaran dari shortcut yang digunakan 
+	untuk berpindah melalui baris pada karakter.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-move">
-	<title>Moving by character</title>
+	<title>Berpindah per karakter</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry><entry>Description</entry>
+	      <entry>Kunci</entry><entry>Deskripsi</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-b</entry>
-	      <entry>Move a character backwards.</entry>
+	      <entry>Pindah satu karakter kebelakang.</entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-f</entry>
-	      <entry>Move a character forward.</entry>
+	      <entry>Pindah satu karakter kedepan.</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <para>
-	These shortcuts are simple, and don't do anything unexpected.
-	Suppose that you have typed the following line:
+	Shortcut ini sangat sederhana, dan tidak melakukan hal-hal yang tidak diinginkan.
+	Misalkan Anda sudah menulis baris seperti ini:
       </para>
 
       <screen>
@@ -237,8 +227,7 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	The cursor will be at the end. You can now move to the start
-	of the line by holding <emphasis>Ctrl-b</emphasis>:
+	Kursor akan berada di akhir. Anda bisa berpindah ke awal baris dengan menekan <emphasis>Ctrl-b</emphasis>:
       </para>
 
       <screen>
@@ -246,39 +235,37 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	Likewise, you can go back again to the end by holding
-	<emphasis>Ctrl-f</emphasis>. There is an error in this line,
-	since there is one erroneous dash. To remove this dash, you
-	can use one of the character deletion shortcuts.
+	Anda juga bisa kembali ke akhir baris dengan menekan <emphasis>Ctrl-f</emphasis>. Terdapat kesalahan pada 
+	baris ini, karena terdapat satu karakter yang salah (-). Untuk menghilangkan karakter ini, Anda bisa 
+	menggunakan salah satu shortcut untuk penghapusan karakter.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-delete">
-	<title>Deleting characters</title>
+	<title>Menghapus karakter</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry><entry>Description</entry>
+	      <entry>Kunci</entry><entry>Deskripsi</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-h</entry>
-	      <entry>Delete a character before the cursor. This has
-	      the same effect as using the Backspace key on most
-	      personal computers.</entry>
+	      <entry>Menghapus sebuah karakter sebelum kursor. Hal ini memiliki efek yang sama dengan menggunakan 
+	      kunci Backspace pada sebagian besar komputer pribadi.</entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-d</entry>
-	      <entry>Delete the character the cursor is on.</entry>
+	      <entry>Menghapus karakter pada posisi kursor berada.</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <para>
-	You can delete the dash in two manners. The first way is to
-	move the cursor to the dash:
+	Anda bisa menghapus karakter minus (-) dengan dua cara. Cara pertama adalah dengan memindahkan kursor 
+	ke karakter yang akan dihapus:
       </para>
 
       <screen>
@@ -286,9 +273,8 @@ find ~/music <emphasis role="cursor">-</emphasis> -name '*.ogg' -print
       </screen>
 
       <para>
-	and then press <emphasis>Ctrl-d</emphasis> twice. This will
-	delete the dash character, and the space that follows the
-	dash:
+	lalu tekan <emphasis>Ctrl-d</emphasis> dua kali. Hal ini akan menghapus karakter minus, dan spasi yang mengikuti 
+	karakter minus:
       </para>
 
       <screen>
@@ -296,8 +282,8 @@ find ~/music <emphasis role="cursor">-</emphasis>name '*.ogg' -print
       </screen>
 
       <para>
-	Looking at the original fragment, the other approach is to
-	position the cursor on the space after the dash:
+	Dengan melihat pada potongan aslinya, pendekatan lain adalah dengan meletakkan posisi kursor pada spasi setelah
+	tanda minus:
       </para>
 
       <screen>
@@ -305,10 +291,8 @@ find ~/music -<emphasis role="cursor">&#32;</emphasis> -name '*.ogg' -print
       </screen>
 
       <para>
-	and then press <emphasis>Ctrl-h</emphasis> twice to delete the
-	two preceding characters, namely the dash and the space before
-	the dash. The result will be the same, except that the cursor
-	will move:
+	lalu menekan <emphasis>Ctrl-h</emphasis> dua kali untuk menghapus dua karakter sebelumnya, yaitu karakter
+	minus dan spasi sebelum karakter minus. Hasilnya akan sama, kecuali kursornya akan berpindah:
       </para>
 
       <screen>
@@ -316,35 +300,32 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
       </screen>
 
       <para>
-	One of the nice features of most modern shells is that you can
-	transpose (swap) characters. This is handy if you make a
-	typing error in which two characters are swapped.  <xref
-	linkend="chap-shell-moving-char-shortcuts-swap" /> lists the
-	shortcut for transposing characters.
+	Salah satu fitur menarik dari shell modern adalah Anda bisa melakukan transposisi (menukar) karakter.
+	Hal ini cukup berguna jika Anda melakukan kesalahan penulisan dimana dua karakter tertukar. <xref
+	linkend="chap-shell-moving-char-shortcuts-swap" /> mendaftar shortcut untuk pertukaran karakter.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-swap">
-	<title>Swapping characters</title>
+	<title>Menukar karakter</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry><entry>Description</entry>
+	      <entry>Kunci</entry><entry>Deskripsi</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-t</entry>
-	      <entry>Swap (transpose) the characters the cursor is on,
-	      and the character before the cursor. This is handy for
-	      quickly correcting typing errors.</entry>
+	      <entry>Menukar (transposisi) karakter dimana kursor berada dan karakter sebelum kursor.
+	      Hal ini berguna untuk memperbaiki kesalahan pengetikan dengan cepat.</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <para>
-	Suppose that you have typed the following command:
+	Misalkan Anda sudah menuliskan perintah berikut:
       </para>
 
       <screen>
@@ -352,11 +333,10 @@ cat myreport.ttx
       </screen>
 
       <para>
-	The extension contains a typing error if you intended to
-	<command>cat</command> <filename>myreport.txt</filename>. This
-	can be corrected with the character transpose shortcut. First
-	move to the second character of the pair of characters that
-	are in the wrong order:
+	Ekstensi memiliki kesalahan kesalahan pengetikan karena Anda hendak menuliskan <command>cat</command> 
+	<filename>myreport.txt</filename>. Hal ini bisa diperbaiki dengan shortcut transposisi karakter.
+	Pertama-tama pindahkan kursor ke karakter kedua dari pasangan karakter yang berada pada urutan
+	yang salah:
       </para>
 
       <screen>
@@ -364,9 +344,8 @@ cat myreport.tt<emphasis role="cursor">x</emphasis>
       </screen>
 
       <para>
-	You can then press <emphasis>Ctrl-t</emphasis>. The characters
-	will be swapped, and the cursor will be put behind the swapped
-	characters:
+	Anda bisa menekan <emphasis>Ctrl-t</emphasis>. Karakter akan ditukar dan kursor akan diletakkan diantara
+	karakter yang dipertukarkan:
       </para>
 
       <screen>
@@ -375,41 +354,36 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
     </sect2>
 
     <sect2 xml:id="chap-shell-moving-word">
-      <title>Word editing</title>
+      <title>Pengeditan kata</title>
 
       <para>
-	It if often tedious to move at character level. Fortunately
-	the Korn and Bash shells can also move through lines at a word
-	level.  Words are sequences of characters that are separated
-	by a special character, such as a space.
-	<xref linkend="chap-shell-moving-word-shortcuts-move" />
-	summarizes the shortcuts that can be used to navigate through
-	a line by word.
+	Seringkali diperlukan perpindahan pada level karakter. Untungnya shell Korn dan Bash juga bisa berpindah baris
+	pada level kata. Kata adalah urutan dari karakter yang dipisahkan oleh karakter khusus, misalnya spasi.
+	<xref linkend="chap-shell-moving-word-shortcuts-move" /> mendaftar shortcut yang bisa digunakan 
+	untuk melakukan navigasi baris per kata.
       </para>
 
       <table xml:id="chap-shell-moving-word-shortcuts-move">
-	<title>Moving by word</title>
+	<title>Berpindah per kata</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
-	      <entry>Description</entry>
+	      <entry>Kunci</entry>
+	      <entry>Deskripsi</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Esc b</entry>
 	      <entry>
-		Move back to the start of the current or previous
-		word.
+		Pindah ke awal dari kata aktual atau kata sebelumnya.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Esc f</entry>
 	      <entry>
-		Move forward to the last character of the current or
-		next word.
+		Pindah maju ke karakter terakhir dari kata aktual atau kata selanjutnya.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -417,13 +391,11 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
       </table>
 
       <para>
-	As you can see the letters in these shortcuts are equal to
-	those of moving forward and backwards by character. The
-	movement logic is a bit curious. Moving forward puts the
-	cursor to the end of the current word, not to the first
-	character of the next word as you may have predicted. Let's
-	look at a quick example. In the beginning the cursor is on the
-	first character of the line.
+	Seperti yang Anda lihat bahwa huruf pada shortcut sama dengan ketika berpindah per karakter. 
+	Logika dari perubahan ini cukup menarik. Berpindah kedepan meletakkan kursor di akhir dari
+	kata aktual, bukan pada karakter pertama dari kata selanjutnya seperti yang Anda prediksikan.
+	Mari kita lihat pada sebuah contoh. Pada awalnya kursor berada pada karakter pertama dari
+	sebuah baris.
       </para>
 
       <screen>
@@ -431,9 +403,8 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	Pressing <emphasis>Esc f</emphasis> will move the cursor
-	behind the last character of the first word, which is
-	<emphasis>find</emphasis> in this case:
+	Menekan <emphasis>Esc f</emphasis> akan memindahkan kursor diakhir karakter pertama, yang
+	berupa <emphasis>find</emphasis> pada kasus ini:
       </para>
 
       <screen>
@@ -441,8 +412,7 @@ find<emphasis role="cursor">&#32;</emphasis>~/music -name '*.ogg' -print
       </screen>
 
       <para>
-	Going forward once more will put the cursor behind
-	<emphasis>~/music</emphasis>:
+	Maju kedepan sekali akan meletakkan kursor dibelakang <emphasis>~/music</emphasis>:
       </para>
 
       <screen>
@@ -450,11 +420,10 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
       </screen>
 
       <para>
-	Backwards movement puts the cursor on the first character of
-	the current word, or on the first character of the previous
-	word if the cursor is currently on the first character of a
-	word. So, moving back one word in the previous example will
-	put the cursor on the first letter of <quote>music</quote>:
+	Perpindahan kebelakang meletakkan kursor di karakter pertama dari kata aktual, atau karakter
+	pertama dari kata sebelumnya jika kursor berada di karakter pertama dari sebuah kata.
+	Jadi berpindah kebelakang satu kata pada contoh sebelumnya akan meletakkan kursor pada kata pertama dari 
+	<quote>music</quote>:
       </para>
 
       <screen>
@@ -462,19 +431,19 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
       </screen>
 
       <para>
-	Deleting words works equal to moving by word, but the
-	characters that are encountered are deleted.  <xref
-	linkend="chap-shell-moving-word-shortcuts-delete" /> lists the
-	shortcuts that are used to delete words.
+	Menghapus kata memiliki cara kerja yang sama dengan perpindahan kata, tetapi karakter yang ditemukan
+	akan dihapus.  <xref
+	linkend="chap-shell-moving-word-shortcuts-delete" /> mendaftar shortcut yang digunakan untuk
+	menghapus kata.
       </para>
 
       <table  xml:id="chap-shell-moving-word-shortcuts-delete">
-	<title>Deleting words</title>
+	<title>Menghapus kata</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
-	      <entry>Description</entry>
+	      <entry>Kunci</entry>
+	      <entry>Deskripsi</entry>
 	    </row>
 	  </thead>
 	  <tbody>
@@ -483,7 +452,7 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 		Alt-d
 	      </entry>
 	      <entry>
-		Delete the word, starting at the current cursor position.
+		Menghapus kata, dimulai dari posisi kursor aktual.
 	      </entry>
 	    </row>
 	    <row>
@@ -491,8 +460,7 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 		Alt-Backspace
 	      </entry>
 	      <entry>
-		Delete every character from the current cursor position
-		to the first character of a word that is encountered.
+		Menghapus setiap karakter dari posisi kursor aktual hingga karakter pertama dari kata yang ditemukan.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -500,46 +468,43 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
       </table>
 
       <para>
-	Finally, there are some shortcuts that are useful to
-	manipulate words. These shortcuts are listed in <xref
+	Akhirnya, terdapat beberapa shortcut yang berguna untuk memanipulasi kata. Shortcut ini dapat dilihat pada <xref
 	linkend="chap-shell-moving-word-shortcuts-modify" />.
       </para>
 
       <table  xml:id="chap-shell-moving-word-shortcuts-modify">
-	<title>Modifying words</title>
+	<title>Memodifikasi kata</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
-	      <entry>Description</entry>
+	      <entry>Kunci</entry>
+	      <entry>Deskripsi</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Alt-t</entry>
 	      <entry>
-		Swap (transpose) the current word with the previous word.
+		Menukar (transposisi) kata aktual dengan kata sebelumnya.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Alt-u</entry>
 	      <entry>
-		Make the word uppercase, starting at the current cursor
-		position.
+		Membuat kata menjadi huruf kapital, dimulai dari kursor aktual.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Alt-l</entry>
 	      <entry>
-		Make the word lowercase, starting at the current
-		cursor position.
+		Membuat kata menjadi huruf kecil, dimulai dari kursor aktual.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Alt-c</entry>
 	      <entry>
-		Capitalize the current word character or the next word
-		character that is encountered.
+		Membuat karakter aktual menjadi huruf kapital atau karakter pertama dari kata selanjutnya
+		yang ditemukan.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -547,9 +512,8 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
       </table>
 
       <para>
-	Transposition swaps words. If normal words are used, it's
-	behavior is predictable. For instance, if we have the
-	following line with the cursor on <quote>two</quote>
+	Transposisi menukar antar kata. Jika kata biasa digunakan, maka perilakunya bisa diprediksi. Misalnya
+	jika kita memiliki baris berikut dengan kursor berada pada <quote>two</quote>
       </para>
 
       <screen>
@@ -557,8 +521,7 @@ one <emphasis role="cursor">t</emphasis>wo three
       </screen>
 
       <para>
-	Word transposition will swap <quote>two</quote> and
-	<quote>one</quote>:
+	Transposisi kata akan menukar <quote>two</quote> dan <quote>one</quote>:
       </para>
 
       <screen>
@@ -566,12 +529,10 @@ two one three
       </screen>
 
       <para>
-	But if there are any non-word characters, the shell will swap
-	the word with the previous word while preserving the order of
-	non-word characters. This is very handy for editing arguments
-	to commands. Suppose that you made an error, and mixed up the
-	file extension you want to look for, and the
-	<emphasis>print</emphasis> parameter:
+	Tetapi jika terdapat karakter bukan kata, shell akan menukar kata dengan kata sebelumnya sambil 
+	mempertahankan urutan dari karakter bukan kata. Hal ini cukup berguna untuk mengedit argumen dari sebuah
+	perintah. Misalkan Anda membuat kesalahan, dan mencampurkan ekstensi berkas yang hendak Anda cari
+	dari parameter <emphasis>print</emphasis>:
       </para>
 
       <screen>
@@ -579,9 +540,8 @@ find ~/music -name '*.print' -ogg
       </screen>
 
       <para>
-	You can fix this by putting the cursor on the second faulty
-	word, in this case <quote>ogg</quote>, and transposing the two
-	words. This will give the result that we want:
+	Anda bisa memperbaiki hal ini dengan meletakkan kursor pada kata kedua yang salah, dalam kasus ini 
+	<quote>ogg</quote>, dan menukar dua kata tersebut. Hal ini akan memberikan hasil yang kita inginkan:
       </para>
 
       <screen>
@@ -589,52 +549,46 @@ find ~/music -name '*.ogg' -print
       </screen>
 
       <para>
-	Finally, there are some shortcuts that change the
-	capitalization of words. The Alt-u shortcut makes all
-	characters uppercase, starting at the current cursor position
-	till the end of the word. So, if we have the lowercase name
-	<quote>alice</quote>, uppercasing the name with the cursor on
-	<quote>i</quote> gives <quote>alICE</quote>. Alt-l has the
-	same behavior, but changes letters to lowercase. So, using
-	Alt-l on <quote>alICE</quote> with the cursor on
-	<quote>I</quote> will change the string to
-	<quote>alice</quote>. Alt-c changes just the character the
-	cursor is on, or the next word character that is encountered,
-	to uppercase. For instance, pressing Alt-c with the cursor on
-	<quote>a</quote> in <quote>alice</quote> will yield
+	Akhirnya, terdapat beberapa shortcut yang mengubah kapitalisasi dari kata. Shortcut Alt-u membuat semua karakter
+	menjadi huruf kapital, dimulai dari posisi kursor aktual hingga akhir kata. Jadi, jika kita memiliki nama dengan huruf 
+	kecil <quote>alice</quote>, membuatnya menjadi huruf besar dengan kursor berada pada <quote>i</quote> memberikan 
+	hasil <quote>alICE</quote>. Alt-l memiliki perilaku yang sama, tetapi mengubah huruf menjadi huruf kecil. Jadi menggunakan 
+	Alt-l pada <quote>alICE</quote> dengan kursor pada <quote>I</quote> akan mengubahnya menjadi <quote>alice</quote>. 
+	Alt-c hanya mengubah karakter dimana kursor berada, atau karakter kata selenjutnya yang ditemukan, menjadi huruf kapital.
+	Sebagai contoh, menekan Alt-c dengan posisi kursor pada <quote>a</quote> dalam kata <quote>alice</quote> akan menghasilkan 
 	<quote>Alice</quote>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-shell-moving-line">
-      <title>Line editing</title>
+      <title>Pengeditan baris</title>
 
       <para>
-	The highest level we can edit is the line itself.
+	Level tertinggi yang bisa kita edit adalah baris itu sendiri.
 	<xref linkend="chap-shell-moving-line-shortcuts-move" />
-	lists the two movement shortcuts.
+	mendaftar dua shortcut.
       </para>
 
       <table xml:id="chap-shell-moving-line-shortcuts-move">
-	<title>Moving through lines</title>
+	<title>Berpindah per baris</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
-	      <entry>Description</entry>
+	      <entry>Kunci</entry>
+	      <entry>Deskripsi</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-a</entry>
 	      <entry>
-		Move to the beginning of the current line.
+		Berpindah ke awal baris.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-e</entry>
 	      <entry>
-		Move to the end of the current line.
+		Berpindah ke akhir baris.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -642,7 +596,7 @@ find ~/music -name '*.ogg' -print
       </table>
 
       <para>
-	Suppose that the cursor is somewhere halfway a line:
+	Misalkan kursor berada di tengah-tengah sebuah baris:
       </para>
 
       <screen>
@@ -650,8 +604,7 @@ find ~/music -name<emphasis role="cursor">&#32;</emphasis>'*.ogg' -print
       </screen>
 
       <para>
-	Pressing Ctrl-e once will move the cursor to the end of the
-	line:
+	Menekan Ctrl-e sekali akan memindahkan kursor ke akhir baris:
       </para>
 
       <screen>
@@ -659,7 +612,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	Pressing Ctrl-a will move the cursor to the beginning of the line:
+	Menekan Ctrl-a akan mmemindahkan kursor ke awal baris:
       </para>
 
       <screen>
@@ -667,38 +620,33 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	You can also delete characters by line level. The shortcuts
-	are listed in <xref
-	linkend="chap-shell-moving-line-shortcuts-delete" />.  These
-	shortcuts work like movement, but deletes all characters that
-	are encountered. Ctrl-k will delete the character the cursor
-	is on, but Ctrl-x Backspace will not. Moving to the beginning
-	of the line with Ctrl-a, followed by Ctrl-k, is a fast trick
-	to remove a line completely.
+	Anda bisa menghapus karakter per baris. Shortcutnya dapat dilihat pada  <xref
+	linkend="chap-shell-moving-line-shortcuts-delete" />.  Shortcut ini bekerja seperti pergerakan,
+	tetapi menghapus karakter yang ditemukan. Ctrl-k akan menghapus karakter dimana kursor itu berada, tetapi 
+	Ctrl-x Backspace tidak akan menghapusnya. Berpindah ke awal baris dengan Ctrl-a, diikuti dengan 
+	Ctrl-k, adalah untuk menghapus sebuah baris sepenuhnya.
       </para>
 
       <table xml:id="chap-shell-moving-line-shortcuts-delete">
-	<title>Deleting lines</title>
+	<title>Menghapus baris</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
-	      <entry>Description</entry>
+	      <entry>Kunci</entry>
+	      <entry>Deskripsi</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-k</entry>
 	      <entry>
-		Delete all characters in the line, starting at the
-		cursor position.
+		Menghapus semua karakter pada baris, dimulai dari posisi kursor.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-x Backspace</entry>
 	      <entry>
-		Delete all characters in the line up till the current
-		cursor position.
+		Menghapus semua karakter pada baris hingga posisi aktual kursor.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -708,67 +656,52 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
   </sect1>
 
   <sect1 xml:id="chap-shell-history">
-    <title>Command history</title>
+    <title>Catatan sejarah perintah</title>
 
     <para>
-      It often happens that you have to execute commands that you
-      executed earlier. Fortunately, you do not have to type them all
-      over again.  You can browse through the history of executed
-      commands with the up and down arrows. Besides that it is also
-      possible to search for a command. Press Control-r and start
-      typing the command you want to execute. You will notice that
-      bash will display the first match it can find. If this is not
-      the match you were looking for you can continue typing the
-      command (until it is unique and a match appears), or press
-      Control-r once more to get the next match. When you have found
-      the command you were looking for, you can execute it by pressing
-      &lt;Enter&gt;.
+      Seringkali Anda harus menjalankan perintah yang pernah Anda jalankan sebelumnya. Untungnya, 
+      Anda tidak harus mengetikkan semuanya kembali. Anda bisa melihat catatan sejarah dari 
+      perintah-perintah yang pernah ditulis dengan kunci panah atas dan bawah. Selain itu, juga
+      dimungkinkan untuk mencari perintah. Menekan Control-r dan mulailah menuliskan perintah 
+      yang hendak Anda tulis. Anda akan melihat bahwa bash akan menampilkan perintah yang cocok yang
+      bisa ditemukan. Jika yang ditampilkan bukan yang Anda cari, Anda bisa bisa melanjutkan menuliskan 
+      perintah (sampai unik dan ditemukan sebuah kecocokan), atau menekan Control-r sekali lagi 
+      untuk mencari kembali. Ketika Anda sudah menemukan perintah yang dicari, Anda bisa mengeksekusinya
+      dengan menekan &lt;Enter&gt;.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-shell-completion">
-    <title>Completion</title>
+    <title>Pelengkap</title>
 
     <para>
-      Completion is one of the most useful functionalities of
-      UNIX-like shells.  Suppose that you have a directory with two
-      files named <filename>websites</filename> and
-      <filename>recipe</filename>. And suppose you want to
-      <command>cat</command> the file <filename>websites</filename>
-      (<command>cat</command> shows the contents of a file), by
-      specifying <filename>websites</filename> as a parameter to
-      cat. Normally you would type <quote>cat websites</quote>, and
-      execute the command. Try typing <quote>cat w</quote>, and hit
-      the &lt;Tab&gt; key. Bash will automatically expand what you
-      typed to <quote>cat websites</quote>.
+      Pelengkap adalah satu fungsi yang paling berguna dalam shell UNIX-like. Misalkan Anda memiliki direktori 
+      dengan dua berkas bernama <filename>websites</filename> dan <filename>recipe</filename>. Dan misalkan 
+      Anda hendak melakukan <command>cat</command> pada berkas <filename>websites</filename>
+      (<command>cat</command> menampilkan isi sebuah berkas), dengan menentukan <filename>websites</filename> 
+      sebagai parameter ke perintah cat. Biasanya Anda cukup mengetikkan <quote>cat websites</quote>, dan mengeksekusi
+      perintah. Cobalah untuk mengetikkan <quote>cat w</quote>, dan tekan kunci &lt;Tab&gt;. Bash akan secara 
+      otomatis melengkapi apa yang Anda tulis menjadi <quote>cat websites</quote>.
     </para>
 
     <para>
-      But what happens if you have files that start with the same
-      letter? Suppose that you have the
-      <filename>recipe1.txt</filename> and
-      <filename>recipe2.txt</filename> files. Type <quote>cat
-      r</quote> and hit &lt;Tab&gt;, Bash will complete the filename
-      as far as it can. It would leave you with <quote>cat
-      recipe</quote>. Try hitting &lt;Tab&gt; again, and Bash will
-      show you a list of filenames that start with
-      <quote>recipe</quote>, in this case both recipe files. At this
-      point you have to help Bash by typing the next character of the
-      file you need.  Suppose you want to <command>cat</command>
-      <filename>recipe2</filename>, you can push the &lt;2&gt;
-      key. After that there are no problems completing the filename,
-      and hitting &lt;Tab&gt; completes the command to <quote>cat
+      Tetapi apa yang terjadi jika Anda memiliki berkas yang namanya dimulai dengan karakter yang sama? Misalkan 
+      Anda memiliki berkas <filename>recipe1.txt</filename> dan <filename>recipe2.txt</filename>. Mengetikkan <quote>cat
+      r</quote> dan menekan &lt;Tab&gt;, Bash akan melengkapi nama berkas sejauh yang bisa dilakukan. Hal ini 
+      akan memberikan <quote>cat recipe</quote>. Coba untuk menekan &lt;Tab&gt; lagi, dan Bash akan memberikan daftar 
+      nama berkas yang dimulai dengan <quote>recipe</quote>, dalam hal ini kedua berkas recipe. Pada posisi ini Anda harus 
+      membantu Bash mengetikkan karakter selanjutnya dari berkas yang Anda perlukan. Misalkan Anda hendak 
+      <command>cat</command> <filename>recipe2</filename>, Anda bisa menekan kunci &lt;2&gt;. Setelah itu tidak ada 
+      masalah dalam melengkapi nama berkas, dan menekan &lt;Tab&gt; akan melengkapi perintah menjadi <quote>cat
       recipe2.txt</quote>.
     </para>
 
     <para>
-      It is worth noting that completion also works with
-      commands. Most GNU/Linux commands are quite short, so it will
-      not be of much use most of the time.
+      Pelengkap ini bekerja pada perintah. Sebagian besar perintah GNU/Linux cukup pendek, sehingga tidak akan banyak berguna.
     </para>
 
     <para>
-      It is a good idea to practice a bit with completion, it can save
+      Merupakan ide yang bagus untuk berlatih dengan pelengkap, karena bisa It is a good idea to practice a bit with completion, it can save
       alot of keystrokes if you can handle completion well. You can
       make some empty files to practice with using the
       <command>touch</command> command.  For example, to make a file

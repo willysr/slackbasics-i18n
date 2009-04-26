@@ -789,7 +789,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
 
     <para>
       It is a good idea to practice a bit with completion, it can save
-      alot of keystrokes if you can handle completion well. You can
+      a lot of keystrokes if you can handle completion well. You can
       make some empty files to practice with using the
       <command>touch</command> command.  For example, to make a file
       named <filename>recipe3.txt</filename>, execute <command>touch
