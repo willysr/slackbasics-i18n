@@ -19,7 +19,7 @@ seri 1.3.xdari Apache. Bab ini berdasarkan pada Apache 1.3.x.
 <title>Instalasi</title>
 
 <para>
-Apache bisa diinstall dengan menambahkan paket <filename>apache</filename> package from the <quote>n</quote> dari set disk.
+Apache bisa diinstall dengan menambahkan paket <filename>apache</filename> dari set disk <quote>n</quote>.
 Jika Anda juga hendak menggunakan PHP, paket  <filename>php</filename> (set disk <quote>n</quote>)
 dan <filename>mysql</filename> (set disk <quote>ap</quote>) juga diperlukan.
 MySQL diperlukan, karena PHP bergantung dari pustaka MySQL. 
@@ -34,11 +34,11 @@ Anda bisa melakukan hal ini dengan mengeksekusi:
 </screen> 
 
 <para>
-Konfigurasi Apache bisa di rubah di file  
+Konfigurasi Apache bisa diubah pada berkas 
 <filename>/etc/apache/httpd.conf</filename>. Apache bisa di
 stop/start/restart setiap saat dengan perintah <command>apachectl</command>,
  digabung dengan parameter-parameter <parameter class="command">stop</parameter>, 
-<parameter class="command">start</parameter> and 
+<parameter class="command">start</parameter> dan 
 <parameter class="command">restart</parameter>. Sebagai contoh,
 jalankan perintah berikut untuk me-restart Apache:
 </para>
@@ -56,9 +56,9 @@ jalankan perintah berikut untuk me-restart Apache:
 <para>
 Apache menyediakan dukungan untuk direktori pemakai. Ini berarti setiap pemakai
 mendapat ruang web dalam bentuk <emphasis>http://host/~user/</emphasis>. Isi
-dari <quote>~user/</quote> disimpan di subdirektori dalam direktori home dari pemakai.
-DIrektori ini dapat ditentukan dengan menggunakan pilihan
-<quote>UserDir</quote> di <filename>httpd.conf</filename>, sebagai contoh:
+dari <quote>~user/</quote> disimpan pada subdirektori dalam direktori home dari pemakai.
+Direktori ini dapat ditentukan dengan menggunakan pilihan
+<quote>UserDir</quote> pada <filename>httpd.conf</filename>, sebagai contoh:
 </para>
 
 <screen>
@@ -67,7 +67,7 @@ UserDir public_html
 
 <para>
 Ini menerangkan bahwa direktori <filename>public_html</filename> digunakan 
-untuk menyimpan halaman-halaman web. Sebagai contoh, halaman web di URL 
+untuk menyimpan halaman-halaman web. Sebagai contoh, halaman web pada URL 
 <emphasis>http://host/~snail/</emphasis> disimpan di 
 <filename>/home/snail/public_html</filename>.
 </para>
@@ -81,10 +81,10 @@ untuk menyimpan halaman-halaman web. Sebagai contoh, halaman web di URL
 Default documentroot untuk Apache di Slackware Linux adalah
 <filename>/var/www/htdocs</filename>. Tanpa menggunakan virtual hosts
 setiap klien yang terhubung ke server Apache akan menerima situs web dalam
-direktori ini Jadi, jika kita mempunyai dua hostname yang menunjuk ke server 
+direktori ini. Jadi, jika kita mempunyai dua nama host yang menunjuk ke server 
 <quote>www.example.org</quote> dan 
 <quote>forum.example.org</quote>, keduanya akan menampilkan situs web yang sama.
-Anda dapat membuat situs terpisah untuk hostname yang berbeda dengan menggunakan
+Anda dapat membuat situs terpisah untuk nama host yang berbeda dengan menggunakan
 virtual hosts.
 </para>
 
@@ -94,7 +94,7 @@ satu untuk <quote>www.example.org</quote>, dengan documentroot
 <filename>/var/www/htdocs-www</filename>, dan <quote>forum.example.org</quote>,
 dengan documentroot <filename>/var/www/htdocs-forum</filename>. Petama-tama
 kita harus menentukan Apache harus mendengarkan (listen) di alamat IP mana.
-Di suatu bagian di file konfigurasi <filename>/etc/apache/httpd.conf</filename> anda akan
+Di suatu bagian di berkas konfigurasi <filename>/etc/apache/httpd.conf</filename> Anda akan
 menemukan baris:
 </para>
 
@@ -105,7 +105,7 @@ menemukan baris:
 <para>
 Baris ini harus dihilangkan tanda komentarnya untuk bisa menggunakan name-based virtual hosts.
 Hapus komentar karakter (#) dan ganti parameternya ke <quote>BindAddress IP:port</quote>, atau
-<quote>BindAddress *:port</quote> jika anda ingin mem-bind Apache ke semua alamat IP
+<quote>BindAddress *:port</quote> jika Anda ingin mem-bind Apache ke semua alamat IP
 yang dipunyai host. Seandainya kita ingin menyediakan virtual host untuk alamat IP 192.168.1.201 
 port 80 (default port dari Apache),
 kita harus mengganti barisnya menjadi:
@@ -116,7 +116,7 @@ NameVirtualHost 192.168.1.201:80
 </screen>
 
 <para>
-Disuatu bagian dibawah baris NameVirtualHost anda dapat menemukan contoh virtual host yg di tandai komentar karakter (#) :
+Disuatu bagian dibawah baris NameVirtualHost Anda dapat menemukan contoh virtual host yang ditandai komentar karakter (#) :
 </para>
 
 <screen>

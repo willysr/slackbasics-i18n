@@ -1,0 +1,31 @@
+baris  berkas                   status  rev-1a  rev-2a
+------+------------------------+--------+-------+-------
+    39 preface.xml              DONE        -       -
+    87 chap-book.xml            DONE        -       -
+   117 bind.xml                 DONE        -       -
+   125 chap-x11.xml             TODO        -       -
+   129 services.xml             TODO        -       -
+   143 slackware-basics.xml     TODO        -       -
+   144 inetd.xml                DONE        -       -
+   156 apache.xml               DONE        -       -
+   167 security.xml             TODO        -       -
+   219 chap-help.xml            DONE        -       -
+   248 sendmail.xml             TODO        -       -
+   272 chap-intro.xml           DONE        -       -
+   295 printing.xml             TODO        -       -
+   313 mutt.xml                 TODO        -       -
+   335 miscadmin.xml            TODO        -       -
+   377 latex.xml                TODO        -       -
+   398 concepts.xml             DONE        -       -
+   441 chap-kernel.xml          TODO        -       -
+   485 chap-usermgmt.xml        TODO        -       -
+   526 netconfig.xml            TODO        -       -
+   630 ipsec.xml                TODO        -       -
+   652 chap-pkgmgmt.xml         TODO        -       -
+   690 chap-init.xml            TODO        -       -
+   757 custom-installation.xml  DONE        -       -
+   780 chap-procmgmt.xml        TODO        -       -
+   850 chap-install.xml         DONE        -       -
+  1049 chap-shell.xml           DONE        -       -
+  1921 chap-textproc.xml        TODO        -       -
+  3453 chap-filesystem.xml      TODO        -       -
