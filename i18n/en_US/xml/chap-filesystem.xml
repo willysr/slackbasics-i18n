@@ -285,7 +285,7 @@ other::---
 
       <para>
 	Hard links have two limitations. First of all, hard links can
-	not interlink between files systems, since they point to
+	not interlink between file systems, since they point to
 	inodes. Every filesystem has its own inodes and corresponding
 	inode numbers. Besides that, most filesystems do not allow you
 	to create hard links to directories. Allowing creation of hard
