@@ -3,177 +3,160 @@
 	 xmlns:xl="http://www.w3.org/1999/xlink"
 	 xml:lang="id"
 	 xml:id="chap-filesystem">
-  <title>Files and directories</title>
+  <title>Berkas dan direktori</title>
 
   <sect1 xml:id="chap-filesystem-introduction">
-    <title>Some theory</title>
+    <title>Beberapa teori</title>
 
     <para>
-      Before we move on to look at practical filesystem operations, we
-      are going to look at a more theoretical overview of how
-      filesystems on UNIX-like systems work. Slackware Linux supports
-      many different filesystems, but all these filesystems use
-      virtually the same semantics. These semantics are provided
-      through the <emphasis>Virtual Filesystem</emphasis> (VFS)
-      layer, giving a generic layer for disk and network filesystems.
+      Sebelum kita melihat operasi sistem berkas secara praktis, kita 
+      akan melihat secara teoritis bagaimana gambaran sistem berkas pada
+      sistem UNIX-like bekerja. Slackware Linux mendukung banyak 
+      sistem berkas yang berbeda, tetapi semua sistem berkas ini 
+      menggunakan semantik yang sama secara virtual. Semantik ini
+      disediakan melalui lapisan (layer) <emphasis>Virtual Filesystem</emphasis> (VFS), 
+      menyediakan layer geneik untuk sistem berkas disk dan jaringan.
     </para>
 
     <sect2 xml:id="chap-filesystem-introduction-atoms">
-      <title>inodes, directories and data</title>
+      <title>inode, direktori dan data</title>
 
       <para>
-	The filesystem consists of two types of elements: data and
-	metadata. The metadata describes the actual data blocks that
-	are on the disk. Most filesystems use information nodes
-	(inodes) to provide store metadata. Most filesystems store the
-	following data in their inodes:
+	Sistem berkas terdiri dari dua jenis elemen: data dan metadata. 
+	Metadata menjelaskan blok data yang sesungguhnya ada pada disk. 
+	Sebagian besar sistem berkas menggunakan node informasi (inode) untuk 
+	menyediakan metadata penyimpanan. Sebagian besar sistem berkas 
+	menyimpan data berikut pada inodenya:
       </para>
 
       <table xml:id="chap-filesystem-introduction-atoms-inodes">
-        <title>Common inode fields</title>
+        <title>Kolom inode umum</title>
         <tgroup cols="2">
           <thead>
             <row>
-              <entry>Field</entry>
-              <entry>Description</entry>
+              <entry>Kolom</entry>
+              <entry>Deskripsi</entry>
             </row>
           </thead>
           <tbody>
             <row>
               <entry>mode</entry>
-              <entry>The file permissions.</entry>
+              <entry>Hak akses berkas.</entry>
             </row>
             <row>
               <entry>uid</entry>
-              <entry>The user ID of the owner of the file.</entry>
+              <entry>ID pengguna dari pemilik berkas.</entry>
             </row>
             <row>
               <entry>gid</entry>
-              <entry>The group ID of the group of the file.</entry>
+              <entry>ID grup dari grup pemilik berkas.</entry>
             </row>
             <row>
               <entry>size</entry>
-              <entry>Size of the file in bytes.</entry>
+              <entry>Ukuran berkas dalam byte.</entry>
             </row>
             <row>
               <entry>ctime</entry>
-              <entry>File creation time.</entry>
+              <entry>Waktu pembuatan berkas.</entry>
             </row>
             <row>
               <entry>mtime</entry>
-              <entry>Time of the last file modification.</entry>
+              <entry>Waktu modifikasi terakhir berkas.</entry>
             </row>
             <row>
               <entry>links_count</entry>
-              <entry>The number of links pointing to this inode.</entry>
+              <entry>Jumlah link yang mengarah ke inode ini.</entry>
             </row>
             <row>
               <entry>i_block</entry>
-              <entry>Pointers to data blocks</entry>
+              <entry>Penunjuk ke blok data</entry>
             </row>
           </tbody>
         </tgroup>
       </table>
 
       <para>
-	If you are not a UNIX or Linux afficiendo, these names will
-	probably sound bogus to you, but we will clear them up in the
-	following sections. At any rate, you can probably deduct the
-	relation between inodes and data from this table, and
-	specifically the <emphasis>i_block</emphasis> field: every
-	inode has pointers to the data blocks that the inode provides
-	information for. Together, the inode and data blocks are the
-	actual file on the filesystem.
+	Jika Anda bukan pengguna UNIX atau Linux, nama-nama ini mungkin 
+	tampak asing bagi Anda, tetapi akan membuatnya jelas pada bagian berikutnya.
+	Pada titik ini, Anda bisa menebak relasi antara inode dan data dari 
+	tabel ini, dan terutama kolom <emphasis>i_block</emphasis>: setiap 
+	inode memiliki penunjuk (pointer) ke blok data yang diberikan oleh inode. 
+	Bersama-sama, inode dan blok data adalah berkas aktual pada sistem berkas.
       </para>
 
       <para>
-	You may wonder by now where the names of files (and
-	directories) reside, since there is no file name field in the
-	inode. Actually, the names of the files are separated from the
-	inode and data blocks, which allows you to do groovy stuff,
-	like giving the same file more than one name. The filenames
-	are stored in so-called directory entries. These entries
-	specify a filename and the inode of the file. Since
-	directories are also represented by inodes, a directory
-	structure can also be constructed in this manner.
+	Anda mungkin terheran-heran dinama nama berkas (dan direktori) berada, 
+	karena tidak ada kolom nama berkas pada inode. Sebenarnya, nama berkas 
+	terpisah dari inode dan blok data, yang mengijinkan Anda melakukan hal-hal aneh
+	seperti memberikan nama lebih dari satu pada berkas yang sama. Nama berkas 
+	disimpan dalam apa yang disebut isian direktori. Isian (entry) ini menentukan
+	nama berkas dan inode dari berkas. Karena direktori juga direpresentasikan oleh 
+	inode, sebuah struktur direktori juga bisa dibuat dengan cara ini.
       </para>
 
       <para>
-	We can simply show how this all works by illustrating what the
-	kernel does when we execute the command <command>cat
+	Kita bisa melihat bagaimana semua ini bekerja dengan mengilustrasikan apa yang
+	dilakukan kernel ketika kita menjalankan perintah <command>cat
 	/home/daniel/note.txt</command>
       </para>
 
       <orderedlist>
         <listitem>
 	  <para>
-	    The system reads the inode of the <filename>/</filename>
-	    directory, checks if the user is allowed to access this
-	    inode, and reads the data block to find the inode number
-	    of the <filename>home</filename> directory.
+	    Sistem membaca inode dari direktori <filename>/</filename>, memeriksa apakah 
+	    pengguna diijinkan untuk mengakses inode ini, dan membaca blok data untuk 
+	    menemukan nomor inode dari direktori <filename>home</filename>.
 	  </para>
         </listitem>
         <listitem>
           <para>
-	    The system reads the inode of the
-	    <filename>home</filename> directory, checks if the user is
-	    allowed to access this inode, and reads the data block to
-	    find the inode number of the <filename>daniel</filename>
-	    directory. </para>
+	    Sistem membaca inode dari direktori <filename>home</filename>, memeriksa apakah 
+	    pengguna diijinkan untuk mengakses inode ini, dan membaca blok data untuk 
+	    menemukan nomor inode dari direktori <filename>daniel</filename>. </para>
         </listitem>
         <listitem>
           <para>
-	    The system reads the inode of the
-	    <filename>daniel</filename> directory, checks if the user is
-	    allowed to access this inode, and reads the data block to
-	    find the inode number of the <filename>note.txt</filename>
-	    file.
+	    Sistem membaca inode dari direktori <filename>daniel</filename>, memeriksa apakah 
+	    pengguna diijinkan untuk mengakses inode ini, dan membaca blok data untuk 
+	    menemukan nomor inode dari berkas <filename>note.txt</filename>.
 	  </para>
         </listitem>
         <listitem>
           <para>
-	    The system reads the inode of the
-	    <filename>note.txt</filename> file, checks if the user
-	    is allowed to access this inode, and returns the data
-	    blocks to <command>cat</command> through the
-	    <emphasis>read()</emphasis> system call. </para>
+	    Sistem membaca inode dari berkas <filename>note.txt</filename>, memeriksa apakah 
+	    pengguna diijinkan untuk mengakses inode ini, dan mengembalikan blok data pada 
+	    <command>cat</command> melalui pemanggilan sistem (system call)<emphasis>read()</emphasis>. </para>
         </listitem>
       </orderedlist>
     </sect2>
 
     <sect2 xml:id="chap-filesystem-introduction-permissions">
-      <title>File permissions</title>
+      <title>Hak akses berkas</title>
 
       <para>
-	As we have described earlier, Linux is a multi-user
-	system. This means that each user has his/her own files (that
-	are usually located in the home directory). Besides that users
-	can be members of a group, which may give the user additional
-	privileges.
+	Seperti yang dijelaskan sebelumnya, Linux adalah sistem multi-user. Hal ini berarti 
+	bahwa setiap pengguna memiliki berkasnya sendiri (yang biasanya terdapat pada direktori home). 
+	Selain itu, pengguna juga bisa merupakan anggota dari sebuah grup, yang mungkin memberikan 
+	hak akses tambahan pada pengguna.
       </para>
 
       <para>
-	As you have seen in the inode field table, every file has a
-	owner and a group.  Traditional UNIX access control gives
-	read, write, or executable permissions to the file owner, file
-	group, and other users. These permissions are stored in the
-	<emphasis>mode</emphasis> field of the inode. The mode field
-	represents the file permissions as a four digit octal
-	number. The first digit represents some special
-	options, the second digit stores the owner permissions, the
-	third the group permissions, and the fourth the permissions
-	for other users. The permissions are established by digit by
-	using or adding one of the number in <xref
+	Seperti yang Anda lihat pada tabel kolom inode, setiap berkas memiliki pemilik dan grup. Kontrol hak akses 
+	UNIX tradisional memberikan hak akses read (baca), write (tulis), atau executable (eksekusi) pada pemilik berkas, group berkas, 
+	dan pengguna lain. Hak akses ini disimpan pada kolom <emphasis>mode</emphasis> dari inode. Kolom mode 
+	merepresentasikan hak akses berkas sebagai nomor oktal empat digit. Digit pertama merepresentasikan 
+	opsi khusus, digit kedua menyimpan hak akses pemilik, digit ketiga menyimpan hak akses grup, dan digit keempat
+	untuk pengguna lain. Hak akses dibuat dengan nomor dengan menggunakan atau menambahkan salah satu angka pada <xref
 	linkend="chap-filesystem-permissions-numbers"/>
       </para>
 
       <table xml:id="chap-filesystem-permissions-numbers">
-        <title>Meaning of numbers in the mode octet</title>
+        <title>Arti angka pada oktet model</title>
         <tgroup cols="2">
           <thead>
             <row>
-              <entry>Number</entry>
-              <entry>Meaning</entry>
+              <entry>Angka</entry>
+              <entry>Arti</entry>
             </row>
           </thead>
           <tbody>
@@ -194,23 +177,20 @@
       </table>
 
       <para>
-	Now, suppose that a file has mode <emphasis>0644</emphasis>,
-	this means that the file is readable and writable by the owner
-	(<emphasis>6</emphasis>), and readable by the file group
-	(<emphasis>4</emphasis>) and others
+	Sekarang, misalkan sebuah berkas memiliki mode <emphasis>0644</emphasis>,
+	hal ini berarti berkas dapat dibaca dan ditulis oleh pemilik
+	(<emphasis>6</emphasis>), dan dapat dibaca oleh group berkas
+	(<emphasis>4</emphasis>) dan yang lain
 	(<emphasis>4</emphasis>). </para>
 
       <para>
-	Most users do not want to deal with octal numbers, so that is
-	why many utilities can also deal with an alphabetic
-	representation of file permissions. The letters that are
-	listed in <xref
-	linkend="chap-filesystem-permissions-numbers"/> between
-	parentheses are used in this notation. In the following
-	example information about a file with
-	<emphasis>0644</emphasis> permissions is printed. The numbers
-	are replaced by three rwx triplets (the first character can
-	list special mode options).
+	Sebagian besar pengguna tidak mau berhubungan dengan nomor oktal, sehingga 
+	banyak utilitas dapat bekerja dengan representasi alfabetik dari hak akses
+	berkas. Huruf-huruf tersebut dapat dilihat pada <xref
+	linkend="chap-filesystem-permissions-numbers"/> didalam kurung digunakan 
+	pada notasi ini. Pada contoh berikut, informasi tentang berkas dengan hak 
+	akses <emphasis>0644</emphasis> akan dicetak. Nomor digantikan dengan kombinasi 
+	tiga rwx (karakter pertama bisa mendata opsi mode khusus).
       </para>
 
       <screen>
@@ -219,24 +199,22 @@ $ <userinput>ls -l note.txt</userinput>
       </screen>
 
       <para>
-	Over the years these traditional UNIX permissions have proven
-	not to be sufficient in some cases. The POSIX 1003.1e
-	specification aimed to extend the UNIX access control model
-        with <emphasis>Access Control Lists</emphasis> (ACLs).
-	Unfortunately this effort stalled,
-        though some systems (like GNU/Linux) have implemented ACLs<footnote>
-	<para>At the time of writing, ACLs were supported on ext2,
-        ext3, and XFS filesystems</para> </footnote>. Access control
-        lists follow the same semantics as normal file permissions,
-        but give you the opportunity to add <emphasis>rwx</emphasis>
-        triplets for additional users and groups. </para>
+	Selama bertahun-tahun, hak akses UNIX tradisional sudah terbukti tidaklah 
+	cukup untuk beberapa kasus. Spesifikasi POSIX 1003.1e bertujuan untuk 
+	meningkatkan model kontrol akses UNIX dengan <emphasis>Access Control Lists</emphasis> (ACL).
+	Sayangnya usaha ini terhenti, meskipun beberapa sistem  (seperti GNU/Linux) 
+	sudah mengimplementasikan ACL<footnote>
+	<para>Pada saat penulisan ini, ACL sudah didukung pada sistem berkas ext2,
+        ext3, dan XFS</para> </footnote>. Access control
+        lists menggunakan semantik yang sama dengan hak akses berkas biasa, tetapi 
+	memberikan Anda kesempatan untuk menambahkan tambahan kombinasi <emphasis>rwx</emphasis>
+        untuk pengguna dan grup tambahan. </para>
 
       <para>
-	The following example shows the access control list of a
-	file. As you can see, the permissions look like normal UNIX
-	permissions (the access rights for the user, group, and others
-	are specified). But there is also an additional entry for the
-	user <emphasis>joe</emphasis>.
+	Contoh berikut menggambarkan access control list dari sebuah berkas. Seperti 
+	yang Anda lihat, hak akses seperti hak akses UNIX normal (hak akses untuk pengguna, 
+	grup, dan lainnya sudah ditentukan). Tetapi terdapat sebuah tambahan untuk pengguna 
+	<emphasis>joe</emphasis>.
       </para>
 
       <programlisting>
@@ -248,30 +226,26 @@ other::---
       </programlisting>
 
       <para>
-	To make matters even more complex (and sophisticated), some
-	GNU/Linux systems add more fine-grained access control through
-	Mandatory Access Control Frameworks (MAC) like SELinux and
-	AppArmor. But these access control frameworks are beyond the
-	scope of this book.
+	Untuk membuatnya menjadi lebih kompleks (dan canggih), beberapa sistem GNU/Linux 
+	menambahkan kontrol akses yang lebih ketat dengan Mandatory Access Control Frameworks 
+	(MAC) seperti SELinux dan AppArmor. Tetapi kerangka kontrol akses ini diluar batasan dari buku ini.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-filesystems-introduction-links">
-      <title>Links</title>
+      <title>Hubungan</title>
 
       <para>
-	A directory entry that points to an inode is named a
-	<emphasis>hard link</emphasis>.  Most files are only linked
-	once, but nothing holds you from linking a file twice. This
-	will increase the <emphasis>links_count</emphasis> field of
-	the inode. This is a nice way for the system to see which
-	inodes and data blocks are free to use. If links_count is set
-	to zero, the inode is not referred to anymore, and can be
-	reclaimed.
+	Sebuah isian direktori yang menunjuk pada sebuah inode disebut <emphasis>hard link</emphasis>.  
+	Sebagian besar berkas hanya dihubungkan satu kali, tetapi tidak ada yang membatasi Anda untuk 
+	membuat hubungan lebih dari satu kali. Hal ini akan meningkatkan kolom <emphasis>links_count</emphasis> 
+	dari inode. Ini merupakan cara yang baik bagi sistem untuk melihat inode dan blok data mana yang 
+	bebas untuk digunakan. Jika links_count diberi nilai kosong, maka inode tidak dirujuk oleh siapapun, 
+	dan bisa dipakai.
       </para>
 
       <figure xml:id="chap-filesystems-introduction-links-hardlink">
-        <title>The structure of a hard link</title>
+        <title>Struktur dari hard link</title>
 
         <mediaobject>
           <imageobject>
@@ -284,29 +258,27 @@ other::---
       </figure>
 
       <para>
-	Hard links have two limitations. First of all, hard links can
-	not interlink between filessystems, since they point to
-	inodes. Every filesystem has its own inodes and corresponding
-	inode numbers. Besides that, most filesystems do not allow you
-	to create hard links to directories. Allowing creation of hard
-	links to directories could produce directory loops,
-	potentially leading to deadlocks and filesystem
-	inconsistencies. In addition to that, most implementations of
-	<command>rm</command> and <command>rmdir</command> do not know
-	how to deal with such extra directory hard links.
+	Hard link memiliki dua keterbatasan. Pertama, hard link tidak bisa dihubungkan
+	antar sistem berkas, karena mereka menunjuk pada inode. Setiap sistem berkas 
+	memiliki inode dan berhubungan dengan nomor inodenya masing-masing. 
+	Selain itu, sebagian besar sistem berkas tidak mengijinkan Anda untuk membuat 
+	hard link pada direktori. Mengijinkan pembuatan hard link pada direktori bisa 
+	menciptakan perulangan direktori, yang berpeluang menimbulkan deadlock dan masalah 
+	konsistensi pada sistem berkas. Selain itu, sebagian besar implementasi dari 
+	<command>rm</command> dan <command>rmdir</command> tidak tahu bagaimana menyelesaikan 
+	direktori tambahan hard link tersebut.
       </para>
 
       <para>
-        <emphasis>Symbolic links</emphasis> do not have these
-        limitations, because they point to file names, rather than
-        inodes. When the symbolic link is used, the operating system
-        will follow the path to that link. Symbolic links can also
-        refer to a file that does not exist, since it just contains a
-        name. Such links are called dangling links.
+        <emphasis>Symbolic link</emphasis> tidak memiliki keterbatasan ini, karena mereka 
+	menunjuk ke nama berkas, bukan ke inode. Ketika symbolic link digunakan, sistem operasi 
+	akan mengikuti path ke link tersebut. Symbolic links juga bisa menunjuk ke berkas yang 
+	tidak lagi ada, karena hanya berisi nama. Link semacam itu disebut dengan dangling link 
+	(link teruntai).
       </para>
 
       <figure xml:id="chap-filesystems-introduction-links-symlink">
-        <title>The structure of a symbolic link</title>
+        <title>Struktur dari symbolic link</title>
 
         <mediaobject>
           <imageobject>
@@ -320,23 +292,19 @@ other::---
 
       <note>
         <para>
-	  If you ever get into system administration, it is good to be
-	  aware of the security implications of hard links. If the
-	  <filename>/home</filename> directory is on the same
-	  filesystem as any system binaries, a user will be able to
-	  create hard links to binaries.  In the case that a
-	  vulnerable program is upgraded, the link in the user's home
-	  directory will keep pointing to the old program binary,
-	  effectively giving the user continuing access to a
-	  vulnerable binary.
+	  Jika Anda sampai ke administrasi sistem, sangatlah baik untuk sadar terhadap 
+	  implikasi keamanan dari hard link. Jika direktori <filename>/home</filename> 
+	  berada dalam sistem berkas yang sama dengan sembarang berkas biner sistem, seorang 
+	  pengguna bisa membuat hard links ke berkas-berkas biner. Dalam kasus sebuah program 
+	  yang cacat diupgrade, link pada direktori home pengguna akan tetap menunjuk pada program
+	  biner yang lama, yang memberikan pengguna akses ke program yang cacat.
 	</para>
 
         <para>
-	  For this reason it is a good idea to put any directories
-	  that users can write to on different filesystems. In
-	  practice, this means that it is a good idea to put at least
-	  <filename>/home</filename> and <filename>/tmp</filename> on
-	  separate filesystems.
+	  Untuk alasan ini, maka sangat bagus untuk meletakkan sembarang direktori yang bisa ditulis 
+	  oleh pengguna pada sistem berkas yang berbeda. Dalam implementasinya, hal ini berarti paling 
+	  tidak meletakkan <filename>/home</filename> dan <filename>/tmp</filename> pada sistem berkas
+	  yang berbeda.
         </para>
       </note>
     </sect2>
