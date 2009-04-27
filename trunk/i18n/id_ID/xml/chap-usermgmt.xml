@@ -28,31 +28,31 @@
     </para>
 
     <para>
-      The available user accounts are specified in the
-      <filename>/etc/passwd</filename>. You can have a look at this
-      file to get an idea of which user account are mandatory. As you
-      will probably notice, there are no passwords in this
-      file. Passwords are kept in the separate
-      <filename>/etc/shadow</filename> file, as an encrypted
-      string. Information about groups is stored in
-      <filename>/etc/group</filename>. It is generally speaking not a
-      good idea to edit these files directly. There are some excellent
-      tools that can help you with user and group administration. This
-      chapter will describe some of these tools.
+	Account user yang tersedia diletakkan di
+        <filename>/etc/passwd</filename>. Anda dapat melihat pada file
+        ini untuk menentukan account user mana yang akan diperintah.
+        Satu hal yang perlu dicatat, pada file ini tidak menyertakan
+        password user. Password user dipisah ke  sebuah file yang telah
+        dienkripsi yaitu <filename>/etc/shadow</filename>.Informasi
+	untuk grup disimpan di <filename>/etc/group</filename>. Mengubah 
+	isi file ini secara langsung secara umum merupakan ide yang 
+	buruk. Terdapat beberapa aplikasi tangguh yang digunakan untuk 
+	melakukan administrasi user dan grup. Bab ini akan menjelaskan 
+	beberapa dari aplikasi tersebut.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-usermgmt-user">
-    <title>Adding and removing users</title>
+    <title>Menambah dan mengurangi user</title>
 
     <sect2 xml:id="chap-usermgmt-user-add">
       <title>useradd</title>
 
       <para>
-	The <command>useradd</command> is used to add user accounts to
-	the system.  Running <command>useradd</command> with a user
-	name as parameter will create the user on the system. For
-	example:
+	Perintah <command>useradd</command> digunakan untuk menambah 
+	account user ke sistem. Menjalankan perintah 
+	<command>useradd</command> dengan menambahkan nama user sebagai 
+	parameter akan menciptakan user di dalam sistem. Contoh:
       </para>
 
       <screen>
@@ -60,10 +60,11 @@
       </screen>
 
       <para>
-	Creates the user account <emphasis>bob</emphasis>. Please be
-	aware that this does not create a home directory for the
-	user. Add the <parameter class="command">-m</parameter>
-	parameter to create a home directory. For example:
+	Menciptakan account user <emphasis>bob</emphasis>. Untuk anda 
+	ketahui dengan perintah diatas tidak akan menciptakan direktori 
+	home untuk user tersebut. Tambahkan parameter <parameter 
+	class="command">-m</parameter> parameter untuk menciptakan 
+	direktori home. Contoh :
       </para>
 
       <screen>
@@ -71,14 +72,15 @@
       </screen>
 
       <para>
-	This would add the user <emphasis>bob</emphasis> to the
-	system, and create the <filename>/home/bob</filename> home
-	directory for this user.  Normally the user is made a member
-	of the <emphasis>users</emphasis> group. Suppose that we would
-	like to make <emphasis>crew</emphasis> the primary group for
-	the user <emphasis>bob</emphasis>. This can be done using the
-	<parameter class="command">-g</parameter> parameter.  For
-	example:
+	Perintah ini akan menambah user <emphasis>bob</emphasis> ke 
+	dalam sistem, dan menciptakan direktori home untuk user ini 
+	yaitu <filename>/home/bob</filename>. Normalnya sebuah 
+	user langsung  menjadi anggota dari grup <emphasis>users</emphasis>. 
+	Misalkan kita ingin mengubah keanggotaan dengan membuat 
+	<emphasis>crew</emphasis> menjadi grup primer dari user 
+	<emphasis>bob</emphasis>. Hal ini dapat dilakukan dengan 
+	menambahkan <parameter class="command">-g</parameter> parameter. 
+	Contoh:
       </para>
 
       <screen>
@@ -86,14 +88,14 @@
       </screen>
 
       <para>
-	It is also possible to add this user to secondary groups
-	during the creation of the account with the
-	<emphasis>-G</emphasis>. Group names can be separated with a
-	comma. The following command would create the user
-	<emphasis>bob</emphasis>, which is a member of the
-	<emphasis>crew</emphasis> group, and the
-	<emphasis>www-admins</emphasis> and
-	<emphasis>ftp-admins</emphasis> secondary groups:
+	Selain itu dimungkinkan juga untuk menambah grup sekunder dalam 
+	proses pembuatan account user tersebut dengan dengan menambah opsi 
+	<emphasis>-G</emphasis>. Nama-nama grup sekunder lainnya dapat 
+	dipisahkan menggunakan koma. Contoh perintah di bawah ini akan 
+	membuat user <emphasis>bob</emphasis>, yang memiliki grup primer 
+	dari grup<emphasis>crew</emphasis>, dan 
+	<emphasis>www-admins</emphasis> dan 
+	<emphasis>ftp-admins</emphasis> sebagai grup sekundernya:
       </para>
 
       <screen>
@@ -101,9 +103,10 @@
       </screen>
 
       <para>
-	By default the <command>useradd</command> only adds users, it
-	does not set a password for the added user. Passwords can be
-	set using the <command>passwd</command> command.
+	Secara default perintah <command>useradd</command> hanya membuat 
+	user, dan tidak membuat password dalam proses pembuatan user. 
+	Password dapat di buat menggunakan perintah 
+	<command>passwd</command>
       </para>
     </sect2>
 
@@ -111,11 +114,12 @@
       <title>passwd</title>
 
       <para>
-	As you probably guessed the <command>passwd</command> command
-	is used to set a password for a user. Running this command as
-	a user without a parameter will change the password for this
-	user. The password command will ask for the old password,once
-	and twice for the new password:
+	Mungkin anda telah menebak lebih dulu perintah 
+	<command>passwd</command> digunakan untuk mengubah password 
+	user. Menjalankan perintah ini sebagai user tanpa memberikan 
+	parameter akan mengubah password untuk user tersebut. Perintah 
+	password akan menanyakan password lama sekali, kemudian meminta 
+	password baru sebanyak dua kali.
       </para>
 
       <screen>
@@ -128,10 +132,11 @@ passwd: password updated successfully
       </screen>
 
       <para>
-	The <emphasis>root</emphasis> user can set passwords for users
-	by specifying the user name as a parameter. The
-	<command>passwd</command> command will only ask for the new
-	password. For example:
+	user <emphasis>root</emphasis> dapat mengubah password user-user 
+	lainnya dengan menspesifikasikan nama user yang ingin diubah 
+	passwordnya sebagai parameter. Dalam hal ini perintah 
+	<command>passwd</command> hanya akan meminta password yang baru. 
+	Contoh :
       </para>
 
       <screen>
@@ -146,12 +151,12 @@ passwd: password updated successfully
       <title>adduser</title>
 
       <para>
-	The <command>adduser</command> command combines
-	<command>useradd</command> and <command>passwd</command> in an
-	interactive script. It will ask you to fill in information
-	about the account to-be created. After that it will create an
-	account based on the information you provided. The screen
-	listing below shows a sample session.
+	Perintah <command>adduser</command> mengkombinasikan 
+	<command>useradd</command> dan <command>passwd</command> dalam 
+	sebuah skrip yang interaktif. Skrip ini akan meminta anda untuk 
+	mengisi informasi tentang account yana akan dibuat. Setelah itu 
+	skrip ini akan membuat account berdasarkan informasi yang telah 
+	anda berikan. Listing di bawah ini akan menunjukkan contohnya.
       </para>
 
       <screen>
@@ -207,8 +212,9 @@ Account setup complete.
       </screen>
 
       <para>
-	You can use the default values, or leave some fields empty, by
-	tapping the &lt;Enter&gt; key.
+	Jika anda ingin menggunakan nilai standar yang disediakan, cukup 
+	dengan mengosongkan isian yang diminta, dengan menekan tombol 
+	&lt;Enter&gt;
       </para>
     </sect2>
 
@@ -216,12 +222,11 @@ Account setup complete.
       <title>userdel</title>
 
       <para>
-	Sometimes it is necessary to remove a user account from the
-	system. GNU/Linux offers the <command>userdel</command> tool
-	to do this. Just specify the username as a parameter to remove
-	that user from the system. For example, the following command
-	will remove the user account <emphasis>bob</emphasis> from the
-	system:
+	Terkadang adalah hal yang perlu untuk menghapus acount user dari 
+	sistem. GNU/Linux menyediakan perintah 
+	<command>userdel</command> untuk melakukan hal ini. Sebagai 
+	contoh perintah berikut akan menghapus account user 
+	<emphasis>bob</emphasis> dari sistem.
       </para>
 
       <screen>
@@ -229,10 +234,11 @@ Account setup complete.
       </screen>
 
       <para>
-	This will only remove the user account, not the user's home
-	directory and mail spool. Just add the <parameter
-	class="command">-r</parameter> parameter to delete the user's
-	home directory and mail spool too. For example:
+	Perintah ini hanya akan menghapus account user, namun tidak 
+	direktori home user dan kumpulan email yang diterima. Cukup 
+	tambahkan parameter <parameter class="command">-r</parameter> 
+	untuk menghapus direktori home user serta kumpulan email yang 
+	diterima. Contoh :
       </para>
 
       <screen>
