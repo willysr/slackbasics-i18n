@@ -1,58 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:lang="id" xml:id="chap-usermgmt">
-  <title>Manajemen User</title>
+  <title>Manajemen Pengguna</title>
 
   <sect1 xml:id="chap-usermgmt-intro">
     <title>Perkenalan</title>
 
     <para>
-	GNU/LINUX adalah sistem operasi multi-user. Ini berarti banyak
-	User dapat menggunakan sistem, dan mereka dapat menggunakan sistem
-	tersebut secara bersama.Konsep manajemen pengguna dari GNU/Linux 
-	cukup sederhana.Pertama, terdapat beberapa account user pada setiap
-	sistem.Bahkan untuk sistem yang memiliki satu user sekalipun terdapat 
-	beberapa account user,karena GNU/Linux menggunakan account yang unik 
-	untuk melakukan beberapa tugas.Setiap user dapat menjadi anggota dari
-	sebuah  grup. Grup digunakan untuk untuk perijinan yang lebih luas.
-	Sebagai contoh, anda dapat membuat file yang hanya bisa dibaca oleh 
-	grup tertentu.Dalam sebuah sistem terdapat beberapa user dan grup 
-	yang namanya telah dialokasikan. Diantara user yang dialokasikan 
-	tersebut yang paling	penting adalah <emphasis>root</emphasis>. 
-	User <emphasis>root</emphasis> merupakan administrator dari sistem.
-	Adalah ide bagus untuk menghindari login sebagai root, karena dengan
-	login sebagai root akan meningkatkan resiko keamanan. Anda dapat login
-	sebagai user biasa, kemudian melakukan pekerjaan administrasi sistem 
-	menggunakan perintah <command>su</command> dan perintah <command>sudo
-	</command>
+	GNU/LINUX adalah sistem operasi multi pengguna. Ini berarti 
+	banyak pengguna dapat menggunakan sistem, dan mereka dapat 
+	menggunakan sistem tersebut secara bersamaan. Konsep manajemen 
+	pengguna dari GNU/Linux cukup sederhana. Pertama, terdapat 
+	beberapa account pengguna pada setiap sistem.Bahkan untuk sistem 
+	yang memiliki satu pengguna sekalipun terdapat beberapa account 
+	pengguna, karena GNU/Linux menggunakan account yang unik untuk 
+	melakukan beberapa tugas. Setiap pengguna dapat menjadi anggota 
+	dari sebuah  grup. Grup digunakan untuk untuk perijinan yang 
+	lebih luas. Sebagai contoh, Anda dapat membuat berkas yang hanya 
+	bisa dibaca oleh grup tertentu. Dalam sebuah sistem terdapat 
+	beberapa pengguna dan grup yang namanya telah dialokasikan. 
+	Diantara nama pengguna yang dialokasikan tersebut, yang paling	
+	penting adalah <emphasis>root</emphasis>. Pengguna 
+	<emphasis>root</emphasis> merupakan administrator dari sistem. 
+	Adalah hal yang baik  untuk menghindari login sebagai root, 
+	karena dengan login sebagai root akan meningkatkan resiko 
+	keamanan. Anda dapat login sebagai pengguna biasa, kemudian 
+	melakukan pekerjaan administrasi sistem menggunakan perintah 
+	<command>su</command> dan perintah <command>sudo</command>
     </para>
 
     <para>
-	Account user yang tersedia diletakkan di
-        <filename>/etc/passwd</filename>. Anda dapat melihat pada file
-        ini untuk menentukan account user mana yang akan diperintah.
-        Satu hal yang perlu dicatat, pada file ini tidak menyertakan
-        password user. Password user dipisah ke  sebuah file yang telah
-        dienkripsi yaitu <filename>/etc/shadow</filename>.Informasi
-	untuk grup disimpan di <filename>/etc/group</filename>. Mengubah 
-	isi file ini secara langsung secara umum merupakan ide yang 
-	buruk. Terdapat beberapa aplikasi tangguh yang digunakan untuk 
-	melakukan administrasi user dan grup. Bab ini akan menjelaskan 
-	beberapa dari aplikasi tersebut.
+	Account pengguna yang tersedia diletakkan di 
+	<filename>/etc/passwd</filename>. Anda dapat melihat pada berkas
+	ini untuk menentukan account pengguna mana yang akan diperintah.
+	Satu hal yang perlu dicatat, pada berkas ini tidak disertakan
+	password pengguna. Password pengguna dipisah ke  sebuah berkas 
+	yang telah dienkripsi yaitu <filename>/etc/shadow</filename>. 
+	Informasi untuk grup disimpan di 
+	<filename>/etc/group</filename>. Mengubah isi berkas ini secara 
+	langsung merupakan ide yang buruk. Terdapat beberapa aplikasi 
+	tangguh yang digunakan untuk melakukan administrasi pengguna dan 
+	grup. Bab ini akan menjelaskan 	beberapa dari aplikasi tersebut.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-usermgmt-user">
-    <title>Menambah dan mengurangi user</title>
+    <title>Menambah dan mengurangi pengguna</title>
 
     <sect2 xml:id="chap-usermgmt-user-add">
       <title>useradd</title>
 
       <para>
 	Perintah <command>useradd</command> digunakan untuk menambah 
-	account user ke sistem. Menjalankan perintah 
-	<command>useradd</command> dengan menambahkan nama user sebagai 
-	parameter akan menciptakan user di dalam sistem. Contoh:
+	account pengguna ke sistem. Menjalankan perintah 
+	<command>useradd</command> dengan menambahkan nama pengguna 
+	sebagai parameter akan menciptakan pengguna di dalam sistem. 
+Contoh:
       </para>
 
       <screen>
@@ -60,11 +63,11 @@
       </screen>
 
       <para>
-	Menciptakan account user <emphasis>bob</emphasis>. Untuk anda 
-	ketahui dengan perintah diatas tidak akan menciptakan direktori 
-	home untuk user tersebut. Tambahkan parameter <parameter 
-	class="command">-m</parameter> parameter untuk menciptakan 
-	direktori home. Contoh :
+	Menciptakan account pengguna <emphasis>bob</emphasis>. Untuk 
+	Anda ketahui dengan perintah diatas tidak akan menciptakan 
+	direktori home untuk pengguna tersebut. Tambahkan parameter 
+	<parameter class="command">-m</parameter> parameter untuk 
+	menciptakan direktori home. Contoh :
       </para>
 
       <screen>
@@ -72,15 +75,15 @@
       </screen>
 
       <para>
-	Perintah ini akan menambah user <emphasis>bob</emphasis> ke 
-	dalam sistem, dan menciptakan direktori home untuk user ini 
+	Perintah ini akan menambah pengguna <emphasis>bob</emphasis> ke 
+	dalam sistem, dan menciptakan direktori home untuk pengguna ini 
 	yaitu <filename>/home/bob</filename>. Normalnya sebuah 
-	user langsung  menjadi anggota dari grup <emphasis>users</emphasis>. 
-	Misalkan kita ingin mengubah keanggotaan dengan membuat 
-	<emphasis>crew</emphasis> menjadi grup primer dari user 
-	<emphasis>bob</emphasis>. Hal ini dapat dilakukan dengan 
-	menambahkan <parameter class="command">-g</parameter> parameter. 
-	Contoh:
+	pengguna langsung  menjadi anggota dari grup 
+	<emphasis>users</emphasis>. Misalkan kita ingin mengubah 
+	keanggotaan dengan membuat <emphasis>crew</emphasis> menjadi 
+	grup primer dari pengguna <emphasis>bob</emphasis>. Hal ini 
+	dapat dilakukan dengan 	menambahkan <parameter 
+	class="command">-g</parameter> parameter. Contoh:
       </para>
 
       <screen>
@@ -89,11 +92,11 @@
 
       <para>
 	Selain itu dimungkinkan juga untuk menambah grup sekunder dalam 
-	proses pembuatan account user tersebut dengan dengan menambah opsi 
-	<emphasis>-G</emphasis>. Nama-nama grup sekunder lainnya dapat 
-	dipisahkan menggunakan koma. Contoh perintah di bawah ini akan 
-	membuat user <emphasis>bob</emphasis>, yang memiliki grup primer 
-	dari grup<emphasis>crew</emphasis>, dan 
+	proses pembuatan account pengguna tersebut dengan dengan 
+	menambah opsi <emphasis>-G</emphasis>. Nama-nama grup sekunder 
+	lainnya dapat dipisahkan menggunakan koma. Contoh perintah di 
+	bawah ini akan membuat pengguna <emphasis>bob</emphasis>, yang 
+	memiliki grup primer dari grup<emphasis>crew</emphasis>, dan 
 	<emphasis>www-admins</emphasis> dan 
 	<emphasis>ftp-admins</emphasis> sebagai grup sekundernya:
       </para>
@@ -104,8 +107,8 @@
 
       <para>
 	Secara default perintah <command>useradd</command> hanya membuat 
-	user, dan tidak membuat password dalam proses pembuatan user. 
-	Password dapat di buat menggunakan perintah 
+	pengguna, dan tidak membuat password dalam proses pembuatan 
+	pengguna. Password dapat di buat menggunakan perintah 
 	<command>passwd</command>
       </para>
     </sect2>
@@ -114,12 +117,12 @@
       <title>passwd</title>
 
       <para>
-	Mungkin anda telah menebak lebih dulu perintah 
+	Mungkin Anda telah menebak lebih dulu perintah 
 	<command>passwd</command> digunakan untuk mengubah password 
-	user. Menjalankan perintah ini sebagai user tanpa memberikan 
-	parameter akan mengubah password untuk user tersebut. Perintah 
-	password akan menanyakan password lama sekali, kemudian meminta 
-	password baru sebanyak dua kali.
+	pengguna. Menjalankan perintah ini sebagai pengguna tanpa 
+	memberikan parameter akan mengubah password untuk pengguna 
+	tersebut. Perintah password akan menanyakan password lama 
+	sekali, kemudian meminta password baru sebanyak dua kali.
       </para>
 
       <screen>
@@ -132,9 +135,9 @@ passwd: password updated successfully
       </screen>
 
       <para>
-	user <emphasis>root</emphasis> dapat mengubah password user-user 
-	lainnya dengan menspesifikasikan nama user yang ingin diubah 
-	passwordnya sebagai parameter. Dalam hal ini perintah 
+	pengguna <emphasis>root</emphasis> dapat mengubah password 
+	pengguna lainnya dengan menspesifikasikan nama pengguna yang 
+ingin diubah passwordnya sebagai parameter. Dalam hal ini perintah 
 	<command>passwd</command> hanya akan meminta password yang baru. 
 	Contoh :
       </para>
@@ -153,10 +156,10 @@ passwd: password updated successfully
       <para>
 	Perintah <command>adduser</command> mengkombinasikan 
 	<command>useradd</command> dan <command>passwd</command> dalam 
-	sebuah skrip yang interaktif. Skrip ini akan meminta anda untuk 
+	sebuah skrip yang interaktif. Skrip ini akan meminta Anda untuk 
 	mengisi informasi tentang account yana akan dibuat. Setelah itu 
 	skrip ini akan membuat account berdasarkan informasi yang telah 
-	anda berikan. Listing di bawah ini akan menunjukkan contohnya.
+	Anda berikan. Listing di bawah ini akan menunjukkan contohnya.
       </para>
 
       <screen>
@@ -212,7 +215,7 @@ Account setup complete.
       </screen>
 
       <para>
-	Jika anda ingin menggunakan nilai standar yang disediakan, cukup 
+	Jika Anda ingin menggunakan nilai standar yang disediakan, cukup 
 	dengan mengosongkan isian yang diminta, dengan menekan tombol 
 	&lt;Enter&gt;
       </para>
@@ -222,10 +225,10 @@ Account setup complete.
       <title>userdel</title>
 
       <para>
-	Terkadang adalah hal yang perlu untuk menghapus acount user dari 
-	sistem. GNU/Linux menyediakan perintah 
+	Terkadang adalah hal yang perlu untuk menghapus acount pengguna 
+	dari sistem. GNU/Linux menyediakan perintah 
 	<command>userdel</command> untuk melakukan hal ini. Sebagai 
-	contoh perintah berikut akan menghapus account user 
+	contoh perintah berikut akan menghapus account pengguna 
 	<emphasis>bob</emphasis> dari sistem.
       </para>
 
@@ -234,11 +237,11 @@ Account setup complete.
       </screen>
 
       <para>
-	Perintah ini hanya akan menghapus account user, namun tidak 
-	direktori home user dan kumpulan email yang diterima. Cukup 
+	Perintah ini hanya akan menghapus account pengguna, namun tidak 
+	direktori home pengguna dan kumpulan email yang diterima. Cukup 
 	tambahkan parameter <parameter class="command">-r</parameter> 
-	untuk menghapus direktori home user serta kumpulan email yang 
-	diterima. Contoh :
+	untuk menghapus direktori home pengguna serta kumpulan email 
+	yang diterima. Contoh :
       </para>
 
       <screen>
