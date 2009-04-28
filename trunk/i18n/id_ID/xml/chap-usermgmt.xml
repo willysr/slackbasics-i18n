@@ -251,25 +251,27 @@ Account setup complete.
   </sect1>
 
   <sect1 xml:id="chap-usermgmt-su">
-    <title>Avoiding root usage with su</title>
+    <title>Menghindari penggunaan root dengan su</title>
 
     <para>
-      It is a good idea to avoid logging in as
-      <emphasis>root</emphasis>. There are many reasons for not doing
-      this. Accidentally typing a wrong command could cause bad things
-      to happen, and malicious programs can make a lot of damage when
-      you are logged in as <emphasis>root</emphasis>.  Still, there
-      are many situations in which you need to have root access. For
-      example, to do system administration, or to install new
-      software. Fortunately the <command>su</command> can give you
-      temporal root privileges.
+	Merupakan ide bagus untuk menghindari login sebagai 
+	<emphasis>root</emphasis>. Ada banyak alasan untuk tidak 
+	melakukan hal ini. Mengetik perintah yang salah secara tidak 
+	sengaja dapat berakibat terjadi hal yang tidak diinginkan, dan 
+	program yang salah berpotensi untuk melakukan banyak kerusakan 
+	ketika kita login sebagai <emphasis>root</emphasis>. Akan 
+	tetapi, terdapat beberapa situasi yang membutuhkan akses root. 
+	Sebagai contoh, untuk melakukan administrasi sistem, atau 
+	menginstal program baru. Untungnya perintah <command>su<command> 
+	dapat memberikan anda hak akses root untuk sementara.
     </para>
 
     <para>
-      Using <command>su</command> is very simple. Just executing
-      <command>su</command> will ask you for the root password, and
-      will start a shell with root privileges after the password is
-      correctly entered:
+	Menggunakan perintah <command>su</command> sangat sederhana/ 
+	Cukup dengan mengeksekusi perintah <command>su</command>, 
+	kemudian Anda akan ditanyakan password root. Setelah password 
+	dimasukkan dengan benar, maka anda akan memulai shell dengan 
+	hak akses root.
     </para>
 
     <screen>
@@ -286,21 +288,21 @@ bob
     </screen>
 
     <para>
-      In this example the user <emphasis>bob</emphasis> is logged on,
-      the <command>whoami</command> output reflects this. The user
-      executes su and enters the <emphasis>root</emphasis>
-      password. <command>su</command> launches a shell with root
-      privileges, this is confirmed by the <command>whoami</command>
-      output. After exiting the <emphasis>root</emphasis> shell,
-      control is returned to the original running shell running with
-      the privileges of the user <emphasis>bob</emphasis>.
+	Pada contoh ini pengguna login sebagai <emphasis>bob</emphasis>. 
+	Keluaran perintah <command>whoami</command> merefleksikan hal 
+	ini. Pengguna mengeksekusi su dan memasukkan password 
+	<emphasis>root</emphasis>. Perintah <command>su</command> 
+	menjalankan sheel dengan hak akses root, hal ini dikonfirmasikan 
+	oleh keluaran perintah <command>whoami</command>. Setelah keluar 
+	dari shell <emphasis>root</emphasis>, kendali shell akan kembali 
+	ke pengguna sebelumnya yaitu <emphasis>bob</emphasis>.
     </para>
 
     <para>
-      It is also possible to execute just one command as the
-      <emphasis>root</emphasis> user with the <parameter
-      class="command">-c</parameter> parameter. The following example
-      will run <command>lilo</command>:
+	Dalam hal ini memungkinkan juga untuk mengeksekusi satu perintah 
+	sebagai <emphasis>root</emphasis> dengan parameter <parameter 
+	class="command">-c</parameter>. Berikut ini adalah contoh 
+	menjalankan perintah <emphasis>lilo<emphasis>:
     </para>
 
     <screen>
@@ -308,15 +310,16 @@ $ <userinput>su -c lilo</userinput>
     </screen>
 
     <para>
-      If you want to give parameters to the command you would like to
-      run, use quotes (e.g. <command>su -c &quot;ls -l
-      /&quot;</command>). Without quotes <command>su</command> cannot
-      determine whether the parameters should be used by the specified
-      command, or by <command>su</command> itself.
+	Jika Anda ingin memberikan parameter pada perintah yang ingin 
+	anda jalankan, gunakan tanda kutip (contoh <command>su -c &quot; 
+	ls -l /&quot;</command>). Tanpa tanda petik <command>su<command> 
+	tidak dapat mengenali apakah parameter tersebut akan digunakan 
+	oleh perintah tertentu, atau oleh <command>su</command> itu 
+	sendiri
     </para>
 
     <sect2 xml:id="chap-usermgmt-su-restrict">
-      <title>Restricting su access</title>
+      <title>Membatasi hak akses su</title>
 
       <para>
 	You can refine access to <command>su</command> with
