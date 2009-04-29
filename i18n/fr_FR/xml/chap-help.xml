@@ -3,53 +3,52 @@
          xmlns:xl="http://www.w3.org/1999/xlink"
          xml:lang="en"
          xml:id="chap-help">
-  <title>Sources of help</title>
+  <title>Sources d'aide</title>
 
   <para>
-    There is a wealth of information available about many subjects
-    related to GNU/Linux. Most general documentation applies to
-    Slackware Linux, because the software in the distribution has been
-    compiled from source code that has been altered as little as
-    possible. This chapter provides some pointers to information and
-    documentation that can be found on an installed Slackware Linux
-    system, and on the Internet.
+    Il y a une mine d'informations disponibles sur de nombreux de sujets autour
+    de GNU/Linux. La plupart des documentations générales s'appliquent à
+    Slackware Linux, car le logiciel inclus dans la distribution a été compilé
+    à partir du code source avec le minimum de modifications possibles. Ce
+    chapitre fournit quelques liens vers des informations et des documentations
+    qu'on peut trouver sur un système Slackware Linux installé, et sur
+    Internet.
   </para>
 
   <sect1 xml:id="chap-help-system">
-    <title>On your system</title>
+    <title>Sur votre système</title>
 
     <sect2 xml:id="chap-help-system-howtos">
-      <title>Linux HOWTO's</title>
+      <title>HOWTO de Linux</title>
 
       <para>
-        The Linux HOWTOs are a collection of documents which cover
-        specific subjects related to GNU/Linux. Most Linux HOWTOs are
-        not tailored to a specific distribution, therefore they are
-        very useful for Slackware Linux users. The
-        <emphasis>linux-howtos</emphasis> package in the
-        <quote>f</quote> software set contains the HOWTO
-        collection. After installing this package the HOWTOs are
-        available from the <filename>/usr/doc/Linux-HOWTOs/</filename>
-        directory. Slackware Linux also contains a small collection of
-        Linux-related <acronym>FAQs</acronym> (FAQs are documents that
-        answer Frequently Asked Questions). The Linux FAQs are
-        installed to the <filename>/usr/doc/Linux-FAQs/</filename>
-        directory, and are available from the
-        <emphasis>linux-faqs</emphasis> package, which is also part of
-        the <quote>f</quote> software set.
+	Les HOWTOs de Linux sont une collection de documents qui couvrent des
+	sujets spécifiques liés à GNU/Linux. La plupart des HOWTOs Linux ne sont
+	pas ciblés pour une distribution spécifique, par conséquent ils sont
+	très utiles pour les utilisateurs Slackware Linux. Le paquet
+        <emphasis>linux-howtos</emphasis> dans la catégorie <quote>f</quote>
+	contient cette collection de HOWTOs. Après l'installation de ce paquet
+	les HOWTOs sont disponibles dans le répertoire
+	<filename>/usr/doc/Linux-HOWTOs/</filename>. Slackware Linux contient
+	aussi un petit ensemble de <acronym>FAQs</acronym> (les FAQs sont des
+	documents qui répondent à des questions fréquemment posées) concernant
+	Linux. Les FAQs Linux sont installées dans le répertoire
+	<filename>/usr/doc/Linux-FAQs/</filename>, et sont disponibles dans le
+	paquet <emphasis>linux-faqs</emphasis>, qui fait aussi partie de la
+	catégorie <quote>f</quote>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-help-system-manpages">
-      <title>Manual pages</title>
+      <title>Pages de manuel</title>
 
       <para>
-        Most UNIX-like commands are covered by a traditional UNIX help
-        system called the <emphasis>manual pages</emphasis>. You can
-        read the manual page of a program with the
-        <command>man</command> command. Executing
-        <command>man</command> with the name of a command as an
-        argument shows the manual page for that command. For instance,
+	La plupart des commandes du type UNIX sont accompagnées d'un un système
+	d'aide UNIX traditionnel appelé les
+	<emphasis>pages de manuel</emphasis>. Vous pouvez lire une page
+	du manuel d'un programme avec la commande <command>man</command>.
+	Exécuter <command>man</command> avec le nom d'une commande en tant
+	qu'argument affiche la page de manuel de cette commande. Par exemple,
       </para>
 
       <screen>
@@ -57,14 +56,14 @@ $ <userinput>man ls</userinput>
       </screen>
 
       <para>
-	shows the manual page of the <command>ls</command> command.
+	affiche la page de manuel de la commande <command>ls</command>.
       </para>
 
       <para>
-	If you do not know the exact name of a manual page or command,
-	you can search through the manual pages with a keyword. The
-	<parameter class="command">-k</parameter> option is provided
-	to make use of this facility:
+	Si vous ne connaissez pas le nom exact de la page de manuel ou de la
+	commande vous pouvez chercher dans les pages de manuel par mot-clé.
+	L'option <parameter class="command">-k</parameter> est disponible pour
+	utiliser cette fonctionnalité :
       </para>
 
       <screen>
@@ -75,45 +74,44 @@ rmdir                (2)  - delete a directory
       </screen>
 
       <para>
-        The manual page collection is very extensive, and covers more
-        subjects than just commands. The following sections of manual
-        pages are available:
+	L'ensemble des pages de manuel est très vaste, et couvre bien plus de
+	sujets que seulement les commandes. Les sections de pages de manuel
+	suivantes sont disponibles :
       </para>
 
       <literallayout>
-1   Executable programs or shell commands
-2   System calls (functions provided by the kernel)
-3   Library calls (functions within program libraries)
-4   Special files (usually found in /dev)
-5   File formats and conventions eg /etc/passwd
-6   Games
-7   Miscellaneous  (including  macro  packages and conven-
-    tions), e.g. man(7), groff(7)
-8   System administration commands (usually only for root)
-9   Linux routines [Non standard]
+1   Programmes exécutables ou commandes shell
+2   Appels système (fonctions fournies par le noyau)
+3   Appels librairie (fonctions contenues dans les librairies des programmes)
+4   Fichiers spéciaux (habituellement dans /dev)
+5   Formats de fichiers et conventions /etc/passwd
+6   Jeux
+7   Divers (incluant les macro-paquets et conventions), par exemple man(7),
+    groff(7)
+8   Commandes d'administration système (habituellement réservées à root)
+9   Routines Linux [Non standard]
       </literallayout>
 
       <para>
-        If there is more than one section that has a manual page with
-        a specific name, as with for instance
-        <command>rmdir</command>, you can choose what page you want to
-        see by adding the section number of the manual page before the
-        manual page name. For example:
+	S'il y a plusieurs sections contenant une page de manuel pour un nom
+	spécifique, comme c'est le cas pour <command>rmdir</command>, vous
+	pouvez choisir la page que vous voulez voir en ajoutant le numéro de
+	section de la page de manuel avant le nom. Par exemple :
       </para>
 
       <screen>
-<userinput>man 2 rmdir</userinput>
+	<userinput>man 2 rmdir</userinput>
       </screen>
 
       <para>
-        If you would like to print a manual page to a printer that you
-        have set up, you can pipe the output of <command>man</command>
-        to the <command>lpr</command> command. When the <parameter
-        class="command">-t</parameter> option of the
-        <command>man</command> command is used, <command>man</command>
-        will output the manual page in Postscript format, rather than
-        ASCII. For example, you can use the following command to print
-        the <command>cat</command> manual page:
+	Si vous désirez imprimer une page de manuel sur une imprimante que vous
+	avez configurée, vous pouvez rediriger la sortie de
+	<command>man</command> vers la commande <command>lpr</command>.
+	Quand l'option <parameter class="command">-t</parameter> de la commande
+	<command>man</command> est utilisée, <command>man</command> produira
+	une page de manuel sous le format Postscript au lieu du format ASCII.
+        Par exemple vous pouvez utiliser la commande suivante pour imprimer la
+	page de manuel de <command>cat</command> :
       </para>
 
       <screen>
@@ -123,68 +121,68 @@ $ <userinput>man -t cat | lpr</userinput>
   </sect1>
 
   <sect1 xml:id="chap-help-internet">
-    <title>On the Internet</title>
+    <title>Sur Internet</title>
 
     <para>
-      There are many websites and forums related to GNU/Linux and
-      Slackware Linux on the Internet. But many sites often disappear
-      as fast as they appeared, and the information on many web sites
-      is fragmentary. The following resources have been around for a
-      longer time, and provide good content.
+      Il y a beaucoup de sites webs et forums liés à GNU/Linux et à Slackware
+      Linux sur Internet. Cependant beaucoup de sites disparaissent aussi vite
+      qu'ils sont apparus, et les informations sur beaucoup de sites sont
+      dispersées. Les site suivants existent depuis un bon moment, et ont un
+      contenu correct.
     </para>
 
     <sect2 xml:id="chap-help-internet-slacksite">
-      <title>The Slackware Linux website</title>
+      <title>Le site web Slackware Linux</title>
 
       <para>
-        The Slackware Linux website may be a bit outdated at times,
-        but it provides many useful resources:
+	Le site web de Slackware Linux peut contenir des informations obsolètes
+	par moments, mais fournit beaucoup d'informations utiles :
       </para>
 
       <itemizedlist>
 	<listitem>
 	  <para>
-            A news page that announces new releases and lists other
-            important news that is relevant to Slackware Linux.
+	    Une page d'actualités qui annonce les nouvelles versions et liste
+	    d'autres informations importantes sur Slackware Linux.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-            An overview of the changes to the distribution is provided
-            in a structured format called a
-            <emphasis>ChangeLog</emphasis>. ChangeLogs are provided
-            for the current development version, as well as the latest
-            stable release.
+	    Une vue d'ensemble des modifications de la distribution est fournie
+	    sous un format structuré appelé un <emphasis>ChangeLog</emphasis>.
+	    Les ChangeLogs sont fournis pour la version de développement
+	    courante, ainsi que pour la dernière version stable.
           </para>
         </listitem>
         <listitem>
           <para>
-            There are two mailing lists to which you can
-            subscribe. The <emphasis>slackware-announce</emphasis>
-            list is used to announce new Slackware Linux releases, and
-            security updates are announced on the
-            <emphasis>slackware-security</emphasis> list.
+	    Il y a 2 listes de diffusion auxquelles vous pouvez souscrire.
+	    La liste <emphasis>slackware-announce</emphasis> qui est utilisée
+	    pour annoncer les nouvelles versions de Slackware Linux, et les
+	    mises à jour de sécurité sont annoncées sur la liste
+            <emphasis>slackware-security</emphasis>.
           </para>
         </listitem>
         <listitem>
           <para>
-            A list of mirrors where you can download Slackware
-            Linux. The mirrors are indexed per country. Additional
-            information such as the download protocols the mirrors
-            support, and the speed of the mirrors is also included.
+	    Une liste de sites mirroirs sur lesquels vous pouvez télécharger
+            Slackware Linux. Les sites mirroirs sont triés par pays. Des
+	    informations complémentaires sont fournies telles que les
+	    protocoles de téléchargement supportés par les sites mirroirs,
+	    ainsi que la vitesse des sites.
           </para>
         </listitem>
         <listitem>
           <para>
-            Documentation of various kinds, including a list of
-            frequently asked questions and the <emphasis>Slackware
-            Linux Essentials</emphasis> book.
+	    De la documentation diverses, incluant une liste de questions
+	    fréquemment posées et le livre <emphasis>Slackware
+            Linux Essentials</emphasis>.
           </para>
         </listitem>
       </itemizedlist>
 
       <para>
-	The Slackware Linux website is available at:
+	Le site web Slackware Linux est disponible à l'adresse :
 	<link xl:href="http://www.slackware.com/" />
       </para>
     </sect2>
@@ -193,11 +191,11 @@ $ <userinput>man -t cat | lpr</userinput>
       <title>LinuxQuestions</title>
 
       <para>
-        LinuxQuestions is a large GNU/Linux forum with many helpful
-        members.  Particularly interesting is the Slackware Linux
-        subforum, where you can seek assistance to help you with
-        problems that you may have with Slackware Linux. The
-        LinuxQuestions forum is available at: 
+	LinuxQuestions est un vaste forum de discussion GNU/Linux avec beaucoup
+	de membres prêts à aider. Un sous-forum particulièrement intéressant
+	est celui de Slackware Linux, où vous pouvez chercher de l'assistance
+	pour vous aider	sur des problèmes que vous pouvez rencontrer sur
+	Slackware Linux. Le forum LinuxQuestions est disponible à l'adresse : 
 	<link xl:href="http://www.linuxquestions.org/" />
       </para>
     </sect2>
@@ -206,13 +204,13 @@ $ <userinput>man -t cat | lpr</userinput>
       <title>alt.os.linux.slackware</title>
 
       <para>
-        <emphasis>alt.os.linux.slackware</emphasis> is a Slackware
-        Linux newsgroup. You can read newsgroups with a newsreader
-        like tin or slrn, through the newsgroup server of your
-        Internet service provider. On this newsgroup it is expected
-        that you have read all necessary documentation before posting
-        questions. If you have not done that, the chance of getting
-        <quote>flamed</quote> is large.
+        <emphasis>alt.os.linux.slackware</emphasis> est un newsgroup Slackware
+        Linux. Vous pouvez lire les newsgroups avec un lecteur de news comme tin
+	ou slrn, via un serveur de newsgroup fourni par votre fournisseur
+	d'accès Internet. Sur ce newsgroup, il est supposé que vous avez lu
+	toute la documentation nécessaire avant de poster des questions. Si vous
+	ne l'avez pas fait, les chances de vous faire <quote>incendier</quote>
+	sont grandes.
       </para>
     </sect2>
   </sect1>
