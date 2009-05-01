@@ -4,76 +4,75 @@
   <title>General concepts</title>
 
   <para>
-    This chapter gives an introduction to some general UNIX and GNU/Linux 
-    concepts. It is important to read this chapter thoroughly if you do
-    not have any UNIX or GNU/Linux experience. Many concepts covered in
-    this chapter are used in this book and in GNU/Linux.
+    Ce chapitre est une introduction aux concepts généraux UNIX et GNU/Linux.
+    Il est important de lire ce chapitre entièrement si vous n'avez aucune
+    expérience en UNIX ou GNU/Linux. Beaucoup de concepts couverts dans ce
+    chapitres sont repris dans ce livre et dans GNU/Linux.
   </para>
 
   <sect1 id="concepts-multitasking">
-    <title>Multitasking</title>
+    <title>Multitâche</title>
 
     <sect2 id="concepts-multitasking-intro">
       <title>Introduction</title>
 
       <para>
-        One of UNIX's traditional strengths is multitasking. Multitasking
-        means that multiple programs can be run at the same time.
-        You may wonder why this is important, because most people use
-        only one application at a time. Multitasking is a bare necessity
-        for UNIX-like systems. Even if you have not started any applications,
-        there are programs that run in the background. For instance,
-        some programs provide network services, while others show a login
-        prompt and wait until a user logs in on a (virtual) terminal. Programs
-        that are running in the background are often called <emphasis>daemon
-        processes</emphasis><footnote>
+	Une des forces traditionnelles d'UNIX est le multitâche. Multitâche
+	signifie que plusieurs programmes peuvent être exécutés en même temps.
+	Vous devez vous demander pourquoi c'est important, car la plupart des
+	gens utilisent seulement une application à la fois. Le multitâche
+	est une nécessité élémentaire pour les systèmes de type UNIX. Même si
+	vous n'avez démarré aucun programme, il y a des programmes qui tournent
+	en tâche de fond. Par exemple, certains programmes fournissent des
+	services réseau, alors que d'autres affichent un prompt de login et
+	attendent qu'un utilisateur se logue sur un terminal (virtuel). Les
+	programmes qui s'exécutent en tâche de fond sont souvent appelé des
+	<emphasis>processus démon</emphasis><footnote>
           <para>
-            The word <emphasis>daemon</emphasis> should not to be confused
-	    with the word <emphasis>demon</emphasis>, the word
-            <emphasis>daemon</emphasis> refers to supernatural beings
-            in Greek mythology.
+            Le terme <emphasis>démon</emphasis> (daemon en anglais) n'a rien à
+	    avoir avec le <emphasis>démon</emphasis> qui fait référence à des
+	    êtres supernaturels de la mythologie grecque.
           </para>
         </footnote>.
       </para>
     </sect2>
 
     <sect2 id="concepts-multitasking-procsthreads">
-      <title>Processes and threads</title>
+      <title>Processus et threads</title>
 
       <para>
-        After a program is loaded from a storage medium, an instance
-        of the program is started. This instance is called a
-        <emphasis>process</emphasis>. A process has its own protected
-        memory, named the <emphasis>process address space</emphasis>.
-        The process address space has two important areas: the
-        <emphasis>text</emphasis> area and the
-        <emphasis>data</emphasis> area. The <emphasis>text</emphasis>
-        area is the actual program code; it is used to tell the system
-        what to do. The <emphasis>data</emphasis> area is used to
-        store constant and runtime data. The operating system gives
-        every process time to execute. On single processor systems
-        processes are not really running simultaneously. In reality a
-        smart scheduler in the kernel divides CPU time among
-        processes, giving the illusion that processes run
-        simultaneously. This process is called
-        <emphasis>time-sharing</emphasis>. On systems with more than
-        one CPU or CPU cores, more than one process can run
-        simultaneously, but time-sharing is still used to divide the
-        available CPU time among processes.
+	Après avoir chargé un programme depuis un média de stockage, une
+	instance de ce programme est démarrée. Cette instance est appelée un
+        <emphasis>processus</emphasis>. Un processus a sa propre mémoire
+	protégée, nommée l'<emphasis>espace mémoire du processus</emphasis>.
+	L'espace mémoire d'un processus a 2 zones importantes : la section
+	<emphasis>texte</emphasis> et la section <emphasis>data</emphasis>. La
+	section <emphasis>texte</emphasis> est le code du programme en
+	lui-même ; il est utilisé pour dire au système quoi faire. La section
+	<emphasis>data</emphasis> est utilisée pour stocker les données
+	constantes et les variables d'exécution. Le système d'exploitation donne
+	à chaque processus un temps d'exécution. Sur un système mono-processeur
+	les processus ne s'exécutent pas réellement simultanément. En réalité,
+	un ordonnanceur dans le noyau divise le temps CPU pour chaque processus,
+	donnant l'illusion que les processus tournent en parallèle. Ce
+	fonctionnement est appelé <emphasis>partage de temps</emphasis>. Sur un
+	système multi-CPU ou multi-core, plus d'un processus tourne
+	simultanément, mais le partage de temps est toujours utilisé pour
+	diviser le temps CPU par processus.
       </para>
 
       <para>
-        New processes are created by duplicating a running process
-        with the <command>fork</command> system call. <xref
-        linkend="fork" /> shows a fork() call in action
-        schematically. The parent process issues a fork() call. The
-        kernel will respond to this call by duplicating the process,
-        and naming one process the <emphasis>parent</emphasis>, and
-        the other process the <emphasis>child</emphasis>.
+	Les nouveaux processus sont créés par duplication d'un processus
+	existant à l'aide de l'appel système <command>fork</command>. <xref
+        linkend="fork" /> montre le schéma d'un appel fork() en action. Le
+	processus père effectue l'appel fork(). Le noyau répond à cet appel
+	en dupliquant le processus et en nommant un processus le
+	<emphasis>père</emphasis>, et l'autres processus le
+	<emphasis>fils</emphasis>.
       </para>
 
       <figure id="fork">
-        <title>Forking of a process</title>
+        <title>Fork d'un processus</title>
         <mediaobject>
           <imageobject>
             <imagedata fileref="../../images/fork.png" format="PNG"/>
@@ -82,45 +81,45 @@
       </figure>
 
       <para>
-        Forking can be used by a program to create two processes that
-        can run simultaneously on multiprocessor machines. However,
-        this is often not ideal, because both processes will have
-        their own process address space.  The initial duplication of
-        the process memory takes relatively much time, and it is
-        difficult to share data between two processes. This problem is
-        solved by a concept named
-        <emphasis>multithreading</emphasis>. Multithreading means that
-        multiple instances of the text area can run at the same time,
-        sharing the data area. These instances, named threads, can be
-        executed in parallel on multiple CPUs.
+	Le fork peut être utilisé par un programme pour créer 2 processus qui
+	s'exécutent simultanément sur des machines multiprocesseurs. Cependant,
+	ce n'est pas souvent idéal, car chaque processus aura sont propre espace
+	d'adressage. La duplication de la mémoire du processus au départ prend
+	relativement beaucoup de temps, et il est difficile de partager des
+	données entre les 2 processus. Ce problème est résolu par le concept
+	nommé <emphasis>multithreading</emphasis>. Le multithreading signifie
+	que plusieurs instances de la section texte peuvent s'exécuter en même
+	temps, partageant la même section data. Ces instances, nommées threads,
+	peuvent être executées en parallèle sur plusieurs CPUs.
       </para>
     </sect2>
   </sect1>
 
   <sect1 id="concepts-fshierarchy">
-    <title>Filesystem hierarchy</title>
+    <title>Système de fichiers hiérarchique</title>
 
     <sect2 id="concepts-fshierarchy-structure">
       <title>Structure</title>
 
       <para>
-        Operating systems store data in filesystems. A filesystem is
-        basically a tree-like structure of directories that hold
-        files, like the operating system, user programs and user
-        data. Most filesystems can also store various metadata about
-        files and directories, for instance access and modification
-        times. In GNU/Linux there is only one filesystem hierarchy, this
-        means GNU/Linux does not have drive letters (e.g. A:, C:, D:) for
-        different filesystems, like DOS and Windows. The filesystem
-        looks like a tree, with a root directory (which has no parent
-        directory), branches, and leaves (directories with no
-        subdirectories). The root directory is alway denoted with a
-        slash (<quote>/</quote>). Directories are separated by the
-        same character.
+	Les systèmes d'exploitation stockent les données dans des systèmes de
+	fichiers. Un système de fichier est une structure arborescente de
+	répertoires qui contiennent des fichiers, comme le système
+	d'exploitation, des programmes et données utilisateur. La plupart des
+	systèmes de fichiers peuvent aussi stocker des méta-données concernant
+	les fichiers et répertoires, comme par exemple les dates d'accès et de
+	modification. Sur GNU/Linux il n'y a qu'une seule hiérarchie de système
+	de fichiers, ce qui signifie que GNU/Linux n'a pas de lettre désignant
+	les disques (e.g. A:, C:, D:) pour chaque système de fichiers, comme
+	sous DOS et Windows. Le système de fichiers ressemble à un arbre, avec
+	un répertoire racine (qui n'a pas de répertoire parent), des branches,
+	et des feuilles (répertoire sans sous-répertoires). Le répertoire racine
+	est toujours noté avec une barre oblique (slash - <quote>/</quote>).
+	Les répertoires sont séparés par ce même caractère.
       </para>
 
       <figure id="filesystem-structure">
-        <title>The filesystem structure</title>
+        <title>La structure du système de fichiers</title>
         <mediaobject>
           <imageobject>
             <imagedata fileref="../../images/fs-structure.png" format="PNG"/>
@@ -129,148 +128,146 @@
       </figure>
 
       <para>
-        <xref linkend="filesystem-structure"/> shows the structure of
-        a filesystem.  You can see that the root directory
-        <filename>/</filename> has two child directories:
-        <filename>bin</filename> and <filename>home</filename>. The
-        <filename>home</filename> directory has two child directories,
-        <filename>joe</filename> and <filename>jack</filename>. The
-        diagram shows the full pathname of each directory.  The same
-        notation is used for files. Suppose that there is a file named
-        <filename>memo.txt</filename> in the
-        <filename>/home/jack</filename> directory, the full path of
-        the file is <filename>/home/jack/memo.txt</filename>.
+        <xref linkend="filesystem-structure"/> montre la structure d'un système
+	de fichiers.  Vous pouvez voir que le répertoire racine
+        <filename>/</filename> a 2 répertoires fils:
+        <filename>bin</filename> et <filename>home</filename>. Le répertoire
+        <filename>home</filename> a 2 répertoires fils, <filename>joe</filename>
+	et <filename>jack</filename>. Le diagramme montre le chemin complet de
+	chaque répertoire. La même notation est utilisée pour les fichiers.
+	Supposez qu'il y a un fichier nommé <filename>memo.txt</filename> dans
+	le répertoire <filename>/home/jack</filename>, le chemin complet du
+	fichier est <filename>/home/jack/memo.txt</filename>.
       </para>
 
       <para>
-        Each directory has two special entries,
-        <quote><filename>.</filename></quote>, and
-        <quote><filename>..</filename></quote>.  The first refers to
-        the directory itself, the second to the parent
-        directory. These entries can be used for making relative
-        paths. If you are working in the <filename>jack</filename>
-        directory, you can refer to the the
-        <filename>/home/joe</filename> directory with
+	Chaque répertoire a 2 entrées spéciale,
+        <quote><filename>.</filename></quote>, et
+        <quote><filename>..</filename></quote>. La première fait référence au
+	répertoire lui-même, le second fait référence au répertoire parent.
+	Ces entrées sont utilisées pour créer des chemins relatifs. Si vous
+	travaillez dans le répertoire <filename>jack</filename> vous pouvez
+	faire référence au répertoire <filename>/home/joe</filename> avec 
         <filename>../joe</filename>.
       </para>
     </sect2>
 
     <sect2 id="concepts-fshierarchy-mounting">
-      <title>Mounting</title>
+      <title>Montage</title>
 
       <para>
-        You might wonder how it is possible to access other devices
-        or partitions than the hard disk partition which holds the
-        root filesystem. Linux uses the same approach as UNIX for
-        accessing other filesystems. Linux allows the system
-        administrator to connect a device to any directory in the
-        filesystem structure. This process is named
-        <emphasis>mounting</emphasis>.  For example, one could mount
-        the CD-ROM drive to the <filename>/cdrom</filename>
-        directory. If the mount is correct, the files on the CD-ROM
-        can be accessed through this directory. The mounting process
-        is described in detail in <xref
-        linkend="basics-filesystem-mounting"/>.
+	Vous vous demandez peut-être comment il est possible d'accéder à
+	d'autres périphériques ou partitions que celles du disque dur qui
+	contient le système de fichiers racine. Linux utilise la même approche
+	qu'UNIX pour l'accès aux autres systèmes de fichiers. Linux permet à
+	l'administrateur de connecter un périphérique à un quelconque répertoire
+	de la structure du système de fichiers. Ce processus est appelé le
+        <emphasis>montage</emphasis>.  Par exemple, quelqu'un peut monter le
+	lecteur de CD-ROM sur le répertoire <filename>/cdrom</filename>.
+        Si le montage est correct, les fichiers du CD-ROM sont accessibles à
+	travers de ce répertoire. Le processus de montage est décrit en détails
+	dans <xref linkend="basics-filesystem-mounting"/>.
       </para>
     </sect2>
 
     <sect2 id="concepts-fshierarchy-commondirs">
-      <title>Common directories</title>
+      <title>Répertoires standards</title>
 
       <para>
-        The Filesystem Hierarchy Standard Group has attempted to
-        create a standard that describes which directories should
-        be available on a GNU/Linux system. Currently, most major
-        distributions use the Filesystem Hierarchy Standard (FHS)
-        as a guideline. This section describes some mandatory
-        directories on GNU/Linux systems.
+	Le Filesystem Hierarchy Standard Group (le groupe sur le standard de
+	hiérarchie du système de fichiers) a essayé de créer un standard qui
+	décrit quels répertoires devraient être disponibles sur un système
+	GNU/Linux. Actuellement, la plupart des distributions majeures utilisent
+	le standard de hiérarchie du système de fichiers
+	(Filesystem Hierarchy Standard - FHS) comme base. Cette section décrit
+	quelques répertoires obligatoires sur les systèmes GNU/Linux.
       </para>
 
       <para>
-        Please note that GNU/Linux does not have a separate directory
-        for each application (like Windows). Instead, files are ordered by
-        function and type. For example, the binaries for most
-        common user programs are stored in
-        <filename>/usr/bin</filename>, and their libraries in
-        <filename>/usr/lib</filename>. This is a short overview of
-        the important directories on a Slackware Linux system:
+	Notez que GNU/Linux n'a pas un répertoire séparé pour chaque application
+	(comme sous Windows). Au lieu de cela, les fichiers sont ordonnés par
+	fonction et par type. Par exemple, les binaires les plus communs, pour
+	la plupart des programmes utilisateur sont stockés dans 
+        <filename>/usr/bin</filename>, et leurs librairies dans 
+        <filename>/usr/lib</filename>. Voici une petite vue d'ensemble des
+	répertoires importants sur un système Slackware Linux:
       </para>
 
 
       <itemizedlist>
         <listitem>
           <para>
-            <emphasis role="bold">/bin</emphasis>: essential
-            user binaries that should still be available in case the 
-            <filename>/usr</filename> is not mounted.
+            <emphasis role="bold">/bin</emphasis>: les programmes utilisateur
+	    essentiels que doivent être disponible au cas où
+            <filename>/usr</filename> n'était pas monté.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/dev</emphasis>: device files.
-            These are special files used to access certain devices.
+            <emphasis role="bold">/dev</emphasis>: les fichiers de périphérique.
+	    Ce sont des fichies spéciaux qui permettent d'accéder à certains
+	    périphériques.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/etc</emphasis>: the
-            <filename>/etc</filename> directory contains all important
-            configuration files.
+            <emphasis role="bold">/etc</emphasis>: le répertoire
+            <filename>/etc</filename> contient tous les fichiers de
+	    configuration importants.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/home</emphasis>: contains home
-            directories for individual users.
+            <emphasis role="bold">/home</emphasis>: contient les répertoires
+	    personnels de chaque utilisateur.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/lib</emphasis>: essential system
-            libraries (like glibc),
-            and kernel modules.
+            <emphasis role="bold">/lib</emphasis>: les librairies système
+	    essentielles (comme glibc), et les modules noyau.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/root</emphasis>: home directory for the 
-            <emphasis>root</emphasis> user.
+            <emphasis role="bold">/root</emphasis>: le répertoire personnel de
+	    l'administrateur <emphasis>root</emphasis>.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/sbin</emphasis>: essential binaries
-            that are used for system administration.
+            <emphasis role="bold">/sbin</emphasis>: les programmes essentiels
+	    qui sont utilisés pour l'administration système.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/tmp</emphasis>: a world-writable
-            directory for temporary files.
+            <emphasis role="bold">/tmp</emphasis>: un répertoire en écriture
+	    pour tout le monde pour les fichiers temporaires.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/usr/bin</emphasis>: stores the majority
-            of the user binaries.
+            <emphasis role="bold">/usr/bin</emphasis>: contient la plupart des
+	    programes utilisateur.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/usr/lib</emphasis>: libraries that are
-            not essential for the system to boot.
+            <emphasis role="bold">/usr/lib</emphasis>: les librairies qui ne
+	    sont pas essentielles au démarrage du système.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/usr/sbin</emphasis>: nonessential
-            system administration binaries.
+            <emphasis role="bold">/usr/sbin</emphasis>: les programmes
+	    d'administration système non essentiels.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">/var</emphasis>: variable data files,
-            like logs.
+            <emphasis role="bold">/var</emphasis>: des fichiers de données
+	    variables, comme les logs.
           </para>
         </listitem>
       </itemizedlist>
@@ -278,21 +275,23 @@
   </sect1>
 
   <sect1 id="concepts-devices">
-    <title>Devices</title>
+    <title>Périphériques</title>
 
     <sect2 id="concepts-devices-intro">
       <title>Introduction</title>
 
       <para>
-        In GNU/Linux virtually everything is represented as a file, including
-        devices. Every GNU/Linux system has a directory with special files, named
-        <filename>/dev</filename>. Each file in the <filename>/dev</filename>
-        directory represents a device or pseudo-device. A device file
-        has two special numbers associated with it, the
-        <emphasis>major</emphasis> and the <emphasis>minor</emphasis>
-        device number. The kernel knows which device a device
-        file represents by these device numbers. The following example shows
-        the device numbers for the <filename>/dev/zero</filename> device file:
+	Sous GNU/Linux virtuellement tout est représenté par un fichier, y
+	compris	les périphériques. Tout système GNU/Linux a un répertoire avec
+	des fichiers spéciaux, nommé <filename>/dev</filename>. Chaque fichier
+	dans le répertoire <filename>/dev</filename> représente un périphérique
+	ou un pseudo-périphérique. A un fichier de périphérique, 2 numéros
+	spéciaux sont associés, le numéro de périphérique
+	<emphasis>majeur</emphasis> et le numéro de périphérique
+	<emphasis>mineur</emphasis>. Le noyau sait quel périphérique représente
+	le fichier grâce à ces numéros de périphérique. L'exemple suivant montre
+	les numéros de périphérique pour le fichier de périphérique
+	<filename>/dev/zero</filename> :
       </para>
 
       <screen>
@@ -301,19 +300,19 @@ $ <command>file /dev/zero</command>
       </screen>
 
       <para>
-        The <command>file</command> command can be used to determine the
-        type of a file. This particular file is recognized as a device file
-        that has <emphasis>1</emphasis> as the major device number,
-        and <emphasis>5</emphasis> as the minor device number.
+	La commande <command>file</command> peut être utilisée pour savoir le
+	type d'un fichier. Ce fichier particulier est reconnu comme un fichier
+	de périphérique qui a <emphasis>1</emphasis> pour numéro de périphérique
+	majeur, et <emphasis>5</emphasis> pour numéro de périphérique mineur.
       </para>
 
       <para>
-        If you have installed the kernel source package, you can find
-        a comprehensive list of all major devices with their minor and
-        major numbers in
-        <filename>/usr/src/linux/Documentation/devices.txt</filename>. An
-        up-to-date list is also available on-line through the Linux
-        Kernel Archives<footnote>
+	Si vous avez installé le paquet kernel source, vous trouverez une
+	imposante liste de tous les périphériques les plus importants avec leur
+	numéros mineur et majeur dans le fichier
+        <filename>/usr/src/linux/Documentation/devices.txt</filename>. Une liste
+	à jour est aussi en ligne dans les archives du noyau Linux (Linux Kernel
+	Archives<footnote>
           <para>
             <ulink url="ftp://ftp.kernel.org/pub/linux/docs/device-list/" />
           </para>
@@ -321,77 +320,84 @@ $ <command>file /dev/zero</command>
       </para>
 
       <para>
-        The Linux kernel handles two types of devices:
-        <emphasis>character</emphasis> and <emphasis>block</emphasis>
-        devices. Character devices can be read byte by byte,
-        block devices can not. Block devices are read per block (for example
-        4096 bytes at a time). Whether a device is a character or block device
-        is determined by the nature of the device. For example, most storage
-        media are block devices, and most input devices are character devices.
-        Block devices have one distinctive advantage, namely that they can be
-        cached. This means that commonly read or written blocks are stored in
-        a special area of the system memory, named the cache. Memory is much
-        faster than most storage media, so much performance can be gained
-        by performing common block read and write operations in memory.
-        Of course, eventually changes have to be written to the storage
-        media to reflect the changes that were made in the cache.
+	Le noyau Linux kernel gère 2 types de périphériques : les périphériques
+        <emphasis>caractère</emphasis> et <emphasis>bloc</emphasis>. Les
+	périphériques caractère peuvent être lus octet par octet, les
+	périphériques bloc ne peuvent pas. Les périphériques bloc sont lus par
+	blocs (par exemple 4096 octets à la fois). Un périphérique est de type
+	caractère ou bloc en fonction de la nature de ce périphérique. Par
+	exemple, la plupart des médias de stockage sont des périphériques bloc,
+	et la plupart des périphériques d'entrée sont des périphériques
+	caractère. Les périphériques bloc ont un avantage, à savoir qu'il
+	peuvent être mis en cache. Cela signifie que les blocs les plus
+	fréquemment lus ou écrits sont stockés dans une zone spécifique de la
+	mémoire, nommée cache. La mémoire est bien plus rapide que la plupart
+	des médias de stockage, donc il y a un fort gain de performance en
+	effectuant les opérations fréquentes de lecture et d'écriture de blocs
+	en mémoire. Evidemment,	les modifications finissent par être écrites sur
+	le média de stockage afin de refléter les changements qui ont été faits
+	dans le cache.
       </para>
     </sect2>
 
     <sect2 id="concepts-devices-atascsi">
-      <title>ATA and SCSI devices</title>
+      <title>Les périphériques ATA et SCSI</title>
 
       <para>
-        There are two kinds of block devices that we are going to look into
-        in detail, because understanding the naming of these devices is
-        crucial for  partitioning a hard disk and mounting. Almost all modern
-        computers with an x86 architecture use ATA hard disks and CD-ROMs.
-        Under Linux these devices are named in the following manner:
+	Il y a deux types de périphériques de bloc que nous allons examiner
+        en détail, car la compréhension du nommage de ces périphériques est
+        cruciale pour le partitionnement d'un disque dur et de leur montage.
+	Presque tous les ordinateurs modernes à architecture x86 utilisent des
+	disques durs et CD-ROMs ATA.
+        Sous Linux, ces périphériques sont nommés de la manière suivante :
       </para>
 
       <screen>
-/dev/hda - master device on the first ATA channel
-/dev/hdb - slave device on the first ATA channel
-/dev/hdc - master device on the second ATA channel
-/dev/hdd - slave device on the second ATA channel
+/dev/hda - périphérique maître sur le premier canal ATA
+/dev/hdb - périphérique esclave sur le premier canal ATA
+/dev/hdc - périphérique maître sur le second canal ATA
+/dev/hdd - périphérique esclave sur le second canal ATA
       </screen>
 
       <para>
-        On most computers with a single hard disk, the hard disk is the master
-        device on the first ATA channel (<filename>/dev/hda</filename>), and
-        the CD-ROM is the master device on the second ATA channel. Hard disk
-        partitions are named after the disk that holds them plus a number.
-        For example, <filename>/dev/hda1</filename> is the first partition
-        of the disk represented by the <filename>/dev/hda</filename>
-        device file.
+	Sur la plupart des ordinateurs avec un seul disque dur, le disque dur
+	est le périphérique maîttre sur le premier canal ATA
+	(<filename>/dev/hda</filename>), et le CD-ROM est le périphérique
+	maître sur le second canal ATA. Les partitions disque dur sont nommées
+	d'après le nom du disque auquel elles appartiennent suivi d'un numéro.
+        Par exemple, <filename>/dev/hda1</filename> est la première partition du
+	disque représenté par le fichier de périphérique
+	<filename>/dev/hda</filename>
       </para>
 
       <para>
-        SCSI hard disks and CD-ROM drives follow an other naming convention.
-        SCSI is not commonly used in most low-end machines, but USB drives
-        and Serial ATA (SATA) drives are also represented as SCSI disks. The
-        following device notation is used for SCSI drives:
+	Les disques durs SCSI et les lecteurs de CD-ROM suivent une autre 
+	convention de nommage. Le SCSI n'est pas couramment utilisé dans les
+	machines d'entrée de gamme, mais les périphériques USB et Serial ATA
+	(SATA) sont aussi représentés comme des disques SCSI. La notation
+	suivante est utilisée pour les périphériques SCSI :
       </para>
 
       <screen>
-/dev/sda - First SCSI disk
-/dev/sdb - Second SCSI disk
-/dev/sdc - Third SCSI disk
-/dev/scd0 - First CD-ROM
-/dev/scd1 - Second CD-ROM
-/dev/scd2 - Third CD-ROM
+/dev/sda - Premier disque SCSI
+/dev/sdb - Deuxième disque SCSI
+/dev/sdc - Troisième disque SCSI
+/dev/scd0 - Premier CD-ROM
+/dev/scd1 - Deuxième CD-ROM
+/dev/scd2 - Troisième CD-ROM
       </screen>
 
       <para>
-        Partitions names are constructed in the same way as ATA disks;
-        <filename>/dev/sda1</filename> is the first partition on the first
-        SCSI disk.
+	Les noms de partitions sont construits comme pour les disques ATA ;
+        <filename>/dev/sda1</filename> est la première partition du premier
+	disque SCSI.
       </para>
 
       <para>
-        If you use the software RAID implementation of the Linux kernel, RAID
-        volumes are available as <filename>/dev/mdn</filename>, in which
-        <emphasis>n</emphasis> is the volume number starting at 0.
+	Si vous utilisez l'implépentation logicielle RAID du noyau Linux, les
+	volumes RAID sont disponibles en tant que <filename>/dev/mdn</filename>,
+	pour lesquels <emphasis>n</emphasis> est le numéro de volume,
+	démarrant à 0.
       </para>
     </sect2>
   </sect1>
