@@ -322,13 +322,14 @@ $ <userinput>su -c lilo</userinput>
       <title>Membatasi hak akses su</title>
 
       <para>
-	You can refine access to <command>su</command> with
-	<emphasis>suauth</emphasis>.  It is a good security practice
-	to only allow members of a special group to
-	<command>su</command> to <emphasis>root</emphasis>. For
-	instance, you can restrict root <command>su</command>-ing in a
-	BSD fashion to members of the <emphasis>wheel</emphasis> group
-	by adding the following line to
+	Anda dapat menyaring akses ke <command>su</command> dengan 
+	<emphasis>suauth</emphasis>.Hal ini merupakan latihan keamanan 
+	yang bagus dengan hanya mengijinkan anggota dari grup tertentu 
+	untuk melakukan <command>su</command> ke 
+	<emphasis>root</emphasis>. Sebagai contoh, Anda dapat 
+	memembatasi perintah <command>su</command> ke root dengan gaya 
+	BSD yang hanya  membolehkan anggota dari grup 
+	<emphasis>wheel</emphasis> dengan menambahkan baris berikut ke 
 	<filename>/etc/suauth</filename>:
       </para>
 
@@ -339,31 +340,30 @@ root:ALL EXCEPT GROUP wheel:DENY
   </sect1>
 
   <sect1 xml:id="chap-usermgmt-quota">
-    <title>Disk quota</title>
+    <title>Kuota disk</title>
 
     <sect2 xml:id="chap-usermgmt-quota-intro">
-      <title>Introduction</title>
+      <title>Perkenalan</title>
 
       <para>
-	Disk quota is a mechanism that allows the system administrator
-	to restrict the number of disk blocks and inodes that a
-	particular user and group can use. Not all filesystems
-	supported by Linux support quota, widely used filesystems that
-	support quota are ext2, ext3 and XFS. Quota are turned on and
-	managed on a per filesystem basis.
+	Kuota disk adalah mekanisme yang mengijinkan administrator 
+	sistem untuk membatasi jumlah blok disk dan node yang boleh 
+	digunakan oleh pengguna dan grup tertentu. Tidak semua sistem 
+	berkas yang didukung linux mendukung kuota. Secara luas sistem 
+	berkas yang mendukung kuota adalah ext2. ext3 dan XFS. Kuota 
+	diaktifkan dan diatur dalam tiap dasar sistem berkas.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-usermgmt-config">
-      <title>Enabling quota</title>
+      <title>Mengaktifkan kuota</title>
 
       <para>
-	Quota can be enabled per filesystem in
-	<filename>/etc/fstab</filename>, by using the
-	<parameter>usrquota</parameter> and
-	<parameter>grpquota</parameter> filesystem options. For
-	example, suppose that we have the following entry for the
-	<filename>/home</filename> partition in
+	Kuota dapat diaktifkan di tiap sistem berkas dalam 
+	<filename>/etc/fstab</filename>, dengan  menambahkan opsi pada 
+	sistem berkas yaitu <parameter>usrquota</parameter> dan 
+	<parameter>grpquota</parameter>. Misalkan kita memiliki catatan 
+	berikut untuk partisi <filename>/home</filename> di 
 	<filename>/etc/fstab</filename>:
       </para>
 
@@ -372,8 +372,8 @@ root:ALL EXCEPT GROUP wheel:DENY
       </screen>
 
       <para>
-	We can now enable user quota by adding the
-	<parameter>usrquota</parameter> filesystem option:
+	Kini kita dapat mengaktifkan kuota pengguna dengan menambahkan 
+	<parameter>usrquota</parameter> pada opsi sistem berkas :
       </para>
 
       <screen>
@@ -381,11 +381,11 @@ root:ALL EXCEPT GROUP wheel:DENY
       </screen>
 
       <para>
-	At this point the machine can be rebooted, to let the
-	Slackware Linux initialization scripts enable quota. You can
-	also enable quota without rebooting the machine, by remounting
-	the partition, and running the <command>quotaon</command>
-	command:
+	Pada titik ini, mesin dapat direboot untuk membiarkan Slackware 
+	Linux menginisialisasi skrip yang mengaktifkan kuota. Anda juga 
+	dapat mengaktifkan kuota tanpa harus mereboot mesin, dengan 
+	melakukan mount ulang partisi, dan menjalankan perintah 
+	<command>quotaon</command>:
       </para>
 
       <screen>
