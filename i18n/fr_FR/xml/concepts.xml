@@ -1,7 +1,7 @@
 <!-- $Id: concepts.xml 333 2007-10-21 17:20:54Z danieldk $ -->
 
 <chapter id="concepts"> <?dbhtml filename="concepts.html"?>
-  <title>General concepts</title>
+  <title>Concepts généraux</title>
 
   <para>
     Ce chapitre est une introduction aux concepts généraux UNIX et GNU/Linux.
