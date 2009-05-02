@@ -395,14 +395,14 @@ root:ALL EXCEPT GROUP wheel:DENY
     </sect2>
 
     <sect2 xml:id="chap-usermgmt-quota-edit">
-      <title>Editing quota</title>
+      <title>Mengedit kuota</title>
 
       <para>
-	User and group quotas can be edited with the
-	<quote>edquota</quote> utility. This program allows you to
-	edit quotas interactively with the <command>vi</command>
-	editor. The most basic syntax of this command is
-	<command>edquota username</command>. For example:
+	Kuota pengguna dan grup dapat diedit menggunakan fasilitas 
+	<quote>edquota</quote>. Program ini memungkinkan anda untuk 
+	mengedit kuota secara interaktif dengan editor 
+	<command>vi</command>. Sintaks yang paling dasar dari perintah 
+	ini adalah <command>edquota username</command>. Sebagai contoh:
       </para>
 
       <screen>
@@ -410,9 +410,9 @@ root:ALL EXCEPT GROUP wheel:DENY
       </screen>
 
       <para>
-	This will launch the <command>vi</command> editor with the
-	quota information for the user <emphasis>joe</emphasis>.  It
-	will look like this:
+	Perintah ini akan menjalankan editor <command>vi</command> 
+	dengan informasi kuota untuk pengguna <emphasis>joe</emphasis>. 
+	Hal ini akan tampak seperti di bawah ini:
       </para>
 
       <screen>
@@ -422,36 +422,36 @@ Disk quotas for user joe (uid 1143):
       </screen>
 
       <para>
-	In this example quotas are only turned on for one file system,
-	namely the filesystem on <filename>/dev/hda5</filename>. As
-	you can see there are multiple columns. The
-	<emphasis>blocks</emphasis> column shows how many block the
-	user uses on the file system, and the
-	<emphasis>inodes</emphasis> column the number of inodes a user
-	occupies. Besides that there are <emphasis>soft</emphasis> and
-	<emphasis>hard</emphasis> columns after both
-	<emphasis>blocks</emphasis> and
-	<emphasis>inodes</emphasis>. These columns specify the soft
-	and hard limits on blocks and inodes. A user can exceed the
-	soft limit for a grace period, but the user can never exceed
-	the hard limit. If the value of a limit is
-	<emphasis>0</emphasis>, there is no limit.
+	Dalam contoh ini kuota hanya diaktifkan untuk satu sistem 
+	berkas, yaitu pada sistem berkas di 
+	<filename>/dev/hda5</filename>. Sebagaimana yang Anda lihat 
+	disana terdapat banyak kolom. Kolom <emphasis>blocks</emphasis> 
+	menunjukkan banyak blok yang digunakan pengguna dalam sistem 
+	berkas, dan kolom <emphasis> inodes</emphasis> menunjukkan nomor 
+	inode yang ditinggali oleh pengguna. Disamping itu terdapat 
+	kolom <emphasis>soft</emphasis> dan <emphasis>hard </emphasis> 
+	setelah kolom <emphasis>blocks</emphasis> dan 
+	<emphasis>inodes</emphasis>. Kolom ini menentukan batas soft dan 
+	batas hard dalam blok dan inode. Pengguna dapat melewati batas 
+	soft pada periode perpanjangan yang ditentukan, tetapi pengguna 
+	tidak akan pernah melewati batas hard. Jika jumlah limit adalah 
+	<emphasis>0</emphasis>, maka tidak akan ada limit. 
       </para>
 
       <note>
 	<para>
-          The term <quote>blocks</quote> might be a bit confusing in
-          this context. In the quota settings a block is 1KB, not the
-          block size of the file system.
+	Istilah <quote>blok</quote> mungkin agak membingungkan dalam 
+	konteks ini. Dalam konfigurasi kuota satu blok adalah 1KB, bukan 
+	jumlah ukuran satu blok dalam sistem berkas.
         </para>
       </note>
 
       <para>
-	Let's look at a simple example. Suppose that we would like to
-	set the soft limit for the user <emphasis>joe</emphasis> to
-	<emphasis>250000</emphasis>, and the hard limit to
-	<emphasis>300000</emphasis>. We could change the quotas listed
-	above to:
+	Mari kita lihat contoh sederhana. Misalkan kita ingin menentukan 
+	batas soft untuk pengguna <emphasis>joe</emphasis> menjadi 
+	<emphasis>250000</emphasis>, dan limit hard ke 
+	<emphasis>300000</emphasis>. Kita dapat mengubah contoh daftar 
+	kuota contoh diatas menjadi:
       </para>
 
       <screen>
@@ -461,25 +461,26 @@ Disk quotas for user joe (uid 1143):
       </screen>
 
       <para>
-        The new quota settings for this user will be active after
-        saving the file, and quitting <command>vi</command>.
+	Kuota yang baru untuk pengguna ini akan aktif setelah berkas 
+	disimpan, dan keluar dari <command>vi</command>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-usermgmt-quota-repquota">
-      <title>Getting information about quota</title>
+      <title>Mendapatkan informasi tentang kuota</title>
 
       <para> 
-	It is often useful to get statistics about the current quota
-	usage.  The <command>repquota</command> command can be used to
-	get information about what quotas are set for every user, and
-	how much of each quota is used. You can see the quota settings
-	for a specific partition by giving the name of the partition
-	as a parameter. The <parameter class="command">-a</parameter>
-	parameter will show quota information for all partitions with
-	quota enabled. Suppose that you would like to see quota
-	information for <filename>/dev/hda5</filename>, you can use
-	the following command:
+	Seringkali merupakan hal yang berguna mendapatkan statistik 
+	terbaru tentang penggunaan kuota. Perintah 
+	<command>repquota</command> dapat digunakan untuk mendapatkan 
+	informasi tentang kuota apa saja yang ditentukan untuk tiap 
+	pengguna, dan berapa banyak kuota yang telah digunakan. Anda 
+	dapat melihat konfigurasi kuota untuk partisi tertentu dengan 
+	memberikan nama partisi sebagai parameter. Parameter <parameter 
+	class="command">-a</parameter> akan menunjukkan informasi untuk 
+	semua partisi yang koutanya diaktifkan. Misalkan Anda ingin 
+	melihat informasi kuota untuk <filename>/dev/hda5</filename>, 
+	anda dapat menggunakan perintah berikut:
       </para>
 
       <screen>
