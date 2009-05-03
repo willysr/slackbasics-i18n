@@ -311,22 +311,20 @@ other::---
   </sect1>
 
   <sect1 xml:id="chap-filesystems-analyzing">
-    <title>Analyzing files</title>
+    <title>Menganalisa Berkas</title>
 
     <para>
-      Before going to some more adventurous venues, we will start
-      with some file and directory usage basics.
+      Sebelum melanjutkan ke topik yang lebih menarik, kita akan mulai dengan beberapa penggunaan berkas dan 
+      direktori dasar.
     </para>
 
     <sect2 xml:id="chap-filesystems-analyzing-listing">
-      <title>Listing files</title>
+      <title>Menampilkan berkas</title>
 
       <para>
-	One of the most common things that you will want to do is to
-	list all or certain files. The <command>ls</command> command
-	serves this purpose very well. Using <command>ls</command>
-	without any arguments will show the contents of the actual
-	directory:
+	Salah satu hal yang biasa Anda lakukan adalah menampilkan semua atau beberapa berkas. Perintah 
+	<command>ls</command> memungkinkan hal ini. Dengan menggunakan <command>ls</command>
+	tanpa argumen apapun akan menampilkan isi dari direktori aktual:
       </para>
 
       <screen>
@@ -335,12 +333,11 @@ dns.txt  network-hosts.txt  papers
       </screen>
 
       <para>
-	If you use a GNU/Linux distribution, you may also see some
-	fancy coloring based on the type of file. The standard output
-	is handy to skim through the contents of a directory, but if
-	you want more information, you can use the <parameter
-	class="command">-l</parameter> parameter. This provides a
-	so-called long listing for each file:
+	Jika Anda menggunakan distribusi GNU/Linux, Anda mungkin akan melihat pewarnaan yang menarik
+	berdasarkan jenis berkas. Hasil keluaran standar sudah cukup untuk melihat secara sekilas 
+	tentang isi sebuah direktori, tetapi jika Anda menginginkan informasi lebih detail, Anda bisa 
+	menggunakan parameter <parameter class="command">-l</parameter>. Parameter ini memberikan
+	daftar informasi yang lebih lengkap untuk setiap berkas:
       </para>
 
       <screen>
@@ -352,31 +349,22 @@ drwxrwxr-x  2 daniel daniel  4096 Sep  4 15:55 papers
       </screen>
 
       <para>
-	This gives a lot more information about the three directory
-	entries that we have found with <command>ls</command>.  The
-	first column shows the file permissions. The line that shows
-	the <filename>papers</filename> entry starts with a
-	<quote>d</quote>, meaning that this entry represents a
-	directory. The second column shows the number of hard links
-	pointing to the inode that a directory entry points to. If
-	this is higher than 1, there is some other filename for the
-	same file. Directory entries usually have at least two hard
-	links, namely the link in the parent directory and the link in
-	the directory itself (each directory has a
-	<filename>.</filename> entry, which refers to the directory
-	itself). The third and the fourth columns list the file owner
-	and group respectively. The fifth column contains the file
-	size in bytes. The sixth column the last modification time and
-	date of the file. And finally, the last column shows the name
-	of this entry.
+	Perintah ini memberikan informasi lebih banyak tentang tiga direktori yang ditemukan dengan 
+	<command>ls</command>.  Kolom pertama menunjukan hak akses baris. Baris yang menunjukan 
+	<filename>papers</filename> dimulai dengan <quote>d</quote>, yang berarti sebuah direktori. 
+	Kolom kedua menampilkan jumlah hard link yang mengacu ke inode yang dituju oleh isi direktori
+	tersebut. Jika lebih dari satu, maka ada nama berkas yang berbeda untuk satu berkas yang sama.
+	Isi direktori biasanya memiliki paling tidak dua hard link, link pada direktori induk dan link
+	pada direktori itu sendiri (setiap direktori memiliki <filename>.</filename>, yang mereferensikan 
+	ke direktori itu sendiri). Kolom ketiga dan keempat menampilkan pemilik dan grup berkas. Kolom 
+	kelima berisi ukuran berkas dalam byte. Kolom keenam menampilkan waktu dan jam modifikasi terakhir 
+	dari berkas. Dan akhirnya, kolom terakhir menampilkan nama.
       </para>
 
       <para>
-	Files that start with a period (.) will not be shown by most
-	applications, including <command>ls</command>. You can list
-	these files too, by adding the <parameter
-	class="command">-a</parameter> option to
-	<command>ls</command>:
+	Berkas yang diawali dengan tanda titik (.) tidak akan ditampilkan oleh sebagian besar aplikasi, 
+	termasuk <command>ls</command>. Anda bisa menampilkan berkas-berkas ini, dengan menambahkan opsi 
+	<parameter class="command">-a</parameter> kepada <command>ls</command>:
       </para>
 
       <screen>
@@ -391,24 +379,19 @@ drwxrwxr-x   2 daniel daniel  4096 Sep  4 15:55 papers
       </screen>
 
       <para>
-	As you can see, three more entries have appeared. First of
-	all, the <filename>.settings</filename> file is now
-	shown. Besides that you can see two additional directory
-	entries, <filename>.</filename> and
-	<filename>..</filename>. These represent the current directory
-	and the parent directory respectively.
+	Seperti yang Anda lihat, terdapat tambahan tiga data baru. Pertama-tama, berkas 
+	<filename>.settings</filename> sekarang ditampilkan. Selain itu, Anda bisa meilhat dua data direktori tambahan, 
+	<filename>.</filename> dan <filename>..</filename>. Ini merepresentasikan direktori aktual dan direktori 
+	induk.
       </para>
 
       <para>
-	Earlier in this chapter (<xref
-	linkend="chap-filesystem-introduction-atoms"/>) we talked
-	about inodes. The inode number that a directory entry points
-	to can be shown with the <parameter
-	class="command">-i</parameter> parameter. Suppose that I have
-	created a hard link to the inode that points to the same inode
-	as <filename>dns.txt</filename>, they should have the same
-	inode number. The following <command>ls</command> output shows
-	that this is true:
+	Pada awal bab ini (<xref
+	linkend="chap-filesystem-introduction-atoms"/>) kita membicarakan tentang inode. Nomor inode yang ditunjuk 
+	bisa ditampilkan dengan parameter <parameter class="command">-i</parameter>. Misalkan saya telah membuat 
+	sebuah hard link ke inode yang menunjuk ke inode yang sama dengan <filename>dns.txt</filename>, maka mereka 
+	seharusnya memiliki nomor inode yang sama. Hasil keluaran dari perintah <command>ls</command> berikut 
+	membuktikan bahwa hal ini benar:
       </para>
 
       <screen>
@@ -419,15 +402,13 @@ $ <userinput>ls -i dns*</userinput>
     </sect2>
 
     <sect2 xml:id="chap-filesystem-analyzing-file">
-      <title>Determining the type of a file</title>
+      <title>Menentukan jenis berkas</title>
 
       <para>
-	Sometimes you will need some help to determine the type of a
-	file. This is where the <command>file</command> utility
-	becomes handy. Suppose that I find a file named
-	<filename>HelloWorld.class</filename> somewhere on my disk. I
-	suppose that this is a file that holds Java bytecode, but we
-	can use <command>file</command> to check this:
+	Seringkali Anda membutuhkan bantuan untuk menentukan jenis sebuah berkas. Ini adalah kondisi dimana utilitas
+	<command>file</command> menjadi penting. Misalkan saya menemukan sebuah berkas bernama <filename>HelloWorld.class</filename> 
+	pada disk saya. Saya berpendapat bahwa berkas ini berisi Java bytecode, tetapi kita bisa menggunakan 
+	<command>file</command> untuk memeriksanya:
       </para>
 
       <screen>
@@ -436,10 +417,8 @@ HelloWorld.class: compiled Java class data, version 49.0
       </screen>
 
       <para>
-	That is definitely Java bytecode. <command>file</command> is
-	quite smart, and handles most things you throw at it. For
-	instance, you could ask it to provide information about a
-	device node:
+	Berkas ini jelas Java bytecode. <command>file</command> cukup cerdas, dan menangani sebagian besar apapun
+	yang Anda kirimkan. Sebagai contoh, Anda bisa memintanya memberikan informasi tentang sebuah node device:
       </para>
 
       <screen>
@@ -448,7 +427,7 @@ $ <userinput>file /dev/zero</userinput>
       </screen>
 
       <para>
-	Or a symbolic link:
+	Atau symbolic link:
       </para>
 
       <screen>
@@ -457,10 +436,8 @@ $ <userinput>file /usr/X11R6/bin/X</userinput>
       </screen>
 
       <para>
-	If you are rather interested in the file
-	<filename>/usr/X11R6/bin/X</filename> links to, you can use
-	the <parameter class="command">-L</parameter> option of
-	<command>file</command>:
+	Jika Anda tertarik dengan berkas <filename>/usr/X11R6/bin/X</filename>, Anda bisa menggunakan opsi 
+	<parameter class="command">-L</parameter> dari <command>file</command>:
       </para>
 
       <screen>
@@ -469,14 +446,12 @@ $ <userinput>file -L /usr/X11R6/bin/X</userinput>
       </screen>
 
       <para>
-	You may wonder why <command>file</command> can determine the
-	file type relatively easy. Most files start of with a
-	so-called <emphasis>magic number</emphasis>, this is a unique
-	number that tells programs that can read the file what kind of
-	file it is. The <command>file</command> program uses a file
-	which describes many file types and their magic numbers.  For
-	instance, the magic file on my system contains the following
-	lines for Java compiled class files:
+	Anda mungkin heran kenapa <command>file</command> bisa menentukan jenis berkas dengan mudah. Sebagian 
+	besar berkas dimulai dengan apa yang disebut dengan <emphasis>magic number</emphasis>, yaitu angka unik 
+	yang memberitahukan kepada program yang bisa membaca berkas apa jenis berkas tersebut. Program 
+	<command>file</command> menggunakan sebuah berkas yang menjelaskan banyak jenis berkas dan magic numbernya.
+	Sebagai contoh, magic file pada sistem saya berisi baris-baris berikut untuk berkas class Java yang sudah 
+	dicompile:
       </para>
 
       <programlisting>
@@ -488,30 +463,23 @@ $ <userinput>file -L /usr/X11R6/bin/X</userinput>
       </programlisting>
 
       <para>
-	This entry says that if a file starts with a long (32-bit)
-	hexadecimal magic number <emphasis>0xcafebabe</emphasis><footnote>
-          <para>Yeah, you can be creative with magic numbers
-          too!</para> </footnote>, it is a file that holds
-          <quote>compiled Java class data</quote>. The short that
-          follows determines the class file format version.
+	Data ini menunjukan bahwa jika berkas diawali dengan magic number heksadesimal dengan tipe data long (32-bit)
+	<emphasis>0xcafebabe</emphasis><footnote>
+          <para>Ya, Anda bisa kreatif dengan magic number tersebut!</para> </footnote>, adalah berkas yang berisi 
+          <quote>data class Java yang terkompilasi</quote>. Teks sederhana yang mengikutinya menentukan versi format berkas class.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-filesystem-analyzing-integrity">
-      <title>File integrity</title>
+      <title>Integritas berkas</title>
 
       <para>
-	While we will look at more advanced file integrity checking
-	later, <!-- XXX xref --> we will have a short look at the
-	<command>cksum</command> utility. <command>cksum</command> can
-	calculate a cyclic redundancy check (CRC) for an input
-	file. This is a mathematically sound method for calculating a
-	unique number for a file. You can use this number to check
-	whether a file is unchanged (for example, after downloading a
-	file from a server). You can specify the file to calculate a
-	CRC for as a parameter to <command>cksum</command>, and
-	<command>cksum</command> will print the CRC, the file size in
-	bytes, and the file name:
+	Sebelum kita melihat pada pengujian integritas berkas yang lebih canggih, <!-- XXX xref --> kita akan melihat pada 
+	utilitas <command>cksum</command>. <command>cksum</command> bisa mengkalkulasi cyclic redundancy check (CRC) dari sebuah berkas
+	input. Ini merupakan metode matematis untuk mengkalkulasi nomor unik untuk sebuah berkas. Anda bisa menggunakan nomor ini 
+	untuk menguji apakah sebuah berkas sudah berubah atau belum (misalnya setelah mendownload berkas dari server). Anda bisa 
+	menentukan berkas yang akan dihitung sebagai parameter kepada <command>cksum</command>, dan <command>cksum</command> 
+	akan menghitung CRC, ukuran berkas dalam byte, dan nama berkas:
       </para>
 
       <screen>
@@ -520,29 +488,22 @@ $ <userinput>cksum myfile</userinput>
       </screen>
 
       <para>
-	Slackware Linux also provides utilities for calculating
-	checksums based on one-way hashes (for instance MD5 or SHA-1).
+	Slackware Linux juga menyediakan utilitas untuk mengkalkulasi checksum berdasarkan hash satu arah (misalnya MD5 atau SHA-1).
 	<!-- XXX - elaborate -->
       </para>
     </sect2>
 
     <sect2 xml:id="chap-filesystem-analyzing-viewing">
-      <title>Viewing files</title>
+      <title>Melihat berkas</title>
 
       <para>
-	Since most files on UNIX systems are usually text files, they
-	are easy to view from a character-based terminal or terminal
-	emulator. The most primitive way of looking at the contents of
-	a file is by using <command>cat</command>.
-	<command>cat</command> reads files that were specified as a
-	parameter line by line, and will write the lines to the
-	standard output. So, you can write the contents of the file
-	<filename>note.txt</filename> to the terminal with
-	<command>cat note.txt</command>. While some systems and most
-	terminal emulators provide support for scrolling, this is not
-	a practical way to view large files. You can pipe the output
-	of <command>cat</command> to the <command>less</command>
-	paginator:
+	Karena sebagian besar berkas pada sistem UNIX adalah berkas teks, mereka sangatlah mudah untuk dilihat dari terminal berbasis 
+	karakter atau emulasi terminal. Cara primitif untuk melihat isi sebuah berkas dengan menggunakan <command>cat</command>. 
+	<command>cat</command> memberkas berkas yang ditentukan sebagai parameter per baris, dan menampilkan baris pada standard output. 
+	Sehingga, Anda bisa menulis isi dari berkas <filename>note.txt</filename> ke terminal dengan <command>cat note.txt</command>. 
+	Meskipun beberapa sistem dan sebagian besar emulasi terminal menyediakan dukungan untuk penggeseran (scrolling), ini bukanlah cara 
+	terbaik untuk melihat berkas yang besar. Anda bisa mengirimkan keluaran perintah <command>cat</command> ke <command>less</command> 
+	menggunakan pipe:
       </para>
 
       <screen>
@@ -550,7 +511,7 @@ $ <userinput>cat note.txt | less</userinput>
       </screen>
 
       <para>
-	or let <command>less</command> read the file directly:
+	atau biarkan <command>less</command> membaca berkas secara langsung:
       </para>
 
       <screen>
@@ -558,103 +519,93 @@ $ <userinput>less note.txt</userinput>
       </screen>
 
       <para>
-	The <command>less</command> paginator lets you scroll forward
-	and backward through a file. <xref
-	linkend="chap-filesystem-analyzing-viewing-less-keys"/>
-	provides an overview of the most important keys that are used
-	to control <command>less</command>
+	Perintah <command>less</command> membuat Anda mampu menggeser maju dan mundur dari sebuah berkas. <xref
+	linkend="chap-filesystem-analyzing-viewing-less-keys"/> menyediakan gambaran tentang kunci penting yang 
+	biasa digunakan untuk mengendalikan <command>less</command>
       </para>
 
       <table xml:id="chap-filesystem-analyzing-viewing-less-keys">
-        <title>less command keys</title>
+        <title>kunci perintah less</title>
 
         <tgroup cols="2" colsep="1" rowsep="1">
           <thead>
             <row>
-              <entry>Key</entry>
-              <entry>Description</entry>
+              <entry>Kunci</entry>
+              <entry>Deskripsi</entry>
             </row>
           </thead>
           <tbody>
             <row>
               <entry>j</entry>
-              <entry>Scroll forward one line.</entry>
+              <entry>Geser maju satu baris.</entry>
             </row>
             <row>
               <entry>k</entry>
-              <entry>Scroll backwards one line.</entry>
+              <entry>Geser mundur satu baris.</entry>
             </row>
             <row>
               <entry>f</entry>
-              <entry>Scroll forward one screen full of text.</entry>
+              <entry>Geser maju satu layar.</entry>
             </row>
             <row>
               <entry>b</entry>
-              <entry>Scroll backwards one screen full of text.</entry>
+              <entry>Geser mundur satu layar.</entry>
             </row>
             <row>
               <entry>q</entry>
-              <entry>Quit less.</entry>
+              <entry>Keluar dari less.</entry>
             </row>
             <row>
               <entry>g</entry>
-              <entry>Jump to the beginning of the file.</entry>
+              <entry>Lompat ke awal berkas.</entry>
             </row>
             <row>
               <entry>G</entry>
-              <entry>Jump to the end of the file.</entry>
+              <entry>Lompat ke akhir berkas.</entry>
             </row>
             <row>
-              <entry>/<emphasis>pattern</emphasis></entry>
-              <entry> Search for the <link xl:href="#chap-textproc-regexps">regular expression</link>
-                <emphasis>pattern</emphasis>. </entry>
+              <entry>/<emphasis>pola</emphasis></entry>
+              <entry> Mencari <emphasis>pola</emphasis> <link xl:href="#chap-textproc-regexps">regular expression</link>. </entry>
             </row>
             <row>
               <entry>n</entry>
-              <entry> Search for the next match of the previously specified regular expression.
+              <entry> Mencari kecocokan berikutnya dari regular expression sebelumnya.
               </entry>
             </row>
             <row>
-              <entry>m<emphasis>letter</emphasis></entry>
-              <entry> Mark the current position in the file with <emphasis>letter</emphasis>.
+              <entry>m<emphasis>huruf</emphasis></entry>
+              <entry> Menandai posisi aktual pada berkas dengan <emphasis>huruf</emphasis>.
               </entry>
             </row>
             <row>
-              <entry>'<emphasis>letter</emphasis></entry>
-              <entry>Jump to the mark <emphasis>letter</emphasis></entry>
+              <entry>'<emphasis>huruf</emphasis></entry>
+              <entry>Lompat ke tanda <emphasis>huruf</emphasis></entry>
             </row>
           </tbody>
         </tgroup>
       </table>
 
       <para>
-	The command keys that can be quantized can be prefixed by a
-	number. For instance <emphasis>11j</emphasis> scrolls forward
-	eleven lines, and <emphasis>3n</emphasis> searches the third
-	match of the previously specified regular expression.
+	Kunci perintah yang bisa diakuantifikasi bisa diawali dengan angka. Sebagai contoh <emphasis>11j</emphasis> akan 
+	menggeser sebanyak sebelas baris, dan <emphasis>3n</emphasis> mencari kecocokan ketiga dari regular expression 
+	yang sudah ditentukan sebelumnya.
       </para>
 
       <para>
-	Slackware Linux also provides an alternative to
-	<command>less</command>, the older <quote>more</quote> command.
-	We will not go into <emphasis>more</emphasis> here,
-	<command>less</command> is more comfortable, and also more popular
-	these days.
+	Slackware Linux juga menyediakan alternatif bagi <command>less</command>, perintah <quote>more</quote>.
+	Kita tidak akan membahas <emphasis>more</emphasis> disini, <command>less</command> lebih nyaman, dan juga lebih populer.
       </para>
 
     </sect2>
 
     <sect2 xml:id="chap-filesystem-analyzing-filesize">
-      <title>File and directory sizes</title>
+      <title>Ukuran berkas dan direktori</title>
 
       <para>
-	The <command>ls -l</command> output that we have seen earlier
-	provides information about the size of a file. While this
-	usually provides enough information about the size of files,
-	you might want to gather information about collections of
-	files or directories. This is where the <command>du</command>
-	command comes in. By default, <command>du</command> prints the
-	file size per directory. For example:
+	Hasil keluaran <command>ls -l</command> yang kita lihat sebelumnya menghasilkan informasi tentang ukuran berkas. 
+	Meskipun menyediakan informasi yang cukup tentang ukuran sebuah berkas, Anda mungkin hendak mengumpulkan informasi tentang 
+	sekumpulkan berkas atau direktori. Ini adalah kondisi dimana perintah <command>du</command> dipakai. Secara default, 
+	<command>du</command> mencetak ukuran berkas per direktori. Misalnya:
       </para>
 
       <screen>
@@ -665,12 +616,10 @@ $ <userinput>du ~/qconcord</userinput>
       </screen>
 
       <para>
-        By default, <command>du</command> represents the size in 1024
-        byte units. You can explicitly specify that
-        <command>du</command> should use 1024 byte units by adding the
-        <parameter class="command" >-k</parameter> flag. This is useful
-	for writing scripts, because some other systems default to
-	using 512-byte blocks. For example:
+        Secara default, <command>du</command> merepresentasikan ukuran dalam unit 1024 byte. Anda bisa secara eksplisit 
+	menentukan bahwa <command>du</command> harus menggunakan unit 1024 byte dengan menambahkan <parameter class="command" >-k</parameter>. 
+	Hal ini berguna saat menuliskan script, karena sistem lain memiliki nilai default untuk menggunakan blok 512-byte. Sebagai 
+	contoh:
       </para>
 
       <screen>
@@ -681,8 +630,7 @@ $ <userinput>du -k ~/qconcord</userinput>
       </screen>
 
       <para>
-	If you would also like to see per-file disk usage, you can add
-	the <parameter class="command">-a</parameter> flag:
+	Jika Anda hendak melihat penggunaan disk per berkas, Anda bisa menambahkan <parameter class="command">-a</parameter>:
       </para>
 
       <screen>
@@ -704,10 +652,8 @@ $ <userinput>du -k -a ~/qconcord</userinput>
       </screen>
 
       <para>
-	You can also use the name of a file or a wildcard as a
-	parameter. But this will not print the sizes of files in
-	subdirectories, unless <parameter
-	class="command">-a</parameter> is used:
+	Anda juga bisa menggunakan nama berkas atau wildcard sebagai parameter. Tetapi hal ini tidak akan mencetak 
+	ukuran berkas dalam sub direktori, kecuali <parameter class="command">-a</parameter> dipakai:
       </para>
 
       <screen>
@@ -728,9 +674,8 @@ $ <userinput>du -k -a ~/qconcord/*</userinput>
       </screen>
 
       <para>
-	If you want to see the total sum of the disk usage of the
-	files and subdirectories that a directory holds, use the
-	<parameter class="command">-s</parameter> flag:
+	Jika Anda hendak melihat total ukuran penggunaan disk untuk berkas dan sub direktori yang ada didalam sebuah 
+	direktori, gunakan <parameter class="command">-s</parameter>:
       </para>
 
       <screen>
