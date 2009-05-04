@@ -2443,77 +2443,70 @@ $ <userinput>locate locate</userinput>
   </sect1>
 
   <sect1 xml:id="basics-filesystem-archives">
-    <title>Archives</title>
+    <title>Arsip</title>
 
     <sect2 xml:id="basics-filesystem-archives-introduction">
-      <title>Introduction</title>
+      <title>Perkenalan</title>
 
       <para>
-	Sooner or later a GNU/Linux user will encounter
-	<acronym>tar</acronym> archives, tar is the standard format
-	for archiving files on GNU/Linux.  It is often used in
-	conjunction with <command>gzip</command> or
-	<command>bzip2</command>. Both commands can compress files and
-	archives.  <xref linkend="archive-extentions" /> lists
-	frequently used archive extensions, and what they mean.
+	Cepat atau lambat, pengguna GNU/Linux akan menjumpai arsip <acronym>tar</acronym>, tar adalah format 
+	standar untuk membuat arsip berkas pada GNU/Linux.  Tar sering digunakan bersamaan dengan 
+	<command>gzip</command> atau 
+	<command>bzip2</command>. Kedua perintah tersebut mampu mengkompresi berkas dan arsip. 
+	<xref linkend="archive-extentions" /> menampilkan ekstensi arsip yang paling sering digunakan, dan artinya.
       </para>
 
       <table xml:id="archive-extentions">
-	<title>Archive file extensions</title>
+	<title>Ekstensi berkas arsip</title>
 	<tgroup cols="2" align="left" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Extension</entry>
-	      <entry>Meaning</entry>
+	      <entry>Ekstensi</entry>
+	      <entry>Arti</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>.tar</entry>
-	      <entry>An uncompressed tar archive</entry>
+	      <entry>Arsip tar tidak terkompresi</entry>
 	    </row>
 	    <row>
 	      <entry>.tar.gz</entry>
-	      <entry>A tar archive compressed with gzip</entry>
+	      <entry>Arsip tar dikompresi dengan gzip</entry>
 	    </row>
 	    <row>
 	      <entry>.tgz</entry>
-	      <entry>A tar archive compressed with gzip</entry>
+	      <entry>Arsip tar dikompresi dengan gzip</entry>
 	    </row>
 	    <row>
 	      <entry>.tar.bz2</entry>
-	      <entry>A tar archive compressed with bzip2</entry>
+	      <entry>Arsip tar dikompresi dengan bzip2</entry>
 	    </row>
 	    <row>
 	      <entry>.tbz</entry>
-	      <entry>A tar archive compressed with bzip2</entry>
+	      <entry>Arsip tar dikompresi dengan bzip2</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <para>
-	The difference between <command>bzip2</command> and
-	<command>gzip</command> is that <command>bzip2</command> can
-	find repeating information in larger blocks, resulting in
-	better compression. But <command>bzip2</command> is also a lot
-	slower, because it does more data analysis.
+	Perbedaan antara <command>bzip2</command> dan 
+	<command>gzip</command> adalah <command>bzip2</command> bisa mencari informasi yang diulang-ulang pada
+	blok yang lebih besar, sehingga menghasilkan kompresi yang lebih baik. Tetapi <command>bzip2</command> juga lebih 
+	lambat, karena melakukan lebih banyak analisa data.
       </para>
     </sect2>
 
     <sect2 xml:id="basics-filesystem-archives-extracting">
-      <title>Extracting archives</title>
+      <title>Mengurai arsip</title>
 
       <para>
-	Since many software and data in the GNU/Linux world is
-	archived with <command>tar</command> it is important to get
-	used to extracting tar archives. The first thing you will
-	often want to do when you receive a tar archive is to list its
-	contents. This can be achieved by using the <parameter
-	class="command">t</parameter> parameter. However, if we just
-	execute <command>tar</command> with this parameter and the
-	name of the archive it will just sit and wait until you enter
-	something to the standard input:
+	Karena beberapa perangkat lunak dan data pada dunia GNU/Linux diarsip dengan <command>tar</command>, menjadi 
+	sangat penting untuk membiasakan diri dengan menguraikan arsip tar. Langkah pertama yang harus Anda lakukan ketika 
+	menerima arsip tar adalah menampilkan isinya. Hal ini bisa dilakukan dengan parameter <parameter
+	class="command">t</parameter>. Namun, jika kita hanya menjalankan <command>tar</command> dengan parameter ini, 
+	dan nama arsip, maka tar hanya akan menunggu sampai Anda memasukkan sesuatu ke standard input:
       </para>
 
       <screen>
@@ -2521,10 +2514,9 @@ $ <userinput>tar t test.tar</userinput>
       </screen>
 
       <para>
-	This happens because <command>tar</command> reads data from
-	its standard input. If you forgot how redirection works, it is
-	a good idea to reread <xref linkend="chap-shell-inout" />. Let's
-	see what happens if we redirect our tar archive to tar:
+	Hal ini terjadi karena <command>tar</command> membaca data dari standar input. Jika Anda lupa bagaimana pengalihan 
+	bekerja, merupakan ide bagus untuk membaca ulang <xref linkend="chap-shell-inout" />. Mari kita lihat apa yang 
+	terjadi jika kita mengalihkan arsip tar kita ke tar:
       </para>
 
       <screen>
@@ -2535,13 +2527,10 @@ test/test1
       </screen>
 
       <para>
-	That looks more like the output you probably expected. This
-	archive seems to contain a directory
-	<filename>test</filename>, which contains the files
-	<filename>test2</filename> and <filename>test2</filename>.  It
-	is also possible to specify the archive file name as an
-	parameter to <command>tar</command>, by using the <parameter
-	class="command">f</parameter> parameter:
+	Ini lebih sesuai dengan apa yang Anda harapkan. Arsip ini berisi sebuah direktori <filename>test</filename>, yang 
+	berisi berkas <filename>test2</filename> dan <filename>test2</filename>.  Juga dimungkinkan untuk menentukan nama 
+	arsip sebagai parameter pada <command>tar</command>, dengan menggunakan parameter <parameter
+	class="command">f</parameter>:
       </para>
 
       <screen>
@@ -2552,9 +2541,8 @@ test/test1
       </screen>
 
       <para>
-	This looks like an archive that contains useful files ;). We
-	can now go ahead, and extract this archive by using the
-	<parameter class="command">x</parameter> parameter:
+	Ini merupakan arsip yang berisi berkas yang berguna ;). Kita bisa melanjutkan dan menguraikan arsip dengan menggunakan 
+	parameter <parameter class="command">x</parameter>:
       </para>
 
       <screen>
@@ -2562,8 +2550,7 @@ $ <userinput>tar xf test.tar</userinput>
       </screen>
 
       <para>
-	We can now verify that tar really extracted the archive by
-	listing the contents of the directory with
+	Sekarang kita bisa melakukan verifikasi bahwa tar menguraikan arsip dengan melihat isi direktori dengan 
 	<command>ls</command>:
       </para>
 
@@ -2573,13 +2560,12 @@ test1  test2
       </screen>
 
       <para>
-	Extracting or listing files from a gzipped or bzipped archive
-	is not much more difficult. This can be done by adding a
-	<parameter class="command">z</parameter> or <parameter
-	class="command">b</parameter> for respectively archives
-	compressed with <command>gzip</command> or
-	<command>bzip2</command>.  For example, we can list the
-	contents of a gzipped archive with:
+	Menguraikan atau menampilkan berkas dari arsip yang digabung dengan gzip atau bzip 
+	tidaklah lebih susah. Hal ini bisa dilakukan dengan menambahkan parameter 
+	<parameter class="command">z</parameter> atau <parameter
+	class="command">b</parameter> untuk arsip yang dikompresi dengan <command>gzip</command> atau
+	<command>bzip2</command>.  Sebagai contoh, kita bisa menampilkan isi dari arsip yang dikompresi dengan 
+	gzip dengan :
       </para>
 
       <screen>
@@ -2587,7 +2573,7 @@ $ <userinput>tar ztf archive2.tar.gz</userinput>
       </screen>
 
       <para>
-	And a bzipped archive can be extracted with:
+	Dan arsip dengan kompresi bzip bisa diuraikan dengan :
       </para>
 
       <screen>
@@ -2596,15 +2582,13 @@ $ <userinput>tar bxf archive3.tar.bz2</userinput>
     </sect2>
 
     <sect2 xml:id="basics-filesystem-archives-creating">
-      <title>Creating archives</title>
+      <title>Membuat arsip</title>
 
       <para>
-	You can create archives with the <parameter
-	class="command">c</parameter> parameter. Suppose that we have
-	the directory <filename>test</filename> shown in the previous
-	example. We can make an archive with the
-	<filename>test</filename> directory and the files in this
-	directory with:
+	Anda bisa membuat arsip dengan parameter <parameter
+	class="command">c</parameter>. Misalkan kita memiliki direktori <filename>test</filename> yang ditampilkan 
+	pada contoh sebelumnya. Kita bisa membuat arsip dengan direktori <filename>test</filename> dan berkas pada direktori 
+	ini dengan:
       </para>
 
       <screen>
@@ -2612,10 +2596,8 @@ $ <userinput>tar cf important-files.tar test</userinput>
       </screen>
 
       <para>
-	This will create the <filename>important-files.tar</filename>
-	archive (which is specified with the <parameter
-	class="command">f</parameter> parameter). We can now verify
-	the archive:
+	Perintah ini akan membuat arsip <filename>important-files.tar</filename>
+	(yang ditentukan dengan parameter <parameter class="command">f</parameter>). Sekarang kita bisa memverifikasi arsip:
       </para>
 
       <screen>
@@ -2626,13 +2608,10 @@ test/test1
       </screen>
 
       <para>
-	Creating a gzipped or bzipped archive goes along the same
-	lines as extracting compressed archives: add a <parameter
-	class="command">z</parameter> for gzipping an archive, or
-	<parameter class="command">b</parameter> for bzipping an
-	archive. Suppose that we wanted to create a
-	<command>gzip</command> compressed version of the archive
-	created above. We can do this with:
+	Membuat arsip dengan kompresi gzip atau bzip bisa dilakukan pada baris yang sama dengan penguraian arsip terkompresi:
+	tambahkan parameter <parameter class="command">z</parameter> untuk mengkompresi arsip dengan gzip, atau 
+	<parameter class="command">b</parameter> untuk mengkompresi arsip dengan bzip. Misalkan kita hendak membuat 
+	arsip terkompresi versi <command>gzip</command> dari contoh diatas. Kita melakukannya dengan:
       </para>
 
       <screen>
@@ -2642,23 +2621,19 @@ test/test1
   </sect1>
 
   <sect1 xml:id="basics-filesystem-mounting">
-    <title>Mounting filesystems</title>
+    <title>Melakukan mount sistem berkas</title>
 
     <sect2 xml:id="basics-filesystem-mounting-introduction">
-      <title>Introduction</title>
+      <title>Perkenalan</title>
 
       <para>
-	Like most Unices Linux uses a technique named
-	<quote>mounting</quote> to access filesystems. Mounting means
-	that a filesystem is connected to a directory in the root
-	filesystem. One could for example mount a CD-ROM drive to the
-	<filename>/mnt/cdrom</filename> directory. Linux supports many
-	kinds of filesystems, like Ext2, Ext3, ReiserFS, JFS, XFS,
-	ISO9660 (used for CD-ROMs), UDF (used on some DVDs) and
-	DOS/Windows filesystems, like FAT, FAT32 and NTFS. These
-	filesystems can reside on many kinds of media, for example
-	hard drives, CD-ROMs and Flash drives. This section explains
-	how filesystems can be mounted and unmounted.
+	Seperti yang lain, Linux menggunakan satu teknik yang disebut <quote>mounting</quote> untuk mengakses sistem 
+	berkas. Mounting berarti sebuah sistem berkas dihubungkan pada sebuah direktori pada sistem berkas root. Seseorang 
+	bisa melakukan mount sebuah drive CD-ROM pada direktori <filename>/mnt/cdrom</filename>. Linux mendukung 
+	banyak jenis sistem berkas, seperti Ext2, Ext3, ReiserFS, JFS, XFS,
+	ISO9660 (digunakan untuk CD-ROM), UDF (digunakan pada beberapa DVD) dan sistem berkas DOS/Windows, seperti 
+	FAT, FAT32 dan NTFS. Sistem berkas ini bisa berada pada banyak media, misalnya hard disk, CD-RM, dan disk Flash. 
+	Bagian ini menjelaskan bagaimana sistem berkas bisa di-mount dan di-unmount.
       </para>
     </sect2>
 
@@ -2666,12 +2641,9 @@ test/test1
       <title>mount</title>
 
       <para>
-	The <command>mount</command> is used to mount filesystems. The
-	basic syntax is: <quote>mount /dev/devname
-	/mountpoint</quote>. The device name can be any block device,
-	like hard disks or CD-ROM drives. The mount point can be an
-	arbitrary point in the root filesystem. Let's look at an
-	example:
+	Perintah <command>mount</command> digunakan untuk melakukan mount terhadap sistem berkas. Sintaks dasarnya adalah :
+	<quote>mount /dev/devname /mountpoint</quote>. Nama device bisa berupa blok device, seperti hard disk atau drive 
+	CD-ROM. Mount point bisa berupa titik pada sistem berkas root. Mari kita lihat contoh:
       </para>
 
       <screen>
@@ -2679,16 +2651,12 @@ test/test1
       </screen>
 
       <para>
-	This mounts the <filename>/dev/cdrom</filename> on the
-	<filename>/mnt/cdrom</filename> mountpoint. The
-	<filename>/dev/cdrom</filename> device name is normally a link
-	to the real CD-ROM device name (for example,
-	<filename>/dev/hdc</filename>). As you can see, the concept is
-	actually very simple, it just takes some time to learn the
-	device names ;). Sometimes it is necessary to specify which
-	kind of filesystem you are trying to mount.  The filesystem
-	type can be specified by adding the <parameter
-	class="command">-t</parameter> parameter:
+	Hal ini akan me-mount <filename>/dev/cdrom</filename> pada mount point <filename>/mnt/cdrom</filename>. Nama device
+	<filename>/dev/cdrom</filename> biasanya merupakan link ke nama device CD-ROM yang sebenarnya 
+	(misalnya <filename>/dev/hdc</filename>). Seperti yang Anda lihat, konsepnya sangat sederhana, hanya membutuhkan 
+	sedikit waktu untuk mempelajari nama device ;). Seringkali Anda juga perlu menentukan jenis sistem berkas yang 
+	akan di-mount. Jenis sistem berkas bisa ditentukan dengan menambahkan parameter <parameter
+	class="command">-t</parameter>:
       </para>
 
       <screen>
@@ -2696,8 +2664,8 @@ test/test1
       </screen>
 
       <para>
-	This mounts the vfat filesystem on
-	<filename>/dev/sda1</filename> to
+	Hal ini akan me-mount sistem berkas vfat pada 
+	<filename>/dev/sda1</filename> ke
 	<filename>/mnt/flash</filename>.
       </para>
     </sect2>
@@ -2706,9 +2674,8 @@ test/test1
       <title>umount</title>
 
       <para>
-	The <command>umount</command> command is used to unmount
-	filesystems.  <command>umount</command> accepts two kinds of
-	parameters, mount points or devices. For example:
+	Perintah <command>umount</command> digunakan untuk melepas mount terhadap sistem berkas. 
+	<command>umount</command> menerima dua jenis parameter, mount point atau device. Sebagai contoh:
       </para>
 
       <screen>
@@ -2717,20 +2684,18 @@ test/test1
       </screen>
 
       <para>
-	The first command unmounts the filesystem that was mounted on
-	<filename>/mnt/cdrom</filename>, the second commands unmounts
-	the filesystem on <filename>/dev/sda1</filename>.
+	Perintah pertama akan melepas mount sistem berkas yang di-mount pada 
+	<filename>/mnt/cdrom</filename>, perintah kedua melepas mount sistem berkas pada <filename>/dev/sda1</filename>.
       </para>
     </sect2>
 
     <sect2 xml:id="basics-filesystem-mounting-fstab">
-      <title>The fstab file</title>
+      <title>Berkas fstab</title>
 
       <para>
-	The GNU/Linux system has a special file,
-	<filename>/etc/fstab</filename>, that specifies which
-	filesystems should be mounted during the system boot.  Let's
-	look at an example:
+	Sistem GNU/Linux memiliki berkas khusus, <filename>/etc/fstab</filename>, 
+	yang menentukan sistem berkas apa yang harus di-mount selama sistem boot. Mari 
+	kita lihat contoh:
       </para>
 
       <screen>
@@ -2747,22 +2712,19 @@ proc             /proc            proc        defaults         0   0
       </screen>
 
       <para>
-	As you can see each entry in the <filename>fstab</filename>
-	file has five entries: fs_spec, fs_file, fs_vfstype,
-	fs_mntops, fs_freq, and fs_passno.  We are now going to look
-	at each entry.
+	Seperti yang Anda lihat, setiap catatan pada berkas <filename>fstab</filename>
+	memiliki lima bagian: fs_spec, fs_file, fs_vfstype,
+	fs_mntops, fs_freq, dan fs_passno.  Kita akan melihat pad setiap bagian.
       </para>
 
       <sect3>
 	<title>fs_spec</title>
 
 	<para>
-	  The fs_spec option specifies the block device, or remote
-	  filesystem that should be mounted. As you can see in the
-	  example several /dev/hda partitions are specified, as well
-	  as the CD-ROM drive and floppy drive. When NFS volumes are
-	  mounted an IP address and directory can be specified, for
-	  example: <filename>192.168.1.10:/exports/data</filename>.
+	  Opsi fs_spec menentukan blok device, atau sistem berkas remote yang harus di-mount. 
+	  Seperti yang Anda lihat pada contoh, beberapa partisi /dev/hda ditentukan, begitu juga 
+	  dengan drive CD-ROM dan disket. Ketika volume NFS di-mount, alamat IP dan direktori 
+	  bisa ditentukan, seperti contoh: <filename>192.168.1.10:/exports/data</filename>.
 	</para>
       </sect3>
 
@@ -2770,8 +2732,7 @@ proc             /proc            proc        defaults         0   0
 	<title>fs_file</title>
 
 	<para>
-	  fs_file specifies the mount point. This can be an arbitrary
-	  directory in the filesystem.
+	  fs_file menentukan titik mount (mount point). Ini bisa berupa direktori pada sistem berkas.
 	</para>
       </sect3>
 
@@ -2779,8 +2740,7 @@ proc             /proc            proc        defaults         0   0
 	<title>fs_vfstype</title>
 
 	<para>
-	  This option specifies what kind of filesystem the entry
-	  represents. For example this can be: ext2, ext3, reiserfs,
+	  Opsi ini menentukan sistem berkas apa yang digunakan. Sebagai contoh, hal ini bisa berupa : ext2, ext3, reiserfs,
 	  xfs, nfs, vfat, or ntfs.
 	</para>
       </sect3>
@@ -2789,70 +2749,56 @@ proc             /proc            proc        defaults         0   0
 	<title>fs_mntops</title>
 
 	<para>
-	  The fs_mntops option specifies which parameters should be
-	  used for mounting the filesystem. The
-	  <command>mount</command> manual page has an extensive
-	  description of the available options. These are the most
-	  interesting options:
+	  Opsi fs_mntops menentukan parameter yang harus digunakan untuk melakukan mount terhadap sistem berkas. Halaman 
+	  manual <command>mount</command> memiliki deskripsi yang lengkap tentang opsi yang tersedia. Ini merupakan opsi 
+	  yang paling menarik:
 	</para>
 
 	<itemizedlist>
 	  <listitem>
 	    <para>
-	      <emphasis>noauto</emphasis>: filesystems that are listed
-	      in <filename>/etc/fstab</filename> are normally mounted
-	      automatically. When the <quote>noauto</quote> option is
-	      specified, the filesystem will not be mounted during the
-	      system boot, but only after issuing a
-	      <command>mount</command> command. When mounting such
-	      filesystem, only the mount point or device name has to
-	      be specified, for example: <command>mount
+	      <emphasis>noauto</emphasis>: sistem berkas yang ditampilkan pada <filename>/etc/fstab</filename> 
+	      pada umumnya akan di-mount secara otomatis. Ketika <quote>noauto</quote> digunakan, sistem berkas tidak 
+	      akan di-mount selama sistem boot, tetapi hanya jika diberikan perintah <command>mount</command>. 
+	      Ketika melakukan mount terhadap sistem berkas tersebut, hanya mount point atau nama device yang harus 
+	      ditentukan, misalnya: <command>mount
 	      /mnt/cdrom</command>
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>user</emphasis>: adding the
-	      <quote>user</quote> option will allow normal users to
-	      mount the filesystem (normally only the superuser is
-	      allowed to mount filesystems).
+	      <emphasis>user</emphasis>: menambahkan opsi 
+	      <quote>user</quote> akan mengijinkan pengguna biasa untuk melakukan mount terhadap sistem berkas (biasanya 
+	      hanya pengguna root yang diijinkan untuk melakukan mount terhadap sistem berkas).
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>owner</emphasis>: the <quote>owner</quote>
-	      option will allow the owner of the specified device to
-	      mount the specified device. You can see the owner of a
-	      device using <command>ls</command>, e.g.  <command>ls -l
+	      <emphasis>owner</emphasis>: Opsi <quote>owner</quote>
+	      mengijinkan pemilik dari device yang ditentukan untuk melakukan mount terhadap device yang ditentukan. 
+	      Anda bisa melihat pemilik dari device menggunakan <command>ls</command>, Cth.  <command>ls -l
 	      /dev/cdrom</command>.
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>noexec</emphasis>: with this option enabled
-	      users can not run files from the mounted
-	      filesystem. This can be used to provide more security.
+	      <emphasis>noexec</emphasis>: dengan opsi ini aktif, pengguna tidak bisa menjalankan berkas dari sistem berkas 
+	      yang di-mount. Hal ini bisa digunakan untuk menyediakan keamanan yang lebih baik.
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>nosuid</emphasis>: this option is comparable
-	      to the <quote>noexec</quote> option. With
-	      <quote>nosuid</quote> enabled SUID bits on files on the
-	      filesystem will not be allowed. SUID is used for certain
-	      binaries to provide a normal user to do something
-	      privileged.  This is certainly a security threat, so
-	      this option should really be used for removable media,
-	      etc. A normal user mount will force the nosuid option,
-	      but a mount by the superuser will not!
+	      <emphasis>nosuid</emphasis>: opsi ini hampir serupa dengan opsi <quote>noexec</quote>. Dengan 
+	      <quote>nosuid</quote> aktif, bit SUID pada berkas pada sistem berkas tidak akan diijinkan. SUID
+	      digunakan untuk beberapa biner untuk mengijinkan pengguna melakukan sesuatu yang hanya bisa dilakukan oleh 
+	      pengguna khuusus (root). Hal ini jelas merupakan ancaman keamanan, sehingga opsi ini hanya seharusnya 
+	      digunakan pada media removable. Pengguna biasa akan memaksa opsi nosuid, tetapi tidak bagi pengguna root!
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>unhide</emphasis>: this option is only
-	      relevant for normal CD-ROMs with the ISO9660
-	      filesystem. If <quote>unhide</quote> is specified hidden
-	      files will also be visible.
+	      <emphasis>unhide</emphasis>: opsi ini hanya relevan untuk CD-ROM dengan sistem berkas ISO9660. Jika 
+	      <quote>unhide</quote> ditentukan, maka berkas tersembunyi akan ditampilkan.
 	    </para>
 	  </listitem>
 	</itemizedlist>
@@ -2862,11 +2808,9 @@ proc             /proc            proc        defaults         0   0
 	<title>fs_freq</title>
 
 	<para>
-	  If the <quote>fs_freq</quote> is set to 1 or higher, it
-	  specifies after how many days a filesystem dump (backup) has
-	  to be made. This option is only used when <ulink
-	  url="http://dump.sourceforge.net/">dump</ulink> is
-	  installed, and set up correctly to handle this.
+	  Jika <quote>fs_freq</quote> ditentukan menjadi 1 atau lebih tinggi, ia menentukan berapa haris sebuah sistem 
+	  berkas akan dibuat cadangannya (backup). Opsi ini hanya digunakan ketika <ulink
+	  url="http://dump.sourceforge.net/">dump</ulink> terinstall, dan ditentukan untuk menangani hal ini.
 	</para>
       </sect3>
 
@@ -2874,9 +2818,7 @@ proc             /proc            proc        defaults         0   0
 	<title>fs_passno</title>
 
 	<para>
-	  This field is used by <command>fsck</command> to determine
-	  the order in which filesystems are checked during the system
-	  boot.
+	  Kolom ini digunakan oleh <command>fsck</command> untuk menentukan urutan pengujian sistem berkas selama sistem boot.
 	</para>
       </sect3>
     </sect2>
@@ -2884,69 +2826,56 @@ proc             /proc            proc        defaults         0   0
   </sect1>
 
   <sect1 xml:id="basics-filesystem-gnupg">
-    <title>Encrypting and signing files</title>
+    <title>Mengenkripsi dan menandatangani berkas</title>
 
     <sect2>
-      <title>Introduction</title>
+      <title>Perkenalan</title>
 
       <para>
-	There are two security mechanisms for securing files: signing
-	files and encrypting files. Signing a file means that a
-	special digital signature is generated for a file. You, or
-	other persons can use the signature to verify the integrity of
-	the file. File encryption encodes a file in a way that only a
-	person for which the file was intended to read can read the
-	file.
+	Terdapat dua mekanisme keamanan untuk mengamankan berkas: menandatangani berkas dan mengenkripsi berkas. 
+	Menandatangani berkas berarti sebuah tanda tangan digital khusus dibuat untuk sebuah berkas. Anda, atau 
+	orang lain bisa menggunakan tanda tangan (signature) untuk memastikan integritas dari sebuah berkas. 
+	Enkripsi berkas mengubah sebuah berkas sehingga hanya hanya orang yang berhak untuk membaca mampu melihat 
+	isi dari berkas tersebut.
       </para>
 
       <para>
-	This system relies on two keys: the private and the public
-	key. Public keys are used to encrypt files, and files can only
-	be decrypted with the private key. This means that one can
-	sent his public key out to other persons. Others can use this
-	key to send encrypted files, that only the person with the
-	private key can decode. Of course, this means that the
-	security of this system depends on how well the private is
-	kept secret.
+	Sistem ini bergantung dari dua kunci: kunci pribadi (private) dan kunci publik. Kunci publik digunakan untuk 
+	mengenkripsi berkas, dan berkas hanya bisa didekripsi dengan kunci private. Hal ini berarti bahwa orang bisa 
+	mengirimkan kunci publiknya ke orang lain. Orang lain bisa menggunakan kunci ini untuk mengirimkan berkas 
+	terenkripsi, bahwa hanya orang dengan kunci private yang bisa mendekripsinya. Tentu saja, hal ini berarti keamanan 
+	dari sistem ini tergantung dari seberapa bagus kunci private dijaga.
       </para>
 
       <para>
-	Slackware Linux provides an excellent tool for signing and
-	encrypting files, named GnuPG. GnuPG can be installed from the
-	<quote>n</quote> disk set.
+	Slackware Linux menyediakan aplikasi untuk menandatangani dan mengenkripsi berkas, bernama GnuPG. GnuPG bisa diinstall 
+	dari set disk <quote>n</quote>.
       </para>
     </sect2>
 
     <sect2>
-      <title>Generating your private and public keys</title>
+      <title>Menghasilkan kunci private dan publik Anda</title>
 
       <para>
-	Generating public and private keys is a bit complicated,
-	because GnuPG uses DSA keys by default. DSA is an encryption
-	algorithm, the problem is that the maximum key length of DSA
-	is 1024 bits, this is considered too short for the longer
-	term. That is why it is a good idea to use 2048 bit RSA
-	keys. This section describers how this can be done.
+	Menghasilkan kunci publik dan private cukup rumit, karena GnuPG menggunakan kunci DSA sebagai default. DSA adalah 
+	algoritma enkripsi, masalahnya adalah pada panjang kunci maksimal dari DSA yaitu 1024 bit, yang dianggap terlalu 
+	pendek untuk jangka panjang. Hal ini mengapa ide bagus untuk menggunakan kunci RSA 2048 bit. Bagian ini menjelaskan 
+	bagaimana hal ini bisa dilakukan.
       </para>
 
       <note>
 	<para>
-	  1024-bit keys were believed to be secure for a long
-	  time. But Bernstein's paper <emphasis>Circuits for Integer
-	  Factorization: a Proposal</emphasis> contests this, the
-	  bottom line is that it is quite feasible for national
-	  security agencies to produce hardware that can break keys in
-	  a relatively short amount of time.  Besides that it has be
-	  shown that 512-bit RSA keys can be broken in a relatively
-	  short time using common hardware. More information about
-	  these issues can by found in this e-mail to the cypherpunks
-	  list:
+	  Kunci 1024-bit diyakini aman untuk waktu yang lama. Tetapi paper dari Bernstein <emphasis>Circuits for Integer
+	  Factorization: a Proposal</emphasis> berkata lain, intinya adalah cukup mungkin untuk national
+	  security agency untuk menghasilkan perangkat keras yang mampu membobol kunci dalam waktu yang relatif singkat.
+	  Selain itu, juga dibuktikan bahwa kunci RSA 512-bit bisa dipecahkan dalam waktu yang relatif singkat dengan 
+	  perangkat keras yang umum. Informasi tentang masalah ini bisa ditemukan pada email berikut:
 	<ulink url="http://lists.saigon.com/vault/security/encryption/rsa1024.html" />
 	</para>
       </note>
 
       <para>
-	We can generate a key by executing:
+	Kita bisa menghasilkan kunci dengan menjalankan :
       </para>
 
       <screen>
@@ -2954,8 +2883,7 @@ $ <userinput>gpg --gen-key</userinput>
       </screen>
 
       <para>
-	The first question is what kind of key you would like to
-	make. We will choose <emphasis>(4) RSA (sign only)</emphasis>:
+	Pertanyaan pertama adalah jenis kunci yang akan dibuat. Kita akan memilih <emphasis>(4) RSA (sign only)</emphasis>:
       </para>
 
       <screen>
@@ -2967,9 +2895,8 @@ Your selection? <userinput>4</userinput>
       </screen>
 
       <para>
-	You will then be asked what the size of the key you want to
-	generate has to be. Type in <emphasis>2048</emphasis> to
-	generate a 2048 bit key, and press enter to continue.
+	Anda akan ditanyakan ukuran kunci yang ingin Anda buat. Ketikkan <emphasis>2048</emphasis> untuk menghasilkan kunci 
+	2048 bit, dan tekan enter untuk melanjutkan.
       </para>
 
       <screen>
@@ -2977,10 +2904,8 @@ What keysize do you want? (1024) <userinput>2048</userinput>
       </screen>
 
       <para>
-	The next question is simple to answer, just choose what you
-	like. Generally speaking it is not a bad idea to let the key
-	be valid infinitely. You can always deactivate the key with a
-	special revocation certificate.
+	Pertanyaan berikutnya mudah untuk dijawab, cukup pilih sesuai keinginan Anda. Pada umumnya, bukanlah ide yang jelek 
+	untuk memilih kunci yang valid selamanya. Anda bisa menonaktifkan kunci dengan sertifikat pembatalan khusus.
       </para>
 
       <screen>
@@ -2994,11 +2919,9 @@ Key is valid for? (0) <userinput>0</userinput>
       </screen>
 
       <para>
-	GnuPG will then ask for confirmation. After confirming your
-	name and e-mail address will be requested. GnuPG will also ask
-	for a comment, you can leave this blank, or you could fill in
-	something like <quote>Work</quote> or <quote>Private</quote>,
-	to indicate what the key is used for. For example:
+	GnuPG akan mencoba mengkonfirmasi. Setelah mengkonfirmasi, GnuPG akan menanyakan nama dan alamat email Anda. GnuPG
+	juga akan menanyakan tentang komentar, Anda bisa membiarkannya kosong, atau Anda bisa mengisi seperti <quote>Work</quote> 
+	atau <quote>Private</quote>, untuk mengindikasikan fungsi dari kunci ini. Sebagai contoh:
       </para>
 
       <screen>
@@ -3010,9 +2933,8 @@ You selected this USER-ID:
       </screen>
 
       <para>
-	GnuPG will the ask you to confirm your user ID. After
-	confirming it GnuPG will ask you to enter a password. Be sure
-	to use a good password:
+	GnuPG akan meminta Anda untuk mengkonfirmasi ID pengguna Anda. Setelah itu, GnuPG akan meminta Anda untuk mengisi kata sandi. 
+	Pastikan Anda menggunakan kata sandi yang bagus:
       </para>
 
       <screen>
@@ -3022,13 +2944,10 @@ Enter passphrase:
       </screen>
 
       <para>
-	After entering the password twice GnuPG will generate the
-	keys. But we are not done yet. GnuPG has only generated a key
-	for signing information, not for encryption of information. To
-	continue, have a look at the output, and look for the key
-	ID. In the information about the key you will see
-	<emphasis>pub 2048R/</emphasis>. The key ID is printed after
-	this fragment.  In this example:
+	Setelah memasukkan kata sandi sebanyak dua kali, GnuPG akan menghasilkan kunci. Tetapi kita belum selesai. GnuPG hanya 
+	menghasilkan kunci untuk menandatangani informasi, bukan untuk mengenkripsi informasi. Untuk melanjutkan, lihat hasil 
+	keluaran dan cari ID kunci. Pada informasi kunci, Anda bisa melihat 
+	<emphasis>pub 2048R/</emphasis>. ID kunci dicetak setelah bagian ini. Pada contoh ini:
       </para>
 
       <screen>
@@ -3040,11 +2959,9 @@ pub  2048R/8D080768 2004-07-16 John Doe (Work) &lt;john@doe.com&gt;
       </screen>
 
       <para>
-	the key ID is <emphasis>8D080768</emphasis>. If you lost the
-	output of the key generation you can still find the key ID in
-	the output of the <command>gpg --list-keys</command>
-	command. Use the key ID to tell GnuPG that you want to edit
-	your key:
+	ID kunci adalah <emphasis>8D080768</emphasis>. Jika Anda kehilangan hasil keluaran, Anda bisa menemukan ID kunci 
+	dari hasil perintah <command>gpg --list-keys</command>. Gunakan ID kunci ini untuk memberitahukan GnuPG bahwa 
+	Anda hendak mengedit kunci Anda:
       </para>
 
       <screen>
@@ -3052,7 +2969,7 @@ $ <userinput>gpg --edit-key &lt;Key ID&gt;</userinput>
       </screen>
 
       <para>
-	With the example key above the command would be:
+	Dengan kunci diatas, perintah diatas menjadi:
       </para>
 
       <screen>
@@ -3060,8 +2977,7 @@ $ <userinput>gpg --edit-key 8D080768</userinput>
       </screen>
 
       <para>
-	GnuPG will now display a command prompt. Execute the
-	<command>addkey</command> command on this command prompt:
+	GnuPG akan menampilkan prompt perintah. Jalankan perintah <command>addkey</command> pada prompt ini:
       </para>
 
       <screen>
@@ -3069,7 +2985,7 @@ Command&gt; <userinput>addkey</userinput>
       </screen>
 
       <para>
-	GnuPG will now ask the password you used for your key:
+	GnuPG akan menanyakan kata sandi yang Anda gunakan untuk kunci Anda:
       </para>
 
       <screen>
@@ -3083,10 +2999,9 @@ Enter passphrase:
       </screen>
 
       <para>
-	After entering the password GnuPG will ask you what kind of
-	key you would like to create. Choose <emphasis>RSA (encrypt
-	only)</emphasis>, and fill in the information like you did
-	earlier (be sure to use a 2048 bit key).  For example:
+	Setelah memasukkan kata sandi, GnuPG akan menanyakan jenis kunci yang hendak Anda buat. Pilih 
+	<emphasis>RSA (encrypt only)</emphasis>, dan isi informasi seperti sebelumnya (pastikan Anda menggunakan 
+	kunci 2048 bit).  Sebagai contoh:
       </para>
 
       <screen>
@@ -3108,9 +3023,8 @@ Key is valid for? (0) <userinput>0</userinput>
       </screen>
 
       <para>
-	And confirm that the information is correct. After the key is
-	generated you can leave the GnuPG command prompt, and save the
-	new key with the <command>save</command> command:
+	Dan konfirmasikan bahwa informasi itu benar. Setelah kunci dibuat, Anda bisa meninggalkan prompt GnuPG, dan simpan 
+	kunci baru dengan perintah <command>save</command>:
       </para>
 
       <screen>
@@ -3118,32 +3032,26 @@ Command&gt; <userinput>save</userinput>
       </screen>
 
       <para>
-	Congratulations! You have now generated the necessary keys to
-	encrypt and decrypt e-mails and files. You can now configure
-	your e-mail client to use GnuPG. It is a good idea to store
-	the contents of the <filename>.gnupg</filename> directory on
-	some reliable medium, and store that in a safe place! If your
-	private key is lost you can't decrypt files and messages that
-	were encrypted with your public key. If the private key, and
-	your password are stolen, the security of this system is
-	completely compromised.
+	Selamat!, Anda sudah menghasilkan kunci yang diperlukan untuk mengenkripsi dan mendekripsi email dan berkas. 
+	Anda sekarang bisa mengkonfigurasikan klien email Anda untuk menggunakan GnuPG. Merupakan ide bagus untuk menyimpan 
+	isi dari direktori <filename>.gnupg</filename> pada media yang dapat dipercaya, dan simpan dalam tempat yang amann! Jika 
+	kunci private Anda hilang, Anda tidak bisa mendekripsi berkas dan pesan yang dienkripsi dengan kunci publik Anda. Jika 
+	kunci private, dan kata sandi Anda dicuri, keamanan dari sistem ini jelas-jelas hilang.
       </para>
     </sect2>
 
     <sect2>
-      <title>Exporting your public key</title>
+      <title>Mengekspor kunci publik Anda</title>
 
       <para>
-	To make GnuPG useful, you have to give your public key to
-	people who send you files or e-mails. They can use your public
-	key to encrypt files, or use it to verify whether a file has a
-	correct signature or not. The key can be exported using the
-	<parameter class="command">--export</parameter> parameter. It
-	is also a good idea to specify the <parameter
-	class="command">--output</parameter> parameter, this will save
-	the key in a file. The following command would save the public
-	key of <emphasis>John Doe</emphasis>, used in earlier
-	examples, to the file <filename>key.gpg</filename>:
+	Untuk membuat GnuPG berguna, Anda harus memberikan kunci publik Anda kepada orang-orang yang 
+	mengirimkan berkas atau email kepada Anda. Mereka bisa menggunakan kunci publik Anda untuk 
+	mengenkripsi berkas, atau menggunakannya untuk memastikan apakah berkas memiliki signature 
+	yang benar atau tidak. Kunci bisa diekspor dengan parameter 
+	<parameter class="command">--export</parameter>. Merupakan ide yang bagus untuk menentukan parameter 
+	<parameter class="command">--output</parameter>, hal ini akan menyimpan berkas pada sebuah berkas.
+	Contoh berikut akan menyimpan kunci publik dari <emphasis>John Doe</emphasis>, yang digunakan pada contoh 
+	sebelumnya, pada berkas <filename>key.gpg</filename>:
       </para>
 
       <screen>
@@ -3151,12 +3059,9 @@ $ <userinput>gpg --output key.gpg --export john@doe.com</userinput>
       </screen>
 
       <para>
-	This saves the key in binary format. Often it is more
-	convenient to use the so-called <quote>ASCII armored
-	output</quote>, which fits better for adding the key to
-	e-mails, or websites. You export an ASCII armored version of
-	the key by adding the <parameter
-	class="command">--armor</parameter> parameter:
+	Hal ini menyimpan kunci dalam format biner. Seringkali, lebih nyaman untuk menggunakan apa yang disebut <quote>ASCII armored</quote>, yang lebih cocok untuk menambahkan kunci pada email, atau halaman web. Anda bisa mengekspor versi ASCII
+	dengan menambahkan parameter <parameter
+	class="command">--armor</parameter>:
       </para>
 
       <screen>
@@ -3171,18 +3076,16 @@ $ <userinput>gpg --armor --output key.gpg --export john@doe.com</userinput>
     </sect2>
 
     <sect2>
-      <title>Signatures</title>
+      <title>Tanda tangan</title>
 
       <para>
-	With GPG you can make a signature for a file. This signature
-	is unique, because your signature can only be made with your
-	private key. This means that other people can check whether
-	the file was really sent by you, and whether it was in any way
-	altered or not. Files can be signed with the <parameter
-	class="command">--detach-sign</parameter> parameter. Let us
-	look at an example. This command will make a signature for the
-	<filename>memo.txt</filename> file. The signature will be
-	stored in <filename>memo.txt.sig</filename>.
+	Dengan GPG Anda bisa membuat tanda tangan (signature) untuk sebuah berkas. Tanda tangan
+	ini bersifat unik, karena tanda tangan Anda hanya bisa dibuat oleh kunci pribadi Anda.
+	Hal ini berarti orang lain bisa memastikan apakah berkas memang dikirim oleh Anda, dan apakah 
+	diubah atau tidak selama pengiriman. Berkas bisa ditandai dengan parameter <parameter
+	class="command">--detach-sign</parameter>. Mari kita lihat pada sebuah contoh. Perintah 
+	berikut akan membuat sebuah tanda tangan untuk berkas <filename>memo.txt</filename>. Tanda 
+	tangan akan disimpan pada <filename>memo.txt.sig</filename>.
       </para>
 
       <screen>
@@ -3196,18 +3099,14 @@ Enter passphrase:
       </screen>
 
       <para>
-	As you can see, GnuPG will ask you to enter the password for
-	your private key. After you have entered the right key the
-	signature file (<filename>memo.txt.sig</filename>) will be
-	created.
+	Seperti yang Anda lihat, GnuPG akan meminta Anda untuk memasukkan kata sandi untuk kunci private
+	Anda. Setelah Anda memasukkan kunci yang benar, berkas signature (<filename>memo.txt.sig</filename>) akan dibuat.
       </para>
 
       <para>
-	You can verify a file with its signature using the <parameter
-	class="command">--verify</parameter> parameter. Specify the
-	signature file as a parameter to the <parameter
-	class="command">--verify</parameter> parameter. The file that
-	needs to be verified can be specified as the final parameter:
+	Anda bisa melakukan verifikasi sebuah berkas dengan signaturenya dengan menggunakan <parameter
+	class="command">--verify</parameter>. Tentukan berkas signature sebagai parameter kepada <parameter
+	class="command">--verify</parameter>. Berkas yang perlu diverifikasi bisa ditentukan sebagai parameter final:
       </para>
 
       <screen>
@@ -3217,11 +3116,10 @@ gpg: Good signature from "John Doe (Work) &lt;john@doe.com&gt;"
       </screen>
 
       <para>
-	This will confirm that the file was indeed signed by
+	Hal ini akan mengkonfirmasikan bahwa berkas memang ditandatangani oleh 
 	<emphasis>John Doe (Work) &lt;john@doe.com&gt;</emphasis>,
-	with the key <emphasis>8D080768</emphasis>, and that the file
-	is unchanged. Suppose the file was changed, GnuPG would have
-	complained about it loudly:
+	dengan kunci <emphasis>8D080768</emphasis>, dan berkas tadi belum berubah. Jika misalnya 
+	berkas berubah, GnuPG akan memprotesnya:
       </para>
 
       <screen>
@@ -3232,21 +3130,17 @@ gpg: BAD signature from "John Doe (Work) &lt;john@doe.com&gt;"
     </sect2>
 
     <sect2>
-      <title>Encryption</title>
+      <title>Enkripsi</title>
 
       <para>
-	One of the main features of GnuPG is encryption. Due to its
-	use of asymmetric cryptography, the person who encrypts a file
-	and the person who decrypts a file do not need to share a
-	key. You can encrypt a file with the public key of another
-	person, and that other person can decrypt it with his or her
-	private key. You can encrypt files with the <parameter
-	class="command">--encrypt</parameter>. If you do not specify a
-	user ID for which the file should be encrypted, GnuPG will
-	prompt for the user ID. You can specify the user ID with the
-	<parameter class="command">-r</parameter> parameter. In the
-	following example, the file <filename>secret.txt</filename>
-	will be encrypted for another person named <emphasis>John
+	Salah satu fitur utama dari GnuPG adalah enkripsi. Karena penggunaan kriptografi asimetris, orang 
+	yang mengenkripsi berkas dan orang yang mendekripsi berkas tidak harus berbagi kunci yang sama. Anda 
+	bisa mengenkripsi sebuah berkas dengan kunci publik dari orang lain, dan hanya orang tersebut yang bisa 
+	mendekripsinya dengan kunci privatenya. Anda bisa mengenkripsi berkas dengan <parameter
+	class="command">--encrypt</parameter>. Jika Anda tidak menyatakan ID pengguna yang akan digunakan sebagai 
+	penerima, GnuPG akan menanyakannya. Anda bisa menentukan ID pengguna dengan parameter 
+	<parameter class="command">-r</parameter>. Pada contoh berikut, berkas <filename>secret.txt</filename>
+	akan dienkripsi untuk orang lain bernama <emphasis>John
 	Doe</emphasis>:
       </para>
 
@@ -3255,16 +3149,13 @@ $ <userinput>gpg --encrypt -r "John Doe" secret.txt</userinput>
       </screen>
 
       <para>
-	The user ID is quoted with double quotes for making sure that
-	the ID is interpreted as a single program argument. After the
-	encryption is completed, the encrypted version of the file
-	will be available as <filename>secret.txt.gpg</filename>.
+	ID pengguna diberi tanda kutip ganda untuk memastikan ID diinterpretasikan sebagai satu argumen. Setelah 
+	enkripsi selesai, versi terenkripsi akan tersedia sebagai <filename>secret.txt.gpg</filename>.
       </para>
 
       <para>
-	The user who receives the file can decrypt it with the
-	<parameter class="command">--decrypt</parameter> parameter of
-	the <command>gpg</command> command:
+	Pengguna yang menerima berkas bisa mendekripsinya dengan parameter 
+	<parameter class="command">--decrypt</parameter> dari perintah <command>gpg</command>:
       </para>
 
       <screen>
@@ -3281,9 +3172,8 @@ gpg: encrypted with 2048-bit RSA key, ID 8D080768, created 2004-07-16
       </screen>
 
       <para>
-	In this example the <parameter
-	class="command">--output</parameter> parameter is used store
-	the decrypted content in <filename>secret.txt</filename>.
+	Pada contoh ini, parameter <parameter
+	class="command">--output</parameter> digunakan untuk menyimpan isi yang sudah didekripsi pada <filename>secret.txt</filename>.
       </para>
     </sect2>
   </sect1>
