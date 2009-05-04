@@ -2739,7 +2739,7 @@ test1  test2
 	Extracting or listing files from a gzipped or bzipped archive
 	is not much more difficult. This can be done by adding a
 	<parameter class="command">z</parameter> or <parameter
-	class="command">b</parameter> for respectively archives
+	class="command">j</parameter> for respectively archives
 	compressed with <command>gzip</command> or
 	<command>bzip2</command>.  For example, we can list the
 	contents of a gzipped archive with:
@@ -2754,7 +2754,7 @@ $ <userinput>tar ztf archive2.tar.gz</userinput>
       </para>
 
       <screen>
-$ <userinput>tar bxf archive3.tar.bz2</userinput>
+$ <userinput>tar jxf archive3.tar.bz2</userinput>
       </screen>
     </sect2>
 
