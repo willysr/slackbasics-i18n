@@ -686,24 +686,22 @@ $ <userinput>du -k -s ~/qconcord</userinput>
   </sect1>
 
   <sect1 xml:id="chap-filesystem-directories">
-    <title>Working with directories</title>
+    <title>Bekerja dengan direktori</title>
 
     <para>
-      After having a bird's eye view of directories in <xref
-      linkend="chap-filesystem-introduction-atoms"/>, we will have a
-      look at some directory-related commands.
+      Setelah melihat gambaran tentang direktori pada <xref
+      linkend="chap-filesystem-introduction-atoms"/>, kita akan melihat pada beberapa perintah yang berhubungan 
+      dengan direktori.
     </para>
 
     <sect2 xml:id="chap-filesystem-directories-listing">
-      <title>Listing directories</title>
+      <title>Menampilkan direktori</title>
 
       <para>
-	The <command>ls</command> command that we have looked at in
-	<xref linkend="chap-filesystems-analyzing-listing"/> can also
-	be used to list directories in various ways. As we have seen,
-	the default <command>ls</command> output includes directories,
-	and directories can be identified using the first output
-	column of a long listing:
+	Perintah <command>ls</command> yang kita lihat pada <xref linkend="chap-filesystems-analyzing-listing"/> 
+	juga bisa digunakan untuk menampilkan direktori dalam berbagai cara. Seperti yang sudah kita lihat, hasil 
+	keluaran dari <command>ls</command> meliputi direktori, dan direktori bisa diidentifikasi dengan kolom 
+	pertama pada daftar yang lengkap:
       </para>
 
       <screen>
@@ -715,16 +713,11 @@ drwxrwxr-x  2 daniel daniel  4096 Sep  4 15:55 papers
       </screen>
 
       <para>
-	If a directory name, or if wildcards are specified,
-	<command>ls</command> will list the contents of the directory,
-	or the directories that match the wildcard respectively. For example,
-	if there is a directory <filename>papers</filename>, <command>ls
-	paper*</command> will list the contents of this directory
-	<filename>paper</filename>. This is often annoying if you
-	would just like to see the matches, and not the contents of
-	the matching directories. The <parameter
-	class="command">-d</parameter> avoid that this recursion
-	happens:
+	Jika nama direktori, atau jika wildcard ditentukan <command>ls</command> akan menampilkan isi dari direktori
+	atau direktori yang sesuai dengan wildcard. Sebagai contoh, jika terdapat direktori <filename>papers</filename>, 
+	<command>ls paper*</command> akan menampilkan isi dari direktori <filename>paper</filename>. Hal ini cukup 
+	menganggu jika Anda hanya ingin lihat yang sesuai, dan bukan isi dari direktori. Parameter <parameter
+	class="command">-d</parameter> menghindari rekursi ini:
       </para>
 
       <screen>
@@ -733,9 +726,8 @@ drwxrwxr-x  2 daniel daniel  4096 Sep  4 15:55 papers
       </screen>
 
       <para>
-	You can also recursively list the contents of a directory, and
-	its subdirectories with the <parameter
-	class="command">-R</parameter> parameter:
+	Anda juga bisa melihat isi dari sebuah direktori dan sub direktori secara rekursif dengan parameter <parameter
+	class="command">-R</parameter>:
       </para>
 
       <screen>
@@ -755,14 +747,12 @@ logics.pdf
     </sect2>
 
     <sect2 xml:id="chap-filesystem-directories-management">
-      <title>Creating and removing directories</title>
+      <title>Membuat dan menghapus direktori</title>
 
       <para>
-	UNIX provides the <command>mkdir</command> command to create
-	directories. If a relative path is specified, the directory is
-	created in the current active directory. The basic syntax is
-	very simple: <emphasis>mkdir &lt;name&gt;</emphasis>, for
-	example:
+	UNIX menyediakan perintah <command>mkdir</command> untuk membuat direktori. Jika path relatif diberikan, direktori 
+	akan dibuat pada direktori aktif. Sintaks dasarnya sangatlah sederhana: <emphasis>mkdir &lt;nama&gt;</emphasis>, 
+	sebagai contoh:
       </para>
 
       <screen>
@@ -770,13 +760,9 @@ $ <userinput>mkdir mydir</userinput>
       </screen>
 
       <para>
-	By default, <command>mkdir</command> only creates one
-	directory level. So, if you use <command>mkdir</command> to
-	create <filename>mydir/mysubdir</filename>,
-	<command>mkdir</command> will fail if
-	<filename>mydir</filename> does not exist already. If you
-	would like to create both directories at once, use the
-	<parameter class="command">-p</parameter> parameter:
+	Secara default, <command>mkdir</command> hanya membuat satu level direktori. Jadi, jika Anda menggunakan <command>mkdir</command> 
+	untuk membuat <filename>mydir/mysubdir</filename>, <command>mkdir</command> akan gagal jika <filename>mydir</filename> 
+	belum ada sebelumnya. Jika Anda ingin membuat kedua direktori sekaligus, gunakan parameter <parameter class="command">-p</parameter> :
       </para>
 
       <screen>
@@ -784,35 +770,29 @@ $ <userinput>mkdir -p mydir/mysubdir</userinput>
       </screen>
 
       <para>
-	<command>rmdir</command> removes a directory. Its behavior is
-	comparable to <command>mkdir</command>. <command>rmdir
-	mydir/mysubdir</command> removes <filename>mydir/subdir</filename>,
-	while <command>rmdir -p mydir/mysubdir</command> removes
-	<filename>mydir/mysubdir</filename> and then
+	<command>rmdir</command> menghapu sebuah direktori. Perilakunya sama dengan <command>mkdir</command>. <command>rmdir
+	mydir/mysubdir</command> menghapus <filename>mydir/subdir</filename>,
+	sementara <command>rmdir -p mydir/mysubdir</command> menghapus 
+	<filename>mydir/mysubdir</filename> lalu 
 	<filename>mydir</filename>.
       </para>
 
       <para>
-	If a subdirectory that we want to remove contains directory
-	entries, <command>rmdir</command> will fail. If you would like
-	to remove a directory, including all its contents, use the
-	<command>rm</command> command instead. <!-- XXX - xref -->
+	Jika sebuah sub direktori yang akan kita hapus berisi isi direktori lain, <command>rmdir</command> akan gagal. Jika Anda ingin 
+	menghapus sebuah direktori, termasuk semua isinya, gunakan perintah <command>rm</command>. <!-- XXX - xref -->
       </para>
     </sect2>
   </sect1>
 
   <sect1 xml:id="chap-filesystem-managing">
-    <title>Managing files and directories</title>
+    <title>Mengelola berkas dan direktori</title>
 
     <sect2 xml:id="chap-filesystem-managing-copying">
-      <title>Copying</title>
+      <title>Menyalin</title>
 
       <para>
-	Files and directories can be copied with the
-	<command>cp</command> command. In its most basic syntax the
-	source and the target file are specified. The following
-	example will make a copy of <filename>file1</filename> named
-	<filename>file2</filename>:
+	Berkas dan direktori bisa disalin dengan perintah <command>cp</command>. Pada sintaks dasarnya, berkas sumber dan target 
+	akan ditentukan. Contoh berikut akan membuat salinan dari berkas <filename>file1</filename> dengan nama <filename>file2</filename>:
       </para>
 
       <screen>
@@ -820,8 +800,7 @@ $ <userinput>cp file1 file2</userinput>
       </screen>
 
       <para>
-	It is not surprising that relative and absolute paths do also
-	work:
+	Tidaklah mengherankan jika path relatif dan absolut juga bekerja:
       </para>
 
       <screen>
@@ -830,12 +809,9 @@ $ <userinput>cp file1 /home/joe/design_documents/file2</userinput>
       </screen>
 
       <para>
-	You can also specify a directory as the second parameter. If
-	this is the case, <command>cp</command> will make a copy of
-	the file in that directory, giving it the same file name as
-	the original file. If there is more than one parameter, the
-	last parameter will be used as the target directory. For
-	instance
+	Anda juga bisa menentukan direktori sebagai parameter kedua. Jika terdapat kasus ini, <command>cp</command> akan membuat salinan 
+	berkas tersebut pada direktori tersebut, memberikan nama berkas yang sama dengan berkas asli. Jika terdapat lebih dari satu 
+	parameter, parameter akan digunakan sebagai direktori target. Sebagai contoh:
       </para>
 
       <screen>
@@ -843,11 +819,8 @@ $ <userinput>cp file1 file2 somedir</userinput>
       </screen>
 
       <para>
-	will copy both <filename>file1</filename> and
-	<filename>file2</filename> to the directory
-	<filename>somedir</filename>. You can not copy multiple files
-	to one file. You will have to use <command>cat</command>
-	instead: <!-- XXX href -->
+	akan menyalin <filename>file1</filename> dan <filename>file2</filename> ke direktori <filename>somedir</filename>. Anda tidak bisa
+	 menyalin banyak berkas ke satu berkas. Anda harus menggunakan <command>cat</command>: <!-- XXX href -->
       </para>
 
       <screen>
@@ -855,13 +828,10 @@ $ <userinput>cat file1 file2 > combined_file</userinput>
       </screen>
 
       <para>
-	You can also use <command>cp</command> to copy directories, by
-	adding the <parameter class="command">-R</parameter>. This
-	will recursively copy a directory and all its
-	subdirectories. If the target directory exists, the source
-	directory or directories will be placed under the target
-	directory. If the target directory does not exist, it will be
-	created if there is only one source directory.
+	Anda juga bisa menggunakan <command>cp</command> untuk menyalin direktori, dengan menambahkan <parameter class="command">-R</parameter>. 
+	Hal ini akan menyalin sebuah direktori dan semua sub direktorinya secara rekursif. Jika direktori target sudah ada, sumber direktori 
+	atau direktori akan diletakkan dibawah direktori target. Jika direktori target belum ada, maka akan diciptakan jika hanya terdapat 
+	satu direktori sumber.
       </para>
 
       <screen>
@@ -871,10 +841,8 @@ $ <userinput>cp -r mytree trees</userinput>
       </screen>
 
       <para>
-	After executing these commands, there are two copies of the directory
-        <filename>mytree</filename>, <filename>tree_copy</filename> and
-        <filename>trees/mytree</filename>. Trying to copy two directories to a nonexistent target
-        directory will fail:
+	Setelah mengeksekusi perintah diatas, akan terdapat dua salinan dari direktori <filename>mytree</filename>, <filename>tree_copy</filename> dan 
+        <filename>trees/mytree</filename>. Percobaan untuk menyalin dua direktori pada target yang tidak ada akan gagal:
       </para>
 
       <screen>
@@ -885,65 +853,43 @@ usage: cp [-R [-H | -L | -P]] [-f | -i] [-pv] src target
 
       <note>
 	<para>
-	  Traditionally, the <parameter class="command">-r</parameter>
-	  has been available on many UNIX systems to recursively copy
-	  directories. However, the behavior of this parameter can be
-	  implementation-dependent, and the Single UNIX Specification
-	  version 3 states that it may be removed in future versions
-	  of the standard.
+	  Parameter <parameter class="command">-r</parameter> sudah ada pada banyak sistem UNIX untuk menyalin direktori secara rekursif. 
+	  Namun, perilaku dari parameter ini bisa jadi tergantung dari implementasinya, dan Spesifikasi UNIX versi 3 menyatakan bahwa parameter 
+	  ini bisa dihapus dari versi yang akan datang.
 	</para>
       </note>
 
       <para>
-	When you are copying files recursively, it is a good idea to
-	specify the behavior of what <command>cp</command> should do
-	when a symbolic link is encountered explicitly, if you want
-	to use <command>cp</command> in portable scripts. The
-	Single UNIX Specification version 3 does not specify how they
-	should be handled by default. If <parameter
-	class="command">-P</parameter> is used, symbolic links will
-	not be followed, effectively copying the link itself. If
-	<parameter class="command">-H</parameter> is used, symbolic
-	links specified as a parameter to <command>cp</command> may be
-	followed, depending on the type and content of the file. If
-	<parameter class="command">-L</parameter> is used, symbolic
-	links that were specified as a parameter to
-	<command>cp</command> and symbolic links that were encountered
-	while copying recursively may be followed, depending on the
-	content of the file.
+	Ketika Anda menyalin berkas secara rekursif, merupakan ide bagus untuk menentukan perilaku dari <command>cp</command> ketika 
+	symbolic link ditemukan, jika Anda ingin menggunakan <command>cp</command> pada script yang bersifat portable. Spesifikasi UNIX versi 
+	3 tidak menentukan bagaimana seharusnya.Jika <parameter class="command">-P</parameter> digunakan, symbolic links akan tidak diikuti, 
+	sehingga hanya menyalin link itu sendiri. Jika <parameter class="command">-H</parameter> digunakan, symbolic links yang ditentukan 
+	sebagai parameter bagi <command>cp</command> bisa diikuti, tergantung dari jenis dan isi dari berkas. Jika <parameter class="command">-L</parameter> 
+	digunakan, symbolic links yang ditentukan sebagai parameter pada <command>cp</command> dan symbolic links yang ditemukan akan 
+	selama penyalinan akan diikuti, tergantung dari isi berkas.
       </para>
 
       <para>
-	If you want to preserve the ownership, SGID/SUID bits, and the
-	modification and access times of a file, you can use the
-	<parameter>-p</parameter> flag. This will try to preserve
-	these properties in the file or directory copy. Good
-	implementations of <command>cp</command> provide some
-	additional protection as well - if the target file already
-	exists, it may not be overwritten if the relevant metadata
-	could not be preserved.
+	Jika Anda ingin mempertahankan kepemilikan, bit SGID/SUID, dan waktu modifikasi dan akses sebuah berkas, Anda bisa menggunakan 
+	parameter <parameter>-p</parameter>. Parameter ini akan mencoba mempertahankan properti pada saat penyalinan berkas atau direktori. 
+	Implementasi yang bagus dari <command>cp</command> menyediakan beberapa proteksi tambahan - jika berkas target sudah ada, maka tidak akan 
+	ditimpa jika metadata yang berhubungan tidak bisa dipertahankan.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-filesystem-managing-moving">
-      <title>Moving files and directories</title>
+      <title>Memindahkan berkas dan direktori</title>
 
       <para>
-	The UNIX command for moving files, <command>mv</command>, can
-	move or rename files or directories. What actually happens
-	depends on the location of the files or directories. If the
-	source and destination files or directories are on the same
-	filesystem, <command>mv</command> usually just creates new
-	hard links, effectively renaming the files or directories. If
-	both are on different filesystems, the files are actually
-	copied, and the source files or directories are
-	unlinked.
+	Perintah UNIX untuk memindahkan berkas, <command>mv</command>, bisa memindahkan atau mengganti nama berkas atau direktori. Apa yang 
+	sebenarnya terjadi tergantung dari lokasi berkas atau direktori. Jika berkas sumber dan tujuan berada dalam sistem berkas yang sama, 
+	<command>mv</command> hanya membuat hard link baru, yang akan mengganti nama berkas atau direktori. Jika keduanya berada dalam 
+	sistem berkas yang berbeda, berkas akan disalin, dan berkas atau direktori sumber akan diputuskan linknya.
       </para>
 
       <para>
-	The syntax of <command>mv</command> is comparable to
-	<command>cp</command>. The most basic syntax renames
-	<filename>file1</filename> to <filename>file2</filename>:
+	Sintaks dari <command>mv</command> hampir serupa dengan <command>cp</command>. Sintaks dasar untuk mengganti nama 
+	<filename>file1</filename> menjadi <filename>file2</filename>:
       </para>
 
       <screen>
@@ -951,16 +897,13 @@ $ <userinput>mv file1 file2</userinput>
       </screen>
 
       <para>
-	The same syntax can be used for two directories as well, which
-	will rename the directory given as the first parameter to the
-	second parameter.
+	Sintaks yang sama bisa digunakan untuk dua direktori., yang akan mengganti nama direktori yang diberikan pada parameter pertama menjadi 
+	nama yang diberikan pada parameter kedua.
       </para>
 
       <para>
-	When the last parameter is an existing directory, the file or
-	directory that is specified as the first parameter, is copied
-	to that directory. In this case you can specify multiple files
-	or directories as well. For instance:
+	Ketika parameter terakhir adalah direktori yang sudah ada, berkas atau direktori yang ditentukan pada parameter pertama, akan disalin 
+	pada direktori tersebut. Pada kasus ini, Anda bisa menentukan banyak berkas atau direktori. Sebagai contoh:
       </para>
 
       <screen>
@@ -968,52 +911,49 @@ $ <userinput>targetdir</userinput>
 $ <userinput>mv file1 directory1 targetdir</userinput>
       </screen>
 
-      <para> This creates the directory <filename>targetdir</filename>, and moves
-        <filename>file1</filename> and <filename>directory1</filename> to this directory. </para>
+      <para> Hal ini menciptakan direktori <filename>targetdir</filename>, dan memindahkan
+        <filename>file1</filename> dan <filename>directory1</filename> ke direktori ini. </para>
     </sect2>
 
     <sect2 xml:id="chap-filesystem-managing-removing">
-      <title>Removing files and directories</title>
+      <title>Menghapus berkas dan direktori</title>
 
       <para>
-	Files and directories can be removed with the <citerefentry>
+	Berkas dan direktori bisa dihapus dengan perintah <citerefentry>
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> command. This command unlinks files and directories. If there are no other
-        links to a file, its inode and disk blocks can be reclaimed for new files. Files can be
-        removed by providing the files that should be removed as a parameter to <citerefentry>
+        </citerefentry>. Perintah ini akan menghapus link berkas dan direktori. Jika tidak ada lagi link pada sebuah berkas, 
+	inode dan blok disk bisa dipakai untuk berkas yang lain. Berkas bisa dihapus dengan menyediakan berkas yang akan dihapus 
+	sebagai parameter pada <citerefentry>
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry>. If the file is not writable, <citerefentry>
+        </citerefentry>. Jika berkas tidak dapat ditulisi, <citerefentry>
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> will ask for confirmation. For instance, to remove
-        <filename>file1</filename> and <filename>file2</filename>, you can execute: </para>
+        </citerefentry> akan bertanya sebagai konfirmasi. Sebagai contoh, untuk menghapus
+        <filename>file1</filename> dan <filename>file2</filename>, Anda bisa menjalankan: </para>
 
       <screen>
 $ <userinput>rm file1 file2</userinput>
       </screen>
 
       <para>
-	If you have to remove a large number of files that require a confirmation before they
-        can be deleted, or if you want to use <citerefentry>
+	Jika Anda harus menghapus banyak berkas yang membutuhkan konfirmasi sebelum bisa dihapus, atau jika Anda ingin menggunakan 
+	<citerefentry>
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> to remove files from a script that will not be run on a terminal, add the
-          <parameter class="command">-f</parameter> parameter to override the use of prompts. Files
-        that are not writable, are deleted with the <filename>-f</filename> flag if the file
-        ownership allows this. This parameter will also suppress printing of errors to
-          <emphasis>stderr</emphasis> if a file that should be removed was not found. </para>
+        </citerefentry> untuk menghapus berkas dari script yang tidak akan dijalankan pada terminal, tambahkan parameter 
+          <parameter class="command">-f</parameter> untuk menimpa penggunaan prompt. Berkas yang tidak bisa ditulis, akan dihapus dengan 
+	  <filename>-f</filename> jika kepemilikan berkas mengijinkan hal ini. Parameter ini juga akan mengurangi hasil keluaran pesan kesalahan 
+	  pada <emphasis>stderr</emphasis> jika misalnya berkas yang akan dihapus tidak ditemukan. </para>
 
-      <para> Directories can be removed recursively as well with the <parameter class="command"
-        >-r</parameter> parameter. <citerefentry>
+      <para> Direktori juga bisa dihapus secara rekursif dengan parameter <parameter class="command"
+        >-r</parameter>. <citerefentry>
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> will traverse the directory structure, unlinking and removing directories as
-        they are encountered. The same semantics are used as when normal files are removed, as far
-        as the <parameter class="command">-f</parameter> flag is concerned. To give a short example,
-        you can recursively remove all files and directories in the <filename>notes</filename>
-        directory with: </para>
+        </citerefentry> akan menghapus struktur direktori, menghapus link dan direktori yang ditemukan. Semantik yang sama juga digunakan ketika 
+	berkas biasa dihapus, selama <parameter class="command">-f</parameter> dipakai. Untuk memberikan contoh sederhana, Anda bisa menghapus 
+	semua berkas dan direktori pada direktori <filename>notes</filename> secara rekursif dengan : </para>
 
       <screen>
 $ <userinput>rm -r notes</userinput>
@@ -1021,72 +961,68 @@ $ <userinput>rm -r notes</userinput>
 
       <!-- XXX - describe -i flag? -->
 
-      <para> Since <citerefentry>
+      <para> Karena perintah <citerefentry>
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> command uses the <citerefentry>
+        </citerefentry> menggunakan fungsi <citerefentry>
           <refentrytitle>unlink</refentrytitle>
           <manvolnum>2</manvolnum>
-        </citerefentry> function, data blocks are not rewritten to an uninitialized state. The
-        information in data blocks is only overwritten when they are reallocated and used at a later
-        time. To remove files including their data blocks securely, some systems provide a <citerefentry>
+        </citerefentry>, blok data tidak ditulis ulang pada status yang tidak terinisialisasi. Informasi pada data blok hanya ditulis ulang
+	jika dialokasikan dan digunakan pada waktu lain. Untuk menghapus berkas termasuk blok data secara aman, beberapa sistem menyediakan 
+	perintah <citerefentry>
           <refentrytitle>shred</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> command that overwrites data blocks with random data. But this is not
-        effective on many modern (journaling) filesystems, because they don't write data in place. </para>
+        </citerefentry> yang menimpa blok data dengan data acak. Tetapi hal ini tidak efektif pada kebanyakan sistem berkas modern (journaling), 
+	karena tidak menulis data pada tempatnya. </para>
 
-      <para> The <citerefentry>
+      <para> Perintah <citerefentry>
           <refentrytitle>unlink</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> commands provides a one on one implementation of the <citerefentry>
+        </citerefentry> menyediakan implementasi dari fungsi <citerefentry>
           <refentrytitle>unlink</refentrytitle>
           <manvolnum>2</manvolnum>
-        </citerefentry> function. It is of relatively little use, because it can not remove
-        directories. </para>
+        </citerefentry>. Sangat jarang digunakan, karena tidak bisa menghapus direktori. </para>
     </sect2>
   </sect1>
 
   <sect1 xml:id="chap-filesystem-permissions">
-    <title>Permissions</title>
+    <title>Hak akses</title>
 
-    <para> We touched the subject of file and directory permissions in <xref
-        linkend="chap-filesystem-introduction-permissions"/>. In this section, we will look at the <citerefentry>
+    <para> Kita melihat hak akses berkas dan direktori pada <xref
+        linkend="chap-filesystem-introduction-permissions"/>. Pada bagian ini, kita akan melihat pada perintah <citerefentry>
         <refentrytitle>chown</refentrytitle>
         <manvolnum>1</manvolnum>
-      </citerefentry> and <citerefentry>
+      </citerefentry> dan <citerefentry>
         <refentrytitle>chmod</refentrytitle>
         <manvolnum>1</manvolnum>
-      </citerefentry> commands, that are used to set the file ownership and permissions
-      respectively. After that, we are going to look at a modern extension to permissions named
-      Access Control Lists (ACLs). </para>
+      </citerefentry>, yang digunakan untuk menentukan kepemilikan dan hak akses berkas. Setelah itu, kita akan melihat 
+      perluasan dari hak akses yang disebut Access Control Lists (ACL). </para>
 
     <sect2 xml:id="chap-filesystem-permissions-ownership">
-      <title>Changing the file ownership</title>
+      <title>Mengganti kepemilikan berkas</title>
 
-      <para> As we have seen earlier, every file has an owner (user) ID and a group ID stored in the
-        inode. The <citerefentry>
+      <para> Seperti yang sudah kita lihat sebelumnya, setiap berkas memiliki ID pemilik (user) dan ID grup yang disimpan pada inode. 
+      Perintah <citerefentry>
           <refentrytitle>chown</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> command can be used to set these fields. This can be done by the numeric
-        IDs, or their names. For instance, to change the owner of the file
-        <filename>note.txt</filename> to <emphasis>john</emphasis>, and its group to
-        <emphasis>staff</emphasis>, the following command is used: </para>
+        </citerefentry> bisa digunakan untuk menentukan kolom ini. Hal ini bisa dilakukan dengan ID numerik, atau namanya. Sebagai contoh, 
+	untuk mengganti kepemilikan dari berkas <filename>note.txt</filename> menjadi <emphasis>john</emphasis>, dan grupnya menjadi 
+        <emphasis>staff</emphasis>, digunakan perintah berikut: </para>
 
       <screen>
 $ <userinput>chown john:staff note.txt</userinput>
       </screen>
 
-      <para> You can also omit either components, to only set one of both fields. If you want to set
-        the user name, you can also omit the colon. So, the command above can be split up in two
-        steps: </para>
+      <para> Anda bisa menghilangkan salah satu komponen, jika Anda ingin menentukan salah satunya. Jika Anda hanya ingin menentukan 
+        nama pengguna, Anda bisa mengabaikan titik dua. Jadi perintah diatas bisa dibagi menjadi dua langkah: </para>
 
       <screen>
 $ <userinput>chown john note.txt</userinput>
 $ <userinput>chown :staff note.txt</userinput>
       </screen>
 
-      <para> If you want to change the owner of a directory, and all the files or directories it
-        holds, you can add the <parameter class="command">-R</parameter> to <citerefentry>
+      <para> Jika Anda ingin mengganti kepemilikan dari direktori, dan semua berkas atau direktori dibawahnya, Anda bisa menambahkan 
+      <parameter class="command">-R</parameter> pada <citerefentry>
           <refentrytitle>chown</refentrytitle>
           <manvolnum>1</manvolnum>
         </citerefentry>: </para>
@@ -1095,15 +1031,14 @@ $ <userinput>chown :staff note.txt</userinput>
 $ <userinput>chown -R john:staff notes</userinput>
       </screen>
 
-      <para> If user and group names were specified, rather than IDs, the names are converted by <citerefentry>
+      <para> Jika nama pengguna dan grup ditentukan dan bukan ID, nama akan dikonversi oleh <citerefentry>
           <refentrytitle>chown</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry>. This conversion usually relies on the system-wide password database. If you
-        are operating on a filesystem that uses another password database (e.g. if you mount a root
-        filesystem from another system for recovery), it is often useful to change file ownership by
-        the user or group ID. In this manner, you can keep the relevant user/group name to ID
-        mappings in tact. So, changing the ownership of <filename>note</filename> to UID 1000 and
-        GUID 1000 is done in the following (predictable) manner: </para>
+        </citerefentry>. Konvensi ini biasanya bergantung dari basis data kata sandi sistem. Jika Anda beroperasi pada sistem 
+	berkas yang menggunakan basis data kata sandi yang berbeda (contohnya Anda me-mount sistem berkas root dari sistem lain 
+	untuk proses perbaikan), akan sangat berguna untuk mengganti kepemilikan berkas dengan ID pengguna atau grup. Dengan 
+	cara ini, Anda bisa mempertahankan pemetaan nama pengguna/grup. Jadi, mengganti kepemilikan dari <filename>note</filename> 
+	menjadi UID 1000 dan GUID 1000 dilakukan dengan cara berikut: </para>
 
       <screen>
 $ <userinput>chown 1000:1000 note.txt</userinput>
@@ -1111,49 +1046,47 @@ $ <userinput>chown 1000:1000 note.txt</userinput>
     </sect2>
 
     <sect2 xml:id="chap-filesystem-permissions-permbits">
-      <title>Changing file permission bits</title>
+      <title>Mengganti bit hak akses berkas</title>
 
-      <para> After reading the introduction to filesystem permissions in <xref
-          linkend="chap-filesystem-introduction-permissions"/>, changing the permission bits that
-        are stored in the inode is fairly easy with the <citerefentry>
+      <para> Setelah membaca perkenalan terhadap hak akses sistem berkas pada <xref
+          linkend="chap-filesystem-introduction-permissions"/>, mengganti bit hak akses yang disimpan pada inode menjadi mudah 
+	  dengan perintah <citerefentry>
           <refentrytitle>chmod</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> command. <citerefentry>
+        </citerefentry>. <citerefentry>
           <refentrytitle>chmod</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> accepts both numeric and symbolic representations of permissions.
-        Representing the permissions of a file numerically is very handy, because it allows setting
-        all relevant permissions tersely. For instance: </para>
+        </citerefentry> menerima representasi numerik dan simbolik dari hak akses.
+        Merepresentasikan hak akses dari berkas secara numerik sangatlah mudah, karena mengijinkan untuk menentukan  semua hak 
+	akses yang relevan. Sebagai contoh: </para>
 
       <screen>
 $ <userinput>chmod 0644 note.txt</userinput>
       </screen>
 
-      <para> Make <filename>note.txt</filename> readable and writable for the owner of the file, and
-        readable for the file group and others. </para>
+      <para> Akan membuat <filename>note.txt</filename> dapat dibaca dan ditulis oleh pemilik berkas, dan 
+        dapat dibaca oleh grup dan lainnya. </para>
 
-      <para> Symbolic permissions work with addition or subtraction of rights, and allow for
-        relative changes of file permissions. The syntax for symbolic permissions is: </para>
+      <para> Hak akses simbolik bekerja dengan penambahan atau mengurangan hak akses, dan mengijinkan perubahan relatif
+        dari hak akses berkas. Sintaks untuk hak akses simbolik adalah : </para>
 
       <screen>
 [ugo][-+][rwxst]
       </screen>
 
-      <para> The first component specifies the user classes to which the permission change applies
-        (user, group or other). Multiple characters of this component can be combined. The second
-        component takes away rights (<emphasis>-</emphasis>), or adds rights
-        (<emphasis>+</emphasis>). The third component is the access specifier (read, write, execute,
-        set UID/GID on execution, sticky). Multiple components can be specified for this component
-        too. Let's look at some examples to clear this up: </para>
+      <para> Komponen pertama menentukan kelas pengguna dimana perubahan hak akses akan diterapkan 
+        (pemilik, grup atau lainnya). Banyak karakter pada komponen ini bisa dikombinasikan. Komponen kedua menghilangkan  
+	(<emphasis>-</emphasis>), atau menambahkan hak akses (<emphasis>+</emphasis>). Komponen ketiga adalah hak akses
+	(read, write, execute, set UID/GID on execution, sticky). Banyak komponen bisa ditentukan pada untuk komponen ini. 
+	Mari kita lihat pada beberapa contoh untuk memperjelas: </para>
 
       <screen>
-ug+rw        # Give read/write rights to the file user and group
-chmod go-x   # Take away execute rights from the file group and others.
-chmod ugo-wx # Disallow all user classes to write to the file and to
-             # execute the file.
+ug+rw        # Memberikan hak akses baca/tulis pada pemilik dan grup berkas
+chmod go-x   # Mengambil hak akses dari grup dan lainnya
+chmod ugo-wx # Tidak mengijinkan semua kelas pengguna untuk menulis ke berkas dan mengeksekusi berkas.
       </screen>
 
-      <para> These commands can be used in the following manner with chmod: </para>
+      <para> Perintah ini bisa digunakan seperti berikut: </para>
 
       <screen>
 $ <userinput>chmod ug+rw note.txt</userinput>
@@ -1161,59 +1094,50 @@ $ <userinput>chmod go-x script1.sh</userinput>
 $ <userinput>chmod ugo-x script2.sh</userinput>
       </screen>
 
-      <para> Permissions of files and directories can be changed recursively with the <parameter
-          class="command">-R</parameter>. The following command makes the directory
-        <filename>notes</filename> world-readable, including its contents: </para>
+      <para> Hak akses dari berkas dan direktori bisa diganti secara rekursif dengan <parameter
+          class="command">-R</parameter>. Perintah berikut akan membuat direktori 
+        <filename>notes</filename> world-readable (bisa dibaca oleh semuanya), termasuk isinya: </para>
 
       <screen>
 $ <userinput>chmod -R ugo+r notes</userinput>
       </screen>
 
-      <para> Extra care should be taken with directories, because the <emphasis>x</emphasis> flag
-        has a special meaning in a directory context. Users that have execute rights on directories
-        can access a directory. User that don't have execute rights on directories can not. Because
-        of this particular behavior, it is often easier to change the permissions of a directory
-        structure and its files with help of the <citerefentry>
+      <para> Perhatian tambahan harus dilakukan ketika bermain dengan direktori, karena <emphasis>x</emphasis> 
+        memiliki arti khusus dalam konteks direktori. Pengguna yang memiliki hak akses eksekusi pada direktori bisa 
+        mengakses sebuah direktori. Pengguna yang tidak memiliki hak akses eksekusi pada direktori tidak bisa mengakses direktori. 
+	Karena perilaku ini, seringkali lebih mudah untuk mengganti hak akses dari struktur direktori dan berkas-berkasnya
+	dengan bantuan perintah <citerefentry>
           <refentrytitle>find</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> command <!-- XXX xref -->. </para>
+        </citerefentry> <!-- XXX xref -->. </para>
 
-      <para> There are a few extra permission bits that can be set that have a special meaning. The
-        SUID and SGID are the most interesting bits of these extra bits. These bits change the
-        active user ID or group ID to that of the owner or group of the file when the file is
-        executed. The <command>su(1)</command> command is a good example of a file that usually has
-        the SUID bit set: </para>
+      <para> Terdapat bit hak akses tambahan yang bisa ditentukan yang memiliki arti khusus. SUID dan SGID adalah yang paling menarik 
+       dari bit tambahan tersebut. Bit ini mengganti ID pengguna dan grup yang digunakan ketika berkas dieksekusi. Perintah 
+       <command>su(1)</command> adalah contoh berkas yang memiliki bit SUID yang aktif: </para>
 
       <screen>
 $ <userinput>ls -l /bin/su</userinput>
 -rwsr-xr-x  1 root root 60772 Aug 13 12:26 /bin/su
       </screen>
 
-      <para> This means that the <command>su</command> command runs as the user
-        <emphasis>root</emphasis> when it is executed. The SUID bit can be set with the
-        <emphasis>s</emphasis> modifier. For instance, if the SUID bit was not set on
-          <filename>/bin/su</filename> this could be done with: </para>
+      <para> Hal ini berarti bahwa perintah <command>su</command> berjalan sebagai pengguna <emphasis>root</emphasis> ketika dieksekusi. 
+      Bit SUID bisa ditentukan dengan modifier <emphasis>s</emphasis>. Sebagai contoh, jika bit SUID belum ditentukan pada 
+          <filename>/bin/su</filename> hal ini bisa dilakukan dengan : </para>
 
       <screen>
 $ <userinput>chmod u+s /bin/su</userinput>
       </screen>
 
       <note>
-        <para> Please be aware that the SUID and SGID bits have
-        security implications. If a program with these bits set
-        contain a bug, it may be exploited to get privileges of the
-        file owner or group. For this reason it is good manner to keep
-        the number of files with the SUID and SGID bits set to an
-        absolute minimum. </para>
+        <para> Harap waspada bahwa bit SUID dan SGID memiliki dampak terhadap keamanan. Jika sebuah program dengan bit ini memiliki sebuah 
+	kesalahan, maka bisa dieksploitasi untuk mendapatkan hak akses dari pemilik atau grup berkas. Karena alasan inilah, disarankan 
+	untuk meminimalkan penggunaan bit SUID dan SGID pada berkas.</para>
       </note>
 
-      <para> The sticky bit is also interesting when it comes to
-      directory. It disallows users to rename of unlink files that
-      they do not own, in directories that they do have write access
-      to. This is usually used on world-writeable directories, like
-      the temporary directory (<filename>/tmp</filename>) on many UNIX
-      systems. The sticky tag can be set with the
-      <emphasis>t</emphasis> modifier: </para>
+      <para> Bit sticky juga menarik jika berhubungan dengan direktori. Bit ini tidak mengijinkan pengguna untuk mengganti berkas yang dihapus linknya 
+      yang tidak dimilikinya, pada direktori dimana mereka memiliki hak akses tulis. Hal ini biasanya digunakan pada direktori yang bersifat 
+      world-writeable (bisa ditulis oleh semua), seperti direktori temporal (<filename>/tmp</filename>) pada banyak sistem UNIX. 
+      Tag sticky bisa ditentukan dengan <emphasis>t</emphasis>: </para>
 
       <screen>
 $ <userinput>chmod g+t /tmp</userinput>
