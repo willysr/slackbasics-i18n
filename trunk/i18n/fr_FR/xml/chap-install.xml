@@ -615,7 +615,7 @@
     </para>
 
     <figure xml:id="chap-install-installing-set-ipconfig-type">
-      <title>Configuration de l'adresse IP address manuelle ou automatique</title>
+      <title>Configuration de l'adresse IP manuelle ou automatique</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/set-ipconfig-type.png" format="PNG" width="100%" scalefit="1"/>
