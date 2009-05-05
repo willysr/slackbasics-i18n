@@ -2767,7 +2767,7 @@ $ <userinput>tar ztf archive2.tar.gz</userinput>
       </para>
 
       <screen>
-$ <userinput>tar bxf archive3.tar.bz2</userinput>
+$ <userinput>tar jxf archive3.tar.bz2</userinput>
       </screen>
     </sect2>
 
