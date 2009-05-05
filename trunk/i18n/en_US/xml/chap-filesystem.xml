@@ -1482,7 +1482,7 @@ other::---
 
 	<para>
 	  The second and third rules can clearly be observed if there
-	  us a user or group that has more rights than the mask for
+	  is a user or group that has more rights than the mask for
 	  the file:
 	</para>
 
