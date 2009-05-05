@@ -1605,7 +1605,7 @@ other::---
 	      <row>
 		<entry>
 		  Remove all ACL entries (except for the three
-		  required entries.
+		  required entries).
 		</entry>
 		<entry><parameter class="command">-b</parameter></entry>
 	      </row>
