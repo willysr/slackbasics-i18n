@@ -1145,38 +1145,26 @@ $ <userinput>chmod g+t /tmp</userinput>
     </sect2>
 
     <sect2 xml:id="chap-filesystem-permissions-umask">
-      <title>File creation mask</title>
+      <title>Mask pembuatan berkas</title>
 
       <para>
-	The question that remains is what initial permissions are used
-	when a file is created.  This depends on two factors: the mode
-	flag that was passed to the <emphasis>open(2)</emphasis>
-	system call, that is used to create a file, and the active
-	file creation mask. The file creation mask can be represented
-	as an octal number. The effective permissions for creating the
-	file are determined as <emphasis>mode &amp;
-	~mask</emphasis>. Or, if represented in an octal fashion, you
-	can substract the digits of the mask from the mode. For
-	instance, if a file is created with permissions
-	<emphasis>0666</emphasis> (readable and writable by the file
-	user, file group, and others), and the effective file creation
-	mask is <emphasis>0022</emphasis>, the effective file
-	permission will be <emphasis>0644</emphasis>. Let's look at
-	anothere example. Suppose that files are still created with
-	<emphasis>0666</emphasis> permissions, and you are more
-	paranoid, and want to take away all read and write permissions
-	for the file group and others. This means you have to set the
-	file creation mask to <emphasis>0066</emphasis>, because
-	substracting <emphasis>0066</emphasis> from
-	<emphasis>0666</emphasis> yields
-	<emphasis>0600</emphasis>
+	Pertanyaan yang tersisa adalah apa hak akses awal yang digunakan ketika sebuah file dibuat. Hal ini 
+	tergantung dari dua faktor: mode yang dikirimkan ke system call <emphasis>open(2)</emphasis>, yang 
+	digunakan untuk membuat sebuah berkas, dan mask pembuatan berkas yang aktif. Mask pembuatan berkas
+	bisa direpresentasikan sebagai bilangan oktal. Hak akses yang efektif untuk membuat berkas ditentukan sebagai 
+	<emphasis>mode &amp; ~mask</emphasis>. Atau, jika direpresentasikan dalam model oktal, Anda bisa mengurangkan
+	digit dari mask dari mode. Sebagai contoh, jika sebuah berkas dibuat dengan hak akses <emphasis>0666</emphasis> 
+	(dapat dibaca dan ditulis oleh pengguna, grup, dan lainnya), dan mask pembuatan berkas efektif adalah 
+	<emphasis>0022</emphasis>, maka hak akses berkas yang efektif adalah <emphasis>0644</emphasis>. Mari kita 
+	lihat contoh lain. Misalkan berkas masih dibuat dengan hak akses <emphasis>0666</emphasis>, dan Anda lebih 
+	waspada, dan ingin menghapus semua hak akses baca dan tulis pada grup dan lainnya... Ini berarti Anda harus 
+	menentukan mask pembuatan berkas menjadi <emphasis>0066</emphasis>, karena mengurangi <emphasis>0066</emphasis> 
+	dari <emphasis>0666</emphasis> menghasilkan <emphasis>0600</emphasis>
       </para>
       
       <para>
-        The effective file creation mask can be queried and set with
-        the <command>umask</command> command, that is normally a
-        built-in shell command. The effective mask can be printed by
-        running <command>umask</command> without any parameters:
+        Mask pembuatan berkas efektif dapat dilihat dan ditentukan dengan perintah <command>umask</command>, yang biasanya 
+	merupakan perintah bawaan shell. Mask bisa dicetak dengan menjalankan <command>umask</command> tanpa parameter:
       </para>
       
       <screen>
@@ -1185,8 +1173,7 @@ $ <userinput>umask</userinput>
       </screen>
       
       <para>
-        The mask can be set by giving the octal mask number as a
-        parameter. For instance:
+        Mask bisa ditentukan dengan memberikan nomor oktal sebagai parameter. Misalnya:
       </para>
       
       <screen>
@@ -1194,7 +1181,7 @@ $ <userinput>umask 0066</userinput>
       </screen>
       
       <para>
-        We can verify that this works by creating an empty file:
+        Kita bisa memverifikasi hasilnya dengan membuat sebuah berkas baru:
       </para>
       
       <screen>
@@ -1209,34 +1196,28 @@ $ <userinput>ls -l test</userinput>
       <title>Access Control Lists</title>
 
       <para>
-	Access Control lists (<acronym>ACL</acronym>s) are an
-	extension to traditional UNIX file permissions, that allow for
-	more fine-grained access control. Most systems that support
-	filesystem ACLs implement them as they were specified in the
-	POSIX.1e and POSIX.2c draft specifications. Notable UNIX and
-	UNIX-like systems that implement ACLs according to this draft
-	are FreeBSD, Solaris, and Linux.
+	Access Control lists (<acronym>ACL</acronym>s) adalah pengembangan dari hak akses berkas UNIX tradisional, 
+	yang mengijinkan kontrol akses yang lebih ketat. Sebagian besar sistem yang mendukung sistem berkas ACL 
+	mengimplementasikannya seperti yang ditentukan dalam draft spesifikasi POSIX.1e dan POSIX.2c. Sistem UNIX 
+	dan UNIX-like yang sudah mengimplementasikan ACL sesuai draft ini adalah FreeBSD, Solaris, and Linux.
       </para>
 
       <para>
-	As we have seen in <xref
-	linkend="chap-filesystem-introduction-permissions" /> access
-	control lists allows you to use read, write and execute
-	triplets for additional users or groups. In contrast to the
-	traditional file permissions, additional access control lists
-	are note stored directly in the node, but in extended
-	attributes that are associated with files. Two thing to be
-	aware of when you use access control lists is that not all
-	systems support them, and not all programs support them.
+	Seperti yang kita lihat pada <xref
+	linkend="chap-filesystem-introduction-permissions" /> access 
+	control lists mengijinkan Anda untuk menggunakan triplet read, write dan execute untuk pengguna atau grup 
+	tambahan. Kebalikan dari hak akses berkas tradisional, access control lists tambahan tidak disimpan 
+	secara langsung pada node, tetapi pada attribut tambahan yang berhubungan dengan berkas. Dua hal yang perlu 
+	diperhatikan ketika Anda menggunakan access control lists adalah tidak semua sistem mendukungnya, dan tidak semua 
+	program mendukungnya.
       </para>
 
       <sect3 xml:id="chap-filesystem-permissions-acl-reading">
-	<title>Reading access control lists</title>
+	<title>Membaca access control lists</title>
 
 	<para>
-	  On most systems that support ACLs, <command>ls</command>
-	  uses a visual indicator to show that there are ACLs
-	  associated with a file. For example:
+	  Pada sebagian besar sistem yang mendukung ACL, <command>ls</command>
+	  menggunakan indikator visual untuk menunjukan bahwa terdapat ACL yang berhubungan dengan berkas. Misalnya:
 	</para>
 
 	<screen>
@@ -1245,15 +1226,13 @@ $ <userinput>ls -l index.html</userinput>
 	</screen>
 
 	<para>
-	  As you can see, the permissions column shows an additional
-	  plus (<emphasis>+</emphasis>) sign. The permission bits do
-	  not quite act like you expect them to be. We will get to
-	  that in a minute.
+	  Seperti yang Anda lihat, kolom hak akses menunjukan adanya karakter plus tambahan 
+	  (<emphasis>+</emphasis>). Bit hak akses tidak memiliki perilaku seperti yang Anda harapkan. Kita akan lihat 
+	  hal itu sebentar lagi.
 	</para>
 
 	<para>
-	  The ACLs for a file can be queried with the
-	  <command>getfacl</command> command:
+	  ACL untuk sebuah berkas dapat dilihat dengan perintah <command>getfacl</command>:
 	</para>
 
 	<screen>
@@ -1269,58 +1248,43 @@ other::---
 	</screen>
 
 	<para>
-	  Most lines can be interpreted very easily: the file user has
-	  read/write permissions, the file group no permissions, users
-	  of the group <emphasis>www-data</emphasis> have read
-	  permissions, and other users have no permissions. But why
-	  does the group entry list no permissions for the file group,
-	  while <command>ls</command> does? The secret is that if
-	  there is a <emphasis>mask</emphasis> entry,
-	  <command>ls</command> displays the value of the mask, rather
-	  than the file group permissions.
+	  Sebagian besar berkas dapat diinterpretasikan dengan mudah: pengguna berkas memiliki hak akses baca/tulis, 
+	  grop berkas tidak memiliki hak akses, pengguna dari grup <emphasis>www-data</emphasis> memiliki hak akses baca, 
+	  dan lainnya tidak memiliki hak akses apapun. Tetapi kenapa menampilkan tidak ada hak akses untuk grup berkas, 
+	  tetapi <command>ls</command> menampilkan? Rahasianya adalah jika ada <emphasis>mask</emphasis>, 
+	  <command>ls</command> menampilkan nilai dari mask, dan bukan hak akses grup.
 	</para>
 
 	<para>
-	  The <emphasis>mask</emphasis> entry is used to restrict all
-	  list entries with the exception of that of the file user,
-	  and that for other users. It is best to memorize the
-	  following rules for interpreting ACLs:
+	  <emphasis>mask</emphasis> digunakan untuk membatasi semua catatan dengan pengecualian untuk pengguna berkas dan untuk 
+	  pengguna lainnya. Hapalkan aturan berikut untuk menginterpretasikan ACL:
 	</para>
 
 	<itemizedlist>
 	  <listitem>
 	    <para>
-	      The <emphasis>user::</emphasis> entry permissions
-	      correspond with the permissions of the file owner.
+	      Hak akses <emphasis>user::</emphasis> berhubungan dengan hak akses pemilik berkas.
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      The <emphasis>group::</emphasis> entry permissions
-	      correspond with the permissions of the file group,
-	      unless there is a <emphasis>mask::</emphasis> entry. If
-	      there is a <emphasis>mask::</emphasis> entry, the
-	      permissions of the group correspond to the group
-	      entry with the the mask entry as the maximum of allowed
-	      permissions (meaning that the group restrictions can be
-	      more restrictive, but not more permissive).
+	      Hak akses <emphasis>group::</emphasis> berhubungan dengan grup berkas, kecuali jika terdapat 
+	      <emphasis>mask::</emphasis>. Jika terdapat <emphasis>mask::</emphasis>, hak akses dari grup
+	      berhubungan dengan isi dari grup dengan nilai mask sebagai hak akses maksimal (berarti hak akses grup 
+	      bisa lebih ketat).
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      The permissions of other users and groups correspond to
-	      their <emphasis>user:</emphasis> and
-	      <emphasis>group:</emphasis> entries, with the value of
-	      <emphasis>mask::</emphasis> as their maximum
-	      permissions.
+	      Hak akses untuk pengguna dan grup lain berhubungan dengan <emphasis>user:</emphasis> dan 
+	      <emphasis>group:</emphasis>, dengan nilai <emphasis>mask::</emphasis> sebagai hak akses maksimalnya.
 	    </para>
 	  </listitem>
 	</itemizedlist>
 
 	<para>
-	  The second and third rules can clearly be observed if there
-	  us a user or group that has more rights than the mask for
-	  the file:
+	  Aturan kedua dan ketiga bisa dengan jelas diamati jika terdapat sebuah pengguna atau grup yang memiliki hak 
+	  akses yang lebih dari mask untuk berkas tersebut:
 	</para>
 
 	<screen>
@@ -1336,23 +1300,19 @@ other::---
 	</screen>
 
 	<para>
-	  Although read and write permissions are specified for the
-	  file and <emphasis>www-data</emphasis> groups, both groups
-	  will effectively only have read permission, because this is
-	  the maximal permission that the mask allows.
+	  Meskipun hak akses baca dan tulis ditentukan untuk berkas dan berkas dan grup <emphasis>www-data</emphasis>, 
+	  kedua grup akan secara efektif hanya memiliki hak akses baca, karena ini merupakan hak akses maksimal yang 
+	  diijinkan oleh mask.
 	</para>
 
 	<para>
-	  Another aspect to pay attention to is the handling of ACLs
-	  on directories. Access control lists can be added to
-	  directories to govern access, but directories can also have
-	  <emphasis>default ACLs</emphasis> which specify the initial
-	  ACLs for files and directories created under that directory.
+	  Aspek lain yang harus diperhatikan adalah penanganan ACL untuk direktori. Access control list bisa ditambahkan 
+	  ke direktori untuk mengendalikan akses, tetapi direktori juga memiliki <emphasis>default ACL</emphasis> 
+	  yang menentukan ACL awal untuk berkas dan direktori yang dibuat pada direktori tersebut.
 	</para>
 
 	<para>
-	  Suppose that the directory <filename>reports</filename> has
-	  the following ACL:
+	  Misalkan direktori <filename>reports</filename> memiliki ACL berikut:
 	</para>
 
 	<screen>
@@ -1373,10 +1333,8 @@ default:other::---
 	</screen>
 
 	<para>
-	  New files that are created in the
-	  <filename>reports</filename> directory get a ACL based on
-	  the entries that have <emphasis>default:</emphasis> as a
-	  prefix. For example:
+	  Berkas baru yang dibuat pada direktori <filename>reports</filename> memiliki ACL berdasarkan catatan yang memiliki 
+	  awalan <emphasis>default:</emphasis>. Sebagai contoh:
 	</para>
 
 	<screen>
@@ -1393,77 +1351,71 @@ other::---
 	</screen>
 
 	<para>
-	  As you can see, the default ACL was copied. The execute bit
-	  is removed from the mask, because the new file was not
-	  created with execute permissions.
+	  Seperti yang Anda lihat, ACL default disalin. Bit eksekusi dihapus dari mask, karena berkas baru tidak dibuat 
+	  dengan hak akses eksekusi.
 	</para>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-permissions-acl-setting">
-	<title>Creating access control lists</title>
+	<title>Membuat access control list</title>
 
 	<para>
-	  The ACL for a file or directory can be changed with the
-	  <command>setfacl</command> program. Unfortunately, the
-	  usage of this program highly depends on the system that
-	  is being used. To add to that confusion, at least one
-	  important flag (<parameter class="command">-d</parameter>)
-	  has a different meanings on different systems. One can
-	  only hope that this command will get standardized.
+	  ACL untuk sebuah berkas atau direktori bisa diganti dengan program <command>setfacl</command>. Sayangnya, 
+	  penggunaan program ini sangat bergantung dari sistem yang digunakan. Untuk menambah kebingungan, paling tidak 
+	  satu parameter (<parameter class="command">-d</parameter>) memiliki arti yang berbeda pada sistem yang berbeda. 
+	  Anda bisa berharap bahwa perintah ini akan mendapatkan standarisasi.
 	</para>
 
 	<table xml:id="chap-filesystem-permissions-acl-setting-flags">
-	  <title>System-specific <command>setfacl</command> flags</title>
+	  <title>Parameter <command>setfacl</command> spesifik</title>
 	  
 	  <tgroup cols="2">
 	    <thead>
 	      <row>
-		<entry>Operation</entry>
+		<entry>Operasi</entry>
 		<entry>Linux</entry>
 	      </row>
 	    </thead>
 	    <tbody>
 	      <row>
-		<entry>Set entries, removing all old entries</entry>
+		<entry>Menentukan isi, menghapus semua isi lama</entry>
 		<entry><parameter class="command">--set</parameter></entry>
 	      </row>
 	      <row>
-		<entry>Modify entries</entry>
+		<entry>Memodifikasi isi</entry>
 		<entry><parameter class="command">-m</parameter></entry>
 	      </row>
 	      <row>
-		<entry>Modify default ACL entries</entry>
+		<entry>Memodifikasi isi ACL default</entry>
 		<entry><parameter class="command">-d</parameter></entry>
 	      </row>
 	      <row>
-		<entry>Delete entry</entry>
+		<entry>Menghapus isi</entry>
 		<entry><parameter class="command">-x</parameter></entry>
 	      </row>
 	      <row>
 		<entry>
-		  Remove all ACL entries (except for the three
-		  required entries.
+		  Menghapus semua isi ACL (kecuali tiga isi yang diperlukan).
 		</entry>
 		<entry><parameter class="command">-b</parameter></entry>
 	      </row>
 	      <row>
-		<entry>Recalculate mask</entry>
+		<entry>Menghitung ulang mask</entry>
 		<entry>
-		  Always recalculated, unless <parameter
-		  class="command">-n</parameter> is used, or an mask
-		  entry expicitly specified.
+		  Selalu dikalkulasi ulang, kecuali <parameter
+		  class="command">-n</parameter> digunakan, atau isi mask ditentukan secara eksplisit.
 		</entry>
 	      </row>
 	      <row>
-		<entry>Use ACL specification from a file</entry>
+		<entry>Menggunakan spesifikasi ACL dari sebuah berkas</entry>
 		<entry>
-		  <parameter class="command">-M</parameter> (modify),
-		  <parameter class="command">-X</parameter> (delete),
-		  or <parameter class="command">--restore</parameter>
+		  <parameter class="command">-M</parameter> (memodifikasi),
+		  <parameter class="command">-X</parameter> (menghapus),
+		  atau <parameter class="command">--restore</parameter>
 		</entry>
 	      </row>
 	      <row>
-		<entry>Recursive modification of ACLs</entry>
+		<entry>Modifikasi rekursif ACL</entry>
 		<entry><parameter class="command">-R</parameter></entry>
 	      </row>
 	    </tbody>
@@ -1471,24 +1423,18 @@ other::---
 	</table>
 
 	<para>
-	  As we have seen in the previous section, entries can be
-	  specified for users and groups, by using the following
-	  syntax:
-	  <emphasis>user/group:name:permissions</emphasis>. Permissions
-	  can be specified as a triplet by using the letters
-	  <emphasis>r</emphasis> (read), <emphasis>w</emphasis>
-	  (write), or <emphasis>x</emphasis> (execute). A dash
-	  (<emphasis>-</emphasis>) should be used for permissions that
-	  you do not want to give to the user or group, since Solaris
-	  requires this. If you want to disallow access completely,
-	  you can use the <emphasis>---</emphasis> triplet.
+	  Seperti yang sudah kita lihat pada bagian sebelumnya, isi bisa ditentukan untuk pengguna dan grup, 
+	  dengan mengikuti sintaks:
+	  <emphasis>user/group:name:permissions</emphasis>. Hak akses bisa ditentukan sebagai triplet dengan menggunakan 
+	  huruf <emphasis>r</emphasis> (read), <emphasis>w</emphasis> (write), atau <emphasis>x</emphasis> (execute). 
+	  Karakter minus (<emphasis>-</emphasis>) digunakan untuk hak akses yang tidak ingin diberikan kepada pengguna 
+	  atau grup, karena Solaris membutuhkan hal ini. Jika Anda menginginkan agar tidak ada hak akses sepenuhnya, Anda 
+	  bisa menggunakan <emphasis>---</emphasis>.
 	</para>
 
 	<para>
-	  The specification for other users, and the mask
-	  follows this format: <emphasis>other:r-x</emphasis>. The
-	  following slightly more predictable format can also be
-	  used: <emphasis>other::r-x</emphasis>.
+	  Spesifikasi untuk pengguna lain, dan mask mengikuti format berikut: <emphasis>other:r-x</emphasis>. Format yang 
+	  lebih mudah ditebak juga bisa digunakan: <emphasis>other::r-x</emphasis>.
 	</para>
 
 	<sect4 xml:id="chap-filesystem-permissions-acl-setting-modify">
