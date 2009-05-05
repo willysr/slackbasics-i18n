@@ -2752,7 +2752,7 @@ test1  test2
     Extrair ou listar arquivos de um pacote gzipado ou bzipado não é
     muito mais difícil.  Isto pode ser feito adicionando-se um
     <parameter class="command">z</parameter> ou <parameter
-    class="command">b</parameter>, respectivamente, para pacotes
+    class="command">j</parameter>, respectivamente, para pacotes
     compactados com <command>gzip</command> ou
     <command>bzip2</command>.  Por exemplo, podemos listar o conteúdo de
     um pacote gzipado com:
