@@ -2,42 +2,41 @@
 
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:id="chap-shell">
-  <title>The shell</title>
+  <title>Le shell</title>
 
   <sect1 xml:id="chap-shell-intro">
     <title>Introduction</title>
 
     <para>
-      In this chapter we will look at the traditional working
-      environment of UNIX systems: the shell. The shell is an
-      interpreter that can be used interactively and
-      non-interactively. When the shell is used non-interactively it
-      functions as a simple, but powerful scripting language.
+      Dans ce chapitre nous allons voir l'environnement de travail traditionnel
+      des systèmes UNIX : le shell. Le shell est un interpréteur qui peut être
+      utilisé de façon interactive ou non interactive. Quand le shell est
+      utilisé de façon non interactive il opère comme un simple mais efficace
+      language de script.
     </para>
 
     <para>
-      The procedure for starting the shell depends on whether you use
-      a graphical or text-mode login. If you are logging on in
-      text-mode the shell is immediately started after entering the
-      (correct) password.  If you use a graphical login manager like
-      KDM, log on as you would normally, and look in your window
-      manager or desktop environment menu for an entry named
-      <quote>XTerm</quote>, <quote>Terminal</quote> or
-      <quote>Konsole</quote>. XTerm is a terminal emulator, after the
-      terminal emulator is started the shell comes up.
+      La procédure pour démarrer le shell dépend de l'utilisation du login en
+      mode graphique ou en mode texte. Si vous vous loggez en mode texte le
+      shell est démarré immédiatement après avoir saisi le [bon] mot de passe.
+      Si vous utilisez un gestionnaire de login graphique comme KDM, loggez-vous
+      comme d'habitude, et cherchez dans le menu de votre gestionnaire de
+      fenêtres ou de votre environnement de bureau une entrée nommée
+      <quote>XTerm</quote>, <quote>Terminal</quote> ou <quote>Konsole</quote>.
+      XTerm est un émulateur de terminal, dès que l'émulateur de terminal est
+      démarré le shell apparaît.
     </para>
 		
     <para>
-      Before we go any further, we have to warn you that Slackware
-      Linux provides more than just one shell. There are two shell
-      flavors that have become popular over time, the Bourne shell and
-      the C shell.  In this chapter we will describe Bourne shells
-      that conform to the IEEE 1003.1 standard. The Bash (Bourne Again
-      Shell) and ksh (Korn Shell) shells conform well to these
-      standards. So, it is a good idea to use one of these two
-      shells. You can easily see what shell the system is running by
-      executing <command>echo $SHELL</command>.  This is what a Bash
-      shell may report:
+      Avant d'aller plus loin, vous devez être avertis que Slackware Linux
+      fournit plus qu'un seul shell. Il y a 2 types de shell devenus populaires
+      avec le temps, le Bourne shell et le C shell.  Dans ce chapitre nous
+      décrirons le Bourne shell qui est conforme au standard IEEE 1003.1. Les
+      shells Bash (Bourne Again Shell) et ksh (Korn Shell) sont conformes à ces
+      standards. Donc, il est judicieux d'utiliser un de ces 2 shells. Vous
+      pouvez facilement quel shell le système exécute en lançant
+      <command>echo $SHELL</command>.  Voici ce qu'un shell Bash doit
+      retourner :
     </para>
 
     <screen>
@@ -46,10 +45,10 @@ $ <userinput>echo $SHELL</userinput>
     </screen>
 		
     <para>
-      If you are using a different shell, you can change your default
-      shell. Before setting a different shell, you have to establish
-      the full path of the shell. You can do this with the
-      <command>which</command> command. For example:
+      Si vous utilisez un shell différent, vous pouvez changer votre shell par
+      défaut. Avant de configurer un shell différent, vous devez trouver le
+      chemin complet du shell. Vous pouvez faire cela avec la commande
+      <command>which</command>. Par exemple :
     </para>
 
     <screen>
@@ -60,11 +59,11 @@ $ <userinput>which ksh</userinput>
     </screen>
 
     <para>
-      On this Slackware system, the full path to the bash shell is
-      <filename>/bin/bash</filename>, and to the ksh shell
-      <filename>/bin/ksh</filename>. With this information, and the
-      <command>chsh</command> command you change the default
-      shell. The following example will set the default shell to bash:
+      Sur ce système Slackware, le chemin complet vers le shell bash est
+      <filename>/bin/bash</filename>, et vers le shell ksh
+      <filename>/bin/ksh</filename>. Avec cette information, et la commande 
+      <command>chsh</command> vous pouvez changer le shell par défaut. L'exemple
+      suivant configure le shell par défaut à bash :
     </para>
 
     <screen>
@@ -75,65 +74,63 @@ Shell changed.
     </screen>
 
     <para>
-      The new shell will be activated after logging out from the
-      current shell (with <command>logout</command> or
-      <command>exit</command>), or by opening a new X terminal window
-      if you are running X11.
+      Le nouveau shell sera activé après s'être déloggé du shell courant (avec
+      <command>logout</command> ou <command>exit</command>), ou en ouvrant un
+      nouvelle fenêtre de terminal X si vous êtes sous X11.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-shell-executing">
-    <title>Executing commands</title>
+    <title>Exécuter des commandes</title>
 
     <para>
-      An interactive shell is used to start programs by executing
-      commands.  There are two kinds of commands that a shell can
-      start:
+      Un shell interactif est utilisé pour lancer des programmes en exécutant
+      des commandes. Il y a 2 sortes de commandes qu'un shell peut lancer :
     </para>
 
     <itemizedlist>
       <listitem>
 	<para>
-	  <emphasis>Built-in commands:</emphasis> built-in commands
-	  are integrated in the shell. Commonly used built-in commands
-	  are: <command>cd</command>, <command>fg</command>,
-	  <command>bg</command>, and <command>jobs</command>.
+	  <emphasis>Les commandes internes :</emphasis> les commands internes
+	  sont intégrées dans le shell. Les commandes internes courantes sont :
+	  <command>cd</command>, <command>fg</command>,
+	  <command>bg</command>, et <command>jobs</command>.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  <emphasis>External commands:</emphasis> external commands
-	  are programs that are not part of the shell program, and are
-	  separately stored on the filesystem. Commonly used external
-	  commands are: <command>ls</command>, <command>cat</command>,
-	  <command>rm</command>, and <command>mkdir</command>.
+	  <emphasis>Les commandes externes :</emphasis> les commandes externes
+	  sont des programmes qui ne font pas partie du programme shell, et qui
+	  sont stockées séparément sur le système de fichiers. Les commandes 
+	  externes courantes sont : <command>ls</command>,
+	  <command>cat</command>, <command>rm</command>, et
+	  <command>mkdir</command>.
 	</para>
       </listitem>
     </itemizedlist>
 
     <para>
-      All shell commands are executed with the same syntax:
+      Toutes les commandes shell sont exécutées suivant la même syntaxe :
     </para>
 		
     <screen>
-<command>commandname [argument1 argument2 ... argumentn]</command>
+<command>nomcommande [argument1 argument2 ... argumentn]</command>
     </screen>
 
     <para>
-      The number of arguments is arbitrary, and are always passed to
-      the command. The command can decide what it does with these
-      arguments.
+      Le nombre d'arguments est arbitraire, et ils sont toujours transmis à la
+      commande. La commande peut décider de ce qu'elle fait de ces arguments.
     </para>
 
     <para>
-      All built-in commands can always be executed, because they are
-      part of the shell. External commands can be executed by name
-      when the program is in the search path of the shell. Otherwise,
-      you will have to specify the path to the program. The search
-      path of the shell is stored in a variable named
-      <emphasis>PATH</emphasis>.  A variable is a named piece of
-      memory, of which the contents can be changed. We can see the
-      contents of the PATH variable in the following manner:
+      Toutes les commandes internes peuvent toujours être exécutées, car elles
+      font partie du shell. Les commandes externes peuvent être exécutées juste
+      par leur nom si le programme est dans le chemin de recherche du shell.
+      Sinon, vous devez spécifier le chemin d'accès au programme. Le chemin de
+      recherche du shell est stocké dans une variable appelée
+      <emphasis>PATH</emphasis>. Une variable est un nom de bout de mémoire,
+      dont le contenu peut être modifié. Nous pouvons voir le contenu de la
+      variable PATH de la manière suivante :
     </para>
 
     <screen>
@@ -142,12 +139,12 @@ $ <userinput>echo $PATH</userinput>
     </screen>
 
     <para>
-      The directory paths in the <emphasis>PATH</emphasis> variable
-      are separated with the colon (<emphasis>:</emphasis>)
-      character. You can use the <command>which</command> command to
-      check whether a given command is in the current shell path. You
-      can do this by providing the command as an argument to
-      <command>which</command>. For example:
+      Les chemins de répertoire dans la variable <emphasis>PATH</emphasis> sont
+      séparés par le caractère deux-points (<emphasis>:</emphasis>). Vous pouvez
+      utiliser la commande <command>which</command> pour vérifier si une
+      commande donnée est dans le chemin de recherche du shell. Vous faites cela
+      en fournissant la commande en tant qu'argument de
+      <command>which</command>. Par exemple :
     </para>
 
     <screen>
@@ -158,30 +155,29 @@ $ <userinput>which sysstat</userinput>
     </screen>
 
     <para>
-      If a program is not in the path, you can still run it by
-      entering its absolute or relative path.
+      Si un programme n'est pas dans le chemin, vous pouvez quand-même le lancer
+      en écrivant le chemin absolu ou relatif.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-shell-moving">
-    <title>Moving around</title>
+    <title>Se déplacer</title>
 
     <para>
-      It is often necessary to jump through various parts of a line,
-      and to alter it, when you are editing larger commands. Both
-      <command>bash</command> and <command>ksh</command> have keyboard
-      shortcuts for doing common operations.  There are two shell
-      modes, in which the shortcut keys differ. These modes correspond
-      with two popular editors for UNIX in their behavior.  These
-      editors are <command>vi</command> and
-      <command>emacs</command>. In this book we will only cover the
-      EMACS-like keystrokes. You can check in which mode a shell is
-      running by printing the <emphasis>SHELLOPTS</emphasis>
-      variable. In the first example the shell is used in
-      <emphasis>emacs</emphasis> mode, in the second example the
-      <emphasis>vi</emphasis> mode is used. You identify the mode by
-      looking for the <emphasis>emacs</emphasis> or
-      <emphasis>vi</emphasis> strings in the contents of the variable.
+      Il est souvent nécessaire de passer d'un endroit à un autre d'une ligne,
+      et modifier celle-ci, quand vous éditez des commandes plus larges.
+      <command>bash</command> et <command>ksh</command> on tous les deux des
+      raccourcis clavier pour effectuer ces opérations communes. Il y a 2 modes
+      shell, dans lesquels les raccourcis clavier sont différents. Ces modes
+      correspondent dans leur comportement à 2 éditeurs populaires pour UNIX.
+      Ces éditeurs sont <command>vi</command> et <command>emacs</command>. Dans
+      ce livre nous ne couvrirons que les touches de type EMACS. Vous pouvez
+      vérifier sous quel mode un shell s'exécute en affichant la variable
+      <emphasis>SHELLOPTS</emphasis>. Dans le premier exemple le shell est
+      utilisé en mode <emphasis>emacs</emphasis>, dans le second exemple le mode
+      <emphasis>vi</emphasis> est utilisé. Vous identifiez le mode en cherchant
+      les chaînes <emphasis>emacs</emphasis> ou <emphasis>vi</emphasis> dans le
+      contenu de la variable.
     </para>
 
     <screen>
@@ -195,9 +191,9 @@ braceexpand:hashall:histexpand:history:interactive-comments:monitor:vi
     </screen>
 
     <para>
-      If your shell is currently using the <emphasis>vi</emphasis>
-      mode, you can switch to the <emphasis>emacs</emphasis> mode by
-      setting the <emphasis>emacs</emphasis> option:
+      Si le shell utilise le mode <emphasis>vi</emphasis>, vous pouvez changer
+      pour le mode <emphasis>emacs</emphasis> en configurant l'option à
+      <emphasis>emacs</emphasis> :
     </para>
 
     <screen>
@@ -205,51 +201,51 @@ $ <userinput>set -o emacs</userinput>
     </screen>
 
     <para>
-      With the <emphasis>emacs</emphasis> editing mode enabled, you
-      can start using shortcuts. We will look at three kinds of
-      shortcuts: character editing shortcuts, word editing shortcuts,
-      and line editing shortcuts. Later in this chapter, we will also
-      have a look at some shortcuts that are used to retrieve entries
-      from the command history.
+      Avec le mode d'édition <emphasis>emacs</emphasis> activé, vous pouvez
+      commencer à utiliser des raccourcis. Nous allons voir 3 types de
+      raccourcis : les raccourcis d'édition de caractères, les raccourcis
+      d'édition de mots et les raccourcis d'édition de ligne. Plus tard dans ce
+      chapitre nous verrons aussi quelques raccourcis qui sont utilisés pour
+      récupérer des entrées dans l'historique des commandes.
     </para>
 
     <sect2 xml:id="chap-shell-moving-char">
-      <title>Character editing</title>
+      <title>Edition de caractères</title>
 
       <para>
-	The first group of shortcuts have characters as their logic
-	unit, meaning that they allow command line editing operations
-	on characters.  <xref
-	linkend="chap-shell-moving-char-shortcuts-move" /> provides an
-	overview of the shortcuts that are used to move through a line
-	by character.
+	Le premier groupe de raccourcis a comme unité logique le caractère,
+	ce qui signifie qu'ils permettent les opérations d'édition de la ligne
+	de commande au niveau du caractère.
+	<xref linkend="chap-shell-moving-char-shortcuts-move" /> fournit un
+	aperçu des raccourcis utilisés pour se déplacer sur une ligne caractère
+	par caractère.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-move">
-	<title>Moving by character</title>
+	<title>Déplacement par caractère</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry><entry>Description</entry>
+	      <entry>Touches</entry><entry>Description</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-b</entry>
-	      <entry>Move a character backwards.</entry>
+	      <entry>Se déplace d'un caractère en arrière.</entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-f</entry>
-	      <entry>Move a character forward.</entry>
+	      <entry>Se déplace d'un caractère en avant.</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <para>
-	These shortcuts are simple, and don't do anything unexpected.
-	Suppose that you have typed the following line:
+	Ces raccourcis sont simples, et ne font rien d'inattendu. Supposez que
+	vous ayez tapé la ligne suivante :
       </para>
 
       <screen>
@@ -257,8 +253,8 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	The cursor will be at the end. You can now move to the start
-	of the line by holding <emphasis>Ctrl-b</emphasis>:
+	Le curseur est à la fin. Vous pouvez à présent vous déplacer vers le
+	début de la ligne en laissant appuyé <emphasis>Ctrl-b</emphasis> :
       </para>
 
       <screen>
@@ -266,39 +262,39 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	Likewise, you can go back again to the end by holding
-	<emphasis>Ctrl-f</emphasis>. There is an error in this line,
-	since there is one erroneous dash. To remove this dash, you
-	can use one of the character deletion shortcuts.
+	De même, vous pouvez revenir à la fin de la ligne en laissant appuyé
+	<emphasis>Ctrl-f</emphasis>. Il y a une erreur sur cette ligne, 
+	puisqu'il y a un tiret de trop. Pour enlever ce tiret, vous pouvez
+	utiliser un des raccourcis de suppression de caractère.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-delete">
-	<title>Deleting characters</title>
+	<title>Effacer des caractères</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry><entry>Description</entry>
+	      <entry>Touches</entry><entry>Description</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-h</entry>
-	      <entry>Delete a character before the cursor. This has
-	      the same effect as using the Backspace key on most
-	      personal computers.</entry>
+	      <entry>Supprime le caractère avant le curseur. Cela a le même
+		effet qu'utiliser la touche Backspace sur la plupart des
+		ordinateurs personnels.</entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-d</entry>
-	      <entry>Delete the character the cursor is on.</entry>
+	      <entry>Supprime le caractère sous le curseur.</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <para>
-	You can delete the dash in two manners. The first way is to
-	move the cursor to the dash:
+	Vous pouvez supprimer le tiret de 2 manières. La première façon est de
+	déplacer le curseur sur le tiret :
       </para>
 
       <screen>
@@ -306,9 +302,8 @@ find ~/music <emphasis role="cursor">-</emphasis> -name '*.ogg' -print
       </screen>
 
       <para>
-	and then press <emphasis>Ctrl-d</emphasis> twice. This will
-	delete the dash character, and the space that follows the
-	dash:
+	et de presser la touche <emphasis>Ctrl-d</emphasis> 2 fois. Cela
+	supprimera le caractère tiret, et l'espace qui suit le tiret :
       </para>
 
       <screen>
@@ -316,8 +311,8 @@ find ~/music <emphasis role="cursor">-</emphasis>name '*.ogg' -print
       </screen>
 
       <para>
-	Looking at the original fragment, the other approach is to
-	position the cursor on the space after the dash:
+	Revenant à la ligne originale, l'autre approche est de positionner le
+	curseur sur l'espace après le tiret :
       </para>
 
       <screen>
@@ -325,10 +320,9 @@ find ~/music -<emphasis role="cursor">&#32;</emphasis> -name '*.ogg' -print
       </screen>
 
       <para>
-	and then press <emphasis>Ctrl-h</emphasis> twice to delete the
-	two preceding characters, namely the dash and the space before
-	the dash. The result will be the same, except that the cursor
-	will move:
+	et de presser la touche <emphasis>Ctrl-h</emphasis> 2 fois pour
+	supprimer les 2 caractères précédents, qui sont le tiret et l'espace
+	avant le tiret. Le résultat sera le même sauf que le curseur va bouger :
       </para>
 
       <screen>
@@ -336,35 +330,35 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
       </screen>
 
       <para>
-	One of the nice features of most modern shells is that you can
-	transpose (swap) characters. This is handy if you make a
-	typing error in which two characters are swapped.  <xref
-	linkend="chap-shell-moving-char-shortcuts-swap" /> lists the
-	shortcut for transposing characters.
+	Une des fonctions intéressantes sur la plupart des shells modernes est
+	que vous pouvez transposer (permuter) des caractères. C'est utile si
+	vous faites une faute de frappe dans laquelle 2 caractères sont
+	intervertis.  <xref linkend="chap-shell-moving-char-shortcuts-swap" />
+	liste les raccourcis pour transposer des caractères.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-swap">
-	<title>Swapping characters</title>
+	<title>Echanger des caractères</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry><entry>Description</entry>
+	      <entry>Touches</entry><entry>Description</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-t</entry>
-	      <entry>Swap (transpose) the characters the cursor is on,
-	      and the character before the cursor. This is handy for
-	      quickly correcting typing errors.</entry>
+	      <entry>Permute (transpose) le caractère sous le curseur avec celui
+		juste avant le curseur. Ceci est pratique pour corriger
+		rapidement des fautes de frappe.</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <para>
-	Suppose that you have typed the following command:
+	Supposez que vous avez tapé la commande suivante :
       </para>
 
       <screen>
@@ -372,11 +366,11 @@ cat myreport.ttx
       </screen>
 
       <para>
-	The extension contains a typing error if you intended to
-	<command>cat</command> <filename>myreport.txt</filename>. This
-	can be corrected with the character transpose shortcut. First
-	move to the second character of the pair of characters that
-	are in the wrong order:
+	L'extension contient une faute de frappe si vous vouliez faire
+	<command>cat</command> <filename>myreport.txt</filename>. Cela peut
+	être corrigé avec le raccourci de transposition de caractères. D'abord
+	déplacez-vous sur le second caractère du couple de caractères dans le
+	mauvais ordre :
       </para>
 
       <screen>
@@ -384,9 +378,9 @@ cat myreport.tt<emphasis role="cursor">x</emphasis>
       </screen>
 
       <para>
-	You can then press <emphasis>Ctrl-t</emphasis>. The characters
-	will be swapped, and the cursor will be put behind the swapped
-	characters:
+	Vous pouvez alors appuyer sur <emphasis>Ctrl-t</emphasis>. Les
+	caractères vont être échangés, et le curseur sera placé avant les
+	caractères échangés :
       </para>
 
       <screen>
@@ -395,25 +389,25 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
     </sect2>
 
     <sect2 xml:id="chap-shell-moving-word">
-      <title>Word editing</title>
+      <title>Edition de mots</title>
 
       <para>
-	It if often tedious to move at character level. Fortunately
-	the Korn and Bash shells can also move through lines at a word
-	level.  Words are sequences of characters that are separated
-	by a special character, such as a space.
-	<xref linkend="chap-shell-moving-word-shortcuts-move" />
-	summarizes the shortcuts that can be used to navigate through
-	a line by word.
+	Il est souvent fastidieux de se déplacer au niveau caractère.
+	Heureusement les shells Korn et Bash permettent aussi de se déplacer
+	dans les lignes au niveau du mot. Les mots sont des séquences de
+	caractères séparées par un caractère spécial, comme un espace. 
+	<xref linkend="chap-shell-moving-word-shortcuts-move" /> 
+	résume les raccourcis qui peuvent être utilisés pour naviguer à travers
+	une ligne mot par mot.
       </para>
 
       <table xml:id="chap-shell-moving-word-shortcuts-move">
-	<title>Moving by word</title>
+	<title>Déplacement par mot</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
+	      <entry>Touches</entry>
 	      <entry>Description</entry>
 	    </row>
 	  </thead>
@@ -421,15 +415,13 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
 	    <row>
 	      <entry>Esc b</entry>
 	      <entry>
-		Move back to the start of the current or previous
-		word.
+		Revient au début du mot courant ou du mot précédent.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Esc f</entry>
 	      <entry>
-		Move forward to the last character of the current or
-		next word.
+		Va au dernier caractère du mot courant ou du mot suivant.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -437,13 +429,12 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
       </table>
 
       <para>
-	As you can see the letters in these shortcuts are equal to
-	those of moving forward and backwards by character. The
-	movement logic is a bit curious. Moving forward puts the
-	cursor to the end of the current word, not to the first
-	character of the next word as you may have predicted. Let's
-	look at a quick example. In the beginning the cursor is on the
-	first character of the line.
+	Comme vous pouvez le voir les lettres de ces raccourcis sont les mêmes
+	que pour se déplacer en avant et en arrière au niveau caractère. La
+	logique de déplacement est un peu curieuse. Aller de l'avant met le
+	curseur à la fin du mot courant, pas au premier caractère du mot
+	suivant contrairement à ce que vous pouviez espérer. Regardons un petit
+	exemple. Au début, le curseur est sur le premier caractère de la ligne.
       </para>
 
       <screen>
@@ -451,9 +442,9 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	Pressing <emphasis>Esc f</emphasis> will move the cursor
-	behind the last character of the first word, which is
-	<emphasis>find</emphasis> in this case:
+	Appuyer sur <emphasis>Esc f</emphasis> déplace le curseur avant le
+	dernier caractère du premier mot, en l'occurrence
+	<emphasis>find</emphasis> :
       </para>
 
       <screen>
@@ -461,8 +452,8 @@ find<emphasis role="cursor">&#32;</emphasis>~/music -name '*.ogg' -print
       </screen>
 
       <para>
-	Going forward once more will put the cursor behind
-	<emphasis>~/music</emphasis>:
+	Se déplacer en avant encore une fois mettra le curseur derrière
+	<emphasis>~/music</emphasis> :
       </para>
 
       <screen>
@@ -470,11 +461,11 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
       </screen>
 
       <para>
-	Backwards movement puts the cursor on the first character of
-	the current word, or on the first character of the previous
-	word if the cursor is currently on the first character of a
-	word. So, moving back one word in the previous example will
-	put the cursor on the first letter of <quote>music</quote>:
+	Un déplacement en arrière met le curseur sur le premier caractère du mot
+	courant, ou sur le premier caractère du mot précédent si le curseur est
+	sur le premier caractère d'un mot. Ainsi, le déplacement en arrière
+	d'un mot dans l'exemple précédent placera le curseur sur la première
+	lettre de <quote>music</quote> :
       </para>
 
       <screen>
@@ -482,18 +473,18 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
       </screen>
 
       <para>
-	Deleting words works equal to moving by word, but the
-	characters that are encountered are deleted.  <xref
-	linkend="chap-shell-moving-word-shortcuts-delete" /> lists the
-	shortcuts that are used to delete words.
+	Effacer par mot fonctionne comme le déplacement par mots, sauf que les
+	caractères balayés sont supprimés.  <xref
+	linkend="chap-shell-moving-word-shortcuts-delete" /> liste les
+	raccourcis utilisés pour supprimer des mots.
       </para>
 
       <table  xml:id="chap-shell-moving-word-shortcuts-delete">
-	<title>Deleting words</title>
+	<title>Supprimer des mots</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
+	      <entry>Touches</entry>
 	      <entry>Description</entry>
 	    </row>
 	  </thead>
@@ -503,7 +494,7 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 		Alt-d
 	      </entry>
 	      <entry>
-		Delete the word, starting at the current cursor position.
+		Supprime le mot, commençant à la position du curseur.
 	      </entry>
 	    </row>
 	    <row>
@@ -511,8 +502,8 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 		Alt-Backspace
 	      </entry>
 	      <entry>
-		Delete every character from the current cursor position
-		to the first character of a word that is encountered.
+		Supprime tout caractère depuis la position courante du curseur
+		jusqu'au premier caractère du mot rencontré.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -520,17 +511,17 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
       </table>
 
       <para>
-	Finally, there are some shortcuts that are useful to
-	manipulate words. These shortcuts are listed in <xref
+	Enfin, il y a des raccourcis utiles pour manipuler les mots. Ces
+	raccourcis sont listés dans <xref
 	linkend="chap-shell-moving-word-shortcuts-modify" />.
       </para>
 
       <table  xml:id="chap-shell-moving-word-shortcuts-modify">
-	<title>Modifying words</title>
+	<title>Modifier les mots</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
+	      <entry>Touches</entry>
 	      <entry>Description</entry>
 	    </row>
 	  </thead>
@@ -538,28 +529,28 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 	    <row>
 	      <entry>Alt-t</entry>
 	      <entry>
-		Swap (transpose) the current word with the previous word.
+		Permute (transpose) le mot courant avec le mot précédent.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Alt-u</entry>
 	      <entry>
-		Make the word uppercase, starting at the current cursor
-		position.
+		Passe le mot en majuscules, depuis la position courante du
+		curseur.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Alt-l</entry>
 	      <entry>
-		Make the word lowercase, starting at the current
-		cursor position.
+		Passe le mot en minuscules, depuis la position courante du
+		curseur.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Alt-c</entry>
 	      <entry>
-		Capitalize the current word character or the next word
-		character that is encountered.
+		Capitalise le caractère courant du mot ou le premier
+		caractère du mot suivant renconté.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -567,9 +558,9 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
       </table>
 
       <para>
-	Transposition swaps words. If normal words are used, it's
-	behavior is predictable. For instance, if we have the
-	following line with the cursor on <quote>two</quote>
+	La transposition permute les mots. Si vous utilisez des mots normaux,
+	son comportement est prévisible. Par exemple, si vous avez la ligne
+	suivante avec le curseur sur <quote>two</quote>
       </para>
 
       <screen>
@@ -577,8 +568,7 @@ one <emphasis role="cursor">t</emphasis>wo three
       </screen>
 
       <para>
-	Word transposition will swap <quote>two</quote> and
-	<quote>one</quote>:
+	La transposition va permuter <quote>two</quote> et <quote>one</quote> :
       </para>
 
       <screen>
@@ -586,12 +576,11 @@ two one three
       </screen>
 
       <para>
-	But if there are any non-word characters, the shell will swap
-	the word with the previous word while preserving the order of
-	non-word characters. This is very handy for editing arguments
-	to commands. Suppose that you made an error, and mixed up the
-	file extension you want to look for, and the
-	<emphasis>print</emphasis> parameter:
+	Cependant s'il y a des caractères n'appartenant pas à un mot, le shell
+	va permuter le mot avec le mot précédent sans toucher à ces caractères.
+	Cela est très utile pour l'édition des arguments des commandes. Supposez
+	que vous avez fait une erreur, et mélangé l'extension du fichier que
+	vous recherchez, et le paramètre <emphasis>print</emphasis> :
       </para>
 
       <screen>
@@ -599,9 +588,9 @@ find ~/music -name '*.print' -ogg
       </screen>
 
       <para>
-	You can fix this by putting the cursor on the second faulty
-	word, in this case <quote>ogg</quote>, and transposing the two
-	words. This will give the result that we want:
+	Vous pouvez réparer cela en plaçant le curseur sur le second mot erroné,
+	dans ce cas <quote>ogg</quote>, et en permutant les 2 mots. Cela donnera
+	le résultat que nous voulons :
       </para>
 
       <screen>
@@ -609,38 +598,36 @@ find ~/music -name '*.ogg' -print
       </screen>
 
       <para>
-	Finally, there are some shortcuts that change the
-	capitalization of words. The Alt-u shortcut makes all
-	characters uppercase, starting at the current cursor position
-	till the end of the word. So, if we have the lowercase name
-	<quote>alice</quote>, uppercasing the name with the cursor on
-	<quote>i</quote> gives <quote>alICE</quote>. Alt-l has the
-	same behavior, but changes letters to lowercase. So, using
-	Alt-l on <quote>alICE</quote> with the cursor on
-	<quote>I</quote> will change the string to
-	<quote>alice</quote>. Alt-c changes just the character the
-	cursor is on, or the next word character that is encountered,
-	to uppercase. For instance, pressing Alt-c with the cursor on
-	<quote>a</quote> in <quote>alice</quote> will yield
-	<quote>Alice</quote>.
+	Enfin, il y a quelques raccourcis qui changent la capitalization des
+	mots. Le raccourci Alt-u passe tous les caractèes en majuscules, depuis
+	la position courante du curseur jusqu'à la fin du mot. Donc, si nous
+	avons un nom en minuscules <quote>alice</quote>, passer en majuscules
+	le nom avec le curseur sur <quote>i</quote> donne <quote>alICE</quote>.
+	Alt-l fait de même, sauf qu'il passe les lettre minuscules.
+	Donc, utiliser Alt-l sur <quote>alICE</quote> avec le curseur sur
+	<quote>I</quote> changera la chaîne de caractères en
+	<quote>alice</quote>. Alt-c ne passe en majuscules que le caractère
+	sous le curseur, ou le caractère du mot suivant rencontré. Par exemple,
+	en appuyant sur Alt-c avec le curseur sur le <quote>a</quote> de
+	<quote>alice</quote> donnera <quote>Alice</quote>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-shell-moving-line">
-      <title>Line editing</title>
+      <title>Editer une ligne</title>
 
       <para>
-	The highest level we can edit is the line itself.
+	Le plus haut niveau d'édition est la ligne elle-même.
 	<xref linkend="chap-shell-moving-line-shortcuts-move" />
-	lists the two movement shortcuts.
+	liste les 2 raccourcis de déplacement.
       </para>
 
       <table xml:id="chap-shell-moving-line-shortcuts-move">
-	<title>Moving through lines</title>
+	<title>Déplacement dans les lignes</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
+	      <entry>Touches</entry>
 	      <entry>Description</entry>
 	    </row>
 	  </thead>
@@ -648,13 +635,13 @@ find ~/music -name '*.ogg' -print
 	    <row>
 	      <entry>Ctrl-a</entry>
 	      <entry>
-		Move to the beginning of the current line.
+		Se déplace au début de la ligne courante.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-e</entry>
 	      <entry>
-		Move to the end of the current line.
+		Se déplace à la fin de la ligne courante.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -662,7 +649,7 @@ find ~/music -name '*.ogg' -print
       </table>
 
       <para>
-	Suppose that the cursor is somewhere halfway a line:
+	Supposez que le curseur est quelque part au milieu d'une ligne :
       </para>
 
       <screen>
@@ -670,8 +657,8 @@ find ~/music -name<emphasis role="cursor">&#32;</emphasis>'*.ogg' -print
       </screen>
 
       <para>
-	Pressing Ctrl-e once will move the cursor to the end of the
-	line:
+	Appuyer sur Ctrl-e une fois va déplacer le curseur à la fin de la
+	ligne :
       </para>
 
       <screen>
@@ -679,7 +666,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	Pressing Ctrl-a will move the cursor to the beginning of the line:
+	Appuyer sur Ctrl-a déplacera le curseur au début de la ligne :
       </para>
 
       <screen>
@@ -687,22 +674,22 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	You can also delete characters by line level. The shortcuts
-	are listed in <xref
-	linkend="chap-shell-moving-line-shortcuts-delete" />.  These
-	shortcuts work like movement, but deletes all characters that
-	are encountered. Ctrl-k will delete the character the cursor
-	is on, but Ctrl-x Backspace will not. Moving to the beginning
-	of the line with Ctrl-a, followed by Ctrl-k, is a fast trick
-	to remove a line completely.
+	Vous pouvez aussi effacer des caractères au niveau de la ligne. Les
+	raccourcis sont listés dans <xref
+	linkend="chap-shell-moving-line-shortcuts-delete" />. Ces raccourcis
+	fonctionnent comme les déplacements, sauf qu'ils effacent tout
+	caractère rencontré. Ctrl-k effacera le caractère sous le curseur, mais
+	Ctrl-x Backspace ne le fera pas. Se déplacer au début de la ligne avec
+	Ctrl-a, suivi de Ctrl-k, est un truc rapide pour effacer une ligne
+	entièrement.
       </para>
 
       <table xml:id="chap-shell-moving-line-shortcuts-delete">
-	<title>Deleting lines</title>
+	<title>Suppression de lignes</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
+	      <entry>Touches</entry>
 	      <entry>Description</entry>
 	    </row>
 	  </thead>
@@ -710,15 +697,15 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
 	    <row>
 	      <entry>Ctrl-k</entry>
 	      <entry>
-		Delete all characters in the line, starting at the
-		cursor position.
+		Efface tous les caractères de la ligne, à partir de la position
+		du curseur.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-x Backspace</entry>
 	      <entry>
-		Delete all characters in the line up till the current
-		cursor position.
+		Efface tous les caractères de la ligne jusqu'à la position
+		courante du curseur.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -728,128 +715,126 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
   </sect1>
 
   <sect1 xml:id="chap-shell-history">
-    <title>Command history</title>
+    <title>Historique des commandes</title>
 
     <para>
-      It often happens that you have to execute commands that you
-      executed earlier. Fortunately, you do not have to type them all
-      over again.  You can browse through the history of executed
-      commands with the up and down arrows. Besides that it is also
-      possible to search for a command. Press Control-r and start
-      typing the command you want to execute. You will notice that
-      bash will display the first match it can find. If this is not
-      the match you were looking for you can continue typing the
-      command (until it is unique and a match appears), or press
-      Control-r once more to get the next match. When you have found
-      the command you were looking for, you can execute it by pressing
-      &lt;Enter&gt;.
+      Il arrive souvent que vous deviez exécuter des commandes que vous avez
+      déjà exécuté plus tôt. Heureusement, vous n'avez pas à toutes les retaper
+      de nouveau. Vous pouvez consulter l'historique des commandes exécutées
+      avec les touches flèche haut et bas. En outre, il est également possible
+      de chercher une commande. Pressez Control-r et commencez à taper la
+      commande que vous souhaitez exécuter. Vous remarquerez que bash affiche
+      la première occurrence possible. Si ce n'est pas l'occurrence que vous
+      cherchez, vous pouvez continuer à taper la commande (jusqu'à ce que ce
+      soit une occurrence unique), ou appuyez sur Control-r, une fois de plus
+      pour obtenir la prochaine occurrence. Quand vous avez trouvé la commande
+      que vous cherchez, vous pouvez l'exécuter en appuyant sur &lt;Enter&gt;.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-shell-completion">
-    <title>Completion</title>
+    <title>Complétion</title>
 
     <para>
-      Completion is one of the most useful functionalities of
-      UNIX-like shells.  Suppose that you have a directory with two
-      files named <filename>websites</filename> and
-      <filename>recipe</filename>. And suppose you want to
-      <command>cat</command> the file <filename>websites</filename>
-      (<command>cat</command> shows the contents of a file), by
-      specifying <filename>websites</filename> as a parameter to
-      cat. Normally you would type <quote>cat websites</quote>, and
-      execute the command. Try typing <quote>cat w</quote>, and hit
-      the &lt;Tab&gt; key. Bash will automatically expand what you
-      typed to <quote>cat websites</quote>.
+      La complétion est une des fonctionnalités les plus utiles des shells de
+      type UNIX. Supposez que vous avez un répertoire contenant 2 fichiers
+      nommés <filename>websites</filename> et <filename>recipe</filename>. Et
+      supposez que vous voulez effectuer <command>cat</command> sur le fichier
+      <filename>websites</filename> (<command>cat</command> affiche le contenu
+      d'un fichier), en spécifiant <filename>websites</filename> comme paramètre
+      de cat. Normalement vous auriez tapé <quote>cat websites</quote>, et
+      exécuté la commande. Essayez de taper <quote>cat w</quote>, et frappez la
+      touche &lt;Tab&gt;. Bash va compléter automatiquement ce que vous avez
+      tapé en <quote>cat websites</quote>.
     </para>
 
     <para>
-      But what happens if you have files that start with the same
-      letter? Suppose that you have the
-      <filename>recipe1.txt</filename> and
-      <filename>recipe2.txt</filename> files. Type <quote>cat
-      r</quote> and hit &lt;Tab&gt;, Bash will complete the filename
-      as far as it can. It would leave you with <quote>cat
-      recipe</quote>. Try hitting &lt;Tab&gt; again, and Bash will
-      show you a list of filenames that start with
-      <quote>recipe</quote>, in this case both recipe files. At this
-      point you have to help Bash by typing the next character of the
-      file you need.  Suppose you want to <command>cat</command>
-      <filename>recipe2</filename>, you can push the &lt;2&gt;
-      key. After that there are no problems completing the filename,
-      and hitting &lt;Tab&gt; completes the command to <quote>cat
-      recipe2.txt</quote>.
+      Mais que se passe-t-il si vous avez plusieurs fichiers qui commencent
+      avec la même lettre ? Supposez que vous avez les fichiers
+      <filename>recipe1.txt</filename> et <filename>recipe2.txt</filename>.
+      Tapez <quote>cat r</quote> et tapez &lt;Tab&gt;, Bash va compléter le nom
+      de fichier du mieux qu'il le peut. I devrait vous laisser avec
+      <quote>cat recipe</quote>. Essayez de taper encore &lt;Tab&gt;, et Bash va
+      vous afficher une liste de noms de fichiers qui commencent par
+      <quote>recipe</quote>, dans ce cas les 2 fichiers recipe. A ce niveau vous
+      devez aider Bash en tapant le caractère suivant du fichier désiré.
+      Supposez que vous voulez faire <command>cat</command>
+      <filename>recipe2.txt</filename>, vous pouvez presser la touche &lt;2&gt;.
+      Après il n'y a plus de problème pour compléter le nom de fichier, et
+      appuyer sur &lt;Tab&gt; complète la commande en
+      <quote>cat recipe2.txt</quote>.
     </para>
 
     <para>
-      It is worth noting that completion also works with
-      commands. Most GNU/Linux commands are quite short, so it will
-      not be of much use most of the time.
+      Il est intéressant de noter que la complétion fonctionne également avec
+      les commandes. La plupart des commandes GNU/Linux sont assez courtes, donc
+      ce ne sera pas utile la plupart du temps.
     </para>
 
     <para>
-      It is a good idea to practice a bit with completion, it can save
-      alot of keystrokes if you can handle completion well. You can
-      make some empty files to practice with using the
-      <command>touch</command> command.  For example, to make a file
-      named <filename>recipe3.txt</filename>, execute <command>touch
-      recipe3.txt</command>.
+      Il est judicieux de pratiquer un peu la complétion, cela peut faire
+      économiser beaucoup de temps de frappe au clavier, si vous pouvez jouer
+      correctement avec la complétion. Vous pouvez créer des fichiers vides pour
+      vous entraîner en utilisant la commande <command>touch</command>. Par
+      exemple, pour créer un fichier nommé <filename>recipe3.txt</filename>,
+      lancez <command>touch recipe3.txt</command>.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-shell-wildcards">
-    <title>Wildcards</title>
+    <title>Les jokers</title>
 
     <para>
-      Most shells, including Bash and ksh, support
-      wildcards. Wildcards are special characters that can be used to
-      do pattern matching. The table listed below displays some
-      commonly used wildcards. We are going to look at several
-      examples to give a general idea how wildcards work.
+      La plupart des shells, y compris Bash et ksh, supportent les jokers (ou
+      métacaractères, wildcards). Les jokers sont des caractères spéciaux qui
+      peuvent être utilisés pour faire du filtrage. Le tableau figurant
+      ci-dessous liste des jokers utilisés couramment. Nous allons regarder
+      plusieurs exemples pour donner une idée générale de la façon dont les
+      jokers fonctionnent.
     </para>
 
     <table xml:id="chap-shell-wildcards-thewildcards">
-      <title>Bash wildcards</title>
+      <title>Jockers bash</title>
 
       <tgroup cols="2" align="left" colsep="1" rowsep="1">
 	<thead>
 	  <row>
-	    <entry>Wildcard</entry> <entry>Matches</entry>
+	    <entry>Joker</entry> <entry>Filtre</entry>
 	  </row>
 	</thead>
 	<tbody>
 	  <row>
 	    <entry>*</entry>
-	    <entry>A string of characters</entry>
+	    <entry>Une chaîne de caractères</entry>
 	  </row>
 	  <row>
 	    <entry>?</entry>
-	    <entry>A single character</entry>
+	    <entry>Un seul caractère</entry>
 	  </row>
 	  <row>
 	    <entry>[]</entry>
-	    <entry>A character in an array of characters</entry>
+	    <entry>Un caractère parmi un ensemble de caractères</entry>
 	  </row>
 	</tbody>
       </tgroup>
     </table>
 
     <sect2 xml:id="chap-shell-wildcards-string">
-      <title>Matching a string of characters</title>
+      <title>Filtrer une chaîne de caractères</title>
 
       <para>
-	As you can see in the table above the <quote>*</quote>
-	character matches a string of characters. For example,
-	<emphasis>*.html</emphasis> matches everything ending with
+	Comme vous pouvez le voir dans le tableau ci-dessus le caractère
+	<quote>*</quote> filtre une chaîne de caractères. Par exemple,
+	<emphasis>*.html</emphasis> filtre tout ce qui se termine par
 	<emphasis>.html</emphasis>, <emphasis>d*.html</emphasis>
-	matches everything starting with a <emphasis>d</emphasis> and
-	ending with <emphasis>.html</emphasis>.
+	filtre tout ce qui commence par <emphasis>d</emphasis> et se termine par
+	<emphasis>.html</emphasis>.
       </para>
 
       <para>
-	Suppose that you would like to list all files in the current
-	directory with the <emphasis>.html</emphasis> extension, the
-	following command will do the job:
+	Supposez que vous vouliez la liste de tous les fichiers dans le
+	répertoire courant avec l'extension <emphasis>.html</emphasis>, la
+	commande suivante va faire le travail :
       </para>
 
       <screen>
@@ -861,8 +846,8 @@ help.html        slackware-basics.html shell.html
       </screen>
 
       <para>
-	Likewise we could remove all files starting with an
-	<emphasis>in</emphasis>:
+	De la même façon nous pouvons supprimer tous les fichiers commençant par
+ 	<emphasis>in</emphasis> :
       </para>
 
       <screen>
@@ -871,55 +856,54 @@ $ <userinput>rm in*</userinput>
     </sect2>
 
     <sect2 xml:id="chap-shell-wildcards-single">
-      <title>Matching single characters</title>
+      <title>Filtrer un seul caractère</title>
 
       <para>
-	The <quote>?</quote> wildcard works as the <quote>*</quote>
-	wildcard, but matches single characters. Suppose that we have
-	three files, <filename>file1.txt</filename>,
-	<filename>file2.txt</filename> and
-	<filename>file3.txt</filename>. The string
-	<emphasis>file?.txt</emphasis> matches all three of these
-	files, but it does not match <filename>file10.txt</filename>
-	(<quote>10</quote> are two characters).
+	Le joker <quote>?</quote> fonctionne comme le joker <quote>*</quote>,
+	mais filtre un seul caractère. Supposez que nous ayons 3 fichiers, 
+	<filename>file1.txt</filename>, <filename>file2.txt</filename> et
+	<filename>file3.txt</filename>. La chaîne <emphasis>file?.txt</emphasis>
+	filtre tous ces 3 fichiers, mais ne filtre pas
+	<filename>file10.txt</filename> (<quote>10</quote> sont 2 caractères).
       </para>
     </sect2>
 
     <sect2 xml:id="chap-shell-wildcards-set">
-      <title>Matching characters from a set</title>
+      <title>Filtrer un caractère parmi un ensemble</title>
 
       <para>
-	The <quote>[]</quote> wildcard matches every character between
-	the brackets.  Suppose we have the files from the previous
-	example, <filename>file1.txt</filename>,
-	<filename>file2.txt</filename> and
-	<filename>file3.txt</filename>. The string
-	<emphasis>file[23].txt</emphasis> matches
-	<filename>file2.txt</filename> and
-	<filename>file3.txt</filename>, but not
+	Le joker <quote>[]</quote> filtre tout caractère entre crochets.
+	Supposez que nous ayons les fichiers de l'exemple précédent,
+	<filename>file1.txt</filename>,
+	<filename>file2.txt</filename> et
+	<filename>file3.txt</filename>. La chaîne
+	<emphasis>file[23].txt</emphasis> filtre
+	<filename>file2.txt</filename> et
+	<filename>file3.txt</filename>, mais pas
 	<filename>file1.txt</filename>.
       </para>
     </sect2>
   </sect1>
 
   <sect1 xml:id="chap-shell-inout">
-    <title>Redirections and pipes</title>
+    <title>Redirections et tubes</title>
 
     <para>
-      One of the main features of UNIX-like shells are redirections
-      and pipes.  Before we start to look at both techniques we have
-      to look how most UNIX-like commands work. When a command is not
-      getting data from a file, it will open a special pseudo-file
-      named <emphasis>stdin</emphasis>, and wait for data to appear on
-      it. The same principle can be applied for command output, when
-      there is no explicit reason for saving output to a file, the
-      pseudo-file <emphasis>stdout</emphasis> will be opened for
-      output of data. This principle is shown schematically in <xref
+      Parmi les fonctionnalités principales des shells de type UNIX-like il y a
+      les redirections et les tubes (pipes en anglais). Avant de regarder ces 2
+      techniques nous devons regarder command la plupart des commandes de type
+      UNIX fonctionnent. Quand une commande ne prend pas de données dans un
+      fichier, elle va ouvrir un pseudo-fichier spécial nommé
+      <emphasis>stdin</emphasis>, et attendre que des données y arrivent. Le
+      même principe s'applique pour la sortie de la commande, quand il n'y a
+      pas de raison explicite de sauver la sortie dans un fichier, le
+      pseudo-fichier <emphasis>stdout</emphasis> sera ouvert pour la sortie des
+      données. Ce principe est décrit schématiquement dans <xref
       linkend="fig-shell-inout" />
     </para>
 
     <figure xml:id="fig-shell-inout">
-      <title>Standard input and output</title>
+      <title>Entrée et sortie standard</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/shell-inout.png" format="PNG"/>
@@ -928,15 +912,14 @@ $ <userinput>rm in*</userinput>
     </figure>
 
     <para>
-      You can see <emphasis>stdin</emphasis> and
-      <emphasis>stdout</emphasis> in action with the
-      <command>cat</command> command. If cat is started without any
-      parameters it will just wait for input on
-      <emphasis>stdin</emphasis> and output the same data on
-      <emphasis>stdout</emphasis>. If no redirection is used keyboard
-      input will be used for <emphasis>stdin</emphasis>, and
-      <emphasis>stdout</emphasis> output will be printed to the
-      terminal:
+      Vous pouvez voir <emphasis>stdin</emphasis> et
+      <emphasis>stdout</emphasis> en action avec la commande 
+      <command>cat</command>. Si cat est lancé sans paramètre elle va juste
+      attendre une entrée dans <emphasis>stdin</emphasis> et sortir la même
+      donnée dans <emphasis>stdout</emphasis>. Si aucune redirection n'est
+      faite l'entrée clavier sera utilisée en tant que
+      <emphasis>stdin</emphasis>, et la sortie <emphasis>stdout</emphasis> sera
+      affichée dans le terminal :
     </para>
 
     <screen>
@@ -946,21 +929,21 @@ Hello world!
     </screen>
 
     <para>
-      As you can see cat will print data to
-      <emphasis>stdout</emphasis> after inputting data to
-      <emphasis>stdin</emphasis> using the keyboard.
+      Comme vous pouvez le voir cat va afficher les données dans
+      <emphasis>stdout</emphasis> après avoir reçu des données en entrée de
+      <emphasis>stdin</emphasis> en utilisant le clavier.
     </para>
 
     <sect2 xml:id="chap-shell-inout-redir">
       <title>Redirection</title>
 
       <para>
-	The shell allows you to take use of <emphasis>stdin</emphasis>
-	and <emphasis>stdout</emphasis> using the <quote>&lt;</quote>
-	and <quote>&gt;</quote>. Data is redirected in which way the
-	sharp bracket points. In the following example we will
-	redirect the md5 summaries calculated for a set of files to a
-	file named <filename>md5sums</filename>:
+	Le shell vous permet d'utiliser <emphasis>stdin</emphasis> et
+	<emphasis>stdout</emphasis> en utilisant <quote>&lt;</quote> et
+	<quote>&gt;</quote>. Les données sont redirigées dans le sens vers
+	lequel pointe le symbole. Dans l'exemple suivant nous allons rediriger
+	les sommes calculées par md5 pour un ensemble de fichiers vers un
+	fichier nommé <filename>md5sums</filename> :
       </para>
 
       <screen>
@@ -972,10 +955,10 @@ $ <userinput>cat md5sums</userinput>
       </screen>
 
       <para>
-	As we can see in the <command>cat</command> output the output
-	of the <command>md5sum *</command> output was redirected to
-	the <filename>md5sums</filename> file. We can also use
-	redirection to provide input to a command:
+	Comme nous pouvons le voir par la sortie de <command>cat</command> la
+	sortie de <command>md5sum *</command> a été redirigée vers le fichier
+	<filename>md5sums</filename>. Nous pouvons aussi utiliser la redirection
+	pour fournir une entrée à une commande :
       </para>
 
       <screen>
@@ -984,26 +967,25 @@ $ <userinput>md5sum &lt; test1</userinput>
       </screen>
 
       <para>
-	This feeds the contents of the <filename>test1</filename> to
-	<command>md5sum</command>.
+	Cela alimente <command>md5sum</command> avec le contenu de
+	<filename>test1</filename>
       </para>
     </sect2>
 
     <sect2 xml:id="chap-shell-inout-pipes">
-      <title>Pipes</title>
+      <title>Tubes</title>
 
       <para>
-	You can also connect the input and output of commands using
-	so-called <emphasis>pipes</emphasis>. A pipe between commands
-	can be made with the <quote>|</quote> character. Two or more
-	combined commands are called a
-	<emphasis>pipeline</emphasis>. <xref
-	linkend="fig-shell-pipeline" /> shows a schematic overview of
-	a pipeline consisting of two commands.
+	Vous pouvez aussi connecter les entrées et sorties des commandes en
+	utilisant les dits <emphasis>tubes</emphasis>. Un tube entre commandes
+	peut être fait avec le caractère <quote>|</quote>. La combinaison de 2
+	ou plus de commandes est appelée un <emphasis>pipeline</emphasis>.
+	<xref linkend="fig-shell-pipeline" /> montre une vue d'ensemble
+	schématique d'un pipeline constitué de 2 commandes.
       </para>
 
       <figure xml:id="fig-shell-pipeline">
-	<title>A pipeline</title>
+	<title>Un pipeline</title>
 	<mediaobject>
 	  <imageobject>
 	    <imagedata fileref="../../images/shell-pipeline.png" format="PNG"/>
@@ -1012,10 +994,10 @@ $ <userinput>md5sum &lt; test1</userinput>
       </figure>
 
       <para>
-	The <quote>syntax</quote> of a pipeline is: <command>command1
-	| command2 ... | commandn</command>. If you know how the most
-	basic UNIX-like commands work you can now let these commands
-	work together. Let's look at a quick example:
+	La <quote>syntaxe</quote> d'un pipeline est : <command>command1
+	| command2 ... | commandn</command>. Si vous savez comment la plupart
+	des commandes de type UNIX fonctionnent vous pouvez maintenant les
+	faire travailler ensemble. Voyons un petit exemple :
       </para>
 
       <screen>
@@ -1024,25 +1006,24 @@ $ <userinput>cat /usr/share/dict/american-english | grep "aba" | wc -l</userinpu
       </screen>
 
       <para>
-	The first command, <command>cat</command>, reads the
-	dictionary file
-	<filename>/usr/share/dict/american-english</filename>. The
-	output of the <command>cat</command> command is piped to
-	<command>grep</command>, which prints out all files containing
-	the phrase <quote>aba</quote>.  In turn, the output of
-	<quote>grep</quote> is piped to <command>wc -l</command>,
-	which counts the number of lines it receives from
-	<emphasis>stdin</emphasis>. Finally, when the stream is
-	finished <command>wc</command> prints the number of lines it
-	counted. So, combined three commands to count the number of
-	words containing the phrase <quote>aba</quote> in this
-	particular dictionary.
+	La première commande, <command>cat</command>, lit le fichier
+	dictionnaire <filename>/usr/share/dict/american-english</filename>. La
+	sortie de la commande <command>cat</command> est redirigée vers
+	<command>grep</command>, qui affiche tous les fichiers contenant la
+	phrase <quote>aba</quote>.  A son tour, la sortie de <quote>grep</quote>
+	est redirigée vers <command>wc -l</command>, qui compte le nombre de
+	lignes qu'elle reçoit de <emphasis>stdin</emphasis>. Enfin, quand le
+	flux est terminé <command>wc</command> affiche le nombre de ligne
+	qu'elle a compté. Donc, la combinaison des 3 commandes compte le nombre
+	de lignes contenant la phrase <quote>aba</quote> dans ce dictionnaire
+	particulier.
       </para>
 
       <para>
-	There are hundreds of small utilities that handle specific
-	tasks. As you can imagine, together these commands provide a
-	very powerful toolbox by making combinations using pipes.
+	Il y a des centaines de petits utilitaires qui réalisent des tâches
+	spécifiques. Comme vous pouvez l'imaginer, l'ensemble de ces commandes
+	fournit une boîte à outils puissante par combinaisons, en utilisant les
+	tubes.
       </para>
     </sect2>
   </sect1>
