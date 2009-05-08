@@ -1,29 +1,30 @@
 <!-- $Id: printing.xml 283 2007-09-18 20:14:31Z danieldk $ -->
 
 <chapter id="printing"> <?dbhtml filename="printer.html"?>
-  <title>Printer configuration</title>
+  <title>Konfigurasi printer</title>
 
   <indexterm><primary>printing</primary></indexterm>
 
   <sect1 id="printing-intro">
-    <title>Introduction</title>
+    <title>Perkenalan</title>
 
     <indexterm><primary>cups</primary><secondary>installation</secondary></indexterm>
 
     <para>
-      GNU/Linux supports a large share of the available USB, parallel and
-      network printers. Slackware Linux provides two printing systems,
-      <acronym>CUPS</acronym> (Common UNIX Printing System) and
-      <acronym>LPRNG</acronym> (LPR Next Generation). This chapter covers
-      the CUPS system.
+	GNU/Linux mendukung sebagian besar jenis printer paralel dan 
+	USB, bahkan printer jaringan. Linux Slackware menyediakan dua 
+	jenis sistem pencetakan,<acronym>CUPS</acronym> (Common UNIX 
+	Printing System) dan <acronym>LPRNG</acronym> (LPR Next 
+	Generation). Bab ini membahas tentang sistem yang menggunakan 
+	CUPS.
     </para>
 
     <para>
-      Independent of which printing system you are going to use, it is
-      a good idea to install some printer filter collections. These can
-      be found in the <quote>ap</quote> disk set. If you want to have
-      support for most printers, make sure the following packages are
-      installed:
+	Terlepas dari sistem pencetakan apa yang akan Anda gunakan, 
+	adalah 	hal bagus untuk menginstall beberapa koleksi filter 
+	printer. Koleksi ini dapat anda temukan di kumpulan aplikasi 
+	<quote>ap</quote>. Jika Anda ingin memiliki dukungan untuk 
+	sebagian besar printer, pastikan paket berikut ini terinstall:
     </para>
 
     <screen>
@@ -37,25 +38,27 @@ ifhp
     </screen>
 
     <para>
-      Both printing systems have their own advantages and disadvantages. If
-      you do not have much experience with configuring printers under GNU/Linux,
-      it is a good idea to use CUPS, because CUPS provides a comfortable web
-      interface which can be accessed through a web browser.
+	Kedua sistem pencetakan ini memiliki kelebihan dan kekurangan. 
+	Jika Anda tidak memiliki banyak pengalaman dengan melakukan 
+	konfigurasi printer di GNU/Linux, adalah ide bagus untuk 
+	menggunakan CUPS, karena CUPS menyediakan kenyamanan antarmuka 
+	web yang dapat diakses melalui web browser.
     </para> 
 
   </sect1>
 
   <sect1 id="printing-preparations">
-    <title>Preparations</title>
+    <title>Persiapan</title>
 
     <indexterm><primary>cups</primary><secondary>starting</secondary></indexterm>
 
     <para>
-      To be able to use CUPS the <quote>cups</quote> package from the
-      <quote>a</quote> disk set has to be installed. After the installation
-      CUPS can be started automatically during each system boot by making
-      <filename>/etc/rc.d/rc.cups</filename> executable. This can be
-      done with the following command:
+	Untuk bisa menggunakan CUPS, maka paket <quote>cups</quote> dari 
+	kumpulan aplikasi <quote>a</quote> harus sudah diinstall. 
+	Setelah melakukan instalasi CUPS dapat dimulai secara otomatis 
+	setiap kali sistem di reboot dengan membuat 
+	<filename>/etc/rc.d/rc.cups</filename> dapat dieksekusi. Ini 
+	dapat diselesaikan dengan perintah berikut :
     </para>
 
     <screen>
@@ -63,9 +66,9 @@ ifhp
     </screen>
 
     <para>
-      After restarting the system CUPS will also be restarted automatically. 
-      You can start CUPS on a running system by executing the following 
-      command:
+	Setelah melakukan reboot pada sistem, CUPS juga akan dijalankan 
+	ulang secara otomatis. Anda dapat memulai CUPS dalam sistem yang 
+	sedang berjalan dengan mengeksekusi perintah berikut :
     </para>
 
     <screen>
@@ -75,88 +78,95 @@ ifhp
   </sect1>
 
   <sect1 id="printing-configuration">
-    <title>Configuration</title>
+    <title>Konfigurasi</title>
 
     <indexterm><primary>cups</primary><secondary>configuration</secondary></indexterm>
 
     <para>
-      CUPS can be configured via a web interface. The configuration interface
-      can be accessed with a web browser at the following URL:
-      <ulink url="http://localhost:631/">http://localhost:631/</ulink>.
-      Some parts of the web interface require that you authenticate yourself.
-      If an authentication window pops up you can enter <quote>root</quote>
-      as the user name, and fill in the root account password.
+	CUPS dapat dikonfigurasikan lewat antarmuka web. Antarmuka 
+	konfigurasi ini dapat diakses melalui web browser dengan URL 
+	sebagai berikut : <ulink 
+	url="http://localhost:631/">http://localhost:631/</ulink>. 
+	Beberapa bagian dari antarmuka web ini membutuhkan autentifikasi 
+	Anda. Jika halaman autentifikasi mencul, anda dapat memasukkan 
+	<quote>root</quote> sebagai nama pengguna, dan mengisi password 
+	pengguna root. 
     </para>
 
     <para>
-      A printer can be added to the CUPS configuration by clicking on
-      <quote>Administrate</quote>, and clicking on the <quote>Add
-      Printer</quote> button after that. The web interface will ask for 
-      three options:
+	Untuk menambahkan printer ke dalam konfigurasi CUPS cukup dengan 
+	mengklik tombol <quote>Administrate</quote>, dan mengklik tombol 
+	<quote>Add Printer</quote> setelahnya. Antarmuka web akan 
+	menanyakan tiga jenis pertanyaan :
     </para>
 
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis>Name</emphasis> - the name of the printer. Use a simple
-          name, for example <quote>epson</quote>.
+	<emphasis>Name</emphasis> - nama dari printer. Gunakan nama yang 
+	sederhana, sebagai contoh <quote>epson</quote>.
         </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis>Location</emphasis> - the physical location of the printer.
-          This setting is not crucial, but handy for larger organizations.
+	<emphasis>Location</emphasis> - alamat fisik dari printer. 
+	Konfigurasi ini tidak krusial, tapi untuk organisasi yang besar 
+	informasi ini akan sangat berguna.
         </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis>Description</emphasis> - a description of the printer,
-          for example <quote>Epson Stylus Color C42UX</quote>.
+	<emphasis>Description</emphasis> - sebuah deskripsi dari 
+	printer, sebagai contoh <quote>Epson Stylus Color C42UX</quote>.
         </para>
       </listitem>
     </itemizedlist> 
 
     <para>
-      You can proceed by clicking the <quote>Continue</quote> button. On
-      the next page you can configure how the printer is connected. If you
-      have an USB printer which is turned on, the web interface will show
-      the name of the printer next to the USB port that is used. After
-      configuring the printer port you can select the printer brand and
-      model. After that the printer configuration is finished, and the
-      printer will be added to the CUPS configuration.
+	Anda dapat memproses dengan mengklik tombol 
+	<quote>Continue</quote>. Di halaman selanjutnya Anda dapat 
+	melakukan konfigurasi bagaimana printer tersebut terhubung. Jika 
+	Anda memiliki printer USB yang sedang tehubung, antarmuka web 
+	akan menunjukkan nama printer berikut dengan port USB yang 
+	digunakan. Setelah melakukan konfigurasi Anda dapat memilih 
+	merek dan model printer. Setelah konfigurasi printer selesai, 
+	printer akan ditambahkan ke dalam konfigurasi CUPS.
     </para>
 
     <para>
-      An overview of the configured printers can be found on the
-      <quote>Printers</quote> page. On this page you can also do some
-      printer operations. For example, <quote>Print Test Page</quote>
-      can be used to check the printer configuration by printing a test
-      page.
+	Ringkasan dari printer-printer yang telah dikonfigurasikan dapat 
+	ditemukan di halaman <quote>Printers</quote>. Di halaman ini 
+	anda juga dapat melakukan beberapa operasi  pada printer. 
+	Sebagai contoh, <quote>Print Test Page</quote> dapat digunakan 
+	untuk mengecek konfigurasi printer dengan mencetak halaman 
+	contoh.	
     </para>
 
   </sect1>
   
   <sect1 id="printing-accesscontrol">
-    <title>Access control</title>
+    <title>Kendali akses</title>
 
     <indexterm><primary>cups</primary><secondary>access control</secondary></indexterm>
     
     <para>
-      The CUPS printing system provides a web configuration interface, and
-      remote printer access through the Internet Printing Protocol 
-      (<acronym>IPP</acronym>). The CUPS configuration files allow you
-      to configure fine-grained access control to printers. By default access 
-      to printers is limited to <emphasis>localhost</emphasis>
-      (<emphasis>127.0.0.1</emphasis>).
+	Sistem pencetakan dengan CUPS menyediakan konfigurasi dengan 
+	antarmuka web, dan melakukan pencetakan jarak jauh menggunakan 
+	Internet Printing Protocol (<acronym>IPP</acronym>). File 
+	konfigurasi CUPS memungkinkan anda untuk melakukan konfigurasi 
+	dengan menyaring kendali akses ke printer. Secara default akses 
+	ke printer dibatasi hanya ke <emphasis>localhost</emphasis> 
+	(<emphasis>127.0.0.1</emphasis>).
     </para>
     
     <para>
-      You can refine access control in the central CUPS daemon configuration
-      file, <filename>/etc/cups/cupsd.conf</filename>, which has a syntax
-      that is comparable to the Apache configuration file. Access control
-      is configured through <emphasis>Location</emphasis> sections. For
-      example, the default global (IPP root directory) section looks like
-      this:
+	Anda dapat membatasi kendali akses ke dalam pusat file 
+	konfigurasi daemon CUPS, 
+	<filename>/etc/cups/cupsd.conf</filename>, file ini memiliki 
+	sintaks yang dapat dibandingkan ke file konfigursi Apache. 
+	Kendali akses dikonfigurasikan dibagian 
+	<emphasis>Location</emphasis>. Sebagai contoh, bagian default 
+	global (direktori root IPP) terlihat seperti ini:
     </para>
     
     <screen>
@@ -168,14 +178,15 @@ Allow From 127.0.0.1
     </screen>
 
     <para>
-      As you can see deny statements are handled first, and then allow
-      statements. In the default configuration access is denied from
-      all hosts, except for <emphasis>127.0.0.1</emphasis>, 
-      <emphasis>localhost</emphasis>. Suppose that you would like to
-      allow hosts from the local network, which uses the 
-      <emphasis>192.168.1.0/24</emphasis> address space, to use the
-      printers on the system you are configuring CUPS on. In this
-      case you could add the line that is bold:
+	Sebagaimana yang Anda lihat pernyataan deny diatur terlebih 
+	dulu, kemudian pernyataan allow. Dalam konfigurasi default akses 
+	ditolak dari semua host, kecuali untuk 
+	<emphasis>127.0.0.1</emphasis>, <emphasis>localhost</emphasis>. 
+	Andaikan Anda ingin mengijinkan host dari jaringan lokal, yang 
+	menggunakan ruang alamat <emphasis>192.168.1.0/24</emphasis>, 
+	untuk menggunakan printer dalam sistem yang Anda konfigurasikan 
+	menggunakan CUPS. Dalam kasus ini Anda dapat menambahkan baris 
+	yang dicetak tebal:
     </para>
 
     <screen>
@@ -188,12 +199,14 @@ Allow From 127.0.0.1
     </screen>
 
     <para>
-      You can refine other locations in the address space by adding
-      additional location sections. Settings for sub-directories override
-      global settings. For example, you could restrict access to the
-      <emphasis>epson</emphasis> printer to the hosts with IP addresses
-      <emphasis>127.0.0.1</emphasis> and <emphasis>192.168.1.203</emphasis>
-      by adding the following section:
+	Anda dapat menyaring lokasi lainnya dalam ruang alamat diatas 
+	dengan menambahkan bagian lokasi tambahan. Konfigurasi untuk 
+	subdirektori tidak akan memperhatikan konfigurasi global. 
+	Sebagai contoh, Anda dapat membatasi akses ke printer 
+	<emphasis>epson</emphasis> dari host-host dengan alamat 
+	<emphasis>127.0.0.1</emphasis> dan 
+	<emphasis>192.168.1.203</emphasis> dengan menambah bagian 
+	berikut:
     </para>
 
     <screen>
