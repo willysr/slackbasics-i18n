@@ -22,7 +22,7 @@
     <para>
 	Terlepas dari sistem pencetakan apa yang akan Anda gunakan, 
 	adalah 	hal bagus untuk menginstall beberapa koleksi filter 
-	printer. Koleksi ini dapat anda temukan di kumpulan aplikasi 
+	printer. Koleksi ini dapat Anda temukan di kumpulan aplikasi 
 	<quote>ap</quote>. Jika Anda ingin memiliki dukungan untuk 
 	sebagian besar printer, pastikan paket berikut ini terinstall:
     </para>
@@ -88,7 +88,7 @@ ifhp
 	sebagai berikut : <ulink 
 	url="http://localhost:631/">http://localhost:631/</ulink>. 
 	Beberapa bagian dari antarmuka web ini membutuhkan autentifikasi 
-	Anda. Jika halaman autentifikasi mencul, anda dapat memasukkan 
+	Anda. Jika halaman autentifikasi mencul, Anda dapat memasukkan 
 	<quote>root</quote> sebagai nama pengguna, dan mengisi password 
 	pengguna root. 
     </para>
@@ -136,7 +136,7 @@ ifhp
     <para>
 	Ringkasan dari printer-printer yang telah dikonfigurasikan dapat 
 	ditemukan di halaman <quote>Printers</quote>. Di halaman ini 
-	anda juga dapat melakukan beberapa operasi  pada printer. 
+	Anda juga dapat melakukan beberapa operasi  pada printer. 
 	Sebagai contoh, <quote>Print Test Page</quote> dapat digunakan 
 	untuk mengecek konfigurasi printer dengan mencetak halaman 
 	contoh.	
@@ -153,7 +153,7 @@ ifhp
 	Sistem pencetakan dengan CUPS menyediakan konfigurasi dengan 
 	antarmuka web, dan melakukan pencetakan jarak jauh menggunakan 
 	Internet Printing Protocol (<acronym>IPP</acronym>). File 
-	konfigurasi CUPS memungkinkan anda untuk melakukan konfigurasi 
+	konfigurasi CUPS memungkinkan Anda untuk melakukan konfigurasi 
 	dengan menyaring kendali akses ke printer. Secara default akses 
 	ke printer dibatasi hanya ke <emphasis>localhost</emphasis> 
 	(<emphasis>127.0.0.1</emphasis>).
@@ -220,44 +220,47 @@ Allow From 192.168.1.203
   </sect1>
 
   <sect1 id="printing-gspapersize">
-    <title>Ghostscript paper size</title>
+	<title>Ukuran kertas Ghostscript</title>
 
     <indexterm><primary>Ghostscript</primary><secondary>paper size</secondary></indexterm>
 
     <para>
-      Ghostscript is a PostStript and Portable Document Format
-      (<acronym>PDF</acronym>) interpreter. Both PostScript and
-      PDF are languages that describe data that can be printed.
-      Ghostscript is used to
-      convert PostScript and PDF to raster formats that can be
-      displayed on the screen or printed. Most UNIX programs
-      output PostScript, the CUPS spooler uses GhostScript to convert
-      this PostScript to rasterized format that a particular printer
-      understands.
+	Ghostscript adalah sebuah penterjemah jenis dokumen  Portable 
+	Document Format (<acronym>PDF</acronym>) dan PostScript. 
+	PostScript dan PDF keduanya adalah bahasa yang mendeskripsikan 
+	data yang dapat di cetak. Ghostscript digunakan untuk mengubah 
+	PostScript dan PDF ke dalam bentuk format yang bisa ditampilkan 
+	di layar atau dicetak. Kebanyakan program UNIX menggunakan 
+	keluaran PostScript, Spooler CUPS menggunakan GhostScript untuk 
+	mengubah format PostScript ke dalam bentuk yang dapat dimengerti 
+	oleh printer tertentu.
     </para>
 
     <para>
-      There are some Ghostscript configuration settings that may
-      be useful to change in some situations. This section describes
-      how you can change the default paper size that Ghostscript
+	Terdapat beberapa setting konfigurasi Ghostscript yang berguna 
+	untuk diubah dalam situasi tertentu. Bagian ini menjelaskan 
+	bagaimana Anda dapat mengubah ukuran kertas default yang 
+	digunakan Ghostscript.
       uses.
     </para>
 
     <note>
       <para>
-        Some higher-end printers can directly interpret PostScript.
-        Rasterization is not needed for these printers.
+	Beberapa printer tingkat menengah keatas dapat menterjemahkan 
+	secara langsung format PostScript. Pengubahan pola Postscript 
+	tidak diperlukan untuk printer jenis ini.
       </para>
     </note>
 
     <para>
-      By default Ghostscript uses US letter paper as the default
-      paper size. The paper size is configured in
-      <filename>/usr/share/ghostscript/x.xx/lib/gs_init.ps</filename>,
-      in which <emphasis>x.xx</emphasis> should be replaced by
-      the Ghostscript version number. Not far after the beginning
-      of the file there are two lines that are commented out with
-      a percent (%) sign, that look like this:
+	Secara default Ghostscript menggunakan kertas US letter sebagai 
+	ukuran kertas standarnya. Ukuran kertas dikonfigurasikan dalam 
+	berkas 
+	<filename>/usr/share/ghostscript/x.xx/lib/gs_init.ps</filename>, 
+	nilai <emphasis>x.xx</emphasis> diganti dengan nomor versi 
+	Ghostscript. Tidak jauh dari baris pertama, terdapat dua baris 
+	yang di buat menjadi komentar dengan tanda persen (%), yang 
+	tampak seperti di bawah ini:
     </para>
 
     <screen>
@@ -266,9 +269,9 @@ Allow From 192.168.1.203
     </screen>
 
     <para>
-      You can change the Ghostscript configuration to use A4 as the
-      default paper size by removing the percent sign and space that 
-      are at the start of the second line, changing it to:
+	Anda dapat mengganti konfigursi Ghostscript untuk menjadikan A4 
+	sebagai kertas standar dengan menghapus tanda persen dan spasi 
+	yang ada pada awal baris kedua, ubah menjadi:
     </para>
 
     <screen>
@@ -277,10 +280,11 @@ Allow From 192.168.1.203
     </screen>
 
     <para>
-      It is also possible to use another paper size than Letter or
-      A4 by replacing <emphasis>a4</emphasis> in the example above
-      with the paper size you want to use. For example, you could
-      set the default paper size to US Legal with:
+	Dimungkinkan juga untuk menggunakan ukuran kertas lainnya selain 
+	Letter atau A4 dengan mengganti <emphasis>a4</emphasis> pada 
+	contoh diatas dengan ukuran kertas yang Anda inginkan untuk 
+	digunakan. Sebagai contoh, Anda dapat mengeset ukuran kertas 
+	standar ke US Legal dengan:
     </para>
 
     <screen>
@@ -289,19 +293,19 @@ Allow From 192.168.1.203
     </screen>
 
     <para>
-      It is also possible to set the paper size per invocation of
-      Ghostscript by using the
-      <parameter class="command">-sPAPERSIZE=size</parameter> parameter
-      of the <command>gs</command> command. For example, you could
-      use add <emphasis>-sPAPERSIZE=a4</emphasis> parameter when you
-      start <command>gs</command> to use A4 as the paper size for an
-      invocation of Ghostscript.
+	Selain itu dimungkinkan juga untuk mengeset ukuran kertas sesuai 
+	permintaan kepada Ghostscript dengan menggunakan parameter  
+	<parameter class="command">-sPAPERSIZE=size</parameter>  pada 
+	perintah <command>gs</command>. Sebagai contoh, Anda dapat 
+	menggunakan parameter <emphasis>-sPAPERSIZE=a4</emphasis> ketika 
+	Anda memulai perintah <command>gs</command> untuk menggunakan 
+	ukuran kertas A4 sebagai permintaan ke Ghostscript.
     </para>
 
     <para>
-      An overview of supported paper sizes can be found in the
-      <filename>gs_statd.ps</filename>, that can be found in the
-      same directory as <filename>gs_init.ps</filename>.
+	Penjelasan ukuran kertas yang didukung dapat ditemukan dalam 
+	berkas <filename>gs_statd.ps</filename>, terdapat di direktori 
+	yang sama dengan berkas <filename>gs_init.ps</filename>.
     </para>
   </sect1>
 
