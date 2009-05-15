@@ -1739,11 +1739,11 @@ $ <userinput>setfacl -m group:friends:rw-,group:foes:--- report.txt</userinput>
 	</sect4>
 
 	<sect4 xml:id="chap-filesystem-permissions-acl-setting-removing">
-	  <title>Removing ACL entries</title>
+	  <title>Supprimer les entrées ACL</title>
 
 	  <para>
-	    An entry can be removed with the <parameter
-	    class="command">-x</parameter> option:
+	    Une entrée peut être supprimée avec l'option <parameter
+	    class="command">-x</parameter>:
 	  </para>
 
 	  <screen>
@@ -1751,20 +1751,19 @@ $ <userinput>setfacl -x group:friends: report.txt</userinput>
 	  </screen>
 
 	  <para>
-	    The trailing colon can optionally be omitted.
+	    Le deux-points à la fin est optionnel et peut être omis.
 	  </para>
 	</sect4>
 
 	<sect4 xml:id="chap-filesystem-permissions-acl-setting-new">
-	  <title>Making a new ACL</title>
+	  <title>Créer une nouvelle ACL</title>
 
 	  <para>
-	    The <parameter class="command">--set</parameter> option
-	    is provided create a new access control list
-	    for a file, clearing all existing entries,
-	    except for the three required entries.
-	    It is required that the file user, group and
-	    other entries are also specified. For example:
+	    L'option <parameter class="command">--set</parameter> est disponible
+	    pour créer une nouvelle liste de contrôle d'accès pour un fichier,
+	    effaçant les entrées existante, sauf les 3 entrées obligatoires.
+	    Il faut que les entrées utilisateur, groupe et autres (user, group
+	    et other) soient spécifiées. Par exemple :
 	  </para>
 
 	  <screen>
@@ -1772,14 +1771,14 @@ $ <userinput>setfacl --set user::rw-,group::r--,other:---,group:friends:rwx repo
 	  </screen>
 
 	  <para>
-	    If you do not want to clean the user, group, and other
-	    permissions, but do want to clear all other ACL entries,
-	    you can use the <parameter class="command">-b</parameter>
-	    option. The following example uses this in combination
-	    with the <parameter class="command">-m</parameter> option
-	    to clear all ACL entries (except for user, group, and other),
-	    and to add an entry for the <emphasis>friends</emphasis>
-	    group:
+	    Si vous ne voulez pas effacer les permissions user, group et other,
+	    mais voulez supprimer toutes les autres entrées ACL, vous pouvez
+	    utiliser
+	    l'option <parameter class="command">-b</parameter>. L'exemple
+	    suivant effectue cela avec
+	    l'option <parameter class="command">-m</parameter> pour supprimer
+	    toutes les entrées ACL (sauf pour user, group, et other), et pour
+	    ajouter une entrée pour le groupe <emphasis>friends</emphasis> :
 	  </para>
 
 	  <screen>
@@ -1788,15 +1787,16 @@ $ <userinput>setfacl -b -m group:friends:rw- report.txt</userinput>
 	</sect4>
 
 	<sect4 xml:id="chap-filesystem-permissions-acl-setting-default">
-	  <title>Setting a default ACL</title>
+	  <title>Configurer l'ACL par défaut</title>
 
 	  <para>
-	    As we have seen in <xref
-	    linkend="chap-filesystem-permissions-acl" />, directories
-	    can have default ACL entries that specify what permissions
-	    should be used for files and directories that are created
-	    below that directory. The <parameter class="command">-d</parameter>
-	    option is used to operate on default entries:
+	    Comme nous avons vu dans
+	    <xref linkend="chap-filesystem-permissions-acl" />, les répertoires
+	    peuvent avoir des entrées ACL par défaut qui spécifient quelles
+	    permissions doivent être utilisées pour les fichiers et
+	    sous-répertoires créés dans ce
+	    répertoire. L'option <parameter class="command">-d</parameter> est
+	    utilisée pour fixer les entrées par défaut :
 	  </para>
 
 	  <screen>
@@ -1817,17 +1817,16 @@ default:other::r-x
 	</sect4>
 
 	<sect4 xml:id="chap-filesystem-permissions-acl-setting-filesource">
-	  <title>Using an ACL from a reference file</title>
+	  <title>Utiliser une ACL d'un fichier de référence</title>
 
 	  <para>
-	    You can also use an ACL specification from file, rather
-	    than specifying it on the command line. An input file follows
-	    the same
-	    syntax as specifying entries as a parameter to
-	    <command>setfacl</command>, but the entries are separated
-	    by newlines, rather than by commas. This is very useful,
-	    because you can use the ACL for an existing file as a
-	    reference:
+	    Vous pouvez utiliser la spécification d'une ACL à partir d'un
+	    fichier, plutôt que de spécifier en commande en ligne. Un fichier en
+	    d'entrée suit la même syntaxe que la spécification des entrées en
+	    paramètre de <command>setfacl</command>, mais les entrées sont
+	    séparées par des retours à la ligne, plutôt que des virgules. C'est
+	    très utile car vous pouvez l'ACL pour un fichier existant comme
+	    référence :
 	  </para>
 
 	  <screen>
@@ -1835,12 +1834,12 @@ $ <userinput>getfacl report.txt > ref</userinput>
 	  </screen>
 
 	  <para>
-	    The <parameter class="command">-M</parameter> option
-	    is provided to modify the ACL for a
-	    file by reading the entries from a file. So, if we have a
-	    file named <filename>report2.txt</filename>, we could
-	    modify the ACL for this file with the entries from
-	    <filename>ref</filename> with:
+	    L'option <parameter class="command">-M</parameter> est disponible
+	    pour modifier l'ACL pour un fichier en lisant les entrées d'un autre
+	    fichier. Donc, si nous avons un fichier
+	    nommé <filename>report2.txt</filename>, nous pouvons modifier l'ACL
+	    pour ce fichier avec les entrées depuis <filename>ref</filename>
+	    avec :
 	  </para>
 
 	  <screen>
@@ -1848,10 +1847,10 @@ $ <userinput>setfacl -M ref report2.txt</userinput>
 	  </screen>
 
 	  <para>
-	    If you would like to start with a clean ACL, and add the
-	    entries from <filename>ref</filename>, you can add the
-	    <parameter class="command">-b</parameter> flag that we
-	    encountered earlier:
+	    Si vous voulez commencer avec une ACL propre, et ajouter des entrées
+	    depuis <filename>ref</filename>, vous pouvez ajouter le flag
+	    <parameter class="command">-b</parameter> que nous avons vu
+	    précédemment :
 	  </para>
 
 	  <screen>
@@ -1859,11 +1858,11 @@ $ <userinput>setfacl -b -M ref report2.txt</userinput>
 	  </screen>
 
 	  <para>
-	    Of course, it is not necessary to use this interim
-	    file. We can directly pipe the output from
-	    <command>getfacl</command> to <command>setfacl</command>,
-	    by using the symbolic name for the standard input
-	    (<emphasis>-</emphasis>), rather than the name of a file:
+	    Bien sûr, il n'est pas nécessaire d'utiliser ce fichier
+	    intermédiaire. Nous pouvons utiliser rediriger directement la sortie
+	    de <command>getfacl</command> ver <command>setfacl</command>, en
+	    utilisant le nom symbolique de l'entrée standard
+	    (<emphasis>-</emphasis>), plutôt qu'un nom de fichier :
 	  </para>
 
 	  <screen>
@@ -1871,10 +1870,10 @@ $ <userinput>getfacl report.txt | setfacl -b -M - report2.txt</userinput>
 	  </screen>
 
 	  <para>
-	    The <parameter class="command">-X</parameter> removes
-	    the ACL entries defined in a file. This follows the same syntax as the
-	    <parameter class="command">-x</parameter> flag, with
-	    commas replaced by newlines.
+	    <parameter class="command">-X</parameter> supprime toutes les
+	    entrées ACL définies dans un fichier. Cela suit la même syntaxe que
+	    le flag <parameter class="command">-x</parameter>, avec des virgules
+	    remplaçant les retours à la ligne.
 	  </para>
 	</sect4>
       </sect3>
@@ -1882,34 +1881,34 @@ $ <userinput>getfacl report.txt | setfacl -b -M - report2.txt</userinput>
   </sect1>
 
   <sect1 xml:id="chap-filesystem-finding">
-    <title>Finding files</title>
+    <title>Rechercher des fichiers</title>
 
     <sect2 xml:id="chap-filesystem-finding-find">
       <title>find</title>
 
       <para>
-	The <command>find</command> command is without doubt the most
-	comprehensive utility to find files on UNIX systems. Besides
-	that it works in a simple and predictable way:
-	<command>find</command> will traverse the directory tree or
-	trees that are specified as a parameter to
-	<command>find</command>. Besides that a user can specify an
-	expression that will be evaluated for each file and directory.
-	The name of a file or directory will be printed if the
-	expression evaluates to <emphasis>true</emphasis>. The first
-	argument that starts with a dash (<emphasis>-</emphasis>),
-	exclamation mark (<emphasis>!</emphasis>, or an opening
-	parenthesis (<emphasis>(</emphasis>, signifies the start of
-	the expression. The expression can consist of various
-	operands.  To wrap it up, the syntax of
-	<command>find</command> is: <emphasis>find paths
+	La commande <command>find</command> est sans aucun doute l'outil le plus
+	complet pour rechercher des fichiers sur les systèmes UNIX. De plus elle
+	fonctionne de manière simple et déterministe :
+	<command>find</command> parcours l'arborescence des répertoires ou les
+	arborescences spécifiées en paramètre
+	de <command>find</command>. L'utilisateur peut en plus spécifier une
+	expression qui sera évaluée sur chaque fichier et répertoire trouvé.
+	Le nom d'un fichier ou répertoire sera affiché si l'expression est
+	évaluée à <emphasis>vrai</emphasis>. Le premier argument qui commence
+	par un tirer (<emphasis>-</emphasis>), point d'exclamation
+	(<emphasis>!</emphasis>, ou une parenthèse ouvrante
+	(<emphasis>(</emphasis>, signifie le début de l'expression. L'expression
+	peut être constituée de plusieurs opérandes. En bref, la syntaxe de
+	<command>find</command> est : <emphasis>find paths
 	expression</emphasis>.
       </para>
 
       <para>
-	The simplest use of <command>find</command> is to use no
-	expression.  Since this matches every directory and subdirectory
-	entry, all files and directories will be printed. For instance:
+	L'utilisation la plus simple de <command>find</command> est de ne
+	spécifier aucune expression. Puisque cela correspond à toute entrée de
+	répertoire et de sous-répertoire, tous les fichiers et répertoires
+	seront affichés. Par exemple :
       </para>
 
       <screen>
@@ -1924,7 +1923,7 @@ $ <userinput>find .</userinput>
       </screen>
 
       <para>
-	You can also specify multiple directories:
+	Vous pouvez aussi spécifier plusieurs répertoires :
       </para>
 
       <screen>
@@ -1938,16 +1937,16 @@ technical/report.txt
       </screen>
 
       <sect3 xml:id="chap-filesystem-finding-find-nametype">
-	<title>Operands that limit by object name or type</title>
+	<title>Operandes limitant par nom d'objet ou type</title>
 
 	<para>
-	  One common scenario for finding files or directories is to
-	  look them up by name. The <emphasis>-name</emphasis> operand
-	  can be used to match objects that have a certain name, or
-	  match a particular wildcard. For instance, using the operand
-	  <emphasis>-name 'report.txt'</emphasis> will only be true
-	  for files or directories with the name
-	  <filename>report.txt</filename>. For example:
+	  Un scénario courant pour rechercher des fichiers ou répertoires est de
+	  les chercher par nom. L'opérande <emphasis>-name</emphasis> peut être
+	  utilisé pour trouver des objets qui correspondent à un certain nom, ou
+	  qui correspondent à un joker particulier. Par exemple, l'opérande
+	  <emphasis>-name 'report.txt'</emphasis> ne sera vrai seulement que
+	  pour les fichiers ou répertoires dont le nom
+	  est <filename>report.txt</filename>. Par exemple :
 	</para>
 
 	<screen>
@@ -1957,7 +1956,7 @@ technical/report.txt
 	</screen>
 
 	<para>
-	  The same thing holds for wildcards:
+	  La même règle s'applique pour les jokers :
 	</para>
 
 	<screen>
@@ -1968,46 +1967,46 @@ technical/report2.txt
 
 	<note>
 	  <para>
-	    When using <command>find</command> you will want to pass
-	    the wildcard to <command>find</command>, rather than
-	    letting the shell expand it. So, make sure that patterns
-	    are either quoted, or that wildcards are escaped.
+	    Quand vous utilisez <command>find</command> vous voudrez passer le
+	    joker à <command>find</command>, plutôt que de laisser le shell le
+	    résoudre. Donc, vérifiez bien que les motifs sont entre guillemets,
+	    ou que les jokers sont préfixés par le caractère d'échappement.
 	  </para>
 	</note>
 
 	<para>
-	  It is also possible to evaluate the type of the object with
-	  the <emphasis>-type c</emphasis> operand, where
-	  <emphasis>c</emphasis> specifies the type to be matched.
+	  Il est aussi possible d'évaluer le type de l'objet avec
+	  l'opérande <emphasis>-type c</emphasis>, où <emphasis>c</emphasis>
+	  spécifie le type correspondant.
 	  <xref
 	  linkend="chap-filesystem-finding-find-nametype-type-params"
-	  /> lists the various object types that can be used.
+	  /> liste les divers types d'objet pouvant être utilisés.
 	</para>
 
 	<table xml:id="chap-filesystem-finding-find-nametype-type-params">
-	  <title>Parameters for the '-type' operand</title>
+	  <title>Paramètres pour l'opérande '-type'</title>
 
 	  <tgroup cols="2">
 	    <thead>
 	      <row>
-		<entry>Parameter</entry><entry>Meaning</entry>
+		<entry>Paramètre</entry><entry>Signification</entry>
 	      </row>
 	    </thead>
 	    <tbody>
 	      <row>
-		<entry>b</entry><entry>Block device file</entry>
+		<entry>b</entry><entry>Fichier périphérique bloc</entry>
 	      </row>
 	      <row>
-		<entry>c</entry><entry>Character device file</entry>
+		<entry>c</entry><entry>Fichier périphérique caractère</entry>
 	      </row>
 	      <row>
-		<entry>d</entry><entry>Directory</entry>
+		<entry>d</entry><entry>Répertoire</entry>
 	      </row>
 	      <row>
-		<entry>f</entry><entry>Regular file</entry>
+		<entry>f</entry><entry>Fichier régulier</entry>
 	      </row>
 	      <row>
-		<entry>l</entry><entry>Symbolic link</entry>
+		<entry>l</entry><entry>Lien symbolique</entry>
 	      </row>
 	      <row>
 		<entry>p</entry><entry>FIFO</entry>
@@ -2020,9 +2019,9 @@ technical/report2.txt
 	</table>
 
 	<para>
-	  So, for instance, if you would like to match directories,
-	  you could use the <emphasis>d</emphasis> parameter to
-	  <emphasis>-type</emphasis> operand:
+	  Donc, par exemple, si vous voulez trouver les répertoires, vous pouvez
+	  utiliser le paramètre <emphasis>d</emphasis> pour l'opérande
+	  <emphasis>-type</emphasis> :
 	</para>
 
 	<screen>
@@ -2033,17 +2032,17 @@ $ <userinput>find . -type d</userinput>
 	</screen>
 
 	<para>
-	  We will look at forming a complex expression at the end of
-	  this section about <command>find</command>, but at this
-	  moment it is handy to know that you can make a boolean 'and'
-	  expression by specifying multiple operands. For instance
-	  <emphasis>operand1 operand2</emphasis> is true if both
-	  <emphasis>operand1</emphasis> and
-	  <emphasis>operand2</emphasis> are true for the object that
-	  is being evaluated. So, you could combine the
-	  <emphasis>-name</emphasis> and <emphasis>-type</emphasis>
-	  operands to find all directories that start with
-	  <emphasis>eco</emphasis>:
+	  Nous allons voir comment faire une expression complexe à la fin de
+	  cette section pour <command>find</command>, mais à ce point il est
+	  utile de savoir que vous pouvez faire des expressions booléenes 'et'
+	  en spécifiant plusieurs opérandes. Par exemple <emphasis>operand1
+	  operand2</emphasis> est vrai si à la fois
+	  <emphasis>operand1</emphasis> et
+	  <emphasis>operand2</emphasis> sont vraisare true pour l'objet en cours
+	  d'évaluation. Donc, vous pouvez combiner les opérandes
+	  <emphasis>-name</emphasis> et <emphasis>-type</emphasis>
+	  pour rechercher tous les répertoires qui commencent par 
+	  <emphasis>eco</emphasis> :
 	</para>
 
 	<screen>
@@ -2053,28 +2052,29 @@ $ <userinput>find . -name 'eco*' -type d</userinput>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-perms">
-	<title>Operands that limit by object ownership or permissions</title>
+	<title>Les operandes qui limitent par propriétaire d'objet ou par permissions</title>
 
 	<para>
-	  Besides matching objects by their name or type, you can also
-	  match them by their active permissions or the object ownership.
-	  This is often useful to find files that have incorrect permissions
-	  or ownership.
+	  En plus de chercher les objets par nom ou type, vous pouvez aussi
+	  chercher par leur permissions ou par propriétaire d'objet.
+	  Il est souvent utile de rechercher des fichiers avec des permissions
+	  ou propriétaires incorrects.
 	</para>
 
-	<para>
-	  The owner (user) or group of an object can be matched with
-	  respectively the <emphasis>-user username</emphasis> and
-	  <emphasis>-group groupname</emphasis> variants. The name of
-	  a user or group will be interpreted as a user ID or group ID
-	  of the name is decimal, and could not be found on the system
-	  with
+> The name of a user or group will be interpreted as a user ID or group
+> ID if the name is decimal, and could not be found on the system with  
+ 	<para>
+	  Le propriétaire (user) ou groupe d'un objet peut être repéré avec
+	  respectivement les variantes <emphasis>-user username</emphasis> et
+	  <emphasis>-group groupname</emphasis>. Le nom d'un utilisateur ou d'un
+	  groupe sera interprété comme un ID utilisateur ou ID de groupe
+	  si le nom est décimal, et s'il n'a pu être trouvé sur le système avec
 	  <citerefentry><refentrytitle>getpwnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>
-	  or
-	  <citerefentry><refentrytitle>getgrnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>. So,
-	  if you would like to match all objects of which
-	  <emphasis>joe</emphasis> is the owner, you can use
-	  <emphasis>-user joe</emphasis> as an operand:
+	  ou
+	  <citerefentry><refentrytitle>getgrnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>. Donc
+	  si vous voulez chercher tous les objets dont <emphasis>joe</emphasis>
+	  est le propriétaire, vous pouvez utiliser l'opérande 
+	  <emphasis>-user joe</emphasis> :
 	</para>
 
 	<screen>
@@ -2083,8 +2083,8 @@ $ <userinput>find . -user joe</userinput>
 	</screen>
 
 	<para>
-	  Or to find all objects with the group
-	  <emphasis>friend</emphasis> as the file group:
+	  Ou pour trouver tous les objets avec le
+	  groupe <emphasis>friend</emphasis> en tant que groupe de fichier :
 	</para>
 
 	<screen>
@@ -2093,16 +2093,15 @@ $ <userinput>find . -group friends</userinput>
 	</screen>
 
 	<para>
-	  The operand for checking file permissions
-	  <emphasis>-perm</emphasis> is less trivial. Like the
-	  <command>chmod</command> command this operator can work with
-	  octal and symbolic permission notations. We will start with
-	  looking at the octal notation. If an octal number is
-	  specified as a parameter to the <emphasis>-perm</emphasis>
-	  operand, it will match all objects that have exactly that
-	  permissions. For instance, <emphasis>-perm 0600</emphasis>
-	  will match all objects that are only readable and writable
-	  by the user, and have no additional flags set:
+	  L'opérande pour vérifier les permissions du fichier
+	  <emphasis>-perm</emphasis> est moins évident. Comme la commande
+	  <command>chmod</command> cet opérateur peut travailler avec les
+	  notations octale et symbolique. Nous allons commencer par la
+	  notation octale. Si un nombre octal est spécifié en paramètre de
+	  l'opérande <emphasis>-perm</emphasis>, cela va trouver tous les objets
+	  ayant exactement ces permissions. Par exemple, <emphasis>-perm
+	  0600</emphasis> va trouver tous les objets en lecture et écriture
+	  seulement pour l'utilisateur, sans autre flag positionné :
 	</para>
 
 	<screen>
@@ -2111,13 +2110,13 @@ $ <userinput>find . -perm 0600</userinput>
 	</screen>
 
 	<para>
-	  If a dash is added as a prefix to a number, it will match
-	  every object that has at least the bits set that are
-	  specified in the octal number. A useful example is to find
-	  all files which have at least writable bits set for
-	  <emphasis>other</emphasis> users with <emphasis>-perm
-	  -0002</emphasis>. This can help you to find device nodes or
-	  other objects with insecure permissions.
+	  Si un tiret est ajouté en préfixe d'un nombre, cela correspond à tout
+	  objet ayant au moins les bits positionnés spéfifiés dans le nombre
+	  octal. Un exemple utile est de rechercher tous les fichiers qui ont au
+	  moins les permissions d'écritures pour les utilisateurs
+	  <emphasis>autre</emphasis> (other) avec <emphasis>-perm
+	  -0002</emphasis>. Cela peut vous aider à rechercher les point d'accès
+	  de périphériques ou autres objets avec des permissions non sûres.
 	</para>
 
 	<screen>
@@ -2136,24 +2135,25 @@ $ <userinput>find /dev -perm -0002</userinput>
 
 	<note>
 	  <para>
-	    Some device nodes have to be world-writable for a UNIX
-	    system to function correctly. For instance, the
-	    <filename>/dev/null</filename> device is always writable.
+	    Certains points d'accès de périphériques doivent être en écriture
+	    pour tout le monde pour qu'un système UNIX fonctionne
+	    correctement. Par exemple le
+	    périphérique <filename>/dev/null</filename> est toujours en
+	    écriture.
 	  </para>
 	</note>
 
 	<para>
-	  The symbolic notation of <emphasis>-perm</emphasis>
-	  parameters uses the same notation as the
-	  <command>chmod</command> command.  Symbolic permissions are
-	  built with a file mode where all bits are cleared, so it is
-	  never necessary to use a dash to take away rights. This also
-	  prevents ambiguity that could arise with the dash
-	  prefix. Like the octal syntax, prefixing the permission with
-	  a dash will match objects that have at least the specified
-	  permission bits set. The use of symbolic names is quite
-	  predictable - the following two commands repeat the previous
-	  examples with symbolic permissions:
+	  La notation symbolique des paramètres <emphasis>-perm</emphasis>
+	  utilise la même notation que la commande <command>chmod</command>. Les
+	  permissions symboliques sont contruite avec un mode de fichier où tous
+	  les bits sont effacés, donc il n'est jamais nécessaire d'utiliser le
+	  tiret pour supprimer les droits. Cela lève aussi toute ambiguité qu'il
+	  pourrait y avoir avec le préfixe tiret. Comme la syntaxe en octal,
+	  prefixer les permissions avec un tiret cherchera les objets qui ont au
+	  moins les bits de permissions spécifiés. L'utilisation des noms
+	  symboliques est assez déterministe - les 2 commandes suivantes
+	  répètent les exemples précédents avec les permissions symboliques :
 	</para>
 
 	<screen>
@@ -2177,53 +2177,51 @@ $ <userinput>find /dev -perm -o+w</userinput>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-time">
-	<title>Operands that limit by object creation time</title>
+	<title>Opérandes qui filtrent par date de creation d'object</title>
 
 	<para>
-	  There are three operands that operate on time intervals.
-	  The syntax of the operand is <emphasis>operand n</emphasis>,
-	  where <emphasis>n</emphasis> is the time in days. All three
-	  operators calculate a time delta in seconds that is divided
-	  by the the number of seconds in a day (86400), discarding
-	  the remainder. So, if the delta is one day,
-	  <emphasis>operand 1</emphasis> will match for the
-	  object. The three operands are:
+	  Il y a 3 opérandes qui fonctionnent sur des intervalles de temps.
+	  La syntax de l'opérande est <emphasis>operand n</emphasis>,
+	  où <emphasis>n</emphasis> est le temps en jours. Tous les 3 operateurs
+	  calculent un delta de temps en secondes divisé par le nombre de
+	  secondes dans un jour (86400), supprimant le reste de la
+	  division. Donc, si le delta est un jour,
+	  <emphasis>operand 1</emphasis> va chercher l'objet. Les 3 opérandes
+	  sont :
 	</para>
 
 	<itemizedlist>
 	  <listitem>
 	    <para>
-	      <emphasis>-atime n</emphasis> - this operand evaluates
-	      to true if the initialization time of <command>find</command>
-	      minus the last access time of the object equals
-	      to <emphasis>n</emphasis>.
+	      <emphasis>-atime n</emphasis> - cet opérande vaut vrai si la date
+	      de début d'exécution de <command>find</command> moins la date du
+	      dernier accès à l'objet est égale à <emphasis>n</emphasis>.
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>-ctime n</emphasis> - this operand evaluates
-	      to true if the initialization time of
-	      <command>find</command> minus the time of the latest
-	      change in the file status information equals to
+	      <emphasis>-ctime n</emphasis> - cet opérande vaut vrai si la date
+	      de début d'exécution de <command>find</command> moins la date du
+	      dernier changement de statut de l'objet est égale à
 	      <emphasis>n</emphasis>.
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>-mtime n</emphasis> - this operand evaluates
-	      to true if the initialization time of
-	      <command>find</command> minus the latest file change
-	      time equals to <emphasis>n</emphasis>.
+	      <emphasis>-mtime n</emphasis> -  cet opérande vaut vrai si la date
+	      de début d'exécution de <command>find</command> moins la date de
+	      dernière modification de l'objet est égale
+	      à <emphasis>n</emphasis>.
 	    </para>
 	  </listitem>
 	</itemizedlist>
 
 	<para>
-	  So, these operands match if the latest access, change,
-	  modification respectively was <emphasis>n</emphasis> days
-	  ago. To give an example, the following command shows all
-	  objects in <filename>/etc</filename> that have been modified
-	  one day ago:
+	  Donc, ces opérandent cherchent si le dernier accès, changement,
+	  modification respectivement a été fait il y a <emphasis>n</emphasis>
+	  jours. Pour donner un exemple, la commande suivante montre tous les
+	  objets dans <filename>/etc</filename> qui ont été modifiés il y a 1
+	  jour :
 	</para>
 
 	<screen>
@@ -2237,12 +2235,13 @@ $ <userinput>find /etc -mtime 1</userinput>
 	</screen>
 
 	<para>
-	  The plus or minus sign can be used as modifiers for the meaning
-	  of <emphasis>n</emphasis>. <emphasis>+n</emphasis> means more
-	  than <emphasis>n</emphasis> days, <emphasis>-n</emphasis>
-	  means less than <emphasis>n</emphasis> days. So, to find all
-	  files in <filename>/etc</filename> that were modified less
-	  than two days ago, you could execute:
+	  Le signe plus ou moins peut être utilisé pour modifier sa
+	  signification de <emphasis>n</emphasis>. <emphasis>+n</emphasis>
+	  signifie de plus de <emphasis>n</emphasis>
+	  jours, <emphasis>-n</emphasis> signifie de moins
+	  de <emphasis>n</emphasis> jours. Donc, pour trouver tous les fichiers
+	  dans <filename>/etc</filename> qui ont été modifiés depuis moins de 2
+	  jours, vous pouvez exécuter :
 	</para>
 
 	<screen>
@@ -2257,12 +2256,13 @@ $ <userinput>find /etc -mtime -2</userinput>
 	</screen>
 
 	<para>
-	  Another useful time-based operand is the <emphasis>-newer
-	  reffile</emphasis> operand. This matches all files that were
-	  modified later that the file with filename
-	  <filename>reffile</filename>. The followin example shows how
-	  you could use this to list all files that have later modification
-	  times than <filename>economic/report2.txt</filename>:
+	  Un autre opérande utile basé sur le temps est
+	  l'opérande <emphasis>-newer reffile</emphasis>. Il cherche tous les
+	  fichiers qui ont été modifiés plus tard que le fichier dont le nom est
+	  <filename>reffile</filename>. L'exemple suivant montre comment
+	  utiliser cela pour lister tous les fichiers qui ont une date de
+	  modification supérieure que celle
+	  de <filename>economic/report2.txt</filename> :
 	</para>
 
 	<screen>
@@ -2277,22 +2277,22 @@ $ <userinput>find . -newer economic/report2.txt</userinput>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-depth">
-	<title>Operands that affect tree traversal</title>
+	<title>Opérandes qui influent sur le parcours de l'arborescence</title>
 
 	<para>
-	  Some operands affect the manner in which the
-	  <command>find</command> command traverses the tree. The
-	  first of these operands is the <emphasis>-xdev</emphasis>
-	  operand. <emphasis>-xdev</emphasis> prevents that
-	  <command>find</command> decends into directories that have a
-	  different device ID, effectively avoiding traversal of other
-	  filesystems. The directory to which the filesystem is
-	  mounted, is printed, because this operand always returns
-	  <emphasis>true</emphasis>. A nice example is a system where
-	  <filename>/usr</filename> is mounted on a different filesystem
-	  than <filename>/</filename>. For instance, if we search for
-	  directories with the name <emphasis>bin</emphasis>, this may
-	  yield the following result:
+	  Certains opérandes influent sur la façon dont la commande
+	  <command>find</command> parcours l'arborescence. Le premier de ces
+	  opérandes est
+	  l'opérande <emphasis>-xdev</emphasis>. <emphasis>-xdev</emphasis>
+	  empêche <command>find</command> d'explorer les répertoires qui ont un
+	  ID de périphérique, empêchant dans les fait l'exploration d'autres
+	  systèmes de fichiers. Le répertoire dans lequel le système de fichiers
+	  est monté, est affiché, car cet opérande retourne
+	  toujours <emphasis>vrai</emphasis>. Un bon exemple est un système où
+	  <filename>/usr</filename> est monté sur un système de fichiers
+	  différent de <filename>/</filename>. Par conséquent, si nous cherchons
+	  les répertoires dont le nom est <emphasis>bin</emphasis>, cela doit
+	  conduire au résultat suivant :
 	</para>
 
 	<screen>
@@ -2302,9 +2302,9 @@ $ <userinput>find / -name 'bin' -type d</userinput>
 	</screen>
 
 	<para>
-	  But if we add <emphasis>-xdev</emphasis>
-	  <filename>/usr/bin</filename> is not found, because it is on
-	  a different filesystem (and device):
+	  Mais si nous ajoutons <emphasis>-xdev</emphasis>
+	  <filename>/usr/bin</filename> n'est pas trouvé, car il est sur un
+	  système de fichiers différent (et sur un périphérique différent) :
 	</para>
 
 	<screen>
@@ -2313,11 +2313,10 @@ $ <userinput>find / -name 'bin' -type d -xdev</userinput>
 	</screen>
 
 	<para>
-	  The <emphasis>-depth</emphasis> operand modifies the order
-	  in which directories are evaluated. With
-	  <emphasis>-depth</emphasis> the contents of a directory are
-	  evaluated first, and then the directory itself. This can be
-	  witnessed in the following example:
+	  L'opérande <emphasis>-depth</emphasis> change l'ordre d'évaluation des
+	  répertoires. Avec <emphasis>-depth</emphasis> le contenu d'un
+	  répertoire est évalué en premier, et ensuite le répertoire
+	  lui-même. Cela peut être vu dans l'exmple suivant :
 	</para>
 
 	<screen>
@@ -2332,40 +2331,40 @@ $ <userinput>find . -depth</userinput>
 	</screen>
 
 	<para>
-	  As you can see in the output, files in the
-	  <emphasis>./economic</emphasis> directory is evaluated
-	  before <filename>.</filename>, and
-	  <filename>./economic/report.txt</filename> before
+	  Comme vous pouvez le voir dans la sortie, les fichiers dans le
+	  répertoire <emphasis>./economic</emphasis> sont évalués
+	  avant <filename>.</filename>,
+	  et  <filename>./economic/report.txt</filename> avant
 	  <filename>./economic</filename>. <emphasis>-depth</emphasis>
-	  always evaluates to <emphasis>true</emphasis>.
+	  vaut toujours <emphasis>vrai</emphasis>.
 	</para>
 
 	<para>
-	  Finally, the <emphasis>-prune</emphasis> operand causes find
-	  not to decend into a directory that is being evaluated.
-	  <emphasis>-prune</emphasis> is discarded if the
-	  <emphasis>-depth</emphasis> operand is also
-	  used. <emphasis>-depth</emphasis> always evaluates to
-	  <emphasis>true</emphasis>.
+	  Enfin, l'opérande <emphasis>-prune</emphasis> fait que find ne descend
+	  pas dans un répertoire en cours d'évaluation.
+	  <emphasis>-prune</emphasis> est ignoré si l'opérande
+	  <emphasis>-depth</emphasis> est aussi
+	  spécifié. <emphasis>-depth</emphasis> est toujours évalué à
+	  <emphasis>vrai</emphasis>.
 	</para>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-exec">
-	<title>Operands that execute external utilities</title>
+	<title>Opérandes exécutant des utilitaires externes</title>
 
 	<para>
-	  <command>find</command> becomes a very powerful tool when it
-	  is combined with external utilities. This can be done with
-	  the <emphasis>-exec</emphasis> operand. There are two
-	  syntaxes for the <emphasis>-exec</emphasis> operand. The
-	  first syntax is <emphasis>-exec utility arguments
-	  ;</emphasis>. The command <emphasis>utility</emphasis> will
-	  be executed with the arguments that were specified for each
-	  object that is being evaluated. If any of the arguments is
-	  <emphasis>{}</emphasis>, these braces will be replaced by
-	  the file being evaluated. This is very handy, especially when
-	  we consider that, if we use no additional expression syntax,
-	  operands will be evaluated from left to right. Let's look at
+	  <command>find</command> devient un outil très puissant dès qu'il est
+	  combiné avec des utilitaires externes. Cela peut être fait avec
+	  l'opérande <emphasis>-exec</emphasis>. Il y a 2 syntaxes pour
+	  l'opérande <emphasis>-exec</emphasis>. La première syntaxe
+	  est <emphasis>-exec utilitaire arguments ;</emphasis>. La
+	  commande <emphasis>utilitaire</emphasis> sera exécutée avec les
+	  arguments qui ont été spécifiés pour chaque objet évalué. Si un
+	  quelconque argument est <emphasis>{}</emphasis>, ces accolades seront
+	  remplacées par le fichier évalué. Cela est très utile, spécialement
+	  quand on considère que, si nous n'utilisons pas d'autre syntaxe
+	  d'expression supplémentaire, les operandes seront évalués de gauche à
+	  droite. Regardons un exemple :
 	  an example:
 	</para>
 
@@ -2374,34 +2373,34 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} \;</userinput>
 	</screen>
 
 	<para>
-	 The first operand returns true for files that have their
-	 permissions set to <emphasis>0666</emphasis>. The second
-	 operand executes <emphasis>chmod 0644 filename</emphasis> for
-	 each file that is being evaluated. If you were wondering why
-	 this command is not executed for every file, that is a good
-	 question. Like many other interpreters of expressions,
-	 <command>find</command> uses <quote>short-circuiting</quote>.
-	 Because no other operator was specified, the logical
-	 <emphasis>and</emphasis> operator is automatically is assumed
-	 between both operands. If the first operand evaluates to
-	 <emphasis>false</emphasis>, it makes no sense to evaluate any
-	 further operands, because the complete expression will always
-	 evaluate to false. So, the <emphasis>-exec</emphasis> operand
-	 will only be evaluated if the first operand is true. Another
-	 particularity is that the semi-colon that closes the
-	 <emphasis>-exec</emphasis> is escaped, to prevent that the
-	 shell parses it.
+	 Le premier opérande retourne vrai pour les fichiers qui ont pour
+	 permissions <emphasis>0666</emphasis>. Le second opérande
+	 exécute <emphasis>chmod 0644 filename</emphasis> pour chaque fichier
+	 évalué. Si vous vous demandez pourquoi la commande n'est pas exécutée
+	 pour chaque fichier, c'est une bonne question. Comme beaucoup
+	 d'interpréteurs d'expressions, <command>find</command> utilise
+	 le <quote>court-circuit</quote>.
+	 Comme aucun autre opérateur n'a été spécifié, l'opérateur logique
+	 <emphasis>et</emphasis> est automatiquement appliqué entre les 2
+	 opérandes. Si le premier opérande est évalué
+	 à <emphasis>faux</emphasis>, il n'y a aucune raison pour évaluer un
+	 quelconque autre opérande, cat l'expression complète sera toujours
+	 évaluée à faux. Donc, l'opérande <emphasis>-exec</emphasis> ne sera
+	 évalué que si le premier opérande est vrai. Une autre particularité est
+	 que le point-virgule qui clos le <emphasis>-exec</emphasis> est préfixé
+	 par le caractère d'échappementis escaped, pour empêcher le shell de le
+	 prendre en compte.
 	</para>
 
 	<para>
-	  A nice thing about the <emphasis>-exec</emphasis> operator
-	  is that it evaluates to <emphasis>true</emphasis> if the
-	  command terminated sucessfully. So, you could also use
-	  the <emphasis>-exec</emphasis> command to add additional
-	  conditions that are not represented by <command>find</command>
-	  operands. For instance, the following command prints
-	  all objects ending with <emphasis>.txt</emphasis> that contain
-	  the string <emphasis>gross income</emphasis>:
+	  Une chose intéressante sur l'opérateur <emphasis>-exec</emphasis> est
+	  qu'il évalue à <emphasis>vrai</emphasis> si la commande se termine
+	  avec succès.Donc, vous pouvez aussi utiliser la
+	  commande <emphasis>-exec</emphasis> pour ajouter des conditions
+	  supplémentaires qui ne sont pas representées par les opérandes
+	  de <command>find</command>. Par exemple, la commande suivante affiche
+	  tous les objets finissant par <emphasis>.txt</emphasis> qui
+	  contiennent la chaîne de caractère <emphasis>gross income</emphasis> :
 	</para>
 
 	<screen>
@@ -2410,22 +2409,22 @@ $ <userinput>find . -name '*.txt' -exec grep -q 'gross income' {} \; -print</use
 	</screen>
 
 	<para>
-	  The <command>grep</command> command will be covered lateron.
-	  <!-- XXX - xref --> But for the moment, it is enough to know
-	  that it can be used to match text patterns. The
-	  <emphasis>-print</emphasis> operand prints the current
-	  object path. It is always used implicitly, except when the
-	  <emphasis>-exec</emphasis> or <emphasis>-ok</emphasis>
-	  operands are used. <!-- XXX - move to introduction? -->
+	  La commande <command>grep</command> sera vue plus tard.
+	  <!-- XXX - xref --> Mais pour le moment, il est suffisant de savoir
+	  qu'elle peut être utilisée pour chercher des motifs de
+	  texte. L'opérande <emphasis>-print</emphasis> affiche le chemin
+	  courant de l'objet. Il est toujours implicite, sauf quand les
+	  opérandes <emphasis>-exec</emphasis> ou <emphasis>-ok</emphasis>
+	  sont spécifiés. <!-- XXX - move to introduction? -->
 	</para>
 
 	<para>
-	  The second syntax of the <emphasis>-exec</emphasis> operand
-	  is <emphasis>-exec utility arguments {} +</emphasis>. This
-	  gathers a set of all matched object for which the expression
-	  is true, and provides this set of files as an argument to
-	  the utility that was specified. The first example of the
-	  <emphasis>-exec</emphasis> operand can also be written as:
+	  La seconde syntaxe de l'opérande <emphasis>-exec</emphasis>
+	  est <emphasis>-exec utilitaire arguments {} +</emphasis>. Cela
+	  récupère la liste de tous les objets trouvés pour lesquels
+	  l'expression est vraie, et fournit cette liste de fichiers en argument
+	  de l'utlitaire spécifié. Le permier exemple de l'opérande
+	  <emphasis>-exec</emphasis> peut aussi être écrit :
 	</para>
 
 	<screen>
@@ -2433,37 +2432,38 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} +</userinput>
 	</screen>
 
 	<para>
-	  This will execute the <command>chmod</command> command only
-	  once, with all files for which the expression is true as its
-	  arguments. This operand always returns <emphasis>true</emphasis>.
+	  Cela va exécuter la commande <command>chmod</command> seulement une
+	  seule fois, avec tous les fichiers pour lesquels l'expression est
+	  vraie en tant qu'arguments. Cet opérande retourne
+	  toujours <emphasis>vrai</emphasis>.
 	</para>
 
 	<para>
-	  If a command executed by find returns a non-zero value
-	  (meaning that the execution of the command was not
-	  succesful), <command>find</command> should also return a
-	  non-zero value.
+	  Si une commande exécutée par find retourne une valeur différente de
+	  zéro (signifiant que l'exécution de la commande ne s'est pas terminée
+	  avec succès), <command>find</command> va retourner également une
+	  valeur non nulle.
 	</para>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-operators">
-	<title>Operators for building complex expressions</title>
+	<title>Opérateurs pour la construction d'expressions complexes</title>
 
 	<para>
-	  <command>find</command> provides some operators that can be
-	  combined to make more complex expressions:
+	  <command>find</command> fournir quelques opérateurs qui peuvent être
+	  combinés pour faire des expressions plus complexes :
 	</para>
 
 	<variablelist>
-	  <title>Operators</title>
+	  <title>Operateurs</title>
 
 	  <varlistentry>
 	    <term>( expr )</term>
 	    <listitem>
 	      <para>
-		Evaluates to <emphasis>true</emphasis> if
-		<emphasis>expr</emphasis> evaluates to
-		<emphasis>true</emphasis>.
+		Est évalué à <emphasis>vrai</emphasis> si
+		<emphasis>expr</emphasis> est évalué à
+		<emphasis>vrai</emphasis>.
 	      </para>
 	    </listitem>
 	  </varlistentry>
@@ -2471,17 +2471,17 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} +</userinput>
 	    <term>expr1 [-a] expr2</term>
 	    <listitem>
 	      <para>
-		Evaluates to <emphasis>true</emphasis> if both
-		<emphasis>expr1</emphasis> and <emphasis>expr2</emphasis>
-		are true. If <emphasis>-a</emphasis> is omitted,
-		this operator is implicitly assumed.
+		Evalue à <emphasis>vrai</emphasis> si à la fois
+		<emphasis>expr1</emphasis> et <emphasis>expr2</emphasis>
+		sont vrais. Si <emphasis>-a</emphasis> est omis, cet opérateur
+		est considéré implicitement.
 	      </para>
 
 	      <para>
-		<command>find</command> will use short-circuiting when
-		this operator is evaluated: <emphasis>expr2</emphasis>
-		will not be evaluated when <emphasis>expr1</emphasis>
-		evaluates to <emphasis>false</emphasis>
+		<command>find</command> va utiliser le court-circuit quand cet
+		opérateur est évalué : <emphasis>expr2</emphasis>
+		ne sera pas évalue quand <emphasis>expr1</emphasis>
+		est évalué à <emphasis>faux</emphasis>
 	      </para>
 	    </listitem>
 	  </varlistentry>
@@ -2489,16 +2489,16 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} +</userinput>
 	    <term>expr1 -o expr2</term>
 	    <listitem>
 	      <para>
-		Evaluates to <emphasis>true</emphasis> if either or
-		both <emphasis>expr1</emphasis> and
-		<emphasis>expr2</emphasis> are true.
+		Evalue à <emphasis>vrai</emphasis> si une des
+		deux expressions <emphasis>expr1</emphasis>
+		ou <emphasis>expr2</emphasis> est vrai.
 	      </para>
 
 	      <para>
-		<command>find</command> will use short-circuiting when
-		this operator is evaluated: <emphasis>expr2</emphasis>
-		will not be evaluated when <emphasis>expr1</emphasis>
-		evaluates to <emphasis>true</emphasis>
+		<command>find</command> va utiliser le court-circuit quand cet
+		opérateur est évalué : <emphasis>expr2</emphasis>
+		ne sera pas évalué si <emphasis>expr1</emphasis>
+		vaut <emphasis>vrai</emphasis>
 	      </para>
 	    </listitem>
 	  </varlistentry>
@@ -2506,26 +2506,25 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} +</userinput>
 	    <term>! expr</term>
 	    <listitem>
 	      <para>
-		Negates <emphasis>expr</emphasis>. So, if
-		<emphasis>expr</emphasis> evaluates to true, this
-		expression will evaluate to <emphasis>false</emphasis>
-		and vise versa.
+		Fait une négation logique de <emphasis>expr</emphasis>. Donc, si
+		<emphasis>expr</emphasis> est évalué à vrai, cette expression
+		sera évaluée à <emphasis>faux</emphasis> et vice-versa.
 	      </para>
 	    </listitem>
 	  </varlistentry>
 	</variablelist>
 
 	<para>
-	  Since both the parentheses and exclamation mark characters
-	  are interpreted by most shells, they should usually be
-	  escaped.
+	  Puisque les 2 parenthèses et le point d'exclamation sont interprétés
+	  par la plupart des shells, il doivent être préfixés par le caractère
+	  d'échappement.
 	</para>
 
 	<para>
-	  The following example shows some operators in action. This
-	  command executes <command>chmod</command> for all files that
-	  either have their permissions set to
-	  <emphasis>0666</emphasis> or <emphasis>0664</emphasis>.
+	  L'exemple suivant montre quelques opérateurs en action. Cette commande
+	  exécute <command>chmod</command> pour tous les fichiers qui ont soit
+	  leur permissions à <emphasis>0666</emphasis> ou
+	  bien <emphasis>0664</emphasis>.
 	</para>
 
 	<screen>
