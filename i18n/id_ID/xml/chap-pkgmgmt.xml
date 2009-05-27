@@ -2,37 +2,37 @@
 
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:id="chap-pkgmgmt">
-  <title>Package Management</title>
+  <title>Manajemen paket</title>
 
   <sect1 xml:id="chap-pkgmgmt-pkgtools">
     <title>Pkgtools</title>
 
     <sect2 xml:id="chap-pkgmgmt-pkgtools-intro">
-      <title>Introduction</title>
+      <title>Perkenalan</title>
 
       <para>
-	Slackware Linux does not use a complex package system, unlike
-	many other Linux distributions. Package have the
-	<filename>.tgz</filename> extension, and are usually ordinary
-	tarballs which contain two extra files: an installation script
-	and a package description file.  Due to the simplicity of the
-	packages the Slackware Linux package tools do not have the
-	means to handle dependencies. But many Slackware Linux users
-	prefer this approach, because dependencies often cause more
-	problems than they solve.
+	Slackware linux tidak menggunakan sistem paket yang kompleks, 
+	tidak seperti distribusi linux lainnya. Paket memiliki ekstensi 
+	<filename>.tgz</filename>, dan biasanya merupakan paket tarball 
+	biasa dengan dua berkas tambahan yaitu : sebuah skrip instalasi 
+	dan berkas deskripsi paket tersebut. Sehubungan dengan 
+	kesederhanaan dari paketnya, aplikasi manajemen Slackware Linux 
+	tidak melakukan penanganan terhadap dependensi. Tetapi banyak 
+	pengguna Slackware Linux memilih cara ini, karena penanganan 
+	dependensi sering mengakibatkan masalah dibanding pemecahannya.
       </para>
 
       <para>
-        Slackware Linux has a few tools to handle packages. The most
-        important tools will be covered in this chapter. To learn to
-        understand the tools we need to have a look at package
-        naming. Let's have a look at an example, imagine that we have
-        a package with the file name
-        <filename>bash-2.05b-i386-2.tgz</filename>. In this case the
-        name of the package is bash-2.05b-i386-2. In the package name
-        information about the package is separated by the '-'
-        character. A package name has the following meaning:
-        <emphasis>programname-version-architecture-packagerevision</emphasis>
+	Slackware Linux memiliki beberapa aplikasi yang digunakan untuk 
+	menangani paket. Pada bab ini akan dibahas aplikasi penanganan 
+	paket yang paling penting. Untuk belajar memahami aplikasi 
+	tersebut, penting untuk melihat penamaan paket terlebih dulu. 
+	Mari kita lihat sebuah contoh, bayangkan kita memiliki paket 
+	dengan nama berkas <filename>bash-2.05b-i386-2.tgz</filename>. 
+	Dalam kasus ini nama paket adalah bash-2.05b-i386-2. Dalam nama 
+	paket informasi tentang paket dipisahkan menggunakan karakter 
+	'-'. Sebuah nama paket memiliki arti sebagai berikut : 
+	<emphasis>namaprogram-versi-arsitektur-versipaket</emphasis>
       </para>
 
     </sect2>
@@ -41,20 +41,22 @@
       <title>pkgtool</title>
 
       <para>
-	The <command>pkgtool</command> command provides a menu
-	interface for some package operations. The most important menu
-	items are <emphasis>Remove</emphasis> and
-	<emphasis>Setup</emphasis>. The <emphasis>Remove</emphasis>
-	option presents a list of installed packages. You can select
-	which packages you want to remove with the space bar and
-	confirm your choices with the return key. You can also
-	deselect a package for removal with the space bar.
+	Perintah <command>pkgtool</command> menyediakan antarmuka dalam 
+	bentuk menu untuk melakukan beberapa operasi terhadap paket. 
+	Bagian menu yang paling penting adalah 
+	<emphasis>Remove</emphasis> dan <emphasis>Setup</emphasis>. Opsi 
+	<emphasis>Remove</emphasis> menampilkan daftar paket yang telah 
+	terinstall. Anda dapat memilih paket mana yang Anda ingin hapus 
+	dengan menekan tombol spasi kemudian mengkonfirmasi pilihan Anda 
+	dengan menekan tombol Enter. Anda juga dapat membatalkan pilihan 
+	pada paket yang ingin Anda hapus dengan menekan kembali tombol 
+	spasi.
       </para>
 
       <para>
-	The <emphasis>Setup</emphasis> option provides access to a few
-	tools which can help you with configuring your system, for
-	example: <command>netconfig</command>,
+	Opsi <emphasis>Setup</emphasis> menyediakan akses ke beberapa 
+	aplikasi yang dapat membantu melakukan konfigurasi terhadap 
+	sistem Anda, sebagai contoh: <command>netconfig</command>, 
 	<command>pppconfig</command> and <command>xwmconfig</command>.
       </para>
     </sect2>
@@ -63,10 +65,11 @@
       <title>installpkg</title>
 
       <para>
-	The <command>installpkg</command> command is used to install
-	packages.  <command>installpkg</command> needs a package file
-	as a parameter.  For example, if you want to install the
-	package <filename>bash-2.05b-i386-2.tgz</filename> execute:
+	Perintah <command>installpkg</command> digunakan untuk 
+	menginstall paket. <command>installpkg</command> membutuhkan 
+	berkas paket sebagai parameter. Sebagai contoh, jika Anda ingin 
+	menginstall paket <filename>bash-2.05b-i386-2.tgz</filename> 
+	jalankan perintah sebagai berikut:
       </para>
 
       <screen>
@@ -79,12 +82,13 @@
       <title>upgradepkg</title>
 
       <para>
-        <command>upgradepkg</command> can be used to upgrade
-        packages. In contrast to <command>installpkg</command> it only
-        installs packages when there is an older version available on
-        the system. The command syntax is comparable to
-        <command>installpkg</command>. For example, if you want to
-        upgrade packages using package in a directory execute:
+	<command>upgradepkg</command> dapat digunakan untuk mengupgrade 
+	paket. Berbeda dengan <command>installpkg</command>, aplikasi 
+	ini hanya menginstall paket jika dalam sistem terdapat versi 
+	yang lebih lama dari paket tersebut. Sintaks perintahnya dapat 
+	dibandingkan dengan <command>installpkg</command>. Sebagai 
+	contoh, jika Anda ingin mengupgrade paket menggunakan paket yang 
+	ada di dalam sebuah direktori, jalankan perintah berikut :        
       </para>
 
       <screen>
