@@ -96,8 +96,9 @@
       </screen>
 
       <para>
-        As said only those packages will be installed of which an other
-        version is already installed on the system.
+	Seperti yang telah dikatakan, paket-paket tersebut akan 
+	terinstall jika versi lain telah terinstall pada sistem 
+	tersebut. 
       </para>
     </sect2>
 
@@ -105,10 +106,11 @@
       <title>removepkg</title>
 
       <para>
-	The <command>removepkg</command> can be used to remove
-	installed packages. For example, if you want to remove the
-	<quote>bash</quote> package (it is not recommended to do
-	that!), you can execute:
+	Perintah <command>removepkg</command> dapat digunakan untuk 
+	menghapus paket yang telah terinstall. Sebagai contoh, jika Anda 
+	ingin menghapus paket <quote>bash</quote> (Sangat tidak 
+	dianjurkan untuk melakukan hal ini !), Anda dapat mengeksekusi 
+	perintah:
       </para>
 
       <screen>
@@ -116,9 +118,9 @@
       </screen>
 
       <para>
-        As you can see only the name of the program is specified in
-        this example. You can also remove a package by specifying its
-        full name:
+	Seperti yang Anda lihat, hanya nama program yang disebutkan 
+	dalam contoh ini. Anda juga dapat menghapus sebuah paket dengan 
+	menyebutkan nama lengkap dari paket tersebut :
       </para>
 
       <screen>
@@ -131,30 +133,31 @@
     <title>Slackpkg</title>
 
     <sect2 xml:id="chap-pkgmgmt-slackpkg-intro">
-      <title>Introduction</title>
+      <title>Perkenalan</title>
 
       <para>
-        Slackpkg is a package tool written by Roberto F. Batista and
-        Evaldo Gardenali.  It helps users to install and upgrade
-        Slackware Linux packages using one of the Slackware Linux
-        mirrors. Slackpkg is included in the
-        <filename>extra/</filename> directory on the second CD of the
-        Slackware Linux CD set.
+	Slackpkg adalah aplikasi pengolah paket yang ditulis oleh 
+	Roberto F. Batista dan Evaldo Gardenali. Aplikasi ini membantu 
+	pengguna untuk melakukan instalasi dan upgrade paket Slackware 
+	Linux  menggunakan salah satu dari mirror Slackware Linux. 
+	Slackpkg dimasukkan di direktori <filename>extra/</filename> 
+	dalam CD kedua dari kumpulan CD Slackware Linux.
       </para>
 
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-slackpkg-config">
-      <title>Configuration</title>
+      <title>Konfigurasi</title>
 
       <para>
-        Slackpkg is configured through some files in
-        <filename>/etc/slackpkg</filename>. The first thing you should
-        do is configuring which mirror slackpkg should use. This can
-        be done by editing the
-        <filename>/etc/slackpkg/mirrors</filename>. This file already
-        contains a list of mirrors, you can just uncomment a mirror
-        close to you. For example:
+	Slackpkg dikonfigurasikan melalui sebuah berkas  di 
+	<filename>/etc/slackpkg</filename>. Hal pertama yang harus Anda 
+	lakukan adalah mengkonfigurasikan mirror mana yang akan 
+	digunakan oleh slackpkg. Hal ini dapat diselesaikan dengan 
+	mengedit <filename>/etc/slackpkg/mirrors</filename>. Berkas ini 
+	telah berisi daftar mirror-mirror, Anda hanya perlu 
+	menghilangkan tanda komentar pada mirror yang dekat dengan Anda. 
+	Sebagai contoh:
       </para>
 
       <screen>
@@ -162,11 +165,11 @@ ftp://ftp.nluug.nl/pub/os/Linux/distr/slackware/slackware-12.0/
       </screen>
 
       <para>
-        This will use the Slackware Linux 12.0 tree on the
-        ftp.nluug.nl mirror. Be sure to use a tree that matches your
-        Slackware Linux version. If you would like to track
-        slackware-current you would uncomment the following line
-        instead (when you would like to use the NLUUG mirror):
+	Contoh ini akan menggunakan pohon Slackware Linux 12.0 dalam 
+	mirror ftp.nluug.nl. Pastikan untuk menggunakan pohon yang cocok 
+	dengan versi Slackware linux Anda. Jika Anda ingin menggunakan 
+	slackware-current Anda dapat menghilangkan tanda komentar pada 
+	baris berikut (jika Anda ingin menggunakan mirror NLUUG ):
       </para>
 
       <screen>
@@ -174,24 +177,25 @@ ftp://ftp.nluug.nl/pub/os/Linux/distr/slackware/slackware-current/
       </screen>
 
       <para>
-        Slackpkg will only accept one mirror. Commenting out more
-        mirrors will not work.
+	Slackpkg hanya akan menerima satu mirror. Menghilangkan tanda 
+	komentar lebih dari satu mirror akan membuat aplikasi ini tidak 
+	bekerja.
       </para>
 
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-slackpkg-gpgkey">
-      <title>Importing the Slackware Linux GPG key</title>
+      <title>Mengimport kunci GPG Slackware Linux</title>
 
       <para>
-	By default slackpkg checks packages using the package
-	signatures and the public Slackware Linux GPG key. Since this
-	is a good idea from a security point of view, you probably do
-	not want to change this behaviour. To be able to verify
-	packages you have to import the
-	<emphasis>security@slackware.com</emphasis> GPG key. If you
-	have not used GPG before you have to create the GPG directory
-	in the home directory of the <emphasis>root</emphasis> user:
+	Secara default slackpkg mengecek paket menggunakan paket 
+	signature dan kunci GPG publik Slackware Linux. Sejak hal ini 
+	adalah ide yang bagus dari sudut pandang keamanan, Anda mungkin 
+	tidak ingin mengganti kebiasaan ini. Untuk mampu melakukan 
+	pengecekan paket, Anda harus mengimport kunci GPG 
+	<emphasis>security@slackware.com</emphasis>. Jika Anda tidak 
+	pernah menggunakan GPG sebelumnya, Anda harus membuat direktori 
+	GPG pada direktori home dari pengguna <emphasis>root</emphasis>:
       </para>
 
       <screen>
@@ -199,9 +203,9 @@ ftp://ftp.nluug.nl/pub/os/Linux/distr/slackware/slackware-current/
       </screen>
 
       <para>
-        The next step is to search for the public key of
-        <emphasis>security@slackware.com</emphasis>. We will do this
-        by querying the <emphasis>pgp.mit.edu</emphasis> server:
+	Langkah selanjutnya adalah mencari kunci publik untuk 
+	<emphasis>security@slackware.com</emphasis>. Kita akan melakukan 
+	hal ini dengan mengantrikan server <emphasis>pgp.mit.edu</emphasis> :
       </para>
 
       <screen>
