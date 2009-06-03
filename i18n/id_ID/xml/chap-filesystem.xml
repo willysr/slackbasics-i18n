@@ -1765,8 +1765,8 @@ $ <userinput>find . -name 'eco*' -type d</userinput>
 
 	<para>
 	  Pemilik atau grup dari obyek dapat dicocokkan dengan <emphasis>-user username</emphasis> dan 
-	  <emphasis>-group groupname</emphasis>. Nama dari pengguna atau grup akan diinterpretasikan sebagau ID 
-	  pengguna atau ID grup dari nama desimalnya dan tidak bisa ditemukan pada sistem dengan 
+	  <emphasis>-group groupname</emphasis>. Nama dari pengguna atau grup akan diinterpretasikan sebagai ID 
+	  pengguna atau ID grup jika nama adalah desimal dan tidak bisa ditemukan pada sistem dengan 
 	  <citerefentry><refentrytitle>getpwnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>
 	  atau
 	  <citerefentry><refentrytitle>getgrnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>. Jadi,
