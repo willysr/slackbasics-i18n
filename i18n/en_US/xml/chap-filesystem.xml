@@ -2027,7 +2027,7 @@ $ <userinput>find . -name 'eco*' -type d</userinput>
 	  respectively the <emphasis>-user username</emphasis> and
 	  <emphasis>-group groupname</emphasis> variants. The name of
 	  a user or group will be interpreted as a user ID or group ID
-	  of the name is decimal, and could not be found on the system
+	  if the name is decimal, and could not be found on the system
 	  with
 	  <citerefentry><refentrytitle>getpwnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>
 	  or
