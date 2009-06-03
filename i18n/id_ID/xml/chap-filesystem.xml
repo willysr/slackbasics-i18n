@@ -1438,16 +1438,14 @@ other::---
 	</para>
 
 	<sect4 xml:id="chap-filesystem-permissions-acl-setting-modify">
-	  <title>Modifying ACL entries</title>
+	  <title>Memodifikasi isi ACL</title>
 
 	  <para>
-	    The simplest operation is to modify an ACL entry. This
-	    will create a new entry if the entry does not exist
-	    yet. Entries can be modified with the <parameter
-	    class="command">-m</parameter>. For instance, suppose that
-	    we want to give the group <emphasis>friend</emphasis> read
-	    and write access to the file
-	    <filename>report.txt</filename>. This can be done with:
+	    Operasi paing sederhana adalah untuk memodifikasi sebuah isi ACL. Hal ini akan membuat
+	    sebuah isi baru jika isi belum ada sebelumnya. Isi bisa dimodifikasi dengan <parameter
+	    class="command">-m</parameter>. Sebagai contoh, misalkan kita hendak memberikan grup 
+	    <emphasis>friend</emphasis> akses baca dan tulis pada berkas 
+	    <filename>report.txt</filename>. Hal ini bisa dilakukan dengan:
 	  </para>
 
 	  <screen>
@@ -1455,8 +1453,8 @@ $ <userinput>setfacl -m group:friends:rw- report.txt</userinput>
 	  </screen>
 
 	  <para>
-	    The mask entry will be recalculated, setting it to the
-	    union of all group entries, and additional user entries:
+	    Mask dari isian akan dikalkulasi ulang, melakukan setting menjadi gabungan dari semua isi grup, 
+	    dan isi pengguna tambahan:
 	  </para>
 
 	  <screen>
@@ -1472,8 +1470,7 @@ other::r--
 	  </screen>
 
 	  <para>
-	    You can combine multiple ACL entries
-	    by separating them with a comma character. For instance:
+	    Anda bisa mengkombinasikan banyak isi ACL dengan memisahkannya dengan karakter koma. Sebagai contoh:
 	  </para>
 
 	  <screen>
@@ -1482,11 +1479,11 @@ $ <userinput>setfacl -m group:friends:rw-,group:foes:--- report.txt</userinput>
 	</sect4>
 
 	<sect4 xml:id="chap-filesystem-permissions-acl-setting-removing">
-	  <title>Removing ACL entries</title>
+	  <title>Menghapus Isi ACL</title>
 
 	  <para>
-	    An entry can be removed with the <parameter
-	    class="command">-x</parameter> option:
+	    Sebuah isi dapat dihapus dengan opsi <parameter
+	    class="command">-x</parameter>:
 	  </para>
 
 	  <screen>
@@ -1494,20 +1491,18 @@ $ <userinput>setfacl -x group:friends: report.txt</userinput>
 	  </screen>
 
 	  <para>
-	    The trailing colon can optionally be omitted.
+	    Karakter titik dua di akhir bisa diabaikan.
 	  </para>
 	</sect4>
 
 	<sect4 xml:id="chap-filesystem-permissions-acl-setting-new">
-	  <title>Making a new ACL</title>
+	  <title>Membuat ACL Baru</title>
 
 	  <para>
-	    The <parameter class="command">--set</parameter> option
-	    is provided create a new access control list
-	    for a file, clearing all existing entries,
-	    except for the three required entries.
-	    It is required that the file user, group and
-	    other entries are also specified. For example:
+	    Opsi <parameter class="command">--set</parameter> digunakan untuk membuat 
+	    sebuah ACL baru untuk sebuah berkas, menghapus isi ACL yang ada, kecuali isi 
+	    yang benar-benar diperlukan. Isi untuk file pengguna, grup, dan lainnya juga
+	    ditentukan. Sebagai contoh:
 	  </para>
 
 	  <screen>
@@ -1515,14 +1510,11 @@ $ <userinput>setfacl --set user::rw-,group::r--,other:---,group:friends:rwx repo
 	  </screen>
 
 	  <para>
-	    If you do not want to clean the user, group, and other
-	    permissions, but do want to clear all other ACL entries,
-	    you can use the <parameter class="command">-b</parameter>
-	    option. The following example uses this in combination
-	    with the <parameter class="command">-m</parameter> option
-	    to clear all ACL entries (except for user, group, and other),
-	    and to add an entry for the <emphasis>friends</emphasis>
-	    group:
+	    Jika Anda tidak ingin membersihkan hak akses pengguna, grup, dan lainnya, tetapi Anda 
+	    hendak menghapus isi ACL lain, Anda bisa menggunakan opsi <parameter class="command">-b</parameter>. 
+	    Contoh berikut menggunakanna dengan kombinasi dari opsi parameter class="command">-m</parameter> 
+	    untuk menghapus semua isi ACL (kecuali untuk pengguna, grup, dan lainnya),
+	    dan menambahkan sebuah isi baru untuk grup <emphasis>friends</emphasis>:
 	  </para>
 
 	  <screen>
@@ -1531,15 +1523,13 @@ $ <userinput>setfacl -b -m group:friends:rw- report.txt</userinput>
 	</sect4>
 
 	<sect4 xml:id="chap-filesystem-permissions-acl-setting-default">
-	  <title>Setting a default ACL</title>
+	  <title>Mensetting ACL default</title>
 
 	  <para>
-	    As we have seen in <xref
-	    linkend="chap-filesystem-permissions-acl" />, directories
-	    can have default ACL entries that specify what permissions
-	    should be used for files and directories that are created
-	    below that directory. The <parameter class="command">-d</parameter>
-	    option is used to operate on default entries:
+	    Seperti yang kita lihat pada <xref
+	    linkend="chap-filesystem-permissions-acl" />, direktori bisa memiliki isi ACL default yang 
+	    menentukan hak akses apa yang harus digunakan untuk berkas dan direktori yang dibuat pada direktori tersebut.
+	    Opsi <parameter class="command">-d</parameter> digunakan untuk beroperasi pada isi default:
 	  </para>
 
 	  <screen>
@@ -1560,17 +1550,13 @@ default:other::r-x
 	</sect4>
 
 	<sect4 xml:id="chap-filesystem-permissions-acl-setting-filesource">
-	  <title>Using an ACL from a reference file</title>
+	  <title>Menggunakan ACL dari berkas referensi</title>
 
 	  <para>
-	    You can also use an ACL specification from file, rather
-	    than specifying it on the command line. An input file follows
-	    the same
-	    syntax as specifying entries as a parameter to
-	    <command>setfacl</command>, but the entries are separated
-	    by newlines, rather than by commas. This is very useful,
-	    because you can use the ACL for an existing file as a
-	    reference:
+	    Anda juga bisa menggunakan spesifikasi ACL dari berkas, dan bukan menentukannya dari perintah
+	    baris. Sebuah berkas masukan mengikuti sintaks yang sama dengan parameter pada 
+	    <command>setfacl</command>, tetapi dipisahkan dengan baris baru dan bukan dengan koma. Hal ini 
+	    berguna karena Anda bisa menggunakan ACL untuk berkas yang ada sebagai referensi:
 	  </para>
 
 	  <screen>
@@ -1578,12 +1564,9 @@ $ <userinput>getfacl report.txt > ref</userinput>
 	  </screen>
 
 	  <para>
-	    The <parameter class="command">-M</parameter> option
-	    is provided to modify the ACL for a
-	    file by reading the entries from a file. So, if we have a
-	    file named <filename>report2.txt</filename>, we could
-	    modify the ACL for this file with the entries from
-	    <filename>ref</filename> with:
+	    Opsi <parameter class="command">-M</parameter> disediakan untuk memodifikasi ACL untuk sebuah berkas dengan 
+	    membaca isi dari berkas lain. Jadi, jika kita memiliki berkas bernama <filename>report2.txt</filename>, kita 
+	    bisa memodifikasi ACL untuk berkas ini dengan isi dari <filename>ref</filename> dengan:
 	  </para>
 
 	  <screen>
@@ -1591,10 +1574,8 @@ $ <userinput>setfacl -M ref report2.txt</userinput>
 	  </screen>
 
 	  <para>
-	    If you would like to start with a clean ACL, and add the
-	    entries from <filename>ref</filename>, you can add the
-	    <parameter class="command">-b</parameter> flag that we
-	    encountered earlier:
+	    Jika Anda hendak memulai dengan ACL yang bersih, dan menambahkan isi dari <filename>ref</filename>, Anda bisa menambahkan 
+	    tanda <parameter class="command">-b</parameter> yang kita bahas sebelumnya:
 	  </para>
 
 	  <screen>
@@ -1602,11 +1583,9 @@ $ <userinput>setfacl -b -M ref report2.txt</userinput>
 	  </screen>
 
 	  <para>
-	    Of course, it is not necessary to use this interim
-	    file. We can directly pipe the output from
-	    <command>getfacl</command> to <command>setfacl</command>,
-	    by using the symbolic name for the standard input
-	    (<emphasis>-</emphasis>), rather than the name of a file:
+	    Tentu saja, tidak diharuskan untuk menggunakan berkas ini. Kita bisa melakukan pipe dari 
+	    <command>getfacl</command> ke <command>setfacl</command>, dengan menggunakan nama simbol dari masukan standar
+	    (<emphasis>-</emphasis>), dan bukan menggunakan nama berkas:
 	  </para>
 
 	  <screen>
@@ -1614,10 +1593,8 @@ $ <userinput>getfacl report.txt | setfacl -b -M - report2.txt</userinput>
 	  </screen>
 
 	  <para>
-	    The <parameter class="command">-X</parameter> removes
-	    the ACL entries defined in a file. This follows the same syntax as the
-	    <parameter class="command">-x</parameter> flag, with
-	    commas replaced by newlines.
+	    Opsi <parameter class="command">-X</parameter> menghapus isi ACL yang didefinisikan pada berkas. Hal ini menggunakan 
+	    sintaks yang sama dengan <parameter class="command">-x</parameter>, dengan koma digantikan dengan baris baru.
 	  </para>
 	</sect4>
       </sect3>
@@ -1625,34 +1602,24 @@ $ <userinput>getfacl report.txt | setfacl -b -M - report2.txt</userinput>
   </sect1>
 
   <sect1 xml:id="chap-filesystem-finding">
-    <title>Finding files</title>
+    <title>Menemukan berkas</title>
 
     <sect2 xml:id="chap-filesystem-finding-find">
       <title>find</title>
 
       <para>
-	The <command>find</command> command is without doubt the most
-	comprehensive utility to find files on UNIX systems. Besides
-	that it works in a simple and predictable way:
-	<command>find</command> will traverse the directory tree or
-	trees that are specified as a parameter to
-	<command>find</command>. Besides that a user can specify an
-	expression that will be evaluated for each file and directory.
-	The name of a file or directory will be printed if the
-	expression evaluates to <emphasis>true</emphasis>. The first
-	argument that starts with a dash (<emphasis>-</emphasis>),
-	exclamation mark (<emphasis>!</emphasis>, or an opening
-	parenthesis (<emphasis>(</emphasis>, signifies the start of
-	the expression. The expression can consist of various
-	operands.  To wrap it up, the syntax of
-	<command>find</command> is: <emphasis>find paths
+	Perintah <command>find</command> merupakan utilitas yang paling mudah untuk menemukan berkas pada sistem UNIX. Hal ini karena 
+	ia bekerja pada cara yang sederhana dan mudah diprediksi: <command>find</command> akan menjelajahi pohon direktori yang ditentukan 
+	sebagai parameter pada <command>find</command>. Selain itu, sebuah pengguna bisa menentukan ekspresi yang akan dievaluasi 
+	untuk setiap berkas dan direktori. Nama dari berkas atau direktori akan dicetak jika ekspresi bernilai <emphasis>true</emphasis>. 
+	Argumen pertama dimulai dengan tanda minus (<emphasis>-</emphasis>), tanda seru (<emphasis>!</emphasis>,atau kurung buka (<emphasis>(</emphasis>, 
+	menandakan awal dari ekspresi. Ekspresi bisa berisi berbagai operan. Untuk jelasnya, sintaks dari <command>find</command> adalah: <emphasis>find paths
 	expression</emphasis>.
       </para>
 
       <para>
-	The simplest use of <command>find</command> is to use no
-	expression.  Since this matches every directory and subdirectory
-	entry, all files and directories will be printed. For instance:
+	Penggunaan sederhana dari <command>find</command> adalah dengan tanpa ekspresi. Karena hal ini akan cocok dengan setiap direktori dan sub direktori, 
+	semua berkas dan direktori akan dicetak. Sebagai contoh:
       </para>
 
       <screen>
@@ -1667,7 +1634,7 @@ $ <userinput>find .</userinput>
       </screen>
 
       <para>
-	You can also specify multiple directories:
+	Anda juga bisa menentukan banyak direktori:
       </para>
 
       <screen>
@@ -1681,16 +1648,14 @@ technical/report.txt
       </screen>
 
       <sect3 xml:id="chap-filesystem-finding-find-nametype">
-	<title>Operands that limit by object name or type</title>
+	<title>Operan yang membatasi berdasakan nama atau jenis obyek</title>
 
 	<para>
-	  One common scenario for finding files or directories is to
-	  look them up by name. The <emphasis>-name</emphasis> operand
-	  can be used to match objects that have a certain name, or
-	  match a particular wildcard. For instance, using the operand
-	  <emphasis>-name 'report.txt'</emphasis> will only be true
-	  for files or directories with the name
-	  <filename>report.txt</filename>. For example:
+	  Satu skenario umum untuk mencari berkas atau direktori adalah dengan mencari berdasarkan nama. 
+	  Operan <emphasis>-name</emphasis> bisa digunakan untuk mencocokan obyek yang memiliki nama 
+	  tertentu, atau cocok dengan wildcard tertentu. Sebagai contoh, dengan menggunakan operan 
+	  <emphasis>-name 'report.txt'</emphasis> hanya akan bernilai benar untuk berkas atau direktori dengan 
+	  nama <filename>report.txt</filename>. Sebagai contoh:
 	</para>
 
 	<screen>
@@ -1700,7 +1665,7 @@ technical/report.txt
 	</screen>
 
 	<para>
-	  The same thing holds for wildcards:
+	  Hal yang sama berlaku juga untuk wildcards:
 	</para>
 
 	<screen>
@@ -1711,43 +1676,41 @@ technical/report2.txt
 
 	<note>
 	  <para>
-	    When using <command>find</command> you will want to pass
-	    the wildcard to <command>find</command>, rather than
-	    letting the shell expand it. So, make sure that patterns
-	    are either quoted, or that wildcards are escaped.
+	    Ketika menggunakan <command>find</command> Anda sebaiknya mengirimkan wildcard ke[ada <command>find</command>, 
+	    dan jangan mengharapkan shell untuk memperluasnya. Jadi, pastikan pola sudah diberi tanda kutip, atau wildcard 
+	    sudah di-escape.
 	  </para>
 	</note>
 
 	<para>
-	  It is also possible to evaluate the type of the object with
-	  the <emphasis>-type c</emphasis> operand, where
-	  <emphasis>c</emphasis> specifies the type to be matched.
+	  Juga dimungkinkan untuk mengevaluasi jenis obyek dengan operan <emphasis>-type c</emphasis>, dimana 
+	  <emphasis>c</emphasis> menentukan jenis yang akan dicocokkan.
 	  <xref
 	  linkend="chap-filesystem-finding-find-nametype-type-params"
-	  /> lists the various object types that can be used.
+	  /> mendaftar berbagai jenis obyek yang bisa digunakan.
 	</para>
 
 	<table xml:id="chap-filesystem-finding-find-nametype-type-params">
-	  <title>Parameters for the '-type' operand</title>
+	  <title>Parameter untuk operan '-type'</title>
 
 	  <tgroup cols="2">
 	    <thead>
 	      <row>
-		<entry>Parameter</entry><entry>Meaning</entry>
+		<entry>Parameter</entry><entry>Arti</entry>
 	      </row>
 	    </thead>
 	    <tbody>
 	      <row>
-		<entry>b</entry><entry>Block device file</entry>
+		<entry>b</entry><entry>Berkas blok device</entry>
 	      </row>
 	      <row>
-		<entry>c</entry><entry>Character device file</entry>
+		<entry>c</entry><entry>Berkas karakter device</entry>
 	      </row>
 	      <row>
-		<entry>d</entry><entry>Directory</entry>
+		<entry>d</entry><entry>Direktori</entry>
 	      </row>
 	      <row>
-		<entry>f</entry><entry>Regular file</entry>
+		<entry>f</entry><entry>Berkas biasa</entry>
 	      </row>
 	      <row>
 		<entry>l</entry><entry>Symbolic link</entry>
@@ -1763,9 +1726,8 @@ technical/report2.txt
 	</table>
 
 	<para>
-	  So, for instance, if you would like to match directories,
-	  you could use the <emphasis>d</emphasis> parameter to
-	  <emphasis>-type</emphasis> operand:
+	  Jadi, misalnya Anda hendak mencocokkan direktori, Anda bisa menggunakan parameter <emphasis>d</emphasis> 
+	  pada operan <emphasis>-type</emphasis>:
 	</para>
 
 	<screen>
@@ -1776,16 +1738,13 @@ $ <userinput>find . -type d</userinput>
 	</screen>
 
 	<para>
-	  We will look at forming a complex expression at the end of
-	  this section about <command>find</command>, but at this
-	  moment it is handy to know that you can make a boolean 'and'
-	  expression by specifying multiple operands. For instance
-	  <emphasis>operand1 operand2</emphasis> is true if both
-	  <emphasis>operand1</emphasis> and
-	  <emphasis>operand2</emphasis> are true for the object that
-	  is being evaluated. So, you could combine the
-	  <emphasis>-name</emphasis> and <emphasis>-type</emphasis>
-	  operands to find all directories that start with
+	  Kita akan lihat ekspresi yang kompleks pada akhir bagian dari <command>find</command>, tetapi pada saat ini, 
+	  cukup penting untuk diketahui bahwa Anda bisa membuat sebuah ekspresi boolean 'and' dengan menentukan berbagai operan. 
+	  Sebagai contoh, <emphasis>operan1 operan2</emphasis> bernilai benar (true) jika kedua 
+	  <emphasis>operan1</emphasis> dan
+	  <emphasis>operan2</emphasis> bernilai benar untuk obyek yang sedang dievaluasi. Jadi, Anda bisa mengkombinasikan
+	  operan <emphasis>-name</emphasis> dan <emphasis>-type</emphasis>
+	  untuk menemukan semua direktori yang diawali dengan 
 	  <emphasis>eco</emphasis>:
 	</para>
 
@@ -1796,28 +1755,24 @@ $ <userinput>find . -name 'eco*' -type d</userinput>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-perms">
-	<title>Operands that limit by object ownership or permissions</title>
+	<title>Operan yang membatasi berdasarkan kepemilikan atau hak akses obyek</title>
 
 	<para>
-	  Besides matching objects by their name or type, you can also
-	  match them by their active permissions or the object ownership.
-	  This is often useful to find files that have incorrect permissions
-	  or ownership.
+	  Selain mencocokan obyek berdasarkan nama atau jenis, Anda juga bisa mencocokkan berdasarkan
+	  hak akses aktif atau kepemilikan obyek. Hal ini berguna untuk mencari berkas yang memiliki hak akses atau 
+	  kepemilikan yang tidak tepat.
 	</para>
 
 	<para>
-	  The owner (user) or group of an object can be matched with
-	  respectively the <emphasis>-user username</emphasis> and
-	  <emphasis>-group groupname</emphasis> variants. The name of
-	  a user or group will be interpreted as a user ID or group ID
-	  of the name is decimal, and could not be found on the system
-	  with
+	  Pemilik atau grup dari obyek dapat dicocokkan dengan <emphasis>-user username</emphasis> dan 
+	  <emphasis>-group groupname</emphasis>. Nama dari pengguna atau grup akan diinterpretasikan sebagau ID 
+	  pengguna atau ID grup dari nama desimalnya dan tidak bisa ditemukan pada sistem dengan 
 	  <citerefentry><refentrytitle>getpwnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>
-	  or
-	  <citerefentry><refentrytitle>getgrnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>. So,
-	  if you would like to match all objects of which
-	  <emphasis>joe</emphasis> is the owner, you can use
-	  <emphasis>-user joe</emphasis> as an operand:
+	  atau
+	  <citerefentry><refentrytitle>getgrnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>. Jadi,
+	  jika Anda hendak mencocokkan semua obyek yang dimiliki 
+	  <emphasis>joe</emphasis>, Anda bisa menggunakan 
+	  <emphasis>-user joe</emphasis> sebagai operan:
 	</para>
 
 	<screen>
@@ -1826,8 +1781,8 @@ $ <userinput>find . -user joe</userinput>
 	</screen>
 
 	<para>
-	  Or to find all objects with the group
-	  <emphasis>friend</emphasis> as the file group:
+	  Atau untuk menemukan semua obyek dengan grup 
+	  <emphasis>friend</emphasis> sebagai grup berkas:
 	</para>
 
 	<screen>
@@ -1836,16 +1791,14 @@ $ <userinput>find . -group friends</userinput>
 	</screen>
 
 	<para>
-	  The operand for checking file permissions
-	  <emphasis>-perm</emphasis> is less trivial. Like the
-	  <command>chmod</command> command this operator can work with
-	  octal and symbolic permission notations. We will start with
-	  looking at the octal notation. If an octal number is
-	  specified as a parameter to the <emphasis>-perm</emphasis>
-	  operand, it will match all objects that have exactly that
-	  permissions. For instance, <emphasis>-perm 0600</emphasis>
-	  will match all objects that are only readable and writable
-	  by the user, and have no additional flags set:
+	  Operan untuk menguji hak akses berkas
+	  <emphasis>-perm</emphasis> lebih bersifat trivial. Seperti perintah 
+	  <command>chmod</command> operator ini bisa bekerja dengan notasi oktal maupun simbol. 
+	  Kita akan mulai dengan melihat notasi oktal. Jika sebuah nomor oktal ditentukan sebagai 
+	  parameter pada operan <emphasis>-perm</emphasis>, maka akan cocok dengan semua obyek 
+	  yang memiliki hak akses yang sama persis. Sebagai contoh, <emphasis>-perm 0600</emphasis>
+	  akan cocok dengan semua obyek yang hanya dapat dibaca dan ditulis oleh pengguna, dan tidak 
+	  memiliki tambahan lain-lain:
 	</para>
 
 	<screen>
@@ -1854,13 +1807,11 @@ $ <userinput>find . -perm 0600</userinput>
 	</screen>
 
 	<para>
-	  If a dash is added as a prefix to a number, it will match
-	  every object that has at least the bits set that are
-	  specified in the octal number. A useful example is to find
-	  all files which have at least writable bits set for
-	  <emphasis>other</emphasis> users with <emphasis>-perm
-	  -0002</emphasis>. This can help you to find device nodes or
-	  other objects with insecure permissions.
+	  Jika sebuah tanda minus ditambahkan sebagai awalan dari sebuah angka, maka akan cocok dengan 
+	  semua obyek yang minimal memiliki bit yang ditentukan sebagai nomor oktal. Sebuah contoh yang 
+	  berguna adalah mencari semua berkas yang paling tidak memiliki bit penulisan aktif untuk pengguna 
+	  <emphasis>other</emphasis> dengan <emphasis>-perm
+	  -0002</emphasis>. Hal ini bisa membantu Anda node device atau obyek lain dengan hak akses yang tidak aman.
 	</para>
 
 	<screen>
@@ -1879,24 +1830,21 @@ $ <userinput>find /dev -perm -0002</userinput>
 
 	<note>
 	  <para>
-	    Some device nodes have to be world-writable for a UNIX
-	    system to function correctly. For instance, the
-	    <filename>/dev/null</filename> device is always writable.
+	    Beberapa node device harus bersifat dapat ditulis oleh semua pada beberapa 
+	    sistem UNIX agar dapat berfungsi dengan benar. Sebagai contoh, device 
+	    <filename>/dev/null</filename> selalu bersifat dapat ditulis.
 	  </para>
 	</note>
 
 	<para>
-	  The symbolic notation of <emphasis>-perm</emphasis>
-	  parameters uses the same notation as the
-	  <command>chmod</command> command.  Symbolic permissions are
-	  built with a file mode where all bits are cleared, so it is
-	  never necessary to use a dash to take away rights. This also
-	  prevents ambiguity that could arise with the dash
-	  prefix. Like the octal syntax, prefixing the permission with
-	  a dash will match objects that have at least the specified
-	  permission bits set. The use of symbolic names is quite
-	  predictable - the following two commands repeat the previous
-	  examples with symbolic permissions:
+	  Notasi simbol dari parameter <emphasis>-perm</emphasis>
+	  menggunakan notasi yang sama dengan perintah 
+	  <command>chmod</command>.  Hak akses simbolis dibangun dengan mode berkas dimana semua 
+	  bit akan dihapus, sehingga tidak diperlukan untuk menggunakan tanda minus untuk menghapusnya.
+	  Hal ini juga mencegah ambiguitas yang dapat muncul dengan awalan tanda minus. Seperti sintaks 
+	  oktal, mengawali hak akses dengan tanda minus akan mencocokkan obyek yang paling tidak memiliki 
+	  hak akses yang ditentukan. Penggunaan nama simbol cukup mudah ditebak - dua perintah berikut 
+	  mengulang contoh sebelumnya dengan hak akses simbolis:
 	</para>
 
 	<screen>
