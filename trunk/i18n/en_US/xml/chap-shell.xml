@@ -1035,7 +1035,7 @@ $ <userinput>cat /usr/share/dict/american-english | grep "aba" | wc -l</userinpu
 	<emphasis>stdin</emphasis>. Finally, when the stream is
 	finished <command>wc</command> prints the number of lines it
 	counted. So, combined three commands to count the number of
-	words containing the phrase <quote>aba</quote> in this
+	lines containing the phrase <quote>aba</quote> in this
 	particular dictionary.
       </para>
 
