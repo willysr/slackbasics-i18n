@@ -2220,7 +2220,7 @@ $ <userinput>find /etc -mtime -2</userinput>
 	  Another useful time-based operand is the <emphasis>-newer
 	  reffile</emphasis> operand. This matches all files that were
 	  modified later that the file with filename
-	  <filename>reffile</filename>. The followin example shows how
+	  <filename>reffile</filename>. The following example shows how
 	  you could use this to list all files that have later modification
 	  times than <filename>economic/report2.txt</filename>:
 	</para>
