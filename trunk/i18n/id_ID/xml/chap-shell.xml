@@ -690,8 +690,8 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
       r</quote> dan menekan &lt;Tab&gt;, Bash akan melengkapi nama berkas sejauh yang bisa dilakukan. Hal ini 
       akan memberikan <quote>cat recipe</quote>. Coba untuk menekan &lt;Tab&gt; lagi, dan Bash akan memberikan daftar 
       nama berkas yang dimulai dengan <quote>recipe</quote>, dalam hal ini kedua berkas recipe. Pada posisi ini Anda harus 
-      membantu Bash mengetikkan karakter selanjutnya dari berkas yang Anda perlukan. Misalkan Anda hendak 
-      <command>cat</command> <filename>recipe2</filename>, Anda bisa menekan kunci &lt;2&gt;. Setelah itu tidak ada 
+      membantu Bash mengetikkan karakter selanjutnya dari berkas yang Anda perlukan. Misalkan Anda hendak melakukan 
+      <command>cat</command> <filename>recipe2.txt</filename>, Anda bisa menekan kunci &lt;2&gt;. Setelah itu tidak ada 
       masalah dalam melengkapi nama berkas, dan menekan &lt;Tab&gt; akan melengkapi perintah menjadi <quote>cat
       recipe2.txt</quote>.
     </para>
@@ -912,7 +912,7 @@ $ <userinput>cat /usr/share/dict/american-english | grep "aba" | wc -l</userinpu
 	mencetak semua berkas yang mengandung frase <quote>aba</quote>.  Berikutnya, keluaran dari <quote>grep</quote> akan 
 	dikirimkan melalui pipe ke <command>wc -l</command>, yang akan menghitung jumlah baris yang diterima dari 
 	<emphasis>stdin</emphasis>. Akhirnya, ketika aliran sudah selesai, <command>wc</command> mencetak jumlah baris yang 
-	dihitung. Jadi ketiga perintah yang digabung akan menghitung jumlah kata yang mengandung frase <quote>aba</quote> pada 
+	dihitung. Jadi ketiga perintah yang digabung akan menghitung jumlah baris yang mengandung frase <quote>aba</quote> pada 
 	kamus ini.
       </para>
 
