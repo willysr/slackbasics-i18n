@@ -775,7 +775,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
       <quote>recipe</quote>, in this case both recipe files. At this
       point you have to help Bash by typing the next character of the
       file you need.  Suppose you want to <command>cat</command>
-      <filename>recipe2</filename>, you can push the &lt;2&gt;
+      <filename>recipe2.txt</filename>, you can push the &lt;2&gt;
       key. After that there are no problems completing the filename,
       and hitting &lt;Tab&gt; completes the command to <quote>cat
       recipe2.txt</quote>.
