@@ -1868,53 +1868,43 @@ $ <userinput>find /dev -perm -o+w</userinput>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-time">
-	<title>Operands that limit by object creation time</title>
+	<title>Operan yang membatasi berdasarkan waktu pembuatan obyek</title>
 
 	<para>
-	  There are three operands that operate on time intervals.
-	  The syntax of the operand is <emphasis>operand n</emphasis>,
-	  where <emphasis>n</emphasis> is the time in days. All three
-	  operators calculate a time delta in seconds that is divided
-	  by the the number of seconds in a day (86400), discarding
-	  the remainder. So, if the delta is one day,
-	  <emphasis>operand 1</emphasis> will match for the
-	  object. The three operands are:
+	  Terdapat tiga operan yang beroperasi pada interval waktu.
+	  Sintaks dari operan ini adalah <emphasis>operan n</emphasis>,
+	  dimana <emphasis>n</emphasis> adalah waktu dalam hari. Semua operator menghitung 
+	  waktu delta dalam detik yang dibagi dengan jumlah detik dalam satu hari (86400), tanpa 
+	  memperhatikan sisanya. Jadi, jika delta adalah satu hari, 
+	  <emphasis>operand 1</emphasis> akan cocok dengan obyek yang dicari. Ketiga operan tersebut 
+	  adalah:
 	</para>
 
 	<itemizedlist>
 	  <listitem>
 	    <para>
-	      <emphasis>-atime n</emphasis> - this operand evaluates
-	      to true if the initialization time of <command>find</command>
-	      minus the last access time of the object equals
-	      to <emphasis>n</emphasis>.
+	      <emphasis>-atime n</emphasis> - operan ini bernilai benar jika waktu inisialisasi dari <command>find</command>
+	      dikurangi waktu akses terakhir dari obyek sama dengan <emphasis>n</emphasis>.
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>-ctime n</emphasis> - this operand evaluates
-	      to true if the initialization time of
-	      <command>find</command> minus the time of the latest
-	      change in the file status information equals to
-	      <emphasis>n</emphasis>.
+	      <emphasis>-ctime n</emphasis> - operan ini bernilai benar jika waktu inisialisasi dari <command>find</command> 
+	      dikurangi waktu perubahan terakhir dari status berkas sama dengan <emphasis>n</emphasis>.
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>-mtime n</emphasis> - this operand evaluates
-	      to true if the initialization time of
-	      <command>find</command> minus the latest file change
-	      time equals to <emphasis>n</emphasis>.
+	      <emphasis>-mtime n</emphasis> - operan ini bernilai benar jika waktu inisialisasi dari <command>find</command> 
+	      dikurangi waktu perubahan terakhir dari berkas sama dengan <emphasis>n</emphasis>.
 	    </para>
 	  </listitem>
 	</itemizedlist>
 
 	<para>
-	  So, these operands match if the latest access, change,
-	  modification respectively was <emphasis>n</emphasis> days
-	  ago. To give an example, the following command shows all
-	  objects in <filename>/etc</filename> that have been modified
-	  one day ago:
+	  Jadi, operan-operan ini cocok jika waktu akses terakhir, waktu perubahan terakhir, dan waktu modifikasi adalah <emphasis>n</emphasis> hari 
+	  yang lalu. Untuk memberikan sebuah contoh, perintah berikut menampilkan semua obyek pada <filename>/etc</filename> yang sudah dimodifikasi 
+	  satu hari yang lalu:
 	</para>
 
 	<screen>
@@ -1928,12 +1918,10 @@ $ <userinput>find /etc -mtime 1</userinput>
 	</screen>
 
 	<para>
-	  The plus or minus sign can be used as modifiers for the meaning
-	  of <emphasis>n</emphasis>. <emphasis>+n</emphasis> means more
-	  than <emphasis>n</emphasis> days, <emphasis>-n</emphasis>
-	  means less than <emphasis>n</emphasis> days. So, to find all
-	  files in <filename>/etc</filename> that were modified less
-	  than two days ago, you could execute:
+	  Tanda tambah atau kurang bisa digunakan sebagai modifier untuk arti dari <emphasis>n</emphasis>. <emphasis>+n</emphasis> berarti lebih 
+	  dari <emphasis>n</emphasis> hari, <emphasis>-n</emphasis>
+	  berarti kurang dari <emphasis>n</emphasis> hari. Jadi, untuk mencari semua berkas pada <filename>/etc</filename> yang dimodifikasi 
+	  kurang dari dua hari yang lalu, Anda bisa menjalankan:
 	</para>
 
 	<screen>
@@ -1948,12 +1936,10 @@ $ <userinput>find /etc -mtime -2</userinput>
 	</screen>
 
 	<para>
-	  Another useful time-based operand is the <emphasis>-newer
-	  reffile</emphasis> operand. This matches all files that were
-	  modified later that the file with filename
-	  <filename>reffile</filename>. The followin example shows how
-	  you could use this to list all files that have later modification
-	  times than <filename>economic/report2.txt</filename>:
+	  Operan berbasis waktu lain yang cukup penting adalah operan <emphasis>-newer
+	  reffile</emphasis>. Operan ini cocok dengan semua berkas yang dimodifikasi setelah berkas dengan nama 
+	  <filename>reffile</filename>. Contoh berikut menggambarkan bagaimana Anda bisa menggunakan untuk menampilkan 
+	  semua berkas yang memiliki waktu modifikasi setelah <filename>economic/report2.txt</filename>:
 	</para>
 
 	<screen>
