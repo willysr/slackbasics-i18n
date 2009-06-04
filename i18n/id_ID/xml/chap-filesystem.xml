@@ -1512,7 +1512,7 @@ $ <userinput>setfacl --set user::rw-,group::r--,other:---,group:friends:rwx repo
 	  <para>
 	    Jika Anda tidak ingin membersihkan hak akses pengguna, grup, dan lainnya, tetapi Anda 
 	    hendak menghapus isi ACL lain, Anda bisa menggunakan opsi <parameter class="command">-b</parameter>. 
-	    Contoh berikut menggunakanna dengan kombinasi dari opsi parameter class="command">-m</parameter> 
+	    Contoh berikut menggunakanna dengan kombinasi dari opsi <parameter class="command">-m</parameter> 
 	    untuk menghapus semua isi ACL (kecuali untuk pengguna, grup, dan lainnya),
 	    dan menambahkan sebuah isi baru untuk grup <emphasis>friends</emphasis>:
 	  </para>
@@ -1654,7 +1654,7 @@ technical/report.txt
 	  Satu skenario umum untuk mencari berkas atau direktori adalah dengan mencari berdasarkan nama. 
 	  Operan <emphasis>-name</emphasis> bisa digunakan untuk mencocokan obyek yang memiliki nama 
 	  tertentu, atau cocok dengan wildcard tertentu. Sebagai contoh, dengan menggunakan operan 
-	  <emphasis>-name 'report.txt'</emphasis> hanya akan bernilai benar untuk berkas atau direktori dengan 
+	  <emphasis>-name 'report.txt'</emphasis> hanya akan bernilai true untuk berkas atau direktori dengan 
 	  nama <filename>report.txt</filename>. Sebagai contoh:
 	</para>
 
@@ -1740,9 +1740,9 @@ $ <userinput>find . -type d</userinput>
 	<para>
 	  Kita akan lihat ekspresi yang kompleks pada akhir bagian dari <command>find</command>, tetapi pada saat ini, 
 	  cukup penting untuk diketahui bahwa Anda bisa membuat sebuah ekspresi boolean 'and' dengan menentukan berbagai operan. 
-	  Sebagai contoh, <emphasis>operan1 operan2</emphasis> bernilai benar (true) jika kedua 
+	  Sebagai contoh, <emphasis>operan1 operan2</emphasis> bernilai true jika kedua 
 	  <emphasis>operan1</emphasis> dan
-	  <emphasis>operan2</emphasis> bernilai benar untuk obyek yang sedang dievaluasi. Jadi, Anda bisa mengkombinasikan
+	  <emphasis>operan2</emphasis> bernilai true untuk obyek yang sedang dievaluasi. Jadi, Anda bisa mengkombinasikan
 	  operan <emphasis>-name</emphasis> dan <emphasis>-type</emphasis>
 	  untuk menemukan semua direktori yang diawali dengan 
 	  <emphasis>eco</emphasis>:
@@ -1883,19 +1883,19 @@ $ <userinput>find /dev -perm -o+w</userinput>
 	<itemizedlist>
 	  <listitem>
 	    <para>
-	      <emphasis>-atime n</emphasis> - operan ini bernilai benar jika waktu inisialisasi dari <command>find</command>
+	      <emphasis>-atime n</emphasis> - operan ini bernilai true jika waktu inisialisasi dari <command>find</command>
 	      dikurangi waktu akses terakhir dari obyek sama dengan <emphasis>n</emphasis>.
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>-ctime n</emphasis> - operan ini bernilai benar jika waktu inisialisasi dari <command>find</command> 
+	      <emphasis>-ctime n</emphasis> - operan ini bernilai true jika waktu inisialisasi dari <command>find</command> 
 	      dikurangi waktu perubahan terakhir dari status berkas sama dengan <emphasis>n</emphasis>.
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>-mtime n</emphasis> - operan ini bernilai benar jika waktu inisialisasi dari <command>find</command> 
+	      <emphasis>-mtime n</emphasis> - operan ini bernilai true jika waktu inisialisasi dari <command>find</command> 
 	      dikurangi waktu perubahan terakhir dari berkas sama dengan <emphasis>n</emphasis>.
 	    </para>
 	  </listitem>
@@ -1954,22 +1954,19 @@ $ <userinput>find . -newer economic/report2.txt</userinput>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-depth">
-	<title>Operands that affect tree traversal</title>
+	<title>Operand yang berefek pada penjelajahan pohon</title>
 
 	<para>
-	  Some operands affect the manner in which the
-	  <command>find</command> command traverses the tree. The
-	  first of these operands is the <emphasis>-xdev</emphasis>
-	  operand. <emphasis>-xdev</emphasis> prevents that
-	  <command>find</command> decends into directories that have a
-	  different device ID, effectively avoiding traversal of other
-	  filesystems. The directory to which the filesystem is
-	  mounted, is printed, because this operand always returns
-	  <emphasis>true</emphasis>. A nice example is a system where
-	  <filename>/usr</filename> is mounted on a different filesystem
-	  than <filename>/</filename>. For instance, if we search for
-	  directories with the name <emphasis>bin</emphasis>, this may
-	  yield the following result:
+	  Beberapa operan memiliki efek pada bagaimana perintah 
+	  <command>find</command> menjelajahi pohon. Operan pertama adalah <emphasis>-xdev</emphasis>. 
+	  <emphasis>-xdev</emphasis> mencegah
+	  <command>find</command> mencari hingga direktori yang memiliki ID device yang berbeda, 
+	  sehingga secara efektif mencegah penjelajahan dari sistem berkas yang lain. 
+	  Direktori dimana sistem berkas di-mount akan dicetak, karena operan ini akan selalu mengembalikan 
+	  nilai <emphasis>true</emphasis>. Sebuah contoh sederhana adalah sebuah sistem dimana 
+	  <filename>/usr</filename> di-mount pada sistem berkas yang berbeda dari 
+	  <filename>/</filename>. Sebagai contoh, jika kita mencari direktori dengan nama <emphasis>bin</emphasis>, 
+	  hal ini akan menghasilkan hasil sebagai berikut:
 	</para>
 
 	<screen>
@@ -1979,9 +1976,8 @@ $ <userinput>find / -name 'bin' -type d</userinput>
 	</screen>
 
 	<para>
-	  But if we add <emphasis>-xdev</emphasis>
-	  <filename>/usr/bin</filename> is not found, because it is on
-	  a different filesystem (and device):
+	  Tetapi jika kita menambahkan <emphasis>-xdev</emphasis>
+	  <filename>/usr/bin</filename> tidak akan ditemukan, karena berada pada sistem berkas yang berbeda (dan device):
 	</para>
 
 	<screen>
@@ -1990,11 +1986,9 @@ $ <userinput>find / -name 'bin' -type d -xdev</userinput>
 	</screen>
 
 	<para>
-	  The <emphasis>-depth</emphasis> operand modifies the order
-	  in which directories are evaluated. With
-	  <emphasis>-depth</emphasis> the contents of a directory are
-	  evaluated first, and then the directory itself. This can be
-	  witnessed in the following example:
+	  Operan <emphasis>-depth</emphasis> memodifikasi urutan dimana direktori akan dievaluasi. Dengan 
+	  <emphasis>-depth</emphasis> isi dari direktori akan dievaluasi terlebih dahulu, dan kemudian direktorinya. 
+	  Hal ini bisa dibuktikan dengan contoh berikut:
 	</para>
 
 	<screen>
@@ -2009,41 +2003,35 @@ $ <userinput>find . -depth</userinput>
 	</screen>
 
 	<para>
-	  As you can see in the output, files in the
-	  <emphasis>./economic</emphasis> directory is evaluated
-	  before <filename>.</filename>, and
-	  <filename>./economic/report.txt</filename> before
+	  Seperti yang bisa Anda lihat pada hasil keluaran, berkas pada direktori 
+	  <emphasis>./economic</emphasis> dievaluasi 
+	  sebelum <filename>.</filename>, dan 
+	  <filename>./economic/report.txt</filename> sebelum 
 	  <filename>./economic</filename>. <emphasis>-depth</emphasis>
-	  always evaluates to <emphasis>true</emphasis>.
+	  selalu bernilai <emphasis>true</emphasis>.
 	</para>
 
 	<para>
-	  Finally, the <emphasis>-prune</emphasis> operand causes find
-	  not to decend into a directory that is being evaluated.
-	  <emphasis>-prune</emphasis> is discarded if the
-	  <emphasis>-depth</emphasis> operand is also
-	  used. <emphasis>-depth</emphasis> always evaluates to
+	  Akhirnya, operan <emphasis>-prune</emphasis> menyebabkan find untuk tidak menyertakan 
+	  direktori yang sedang dievaluasi. <emphasis>-prune</emphasis> akan dibuang jika operan 
+	  <emphasis>-depth</emphasis> juga digunakan. <emphasis>-depth</emphasis> selalu bernilai 
 	  <emphasis>true</emphasis>.
 	</para>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-exec">
-	<title>Operands that execute external utilities</title>
+	<title>Operand yang menjalankan utilitas eksternal</title>
 
 	<para>
-	  <command>find</command> becomes a very powerful tool when it
-	  is combined with external utilities. This can be done with
-	  the <emphasis>-exec</emphasis> operand. There are two
-	  syntaxes for the <emphasis>-exec</emphasis> operand. The
-	  first syntax is <emphasis>-exec utility arguments
-	  ;</emphasis>. The command <emphasis>utility</emphasis> will
-	  be executed with the arguments that were specified for each
-	  object that is being evaluated. If any of the arguments is
-	  <emphasis>{}</emphasis>, these braces will be replaced by
-	  the file being evaluated. This is very handy, especially when
-	  we consider that, if we use no additional expression syntax,
-	  operands will be evaluated from left to right. Let's look at
-	  an example:
+	  <command>find</command> menjadi alat yang sangat hebat ketika dikombinasikan 
+	  dengan utilitas eksternal. Hal ini bisa dilakukan dengan operan <emphasis>-exec</emphasis>. 
+	  Terdapat dua sintaks untuk operan <emphasis>-exec</emphasis>. Sintaks pertama adalah 
+	  <emphasis>-exec utility argument ;</emphasis>. Perintah <emphasis>utility</emphasis> akan 
+	  dieksekusi dengan argumen yang ditentukan untuk setiap obyek yang sedang dievaluasi. Jika 
+	  salah satu dari argumen adalah 
+	  <emphasis>{}</emphasis>, maka tanda ini akan digantikan dengan berkas yang sedang dievaluasi.
+	  Hal ini sangat berguna, terutama ketika kita tidak menggunakan sintaks ekspresi tambahan, 
+	  operan akan akan dievaluasi dari kiri ke kanan. Mari kita lihat dalam contoh:
 	</para>
 
 	<screen>
@@ -2051,34 +2039,25 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} \;</userinput>
 	</screen>
 
 	<para>
-	 The first operand returns true for files that have their
-	 permissions set to <emphasis>0666</emphasis>. The second
-	 operand executes <emphasis>chmod 0644 filename</emphasis> for
-	 each file that is being evaluated. If you were wondering why
-	 this command is not executed for every file, that is a good
-	 question. Like many other interpreters of expressions,
-	 <command>find</command> uses <quote>short-circuiting</quote>.
-	 Because no other operator was specified, the logical
-	 <emphasis>and</emphasis> operator is automatically is assumed
-	 between both operands. If the first operand evaluates to
-	 <emphasis>false</emphasis>, it makes no sense to evaluate any
-	 further operands, because the complete expression will always
-	 evaluate to false. So, the <emphasis>-exec</emphasis> operand
-	 will only be evaluated if the first operand is true. Another
-	 particularity is that the semi-colon that closes the
-	 <emphasis>-exec</emphasis> is escaped, to prevent that the
-	 shell parses it.
+	 Operan pertama mengemablikan nilai true untuk berkas yang memiliki hak akses <emphasis>0666</emphasis>. 
+	 Operan kedua menjalankan <emphasis>chmod 0644 filename</emphasis> untuk setiap berkas yang dievaluasi.
+	 Jika Anda heran kenapa perintah ini tidak dijalankan untuk setiap berkas, itu merupakan pertanyaan yang bagus.
+	 Seperti interpreter ekspresi yang lain, 
+	 <command>find</command> menggunakan <quote>short-circuiting</quote>.
+	 Karena tidak ada operator lain yang ditentukan, operator logika 
+	 <emphasis>and</emphasis> secara otomatis diasumsikan diantara kedua operan. Jika operan pertama 
+	 bernilai <emphasis>false</emphasis>, maka tidak masuk akal untuk menguji operan lain, karena 
+	 ekspresi akhir akan selalu bernilai false. Jadi, operan <emphasis>-exec</emphasis> hanya akan dievaluasi jika 
+	 operan pertama bernilai true. Catatan lain adalah tanda titik koma yang menutup 
+	 <emphasis>-exec</emphasis> harus di-escape, untuk mencegah agar jangan sampai diparsing oleh shell.
 	</para>
 
 	<para>
-	  A nice thing about the <emphasis>-exec</emphasis> operator
-	  is that it evaluates to <emphasis>true</emphasis> if the
-	  command terminated sucessfully. So, you could also use
-	  the <emphasis>-exec</emphasis> command to add additional
-	  conditions that are not represented by <command>find</command>
-	  operands. For instance, the following command prints
-	  all objects ending with <emphasis>.txt</emphasis> that contain
-	  the string <emphasis>gross income</emphasis>:
+	  Satu hal yang menarik tentang operator <emphasis>-exec</emphasis> adalah ia bernilai <emphasis>true</emphasis> jika 
+	  perintah berhasil dengan sempurna. Jadi, Anda juga bisa menggunakan perintah <emphasis>-exec</emphasis> untuk 
+	  menambahkan kondisi tambahan yang tidak direpresentasikan oleh operan <command>find</command>. 
+	  Sebagai contoh, perintah berikut mencetak semua obyek yang diakhiri dengan <emphasis>.txt</emphasis> yang berisi 
+	  kata <emphasis>gross income</emphasis>:
 	</para>
 
 	<screen>
@@ -2087,22 +2066,20 @@ $ <userinput>find . -name '*.txt' -exec grep -q 'gross income' {} \; -print</use
 	</screen>
 
 	<para>
-	  The <command>grep</command> command will be covered lateron.
-	  <!-- XXX - xref --> But for the moment, it is enough to know
-	  that it can be used to match text patterns. The
-	  <emphasis>-print</emphasis> operand prints the current
-	  object path. It is always used implicitly, except when the
-	  <emphasis>-exec</emphasis> or <emphasis>-ok</emphasis>
-	  operands are used. <!-- XXX - move to introduction? -->
+	  Perintah <command>grep</command> akan dibahas kemudian.
+	  <!-- XXX - xref --> Untuk saat ini, cukup diketahui bahwa perintah tersebut 
+	  bisa digunakan untuk mencocokkan pola teks. Operan 
+	  <emphasis>-print</emphasis> mencetak path obyek aktual. Perintah ini selalu digunakan 
+	  secara implisit, kecuali ketika operan 
+	  <emphasis>-exec</emphasis> atau <emphasis>-ok</emphasis>
+	  digunakan. <!-- XXX - move to introduction? -->
 	</para>
 
 	<para>
-	  The second syntax of the <emphasis>-exec</emphasis> operand
-	  is <emphasis>-exec utility arguments {} +</emphasis>. This
-	  gathers a set of all matched object for which the expression
-	  is true, and provides this set of files as an argument to
-	  the utility that was specified. The first example of the
-	  <emphasis>-exec</emphasis> operand can also be written as:
+	  Sintaks kedua dari operan <emphasis>-exec</emphasis> adalah <emphasis>-exec utility arguments {} +</emphasis>. 
+	  Hal ini menggabungkan semua obyek yang cocok dengan nilai ekspresi bernilai true, dan menyediakan sekumpulan 
+	  berkas sebagai argumen pada utilitas yang ditentukan. Contoh pertama dari operan 
+	  <emphasis>-exec</emphasis> juga bisa ditulis sebagai:
 	</para>
 
 	<screen>
@@ -2110,36 +2087,33 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} +</userinput>
 	</screen>
 
 	<para>
-	  This will execute the <command>chmod</command> command only
-	  once, with all files for which the expression is true as its
-	  arguments. This operand always returns <emphasis>true</emphasis>.
+	  Perintah ini akan menjalankan perintah <command>chmod</command> hanya sekali, dengan semua 
+	  berkas dimana ekspresi bernilai true sebagai argumennya. Operan selalu menghasilkan <emphasis>true</emphasis>.
 	</para>
 
 	<para>
-	  If a command executed by find returns a non-zero value
-	  (meaning that the execution of the command was not
-	  succesful), <command>find</command> should also return a
-	  non-zero value.
+	  Jika sebuah perintah dieksekusi oleh find menghasilkan nilai bukan nol 
+	  (artinya eksekusi dari perintah tersebut tidak sukses), <command>find</command> juga menghasilkan nilai bukan nol.
 	</para>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-operators">
-	<title>Operators for building complex expressions</title>
+	<title>Operator untuk membangun ekspresi yang kompleks</title>
 
 	<para>
-	  <command>find</command> provides some operators that can be
-	  combined to make more complex expressions:
+	  <command>find</command> menyediakan beberapa operator yang bisa dikombinasikan untuk 
+	  membuat ekspresi yang lebih kompleks:
 	</para>
 
 	<variablelist>
-	  <title>Operators</title>
+	  <title>Operator</title>
 
 	  <varlistentry>
 	    <term>( expr )</term>
 	    <listitem>
 	      <para>
-		Evaluates to <emphasis>true</emphasis> if
-		<emphasis>expr</emphasis> evaluates to
+		Bernilai <emphasis>true</emphasis> jika
+		<emphasis>expr</emphasis> bernilai 
 		<emphasis>true</emphasis>.
 	      </para>
 	    </listitem>
@@ -2148,17 +2122,17 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} +</userinput>
 	    <term>expr1 [-a] expr2</term>
 	    <listitem>
 	      <para>
-		Evaluates to <emphasis>true</emphasis> if both
-		<emphasis>expr1</emphasis> and <emphasis>expr2</emphasis>
-		are true. If <emphasis>-a</emphasis> is omitted,
-		this operator is implicitly assumed.
+		Bernilai <emphasis>true</emphasis> jika kedua 
+		<emphasis>expr1</emphasis> dan <emphasis>expr2</emphasis>
+		bernilai true. Jika <emphasis>-a</emphasis> diabaikan, operator ini diasumsikan 
+		secara implisit.
 	      </para>
 
 	      <para>
-		<command>find</command> will use short-circuiting when
-		this operator is evaluated: <emphasis>expr2</emphasis>
-		will not be evaluated when <emphasis>expr1</emphasis>
-		evaluates to <emphasis>false</emphasis>
+		<command>find</command> akan menggunakan short-circuiting ketika operator ini 
+		diuji: <emphasis>expr2</emphasis>
+		tidak akan diuji ketika <emphasis>expr1</emphasis>
+		bernilai <emphasis>false</emphasis>
 	      </para>
 	    </listitem>
 	  </varlistentry>
@@ -2166,16 +2140,13 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} +</userinput>
 	    <term>expr1 -o expr2</term>
 	    <listitem>
 	      <para>
-		Evaluates to <emphasis>true</emphasis> if either or
-		both <emphasis>expr1</emphasis> and
-		<emphasis>expr2</emphasis> are true.
+		Bernilai <emphasis>true</emphasis> jika salah satu atau kedua <emphasis>expr1</emphasis> dan 
+		<emphasis>expr2</emphasis> bernilai true.
 	      </para>
 
 	      <para>
-		<command>find</command> will use short-circuiting when
-		this operator is evaluated: <emphasis>expr2</emphasis>
-		will not be evaluated when <emphasis>expr1</emphasis>
-		evaluates to <emphasis>true</emphasis>
+		<command>find</command> akan menggunakan short-circuiting ketika operator ini diuji: <emphasis>expr2</emphasis>
+		tidak akan dievaluasi ketika <emphasis>expr1</emphasis> bernilai <emphasis>true</emphasis>
 	      </para>
 	    </listitem>
 	  </varlistentry>
@@ -2183,26 +2154,22 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} +</userinput>
 	    <term>! expr</term>
 	    <listitem>
 	      <para>
-		Negates <emphasis>expr</emphasis>. So, if
-		<emphasis>expr</emphasis> evaluates to true, this
-		expression will evaluate to <emphasis>false</emphasis>
-		and vise versa.
+		Negasi <emphasis>expr</emphasis>. Jadi, jika 
+		<emphasis>expr</emphasis> bernilai true, ekspresi ini akan bernilai <emphasis>false</emphasis>
+		dan sebaliknya.
 	      </para>
 	    </listitem>
 	  </varlistentry>
 	</variablelist>
 
 	<para>
-	  Since both the parentheses and exclamation mark characters
-	  are interpreted by most shells, they should usually be
-	  escaped.
+	  Karena tanda kurung dan tanda seru diinterpretasikan oleh sebagian besar shell, mereka biasanya harus di-escape.
 	</para>
 
 	<para>
-	  The following example shows some operators in action. This
-	  command executes <command>chmod</command> for all files that
-	  either have their permissions set to
-	  <emphasis>0666</emphasis> or <emphasis>0664</emphasis>.
+	  Contoh berikut menggambarkan beberapa operator dalam penggunaannya. Perintah ini menjalankan <command>chmod</command> 
+	  untuk semua berkas yang memiliki hak akses 
+	  <emphasis>0666</emphasis> atau <emphasis>0664</emphasis>.
 	</para>
 
 	<screen>
@@ -2215,12 +2182,10 @@ $ <userinput>find . \( -perm 0666 -o -perm 0664 \) -exec chmod 0644 {} \;</useri
       <title>which</title>
 
       <para>
-	The <command>which</command> command is not part of the Single
-	UNIX Specification version 3, but it is provided by most
-	sysmtems. <command>which</command> locates a command that is
-	in the user's path (as set by the PATH environment variable),
-	printing its full path. Providing the name of a command as its
-	parameter will show the full path:
+	Perintah <command>which</command> bukan bagian dari Single
+	UNIX Specification versi 3, tetapi disediakan oleh banyak sistem. <command>which</command> mencari sebuah perintah 
+	yang berada pada path pengguna (yang ditentukan oleh variabel PATH) dan mencetak path lengkapnya. Dengan 
+	menyediakan nama perintah sebagai parameter akan menampilkan path lengkap:
       </para>
 
       <screen>
@@ -2229,7 +2194,7 @@ $ <userinput>which ls</userinput>
       </screen>
 
       <para>
-	You can also query the paths of multiple commands:
+	Anda juga bisa melakukan query path dari banyak perintah:
       </para>
 
       <screen>
@@ -2239,8 +2204,7 @@ $ <userinput>which ls cat</userinput>
       </screen>
 
       <para>
-        <command>which</command> returns a non-zero return value
-	if the command could not be found.
+        <command>which</command> mengembalikan nilai tidak nol jika perintah tidak bisa ditemukan.
       </para>
     </sect2>
 
@@ -2248,11 +2212,10 @@ $ <userinput>which ls cat</userinput>
       <title>whereis</title>
 
       <para>
-	This <command>whereis</command> command searches binaries, manual pages and sources of a
-	command in some predefined places. For instance, the following
-	command shows the path of the <command>ls</command> and the
-	<citerefentry><refentrytitle>ls</refentrytitle><manvolnum>1</manvolnum></citerefentry>
-	manual page:
+	Perintah <command>whereis</command> mencari berkas biner, halaman manual, dan sumber dari 
+	perintah pada tempat yang sudah ditentukan terlebih dahulu. Sebagai contoh, perintah berikut 
+	menampilkan path dari <command>ls</command> dan halaman manual dari 
+	<citerefentry><refentrytitle>ls</refentrytitle><manvolnum>1</manvolnum></citerefentry>:
       </para>
 
       <screen>
@@ -2265,48 +2228,43 @@ ls: /bin/ls /usr/share/man/man1/ls.1.gz
       <title>locate</title>
 
       <para>
-        Slackware Linux also provides the
-	<command>locate</command> command that searches through a file
-	database that can be generated periodically with the
-	<command>updatedb</command> command. Since it uses a prebuilt
-	database of the filesystem, it is a lot faster than
-	<command>command</command>, especially when directory entry
-	information has not been cached yet. Though, the
-	<command>locate</command>/<command>updatedb</command> combo
-	has some downsides:
+        Slackware Linux juga menyediakan perintah <command>locate</command> yang mencari 
+	melalui berkas basis data yang bisa dihasilkan secara periodik dengan perintah 
+	<command>updatedb</command>. Karena ia menggunakan basis data yang dibangun pada sistem berkas, 
+	maka perintah ini bekerja lebih cepat dari 
+	<command>command</command>, terutama ketika informasi direktori belum disimpan dalam cache. 
+	meski demikian, kombinasi 
+	<command>locate</command>/<command>updatedb</command> memiliki beberapa kekurangan:
       </para>
 
       <itemizedlist>
 	<listitem>
 	  <para>
-	    New files are not part of the database until the next
-	    <command>updatedb</command> invocation.
+	    Berkas baru bukan bagian dari basis data sampai pemanggilan 
+	    <command>updatedb</command> berikutnya.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    <command>locate</command> has no conception of
-	    permissions, so users may locate files that are normally
-	    hidden to them.
+	    <command>locate</command> tidak memiliki batasan hak akses, sehingga pengguna bisa mencari 
+	    berkas yang biasanya tersembunyi bagi mereka.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    A newer implementation, named <emphasis>slocate</emphasis>
-	    deals with permissions, but requires elevated privileges.
-	    This is the <command>locate</command> variation that is
-	    included with Slackware Linux.
+	    Implementasi yang lebih baru, bernama <emphasis>slocate</emphasis>
+	    mengatasi masalah hak akses, tetapi membutuhkan hak yang lebih tinggi. 
+	    Ini merupakan variasi dari <command>locate</command> yang disertakan pada Slackware Linux.
 	  </para>
 	</listitem>
       </itemizedlist>
 
       <para>
-	With filesystems becoming faster, and by applying common sense
-	when formulating <command>find</command> queries,
-	<command>locate</command> does not really seem worth the
-	hassle. Of course, your mileage may vary. That said, the basic
-	usage of <command>locate</command> is <emphasis>locate
-	filename</emphasis>. For example:
+	Dengan sistem berkas yang semakin cepat, dan dengan menerapkan akal sehat ketika menjalankan 
+	query dengan <command>find</command>, <command>locate</command> tampaknya menjadi tidak berarti. 
+	Tentu saja, keputusan Anda bisa berbeda. Penggunaan dasar dari <command>locate</command> adalah 
+	<emphasis>locate
+	namaberkas</emphasis>. Sebagai contoh:
       </para>
 
       <screen>
