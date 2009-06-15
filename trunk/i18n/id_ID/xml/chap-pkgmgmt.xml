@@ -14,7 +14,7 @@
 	Slackware linux tidak menggunakan sistem paket yang kompleks, 
 	tidak seperti distribusi linux lainnya. Paket memiliki ekstensi 
 	<filename>.tgz</filename>, dan biasanya merupakan paket tarball 
-	biasa dengan dua berkas tambahan yaitu : sebuah skrip instalasi 
+	biasa dengan dua berkas tambahan yaitu : sebuah skrip installasi 
 	dan berkas deskripsi paket tersebut. Sehubungan dengan 
 	kesederhanaan dari paketnya, aplikasi manajemen Slackware Linux 
 	tidak melakukan penanganan terhadap dependensi. Tetapi banyak 
@@ -138,7 +138,7 @@
       <para>
 	Slackpkg adalah aplikasi pengolah paket yang ditulis oleh 
 	Roberto F. Batista dan Evaldo Gardenali. Aplikasi ini membantu 
-	pengguna untuk melakukan instalasi dan upgrade paket Slackware 
+	pengguna untuk melakukan installasi dan upgrade paket Slackware 
 	Linux  menggunakan salah satu dari mirror Slackware Linux. 
 	Slackpkg dimasukkan di direktori <filename>extra/</filename> 
 	dalam CD kedua dari kumpulan CD Slackware Linux.
