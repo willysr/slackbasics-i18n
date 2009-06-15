@@ -1,141 +1,127 @@
 <!-- $Id: mutt.xml 333 2007-10-21 17:20:54Z danieldk $ -->
 
 <chapter id="email-mutt"> <?dbhtml filename="mutt.html"?>
-  <title>Reading and writing e-mail with mutt</title>
+  <title>Membaca dan menulis e-mail dengan mutt</title>
 
   <indexterm><primary>mutt</primary></indexterm>
 
   <sect1 id="email-mutt-introduction">
-    <title>Introduction</title>
+    <title>Perkenalan</title>
 
     <indexterm><primary>MUA</primary></indexterm>
     <indexterm><primary>Mail User Agent</primary></indexterm>
 
     <para>
-      Mutt is a mail user agent (<acronym>MUA</acronym>) that can be used
-      for reading and writing e-mail. Mutt is a text-mode installation,
-      meaning that it can be used on the console, over SSH and in an X
-      terminal. Due to its menu interface, it is very easy to read large
-      amounts of e-mail in a short time, and mutt can be configured to
-      use your favorite text editor.
+      Mutt adalah sebuah mail user agent (<acronym>MUA</acronym>) yang bisa digunakan 
+      untuk membaca dan menulis e-mail. Mutt adalah installasi berbasis teks, yang 
+      berarti aplikasi ini hanya bisa digunakan pada konsol, melalui SSH dan pada 
+      terminal X. Karena antarmuka berbasis menu, maka aplikasi ini sangat mudah untuk 
+      membaca banyak e-mail dalam waktu yang singkat, dan mutt bisa dikonfigurasi 
+      untuk menggunakan editor teks favorit Anda.
     </para>
 
     <para>
-      This chapter will discuss how you can customize mutt for your needs,
-      how to use it, and how PGP/GnuPG support is used.
+      Bab ini akan mendiskusikan bagaimana Anda bisa mengkustomisasi mutt untuk kebutuhan Anda, 
+      bagaimana menggunakannya, dan bagaimana dukungan PGP/GnuPG digunakan.
     </para>
   </sect1>
 
   <sect1 id="email-mutt-usage">
-    <title>Usage</title>
+    <title>Penggunaan</title>
 
     <para>
-      Mutt is pretty simple to use, though it may take some time to get
-      used to the keys that are used to navigate, read and write e-mails.
-      The next few sections describe some of the more important keys. Mutt
-      provides a more thorough overview of available keys after pressing
-      the &lt;h&gt; key.
+      Mutt sangatlah mudah digunakan, meskipun mungkin membutuhkan sedikit waktu untuk membiasakan 
+      diri dengan kunci yang digunakan untuk melakukan navigasi, membaca dan menulis e-mail.
+      Beberapa bagian berikutnya menjelaskan sebagian dari banyak kunci yang penting. Mutt
+      menyediakan gambaran tentang kunci yang tersedia yang lebih lengkap setelah menekan 
+      kunci &lt;h&gt;.
     </para>
 
     <sect2 id="email-mutt-usage-browsing">
-      <title>Browsing the list of e-mails</title>
+      <title>Melihat daftar e-mail</title>
       
       <para>
-        After invoking the <command>mutt</command> command, an overview
-        of all e-mails will show up. You can browse through the list of
-        e-mails with the up and down arrow keys, or the &lt;k&gt; and
-        &lt;j&gt; keys. 
+        Setelah memanggil perintah <command>mutt</command>, sebuah gambaran dari semua e-mail akan 
+	muncul. Anda bisa melihat daftar e-mail dengan kunci panah atas dan bawah, atau kunci 
+	&lt;k&gt; dan &lt;j&gt;. 
       </para>
 
     </sect2>
 
     <sect2 id="email-mutt-usage-reading">
-      <title>Reading e-mails</title>
+      <title>Membaca e-mails</title>
       
       <para>
-        To read an e-mail, use the &lt;Enter&gt; key, after selecting an
-        e-mail in the overview of e-mails.
-        When reading an e-mail you can use the &lt;Page Up&gt; and
-        &lt;Page Down&gt; to browse through an e-mail. You can still use
-        the navigational keys used to browse the list of e-mail to browse
-        to other e-mails.
+        Untuk membaca sebuah e-mail, gunakan kunci &lt;Enter&gt;, setelah memilih sebuah e-mail pada 
+	daftar. Ketika membaca sebuah e-mail, Anda bisa menggunakan &lt;Page Up&gt; dan &lt;Page Down&gt; 
+	untuk menjelajahi semua e-mail. Anda masih bisa menggunakan kunci navigasi yang digunakan untuk 
+	menjelajahi semua e-mail untuk melihat e-mail lain.
       </para>
 
       <para>
-        If an e-mail has any attachments, you can see them by pressing
-        the &lt;v&gt; key. You can view individual attachments by selecting
-        them and pressing the &lt;Enter&gt; key. To save an attachment to
-        a file, press the &lt;s&gt; key.
+        Jika sebuah e-mail memiliki attachment, Anda bisa melihatnya dengan menekan kunci &lt;v&gt;. 
+	Anda bisa melihat masing-masing attachment dengan memilihnya dan menekan kunci &lt;Enter&gt;. 
+	Untuk menyimpan ke sebuah berkas, tekan kunci &lt;s&gt;.
       </para>
     </sect2>
     
     <sect2 id="email-mutt-usage-sending">
-      <title>Sending e-mails</title>
+      <title>Mengirimkan e-mail</title>
 
       <para>
-        You can compose a new e-mail with the &lt;m&gt; key, or reply
-        to a selected e-mail with the &lt;r&gt; key. Mutt will ask you
-        to specify the recipient (<emphasis>To:</emphasis>), and a
-        subject (<emphasis>Subject:</emphasis>). After entering this
-        information an editor is launched (<command>vi</command> is used
-        by default), which you can use to compose the e-mail. After saving
-        the e-mail, and quitting the editor, mutt will give you the
-        opportunity to make any changes to the e-mail. If you decide
-        that you want to alter the e-mail, you can restart the editor
-        with the &lt;e&gt; key. You can change the recipient or the
-        subject with respectively &lt;t&gt; or &lt;s&gt;. Finally, you
-        can send the e-mail by pressing &lt;y&gt;. If you would like to
-        cancel the e-mail, press &lt;q&gt;. Mutt will ask you whether you
-        want to postpone the e-mail. If you do so, you will be given the
-        opportunity to re-do the e-mail the next time you compose a
-        message.
+        Anda bisa membuat sebuah e-mail baru dengan kunci &lt;m&gt;, atau membalas e-mail dengan 
+	&lt;r&gt;. Mutt akan meminta Anda menentukan penerima (<emphasis>To:</emphasis>), dan subyek
+	(<emphasis>Subject:</emphasis>). Setelah memasukkan informasi ini, sebuah editor akan 
+	dijalankan (<command>vi</command> digunakan secara default), yang bisa Anda gunakan untuk 
+	membuat e-mail. Setelah menyimpan e-mail, dan keluar dari editor, mutt akan memberikan 
+	kesempatan kepada Anda untuk membuat perubahan lain pada e-mail. Jika Anda memutuskan untuk 
+	mengubah e-mail, Anda bisa menjalankan ulang editor dengan kunci &lt;e&gt;. Anda bisa mengganti 
+	penerima atau subyek dengan &lt;t&gt; atau &lt;s&gt;. Akhirnya, Anda bisa mengirimkan e-mail 
+	dengan menekan &lt;y&gt;. Jika Anda hendak membatalkan e-mail, tekan &lt;q&gt;. Mutt akan 
+	menanyakan apakah Anda hendak menunda e-mail. Jika Anda melakukannya, Anda akan diberikan 
+	kesempatan untuk melanjutkan pembuatan pesan di lain waktu.
       </para>
     </sect2>
 
   </sect1>
 
   <sect1 id="email-mutt-basicsetup">
-    <title>Basic setup</title>
+    <title>Pengaturan sederhana</title>
 
     <para>
-      There are a few mutt settings you often want to configure. This section
-      describes these settings. User-specific mutt customizations can be made
-      in the <filename>.muttrc</filename> in the user's home directory. You
-      can change global mutt settings in <filename>/etc/mutt/Muttrc</filename>.
+      Terdapat beberapa pengaturan mutt yang pasti Anda konfigurasi. Bagian ini menjelaskan beberapa 
+      pengaturan ini. Kustomisasi mutt yang spesifik untuk pengguna dapat dibuat pada berkas 
+      <filename>.muttrc</filename> pada direktori home pengguna. Anda bisa mengganti pengaturan mutt 
+      secara global pada <filename>/etc/mutt/Muttrc</filename>.
     </para>
 
     <sect2 id="email-mutt-basicsetup-headers">
-      <title>Customized headers</title>
+      <title>Header yang dikustomisasi</title>
 
       <indexterm><primary>mutt</primary><secondary>headers</secondary></indexterm>
 
       <para>
-        Each e-mail has headers with various information. For example, the
-        header contains information about the path an e-mail has traversed
-        after it has been sent. The sender (<emphasis>From:</emphasis>) and
-        recipient (<emphasis>To:</emphasis>) e-mail addresses are also stored
-        in the headers, as well as the subject (<emphasis>Subject:</emphasis>)
-        of an e-mail.
+        Setiap e-mail memiliki header dengan banyak informasi. Sebagai contoh, header berisi 
+	informasi tentang jalur yang telah dilalui e-mail setelah dikirimkan. Informasi pengirim 
+	(<emphasis>From:</emphasis>) dan penerima (<emphasis>To:</emphasis>) juga disimpan pada header, 
+	begitu juga dengan subyek (<emphasis>Subject:</emphasis>) e-mail.
       </para>
 
       <note>
         <para>
-          In reality the <emphasis>To:</emphasis> header is not used to
-          determine the destination of an e-mail during the deliverance
-          process of the e-mail. MTAs use the <emphasis>envelope
-          address</emphasis> to determine the destination of the e-mail.
-          Though, most MUAs use the <emphasis>To:</emphasis> address that
-          the user fills in as the envelope address.
+          Kenyataannya, header <emphasis>To:</emphasis> tidak digunakan untuk menentukan tujuan dari 
+	  e-mail selama proses pengiriman e-mail. MTA menggunakan <emphasis>envelope
+          address</emphasis> untuk menentukan tujuan dari e-mail. Meski demikian, sebagian besar
+	  MUA menggunakan alamat <emphasis>To:</emphasis> yang diisi oleh penulis sebagai alamat surat.
         </para>
       </note>
 
       <para>
-        You can add your own headers to an e-mail with the
-        <emphasis>my_hdr</emphasis> configuration option. This option
-        has the following syntax: <emphasis>my_hdr &lt;header name&gt;:
-        &lt;header contents&gt;</emphasis>. For example, you can add information
-        about what OS you are running by adding the following line to your
-        mutt configuration:
+        Anda bisa menambahkan header Anda sendiri pada e-mail dengan opsi konfigurasi
+        <emphasis>my_hdr</emphasis>. Opsi ini memiliki sintaks sebagai berikut: 
+	<emphasis>my_hdr &lt;nama header&gt;:
+        &lt;isi header&gt;</emphasis>. Sebagai contoh, Anda bisa menambahkan informasi tentang sistem 
+	operasi yang Anda gunakan dengan menambahkan baris berikut pada konfigurasi mutt Anda:
       </para>
 
       <screen>
@@ -143,9 +129,8 @@ my_hdr X-Operating-System: Slackware Linux 10.2
       </screen>
 
       <para>
-        You can also override some of the headers that are normally used,
-        such as the sender address that is specified in the
-        <emphasis>From:</emphasis> header:
+        Anda juga bisa menimpa beberapa header yang biasa digunakan, seperti alamat pengirim yang ditentukan 
+	pada header <emphasis>From:</emphasis>:
       </para>
 
       <screen>
@@ -154,18 +139,16 @@ my_hdr From: John Doe &lt;john.doe@example.org&gt;
     </sect2>
 
     <sect2>
-      <title>The sendmail binary</title>
+      <title>Biner sendmail</title>
 
       <indexterm><primary>mutt</primary><secondary>sendmail binary</secondary></indexterm>
 
       <para>
-        By default mutt uses the sendmail MTA to deliver e-mails that
-        were sent. You can use another command to send e-mail by altering
-        the <emphasis>sendmail</emphasis> configuration variable. The
-        sendmail replacement must handle the same parameter syntax
-        as sendmail. For example, if you have installed MSMTP to deliver
-        e-mails, you can configure mutt to use it by adding the following
-        line to your mutt configuration:
+        Secara default, mutt menggunakan MTA sendmail untuk mengirimkan e-mail yang akan dikirimkan. 
+	Anda bisa menggunakan perintah lain untuk mengirimkan e-mail dengan mengubah variabel konfigurasi 
+	<emphasis>sendmail</emphasis>. Pengganti sendmail harus mampu menangani sintaks parameter yang sama dengan 
+	sendmail. Sebagai contoh, jika Anda telah menginstall MSMTP untuk mengirimkan e-mail, Anda bisa 
+	mengkonfigurasikan mutt untuk menggunakannya dengan menambahkan baris berikut pada konfigurasi mutt:
       </para>
 
       <screen>
@@ -173,24 +156,22 @@ set sendmail="/usr/bin/msmtp"
       </screen>
 
       <para>
-        When you have completely replaced sendmail with another MTA, for
-        instance Postfix, it is usually not needed to set this parameter,
-        because most MTAs provide an alternative sendmail binary file.
+        Ketika Anda sudah sepenuhnya mengganti sendmail dengan MTA lain, misalnya Postfix, pada umumnya 
+	tidak lagi diperlukan untuk menentukan parameter ini, karena sebagian besar MTA menyediakan alternatif 
+	terhadap berkas biner sendmail.
       </para>
     </sect2>
 
   </sect1>
 
   <sect1 id="email-mutt-imap">
-    <title>Using IMAP</title>
+    <title>Menggunakan IMAP</title>
 
     <para>
-      Normally, mutt reads e-mail from the user's local spool mailbox.
-      However, mutt also has support for using IMAP mailboxes.
-      <acronym>IMAP</acronym> (the Internet Message Access Protocol)
-      is a protocol that is used for accessing e-mail from a remote
-      server, and is supported by many e-mail servers. Mutt uses the
-      following URL format for representing IMAP servers:
+      Biasanya, mutt membaca -email dari kotak surat lokal pengguna. Namun, mutt juga mendukung penggunaan 
+      kotak surat IMAP. <acronym>IMAP</acronym> (the Internet Message Access Protocol) adalah sebuah 
+      protokol yang digunakan untuk mengakses e-mail dari server remote, dan didukung oleh banyak 
+      server e-mail. Mutt menggunakan format URL berikut untuk merepresentasikan server IMAP:
     </para>
 
     <literallayout>
@@ -198,7 +179,7 @@ imap://[user@]hostname[:port]/[mailbox]
     </literallayout>
 
     <para>
-      Or the following format for IMAP over SSL/TLS:
+      Atau format berikut untuk IMAP melalui SSL/TLS:
     </para>
     
     <literallayout>
@@ -206,19 +187,17 @@ imaps://[user@]hostname[:port]/[mailbox]
     </literallayout>
 
     <para>
-      You can directly use this syntax in folder-related operatings.
-      For example, if you press <quote>c</quote> to change from folder,
-      you can enter an IMAP URL. This is a bit tedious, so it is easier
-      to store this information in your <filename>.muttrc</filename> file.
+      Anda bisa langsung menggunakan sintaks ini pada operasi yang berhubungan dengan direktori.
+      Sebagai contoh, jika Anda menekan <quote>c</quote> untuk mengubah dari direktori, Anda bisa memasukkan 
+      URL IMAP. Hal ini cukup merepotkan, sehingga lebih mudah untuk menyimpan informasi pada berkas 
+      <filename>.muttrc</filename>.
     </para>
 
     <para>
-      If you use only one IMAP account, you can set the INBOX folder
-      of this account as the spool mailbox, and the main IMAP account
-      as the e-mail folder. For example, adding the following lines
-      to your <filename>.muttrc</filename> configuration file will set
-      up mutt to log in to the <emphasis>imap.example.org</emphasis>
-      server as the <emphasis>me</emphasis> user.
+      Jika Anda henya menggunakan satu akun IMAP, Anda bisa menentukan direktori INBOX dari akun ini sebagai 
+      kotak surat spool, dan akun utama IMAP sebagai direktori e-mail. Sebagai contoh, menambahkan baris berikut 
+      pada berkas konfigurasi <filename>.muttrc</filename> akan membuat mutt untuk log in pada server 
+      <emphasis>imap.example.org</emphasis> sebagai pengguna <emphasis>me</emphasis>.
     </para>
 
     <screen>
@@ -229,42 +208,38 @@ set spoolfile=imap://me@imap.example.org/INBOX
   </sect1>
 
   <sect1 id="email-mutt-gnupg">
-    <title>Signing/encrypting e-mails</title>
+    <title>Menandatangani/mengenkripsi e-mail</title>
 
     <sect2 id="email-mutt-gnupg-introduction">
-      <title>Introduction</title>
+      <title>Perkenalan</title>
 
       <para>
-        Mutt provides excellent support for signing or encrypting e-mails
-        with GnuPG. One might wonder why he or she should use one of these
-        techniques. While most people do not feel the need to encrypt most
-        of their e-mails, it generally is a good idea to sign your e-mails.
-        There are, for example, a lot of viruses these days that use other
-        people's e-mail addresses in the From: field of viruses. If the
-        people who you are communicating with know that you sign your e-mails,
-        they will not open fake e-mail from viruses. Besides that it looks
-        much more professional if people can check your identity, especially
-        in business transactions. For example, who would you rather trust,
-        vampire_boy93853@hotmail.com, or someone using a professional e-mail
-        address with digitally signed e-mails?
+        Mutt menyediakan dukungan yang bagus untuk menandatangani atau mengenkripsi e-mail dengan 
+	GnuPG. Seseorang mungkin heran kenapa dia harus menggunakan salah satu teknik ini. Meskipun 
+	sebagian orang tidak merasakan perlunya mengenkripsi e-mail mereka, merupakan ide yang bagus 
+	untuk menandatangani e-mail Anda. Terdapat banyak virus yang menggunakan alamat e-mail orang 
+	lainpada kolom From:. Jika orang yang Anda ajak berkomunikasi tahu bahwa Anda menandatangani 
+	e-mail Anda, mereka tidak akan membuka e-mail palsu dari virus. Selain itu, akan tampak lebih 
+	profesional jika orang lain bisa menguji identitas Anda, terutama pada transaksi bisnis. 
+	Sebagai contoh, siapa yang lebih Anda percaya vampire_boy93853@hotmail.com, atau seseorang dengan 
+	alamat e-mail profesional dengan email yang ditandatangani secara digital?
       </para>
 
       <para>
-        This section describes how you can use GnuPG with mutt, for more
-        information about GnuPG read
+        Bagian ini menjelaskan bagaimana Anda bisa menggunakan GnuPG dengn mutt, untuk informasi lebih 
+	lanjut tentang GnuPG baca 
         <xref linkend="basics-filesystem-gnupg" />.
       </para>
     </sect2>
 
     <sect2 id="email-mutt-gnupg-configuration">
-      <title>Configuration</title>
+      <title>Konfigurasi</title>
 
       <para>
-        An example configuration for using GnuPG in mutt can be found
-        in <filename>/usr/share/doc/mutt/samples/gpg.rc</filename>.
-        In general the contents of this file to your mutt configuration will
-        suffice. From the shell you can add the contents of this file
-        to you <filename>.muttrc</filename> with the following command:
+        Sebuah contoh konfigurasi untuk menggunakan GnuPG pada mutt dapat ditemukan pada 
+	<filename>/usr/share/doc/mutt/samples/gpg.rc</filename>.
+        Pada umumnya, isi berkas ini cukup untuk menjadi konfigurasi mutt Anda. Dari shell, Anda bisa 
+	menambahkan isi berkas ini pada <filename>.muttrc</filename> dengan perintah berikut:
       </para>
 
       <screen>
@@ -272,9 +247,9 @@ $ <command>cat /usr/share/doc/mutt/samples/gpg.rc >> ~/.muttrc</command>
       </screen>
 
       <para>
-        There are some handy parameters that you can additionally set.
-        For example, if you always want to sign e-mails, add the following
-        line to your mutt configuration:
+        Terdapat beberapa parameter yang berguna yang bisa Anda tambahkan. Sebagai contoh, 
+	jika Anda selalu ingin untuk menandatangani e-mail, tambahkan baris berikut pada konfigurasi 
+	mutt Anda:
       </para>
 
       <screen>
@@ -282,10 +257,9 @@ set crypt_autosign = yes
       </screen>
 
       <para>
-        Another handy option is <emphasis>crypt_replyencrypt</emphasis>,
-        which will automatically encrypt replies to messages that were
-        encrypted. To enable this, add the following line to your mutt
-        configuration:
+        Opsi lain yang cukup berguna adalah <emphasis>crypt_replyencrypt</emphasis>, yang akan secara 
+	otomatis mengenkripsi balasan pesan yang dienkripsi. Untuk mengaktifkan opsi ini, tambahkan 
+	baris berikut pada konfigurasi mutt Anda:
       </para>
 
       <screen>
@@ -294,18 +268,16 @@ set crypt_replyencrypt = yes
     </sect2>
 
     <sect2 id="email-mutt-gnupg-usage">
-      <title>Usage</title>
+      <title>Penggunaan</title>
 
       <para>
-        If you have set some of the automatic options, like
-        <emphasis>crypt_autosign</emphasis>, GnuPG usage of mutt is mostly
-        automatic. If not, you can press the &lt;p&gt; key during the
-        final step of sending an e-mail. In the bottom of the screen
-        various GnuPG/PGP options will appear, which you can access
-        via the letters that are enclosed in parentheses. For example,
-        &lt;s&gt; signs e-mails, and &lt;e&gt; encrypts an e-mail.
-        You can always clear any GnuPG option you set by pressing
-        &lt;p&gt; and then &lt;c&gt;.
+        Jika Anda telah menentukan beberapa opsi otomatisasi, seperti 
+        <emphasis>crypt_autosign</emphasis>, penggunaan GnuPG pada mutt biasanya sudah otomatis. Jika 
+	tidak, Anda bisa menekan kunci &lt;p&gt; selama langkah terakhir dari pengiriman e-mail. Pada 
+	bagian bawah layar, beberapa opsi GnuPG/PGP akan muncul, yang bisa Anda akses dengan huruf yang 
+	berada didalam tanda kurung. Sebagai contoh, &lt;s&gt; menandatangani e-mail, dan 
+	&lt;e&gt; mengenkripsi e-mail. Anda bisa menghapus opsi GnuPG dengan menekan 
+        &lt;p&gt; lalu &lt;c&gt;.
       </para>
     </sect2>
   </sect1>

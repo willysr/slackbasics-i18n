@@ -262,15 +262,15 @@ Account setup complete.
 	ketika kita login sebagai <emphasis>root</emphasis>. Akan 
 	tetapi, terdapat beberapa situasi yang membutuhkan akses root. 
 	Sebagai contoh, untuk melakukan administrasi sistem, atau 
-	menginstal program baru. Untungnya perintah <command>su</command> 
-	dapat memberikan anda hak akses root untuk sementara.
+	menginstall program baru. Untungnya perintah <command>su</command> 
+	dapat memberikan Anda hak akses root untuk sementara.
     </para>
 
     <para>
 	Menggunakan perintah <command>su</command> sangat sederhana/ 
 	Cukup dengan mengeksekusi perintah <command>su</command>, 
 	kemudian Anda akan ditanyakan password root. Setelah password 
-	dimasukkan dengan benar, maka anda akan memulai shell dengan 
+	dimasukkan dengan benar, maka Anda akan memulai shell dengan 
 	hak akses root.
     </para>
 
@@ -311,7 +311,7 @@ $ <userinput>su -c lilo</userinput>
 
     <para>
 	Jika Anda ingin memberikan parameter pada perintah yang ingin 
-	anda jalankan, gunakan tanda kutip (contoh <command>su -c &quot; 
+	Anda jalankan, gunakan tanda kutip (contoh <command>su -c &quot; 
 	ls -l /&quot;</command>). Tanpa tanda petik <command>su</command> 
 	tidak dapat mengenali apakah parameter tersebut akan digunakan 
 	oleh perintah tertentu, atau oleh <command>su</command> itu 
@@ -399,7 +399,7 @@ root:ALL EXCEPT GROUP wheel:DENY
 
       <para>
 	Kuota pengguna dan grup dapat diedit menggunakan fasilitas 
-	<quote>edquota</quote>. Program ini memungkinkan anda untuk 
+	<quote>edquota</quote>. Program ini memungkinkan Anda untuk 
 	mengedit kuota secara interaktif dengan editor 
 	<command>vi</command>. Sintaks yang paling dasar dari perintah 
 	ini adalah <command>edquota username</command>. Sebagai contoh:

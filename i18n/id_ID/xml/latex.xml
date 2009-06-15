@@ -7,74 +7,69 @@
   <indexterm><primary>typesetting</primary></indexterm>
 
   <sect1 id="editing-latex-introduction">
-    <title>Introduction</title>
+    <title>Perkenalan</title>
 
     <para>
-      LaTeX is a typesetting system that can be used to produce high-quality
-      articles, books, letters and other publications. LaTeX is based on
-      TeX, a lower-level typesetting language that was designed by Donald
-      E. Knuth. LaTeX does not work like a <acronym>WYSIWYG</acronym>
-      (what you see is what you get) word processor, the kind of document
-      preparation system most people are accustomed to. With LaTeX you
-      do not have to care about formatting the document, only about writing
-      the document.
+      LaTeX adalah sistem typesetting yang dapat digunakan untuk membuat artikel, buku, surat, dan 
+      publikasi lain berkualitas tinggi. LaTeX berbasiskan pada TeX, bahasa typesetting aras bawah 
+      yang didesain oleh Donald E. Knuth. LaTeX tidak bekerja seperti pengolah kata 
+      <acronym>WYSIWYG</acronym> (what you see is what you get), jenis persiapan dokumen yang sudah banyak 
+      dipakai oleh banyak orang. Dengan LaTeX, Anda tidak harus perduli dengan pemformatan dokumen, hanya 
+      tentang penulisan dokumen.
     </para>
 
     <para>
-      LaTeX files are plain-text files that contain LaTeX macros. LaTeX
-      formats the document based on the macros that are used. In the
-      beginning using LaTeX may be a bit awkward to a new user. But after
-      a while you will discover that using LaTeX has some distinct
-      advantages. To name a few:
+      Berkas LaTeX adalah berkas plain-text yang berisi makro LaTeX macros. LaTeX memformat dokumen 
+      berdasarkan makro yang digunakan. Pada awalnya, menggunakan LaTeX mungkin akan membingungkan bagi 
+      pengguna baru. Tetapi setelah beberapa waktu, Anda akan menemukan bahwa menggunakan LaText memiliki 
+      beberapa keuntungan. Sebagian diantaranya:
     </para>
 
     <itemizedlist>
       <listitem>
         <para>
-          LaTeX-formatted documents look very professional.
+          Dokumen yang diformat dengan LaTeX tampak profesional.
         </para>
       </listitem>
       <listitem>
         <para>
-          You do not have to care about the layout of your documents. You
-          just add structure to your documents, and LaTeX takes care of
-          the formatting.
+          Anda tidak perlu perduli dengan layout dari dokumen Anda. Anda cukup menambahkan struktur pada 
+	  dokumen Anda, dan LaTeX mengurus bagian pemformatan.
         </para>
       </listitem>
       <listitem>
         <para>
-          LaTeX files are plain text, and can easily be changed using
-          standard UNIX tools, such as <command>vi</command>,
-          <command>sed</command> or <command>awk</command>
+          Berkas LaTeX cuma plain text, dan bisa diganti menggunakan utilitas standar UNIX, seperti 
+	  <command>vi</command>,
+          <command>sed</command> atau <command>awk</command>
         </para>
       </listitem>
       <listitem>
         <para>
-          LaTeX provides very good support for typesetting things like
-          mathematical formula, references and Postscript images.
+          LaTeX menyediakan dukungan yang sangat bagus untuk hal-hal yang berhubungan dengan typesetting 
+	  seperti formula matematika, referensi, dan citra Postscript.
         </para>
       </listitem>
     </itemizedlist>
 
     <para>
-      LaTeX is very extensive, so this chapter will only touch the
-      surface of LaTeX. But it should be enough to get you started
-      to be able to make simple documents.
+      LaTeX sangatlah luas, sehingga bab ini hanya membahas permukaan dari LaTeX. Tetapi sudah cukup untuk 
+      memulai membuat dokumen sederhana.
     </para>
   </sect1>
 
   <sect1 id="editing-latex-basic">
-    <title>Preparing basic LaTeX documents</title>
+    <title>Mempersiapkan dokumen LaTeX sederhana</title>
 
     <indexterm><primary>LaTeX</primary><secondary>documentclass</secondary></indexterm>
     <indexterm><primary>LaTeX</primary><secondary>environments</secondary></indexterm>
 
     <sect2 id="editing-latex-basic-minimal">
-      <title>Minimal document structure</title>
+      <title>Struktur dokumen minimal</title>
 
       <para>
-        Each LaTeX document has some basic minimal structure that
-        describes the document. Let's look at an example:
+        Setiap dokumen LaTeX memiliki struktur dasar minimal yang menjelaskan dokumen. Mari kita lihat 
+	sebuah contoh:
       </para>
 
       <screen>
@@ -91,75 +86,63 @@ This is a basic document. <co id="latex-struct-5" />
       </screen>
 
       <para>
-        You can already see the basic syntactical structure of LaTeX
-        commands. A command is started with a backslash, followed by the
-        name of the command. Each macro has a mandatory argument that
-        is placed in accolades, and an optional argument that is placed
-        in square brackets.
+        Anda sudah melihat struktur sintaks dasar dari perintah LaTeX. Sebuah perintah dimulai dengan 
+	sebuah backslash, diikuti dengan nama perintah. Setiap makro memiliki argumen wajib yang diletakkan 
+	dalam kurung kurawal, dan argumen opsional yang diletakkan pada kurang siku.
       </para>
 
       <calloutlist>
         <callout arearefs="latex-struct-1">
           <para>
-            The first command in every document is the
-            <emphasis>documentclass</emphasis>. This command specifies
-            what kind of document LaTeX is dealing with. The type of
-            document is specified as a mandatory parameter. You can
-            also specify some optional parameters, such as the font
-            size and the paper size. In this case the font size is changed
-            from the default 12pt to 10pt, and A4 is used as the
-            paper size. The document classes that are available in
-            LaTeX are shown in <xref linkend="latex-documentclasses" />.
+            Perintah pertama dari setiap dokumen adalah 
+            <emphasis>documentclass</emphasis>. Perintah ini menentukan jenis dokumen apa yang sedang dihadapi 
+	    oleh LaTeX. Jenis dokumen ditentukan sebagai parameter wajib. Anda juga bisa menentukan parameter 
+	    opsional, seperti ukuran font dan kertas. Pada kasus ini, ukuran font diganti dari 12pt menjadi 10pt, dan 
+	    A4 digunakan sebagai ukuran kertas. Kelas dokumen yang ada pada LaTeX ditunjukkan pada 
+	    <xref linkend="latex-documentclasses" />.
           </para>
         </callout>
         <callout arearefs="latex-struct-2">
           <para>
-            After the documentclass you can add some meta-information
-            to the document, like the title of the document. In this
-            case the title is <emphasis>The history of symmetric 
-            ciphers</emphasis>.
+            Setelah documentclass Anda bisa menambahkan beberapa informasi meta pada dokumen, misalnya judul
+	    dokumen. Pada kasus ini, judulnya adalah <emphasis>The history of symmetric  ciphers</emphasis>.
           </para>
         </callout>
         <callout arearefs="latex-struct-3">
           <para>
-            The author command specifies the author of the book.
+            Perintah author menentukan penulis buku.
           </para>
         </callout>
         <callout arearefs="latex-struct-4">
           <para>
-            The <emphasis>\begin</emphasis> command marks the beginning
-            of an environment. There are many different environments,
-            but they all implicate certain typesetting conventions for the
-            text that is in an environment. In this case we start an
-            <emphasis>document</emphasis> environment. This is a very
-            basic environment, LaTeX interprets everything in this
-            environment as the body of the text.
+            Perintah <emphasis>\begin</emphasis> memulai awal dari lingkungan penulisan. Terdapat 
+	    banyak lingkungan penulisan, tetapi mereka memiliki konvensi yang berbeda untuk setiap teks 
+	    yang berada pada lingkungan tersebut. Pada kasus ini, kita memulai lingkungan 
+	    <emphasis>document</emphasis>. Ini merupakan lingkungan dasar, LaTeX menginterpretasikan 
+	    semuanya pada lingkungan ini sebagai isi dari teks.
           </para>
         </callout>
         <callout arearefs="latex-struct-5">
           <para>
-            The content of the document can be placed within the
-            <emphasis>document</emphasis>, in this case a friendly
-            warning about the nature of the document.
+            Isi dokumen dapat diletakkan didalam <emphasis>document</emphasis>, pada kasus ini sebuah pesan 
+	    peringatan tentang isi dari dokumen.
           </para>
         </callout>
         <callout arearefs="latex-struct-6">
           <para>
-            All environments eventually have to be closed. The
-            <emphasis>document</emphasis> environment is the last
-            environment that is closed, because it denotes the end
-            of the body of the text.
+            Semua lingkungan harus ditutup. Lingkungan <emphasis>document</emphasis> adalah lingkungan terakhir 
+	    yang harus ditutup, karena menandai akhir dari isi teks.
           </para>
         </callout>
       </calloutlist>
 
       <table id="latex-documentclasses">
-        <title>LaTeX document classes</title>
+        <title>Kelas dokumen LaTeX</title>
 
         <tgroup cols="1">
           <thead>
             <row>
-              <entry>Class</entry>
+              <entry>Kelas</entry>
             </row>
           </thead>
           <tbody>
@@ -181,12 +164,11 @@ This is a basic document. <co id="latex-struct-5" />
     </sect2>
 
     <sect2 id="editing-latex-basic-print">
-      <title>Generating printable formats</title>
+      <title>Menghasilkan format siap cetak</title>
 
       <para>
-        Once you have a LaTeX file, you can use the <command>latex</command>
-        command to generate a <acronym>DVI</acronym> (Device Independent
-        format) file:
+        Setelah Anda memiliki berkas LaTeX, Anda bisa menggunakan perintah <command>latex</command> 
+	untuk menghasilkan berkas <acronym>DVI</acronym> (Device Independent format) :
       </para>
 
       <screen>
@@ -219,10 +201,10 @@ $ <command>xdvi crypto.dvi</command>
       </screen>
 
       <para>
-        This file is not directly printable (although DVI files can be
-        printed with <command>xdvi</command>). An ideal format for
-        printable files is Postscript. You can generate a Postscript
-        file from the DVI file with one simple command:
+        Berkas ini tidak langsung dapat dicetak (meskipun berkas DVI dapat dicetak dengan 
+	<command>xdvi</command>). Sebuah format yang ideal untuk berkas yang siap cetak adalah 
+	Postscript. Anda bisa menghasilkan berkas Postscript dari berkas DVI dengan satu perintah 
+	sederhana:
       </para>
 
       <screen>
@@ -230,16 +212,14 @@ $ <command>dvips -o crypto.ps crypto.dvi</command>
       </screen>
 
       <para>
-        The <parameter class="command">-o</parameter> specifies the output
-        (file) for the Postscript document. If this parameter is not
-        specified, the output will be piped through <command>lpr</command>,
-        which will schedule the document to be printed.
+        Parameter <parameter class="command">-o</parameter> menentukan hasil keluaran (berkas) untuk 
+	dokumen Postscript. Jika parameter tidak ditentukan, hasil keluaran akan di-pipe melalui 
+	<command>lpr</command>, yang akan menjadwalkan dokumen untuk dicetak.
       </para>
 
       <para>
-        <acronym>PDF</acronym> (Portable Document Format) is another
-        popular format for electronic documents. PDF can easily be
-        generated from Postscript:
+        <acronym>PDF</acronym> (Portable Document Format) adalah format lain yang populer untuk 
+	dokumen elektronik. PDF dapat dengan mudah dibuat dari Postscript:
       </para>
 
       <screen>
@@ -247,31 +227,27 @@ $ <command>ps2pdf crypto.ps</command>
       </screen>
 
       <para>
-        The resulting output file will be the same as the input file,
-        with the <filename>.ps</filename> extension replaced with
-        <command>.pdf</command>.
+        Hasil keluaran akan sama dengan berkas masukkan, dengan ekstensi <filename>.ps</filename> digantikan 
+	dengan <command>.pdf</command>.
       </para>
     </sect2>
 
     <sect2 id="editing-latex-basic-sections">
-      <title>Sections</title>
+      <title>Seksi</title>
 
       <indexterm><primary>LaTeX</primary><secondary>sections</secondary></indexterm>
 
       <para>
-        Now that you know how to create a basic LaTeX document, it is
-        a good time to add some more structure. Structure is added using
-        sections, subsections, and subsubsections. These structural
-        elements are made with respectively the <emphasis>\section</emphasis>,
-        <emphasis>\subsection</emphasis> and
-        <emphasis>\subsubsection</emphasis> commands. The mandatory parameter
-        for a section is the title for the section. Normal sections,
-        subsections and subsubsections are automatically numbered, and
-        added to the table of contents. By adding a star after a section
-        command, for example <emphasis>\section*{title}</emphasis> section
-        numbering is suppressed, and the section is not added to the
-        table of contents. The following example demonstrates how
-        you can use sections:
+        Sekarang Anda sudah tahu bagaimana membuat dokumen LaTeX sederhana, merupakan 
+	ide bagus untuk menambahkan beberapa struktur tambahan. Struktur ditambahkan dengan 
+	menggunakan seksi, sub seksi, dan sub sub seksi. Elemen struktural ini dibuat dengan 
+	perintah <emphasis>\section</emphasis>, <emphasis>\subsection</emphasis> dan 
+        <emphasis>\subsubsection</emphasis>. Parameter wajib untuk sebuah seksi adalah judul 
+	untuk seksi. Seksi normal, sub seksi dan sub sub seksi secara otomatis diberi nomor, dan 
+	ditambahkan pada daftar isi. Dengan menambahkan tanda bintang setelah perintah section, 
+	misalnya <emphasis>\section*{title}</emphasis> penomoran seksi akan berkurang, dan seksi tersebut
+	tidak akan ditambahkan pada daftar isi. Contoh berikut mendemonstrasikan bagaimana Anda bisa 
+	menggunakan seksi:
       </para>
 
       <screen>
@@ -301,27 +277,24 @@ Encryption Standard, the successor of DES.
       </screen>
 
       <para>
-        The example above is pretty straightforward, but this is a good
-        time to look at how LaTeX treats end of line characters and empty
-        lines. Empty lines are ignored by LaTeX, making the text a
-        continuous flow. An empty line starts a new paragraph. All paragraphs
-        but the first paragraph are stared with a extra space left of the
-        first word.
+        Contoh diatas cukup jelas, tetapi merupakan waktu yang tepat untuk melihat bagaimana 
+	LaTeX memperlakukan karakter baris dan baris kosong. Baris kosong akan diabaikan oleh 
+	LaTeX, membuat teks menjadi aliran yang mengalir. Sebuah baris kosong memulai sebuah 
+	paragraf baru. Semua paragraf kecuali paragraf pertama dimulai dengan dengan tambahan ruang 
+	di sisi kiri kata pertama.
       </para>
     </sect2>
 
     <sect2 id="editing-latex-basic-fontstyle">
-      <title>Font styles</title>
+      <title>Gaya font</title>
 
       <para>
-        Usually you may want to work with different font styles too. LaTeX
-        has some commands that can be used to change the appearance of the
-        current font. The most commonly used font commands are
-        <emphasis>\emph</emphasis> for emphasized text, and
-        <emphasis>\textbf</emphasis>. Have a look at <xref
-        linkend="latex-fontstyles" /> for a more extensive list of font
-        styles. Emphasis and bold text are demonstrated in this example
-        paragraph:
+        Biasanya Anda ingin bekerja dengan berbagai gaya font juga. LaTeX memiliki beberapa 
+	perintah yang bisa digunakan untuk mengubah tampilan dari font aktual. Perintah font yang 
+	paling sering digunakan adalah <emphasis>\emph</emphasis> untuk teks miring, dan 
+        <emphasis>\textbf</emphasis>. Lihat <xref
+        linkend="latex-fontstyles" /> untuk daftar gaya font yang lebih ekstensif. Teks miring dan tebal 
+	didemonstrasikan pada paragraf contoh berikut:
       </para>
 
       <screen>
@@ -330,43 +303,43 @@ Working with font styles is easy. \emp{This text is emphasized} and
       </screen>
 
       <table id="latex-fontstyles">
-        <title>LaTeX font styles</title>
+        <title>Gaya font LaTeX</title>
 
         <tgroup cols="2">
           <thead>
             <row>
-              <entry>Command</entry>
-              <entry>Description</entry>
+              <entry>Perintah</entry>
+              <entry>Deskripsi</entry>
             </row>
           </thead>
           <tbody>
             <row>
               <entry>\emph</entry>
-              <entry>Add emphasis to a font.</entry>
+              <entry>Menambahkan emphasis pada font.</entry>
             </row>
             <row>
               <entry>\textbf</entry>
-              <entry>Print the text in bold.</entry>
+              <entry>Mencetak teks dalam huruf tebal.</entry>
             </row>
             <row>
               <entry>\textit</entry>
-              <entry>Use an italic font.</entry>
+              <entry>Menggunakan font italic.</entry>
             </row>
             <row>
               <entry>\textsl</entry>
-              <entry>Use a font that is slanted.</entry>
+              <entry>Menggunakan font yang di-slant.</entry>
             </row>
             <row>
               <entry>\textsc</entry>
-              <entry>Use small capitals.</entry>
+              <entry>Menggunakan huruf kecil.</entry>
             </row>
             <row>
               <entry>\texttt</entry>
-              <entry>Use a typewriter font.</entry>
+              <entry>Menggunakan font typewriter.</entry>
             </row>
             <row>
               <entry>\textsf</entry>
-              <entry>Use a sans-serif font.</entry>
+              <entry>Menggunakan font sans-serif.</entry>
             </row>
           </tbody>
         </tgroup>

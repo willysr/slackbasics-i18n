@@ -4,104 +4,88 @@
 	 xmlns:xl="http://www.w3.org/1999/xlink" xml:lang="id"
 	 xml:id="chap-procmgmt">
 
-  <title>Process management</title>
+  <title>Manajemen Proses</title>
 
   <sect1 xml:id="chap-procmgmt-theory">
-    <title>Theory</title>
+    <title>Teori</title>
 
     <sect2 xml:id="chap-procmgmt-theory-proc">
-      <title>Processes</title>
+      <title>Proses</title>
 
       <para>
-	A running instance of a program is called a
-	<emphasis>process</emphasis>. Each process has its own
-	protected memory, named the <emphasis>process address
-	space</emphasis>. This address space consists of two areas:
-	the <emphasis>text area</emphasis> and the <emphasis>data
-	area</emphasis>. The text area contains the actual program
-	code, and tells the system what to do. The data area stores
-	constant and runtime data of a process. Since there are many
-	processes on a system, and only one or a few processors, the
-	operating system kernel divides processor time between
-	processes. This process is called
+	Sebuah instansiasi dari program yang berjalan disebut 
+	<emphasis>proses</emphasis>. Setiap proses memiliki memori terproteksinya
+	masing-masing, yang disebut <emphasis>alamat ruang proses</emphasis>. 
+	Alamat ini berisi dua area: <emphasis>area teks</emphasis> dan <emphasis>area data</emphasis>. 
+	Area teks berisi kode program sebenarnya, dan memberitahukan kepada sistem apa yang harus 
+	dilakukan. Area data menyimpan konstanta dan data runtime dari sebuah proses. Karena terdapat 
+	banyak proses pada sebuah sistem, dan hanya satu atau beberapa prosessor, kernel sistem 
+	operasi membagi waktu prosesor diantara proses. Proses ini disebut dengan 
 	<emphasis>time-sharing</emphasis>.
       </para>
 
       <table xml:id="chap-procmgmt-theory-proc-struct">
-	<title>The structure of a process</title>
+	<title>Struktur sebuah proses</title>
 
 	<tgroup cols="2">
 	  <thead>
-	    <row><entry>Field</entry><entry>Description</entry></row>
+	    <row><entry>Kolom</entry><entry>Deskripsi</entry></row>
 	  </thead>
 
 	  <tbody>
 	    <row>
-	      <entry>pid</entry><entry>The numeric process identifier</entry>
+	      <entry>pid</entry><entry>Penanda numerik proses</entry>
 	    </row>
 	    <row>
-	      <entry>ppid</entry><entry>The process identifier of the
-	      parent process</entry>
+	      <entry>ppid</entry><entry>Penanda proses untuk proses induk</entry>
 	    </row>
 	    <row>
-	      <entry>euid</entry><entry>The effective user ID of the
-	      process.</entry>
+	      <entry>euid</entry><entry>ID pengguna efektif dari proses</entry>
 	    </row>
 	    <row>
-	      <entry>ruid</entry><entry>The real user ID of the process</entry>
+	      <entry>ruid</entry><entry>ID pengguna sebenarnya dari proses</entry>
 	    </row>
 	    <row>
-	      <entry>egid</entry><entry>The group ID of the process</entry>
+	      <entry>egid</entry><entry>ID grup dari proses</entry>
 	    </row>
 	    <row>
-	      <entry>rgid</entry><entry>The real group ID of the
-	      process</entry>
+	      <entry>rgid</entry><entry>ID grup sebenarnya dari proses</entry>
 	    </row>
 	    <row>
-	      <entry>fd</entry><entry>Pointer to the list of open file
-	      descriptors</entry>
+	      <entry>fd</entry><entry>Penunjuk ke daftar file descriptor yang dipakai</entry>
 	    </row>
 	    <row>
-	      <entry>vmspace</entry><entry>Pointer to the process
-	      address space.</entry>
+	      <entry>vmspace</entry><entry>Penunjuk ke alamat ruang proses</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <para>
-	<xref linkend="chap-procmgmt-theory-proc-struct" /> lists the
-	most important fields of information that a kernel stores
-	about a process. Each process can be identified uniquely by
-	its <emphasis>PID</emphasis> (process identifier), which is an
-	unsigned number. As we will see later, a user can easily
-	retrieve the PID of a process. Each process is associated with
-	a <emphasis>UID</emphasis> (user ID) and
-	<emphasis>GID</emphasis> (group ID) on the system. Each
-	process has a <emphasis>real UID</emphasis>, which is the UID
-	as which the process was started, and the <emphasis>effective
-	UID</emphasis>, which is the UID as which the process
-	operates. Normally, the effective UID is equal to the real
-	UID, but some programs ask the system to change its effective
-	UID. The effective UID determines is used for access
-	control. This means that if a user named joe starts a command,
-	say less, less can only open files that joe has read rights
-	for. In parallel, a process also has an <emphasis>real
-	GID</emphasis> and an <emphasis>effective GID</emphasis>.
+	<xref linkend="chap-procmgmt-theory-proc-struct" /> menampilkan kolom informasi yang paling penting 
+	yang disimpan oleh kernel tentang sebuah proses. Setiap proses dapat diidentifikasi secara unik 
+	dengan <emphasis>PID</emphasis> (identifier proses), yang merupakan sebuah angka tidak bertanda. 
+	Seperti yang akan kita lihat nanti, seorang pengguna dapat dengan mudah mendapatkan 
+	PID dari sebuah proses. Setiap proses dihubungkan dengan sebuah <emphasis>UID</emphasis> (ID pengguna) 
+	dan <emphasis>GID</emphasis> (ID grup) pada sistem. Setiap proses memiliki <emphasis>real UID</emphasis>, 
+	yang merupakan UID yang digunakan ketika proses dijalankan, dan <emphasis>effective
+	UID</emphasis>, yang merupakan UID yang digunakan untuk menjalankan proses. Biasanya, effective UID sama 
+	dengan UID, tetapi beberapa program meminta sistem untuk mengganti effective UID. Effective UID menentukan 
+	kontrol akses. Hal ini berarti bahwa jika seorang pengguna bernama joe menjalankan sebuah perintah, misalkan
+	less, less hanya bisa membuka berkas dimana joe memiliki hak untuk membaca. Secara paralel, sebuah proses 
+	juga memiliki <emphasis>real
+	GID</emphasis> dan <emphasis>effective GID</emphasis>.
       </para>
 
       <para>
-	Many processes open files, the handle used to operate on a
-	file is called a <emphasis>file descriptor</emphasis>. The
-	kernel manages a list of open file descriptors for each
-	process. The <emphasis>fd</emphasis> field contains a pointer
-	to the list of open files. The <emphasis>vmspace</emphasis>
-	field points to the process address space of the process.
+	Banyak proses akan membuka berkas, handle yang digunakan untuk beroperasi pada sebuah berkas disebut 
+	<emphasis>file descriptor</emphasis>. Kernel mengelola daftar file descriptor yang dibuka untuk setiap 
+	proses. Kolom <emphasis>fd</emphasis> berisi penunjuk pada daftar berkas yang dibuka. Kolom 
+	<emphasis>vmspace</emphasis> menunjuk pada ruang alamat proses dari proses.
       </para>
 
-      <!-- XXX - make more sophisticated (swap)? -->
       <figure xml:id="chap-procmgmt-theory-proc-procstates">
-	<title>Process states</title>
+	<title>Status proses</title>
 
 	<mediaobject>
 	  <imageobject>
@@ -114,37 +98,31 @@
       </figure>
 
       <para>
-	Not every process is in need of CPU time at a given
-	moment. For instance, some processes maybe waiting for some
-	<emphasis>I/O</emphasis> (Input/Output) operation to complete
-	or may be terminated. Not taking subtleties in account,
-	processes are normally <emphasis>started</emphasis>,
-	<emphasis>running</emphasis>, <emphasis>ready</emphasis> (to
-	run), <emphasis>blocked</emphasis> (waiting for I/O), or
+	Tidak setiap proses membutuhkan waktu CPU pada waktu tertentu. Sebagai contoh, beberapa 
+	proses mungkin menunggu untuk beberapa operasi <emphasis>I/O</emphasis> (Input/Output) 
+	untuk bisa selesai atau mungkin dihentikan. Status proses biasanya <emphasis>started</emphasis>,
+	<emphasis>running</emphasis>, <emphasis>ready</emphasis> (untuk mulai), 
+	<emphasis>blocked</emphasis> (menunggu untuk I/O), atau 
 	<emphasis>terminated</emphasis>. <xref
-	linkend="chap-procmgmt-theory-proc-procstates" /> shows the
-	lifecycle of a process. A process that is terminated, but for
-	which the process table entry is not reclaimed, is often
-	called a <emphasis>zombie process</emphasis>. Zombie processes
-	are useful to let the parent process read the exit status of
-	the process, or reserve the process table entry temporarily.
+	linkend="chap-procmgmt-theory-proc-procstates" /> menampilkan daur hidup dari sebuah 
+	proses. Sebuah proses yang berada dalam status terminated, tetapi isi tabel proses tidak 
+	diambil kembali sering disebut dengan <emphasis>proses zombie</emphasis>. Proses zombie 
+	seringkali berguna untuk mengijinkan proses induk membaca status keluar dari proses, atau 
+	menyiapkan isi tabel proses secara sementara.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-procmgmt-theory-proc-new">
-      <title>Creating new processes</title>
+      <title>Membuat proses baru</title>
 
       <para>
-	New processes are created with the <emphasis>fork()</emphasis>
-	system call. This system call copies the process address space
-	and process information of the caller, and gives the new
-	process, named the child process, a different PID. The child
-	process will continue execution at the same point as the
-	parent, but will get a different return value from the
-	<emphasis>fork()</emphasis> system call. Based on this return
-	value the code of the parent and child can decide how to
-	continue executing. The following piece of C code shows a
-	<emphasis>fork()</emphasis> call in action:
+	Proses baru dibuat dengan system call <emphasis>fork()</emphasis>. System call ini menyalin 
+	ruang alamat proses dan informasi proses dari pemanggil, dan memberikan proses baru, yang disebut 
+	proses anak yang memiliki ID yang berbeda. Proses anak akan melanjutkan eksekusi dari titik yang 
+	sama dengan proses induk, tetapi mendapatkan nilai kembalian yang berbeda dari system call 
+	<emphasis>fork()</emphasis>. Berdasarkan dari nilai kembalian ini, kode dari induk dan anak bisa 
+	menentukan bagaimana melanjutkan proses eksekusi. Potongan kode C berikut menunjukan pemanggilan 
+	<emphasis>fork()</emphasis> :
       </para>
 
       <programlisting>
@@ -164,35 +142,26 @@ int main() {
       </programlisting>
 
       <para>
-.	This little program calls <emphasis>fork()</emphasis>, storing
-	the return value of <emphasis>fork()</emphasis> in the
-	variable
-	<emphasis>pid</emphasis>. <emphasis>fork()</emphasis> returns
-	the value <emphasis>0</emphasis> to the child, and the PID of
-	the child to the parent. Since this is the case, we can use a
-	simple conditional structure to check the value of the
-	<emphasis>pid</emphasis> variable, and print an appropriate
-	message.
+.	Program sederhana ini memanggil <emphasis>fork()</emphasis>, menyimpan nilai kembalian 
+	dari 	<emphasis>fork()</emphasis> pada variabel <emphasis>pid</emphasis>. 
+	<emphasis>fork()</emphasis> mengembalikan nilai kembalian <emphasis>0</emphasis> pada anak, 
+	dan PID dari anak kepada induk. Pada kasus ini, kita bisa menggunakan struktur kondisional 
+	sederhana untuk menguji nilai dari variabel <emphasis>pid</emphasis>, dan mencetak pesan 
+	yang benar.
       </para>
 
       <para>
-	You may wonder how it is possible to start new programs, since
-	the <emphasis>fork()</emphasis> call duplicates an existing
-	process. That is a good questions, since with
-	<emphasis>fork()</emphasis> alone, it is not possible to
-	execute new programs. UNIX kernels also provide a set of
-	system calls, starting with <emphasis>exec</emphasis>, that
-	load a new program image in the current process. We saw at the
-	start of this chapter that a process is a running program -- a
-	process was constructed in memory from the program image that
-	is stored on a storage medium. So, the
-	<emphasis>exec</emphasis> family of system calls gives a
-	running process the facilities to replace its contents with a
-	program stored on some medium. In itself, this is not wildly
-	useful, because every time the an <emphasis>exec</emphasis>
-	call is done, the original calling code (or program) is
-	removed from the process. This can be witnessed in the following
-	C program:
+	Anda mungkin akan heran bagaimana mungkin memulai proses baru, karena pemanggilan 
+	<emphasis>fork()</emphasis> menduplikasi proses yang ada. Itu merupakan pertanyaan yang bagus, 
+	karena dengan <emphasis>fork()</emphasis> saja, tidak mungkin untuk menjalankan program baru. 
+	Kernel UNIX juga menyediakan sekumpulan system call, dimulai dari <emphasis>exec</emphasis>, 
+	yang memuat citra program pada proses aktual. Kita sudah lihat pada awal bab ini bahwa sebuah proses 
+	adalah program yang berjalan -- sebuah proses dibuat pada memori dari citra program yang disimpan 
+	pada media penyimpanan. Jadi, keluarga system call <emphasis>exec</emphasis> memberikan proses 
+	yang berjalan sebuah fasilitas untuk mengganti kontennya dengan program yang disimpan pada 
+	media tertentu. Dengan sendirinya, hal ini tidak terlalu berguna, karena setiap kali pemanggilan 
+	<emphasis>exec</emphasis> selesai dilakukan, kode pemanggil sebelumnya (atau program) akan dihapus 
+	dari proses. Hal itu bisa dibuktikan dari program C berikut:
       </para>
 
       <programlisting>
@@ -210,15 +179,13 @@ int main() {
       </programlisting>
 
       <para>
-	This program executes <command>ls</command> with the
-	<emphasis>execve()</emphasis> call. The message printed with
-	<emphasis>printf()</emphasis> will never be shown, because the
-	running program image is replaced with that of
-	<command>ls</command>. Though, a combination of
-	<emphasis>fork()</emphasis> and the <emphasis>exec</emphasis>
-	functions are very powerful. A process can fork itself, and
-	let the child <quote>sacrifice</quote> itself to run another
-	program. The following program demonstrates this pattern:
+	Program ini mengeksekusi <command>ls</command> dengan pemanggilan <emphasis>execve()</emphasis>. 
+	Pesan yang dicetak dengan <emphasis>printf()</emphasis> tidak akan ditampilkan, karena 
+	citra program yang berjalan digantikan dengan <command>ls</command>. Meski demikian, kombinasi 
+	dari fungsi <emphasis>fork()</emphasis> dan <emphasis>exec</emphasis> sangatlah hebat. 
+	Sebuah proses bisa melakukan fork terhadap dirinya sendiri, dan membiarkan proses anak 
+	<quote>mengorbankan</quote> dirinya untuk menjalankan program lain. Program berikut mendemonstrasikan 
+	pola ini:
       </para>
 
       <programlisting>
@@ -238,73 +205,61 @@ int main() {
       </programlisting>
 
       <para>
-	This program forks itself first. The program image of the
-	child process will be replaced with <command>ls</command>,
-	while the parent process prints the <quote>Hello world!</quote>
-	message to the screen and returns.
+	Program ini melakukan form terhadap dirinya sendiri. Citra program dari proses anak akan 
+	digantikan dengan <command>ls</command>,
+	Sementara proses induk mencetak pesan <quote>Hello world!</quote> ke layar dan selesai.
       </para>
 
       <para>
-	This procedure is followed by many programs, including the
-	shell, when a command is executed from the shell prompt. In
-	fact all processes on a UNIX system are directly or indirectly
-	derrived from the <emphasis>init</emphasis> process, which is
-	the first program that is started on a UNIX system.
+	Prosedur ini diikuti dengan banyak program, termasuk shell, ketika sebuah perintah dieksekusi 
+	dari prompt shell. Pada kenyataannya, semua proses pada sistem UNIX secara langsung atau 
+	tidak langsung diturunkan dari proses <emphasis>init</emphasis>, yang merupakan program pertama 
+	yang dijalankan pada sistem UNIX.
       </para>
 
-      <!-- XXX - Describe what is inherited when exec is called. -->
     </sect2>
 
     <sect2 xml:id="chap-procmgmt-theory-proc-threads">
-      <title>Threads</title>
+      <title>Thread</title>
 
       <para>
-	Although forks are very useful to build some
-	parallelism<footnote><para>For instance, a web server could
-	fork multiple child processes to handle
-	requests</para></footnote>, they can be to expensive for some
-	purposes. Copying the whole process takes some time, and there
-	is cost involved if processes want to share data. This is
-	solved by offering a more lightweight alternative, namely
-	allowing more than one thread of execution. Each thread of
-	execution is executed separately, but the process data is
-	shared between the threads.
+	Meskipun fork sangat berguna untuk membangun paralelisme<footnote><para>Misalnya, web server bisa 
+	melakukan form banyak proses anak untuk menangani permintaan</para></footnote>, hal ini bisa 
+	menjadi mahal untuk beberapa tujuan. Menyalin seluruh proses membutuhkan waktu, dan terdapat 
+	biaya yang dilibatkan jika proses hendak berbagi data. Hal ini diselesaikan dengan menawarkan alternatif 
+	yang lebih ringan, atau dengan kata lain mengijinkan lebih dari satu thread eksekusi. Setiap thread eksekusi 
+	dieksekusi secara terpisah, tetapi data proses dibagi antar thread.
       </para>
 
       <para>
-	Writing good <emphasis>multithreaded</emphasis> programs
-	requires good knowledge of data sharing and locking. Since all
-	data is shared, uncareful programming can lead to bugs like
-	race conditions.
+	Menulis program <emphasis>multithreaded</emphasis> yang bagus membutuhkan pengetahuan yang baik
+	akan konsep berbagi data dan proses penguncian. Karena semua data dipakai bersama-sama, pemrograman 
+	yang tidak benar bisa menimbulkan kesalahan seperti race conditions.
       </para>
     </sect2>
-
-    <!-- XXX - Add a section about capabilities. -->
+    
   </sect1>
 
   <sect1 xml:id="chap-procmanagement-analyzing">
-    <title>Analyzing running processes</title>
+    <title>Menganalisa proses yang berjalan</title>
 
     <sect2 xml:id="chap-procmanagement-analyzing-listing">
-      <title>Listing running processes</title>
+      <title>Mendata proses yang berjalan</title>
 
       <para>
-	UNIX systems provide the <command>ps</command> command to show
-	a list of running processes. Unfortunately, this command is an
-	example of the pains of the lack of standardization. The BSD
-	and System V variants of <command>ps</command> have their own
-	sets of options. Fortunately, GNU/Linux implements both the
-	System V and BSD-style parameters, as well as some (GNU-style)
-	long options. Options preceded by a dash are interpreted as
-	System V options and options without a dash as BSD options.
-	We will describe the System V-style options in this section.
+	Sistem UNIX menyediakan perintah <command>ps</command> untuk menampilkan daftar proses 
+	yang berjalan. Sayangnya, perintah ini adalah contoh dari kurangnya standarisasi. Varian BSD 
+	dan System V dari <command>ps</command> memiliki opsinya masing-masing. Untungnya, GNU/Linux 
+	mengimplementasikan parameter-parameter pada System V dan BSD-style, dan juga beberapa opsi 
+	(gaya-GNU). Opsi yang diawali dengan tanda dash akan diinterpretasikan sebagai opsi milik 
+	System V dan opsi tanpa dash adalah opsi milik BSD. Kami akan menjelaskan opsi System V
+	pada bagian ini.
       </para>
 
       <para>
-	If <command>ps</command> is used without any parameters, it
-	shows all processes owned by the user that invokes
-	<command>ps</command> and that are attached to the same
-	controlling terminal. For example:
+	Jika <command>ps</command> digunakan tanpa parameter apapun, perintah ini akan menampilkan semua 
+	proses yang dimiliki oleh pengguna yang memanggil <command>ps</command> dan semua yang 
+	berhubungan pada terminal yang dipanggil. Sebagai contoh:
       </para>
 
       <screen>
@@ -315,25 +270,20 @@ $ <userinput>ps</userinput>
       </screen>
 
       <para>
-	A lot of useful information can be distilled from this
-	output. As you can see, two processes are listed: the shell
-	that we used to call <command>ps</command>
-	(<emphasis>bash</emphasis>), and the <command>ps</command>
-	command itself. In this case there are four information
-	fields. <emphasis>PID</emphasis> is the process ID of a
-	process, <emphasis>TTY</emphasis> the controlling terminal,
-	<emphasis>TIME</emphasis> the amount of CPU time the proces
-	has used, and <command>CMD</command> the command or program of
-	which a copy is running. The fields that are shown by default
-	may vary a bit per system, but usually at least these fields
-	are shown, with somewhat varying field labels.
+	Banyak informasi berguna yang bisa didapatkan dari hasil ini. Seperti yang Anda lihat, 
+	dua proses akan ditampilkan: shell yang digunakan untuk memanggil <command>ps</command>
+	(<emphasis>bash</emphasis>), dan perintah <command>ps</command> itu sendiri. Pada kasus ini, 
+	terdapat empat kolom informasi. <emphasis>PID</emphasis> adalah ID proses dari proses, 
+	<emphasis>TTY</emphasis> terminal yang mengontrol, <emphasis>TIME</emphasis> jumlah waktu CPU
+	yang telah digunakan oleh proses, dan <command>CMD</command> perintah atau program dari salinan 
+	yang berjalan. Kolom yang ditampilkan secara default bisa berbeda-beda untuk setiap sistem, tetapi 
+	pailng tidak kolom-kolom berikut akan ditampilkan, dengan label kolom yang berbeda.
       </para>
 
       <para>
-	Sometime you may want to have a broader view of processes that
-	are running. Adding the <parameter
-	class="command">-a</parameter> option shows all processes that
-	are associated with terminals. For instance:
+	Seringkali Anda hendak melihat tampilan yang lebih luas dari proses yang sedang berjalan. 
+	Menambahkan opsi <parameter class="command">-a</parameter> akan menampilkan semua proses 
+	yang dihubungkan dengan terminal. Sebagai contoh:
       </para>
 
       <screen>
@@ -345,17 +295,16 @@ $ <userinput>ps -a</userinput>
       </screen>
 
       <para>
-	As you can see, processes with different controlling terminals
-	are shown. Though, in contrast to the plain
-	<command>ps</command> output, only processes that control the
-	terminal at the moment are shown. For instance, the shell that
-	was used to call <command>ps</command> is not shown.
+	Seperti yang Anda lihat, proses-proses dengan terminal pengontrol yang berbeda akan ditampilkan.
+	Meskipun, dibandingkan dengan hasil keluaran dari <command>ps</command>, hanya proses-proses 
+	yang mengontrol terminal yang akan ditampilkan. Sebagai contoh, shell yang digunakan untuk 
+	memanggil <command>ps</command> tidak ditampilkan.
       </para>
 
       <para>
-	You can also print all processes that are running, including
-	processes that are not associated with a terminal, by using the
-	<parameter class="command">-A</parameter> option:
+	Anda juga bisa mencetak semua proses yang sedang berjalan, termasuk proses yang 
+	tidak berhubungan dengan terminal, dengan menggunakan opsi 
+	<parameter class="command">-A</parameter> :
       </para>
 
       <screen>
@@ -373,12 +322,10 @@ $ <userinput>ps -A | head -n 10</userinput>
       </screen>
 
       <para>
-	You can print all processes with a certain user ID, with the
-	<emphasis>-U</emphasis> option. This option accepts a user
-	name as a parameter, or multiple user names that are separated
-	by a comma. The following command shows all processes that
-	have <emphasis>xfs</emphasis> or <emphasis>rpc</emphasis> as
-	their user ID:
+	Anda bisa mencetak semua proses dengan ID pengguna tertentu dengan opsi 
+	<emphasis>-U</emphasis>. Opsi ini menerima nama pengguna sebagai parameter, atau 
+	banyak nama pengguna yang dipisahkan dengan koma. Perintah berikut akan menampilkan semua 
+	proses yang memiliki ID pengguna <emphasis>xfs</emphasis> atau <emphasis>rpc</emphasis> :
       </para>
 
       <screen>
@@ -389,8 +336,7 @@ $ <userinput>ps -U xfs,rpc</userinput>
       </screen>
 
       <para>
-	Likewise, you can also print processes with a particular group
-	ID, with the <emphasis>-G</emphasis> option:
+	Anda juga bisa mencetak proses-proses dengan ID grup tertentu, dengan opsi <emphasis>-G</emphasis> :
       </para>
 
       <screen>
@@ -403,9 +349,8 @@ $ <userinput>ps -G messagebus,haldaemon</userinput>
       </screen>
 
       <para>
-	If you would like to have a list for a physical or
-	pseudo-terminal, you can use the <parameter
-	class="command">-t</parameter> option:
+	Jika Anda hendak mendapatkan terminal fisik atau pseudo, Anda bisa menggunakan opsi <parameter
+	class="command">-t</parameter> :
       </para>
 
       <screen>
@@ -417,50 +362,45 @@ $ <userinput>ps -t tty2</userinput>
   </sect1>
 
   <sect1 xml:id="chap-procmanagement-managing">
-    <title>Managing processes</title>
+    <title>Mengelola proses</title>
 
     <sect2 xml:id="chap-procmanagement-managing-signals">
-      <title>Sending singals to a process</title>
+      <title>Mengirimkan sinyal ke proses</title>
 
       <para>
-	Signals are a crude, but effective form of inter-process
-	communication (IPC). A signal is basically a number that is
-	delivered to a process that has a special meaning. For all
-	signals there are default signal handlers. Processes can
-	install their own signal handlers, or choose to ignore
-	signals. Some signals (normally SIGKILL and SIGSTOP) can not
-	be ignored. All signals have convenient symbolic names.
+	Sinyal adalah bentuk kasar, tetapi efektif dari komunikasi antar proses. Sebuah sinyal pada dasarnya 
+	adalah sebuah angka yang dikirimkan pada sebuah proses yang memiliki arti khusus. 
+	Untuk semua sinyal, terdapat handle untuk sinyal default. Proses dapat menginstall handle untuk 
+	penanganan sinyalnya, atau memilih untuk mengabaikan sinyal. Beberapa sinyal (biasanya SIGKILL 
+	dan SIGSTOP) tidak dapat diabaikan. Semua sinyal memiliki nama simbol yang lebih nyaman untuk digunakan.
       </para>
 
       <para>
-	Only a few signals are normally interesting for interactive
-	use on UNIX(-like) systems. These are (followed by their number):
+	Hanya beberapa sinyal yang biasanya menarik untuk penggunaan interaktif pada sistem berbasis UNIX. 
+	Mereka adalah (diikuti oleh nomornya):
       </para>
 
       <itemizedlist>
 	<listitem>
-	  <para><emphasis>SIGKILL (9):</emphasis> forcefully kill
-	  a process.</para>
+	  <para><emphasis>SIGKILL (9):</emphasis> memaksa menghentikan sebuah proses.</para>
 	</listitem>
 	<listitem>
-	  <para><emphasis>SIGTERM (15):</emphasis> request a process
-	  to terminate. Since this is a request, a program could ignore
-	  it, in contrast to <emphasis>SIGKILL</emphasis>.</para>
+	  <para><emphasis>SIGTERM (15):</emphasis> meminta proses untuk terminate. Karena ini merupakan 
+	  sebuah permintaan, sebuah program bisa mengabaikan sinyal ini, kebalikan dengan 
+	  <emphasis>SIGKILL</emphasis>.</para>
 	</listitem>
 	<listitem>
-	  <para><emphasis>SIGHUP (1):</emphasis> Traditionally, this
-	  has signalled a terminal hangup. But nowadays some daemons
-	  (e.g. <emphasis>inetd</emphasis>) reread their configuration
-	  when this signal is sent.</para>
+	  <para><emphasis>SIGHUP (1):</emphasis> Secara tradisional, sinyal ini akan memaksa sebuah 
+	  terminal untuk selesai. Tetapi beberapa daemon (cth. <emphasis>inetd</emphasis>) membaca ulang 
+	  konfigurasinya ketika sinyal ini dikirimkan.</para>
 	</listitem>
       </itemizedlist>
 
       <para>
-	The <command>kill</command> command is used to send a signal
-	to a process. By default, <command>kill</command> sends the
-	<emphasis>SIGTERM</emphasis> signal. To send this signal, the
-	process ID of the process that you would like to send this
-	signal to should be added as a parameter. For instance:
+	Perintah <command>kill</command> digunakan untuk mengirimkan sinyal pada proses. Secara default, 
+	<command>kill</command> mengirimkan sinyal <emphasis>SIGTERM</emphasis>. Untuk mengirimkan 
+	sinyal ini, ID proses dari proses yang hendak Anda kirimi sinyal ini harus ditambahkan sebagai 
+	parameter. Sebagai contoh :
       </para>
 
       <screen>
@@ -468,11 +408,10 @@ $ <userinput>kill 15631</userinput>
       </screen>
 
       <para>
-	To send another signal, you can use one of two options:
-	<emphasis>-signalnumber</emphasis> or
-	<emphasis>-signalname</emphasis>. So, the following commands
-	both send the <emphasis>SIGKILL</emphasis> signal to the process
-	with process ID <emphasis>15631</emphasis>:
+	Untk mengirimkan sinyal lain, Anda bisa menggunakan salah satu dari dua opsi :
+	<emphasis>-nomorsinyal</emphasis> atau
+	<emphasis>-namasinyal</emphasis>. Jadi, perintah berikut akan mengirimkan sinyal 
+	<emphasis>SIGKILL</emphasis> pada proses dengan ID proses <emphasis>15631</emphasis>:
       </para>
 
       <screen>
@@ -483,25 +422,20 @@ $ <userinput>kill -9 15631</userinput>
 $ <userinput>kill -SIGKILL 15631</userinput>
       </screen>
 
-      <!-- XXX - Add note about what users can send signals. -->
     </sect2>
 
     <sect2 xml:id="chap-procmanagement-managing-nice">
-      <title>Being nice to others</title>
+      <title>Berlaku baik buat yang lain</title>
 
       <para>
-	In an act of altruism you can be nice to other users of
-	computer resources. If you plan to run a CPU-time intensive
-	process, but do not want that to interfere with work of other
-	users on the system (or other processes), you can assign some
-	grade of 'niceness' to a process. Practically, this means that
-	you will be able to influence the scheduling priority of a
-	process. Nicer processes get a lower scheduling priority. The
-	normal niceness of a process is <emphasis>0</emphasis>, and
-	can be changed by executing a program with the
-	<command>nice</command> command. The <emphasis>-n
-	[niceness]</emphasis> option can be used to specify the
-	niceness:
+	Anda bisa berlaku baik bagi pengguna lain dalam hal sumber daya komputer. Jika Anda 
+	berencana untuk membangun proses yang memakan waktu CPU yang intensif, tetapi tidak ingin 
+	menganggu pekerjaan pengguna lain dari sistem (atau proses lain), Anda bisa memberikan beberapa 
+	tingkat 'kebaikan' pada sebuah proses. Secara praktis, hal ini berarti Anda bisa mempengaruhi prioritas
+	penjadwalan dari proses. Proses yang lebih baik mendapatkan prioritas yang lebih rendah. Kebaikan dari 
+	proses secara normal adalah <emphasis>0</emphasis>, dan bisa diganti dengan menjalankan program 
+	dengan perintah <command>nice</command>. Opsi <emphasis>-n [kebaikan]</emphasis> bisa digunakan untk 
+	menentukan tingkat kebaikan:
       </para>
 
       <screen>
@@ -509,36 +443,29 @@ $ <userinput>nice -n 20 cputimewaster</userinput>
       </screen>
 
       <para>
-	The maximum number for niceness is
-	implementation-dependent. If a program was started with
-	<command>nice</command>, but no niceness was specified, the
-	niceness will be set to <emphasis>10</emphasis>. In case you
-	were wondering: yes, you can also be rude, but this right is
-	restricted to the <emphasis>root</emphasis> user. You can
-	boost the priority of a process by specifying a negative value
-	as the niceness.
+	Nilai maksimal untuk kebaikan sangat tergantung dari implementasi. Jika program dijalankan dengan 
+	<command>nice</command>, tetapi tidak ada nilai yang diberikan, maka akan diset sebagai 
+	<emphasis>10</emphasis>. Jika Anda heran: ya, Anda bisa saja bertindak semena-mena, tetapi hak ini 
+	hanya terbatas untuk pengguna <emphasis>root</emphasis>. Anda bisa meningkatkan prioritas dari 
+	proses dengan menentukan nilai negatif.
       </para>
 
       <para>
-	You can also modify the niceness of a running processes with
-	the <command>renice</command> command. This can be done for
-	specific process IDs (<parameter class="command">-p
-	PIDs</parameter>), users (<parameter class="command">-u
-	user/uid</parameter>), and effective groups (<parameter
-	class="command">-g group/gid</parameter>). The new niceness
-	is specified as the first parameter.
+	Anda juga bisa memodifikasi proses yang berjalan dengan perintah <command>renice</command>. Hal ini 
+	bisa dilakukan untuk ID proses tertentu (<parameter class="command">-p
+	PIDs</parameter>), pengguna  (<parameter class="command">-u
+	user/uid</parameter>), dan grup efektif (<parameter
+	class="command">-g group/gid</parameter>). Nilai baru ditentukan sebagai parameter pertama.
       </para>
 
       <para>
-	The niceness of a process can only be increased. And, of
-	course, no user except for <emphasis>root</emphasis> can
-	affect the niceness of processes of other users.
+	Tingkat kebaikan dari proses hanya bisa dinaikkan. Dan, tentu saja tidak ada pengguna lain selain 
+	<emphasis>root</emphasis> yang dapat mempengaruhi tingkat kebaikan proses dari pengguna lain.
       </para>
 
       <para>
-	Lets look at an example, to set the niceness of a process with
-	PID <emphasis>3108</emphasis> to <emphasis>14</emphasis>, you
-	could use the following command:
+	Mari kita lihat pada contoh, untuk menentukan tingkat kebaikan dari sebuah proses dengan PID 
+	<emphasis>3108</emphasis> menjadi <emphasis>14</emphasis>, Anda bisa menggunakan perintah berikut :
       </para>
 
       <screen>
@@ -548,26 +475,22 @@ $ <command>renice 14 -p 3108</command>
   </sect1>
 
   <sect1 xml:id="chap-procmanagement-jobcontrol">
-    <title>Job control</title>
+    <title>Kontrol pekerjaan</title>
 
     <para>
-      It is often useful to group processes to allow operations on a
-      set of processes, for instance to distribute a signal to all
-      processes in a group rather than a single process. Not too
-      suprisingly, these sets of processes are called
-      <emphasis>program groups</emphasis> in UNIX. After a fork, a
-      child process is automatically a member of the process group of
-      the parent. Though, new process groups can be created by making
-      one process a process group leader, and adding other processes
-      to the group. The process group ID is the PID of the process
-      group leader.
+      Seringkali penting untuk mengelompokkan proses-proses untuk mengijinkan 
+      operasi pada sekumpulan proses, misalnya mendistribusikan sebuah sinyal untuk semua proses pada 
+      sebuah grup dan bukan pada satu proses saja. Tidak heran, sekumpulan proses ini disebut 
+      <emphasis>program groups</emphasis> pada UNIX. Setelah sebuah fork, sebuah proses anak secara 
+      otomatis merupakan anggota dari process group dari induk. Meski demikian, process groups baru bisa 
+      dibuat dengan membuat satu proses menjadi pemimpin, dan menambahkan proses lain pada grup. ID process 
+      group adalah PID dari pemimpin process group.
     </para>
 
     <para>
-      Virtually all modern UNIX shells give processes that are created
-      through the invocation of a command their own process group. All
-      processes in a pipeline are normally added to one process group.
-      If the following commands that create a pipepine are executed
+      Secara virtual, semua shell UNIX modern memberikan process group pada proses yang dibuat melalui 
+      pemanggilan sebuah perintah. Semua proses pada pipeline biasanya ditambahkan pada satu process group.
+      Contoh berikut yang membuat sebuah pipeline akan dieksekusi.
     </para>
 
     <screen>
@@ -575,56 +498,52 @@ cat | tr -s ' ' | egrep 'foob.r'
     </screen>
 
     <para>
-      the shell roughly performs the following steps:
+      shell akan menjalankan langkah-langkah berikut:
     </para>
 
     <orderedlist>
       <listitem>
 	<para>
-	  Three child processes are forked.
+	  Tiga proses akan di-fork.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  The first process in the pipeline is put in a process group
-	  with its own PID as the process group ID, making it the
-	  process leader. The other processes in the pipeline are added
-	  to the process group.
+	  Proses pertama pada pipeline diletakkan pada process group dengan PIDnya sendiri sebagai ID 
+	  process group, membuatnya menjadi pemimpin. Proses lain dari pipeline akan ditambahkan pada 
+	  process group.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  The file descriptors of the processes in the pipeline are
-	  reconfigured to form a pipeline.
+	  File descriptors dari proses pada pipeline akan dikonfigurasi ulang untuk membentuk sebuah 
+	  pipeline.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  The programs in the pipeline are executed.
+	  Program pada pipeline akan dieksekusi.
 	</para>
       </listitem>
     </orderedlist>
 
     <para>
-      The shell uses process groups to implement <emphasis>job
-      control</emphasis>. A shell can run multiple jobs in the
-      background, there can be multiple stopped job, and one job can
-      be in the foreground. A foreground job is wired to the terminal
-      for its standard input (meaning that it is the job the gets user
-      input).
+      Shell menggunakan process groups untuk mengimplementasikan <emphasis>kontrol pekerjaan</emphasis>. 
+      Sebuah shell dapat menjalankan banyak pekerjaan dibelakang layar, bisa terdapat banyak pekerjaan 
+      yang dihentikan, dan satu pekerjaan dapat berjalan di depan (foreground). Sebuah job yang berjalan 
+      dihubungkan ke terminal untuk standard input (berarti merupakan pekerjaan yang mendapatkan masukan 
+      dari pengguna).
     </para>
 
     <sect2 xml:id="chap-procmgmt-jobcontrol-stopping">
-      <title>Stopping and continuing a job</title>
+      <title>Menghentikan dan melanjutkan pekerjaan</title>
       
       <para>
-	A job that is in the foreground (thus, a job that potentially
-	accepts userinput from the terminal) can be stopped by
-	pressing <emphasis>Ctrl-z</emphasis> (pressing both the 'Ctrl' and
-	'z' keys simultaneously). This will stop the job,
-	and will handle control over the terminal back to the shell.
-	Let's try this with the <command>sleep</command> command, which
-	waits for the number of seconds provided as an argument:
+	Sebuah pekerjaan yang berada di foreground (pekerjaan yang menerima masukan pengguna dari terminal) 
+	dapat dihentikan dengan menekan <emphasis>Ctrl-z</emphasis> (menekan tombol kunci 'Ctrl' dan 
+	'z' secara bersamaan). Hal ini akan mengentikan pekerjaan, dan memberikan kontrol atas terminal 
+	kepada shell. Mari kita coba dengan perintah <command>sleep</command>, yang menunggu sejumlah waktu 
+	dalam detik sesuai dengan yang disediakan sebagai argumen:
       </para>
 
       <screen>
@@ -634,11 +553,9 @@ $ <userinput>sleep 3600</userinput>
       </screen>
 
       <para>
-	The process group, which we will refer to as a job has been
-	stopped now, meaning the the <command>sleep</command> has
-	stopped counting - it's execution is completely stopped. You
-	can retrieve a list of jobs with the <command>jobs</command>
-	command:
+	Process group, yang kita rujuk sebagai sebuah pekerjaan telah dihentikan, yang berarti 
+	<command>sleep</command> sudah berhenti - eksekusinya benar-benar berhenti. Anda bisa mendapatkan 
+	daftar pekerjaan dengan perintah <command>jobs</command> :
       </para>
 
       <screen>
@@ -647,10 +564,9 @@ $ <userinput>jobs</userinput>
       </screen>
 
       <para>
-	This shows the job number (<emphasis>1</emphasis>), its state,
-	and the command that was used to start this job. Let's run
-	another program, stop that too, and have another look at the
-	job listing.
+	Hal ini menampilkan angka pekerjaan (<emphasis>1</emphasis>), statusnya, dan perintah yang digunakan 
+	untuk memulai pekerjaan ini. Mari kita jalankan program lain, hentikan program tersebut, dan lihat pada 
+	daftar pekerjaan.
       </para>
 
       <screen>
@@ -663,28 +579,19 @@ $ <userinput>jobs</userinput>
       </screen>
 
       <para>
-	As expected, the second job is also stopped, and was assigned
-	job number <emphasis>2</emphasis>. The plus sign
-	(<emphasis>+</emphasis>) following the first job has changed
-	to a minus (<emphasis>-</emphasis>) sign, while the second job
-	is now marked by a plus sign. The plus sign is used to
-	indicate the <emphasis>current job</emphasis>. The
-	<command>bg</command> and <command>fg</command> commands that
-	we will look at shortly, will operate on the current job
-	if no job was specified as a parameter.
+	Seperti yang diharapkan, pekerjaan kedua juga dihentikan, dan diberikan angka pekerjaan <emphasis>2</emphasis>. 
+	Tanda plus (<emphasis>+</emphasis>) mengikuti pekerjaan pertama telah berubah menjadi tanda minus (<emphasis>-</emphasis>), 
+	sedangkan pekerjaan kedua sekarang ditandai dengan tanda plus. Tanda plus digunakan untuk mengindikasikan 
+	<emphasis>pekerjaan aktual</emphasis>. Perintah 
+	<command>bg</command> dan <command>fg</command> yang akan kita lihat sebentar lagi, akan beroperasi pada 
+	pekerjaan aktual jika tidak ada pekerjaan yang diberikan sebagai parameter.
       </para>
      
-      <!-- XXX - Document under what circumstances a job becomes the
-                 current job. -->
-
       <para>
-	Usually, when you are working with jobs, you will want to move
-	jobs to the foreground again. This is done with the
-	<command>fg</command> command. Executing <command>fg</command>
-	without a parameter will put the current job in the
-	foreground.  Most shells will print the command that is moved
-	to the foreground to give an indication of what process was
-	moved to the foreground:
+	Biasanya, ketika Anda bekerja dengan pekerjaan, Anda hendak memindahkan pekerjaan pada foreground kembali. 
+	Hal ini dilakukan dengan perintah <command>fg</command>. Menjalankan <command>fg</command> tanpa parameter 
+	akan memindahkan pekerjaan aktual pada foreground.  Sebagian besar shell akan mencetak perintah yang 
+	dipindahkan ke foreground untuk memberikan indikator proses apa yang dipindahkan :
       </para>
 
       <screen>
@@ -693,11 +600,9 @@ cat
       </screen>
 
       <para>
-	Of course, it's not always useful to put the current job in
-	the foreground. You can put another job in the foreground by
-	adding the job number preceded by the percentage sign
-	(<emphasis>%</emphasis>) as an argument to
-	<command>fg</command>:
+	Tentu saja, tidak selalu berguna untuk meletakkan pekerjaan aktual pada foreground. Anda bisa meletakkan 
+	pekerjaan lain pada foreground dengan menambahkan nomor pekerjaan diawali dengan tanda persen 
+	(<emphasis>%</emphasis>) sebagai argumen dari <command>fg</command>:
       </para>
 
       <screen>
@@ -706,30 +611,26 @@ sleep 3600
       </screen>
 
       <para>
-	Switching jobs my stopping them and putting them in the
-	foreground is often very useful when the shell is used
-	interactively. For example, suppose that you are editing a
-	file with a text editor, and would like to execute some other
-	command and then continue editing. You could stop the editor
-	with <emphasis>Ctrl-z</emphasis>, execute a command, and put
-	the editor in the foreground again with <command>fg</command>.
+	Berpindah pekerjaan akan menghentikan pekerjaan aktual dan meletakkannya pada foreground seringkali 
+	berguna ketika shell digunakan secara interaktif. Sebagai contoh, misalkan Anda sedang mengedit 
+	sebuah berkas dengan editor teks, dan hendak menjalankan perintah lain lalu kembali mengedit. Anda 
+	bisa menghentikan editor dengan <emphasis>Ctrl-z</emphasis>, menjalankan sebuah perintah, dan meletakkan 
+	editor kembali dengan <command>fg</command>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-procmgmt-jobcontrol-background">
-      <title>Background jobs</title>
+      <title>Pekerjaan dibelakang</title>
 
       <para>
-	Besides running in the foreground, jobs can also run in the
-	background. This means that they are running, but input from
-	the terminal is not redirected to background processes. Most
-	shells do configure background jobs to direct output to the
-	terminal of the shell where they were started.
+	Selain menjalankan program pada foreground, pekerjaan juga bisa dijalankan dibelakang (background). 
+	Hal ini berarti mereka tetap berjalan, tetapi masukkan dari terminal tidak dialihkan ke proses 
+	background. Sebagian besar shell mengkonfigurasikan dirinya untuk mengeluarkan hasil keluaran pada 
+	shell dimana mereka pertama kali dijalankan.
       </para>
 
       <para>
-	A process that is stopped can be continued in the background
-	with the <command>bg</command> command:
+	Sebuah proses yang dihentikan bisa dilanjutkan di background dengan perintah <command>bg</command> :
       </para>
 
       <screen>
@@ -742,7 +643,7 @@ $
       </screen>
 
       <para>
-	You can see that the job is indeed running with
+	Anda bisa melihat bahwa pekerjaan memang benar-benar berjalan dengan 
 	<command>jobs</command>:
       </para>
 
@@ -752,9 +653,8 @@ $ <userinput>jobs</userinput>
       </screen>
 
       <para>
-	Like <command>fg</command>, you can also move another job than
-	the current job to the background by specifying its job
-	number:
+	Seperti <command>fg</command>, Anda bisa memindahkan pekerjaan lain selain pekerjaan aktual 
+	ke background dengan menentukan angka pekerjaannya :
       </para>
 
       <screen>
@@ -763,9 +663,8 @@ $ <command>bg %1</command>
       </screen>
 
       <para>
-	You can also run put a job directly in the background when it is
-	started, by adding an trailing ampersand (&amp;) to a command
-	or pipeline. For instance:
+	Anda juga bisa meletakkan sebuah pekerjaan langsung ke background ketika dijalankan, dengan 
+	menambahkan tanda ampersand (&amp;) pada perintah atau pipeline. Sebagai contoh :
       </para>
 
       <screen>
@@ -773,8 +672,6 @@ $ <userinput>sleep 3600 &amp;</userinput>
 [1] 5078
       </screen>
 
-      <!-- XXX - behavior of background processes when a shell is
-                 terminated. -->
     </sect2>
   </sect1>
 </chapter>
