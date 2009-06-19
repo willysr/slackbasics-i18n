@@ -420,7 +420,7 @@ $ <userinput>ps -t tty2</userinput>
     <title>Managing processes</title>
 
     <sect2 xml:id="chap-procmanagement-managing-signals">
-      <title>Sending singals to a process</title>
+      <title>Sending signals to a process</title>
 
       <para>
 	Signals are a crude, but effective form of inter-process
@@ -567,7 +567,7 @@ $ <command>renice 14 -p 3108</command>
       Virtually all modern UNIX shells give processes that are created
       through the invocation of a command their own process group. All
       processes in a pipeline are normally added to one process group.
-      If the following commands that create a pipepine are executed
+      In the following commands that create a pipeline are executed
     </para>
 
     <screen>
@@ -619,7 +619,7 @@ cat | tr -s ' ' | egrep 'foob.r'
       
       <para>
 	A job that is in the foreground (thus, a job that potentially
-	accepts userinput from the terminal) can be stopped by
+	accepts user input from the terminal) can be stopped by
 	pressing <emphasis>Ctrl-z</emphasis> (pressing both the 'Ctrl' and
 	'z' keys simultaneously). This will stop the job,
 	and will handle control over the terminal back to the shell.
@@ -706,7 +706,7 @@ sleep 3600
       </screen>
 
       <para>
-	Switching jobs my stopping them and putting them in the
+	Switching jobs may stopping them and putting them in the
 	foreground is often very useful when the shell is used
 	interactively. For example, suppose that you are editing a
 	file with a text editor, and would like to execute some other

@@ -2370,7 +2370,7 @@ $ <userinput>find . -name '*.txt' -exec grep -q 'gross income' {} \; -print</use
 	</screen>
 
 	<para>
-	  The <command>grep</command> command will be covered lateron.
+	  The <command>grep</command> command will be covered later on.
 	  <!-- XXX - xref --> But for the moment, it is enough to know
 	  that it can be used to match text patterns. The
 	  <emphasis>-print</emphasis> operand prints the current
