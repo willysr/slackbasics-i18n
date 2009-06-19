@@ -358,7 +358,7 @@ Let's squeze this.
 	<para>
 	  We can combine this with translation to show a useful
 	  example of <command>tr</command> in action. Suppose that we
-	  would like to mark al vowels with the
+	  would like to mark all vowels with the
 	  <emphasis>at</emphasis> sign (<emphasis>@</emphasis>), with
 	  consecutive vowels represented by one
 	  <emphasis>at</emphasis> sign. This can easily be done by
@@ -832,7 +832,7 @@ John:US:4
       order).</para></footnote>. You could use the <parameter
       class="command">-n</parameter>, but <command>sort</command> also
       allows a more sophisticated approach. You can append the one or
-      more of the <emphasis>n</emphasis>, <emphasis>r</emphasis>>,
+      more of the <emphasis>n</emphasis>, <emphasis>r</emphasis>,
       <emphasis>f</emphasis>, <emphasis>d</emphasis>,
       <emphasis>i</emphasis>, or <emphasis>b</emphasis> to the column
       specifier. These letters represent the <command>sort</command>
@@ -980,7 +980,7 @@ void usage(char *programName) {
 	  <filename>hello.c</filename> from a friend, and you modified
 	  it to give the user the current date and time. You could
 	  just send your friend the updated program. But if a file
-	  grows larger, the can become uncomfortable, because the
+	  grows larger, they can become uncomfortable, because the
 	  changes are harder to spot. Besides that, your friend may
 	  have also received modified program sources from other
 	  persons. This is a typical situation where

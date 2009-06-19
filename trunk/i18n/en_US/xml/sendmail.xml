@@ -88,7 +88,7 @@
 
       <para>
         In this section we will look how you can start off with an
-        initial mc file, and how to compile your own .cf file to a
+        initial mc file, and how to compile your own .mc file to a
         cf file. There are many interesting example mc files available
         in <filename>/usr/share/sendmail/cf/cf</filename>. The most
         interesting examples are <filename>sendmail-slackware.mc</filename>
