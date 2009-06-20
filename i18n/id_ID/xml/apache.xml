@@ -16,7 +16,7 @@ seri 1.3.xdari Apache. Bab ini berdasarkan pada Apache 1.3.x.
 </sect1>
 
 <sect1>
-<title>Instalasi</title>
+<title>Installasi</title>
 
 <para>
 Apache bisa diinstall dengan menambahkan paket <filename>apache</filename> dari set disk <quote>n</quote>.
