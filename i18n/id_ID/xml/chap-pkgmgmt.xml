@@ -222,9 +222,10 @@ Enter number(s), N)ext, or Q)uit &gt;
       </screen>
 
       <para>
-        As you can see we have got two (identical) hits. Select the
-        first one by entering <quote>1</quote>. GnuPG will import this
-        key in the keyring of the <emphasis>root</emphasis> user:
+	Sebagaimana yang Anda lihat terdapat dua (identik) pilihan. 
+	Pilih yang pertama dengan memasukkan nilai <quote>1</quote>. 
+	GnuPG akan mengimport kunci ini ke dalam pengguna  
+	<emphasis>root</emphasis> :
       </para>
 
       <screen>
@@ -237,12 +238,13 @@ gpg:               imported: 1
       </screen>
 
       <para>
-        Be sure to double check the key you received. The key ID and
-        fingerprint of this particular key can be found on the
-        Internet on many trustworthy sites. The key ID is, as
-        mentioned above <emphasis>40102233</emphasis>.  You can get
-        the key fingerprint with the <parameter
-        class="command">--fingerprint</parameter> parameter:
+	Pastikan untuk melakukan pengecekan ulang terhadap kunci yang 
+	Anda terima. ID kunci dan sidikjari dari kunci ini dapat 
+	ditemukan di internet pada berbagai situs yang dapat dipercaya. 
+	ID kunci  adalah <emphasis>40102233</emphasis> seperti yang 
+	dijelaskan diatas. Anda bisa mendapatkan sidikjari dengan 
+	memasukkan parameter <parameter 
+	class="command">--fingerprint</parameter> :
       </para>
 
       <screen>
@@ -253,21 +255,21 @@ sub  1024g/4E523569 2003-02-26 [expires: 2012-12-21]
       </screen>
 
       <para>
-        Once you have imported and checked this key you can start to
-        use slackpkg, and install packages securely.
+	Sekali Anda mengimport dan mengecek kunci ini, Anda sudah bisa 
+	memulai menggunakan slackpkg, dan pastinya menginstall paket.
       </para>
 
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-slackpkg-updatepkglist">
-      <title>Updating the package lists</title>
+      <title>Mengupdate daftar paket</title>
 
       <para>
-        Before upgrading and installing packages you have to let
-        slackpkg download the package lists from the mirror you are
-        using. It is a good idea to do this regularly to keep these
-        lists up to date. The latest package lists can be fetched
-        with:
+	Sebelum mengupgrade dan menginstal paket Anda harus membiarkan 
+	slackpkg mendownload daftar paket dari mirror yang Anda gunakan. 
+	Adalah ide bagus untuk melakukan hal ini secara reguler untuk 
+	memastikan daftar tersebut selalu update. Daftar paket terakhir 
+	dapat diambil dengan :
       </para>
 
       <screen>
@@ -276,18 +278,18 @@ $ <userinput>slackpkg update</userinput>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-slackpkg-upgrade">
-      <title>Upgrading packages</title>
+      <title>Mengupgrade paket</title>
 
       <para>
-        The <parameter class="command">upgrade</parameter> parameter
-        is used to upgrade installed packages. You have to add an
-        extra parameter to actually tell <command>slackpkg</command>
-        what you want to upgrade, this differs for a stable Slackware
-        Linux version and slackware-current. Upgrades for stable
-        Slackware Linux releases are in the
-        <filename>patches</filename> directory of FTP mirrors. You can
-        update a slackware-stable installation (e.g. Slackware Linux
-        12.0) with:
+	Parameter <parameter class="command">upgrade</parameter> 
+	digunakan untuk mengupgrade paket yang telah terinstall. Anda 
+	harus menambahkan parameter tambahan untuk memberitahu 
+	<command>slackpkg</command> paket apa yang ingin Anda upgrade, 
+	hal ini berbeda untuk versi stabil Slackware Linux dan slackware 
+	current. Untuk upgrade keluaran stabil Slackware Linux terdapat 
+	di direktori <filename>patches</filename> dari mirror FTP. Anda 
+	dapat mengupdate instalasi versi stabil slackware (misalnya 
+	Slackware Linux 12.0) dengan :
       </para>
 
       <screen>
@@ -295,12 +297,12 @@ $ <userinput>slackpkg update</userinput>
       </screen>
 
       <para>
-        In this case <command>slackpkg</command> will use the packages
-        from the <filename>patches</filename> directory. In
-        slackware-current updated packages are put in the normal
-        <filename>slackware</filename> package sub-directories. So, we
-        can pass that as an parameter to <command>slackpkg
-        upgrade</command>:
+	Pada kasus ini <command>slackpkg</command> akan menggunakan 
+	paket dari direktori <filename>patches</filename>. Dalam versi 
+	slackware current paket yang terbaru diletakkan dalam normal 
+	subdirektori paket yaitu <filename>slackware</filename>. Jadi, 
+	kita dapat melewatkannya sebagai parameter dalam perintah 
+	<command>slackpkg upgrade</command>:
       </para>
 
       <screen>
@@ -308,8 +310,9 @@ $ <userinput>slackpkg update</userinput>
       </screen>
 
       <para>
-	You can also upgrade individual packages by specifying the name
-        of the package to be upgraded, for example:
+	Anda juga dapat mengupgrade paket secara individu dengan 
+	menspesifikasikan nama paket yang akan diupgrade, sebagai 
+	contoh:
       </para>
 
       <screen>
@@ -319,11 +322,11 @@ $ <userinput>slackpkg update</userinput>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-slackpkg-install">
-      <title>Installing packages</title>
+      <title>Menginstall paket</title>
 
       <para>
-        The <parameter class="command">install</parameter> is used to
-        install packages:
+	Parameter <parameter class="command">install</parameter> 
+	digunakan untuk menginstall paket:
       </para>
 
       <screen>
@@ -331,27 +334,29 @@ $ <userinput>slackpkg update</userinput>
       </screen>
 
       <para>
-        Be aware that neither slackpkg, nor the Slackware Linux
-        package tools do dependency checking. If some program does not
-        work due to missing libraries, you have to add them yourself
-        with slackpkg.
+	Untuk diperhatikan, baik slackpkg ataupun aplikasi paket 
+	Slackware Linux tidak melakukan pengecekan dependensi. Jika 
+	terdapat program yang tidak bekerja karena kehilangan pustaka 
+	tertentu, Anda dapat menambahkannya sendiri dengan slackpkg
       </para>
     </sect2>
   </sect1>
 
   <sect1 xml:id="chap-pkgmgmt-rsync">
-    <title>Getting updates through rsync</title>
+    <title>Melakukan update menggunakan rsync</title>
 
     <para>
-      Another popular method of keeping Slackware Linux up to date is
-      by keeping a local mirror. The ideal way of doing this is via
-      rsync.  rsync is a program that can synchronize two trees of
-      files. The advantage is that rsync only transfers the
-      differences in files, making it very fast. After syncing with a
-      mirror you can upgrade Slackware Linux with
-      <command>upgradepkg</command>, or make a new installation
-      CD. The following example synchronizes a local current tree with
-      an up-to-date tree from on a mirror:
+	Metode populer lainnya untuk membuat Slackware Linux tetap 
+	update adalah dengan menyimpan ke mirror lokal. Langkah ideal 
+	untuk melakukan ini adalah lewat rsync. rsync adalah program 
+	yang dapat melakukan sinkronisasi dari dua pohon berkas. 
+	Keuntungannya adalah rsync hanya akan mentransfer perbedaan 
+	dalam sebuah berkas, yang membuat proses update menjadi sangat 
+	cepat. Setelah melakukan sinkronisasi dengan mirror Anda dapat 
+	mengupgrade Slackware Linux dengan 
+	<command>upgradepkg</command>, atau membuat CD instalasi yang 
+	baru. Contoh berikut ini melakukan sinkronisasi pohon direktori 
+	lokal dengan pohon yang terbaru dari mirror.
     </para>
 
     <screen>
