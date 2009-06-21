@@ -97,7 +97,7 @@
     <para>
       In this chapter, we suppose that the kernel sources are
       available in <filename>/usr/src/linux</filename>. If you have
-      installed the kernel sources from the <quote>k</quote> disk set,
+      installed the kernel-sources from the <quote>k</quote> disk set,
       the kernel sources are available in
       <filename>/usr/src/linux-kernelversion</filename>, and
       <filename>/usr/src/linux</filename> is a symbolic link to the
