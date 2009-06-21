@@ -17,7 +17,7 @@ baris  berkas                   status  rev-1a  rev-2a
    335 miscadmin.xml            TODO        -       -
    377 latex.xml                DONE        -       -
    398 concepts.xml             DONE        -       -
-   441 chap-kernel.xml          TODO        -       -
+   441 chap-kernel.xml          DONE        -       -
    485 chap-usermgmt.xml        DONE        -       -
    526 netconfig.xml            TODO        -       -
    630 ipsec.xml                TODO        -       -

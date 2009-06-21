@@ -2,134 +2,125 @@
 
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:lang="id" xml:id="kernel">
-  <title>Building a kernel</title>
+  <title>Membangun kernel</title>
 
   <sect1 xml:id="chap-kernel-intro">
-    <title>Introduction</title>
+    <title>Perkenalan</title>
 
     <para>
-      The Linux kernel is shortly discussed in <xref
-      linkend="chap-intro-linux" />. One of the advantages of Linux is
-      that the full sources are available (as most of the Slackware
-      Linux system). This means that you can recompile the
-      kernel. There are many situations in which recompiling the
-      kernel is useful. For example:
+      Kernel Linux secara singkat dibahas pada <xref
+      linkend="chap-intro-linux" />. Salah satu keunggulan dari Linux adalah ketersediaan 
+      dari kode sumbernya (seperti pada sistem Slackware Linux). Hal ini berarti Anda 
+      bisa mengkompilasi ulang kernel. Terdapat banyak situasi dimana mengkompilasi ulang 
+      kernel menjadi berguna. Sebagai contoh:
     </para> 
 
     <itemizedlist>
       <listitem>
 	<para>
-	  <emphasis role="bold">Making the kernel leaner</emphasis>:
-	  One can disable certain functionality of the kernel, to
-	  decrease its size. This is especially useful in environments
-	  where memory is scarce.
+	  <emphasis role="bold">Membuat kernel lebih ringkas</emphasis>:
+	  Anda dapat menonaktifkan beberapa fungsionalitas dari kernel, untuk mengurangi 
+	  ukurannya. Hal ini menjadi penting pada lingkungan dimana memori sangat terbatas.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  <emphasis role="bold">Optimizing the kernel</emphasis>: it
-	  is possible to optimize the kernel. For instance, by
-	  compiling it for a specific processor type.
+	  <emphasis role="bold">Mengoptimalkan kernel</emphasis>: dimungkinkan untuk 
+	  mengoptimalkan kernel. Sebagai contoh, dengan mengkompilasinya untuk jenis 
+	  prosesor yang spesifik.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  <emphasis role="bold">Hardware support</emphasis>: Support
-	  for some hardware is not enabled by default in the Linux
-	  kernel provided by Slackware Linux. A common example is
-	  support for SMP systems.
+	  <emphasis role="bold">Dukungan perangkat keras</emphasis>: Dukungan untuk beberapa 
+	  perangkat keras tidak diaktifkan secara default pada kernel Linux yang disediakan 
+	  oleh Slackware Linux. Contoh sederhana adalah dukungan untuk sistem SMP.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  <emphasis role="bold">Using custom patches</emphasis>: There
-	  are many unofficial patches for the Linux kernel. Generally
-	  speaking it is a good idea to avoid unofficial patches. But
-	  some third party software, like <ulink
-	  url="http://www.netraverse.com">Win4Lin</ulink>, require
-	  that you install an additional kernel patch.
+	  <emphasis role="bold">Menggunakan perbaikan khusus</emphasis>: Terdapat banyak 
+	  perbaikan tidak resmi untuk kernel Linux. Secara umum merupakan ide bagus untuk 
+	  menghindari perbaikan tidak resmi. Tetapi beberapa perangkat lunak pihak ketiga, 
+	  seperti <ulink
+	  url="http://www.netraverse.com">Win4Lin</ulink>, memaksa Anda menginstall perbaikan 
+	  kernel tambahan.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  Making the proper headers and build infrastucture available
-	  to build third-party modules.
+	  Membuat header dan infrastruktur pembangunan yang benar untuk membangun modul pihak ketiga.
 	</para>
       </listitem>
     </itemizedlist>
 
     <para>
-      This chapter focuses on the default kernel series used in
-      Slackware Linux 12.0, Linux 2.6. Compiling a kernel is not
-      really difficult, just keep around a backup kernel that you can
-      use when something goes wrong. Linux compilation involves these
-      steps:
+      Bab ini berfokus pada seri kernel default yang digunakan pada Slackware Linux 12.0, Linux 2.6. 
+      Mengkompilasi ulang kernel tidaklah susah, asalkan Anda membuat salinan kernel yang bisa Anda 
+      gunakan ketika terjadi masalah. Kompilasi Linux melibatkan langkah-langkah berikut:
     </para>
 
     <itemizedlist>
       <listitem>
 	<para>
-	  Configuring the kernel.
+	  Mengkonfigurasi kernel.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  Building the kernel.
+	  Membangun kernel.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  Building modules.
+	  Membangun modul-modul.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  Installing the kernel and modules.
+	  Menginstall kernel dan modul-modul.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  Updating the LILO configuration.
+	  Mengupdate konfigurasi LILO.
 	</para>
       </listitem>
     </itemizedlist>
     
     <para>
-      In this chapter, we suppose that the kernel sources are
-      available in <filename>/usr/src/linux</filename>. If you have
-      installed the kernel sources from the <quote>k</quote> disk set,
-      the kernel sources are available in
-      <filename>/usr/src/linux-kernelversion</filename>, and
-      <filename>/usr/src/linux</filename> is a symbolic link to the
-      real kernel source directory. So, if you use the standards
-      Slackware Linux kernel package you are set to go.
+      Pada bab ini, kami mengasumsikan bahwa kode sumber kernel tersedia pada 
+      <filename>/usr/src/linux</filename>. Jika Anda telah menginstall paket 
+      kernel-sources dari set disk <quote>k</quote>,
+      kode sumber kernel tersedia pada 
+      <filename>/usr/src/linux-versikernel</filename>, dan 
+      <filename>/usr/src/linux</filename> adalah link simbolis pada direktori 
+      kode sumber kernel yang sebenarnya. Jadi, jika Anda menggunakan paket kernel 
+      standar dari Slackware Linux, Anda sudah siap.
     </para>
 
     <para>
-      In contrast to older kernel versions, it is not necessary to use
-      a <filename>/usr/src/linux</filename> symbolink anymore.  If you
-      have extracted newer kernel sources in
-      <filename>/usr/src</filename>, you can build the kernel in
-      <filename>/usr/src/linux-&lt;version&gt;</filename>, and use
-      that directory in the examples in this chapter.
+      Berbeda dengan versi kernel yang lama, tidak lagi diperlukan untuk menggunakan 
+      link simbolik <filename>/usr/src/linux</filename>. Jika Anda telah menguraikan 
+      kode sumber kernel y ang baru pada <filename>/usr/src</filename>, Anda bisa membangun 
+      kernel pada <filename>/usr/src/linux-&lt;version&gt;</filename>, dan menggunakan 
+      direktori tersebut pada contoh di bab ini.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-kernel-build">
-    <title>Configuration</title>
+    <title>Konfigurasi</title>
 
     <para>
-      As laid out above, the first step is to configure the kernel
-      source. To ease the configuration of the kernel, it is a good
-      idea to copy the default Slackware Linux kernel configuration to
-      the kernel sources. The Slackware Linux kernel configuration
-      files are stored on the distribution medium as
-      <filename>kernels/&lt;kernelname&gt;/config</filename>. Suppose
-      that you want to use the <filename>hugesmp.s</filename> kernel
-      configuration as a starting point (which is the default kernel),
-      and that you have a Slackware Linux CD-ROM mounted at
-      <filename>/mnt/cdrom</filename>, you can copy the Slackware
-      Linux kernel configuration with:
+      Seperti yang dijelaskan diatas, langkah pertama adalah mengkonfigurasi kode sumber kernel. 
+      Untuk mempermudah konfigurasi kernel, merupakan ide yang bagus untuk menyalin konfigurasi 
+      kernel default Slackware Linux ke kode sumber kernel. Berkas konfigurasi kernel standar 
+      Slackware Linux disimpan pada media distribusi sebagai 
+      <filename>kernels/&lt;namakernel&gt;/config</filename>. Misalkan Anda hendak menggunakan 
+      konfigurasi kernel <filename>hugesmp.s</filename> sebagai awal (yang merupakan kernel default),
+      dan Anda telah memiliki CD-ROM Slackware Linux yang sudah di-mount pada 
+      <filename>/mnt/cdrom</filename>, Anda bisa menyalin konfigurasi kernel Slackware
+      Linux dengan :
     </para>
     
     <screen>
@@ -137,13 +128,11 @@
     </screen>
 
     <para>
-      The kernel configuration of a running kernel can also be
-      retrieved as <filename>/proc/config.gz</filename> if the kernel
-      was compiled with the <emphasis>CONFIG_IKCONFIG</emphasis> and
-      <emphasis>CONFIG_IKCONFIG_PROC</emphasis> options. The default
-      Slackware Linux kernels have these options enabled. So, if you
-      would like to use the configuration of the running kernel, you
-      could run:
+      Konfigurasi kernel yang berjalan juga bisa didapatkan pada <filename>/proc/config.gz</filename> 
+      jika kernel dikompilasi dengan opsi <emphasis>CONFIG_IKCONFIG</emphasis> dan 
+      <emphasis>CONFIG_IKCONFIG_PROC</emphasis>. Kernel default 
+      Slackware Linux sudah mengaktifkan opsi tersebut. Jadi, jika Anda hendak menggunakan konfigurasi 
+      dari kernel yang berjalan, Anda bisa menjalankan:
     </para>
 
     <screen>
@@ -151,13 +140,11 @@
     </screen>
 
     <para>
-      If you are using a configuration file that is for another kernel
-      version than you are currently compiling, it is likely that both
-      kernel versions do not have the same set of options. New options
-      are often added (e.g., because newer drivers are added), and
-      sometimes kernel components are removed. You can configure new
-      options (and remove unused options) with the <command>make
-      oldconfig</command> command:
+      Jika Anda menggunakan berkas konfigurasi untuk versi kernel lain yang hendak Anda kompilasi, pada 
+      biasanya kedua versi kernel tidak memiliki opsi yang sama. Opsi baru ditambahkan (misalnya driver 
+      baru ditambahkan), dan terkadang beberapa komponen kernel dihapus. Anda bisa mengkonfigurasikan 
+      opsi baru (dan menghapus opsi yang tidak dipakai) dengan perintah <command>make
+      oldconfig</command> :
     </para>
 
     <para>
@@ -165,10 +152,10 @@
     </para>
 
     <para>
-      This will ask you for options whether you would like to compile
-      in support (<emphasis>Y</emphasis>), compile support as a module
-      (<emphasis>M</emphasis>), or not include support
-      (<emphasis>N</emphasis>). For example:
+      Hal ini akan menanyakan Anda tentang opsi-opsi, apakah Anda hendak mengkompilasinya secara penuh 
+      (<emphasis>Y</emphasis>), mengkompilasi sebagai modul
+      (<emphasis>M</emphasis>), atau tidak menyertakannya
+      (<emphasis>N</emphasis>). Sebagai contoh:
     </para>
 
     <screen>
@@ -176,11 +163,9 @@ IBM ThinkPad Laptop Extras (ACPI_IBM) [N/m/y/?] (NEW)
     </screen>
 
     <para>
-      As you can see, the possible options are shown, with the default
-      choice as a capital. If you just press &lt;Enter&gt;, the
-      capitalized option will be used. If you want more information
-      about an option, you can enter the question mark
-      (<emphasis>?</emphasis>):
+      Seperti yang Anda lihat, opsi yang mungkin ditampilkan, dengan pilihan default dengan huruf kapital. 
+      Jika Anda menekan &lt;Enter&gt;, maka opsi yang berhuruf besar akan digunakan. Jika Anda hendak 
+      melihat informasi tentang sebuah opsi, Anda bisa masukkan tanda tanya (<emphasis>?</emphasis>):
     </para>
 
     <screen>
@@ -198,30 +183,23 @@ If you have an IBM ThinkPad laptop, say Y or M here.
     </screen>
 
     <para>
-      The output of this command can be a bit verbose, because the
-      options that were used in the configuration file, and are
-      available in the running kernel are also shown, but their
-      configuration will be filled in automatically based on the
-      configuration file.
+      Hasil keluaran dari perintah ini bisa cukup panjang, karena opsi yang digunakan pada berkas konfigurasi, 
+      dan yang tersedia pada kernel yang berjalan juga ditampilkan, tetapi konfigurasinya akan diisi sesuai dengan 
+      berkas konfigurasi.
     </para>
     
     <para>
-      At this point you can start to actually configure the kernel in
-      detail. There are three configuration front-ends to the kernel
-      configuration. The first one is <parameter
-      class="command">config</parameter>, which just asks you what you
-      want to do for each kernel option. This takes a lot of time. So,
-      normally this is not a good way to configure the kernel. A more
-      user friendly approach is the <parameter
-      class="command">menuconfig</parameter> front-end, which uses a
-      menuing system that you can use to configure the kernel. There
-      is an X front-end as well, named <parameter
-      class="command">xconfig</parameter>. You can start a
-      configuration front-end by changing to the kernel source
-      directory, and executing <command>make
-      &lt;front-end&gt;</command>. For example, to configure the
-      kernel with the menu front-end you can use the following
-      commands:
+      Pada tahap ini, Anda bisa mulai mengkonfigurasi kernel secara detail. Terdapat tiga cara untuk mengkonfigurasi 
+      kernel. Pertama adalah <parameter
+      class="command">config</parameter>, yang hanya menanyakan kepada Anda apa yang hendak Anda lakukan untuk setiap 
+      opsi kernel. Hal ini memakan waktu sangat lama. Jadi biasanya ini bukan cara yang baik untuk mengkonfigurasi kernel. 
+      Cara yang lebih ramah adalah dengan <parameter
+      class="command">menuconfig</parameter>, yang menggunakan sistem berbasis menu yang bisa Anda gunakan untuk mengkonfigurasi 
+      kernel. Terdapat sistem berbasis X, yang bernama <parameter
+      class="command">xconfig</parameter>. Anda bisa menjalankannya dengan berpindah ke direktori kode sumber kernel, dan 
+      menjalankan <command>make
+      &lt;tampilan&gt;</command>. Sebagai contoh, untuk mengkonfigurasi kernel dengan tampilan berbasis menu, Anda bisa 
+      menggunakan perintah berikut:
     </para>
     
     <screen>
@@ -230,59 +208,47 @@ If you have an IBM ThinkPad laptop, say Y or M here.
     </screen>
     
     <para>
-      Of course, if you prefer, you can also edit the
-      <filename>.config</filename> file directly with your favorite
-      text editor.
+      Tentu saja, jika Anda suka, Anda bisa mengedit berkas <filename>.config</filename> secara langsung dengan editor teks Anda.
     </para>
 
     <para>
-      As we have seen briefly before, in the kernel configuration
-      there are basically three options for each choice:
-      <quote>n</quote> disables functionality, <quote>y</quote>
-      enables functionality, and <quote>m</quote> compiles the
-      functionality as a module. The default Slackware Linux kernel
-      configuration is a very good configuration, it includes the
-      support for most common disk controllers and filesystems, the
-      rest is compiled as a module. Whatever choices you make, you
-      need to make sure that both the driver for the disk controller
-      and support for the filesystem type holding your root filesystem
-      is included. When they are not, the kernel will not able to
-      mount the root filesystem, and the kernel will panic because it
-      can not hand over initialization to the <command>init</command>
-      program.
+      Seperti yang kita lihat sebelumnya, pada konfigurasi kernel terdapat tiga opsi untuk setiap pilihan:
+      <quote>n</quote> menonaktifkan fungsionalitas, <quote>y</quote>
+      mengaktifkan fungsionalitas, dan <quote>m</quote> mengkompilasi fungsionalitas sebagai modul. 
+      Konfigurasi default kernel pada Slackware Linux adalah konfigurasi yang sangat bagus, ia menyertakan 
+      dukungan untuk semua pengontrol disk dan sistem berkas yang umum, dan sisanya dikompilasi sebagai 
+      modul. Apapun pilihan Anda, Anda harus memastikan bahwa driver untuk pengontrol disk dan dukungan 
+      untuk sistem berkas yang berisi sistem berkas root Anda harus disertakan. Jika tidak, kernel tidak 
+      akan bisa me-mount sistem berkas root, dan kernel akan panik karena tidak bisa menyerahkan inisialisasi pada 
+      program <command>init</command>.
     </para>
 
     <note>
       <para>
-	It is always a good idea to keep your old kernel in modules
-	around, in the case that you have made a configuration error.
-	If the to be compiled kernel has the same version number as
-	the running kernel, you should seriously consider modifying
-	the <emphasis>CONFIG_LOCALVERSION</emphasis> option. The
-	string specified in this option is appended to the version
-	name. For example, if the kernel has version 2.6.21.6, and
-	<emphasis>CONFIG_LOCALVERSION</emphasis> is set to
-	<emphasis>"-smp-ddk"</emphasis>, the kernel version will be
+	Selalu merupakan ide bagus untuk menyimpan kernel lama Anda, jika terjadi kesalahan pada saat konfigurasi. 
+	Jika kernel yang hendak dikompilasi memiliki nomor versi yang sama dengan kernel yang berjalan, Anda harus
+	dengan serius mempertimbangkan untuk memodifikasi opsi <emphasis>CONFIG_LOCALVERSION</emphasis>. String 
+	yang ditentukan pada opsi ini ditambahkan pada nama versi. Sebagai contoh, jika kernel memiliki versi 
+	2.6.21.6, dan 
+	<emphasis>CONFIG_LOCALVERSION</emphasis> diisi dengan 
+	<emphasis>"-smp-ddk"</emphasis>, versi kernel akan menjadi 
 	<emphasis>2.6.21.6-smp-ddk</emphasis>.
       </para>
 
       <para>
-	If you don't modify the version in this manner, the
-	installation of modules from the new kernel will overwrite the
-	modules from the running kernel. This is highly uncomfortable
-	if you need to fall back to the old kernel.
+	Jika Anda tidak memodifikasi versi dengan cara ini, installasi dari modul kernel baru akan menimpa modul dari 
+	kernel yang berjalan. Hal ini tentunya tidak baik jika Anda harus kembali ke kernel lama.
       </para>
     </note>
   </sect1>
   
   <sect1 xml:id="chap-kernel-compile">
-    <title>Compilation</title>
+    <title>Kompilasi</title>
 
     <para>
-      The kernel compilation used to consist of multiple steps, but
-      2.6 Linux kernels can be compiled be executing <command>make</command>
-      in the kernel source directory. This will calculate dependencies,
-      build the kernel, and will build and link kernel modules.
+      Kompilasi kernel dahulu terdiri dari beberapa langkah, tetapi kernel Linux 2.6 bisa dikompilasi dengan 
+      menjalankan <command>make</command> pada direktori kode sumber kernel. Perintah ini akan menghitung 
+      ketergantungan, membangun kernel, dan membangun dan menghubungkan modul kernel.
     </para>
 
     <screen>
@@ -291,24 +257,21 @@ If you have an IBM ThinkPad laptop, say Y or M here.
     </screen>
     
     <para>
-      After the compilation is finished, the tree contains the
-      compiled modules, and a compressed kernel image named
-      <filename>bzImage</filename> in
-      <filename>/usr/src/linux/arch/i386/boot</filename>. You can now
-      continue with the installation of the kernel and its modules.
+      Setelah kompilasi selesai, pohon yang berisi modul yang sudah dikompilasi, dan citra kernel yang terkompresi bernama 
+      <filename>bzImage</filename> akan berada pada 
+      <filename>/usr/src/linux/arch/i386/boot</filename>. Anda bisa melanjutkan dengan installasi dari kernel dan modulnya.
     </para>
   </sect1>
   
   <sect1 xml:id="chap-kernel-install">
-    <title>Installation</title>
+    <title>Installasi</title>
     
     <sect2 xml:id="chap-kernel-install-kernel">
-      <title>Installing the kernel</title>
+      <title>Menginstall kernel</title>
       
       <para>
-	The next step is to install the kernel and the kernel modules.
-	We will start with installing the kernel modules, because this
-	can be done with one command within the kernel source tree:
+	Langkah berikutnya adalah untuk menginstall kernel dan modul kernel. Kita akan mulai dengan menginstall modul 
+	kernel, karena hal ini bisa dilakukan dengan satu perintah dari pohon kode sumber kernel:
       </para>
       
       <screen>
@@ -316,11 +279,9 @@ If you have an IBM ThinkPad laptop, say Y or M here.
       </screen>
       
       <para>
-	This will install the modules in
-	<filename>/lib/modules/&lt;kernelversion&gt;</filename>. If
-	you are replacing a kernel with the exactly the same version
-	number, it is a good idea to remove the old modules before
-	installing the new ones. E.g.:
+	Hal ini akan menginstall modul pada 
+	<filename>/lib/modules/&lt;versikernel&gt;</filename>. Jika Anda mengganti kernel dengan nomor versi yang 
+	sama, maka merupakan ide bagus untuk menghapus modul lama sebelum menginstall yang baru. Misalnya:
       </para>
 	
       <screen>
@@ -328,13 +289,10 @@ If you have an IBM ThinkPad laptop, say Y or M here.
       </screen>
       
       <para>
-	You can <quote>install</quote> the kernel by copying it to the
-	<filename>/boot</filename> directory. You can give it any name
-	you want, but it is a good idea to use some naming
-	convention. E.g.  <filename>vmlinuz-version</filename>. For
-	instance, if you name it
-	<filename>vmlinuz-2.6.21.5-smp-ddk</filename>, you can copy it
-	from within the kernel source tree with:
+	Anda bisa <quote>menginstall</quote> kernel dengan menyalinnya pada direktori 
+	<filename>/boot</filename>. Anda bisa memberikan nama sesuai selera Anda, tetapi alangkah baiknya menggunakan 
+	konvensi nama. Misalnya <filename>vmlinuz-versi</filename>. Sebagai contoh, jika Anda menamainya
+	<filename>vmlinuz-2.6.21.5-smp-ddk</filename>, Anda bisa menyalinnya dari pohon kode sumber kernel dengan:
       </para>
       
       <screen>
@@ -342,8 +300,8 @@ If you have an IBM ThinkPad laptop, say Y or M here.
       </screen>
       
       <para>
-	At this point you are almost finished. The last step is to add
-	the new kernel to the Linux boot loader (LILO) configuration.
+	Pada tahap ini, Anda sudah hampir selesai. Langkah terakhir adalah menambahkan kernel baru pada konfigurasi 
+	Linux boot loader (LILO).
       </para>
     </sect2>
     
@@ -351,18 +309,13 @@ If you have an IBM ThinkPad laptop, say Y or M here.
       <title>Configuring LILO</title>
       
       <para>
-        <acronym>LILO</acronym> (Linux Loader) is the default boot
-        loader that Slackware Linux uses. The configuration of LILO
-        works in two steps; the first step is to alter the LILO
-        configuration in <filename>/etc/lilo.conf</filename>. The
-        second step is to run the <command>lilo</command>, which will
-        write the LILO configuration to the boot loader. The LILO
-        configuration already has an entry for the current kernel you
-        are running. It is a good idea to keep this entry, as a
-        fall-back option if your new kernel does not work. If you
-        scroll down to the bottom of
-        <filename>/etc/lilo.conf</filename> you will see this entry,
-        it looks comparable to this:
+        <acronym>LILO</acronym> (Linux Loader) adalah boot loader default yang digunakan Slackware Linux. Konfigurasi 
+	dari LILO bekerja dalam dua langkah; langkah pertama adalah mengubah konfigurasi LILO pada 
+	<filename>/etc/lilo.conf</filename>. Langkah kedua adalah menjalankan <command>lilo</command>, yang akan menulis 
+	konfigurasi LILO pada boot loader. Konfigurasi LILO sudah memiliki informasi untuk kernel aktual yang Anda gunakan. 
+	Merupakan ide bagus untuk mempertahankan informasi ini, sebagai opsi kembali jika kernel baru Anda tidak bekerja.
+	Jika Anda melihat akhir dari 
+        <filename>/etc/lilo.conf</filename> Anda akan melihat informasi yang serupa dengan ini:
       </para>
       
       <screen>
@@ -375,11 +328,9 @@ image = /boot/vmlinuz
       </screen>
       
       <para>
-        The easiest way to add the new kernel is to duplicate the
-        existing entry, and then editing the first entry, changing the
-        <parameter>image</parameter>, and <parameter>label</parameter>
-        options. After changing the example above it would look like
-        this:
+        Cara termudah untuk menambahkan kernel baru adalah menduplikasi informasi yang ada, lalu mengedit informasi pertama, 
+	mengubah opsi <parameter>image</parameter>, dan <parameter>label</parameter>. Setelah mengubah, 
+	contoh diatas menjadi :
       </para>
       
       <screen>
@@ -397,12 +348,9 @@ image = /boot/vmlinuz
       </screen>
       
       <para>
-	As you can see the first <parameter>image</parameter> entry
-	points to the new kernel, and the label of the second entry
-	was changed to <quote>SlackOld</quote>. LILO will
-	automatically boot the first image. You can now install this
-	new LILO configuration with the <command>lilo</command>
-	command:
+	Seperti yang Anda lihat, informasi <parameter>image</parameter> pertama mengarah pada kernel baru, dan label 
+	dari informasi kedua diganti ke <quote>SlackOld</quote>. LILO akan secara otomatis boot ke yang pertama. Anda 
+	sekarang bisa menginstall konfigurasi LILO baru dengan perintah <command>lilo</command> :
       </para>
 
       <screen>
@@ -412,15 +360,14 @@ Added SlackOld
       </screen>
 
       <para>
-	The next time you boot both entries will be available, and the
-	<quote>Slack</quote> entry will be booted by default.
+	Pada saat Anda boot berikutnya, kedua informasi akan tersedia, dan bagian 
+	<quote>Slack</quote> akan dipakai sebagai default.
       </para>
       
       <note>
 	<para>
-	  If you want LILO to show a menu with the entries configured
-	  via <filename>lilo.conf</filename> on each boot, make sure
-	  that you add a line that says
+	  Jika Anda hendak LILO menampilkan menu dengan informasi yang dikonfigurasikan pada <filename>lilo.conf</filename> 
+	  pada setiap kali boot, pastikan Anda menambahkan baris yang berisi
 	</para>
 
 	<screen>
@@ -428,12 +375,10 @@ prompt
 	</screen>
 
 	<para>
-	  to <filename>lilo.conf</filename>. Otherwise LILO will boot
-          the default entry that is set with
+	  pada <filename>lilo.conf</filename>. Jika tidak, LILO akan mem-boot informasi default yang ditentukan dengan 
           <emphasis>default=&lt;name&gt;</emphasis>,
-          or the first entry when no default kernel is set. You can
-          access the menu with entries at any time by holding the
-          &lt;Shift&gt; key when LILO is started.
+          atau informasi pertama ketika tidak ada kernel default yang ditentukan. Anda bisa mengakses menu kapan saja dengan 
+	  menekan kunci &lt;Shift&gt; ketika LILO dijalankan.
 	</para>
       </note>
     </sect2>
