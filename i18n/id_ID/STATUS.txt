@@ -14,7 +14,7 @@ baris  berkas                   status  rev-1a  rev-2a
    272 chap-intro.xml           DONE        -       -
    295 printing.xml             DONE        -       -
    313 mutt.xml                 DONE        -       -
-   335 miscadmin.xml            TODO        -       -
+   335 miscadmin.xml            DONE        -       -
    377 latex.xml                DONE        -       -
    398 concepts.xml             DONE        -       -
    441 chap-kernel.xml          DONE        -       -
