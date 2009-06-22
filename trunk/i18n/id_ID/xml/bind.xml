@@ -1,89 +1,88 @@
 <!-- $Id: bind.xml 283 2007-09-18 20:14:31Z danieldk $ -->
 
 <chapter> <?dbhtml filename="bind.html"?>
-	<title>BIND</title>
+<title>BIND</title>
 
-	<sect1>
-		<title>Perkenalan</title>
+<sect1>
+<title>Perkenalan</title>
 
-		<para>
-			Domain name system (<acronym>DNS</acronym>) digunakan untuk mengkonversi nama host yang mudah diingat (sebagai contoh www.slackware.com) menjadi alamat IP. <acronym>BIND</acronym> (Berkeley Internet Name Domain) adalah daemon DNS yang paling banyak digunakan, dan akan dibahas pada bab ini.
-		</para>
+<para>
+Domain name system (<acronym>DNS</acronym>) digunakan untuk mengkonversi nama host yang mudah diingat (sebagai contoh www.slackware.com) menjadi alamat IP. <acronym>BIND</acronym> (Berkeley Internet Name Domain) adalah daemon DNS yang paling banyak digunakan, dan akan dibahas pada bab ini.
+</para>
 
-		<sect2>
-			<title>Delegasi</title>
+<sect2>
+<title>Delegasi</title>
 
-			<para>
-				Salah satu fitur utama adalah permintaan DNS dapat didelegasikan. Sebagai contoh, misalkan Anda memiliki domain <quote>linuxcorp.com</quote>.  Anda bisa menyediakan nameserver yang memiliki otoritas untuk domain ini, nameserver Anda adalah bersifat otoritatif untuk  <quote>linuxcorp.com</quote>. Misalkan terdapat cabang dari perusahaan Anda, dan Anda hendak memberikan setiap cabang sebuah otoritas pada zona miliknya masing-masing, ini bukanlah masalah bagi DNS. Anda bisa mendelegasikan DNS untuk misalnya <quote>sales.linuxcorp.com</quote> pada nameserver lain dalam konfigurasi DNS untuk zona <quote>linuxcorp.com</quote>.
-			</para>
+<para>
+Salah satu fitur utama adalah permintaan DNS dapat didelegasikan. Sebagai contoh, misalkan Anda memiliki domain <quote>linuxcorp.com</quote>.  Anda bisa menyediakan nameserver yang memiliki otoritas untuk domain ini, nameserver Anda adalah bersifat otoritatif untuk  <quote>linuxcorp.com</quote>. Misalkan terdapat cabang dari perusahaan Anda, dan Anda hendak memberikan setiap cabang sebuah otoritas pada zona miliknya masing-masing, ini bukanlah masalah bagi DNS. Anda bisa mendelegasikan DNS untuk misalnya <quote>sales.linuxcorp.com</quote> pada nameserver lain dalam konfigurasi DNS untuk zona <quote>linuxcorp.com</quote>.
+</para>
 
-			<para>
-				Sistem DNS memiliki apa yang disebut server root, yang mendelegasikan DNS untuk jutaan nama domain dan ekstensi (misalnya, ekstensi yang spesifik terhadap sebuah negara, seperti <quote>.nl</quote> atau <quote>.uk</quote>) untuk mengotorisasi server DNS. Sistem ini mengijinkan bentuk pohon delegasi, yang sangat fleksibel dan mendistribusikan beban DNS.
-			</para>
+<para>
+Sistem DNS memiliki apa yang disebut server root, yang mendelegasikan DNS untuk jutaan nama domain dan ekstensi (misalnya, ekstensi yang spesifik terhadap sebuah negara, seperti <quote>.nl</quote> atau <quote>.uk</quote>) untuk mengotorisasi server DNS. Sistem ini mengijinkan bentuk pohon delegasi, yang sangat fleksibel dan mendistribusikan beban DNS.
+</para>
 
-		</sect2>
+</sect2>
 
-		<sect2>
-			<title>Jenis catatan DNS</title>
+<sect2>
+<title>Jenis catatan DNS</title>
 
-			<para>
-				Jenis-jenis berikut adalah jenis catatan DNS yang umum:
-			</para>
+<para>
+Jenis-jenis berikut adalah jenis catatan DNS yang umum:
+</para>
 
-			<table>
-				<title>Catatan DNS</title>
-				<tgroup cols="2">
-					<thead>
-						<row>
-							<entry>Awalan</entry><entry>Deskripsi</entry>
-						</row>
-					</thead>
-					<tbody>
-						<row>
-							<entry>A</entry><entry>Catatan A menunjuk pada alamat IPv4.</entry>
-						</row>
-						<row>
-							<entry>AAAA</entry><entry>Catatan AAAA menunjuk pada alamat IPv6.</entry>
-						</row>
-						<row>
-							<entry>CNAME</entry><entry>Catatan CNAME menunjuk pada daftar DNS lain.</entry>
-						</row>
-						<row>
-							<entry>MX</entry><entry>Catatan MX menentukan yang harus menangani pesan (e-mail) untuk domain tersebut.</entry>
-						</row>
-					</tbody>
-				</tgroup>
-			</table>
-		</sect2>
+<table>
+<title>Catatan DNS</title>
+<tgroup cols="2">
+<thead>
+<row>
+<entry>Awalan</entry><entry>Deskripsi</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry>A</entry><entry>Catatan A menunjuk pada alamat IPv4.</entry>
+</row>
+<row>
+<entry>AAAA</entry><entry>Catatan AAAA menunjuk pada alamat IPv6.</entry>
+</row>
+<row>
+<entry>CNAME</entry><entry>Catatan CNAME menunjuk pada daftar DNS lain.</entry>
+</row>
+<row>
+<entry>MX</entry><entry>Catatan MX menentukan yang harus menangani pesan (e-mail) untuk domain tersebut.</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</sect2>
 
-		<sect2>
-			<title>Master and slave</title>
+<sect2>
+<title>Master dan slave</title>
+<para>
+Dua jenis nameserver dapat disediakan untuk sebuah domain: master dan slave. Server DNS master bersifat otoritatif. Server slave mendownload catatan DNSnya dari server master. Menggunakan server slave disamping server master sangatlah disarankan untuk ketersediaan yang tinggi dan juga bisa digunakan untuk pembagian beban.
+</para>
 
-			<para>
-				Dua jenis nameserver dapat disediakan untuk sebuah domain: master dan slave. Server DNS master bersifat otoritatif. Server slave mendownload catatan DNSnya dari server master. Menggunakan server slave disamping server master sangatlah disarankan untuk ketersediaan yang tinggi dan juga bisa digunakan untuk pembagian beban.
-			</para>
+</sect2>
 
-		</sect2>
+</sect1>
 
-	</sect1>
+<sect1>
+<title>Membuat caching nameserver</title>
 
-	<sect1>
-		<title>Membuat caching nameserver</title>
+<para>
+Sebuah caching nameserver menyediakan layanan DNS untuk sebuah mesin atau jaringan, tetapi tidak menyediakan DNS untuk sebuah domain. Ini berarti bahwa nameserver jenis ini hanya bisa digunakan untuk mengkonversi nama host menjadi alamat IP. Melakukan setting sebuah nameserver dengan Slackware Linux cukup mudah, karena BIND sudah terkonversi sebagai jenis ini secara default. Mengaktifkan caching nameserver hanya membutuhkan dua langkah: Anda harus menginstall BIND dan mengubah script inisialisasinya. BIND dapat diinstall dengan menambahkan paket BIND dari set disk <quote>n</quote>. Setelah itu, bind bisa dijalankan dengan menjalankan perintah
+<command>named</command>. Jika Anda hendak menjalankan BIND secara default, ganti berkas <filename>/etc/rc.d/rc.bind</filename> menjadi bersifat executable. Hal ini bisa dilakukan dengan menjalankan perintah berikut sebagai root:
+</para>
 
-		<para>
-			Sebuah caching nameserver menyediakan layanan DNS untuk sebuah mesin atau jaringan, tetapi tidak menyediakan DNS untuk sebuah domain. Ini berarti bahwa nameserver jenis ini hanya bisa digunakan untuk mengkonversi nama host menjadi alamat IP. Melakukan setting sebuah nameserver dengan Slackware Linux cukup mudah, karena BIND sudah terkonversi sebagai jenis ini secara default. Mengaktifkan caching nameserver hanya membutuhkan dua langkah: Anda harus menginstall BIND dan mengubah script inisialisasinya. BIND dapat diinstall dengan menambahkan paket BIND dari set disk <quote>n</quote>. Setelah itu, bind bisa dijalankan dengan menjalankan perintah
-			<command>named</command>. Jika Anda hendak menjalankan BIND secara default, ganti berkas <filename>/etc/rc.d/rc.bind</filename> menjadi bersifat executable. Hal ini bisa dilakukan dengan menjalankan perintah berikut sebagai root:
-		</para>
+<screen>
+# <command>chmod a+x /etc/rc.d/rc.bind</command>
+</screen>
 
-		<screen>
-			# <command>chmod a+x /etc/rc.d/rc.bind</command>
-		</screen>
+<para>
+Jika Anda hendak menggunakan nameserver pada mesin yang menjalankan BIND, Anda harus mengubah <filename>/etc/resolv.conf</filename>.
+</para>
 
-		<para>
-			Jika Anda hendak menggunakan nameserver pada mesin yang menjalankan BIND, Anda harus mengubah <filename>/etc/resolv.conf</filename>.
-		</para>
-
-	</sect1>
+</sect1>
 
 </chapter>
 
