@@ -60,7 +60,7 @@
     <para>
       There are also two major methods of authentication. You can use manual
       keys, or an Internet Key Exchange (IKE) daemon, like racoon, that 
-      automatically exchanges keys securely betwoon two hosts. In both cases
+      automatically exchanges keys securely between two hosts. In both cases
       you need to set up a policy in the Security Policy Database (SPD). This
       database is used by the kernel to decide what kind of security policy
       is needed to communicate with another host. If you use manual keying you
@@ -191,7 +191,7 @@ CONFIG_INET_IPCOMP=m
 
       <para>
         We will use an example as the guideline for setting up an encrypted
-        connection between to hosts. The hosts have the IP addresses 
+        connection between two hosts. The hosts have the IP addresses 
         <emphasis>192.168.1.1</emphasis> and <emphasis>192.168.1.169</emphasis>.
         The <quote>transport mode</quote> of operation will be used with
         AH and ESP transformations and manual keys.
@@ -523,7 +523,7 @@ remote 192.168.1.169
         first method is used if this host is the initiator of the
         key exchange. The <parameter>my_identifier</parameter> option
         specifies what identifier should be sent to the remote host.
-        If this option committed <parameter>address</parameter> is used,
+        If this option ommitted <parameter>address</parameter> is used,
         which sends the IP address as the identifier. The 
         <parameter>proposal</parameter> block specifies parameter that
         will be proposed to the other host during phase one authentication.
@@ -606,9 +606,9 @@ connect: Resource temporarily unavailable
         After the key exchange, you
         can verify that IPsec is set up correctly by analyzing the packets
         that go in and out with <command>tcpdump</command>. <command>tcpdump</command> is
-        available in the <emphasis>n</emphasis> diskset. Suppose that
+        available in the <emphasis>n</emphasis> disk set. Suppose that
         the outgoing connection to the other host goes through the
-        <emphasis>eth0</emphasis> interface, you can analyze the packats
+        <emphasis>eth0</emphasis> interface, you can analyze the packets
         that go though the <emphasis>eth0</emphasis> interface with
         <command>tcpdump -i eth0</command>. If the outgoing packets are
         encrypted with ESP, you can see this in the <command>tcpdump</command>
