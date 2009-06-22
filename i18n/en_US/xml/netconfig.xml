@@ -149,7 +149,7 @@ fec0:ffff:a300:2312::1
 Each IPv6 address has a prefix. Normally this consists of two elements:
 32 bits identifying the address space the provider provides you, and a
 16-bit number that specifies the network. These two elements form the
-prefix, and in this case the prefixlength is 32 + 16 = 48 bits. Thus,
+prefix, and in this case the prefix length is 32 + 16 = 48 bits. Thus,
 if you have a /48 prefix you can make 2^16 subnets and have 2^80 hosts
 on each subnet. The image below shows the structure of an IPv6 address
 with a 48-bit prefix.
@@ -480,7 +480,7 @@ Let's have a look at an example:
 </figure>
 
 <para>
-In dit example there are two networks, 192.168.1.0 and 192.168.2.0. Three
+In the example there are two networks, 192.168.1.0 and 192.168.2.0. Three
 hosts are connected to both network. One of these hosts is connected to
 both networks with interfaces. The interface on the 192.168.1.0 network
 has IP address 192.168.1.3, the interface on the 192.168.2.0 network has
