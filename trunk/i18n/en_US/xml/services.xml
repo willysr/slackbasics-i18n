@@ -93,9 +93,9 @@ you also have to alter <filename>/etc/resolv.conf</filename>.
 <title>The Apache webserver</title>
 
 <para>
-Apache is the most widely userd webserver on the internet, and is,
+Apache is the most widely used webserver on the internet, and is,
 of course, part of Slackware Linux. Apache can be installed by
-adding the <filename>apache</filename> pacakge from the <quote>n</quote> disk set.
+adding the <filename>apache</filename> package from the <quote>n</quote> disk set.
 If you also want to use PHP, the <filename>php</filename> (<quote>n</quote> disk set)
 and <filename>mysql</filename> (<quote>ap</quote> disk set) are also required.
 MySQL is required, because the precompiled PHP depends on MySQL shared 
