@@ -22,7 +22,7 @@ baris  berkas                   status  rev-1a  rev-2a
    526 netconfig.xml            TODO        -       -
    630 ipsec.xml                TODO        -       -
    652 chap-pkgmgmt.xml         TODO        -       -
-   690 chap-init.xml            TODO        -       -
+   690 chap-init.xml            DONE        -       -
    757 custom-installation.xml  DONE        -       -
    780 chap-procmgmt.xml        DONE        -       -
    850 chap-install.xml         DONE        -       -
