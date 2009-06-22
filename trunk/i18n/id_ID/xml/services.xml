@@ -1,30 +1,29 @@
 <!-- $Id: services.xml 283 2007-09-18 20:14:31Z danieldk $ -->
 
 <chapter> <?dbhtml filename="services.html"?>
-<title>Networking services</title>
+<title>Layanan jaringan</title>
 
 <sect1>
-<title>The internet super server</title>
+<title>Super server internet</title>
 
 <para>
-There are two ways to offer TCP/IP services: by running server
-applications standalone as a daemon or by using the internet
-super server, <command>inetd</command>. <command>inetd</command>
-is a daemon which monitors a range of ports. If a client attempts
-to connect to a port <command>inetd</command> handles the connection
-and forwards the connection to the server software which handles
-that kind of connection. The advantage of this approach is
-that it adds an extra layer of security and it makes it easier
-to log incoming connections. The disadvantage is that it is
-somewhat slower than using a standalone daemon. It is thus
-a good idea to run a standalone daemon on, for example, 
-a heavily loaded FTP server.
+Terdapat dua cara untuk menawarkan layanan TCP/IP: 
+dengan menjalankan aplikasi server secara mandiri (standalone) 
+sebagai daemon atau dengan menggunakan server super 
+Internet, <command>inetd</command>. <command>inetd</command>
+adalah sebuah daemon yang mengawasi sejumlah port. Jika sebuah klien 
+mencoba untuk menghubungkan diri pada sebuah port <command>inetd</command> 
+akan menangani koneksi dan mengirimkan koneksi pada perangkat lunak server 
+yang menangani jenis koneksi tersebut. Keuntungan dari pendekatan ini adalah 
+adanya tambahan sebuah layer keamanan dan membuatnya lebih mudah untuk 
+mencatat log pada koneksi yang masuk. Kerugiannya adalah lebih lambat 
+dibandingkan dengan daemon yang sifatnya standalone. Disarankan untuk 
+menjalankan daemon secara standalone pada, misalnya server FTP yang memiliki beban yang tinggi.
 </para>
 
 <para>
-<command>inetd</command> can be configured using the
-<filename>/etc/inetd.conf</filename> file. Let's have a look at
-an example line from <filename>inetd.conf</filename>:
+<command>inetd</command> dapat dikonfigurasi menggunakan berkas
+<filename>/etc/inetd.conf</filename>. Mari kita lihat pada contoh baris dari <filename>inetd.conf</filename>:
 </para>
 
 <screen>
@@ -33,24 +32,22 @@ ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
 </screen>
 
 <para>
-This line specifies that <command>inetd</command> should accept
-FTP connections and pass them to <command>tcpd</command>. This
-may seem a bit odd, because <command>proftpd</command> normally 
-handles FTP connections. You can also specify to use <command>proftpd</command>
-directly in <filename>inetd.conf</filename>, but Slackware Linux normally
-passes the connection to <command>tcpd</command>. This program
-passes the connection to <command>proftpd</command> in turn, as specified.
-<command>tcpd</command> is used to monitor services and to provide
-host based access control.
+Baris ini menyatakan bahwa <command>inetd</command> harus 
+menerima koneksi FTP dan meneruskannya pada <command>tcpd</command>. Ini mungkin cukup aneh, 
+karena <command>proftpd</command> biasanya menangani koneksi FTP. Anda juga bisa 
+menyebutkan penggunaan <command>proftpd</command>
+secara langsung pada <filename>inetd.conf</filename>, tetapi Slackware Linux biasanya 
+mengirimkan koneksi pada <command>tcpd</command>. Program ini pada gilirannya mengirimkan 
+koneksi pada <command>proftpd</command>, seperti yang ditentukan.
+<command>tcpd</command> digunakan untuk memonitor layanan dan menyediakan kontrol akses berbasis host.
 </para>
 
 <para>
-Services can be disabled by adding the comment character (#) at
-the beginning of the line. It is a good idea to disable all services
-and enable services you need one at a time. After changing
+Layanan bisa dinonaktifkan dengan menambahkan karakter komentar (#) di awal baris. 
+Disarankan untuk menonaktifkan semua layanan dan hanya mengaktifkan layanan 
+yang Anda perlukan saja. Setelah mengganti
 <filename>/etc/inetd.conf</filename> <command>inetd</command>
-needs to be restarted to activate the changes. This can be done
-by sending the HUP signal to the inetd process:
+harus dijalankan kembali untuk mengaktifkan perubahan. Hal ini bisa dilakukan dengan mengirimkan sinyal HUP pada proses inetd:
 </para>
 
 <screen>
@@ -65,17 +62,14 @@ by sending the HUP signal to the inetd process:
 <title>Caching nameserver</title>
 
 <para>
-A caching nameserver provides DNS services for a machine or a network,
-but does not provide DNS for a domain. That means it can only be used
-to convert hostnames to IP addresses. Setting up a nameserver with
-Slackware Linux is fairly easy, because BIND is configured as a
-caching nameserver by default. Enabling the caching nameserver takes
-just two steps: you have to install BIND and alter the initialization
-scripts. BIND can be installed by adding the bind package from
-the <quote>n</quote> disk set. After that bind can be started by executing the
-<command>named</command> command. If want to start BIND by
-default, make the <filename>/etc/rc.d/rc.bind</filename> file executable.
-This can be done by executing the following command as root:
+Sebuah caching nameserver menyediakan layanan DNS untuk sebuah mesin atau jaringan, tetapi tidak menyediakan DNS untuk sebuah 
+domain. Ini berarti bahwa nameserver jenis ini hanya bisa digunakan untuk mengkonversi nama host menjadi alamat IP. Melakukan 
+setting sebuah nameserver dengan Slackware Linux cukup mudah, karena BIND sudah terkonversi sebagai jenis ini secara default. 
+Mengaktifkan caching nameserver hanya membutuhkan dua langkah: Anda harus menginstall BIND dan mengubah script inisialisasinya. 
+BIND dapat diinstall dengan menambahkan paket BIND dari set disk <quote>n</quote>. Setelah itu, bind bisa dijalankan dengan 
+menjalankan perintah
+<command>named</command>. Jika Anda hendak menjalankan BIND secara default, ganti berkas <filename>/etc/rc.d/rc.bind</filename> 
+menjadi bersifat executable. Hal ini bisa dilakukan dengan menjalankan perintah berikut sebagai root:
 </para>
 
 <screen>
@@ -83,26 +77,22 @@ This can be done by executing the following command as root:
 </screen>
 
 <para>
-If you want to use the nameserver on the machine that runs BIND,
-you also have to alter <filename>/etc/resolv.conf</filename>.
+Jika Anda hendak menggunakan nameserver pada mesin yang menjalankan BIND, Anda harus mengubah <filename>/etc/resolv.conf</filename>.
 </para>
 
 </sect1>
 
 <sect1>
-<title>The Apache webserver</title>
+<title>Server web Apache</title>
 
 <para>
-Apache is the most widely userd webserver on the internet, and is,
-of course, part of Slackware Linux. Apache can be installed by
-adding the <filename>apache</filename> pacakge from the <quote>n</quote> disk set.
-If you also want to use PHP, the <filename>php</filename> (<quote>n</quote> disk set)
-and <filename>mysql</filename> (<quote>ap</quote> disk set) are also required.
-MySQL is required, because the precompiled PHP depends on MySQL shared 
-libraries. You do not have to run MySQL itself. After installing Apache
-it can be started automatically while booting the system by making
-the <filename>/etc/rc.d/rc.httpd</filename> file executable. You
-can do this by executing: 
+Apache adalah server web yang paling banyak digunakan pada Internet, dan tentu saja merupakan bagian dari Slackware Linux. 
+Apache bisa diinstall dengan menambahkan paket <filename>apache</filename> dari set disk <quote>n</quote>. Jika Anda hendak 
+menggunakan PHP, paket <filename>php</filename> (set disk <quote>n</quote>) dan <filename>mysql</filename> (set disk 
+<quote>ap</quote>) juga diperlukan.
+MySQL diperlukan, karena PHP bergantung pada pustaka MySQL. Anda tidak harus menjalankan MySQL. Setelah menginstall Apache
+dapat dijalankan secara otomatis selagi boot dengan membuat berkas <filename>/etc/rc.d/rc.httpd</filename> executable. 
+Anda bisa melakukan hal ini dengan menjalankan: 
 </para>
 
 <screen>
@@ -110,13 +100,13 @@ can do this by executing:
 </screen> 
 
 <para>
-The Apache configuration can be altered in the 
-<filename>/etc/apache/httpd.conf</filename> file. Apache can be
-stopped/started/restarted every moment with the <command>apachectl</command>
-command, and the <parameter class="command">stop</parameter>, 
-<parameter class="command">start</parameter> and 
-<parameter class="command">restart</parameter> parameters. For example,
-execute the following command to restart Apache:
+Konfigurasi Apache bisa diubah pada berkas 
+<filename>/etc/apache/httpd.conf</filename>. Apache bisa di
+stop/start/restart setiap saat dengan perintah <command>apachectl</command>,
+ digabung dengan parameter-parameter <parameter class="command">stop</parameter>, 
+<parameter class="command">start</parameter> dan 
+<parameter class="command">restart</parameter>. Sebagai contoh,
+jalankan perintah berikut untuk me-restart Apache:
 </para>
 
 <screen>

@@ -11,15 +11,15 @@
       <title>Perkenalan</title>
 
       <para>
-	Slackware linux tidak menggunakan sistem paket yang kompleks, 
+	Slackware Linux tidak menggunakan sistem paket yang kompleks, 
 	tidak seperti distribusi linux lainnya. Paket memiliki ekstensi 
 	<filename>.tgz</filename>, dan biasanya merupakan paket tarball 
 	biasa dengan dua berkas tambahan yaitu : sebuah skrip installasi 
 	dan berkas deskripsi paket tersebut. Sehubungan dengan 
 	kesederhanaan dari paketnya, aplikasi manajemen Slackware Linux 
-	tidak melakukan penanganan terhadap dependensi. Tetapi banyak 
+	tidak melakukan penanganan terhadap ketergantungan (dependensi). Tetapi banyak 
 	pengguna Slackware Linux memilih cara ini, karena penanganan 
-	dependensi sering mengakibatkan masalah dibanding pemecahannya.
+	dependensi sering mengakibatkan masalah dibandingkan pemecahannya.
       </para>
 
       <para>
@@ -188,11 +188,11 @@ ftp://ftp.nluug.nl/pub/os/Linux/distr/slackware/slackware-current/
       <title>Mengimport kunci GPG Slackware Linux</title>
 
       <para>
-	Secara default slackpkg mengecek paket menggunakan paket 
-	signature dan kunci GPG publik Slackware Linux. Sejak hal ini 
-	adalah ide yang bagus dari sudut pandang keamanan, Anda mungkin 
+	Secara default slackpkg menguji paket menggunakan paket 
+	signature dan kunci GPG publik Slackware Linux. Karena hal ini merupakan ide yang bagus 
+	dari sudut pandang keamanan, Anda mungkin 
 	tidak ingin mengganti kebiasaan ini. Untuk mampu melakukan 
-	pengecekan paket, Anda harus mengimport kunci GPG 
+	pengujian paket, Anda harus mengimport kunci GPG 
 	<emphasis>security@slackware.com</emphasis>. Jika Anda tidak 
 	pernah menggunakan GPG sebelumnya, Anda harus membuat direktori 
 	GPG pada direktori home dari pengguna <emphasis>root</emphasis>:
@@ -205,7 +205,7 @@ ftp://ftp.nluug.nl/pub/os/Linux/distr/slackware/slackware-current/
       <para>
 	Langkah selanjutnya adalah mencari kunci publik untuk 
 	<emphasis>security@slackware.com</emphasis>. Kita akan melakukan 
-	hal ini dengan mengantrikan server <emphasis>pgp.mit.edu</emphasis> :
+	hal ini dengan memasukkan server <emphasis>pgp.mit.edu</emphasis> :
       </para>
 
       <screen>
@@ -335,7 +335,7 @@ $ <userinput>slackpkg update</userinput>
 
       <para>
 	Untuk diperhatikan, baik slackpkg ataupun aplikasi paket 
-	Slackware Linux tidak melakukan pengecekan dependensi. Jika 
+	Slackware Linux tidak melakukan pengujian dependensi. Jika 
 	terdapat program yang tidak bekerja karena kehilangan pustaka 
 	tertentu, Anda dapat menambahkannya sendiri dengan slackpkg
       </para>
@@ -376,20 +376,17 @@ rsync://fill-in-mirror/pub/slackware/slackware-current/ \
     </screen>
 
     <para>
-      The <parameter class="command">-a</parameter> parameter implies
-      a few other options that try to make a copy that is as exact as
-      possible (in terms of preserving symlinks, permissions and
-      owners). The <parameter class="command">--delete</parameter>
-      deletes files that are not available on the mirror anymore.  It
-      is good idea to use this parameter, because otherwise your tree
-      may get bloated very quickly with older package versions.  With
-      the <parameter class="command">--exclude</parameter> parameter
-      you can specify which files or directories should be ignored.
+      Parameter <parameter class="command">-a</parameter> seperti pada opsi lain mencoba membuat 
+      salinan yang sama persis (dalam hal mempertahankan symlink, hak akses, dan pemilik). 
+      Parameter <parameter class="command">--delete</parameter> menghapus berkas yang tidak lagi 
+      tersedia pada mirror. Merupakan ide yang bagus untuk menggunakan parameter ini, karena pohon 
+      Anda mungkin dipenuhi dengan versi paket lama. Dengan parameter <parameter class="command">--exclude</parameter> 
+      Anda bisa menentukan berkas atau direktori mana yang harus diabaikan.
     </para>
 
     <para>
-      After syncing the tree you can use <command>upgradepkg</command>
-      to update your Slackware Linux installation. For example:
+      Setelah melakukan sinkronisasi, Ana bisa menggunakan <command>upgradepkg</command> untuk mengupdate installasi 
+      Slackware Linux Anda. Sebagai contoh:
     </para>
 
     <screen>
@@ -398,46 +395,36 @@ rsync://fill-in-mirror/pub/slackware/slackware-current/ \
   </sect1>
 
   <sect1 xml:id="chap-pkgmgmt-tagfiles">
-    <title>Tagfiles</title>
+    <title>Tagfile</title>
 
     <sect2 xml:id="chap-pkgmgmt-tagfiles-intro">
-      <title>Introduction</title>
+      <title>Perkenalan</title>
 
       <para>
-        Tagfiles are a relatively unknown feature of Slackware
-        Linux. A tagfile is a file that can be used to instruct
-        <command>installpkg</command> what packages should be
-        installed from a collection of packages. For instance, the
-        Slackware Linux installer generates a tagfile during the
-        <emphasis>Expert</emphasis> and <emphasis>Menu</emphasis>
-        installation methods to store which packages should be
-        installed during the installation process.
+        Tagfile adalah fitur yang jarang diketahui dari Slackware Linux. Sebuah tagfile adalah berkas yang bisa 
+	digunakan untuk memberitahukan kepada <command>installpkg</command> paket apa yang harus diinstall 
+	dari sekumpulan paket-paket. Sebagai contoh, installer Slackware Linux menghasilkan tagfile selama mode 
+	installasi <emphasis>Expert</emphasis> dan <emphasis>Menu</emphasis> untuk menyimpan paket mana yang harus 
+	diinstall selama proses installasi.
       </para>
 
       <para>
-        The nice aspect of tagfiles is that you can easily create
-        tagfiles yourself. By writing your own tagfiles you can
-        automate the package installation, which is ideal for larger
-        client or server roll-outs (or smaller set-ups if it gives you
-        more comfort than installing packages manually). The easiest
-        way to create your own tagfiles is by starting out with the
-        tagfiles that are part of the official Slackware Linux
-        distribution. In the following sections we are going to look
-        at how this is done.
+        Aspek yang bagus dari tagfile adalah Anda bisa membuat tagfile Anda sendiri. Dengan menulis tagfile Anda sendiri, 
+	Anda bisa mengotomatisasikan installasi paket, yang ideal untuk jumlah pengguna yang besar atau penggantian server 
+	(atau pengaturan yang lebih kecil jika Anda lebih nyaman dibandingkan menginstall paket secara manual). Cara termudah 
+	untuk membuat tagfile Anda adalah dengan menggunakan tagfile yang merupakan bagian dari distribusi resmi 
+	Slackware Linux. Pada bagian berikut, kita akan melihat bagaimana hal ini bisa dilakukan.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-tagfiles-creating">
-      <title>Creating tagfiles</title>
+      <title>Membuat tagfile</title>
 
       <para>
-        Tagfiles are simple plain-text files. Each line consists of a
-        package name and a flag, these two elements are separated by a
-        colon and a space. The flag specifies what should be done with
-        a package. The fields are described in <xref
-        linkend="chap-pkgmgmt-tagfiles-creating-fields"/>.  Let's look
-        at a few lines from the tagfile in the <quote>a</quote> disk
-        set:
+        Tagfile adalah berkas plain-text sederhana. Setiap baris terdiri dari nama paket dan sebuah flag, yang dipisahkan 
+	dengan tanda titik dua dan spasi. Flag menentukan apa yang harus dilakukan dengan sebuah paket. Kolom akan dijelaskan 
+	pada <xref
+        linkend="chap-pkgmgmt-tagfiles-creating-fields"/>.  Mari kita lihat pada beberapa baris pada tagfile dari set disk <quote>a</quote> :
       </para>
 
       <screen>
@@ -450,59 +437,50 @@ bin: ADD
       </screen>
 
       <para>
-        It should be noted that you can also add comments to tagfiles
-        with the usual comment (#) character. As you can see in the
-        snippet above there are different flags. The table listed
-        below describes the four different flags.
+        Harus dicatat bahwa Anda bisa menambahkan komentar pada tagfile dengan karakter komentar seperti biasa (#). Seperti yang 
+	Anda lihat pada potongan diatas, terdapat beberapa flag. Tabel dibawah menjelaskan empat flag yang berbeda.
       </para>
 
       <table xml:id="chap-pkgmgmt-tagfiles-creating-fields">
-        <title>Tagfile fields</title>
+        <title>Kolom Tagfile</title>
         <tgroup cols="2" align="left" colsep="1" rowsep="1">
           <thead>
             <row>
               <entry>Flag</entry>
-              <entry>Meaning</entry>
+              <entry>Arti</entry>
             </row>
           </thead>
           <tbody>
             <row>
               <entry>ADD</entry>
-              <entry>A package marked by this flag will automatically
-              be installed</entry>
+              <entry>Sebuah paket yang ditandai dengan ini akan secara otomatis diinstall.</entry>
             </row>
             <row>
               <entry>SKP</entry>
-              <entry>A package marked by this flag will automatically
-              be skipped</entry>
+              <entry>Sebuah paket yang ditandai dengan ini akan secara otomatis dilewati.</entry>
             </row>
             <row>
               <entry>REC</entry>
-              <entry>Ask the user what to do, recommend installation
-              of the package.</entry>
+              <entry>Menanyakan kepada pengguna apa yang harus dilakukan, merekomendasikan installasi paket.</entry>
             </row>
             <row>
               <entry>OPT</entry>
-              <entry>Ask the user what to do, the package will be
-              described as optional.</entry>
+              <entry>Menanyakan kepada pengguna apa yang harus dilakukan, paket akan dijelaskan sebagai opsional.</entry>
             </row>
           </tbody>
         </tgroup>
       </table>
 
       <para>
-        As you can read from the table <command>installpkg</command>
-        will only act automatically when either
-        <emphasis>ADD</emphasis> or <emphasis>SKP</emphasis> is used.
+        Seperti yang Anda baca dari tabel, <command>installpkg</command> hanya akan menginstall secara otomatis jika 
+        <emphasis>ADD</emphasis> atau <emphasis>SKP</emphasis> digunakan.
       </para>
 
       <para>
-        It would be a bit tedious to write a tagfile for each
-        Slackware Linux disk set. The official Slackware Linux
-        distribution contains a tagfile in the directory for each disk
-        set. You can use these tagfiles as a start. The short script
-        listed below can be used to copy the tagfiles to the current
-        directory, preserving the disk set structure.
+        Akan menjadi pekerjaan membosankan untuk menulis tagfile untuk setiap set disk Slackware Linux. Distribusi resmi 
+	Slackware Linux berisi sebuah tagfile pada direktori untuk setiap set disknya. Anda bisa menggunakan tagfile ini 
+	sebagai awalnya. Script pendek berikut bisa digunakan untuk menyalin tagfile pada direktori aktual, sambil 
+	mempertahankan strukturnya.
       </para>
 
       <screen>
@@ -532,9 +510,8 @@ $ <command>sh copy-tagfiles.sh /mnt/flux/slackware-current/slackware</command>
       </screen>
 
       <para>
-        After doing this the current directory will contain a
-        directory structure like this, in which you can edit the
-        individual tag files:
+        Setelah melakukan hal ini, direktori aktual akan berisi struktur direktori seperti berikut, dimana 
+	Anda bisa mengedit berkas tagfile secara individu:
       </para>
 
       <screen>
@@ -550,27 +527,22 @@ e/tagfile.org
       </screen>
 
       <para>
-        The files that end with <emphasis>.org</emphasis> are backups,
-        that you can use as a reference while editing
-        tagfiles. Besides that they are also used in the script that
-        is described in the next section.
+        Berkas yang diakhiri dengan <emphasis>.org</emphasis> adalah cadangan, yang bisa Anda gunakan sebagai referensi 
+	ketika mengedit tagfile. Selain itu, mereka juga digunakan pada script yang akan dijelaskan pada bagian berikutnya.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-tagfiles-autogen" >
-      <title>Automatically generating tagfiles</title>
+      <title>Pembuatan tagfile secara otomatis</title>
 
       <para>
-        With a simple script, it is also possible to build tagfiles
-        based on the packages that are installed on the current
-        system. I owe thanks to Peter Kaagman for coming up with this
-        nifty idea!
+        Dengan script yang sederhana, dimungkinkan untuk membangun tagfile berdasarkan paket yang diinstall pada sistem 
+	aktual. Saya berterima kasih kepada Peter Kaagman yang hadir dengan ide ini!
       </para>
 
       <para>
-        First build a tagfile directory from the Slackware Linux
-        installation media, as described in the previous section. When
-        you have done that, you can create the following script:
+        Pertama-tama, bangun direktori tagfile dari media installasi the Slackware Linux, seperti yang dijelaskan pada 
+	bagian sebelumnya. Setelah selesai, Anda bisa membuat script berikut:
       </para>
 
       <screen>
@@ -595,10 +567,8 @@ done
       </screen>
 
       <para>
-        Suppose that you have saved it as
-        <filename>build-tagfiles.sh</filename>, you can use it by
-        specifying directory that holds the tagfiles as the first
-        argument:
+        Misalkan Anda sudah menyimpannya sebagai <filename>build-tagfiles.sh</filename>, Anda bisa menggunakannya 
+	dengan menentukan direktori yang berisi tagfile sebagai argumen pertama:
       </para>
 
       <screen>
@@ -606,20 +576,17 @@ $ <userinput>sh build-tagfiles.sh .</userinput>
       </screen>
 
       <para>
-        The script will mark packages that are installed as
-        <emphasis>ADD</emphasis>, and packages that are not installed
-        as <emphasis>SKP</emphasis>.
+        Script akan menandai paket-paket yang terinstall sebagai <emphasis>ADD</emphasis>, dan paket-paket yang 
+	tidak terinstall sebagai <emphasis>SKP</emphasis>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-tagfiles-using">
-      <title>Using tagfiles</title>
+      <title>Menggunakan tagfile</title>
 
       <para>
-        On an installed system you can let
-        <command>installpkg</command> use a tagfile with the
-        <parameter class="command">-tagfile</parameter> parameter. For
-        example:
+        Pada sistem yang terinstall, Anda bisa membiarkan <command>installpkg</command> menggunakan tagfile dengan parameter 
+        <parameter class="command">-tagfile</parameter>. Sebagai contoh: 
       </para>
 
       <screen>
@@ -628,26 +595,19 @@ $ <userinput>sh build-tagfiles.sh .</userinput>
 
       <note>
 	<para>
-	  You have to use the <parameter
-	  class="command">-infobox</parameter> option, otherwise the
-	  tagfiles will not be used.
+	  Anda harus menggunakan opsi <parameter
+	  class="command">-infobox</parameter>, jika tidak, tagfile tidak akan digunakan.
 	</para>
       </note>
 
       <para>
-        Of course, tagfiles would be useless if they cannot be used
-        during the installation of Slackware Linux. This is certainly
-        possible: after selecting which disk sets you want to install
-        you can choose in what way you want to select packages (the
-        dialog is named <emphasis>SELECT PROMPTING
-        MODE</emphasis>. Select <emphasis>tagpath</emphasis> from this
-        menu. You will then be asked to enter the path to the
-        directory structure with the tagfiles.  The usual way to
-        provide tagfiles to the Slackware Linux installation is to put
-        them on a floppy or another medium, and mounting this before
-        or during the installation. E.g. you can switch to the second
-        console with by pressing the &lt;ALT&gt; and &lt;F2&gt; keys,
-        and create a mount point and mount the disk with the tagfiles:
+        Tentu saja, tagfile akan menjadi tidak berguna jika mereka tidak digunakan selama installasi dari Slackware Linux. 
+	Hal ini jelas mungkin: setelah memilih set disk mana yang hendak Anda install, Anda bisa memilih bagaimana Anda memilih 
+	paket (dialog bernama <emphasis>SELECT PROMPTING MODE</emphasis>. Pilih <emphasis>tagpath</emphasis> dari menu ini. Anda 
+	akan mendapatkan pertanyaan tentang path pada struktur direktori dengan tagfile. Cara umum untuk menyediakan tagfile pada 
+	installasi Slackware Linux adalah dengan meletakkannya pada disket atau media lain, dan me-mountnya sebelum atau saat 
+	installasi. Misalnya, Anda bisa berpindah pada konsol kedua dengan menekan kunci &lt;ALT&gt; and &lt;F2&gt;, dan membuat 
+	sebuah titik mount dan me-mount disk dengan tagfile:
       </para>
 
       <screen>
@@ -656,9 +616,8 @@ $ <userinput>sh build-tagfiles.sh .</userinput>
       </screen>
 
       <para>
-        After mounting the disk you can return to the virtual console
-        on which you run <command>setup</command>, by pressing
-        &lt;ALT&gt; and &lt;F1&gt;.
+        Setelah me-mount disk, Anda bisa kembali ke konsol virtual dimana Anda menjalankan <command>setup</command>, dengan menekan 
+	&lt;ALT&gt; and &lt;F1&gt;.
       </para>
     </sect2>
   </sect1>
