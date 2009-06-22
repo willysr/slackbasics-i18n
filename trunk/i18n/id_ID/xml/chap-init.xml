@@ -2,62 +2,50 @@
 
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:id="chap-init">
-  <title>System initialization</title>
+  <title>Inisialisasi sistem</title>
 
   <para>
-    This chapter describes the initialization of Slackware
-    Linux. Along the way various configuration files that are used to
-    manipulate the initialization process are described.
+    Bab ini menjelaskan inisialisasi Slackware Linux. Berbagai berkas konfigurasi yang digunakan 
+    untuk memanipulasi proses inisialisasi juga dijelaskan.
   </para>
 
   <sect1 xml:id="chap-init-lilo">
-    <title>The bootloader</title>
+    <title>Bootloader</title>
 
     <para>
-      Arguably the most important piece of an operating system is the
-      kernel. The kernel manages hardware resources and software
-      processes.  The kernel is started by some tiny glue between the
-      system <acronym>BIOS</acronym> (Basic Input/Output System) and
-      the kernel, called the bootloader. The bootloader handles the
-      complications that come with loading a specific (or less
-      specific) kernel.
+      Bagian paling penting dari sebuah sistem operasi adalah kernelnya. Kernel mengelola sumber 
+      daya perangkat keras dan proses perangkat lunak. Kernel dijalankan oleh perekat antara 
+      sistem <acronym>BIOS</acronym> (Basic Input/Output System) dan kernel, yang disebut bootloader. 
+      Bootloader menangani komplikasi yang hadir bersamaan dengan memuat kernel tertentu.
     </para>
 
     <para>
-      Most bootloader actually work in two stages. The first stage
-      loader loads the second stage loader, that does the real
-      work. The boot loader is divided in two stages on x86 machines,
-      because the BIOS only loads one sector (the so-called boot
-      sector) that is 512 bytes in size.
+      Sebagian besar bootloader bekerja dalam dua tahap. Tahap pertama loader memuat loader tahap kedua, 
+      yang melakukan tugas sebenarnya. Boot loader dibagi menjadi dua tahap pada mesin 
+      x86, karena BIOS hanya mengacu pada satu sektor (maka disebut boot sector) yang berukuran 512 byte.
     </para>
 
     <para>
-      Slackware Linux uses the <acronym>LILO</acronym> (LInux LOader)
-      boot loader. This bootloader has been in development since 1992,
-      and is specifically written to load the Linux kernel. Lately
-      LILO has been replaced by the <acronym>GRUB</acronym> (GRand
-      Unified Bootloader) in most GNU/Linux distributions. GRUB is
-      available as an extra package on the Slackware Linux
-      distribution media.
+      Slackware Linux menggunakan boot loader <acronym>LILO</acronym> (LInux LOader). Bootloader ini 
+      telah dikembangkan sejak 1992, dan secara spesifik ditulis untuk memuat kernel Linux. Belakangan 
+      LILO telah digantikan oleh <acronym>GRUB</acronym> (GRand Unified Bootloader) pada sebagian 
+      besar distribusi GNU/Linux. GRUB tersedia sebagai paket ekstra pada media distribusi Slackware Linux.
     </para>
 
     <sect2 xml:id="chap-init-lilo-config">
-      <title>LILO configuration</title>
+      <title>Konfigurasi LILO</title>
 
       <para>
-	LILO is configured through the
-	<filename>/etc/lilo.conf</filename> configuration
-	file. Slackware Linux provides an easy tool to configure
-	LILO. This configuration tool can be started with the
-	<command>liloconfig</command> command, and is described in the
-	installation chapter (<xref linkend="chap-install-installing"
+	LILO dikonfigurasikan melalui berkas konfigurasi <filename>/etc/lilo.conf</filename>. 
+	Slackware Linux menyediakan utilitas yang mudah untuk mengkonfigurasikan LILO. 
+	Utilitas konfigurasi ini bisa dijalankan dengan perintah 
+	<command>liloconfig</command>, seperti yang dijelaskan pada bab installasi (<xref linkend="chap-install-installing"
 	/>).
       </para>
 
       <para>
-	Manual configuration of LILO is pretty simple. The LILO
-	configuration file usually starts off with some global
-	settings:
+	Konfigurasi manual dari LILO sangatlah mudah. Berkas konfigurasi LILO biasanya diawali dengan 
+	pengaturan global:
       </para>
 
       <screen>
@@ -73,64 +61,53 @@ vga = normal <co xml:id="liloconf-global-4" />
       <calloutlist>
 	<callout arearefs="liloconf-global-1">
 	  <para>
-	    The <emphasis>boot</emphasis> option specifies where the
-	    LILO bootloader should be installed. If you want to use
-	    LILO as the main bootloader for starting Linux and/or
-	    other operating systems, it is a good idea to install LILO
-	    in the <acronym>MBR</acronym> (Master Boot Record) of the
-	    hard disk that you use to boot the system. LILO is
-	    installed to the MBR by omitting the partition number, for
-	    instance <filename>/dev/hda</filename> or
-	    <filename>/dev/sda</filename>.  If you want to install
-	    LILO to a specific partition, add a partition number, like
-	    <filename>/dev/sda1</filename>.  Make sure that you have
-	    another bootloader in the MBR, or that the partition is
-	    made active using <command>fdisk</command>.  Otherwise you
-	    may end up with an unbootable system.
+	    Opsi <emphasis>boot</emphasis> menentukan dimana bootloader LILO harus diinstall. 
+	    Jika Anda hendak menggunakan LILO sebagai bootloader utama untuk menjalankan Linux 
+	    dan atau sistem operasi lain, merupakan ide yang bagus untuk menginstall LILO pada 
+	    <acronym>MBR</acronym> (Master Boot Record) dari hard disk yang Anda gunakan untuk 
+	    mem-boot sistem. LILO diinstall pada MBR dengan mengabaikan nomor partisi, misalnya
+	    <filename>/dev/hda</filename> atau 
+	    <filename>/dev/sda</filename>.  Jika Anda hendak menginstall LILO pada partisi tertentu, 
+	    tambahkan nomor partisi, seperti 
+	    <filename>/dev/sda1</filename>. Pastikan Anda sudah memiliki bootloader lain pada MBR, 
+	    atau partisi tadi sudah dibuat aktif menggunakan <command>fdisk</command>. Jika tidak, 
+	    Anda mungkin berakhir dengan sistem yang tidak bisa boot.
 	  </para>
 
 	  <para>
-	    Be cautious if you use partitions with a XFS filesystem!
-	    Writing LILO to an XFS partition will overwrite a part of
-	    the filesystem. If you use an XFS root
-	    (<filename>/</filename>) filesystem, create a non-XFS
-	    <filename>/boot</filename> filesystem to which you install
-	    LILO, or install LILO to the MBR.
+	    Hati-hati jika Anda menggunakan partisi dengan sistem berkas XFS !
+	    Menulis LILO pada partisi XFS akan menimpa sebagian dari sistem berkas. Jika Anda menggunakan 
+	    XFS untuk sistem berkas root (<filename>/</filename>), buat sebuah sistem berkas 
+	    <filename>/boot</filename> yang bukan XFS yang dipakai untuk menginstall LILO, atau tulis LILO 
+	    pada MBR.
 	  </para>
 	</callout>
 	<callout arearefs="liloconf-global-2">
 	  <para>
-	    The <emphasis>prompt</emphasis> option will set LILO to
-	    show a boot menu. From this menu you can select which
-	    kernel or operating system should be booted. If you do not
-	    have this option enabled, you can still access the
-	    bootloader menu by holding the &lt;Shift&gt; key when the
-	    bootloader is started.
+	    Opsi <emphasis>prompt</emphasis> akan memaksa LILO menampilkan menu boot. Dari menu ini, Anda
+	    bisa memilih kernel atau sistem operasi mana yang akan di-boot. Jika Anda tidak menggunakan 
+	    opsi ini, Anda masih bisa mengakses menu bootloader dengan menekan kunci &lt;Shift&gt; ketika 
+	    bootloader dijalankan.
             </para>
 	</callout>
 	<callout arearefs="liloconf-global-3">
 	  <para>
-	    The <emphasis>timeout</emphasis> value specifies how long
-	    LILO should wait before the default kernel or OS is
-	    booted.  The time is specified in tenths of a second, so
-	    in the example above LILO will wait 5 seconds before it
-	    proceeds with the boot.
+	    Nilai <emphasis>timeout</emphasis> menentukan seberapa lama LILO harus menunggu sebelum kernel atau 
+	    sistem operasi default akan di-boot. Waktu ditentukan dalam sepersepuluh detik, jadi pada contoh diatas, LILO 
+	    akan menunggu 5 detik sebelum melanjutkan dengan boot.
 	  </para>
 	</callout>
 	<callout arearefs="liloconf-global-4">
 	  <para>
-	    You can specify which video mode the kernel should use
-	    with the <emphasis>vga</emphasis> option. When this is set
-	    to <emphasis>normal</emphasis> the kernel will use the
-	    normal 80x25 text mode.
+	    Anda bisa menentukan mode video mana yang harus digunakan kernel dengan opsi <emphasis>vga</emphasis>.
+	    Ketika opsi ini diisi dengan <emphasis>normal</emphasis> kernel akan menggunakan mode teks 80x25.
 	  </para>
 	</callout>
       </calloutlist>
 
       <para>
-	The global options are followed by sections that add Linux
-	kernels or other operating systems. Most Linux kernel sections
-	look like this:
+	Opsi global diikuti dengan bagian yang menambahkan kernel Linux atau sistem operasi lain. Sebagian besar 
+	bagian untuk kernel Linux berisi seperti berikut:
       </para>
 
       <screen>
@@ -143,45 +120,39 @@ image = /boot/vmlinuz <co xml:id="co-liloconf-kernel-1" />
       <calloutlist>
 	<callout arearefs="co-liloconf-kernel-1">
 	  <para>
-	    The <emphasis>image</emphasis> option specifies the kernel
-	    image that should be loaded for this LILO item.
+	    Opsi <emphasis>image</emphasis> menentukan citra kernel yang harus dimuat untuk bagian LILO ini.
 	  </para>
 	</callout>
 	<callout arearefs="co-liloconf-kernel-2">
 	  <para>
-	    The <emphasis>root</emphasis> parameter is passed to the
-	    kernel, and will be used by the kernel as the root
-	    (<filename>/</filename>) filesystem.
+	    Parameter <emphasis>root</emphasis> dikirimkan pada kernel, dan digunakan oleh kernel sebagai sistem berkas 
+	    root (<filename>/</filename>).
 	  </para>
 	</callout>
 	<callout arearefs="co-liloconf-kernel-3">
 	  <para>
-	    The <emphasis>label</emphasis> text is used as the label
-	    for this entry in the LILO boot menu.
+	    Teks <emphasis>label</emphasis> digunakan sebagai label untuk informasi ini pada menu boot LILO.
 	  </para>
 	</callout>
 	<callout arearefs="co-liloconf-kernel-4">
 	  <para>
-	    <emphasis>read-only</emphasis> specifies that the root
-	    filesystem should be mounted read-only. The filesystem has
-	    to be mounted in read-only state to conduct a filesystem
-	    check.
+	    <emphasis>read-only</emphasis> menentukan bahwa sistem berkas root harus dimount sebagai 
+	    read-only. Sistem berkas harus dimount pada kondisi read-only untuk melakukan pengujian sistem 
+	    berkas.
 	  </para>
 	</callout>
       </calloutlist>
     </sect2>
 
     <sect2 xml:id="chap-init-lilo-installation">
-      <title>LILO installation</title>
+      <title>Installasi LILO</title>
 
       <para>
-	LILO does not read the <filename>/etc/lilo.conf</filename>
-	file during the second stage. So, you will have to write
-	changes to the second stage loader when you have changed the
-	LILO configuration. This is also necessary if you install a
-	new kernel with the same filename, since the position of the
-	kernel on the disk may have changed. Reinstalling LILO can
-	simply be done with the <command>lilo</command> command:
+	LILO tidak membaca berkas <filename>/etc/lilo.conf</filename> selama tahap kedua. Jadi Anda harus 
+	menulis perubahan pada loader tahap kedua ketika Anda telah mengubah konfigurasi LILO. Hal ini juga 
+	diperlukan jika Anda menginstall kernel baru dengan nama berkas yang sama, karena posisi dari kernel 
+	pada disk mungkin berubah. Menginstall ulang LILO bisa dilakukan dengan mudah dengan perintah 
+	<command>lilo</command>:
       </para>
 
       <screen>
@@ -196,22 +167,19 @@ Added Slack
     <title>init</title>
 
     <para>
-      After the kernel is loaded and started, the kernel will start
-      the <command>init</command> command. <command>init</command> is
-      the parent of all processes, and takes care of starting the
-      system initialization scripts, and spawning login consoles
-      through <command>agetty</command>. The behavior of
-      <command>init</command> is configured in
+      Setelah kernel dimuat dan dijalankan, kernel akan menjalankan perintah <command>init</command>. 
+      <command>init</command> adalah induk dari semua proses, dan mengurusi script inisialisasi sistem, 
+      membuat konsol login melalui <command>agetty</command>. Tingkah laku dari 
+      <command>init</command> dikonfigurasi melalui 
       <filename>/etc/inittab</filename>.
     </para>
 
     <para>
-      The <filename>/etc/inittab</filename> file is documented fairly
-      well. It specifies what scripts the system should run for
-      different runlevels. A runlevel is a state the system is running
-      in. For instance, runlevel 1 is single user mode, and runlevel 3
-      is multi-user mode. We will have a short look at a line from
-      <filename>/etc/inittab</filename> to see how it works:
+      Berkas <filename>/etc/inittab</filename> memiliki dokumentasi yang cukup baik. Berkas ini menentukan 
+      script mana yang harus dijalankan untuk setiap runlevel. Sebuah runlevel adalah kondisi pada saat sistem 
+      berjalan. Sebagai contoh, runlevel 1 adalah mode pengguna tunggal, dan runlevel 3 adalah mode banyak-pengguna. 
+      Kita akan melihat sebuah baris pada 
+      <filename>/etc/inittab</filename> untuk melihat cara kerjanya:
     </para>
 
     <screen>
@@ -219,10 +187,9 @@ rc:2345:wait:/etc/rc.d/rc.M
     </screen>
 
     <para>
-      This line specifies that <command>/etc/rc.d/rc.M</command>
-      should be started when the system switches to runlevel 2, 3, 4
-      or 5.  The only line you probably ever have to touch is the
-      default runlevel:
+      Baris ini menunjukan bahwa <command>/etc/rc.d/rc.M</command> harus dijalankan ketika sistem 
+      berpindah ke runlevel 2, 3, 4 atau 5. Satu-satunya baris yang perlu Anda perhatikan adalah 
+      runlevel default:
     </para>
 
     <screen>
@@ -230,19 +197,17 @@ id:3:initdefault:
     </screen>
 
     <para>
-      In this example the default runlevel is set to
-      <emphasis>3</emphasis> (multiuser mode). You can set this to
-      another runlevel by replacing 3 with the new default
-      runlevel. Runlevel 4 can particularly be interesting on desktop
-      machines, since Slackware Linux will try to start the GDM, KDM
-      or XDM display manager (in this particular order).  These
-      display managers provide a graphical login, and are respectively
-      part of GNOME, KDE and X11.
+      Pada contoh ini, runlevel default diisi dengan 
+      <emphasis>3</emphasis> (mode banyak pengguna). Anda bisa mengisinya dengan runlevel yang lain 
+      dengan menggantgi 3 dengan nilai runlevel default yang baru. Runlevel 4 bisa cukup menarik 
+      pada mesin desktop, karena Slackware Linux akan mencoba menjalankan manajemen tampilan GDM, KDM 
+      atau XDM  (dalam urutan). Manajemen tampilan ini menyediakan login grafis, dan merupakan bagian 
+      dari GNOME, KDE dan X11.
     </para>
 
     <para>
-      Another interesting section are the lines that specify what
-      command should handle a console. For instance:
+      Bagian lain yang cukup menarik adalah baris yang menentukan perintah yang digunakan untuk mengurus
+      sebuah konsol. Sebagai contoh:
     </para>
 
     <screen>
@@ -250,26 +215,21 @@ c1:1235:respawn:/sbin/agetty 38400 tty1 linux
     </screen>
 
     <para>
-      This line specifies that <command>agetty</command> should be
-      started on <emphasis>tty1</emphasis> (the first virtual
-      terminal) in runlevels 1, 2, 3 and 5.  The
-      <command>agetty</command> command opens the tty port, and
-      prompts for a login name. <command>agetty</command> will then
-      spawn <command>login</command> to handle the login. As you can
-      see from the entries, Slackware Linux only starts one console in
-      runlevel 6, namely <emphasis>tty6</emphasis>. One might ask what
-      happened to <emphasis>tty0</emphasis>, <emphasis>tty0</emphasis>
-      certainly exists, and represents the active console.
+      Baris ini menyatakan bahwa <command>agetty</command> akan dijalankan pada <emphasis>tty1</emphasis> 
+      (terminal virtual pertama) pada runlevel 1, 2, 3 dan 5.  Perintah 
+      <command>agetty</command> akan membuka port tty, dan prompt untuk nama login. 
+      <command>agetty</command> akan menjalankan <command>login</command> untuk menangani proses login. 
+      Seperti yang Anda lihat dari informasi tersebut, Slackware Linux hanya menjalankan satu konsol pada 
+      runlevel 6, bernama <emphasis>tty6</emphasis>. Orang mungkin bertanya apa yang terjadi pada 
+      <emphasis>tty0</emphasis>, <emphasis>tty0</emphasis> masih ada, dan merepresentasikan konsol yang aktif.
     </para>
 
     <para>
-      Since <emphasis>/etc/inittab</emphasis> is the right place to
-      spawn <command>agetty</command> instances to listen for logins,
-      you can also let one or more agetties listen to a serial
-      port. This is especially handy when you have one or more
-      terminals connected to a machine. You can add something like the
-      following line to start an <command>agetty</command> instance
-      that listens on COM1:
+      Karena <emphasis>/etc/inittab</emphasis> merupakan tempat yang cocok untuk menjalankan 
+      <command>agetty</command> untuk menangani login, Anda juga bisa mengijinkan lebih banyak agetty untuk 
+      mengurusi port serial. Hal ini menjadi berguna ketika Anda memiliki lebih dari satu terminal yang 
+      terkoneksi ke sebuah mesin. Anda bisa menambahkan informasi seperti berikut untuk menjalankan 
+      <command>agetty</command> yang mendengarkan pada COM1:
     </para>
 
     <screen>
@@ -278,18 +238,16 @@ s1:12345:respawn:/sbin/agetty -L ttyS0 9600 vt100
   </sect1>
 
   <sect1 xml:id="chap-init-initscripts">
-    <title>Initialization scripts</title>
+    <title>Script inisialisasi</title>
 
     <para>
-      As explained in the <command>init</command> (<xref
-      linkend="chap-init-init" />) section,
-      <command>init</command> starts some scripts that handle
-      different runlevels. These scripts perform jobs and change
-      settings that are necessary for a particular runlevel, but they
-      may also start other scripts. Let's look at an example from
-      <filename>/etc/rc.d/rc.M</filename>, the script that
-      <command>init</command> executes when the system switches to a
-      multi-user runlevel:
+      Seperti yang dijelaskan pada <command>init</command> (<xref
+      linkend="chap-init-init" />),
+      <command>init</command> menjalankan beberapa script yang menangani runlevel yang berbeda-beda. 
+      Script ini melakukan pekerjaan dan mengubah pengaturan  yang diperlukan untuk runlevel tertentu, tetapi 
+      mereka juga menjalankan script lain. Mari kita lihat contoh dari 
+      <filename>/etc/rc.d/rc.M</filename>, script yang dijalankan 
+      <command>init</command> ketika sistem berpindah ke runlevel banyak-pengguna:
     </para>
 
     <programlisting>
@@ -300,21 +258,18 @@ fi
     </programlisting>
 
     <para>
-      These lines say <quote>execute <command>/etc/rc.d/rc.sendmail
-      start</command> if <filename>/etc/rc.d/rc.sendmail</filename> is
-      executable</quote>. This indicates the simplicity of the
-      Slackware Linux initialization scripts. Different functionality,
-      for instance network services, can be turned on or off, by
-      twiddling the executable flag on their initialization script.
-      If the initialization script is executable, the service will be
-      started, otherwise it will not. Setting file flags is described
-      in <xref linkend="chap-filesystem-permissions-permbits" />, but
-      we will have a look at a quick example how you can enable and
-      disable sendmail.
+      Baris ini menyatakan <quote>eksekusi <command>/etc/rc.d/rc.sendmail
+      start</command> jika <filename>/etc/rc.d/rc.sendmail</filename> bersifat 
+      executable</quote>. Hal ini mengindikasikan kesederhanaan dari script inisialisasi 
+      Slackware Linux. Berbagai fungsionalitas, seperti layanan jaringan, dapat diaktifkan atau dinonaktifkan, 
+      dengan mengganti tanda executable pada script inisialisasi. Jika script bersifat executable, layanan 
+      akan dijalankan, dan tidak akan dijalankan jika sebaliknya. Pengaturan flag dijelaskan pada  
+      <xref linkend="chap-filesystem-permissions-permbits" />, tetapi kita akan melihat pada contoh sederhana 
+      bagaimana Anda bisa mengaktifkan dan menonaktifkan sendmail.
     </para>
 
     <para>
-      To start sendmail when the system initializes, execute:
+      Untuk menjalankan sendmail ketika sistem melakukan inisialisasi, jalankan:
     </para>
 
     <screen>
@@ -322,8 +277,7 @@ fi
     </screen>
 
     <para>
-      To disable starting of sendmail when the system initializes,
-      execute:
+      Untuk menonaktifkan sendmail ketika sistem melakukan inisialisasi, jalankan:
     </para>
 
     <screen>
@@ -331,12 +285,10 @@ fi
     </screen>
 
     <para>
-      Most service-specific initialization scripts accept three
-      parameters to change the state of the service:
-      <emphasis>start</emphasis>, <emphasis>restart</emphasis> and
-      <emphasis>stop</emphasis>. These parameters are pretty much self
-      descriptive. For example, if you would like to restart sendmail,
-      you could execute:
+      Sebagian besar script inisialisasi layanan menerima tiga parameter untuk mengubah status dari layanan:
+      <emphasis>start</emphasis>, <emphasis>restart</emphasis> dan
+      <emphasis>stop</emphasis>. Parameter-parameter ini cukup deskriptif. Sebagai contoh, jika Anda hendak 
+      menjalankan ulang sendmail, Anda bisa menjalankan:
     </para>
 
     <screen>
@@ -344,9 +296,8 @@ fi
     </screen>
 
     <para>
-      If the script is not executable, you have to tell the shell that
-      you would like to execute the file with
-      <command>sh</command>. For example:
+      Jika script tidak bersifat executable, Anda harus memberitahukan kepada shell bahwa Anda hendak menjalankan 
+      berkas dengan <command>sh</command>. Sebagai contoh:
     </para>
 
     <screen>
@@ -355,47 +306,39 @@ fi
   </sect1>
 
   <sect1 xml:id="chap-init-udev">
-    <title>Hotplugging and device node management</title>
+    <title>Hotplugging dan manajemen node perangkat</title>
 
     <para>
-      Slackware Linux has supported hotplugging since Slackware Linux
-      9.1.  When enabled, the kernel passes notifications about device
-      events to a userspace command. Since Slackware Linux 11.0,
-      the <command>udev</command> set of utilities handle these
-      notifications. <command>udev</command> manages the dynamic
-      <filename>/dev</filename> directory as well.
+      Slackware Linux sudah mendukung hotplugging sejak Slackware Linux 9.1. Ketika diaktifkan, 
+      kernel mengirimkan notifikasi tentang kejadian tentang perangkat pada perintah userspace. 
+      Sejak Slackware Linux 11.0, sekumpulan utilitas <command>udev</command> menangani notifikasi ini. 
+      <command>udev</command> juga menangani direktori dinamis <filename>/dev</filename>.
     </para>
 
     <para>
-      The mode of operation of <command>udev</command> for handling
-      hotplugging of devices is fairly simple. When a device is added
-      to the system, the kernel notifies userspace hotplug event
-      listeners. <command>udev</command> will receive the notification
-      of the device being added, and looks whether there are any
-      module mappings for the device. If there are, the appropriate
-      device driver module for the device is automatically
-      loaded. <command>udev</command> will remove the module when it
-      is notified of a device removal, and no devices use the loaded
-      module anymore.
+      Mode operasi dari <command>udev</command> untuk menangani proses hotplugging dari perangkat 
+      cukup sederhana. Ketika sebuah perangkat ditambahkan pada sistem, kernel memberitahukan 
+      userspace hotplug event listeners. <command>udev</command> akan menerima notifikasi bahwa sebuah 
+      perangkat telah ditambahkan, dan mencari apakah terdapat modul yang dipetakan untuk perangkat tersebut. 
+      Jika ada, maka modul driver yang sesuai akan dimuat secara otomatis. <command>udev</command> akan 
+      menghapus modul ketika menerima notifikasi bahwa perangkat telah dilepas, dan tidak ada perangkat 
+      yang menggunakan modul tersebut.
     </para>
 
     <para>
-      The udev subsystem is initialized in
-      <filename>/etc/rc.d/rc.S</filename> by executing
-      <command>/etc/rc.d/rc.udev start</command>. As with most
-      functionality, you can enable or disable udev by twiddling the
-      executable flag of the <filename>/etc/rc.d/rc.udev</filename>
-      script (see <xref linkend="chap-init-initscripts" />).
+      Sub sistem udev diinisialisasi pada 
+      <filename>/etc/rc.d/rc.S</filename> dengan menjalankan 
+      <command>/etc/rc.d/rc.udev start</command>. Seperti fungsionalitas yang lain, Anda bisa mengaktifkan 
+      atau menonaktifkan udev dengan mengubah flag executable dari script <filename>/etc/rc.d/rc.udev</filename>
+      (lihat <xref linkend="chap-init-initscripts" />).
     </para>
 
     <para>
-      If udev automatically loads modules that you do not want to
-      load, you can add a <emphasis>blacklist</emphasis> in your
-      <command>modprobe</command> configuration in
-      <filename>/etc/modprobe.d/blacklist</filename>. For example, if
-      you would like to prevent loading of the
-      <emphasis>8139cp</emphasis> module, you can add the following
-      line (actually, this module is already blacklisted in Slackware
+      Jika udev secara otomatis memuat modul yang tidak Anda perlukan, Anda bisa menambahkan 
+      <emphasis>blacklist</emphasis> pada konfigurasi 
+      <command>modprobe</command> Anda pada 
+      <filename>/etc/modprobe.d/blacklist</filename>. Sebagai contoh, jika Anda mencegah sistem memuat modul 
+      <emphasis>8139cp</emphasis>, Anda bisa menambahkan baris ini (sebetulnya, modul ini sudah di-blacklist pada Slackware
       Linux):
     </para>
 
@@ -405,28 +348,26 @@ blacklist 8139cp
   </sect1>
 
   <sect1 xml:id="chap-init-firmware">
-    <title>Device firmware</title>
+    <title>Firmware perangkat keras</title>
 
     <sect2 xml:id="chap-init-firmware-introduction">
-      <title>Introduction</title>
+      <title>Perkenalan</title>
 
       <para>
-	Some hardware requires the system to upload firmware. Firmware
-	is a piece of software that is used to control the hardware.
-	Traditionally, the firmware was stored permanently in ROM
-	(read-only memory) or non-volatile media like flash memory.
-	However, many new devices use volatile memory to store
-	firmware, meaning that the firmware needs to be reloaded to
-	the device memory when the system is restarted.
+	Beberapa perangkat keras membutuhkan sistem untuk mengupload firmware. Firmware adalah bagian 
+	dari perangkat lunak yang digunakan untuk mengontrol perangkat keras. Biasanya, firmware 
+	disimpan secara permanen pada ROM (read-only memory) atau media non-volatile seperti flash memory.
+	Namun, banyak perangkat keras baru menggunakan memori volatile untuk menyimpan firmware, 
+	yang berarti firmware harus dimuat ulang pada memori perangkat keras ketika sistem 
+	dijalankan ulang.
       </para>
 
       <para>
-	Drivers for devices that require firmware have a table of the
-	firmware files that it needs. For each firmware file that the
-	driver needs, it will issue a firmware addition event. If udev
-	handles hotplugging events, it will try to handle that event.
-	The udev rules contain an entry for firmware addition events
-	in <filename>/etc/udev/rules.d/50-udev.rules</filename>:
+	Driver untuk perangkat keras yang membutuhkan firmware memiiliki tabel dari berkas 
+	firmware yang dibutuhkan. Untuk setiap berkas firmware yang dibutuhkan driver, ia akan 
+	membuat sebuah event penambahan firmware. Jika udev menangani hotplugging events, maka ia akan 
+	mencoba menangani hal tersebut. Aturan udev yang berisi informasi tersebut berada pada 
+	<filename>/etc/udev/rules.d/50-udev.rules</filename>:
       </para>
 
       <programlisting>
@@ -435,30 +376,25 @@ SUBSYSTEM=="firmware", ACTION=="add", RUN+="/lib/udev/firmware.sh"
       </programlisting>
 
       <para>
-	This means that upon firmware addition events, the
-	<filename>/lib/udev/firmware.sh</filename> script should be
-	executed. This script searches the
-	<filename>/lib/firmware</filename> and
-	<filename>/usr/local/lib/firmware</filename> directories for
-	the requested firmware. If the firmware file exists, it will
-	be loaded by copying the contents of the file to a special
-	sysfs node.
+	Hal ini berarti pada saat terjadi sebuah penambahan firmware, script 
+	<filename>/lib/udev/firmware.sh</filename> harus dijalankan. Script ini mencari direktori 
+	<filename>/lib/firmware</filename> dan
+	<filename>/usr/local/lib/firmware</filename> untuk firmware yang diminta. Jika berkas firmware 
+	ditemukan, maka akan dimuat dengan menyalin isi berkas pada node sysfs spesial.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-init-firmware-adding">
-      <title>Adding firmware</title>
+      <title>Menambahkan firmware</title>
 
       <para>
-	As described in the previous section, some hardware requires
-	firmware to be uploaded to hardware by the operating system.
-	If this is the case, and no firmware is installed, the kernel
-	will emit an error message when the driver for that hardware
-	is loaded. You can see the kernel output with the
-	<command>dmesg</command> command or in the
-	<filename>/var/log/messages</filename> log file. Such error
-	message explicitly says that the firmware could not be loaded,
-	for example:
+	Seperti yang dijelaskan pada bagian sebelumnya, beberapa perangkat keras membutuhkan firmware 
+	untuk diupload ke perangkat keras oleh sistem operasi. Jika pada kasus ini tidak ada firmware 
+	yang diinstall, maka kernel akan mengeluarkan pesan kesalahan ketika driver untuk perangkat 
+	keras tersebut dimuat. Anda bisa melihat hasil keluaran kernel dengan perintah 
+	<command>dmesg</command> atau pada berkas log 
+	<filename>/var/log/messages</filename>. Pesan kesalahan tersebut secara eksplisit menyebutkan bahwa 
+	firmware tidak bisa dimuat, seperti berikut:
       </para>
 
       <screen>
@@ -467,224 +403,18 @@ ipw2100: eth1: ipw2100_get_firmware failed: -2
       </screen>
 
       <para>
-	In this case you will have to find the firmware for your
-	device. This can usually be found by searching the web for the
-	chipset or driver for the device (in this case
-	<emphasis>ipw2100</emphasis>) and the literal term
-	<quote>firmware</quote>. The firmware archive often contains a
-	file with installation instructions. Usually you can just copy
-	the firmware files to <filename>/lib/firmware</filename>.
+	Pada kasus ini, Anda harus mencari firmware untuk perangkat keras Anda. Hal ini bisa ditemukan dengan 
+	mencari web untuk chipset atau driver untuk perangkat keras (pada kasus ini
+	<emphasis>ipw2100</emphasis>) dan istilah 
+	<quote>firmware</quote>. Arsip firmware biasanya berisi berkas dengan instruksi installasi. Biasanya 
+	Anda cukup menyalin berkas firmware pada <filename>/lib/firmware</filename>.
       </para>
 
       <para>
-	After installing the firmware, you can reload the driver with
-	<command>rmmod</command> and <command>modprobe</command>, or
-	by restarting the system.
+	Setelah menginstall firmware, Anda bisa memuat ulang driver dengan 
+	<command>rmmod</command> dan <command>modprobe</command>, atau 
+	dengan menjalankan ulang sistem.
       </para>
     </sect2>
   </sect1>
-
-<!-- XXX - udev rules sections should be added here <sect2
-     xml:id="chap-init-hotplug-hooks"> <title>Executing scripts on
-     hotplug events</title>
-
-      <para>
-	One of the useful aspects of the hotplug scripts is that you
-	can execute scripts when a device is added or removed. When a
-	device event occurs, hotplug will execute all scripts with the
-	<filename>.hotplug</filename> suffix in
-	<filename>/etc/hotplug.d/&lt;class&gt;/</filename>, in which
-	<emphasis>&lt;class&gt;</emphasis> denotes the class in which
-	the device is in that caused the event. There most important
-	classes are:
-      </para>
-
-      <table>
-	<title>Hotplug device classes</title>
-
-	<tgroup cols="2">
-	  <thead>
-	    <row>
-	      <entry>Prefix</entry><entry>Description</entry>
-	    </row>
-	  </thead>
-	  <tbody>
-	    <row>
-	      <entry>default</entry>
-	      <entry>Scripts for this device class are started
-	      after any hotplug event.</entry>
-	    </row>
-	    <row>
-	      <entry>ieee1394</entry>
-	      <entry>IEEE1394/Firewire devices.</entry>
-	    </row>
-	    <row>
-	      <entry>input</entry>
-	      <entry>Input devices like keyboards and mice.</entry>
-	    </row>
-	    <row>
-	      <entry>net</entry>
-	      <entry>Network devices. Network devices will also
-	      trigger bus-specific hotplug events.</entry>
-	    </row>
-	    <row>
-	      <entry>pci</entry>
-	      <entry>Devices on the PCI bus.</entry>
-	    </row>
-	    <row>
-	      <entry>scsi</entry>
-	      <entry>SCSI disks, CD-ROM and tape devices.</entry>
-	    </row>
-	    <row>
-	      <entry>usb</entry>
-	      <entry>Devices that use the USB bus.</entry>
-	    </row>
-	  </tbody>
-	</tgroup>
-      </table>
-
-      <para>
-	Besides the device class, there is something some other
-	convention that is worth observing: it is best to add a number
-	and a dash as a prefix to the script, because this will allow
-	you to order the priority of the scripts. For example,
-	<filename>10-dosomething.hotplug</filename> will be executed
-	before <filename>20-dosomething.hotplug</filename>.
-      </para>
-
-      <note>
-	<para>
-	  There is black no magic going on with the priority of the
-	  script :^). <filename>/sbin/hotplug</filename> uses a
-	  wildcard to loop through the scripts, and
-	  <filename>10</filename> matches earlier than
-	  <filename>20</filename>:
-	</para>
-
-	<programlisting>
-for I in "${DIR}/$1/"*.hotplug "${DIR}/"default/*.hotplug ; do
-	</programlisting>
-
-	<para>
-	  Hopefully this will give some taste of the power of shell
-	  scripting.
-	</para>
-      </note>
-
-      <para>
-	Now, let's look at an example stub script, that does nothing
-	besides outputting debug messages:
-      </para>
-
-      <programlisting>
-#!/bin/sh
-
-cd /etc/hotplug
-. ./hotplug.functions
-
-DEBUG=yes export DEBUG
-
-debug_mesg "arguments ($*) env (`env`)"
-
-case $ACTION in
-  add|register)
-    # Stub 
-  ;;
-  remove|unregister)
-    # Stub 
-  ;;
-esac
-      </programlisting>
-
-      <para>
-	By default, the hotplug scripts log at the
-	<emphasis>notice</emphasis> level. The standard syslog
-	configuration on Slackware Linux does not log this. To debug
-	hotplugging scripts, it is best to change the logging
-	level. You can do this by replacing the following line in
-	<filename>/etc/hotplug/hotplug.functions</filename>:
-      </para>
-
-      <programlisting>
-$LOGGER -t $(basename $0)"[$$]" "$@"
-      </programlisting>
-
-      <para>
-	to:
-      </para>
-
-      <programlisting>
-$LOGGER -p user.info -t $(basename $0)"[$$]" "$@"
-      </programlisting>
-
-      <para>
-	After this change hotplug debug messages will be visible in
-	<filename>/var/log/messages</filename>.
-      </para>
-
-      <para>
-	As you can see the script makes use of the
-	<emphasis>$ACTION</emphasis> variable to see what kind of
-	hotplug action took place. Let's take a look at an example
-	action when this script is used for handling USB events, and
-	named <filename>10-stub.hotplug</filename>:
-      </para>
-
-      <screen>
-Jul 19 16:13:23 mindbender 10-stub.hotplug[18970]: arguments (usb) env
-(SUBSYSTEM=usb OLDPWD=/ DEVPATH=/devices/pci0000:00/0000:00:10.0/usb2/2-1/2-1.3/2-1.3:1.2
-PATH=/bin:/sbin:/usr/sbin:/usr/bin ACTION=add PWD=/etc/hotplug HOME=/ SHLVL=2
-DEVICE=/proc/bus/usb/002/009 PHYSDEVDRIVER=snd-usb-audio INTERFACE=1/2/0
-PRODUCT=d8d/651/1 TYPE=0/0/0 DEBUG=yes PHYSDEVBUS=usb SEQNUM=1528 _=/usr/bin/env)
-      </screen>
-
-      <para>
-	That is nice, when I plugged an USB device, the script gets
-	loaded (a couple of times, this is just one of the interesting
-	bits).  Actually, this is my USB Phone, which is represented
-	as an USB audio device under GNU/Linux. The problem with USB
-	audio devices is that the device volumes that are saved with
-	<command>alsactl store</command> are not automatically set
-	when the device is plugged. But right know we can easily
-	execute <command>alsactl restore</command> when the device is
-	plugged. Please note that the script gets very useful
-	information through some environment variables.
-      </para>
-
-      <para>
-	To solve the volume problem, we can create a script, say
-	<filename>/etc/hotplug.d/usb/50-usb-audio-volume.hotplug</filename>,
-	that looks like this:
-      </para>
-
-      <programlisting>
-#!/bin/sh
-
-cd /etc/hotplug
-. ./hotplug.functions
-# DEBUG=yes export DEBUG
-
-debug_mesg "arguments ($*) env (`env`)"
-
-case $ACTION in
-  add|register)
-    if [ $PHYSDEVDRIVER = "snd-usb-audio" ]; then
-      /usr/sbin/alsactl restore
-    fi
-  ;;
-  remove|unregister)
-  ;;
-  *)
-    debug_mesg "Unknown action '$ACTION'"
-  ;;
-esac
-      </programlisting>
-
-      <para>
-	Based on the environment variables this script can be refined
-	to restrict running <command>alsactl</command> for specific
-	USB audio devices.
-      </para>
-    </sect2>
--->
 </chapter>
