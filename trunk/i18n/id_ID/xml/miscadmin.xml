@@ -19,7 +19,7 @@
 
     </sect1info>
 
-    <title>Menjadwalkan tugas dengan </title>
+    <title>Menjadwalkan tugas dengan cron</title>
 
     <indexterm><primary>cron</primary></indexterm>
     <indexterm><primary>crontab file</primary></indexterm>

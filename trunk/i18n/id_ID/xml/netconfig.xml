@@ -1,53 +1,46 @@
 <!-- $Id: netconfig.xml 295 2007-09-18 23:03:49Z danieldk $ -->
 
 <chapter id="sysadmin-netconfig"> <?dbhtml filename="netconfig.html"?>
-<title>Networking configuration</title>
+<title>Konfigurasi jaringan</title>
 
 <sect1 id="sysadmin-netconfig-hardware">
-<title>Hardware</title>
+<title>Perangkat Keras</title>
 
-<bridgehead>Network cards (NICs)</bridgehead>
+<bridgehead>Kartu jaringan (NIC)</bridgehead>
 
 <para>
-Drivers for NICs are installed as kernel modules. The module for
-your NIC has to be loaded during the initialization of Slackware Linux.
-On most systems the NIC is automatically detected and configured
-during the installation of Slackware Linux. You can reconfigure
-your NIC with the <command>netconfig</command> command.
-<command>netconfig</command> adds the driver (module) for the detected
-card to <filename>/etc/rc.d/rc.netdevice</filename>. 
+Driver untuk NIC sudah terinstall sebagai modul kernel. Modul untuk NIC Anda harus sudah dimuat saat inisialisasi 
+Slackware Linux. Pada sebagian besar sistem, NIC sudah otomatis terdeteksi dan terkonfigurasi saat installasi 
+Slackware Linux. Anda bisa mengkonfigurasi ulang NIC Anda dengan perintah <command>netconfig</command>.
+<command>netconfig</command> menambahkan driver (modul) untuk kartu yang terdeteksi pada <filename>/etc/rc.d/rc.netdevice</filename>. 
 </para>
 
 <para>
-It is also possible to manually configure which modules should be
-loaded during the initialization of the system. This can be done
-by adding a <command>modprobe</command> line to
-<filename>/etc/rc.d/rc.modules</filename>. For example, if you want
-to load the module for 3Com 59x NICs (3c59x.o), add the following
-line to <filename>/etc/rc.d/rc.modules</filename> 
+Juga dimungkinkan untuk mengkonfigurasi secara manual modul-modul mana yang hendak dimuat selama inisialisasi sistem. 
+Hal ini bisa dilakukan dengan menambahkan baris <command>modprobe</command> pada <filename>/etc/rc.d/rc.modules</filename>. 
+Sebagai contoh, jika Anda hendak memuat modul untuk NIC 3Com 59x NIC (3c59x.o), tambahkan baris berikut pada 
+<filename>/etc/rc.d/rc.modules</filename> 
 </para>
 
 <screen>
 /sbin/modprobe 3c59x
 </screen>
 
-<bridgehead>PCMCIA cards</bridgehead>
+<bridgehead>Kartu PCMCIA</bridgehead>
 
 <para>
-Supported PCMCIA cards are detected automatically by the PCMCIA
-software. The pcmcia-cs packages from the <quote>a</quote> disk set provides
-PCMCIA functionality for Slackware Linux.
+Kartu PCMCIA yang didukung akan terdeteksi secara otomatis oleh perangkat lunak PCMCIA. Paket pcmcia-cs dari 
+set disk <quote>a</quote> menyediakan fungsionalitas PCMCIA untuk Slackware Linux.
 </para> 
 
 </sect1>
 
 <sect1>
-<title>Configuration of interfaces</title>
+<title>Konfigurasi antarmuka</title>
 
 <para>
-Network cards are available under Linux through so-called <quote>interfaces</quote>.
-The <command>ifconfig</command> command can be used to display the
-available interfaces:
+Kartu jaringan tersedia pada Linux melalui <quote>antarmuka</quote>.
+Perintah <command>ifconfig</command> digunakan untuk menampilkan antarmuka yang tersedia:
 </para>
 
 <screen>
@@ -71,13 +64,12 @@ lo        Link encap:Local Loopback
 </screen>
 
 <para>
-Network cards get the name ethn, in which n is a number, starting with
-0. In the example above, the first network card (eth0) already has an
-IP address. But unconfigured interfaces have no IP address, the
-<command>ifconfig</command> will not show IP addresses for unconfigured
-interfaces. Interfaces can be configured in the 
-<filename>/etc/rc.d/rc.inet1.conf</filename> file. You can simply read
-the comments, and fill in the required information. For example:
+Kartu jaringan mendapatkan nama ethn, dimana n adalah sebuah angka, dimulai dari 0. Pada contoh diatas, 
+kartu jaringan pertama (eth0) sudah memiliki alamat IP. Tetapi antarmuka yang belum terkonfigurasi 
+tidak akan mendapatkan alamat IP, perintah <command>ifconfig</command> tidak akan menampilkan alamat IP untuk 
+antarmuka yang belum dikonfigurasi. Antarmuka bisa dikonfigurasi pada berkas 
+<filename>/etc/rc.d/rc.inet1.conf</filename>. Anda bisa membaca komentar yang ada, dan mengisi informasi yang 
+diperlukan. Sebagai contoh:
 </para>
 
 <screen>
@@ -89,12 +81,10 @@ DHCP_HOSTNAME[0]=""
 </screen>
 
 <para>
-In this example the IP address 192.168.1.1 with the 255.255.255.0
-netmask is assigned to the first ethernet interface (eth0). If you
-are using a DHCP server you can change the <emphasis>USE_DHCP=""</emphasis> 
-line to <emphasis>USE_DHP[n]="yes"</emphasis> (swap <quote>n</quote> with 
-the interface number). Other variables, except <emphasis>DHCP_HOSTNAME</emphasis>
-are ignored when using DHCP. For example:
+Pada contoh ini, alamat IP 192.168.1.1 dengan netmask 255.255.255.0 diberikan pada antarmuka ethernet pertama (eth0). 
+Jika Anda menggunakan server DHCP, Anda bisa mengganti baris <emphasis>USE_DHCP=""</emphasis> menjadi 
+<emphasis>USE_DHP[n]="yes"</emphasis> (ganti <quote>n</quote> dengan nomor antarmuka). Variabel lain, selain <emphasis>DHCP_HOSTNAME</emphasis>
+akan diabaikan ketika menggunakan DHCP. Sebagai contoh:
 </para>
 
 <screen>
@@ -105,40 +95,33 @@ DHCP_HOSTNAME[1]=""
 </screen>
 
 <para>
-The same applies to other interfaces. You can activate the settings
-by rebooting the system or by executing <command>/etc/rc.d/rc.inet1</command>.
-It is also possible to reconfigure only one interface with
-<command>/etc/rc.d/rc.inet1 ethX_restart</command>, in which
-<emphasis>ethX</emphasis> should be replaced by the name of the interface
-that you would like to reconfigure.
+Hal yang sama berlaku pada antarmuka yang lain. Anda bisa mengaktifkan pengaturan dengan me-reboot sistem atau menjalankan 
+<command>/etc/rc.d/rc.inet1</command>. Juga dimungkinkan untuk mengkonfigurasi ulang satu antarmuka dengan 
+<command>/etc/rc.d/rc.inet1 ethX_restart</command>, dimana 
+<emphasis>ethX</emphasis> harus diganti dengan nama antarmuka yang hendak dikonfigurasi ulang.
 </para>
 </sect1>
 
 <sect1>
-<title>Configuration of interfaces (IPv6)</title>
+<title>Konfigurasi pada antarmuka (IPv6)</title>
 
 <sect2>
-<title>Introduction</title>
+<title>Perkenalan</title>
 
 <para>
-<acronym>IPv6</acronym> is the next generation internet protocol. One
-of  the advantages is that it has a much larger address space. In IPv4
-(the internet protocol that is commonly used today) addresses are
-32-bit, this address space is almost completely used right now, and
-there is a lack of IPv4 addresses.  IPv6 uses 128-bit addresses, which
-provides an unimaginable huge address space (2^128 addresses). IPv6
-uses another address notation, first of all hex numbers are used
-instead of decimal numbers, and the address is noted in pairs of
-16-bits, separated by a colon (<quote>:</quote>).  Let's have a look
-at an example address: </para>
+<acronym>IPv6</acronym> adalah protokol internet generasi berikutnya. Salah satu keuntungannya adalah ia memiliki ruang 
+alamat yang jauh lebih besar. Pada IPv4 (protokol internet yang umum digunakan saat ini) alamat berjumlah 32-bit, 
+ruang alamat ini hampir sepenuhnya terisi dan adanya kekurangan alamat IPv4. IPv6 menggunakan alamat 128-bit, yang menyediakan 
+ruang alamat yang sangat besar (2^128 alamat). IPv6 menggunakan notasi alamat yang berbeda, pertama-tama menggunakan nomor heksadesimal 
+dan bukan lagi menggunakan nomor desimal, dan alamat dinotasikan dalam pasangan 16-bit yang dipisahkan oleh tanda 
+titik dua (<quote>:</quote>). Mari kita lihat pada sebuah contoh: </para>
 
 <screen>
 fec0:ffff:a300:2312:0:0:0:1
 </screen>
 
 <para>
-A block of zeroes can be replaced by two colons (<quote>::</quote>). Thus,
-thee address above can be written as:
+Blok yang bernilai nol bisa digantikan dengan dua titik dua (<quote>::</quote>). Sehingga, alamat diatas bisa ditulis sebagai:
 </para>
 
 <screen>
@@ -146,17 +129,14 @@ fec0:ffff:a300:2312::1
 </screen>
 
 <para>
-Each IPv6 address has a prefix. Normally this consists of two elements:
-32 bits identifying the address space the provider provides you, and a
-16-bit number that specifies the network. These two elements form the
-prefix, and in this case the prefixlength is 32 + 16 = 48 bits. Thus,
-if you have a /48 prefix you can make 2^16 subnets and have 2^80 hosts
-on each subnet. The image below shows the structure of an IPv6 address
-with a 48-bit prefix.
+Setiap alamat IPv6 memiliki prefix. Biasanya berisi dua elemen: 32 bit yang mengidentifikasi ruang alamat yang disediakan 
+oleh penyedia, dan angka 16-bit yang menunjukan jaringan. Dua elemen ini membentuk sebuah prefix, dan pada kasus ini panjang 
+prefix adalah 32 + 16 = 48 bit. Sehingga, jika Anda memiliki prefix /48, Anda bisa membuat 2^16 subnet dan 2^80 host pada 
+setiap subnet. Gambar dibawah menunjukan struktur dari alamat IPv6 dengan prefix 48-bit.
 </para>
 
 <figure id="ipv6address">
-<title>The anatomy of an IPv6 address</title>
+<title>Anatomi alamat IPv6</title>
 <mediaobject>
 <imageobject>
 <imagedata fileref="../../images/ipv6addr.png" format="PNG" />
@@ -165,26 +145,26 @@ with a 48-bit prefix.
 </figure>
 
 <para>
-There are a some specially reserved prefixes, most notable include:
+Terdapat beberapa prefix yang sudah dipakai, misalnya:
 </para>
 
 <table>
-<title>Important IPv6 Prefixes</title>
+<title>Prefix IPv6 Penting</title>
 <tgroup cols="2">
 <thead>
 <row>
-<entry>Prefix</entry><entry>Description</entry>
+<entry>Prefix</entry><entry>Deskripsi</entry>
 </row>
 </thead>
 <tbody>
 <row>
-<entry>fe80::</entry><entry>Link local addresses, which are not routed.</entry>
+<entry>fe80::</entry><entry>Link alamat lokal, yang tidak dirutekan.</entry>
 </row>
 <row>
-<entry>fec0::</entry><entry>Site local addresses, which are locally routed, but not on or to the internet.</entry>
+<entry>fec0::</entry><entry>Alamat lokal situs, yang dirutekan secara lokal, tetapi tidak pada atau ke Internet.</entry>
 </row>
 <row>
-<entry>2002::</entry><entry>6to4 addresses, which are used for the transition from IPv4 to IPv6.</entry>
+<entry>2002::</entry><entry>alamat 6to4, yang digunakan untuk transisi dari IPv4 ke IPv6.</entry>
 </row> 
 </tbody>
 </tgroup>
@@ -192,12 +172,11 @@ There are a some specially reserved prefixes, most notable include:
 </sect2>
 
 <sect2>
-<title>Slackware Linux IPv6 support</title>
+<title>Dukungan IPv6 pada Slackware Linux</title>
 
 <para>
-The Linux kernel binaries included in Slackware Linux do not support IPv6
-by default, but support is included as a kernel module. This module can be
-loaded using <command>modprobe</command>:
+Kernel Linux yang disertakan pada Slackware Linux tidak mendukung IPv6 secara default, tetapi dukungan disertakan 
+sebagai modul kernel. Modul ini bisa dimuat menggunakan <command>modprobe</command>:
 </para>
 
 <screen>
@@ -205,8 +184,7 @@ loaded using <command>modprobe</command>:
 </screen>
 
 <para>
-You can verify if IPv6 support is loaded correctly by looking at the 
-kernel output using the <command>dmesg</command>:
+Anda bisa memverifikasi jika dukungan IPv6 sudah dimuat dengan benar dengan melihat hasil keluaran kernel menggunakan <command>dmesg</command>:
 </para>
 
 <screen>
@@ -216,7 +194,7 @@ IPv6 v0.8 for NET4.0
 </screen>
 
 <para>
-IPv6 support can be enabled permanently by adding the following line to
+Dukungan IPv6 bisa diaktifkan secara permanen dengan menambahkan baris berikut pada 
 <filename>/etc/rc.d/rc.modules</filename>:
 </para>
 
@@ -225,25 +203,21 @@ IPv6 support can be enabled permanently by adding the following line to
 </screen>
 
 <para>
-Interfaces can be configured using <command>ifconfig</command>. But it
-is recommended to make IPv6 settings using the <command>ip</command>
-command, which is part of the <quote>iputils</quote> package that can
-be found in the <filename>extra/</filename> directory of the Slackware Linux 
-tree.
+Antarmuka bisa dikonfigurasi menggunakan <command>ifconfig</command>. Tetapi direkomendasikan untuk menggunakan pengaturan 
+IPv6 menggunakan perintah <command>ip</command>, yang merupakan bagian dari paket <quote>iputils</quote> yang dapat ditemukan 
+pada direktori <filename>extra/</filename> dari pohon Slackware Linux.
 </para>
 </sect2>
 
 <sect2>
-<title>Adding an IPv6 address to an interface</title>
+<title>Menambahkan alamat IPv6 pada antarmuka</title>
 
 <para>
-If there are any router advertisers on a network there is a chance
-that the interfaces on that network already received an IPv6 address
-when the IPv6 kernel support was loaded. If this is not the case
-an IPv6 address can be added to an interface using the <command>ip</command>
-utility. Suppose we want to add the address <quote>fec0:0:0:bebe::1</quote>
-with a prefix length of 64 (meaning <quote>fec0:0:0:bebe</quote> is the 
-prefix). This can be done with the following command syntax:
+Jika terdapat sembarang router pada jaringan, maka ada kemungkinan bahwa antarmuka pada jaringan tersebut sudah menerima sebuah 
+alamat IPv6 ketika dukungan kernel untuk IPv6 sudah dimuat. Jika tidak, sebuah alamat IPv6 bisa ditambahkan pada sebuah 
+antarmuka menggunakan utilitas <command>ip</command>. Misalkan kita hendak menambahkan alamat <quote>fec0:0:0:bebe::1</quote>
+dengan panjang prefix 64 (berarti <quote>fec0:0:0:bebe</quote> adalah prefix). Hal ini bisa dilakukan dengan 
+sintaks berikut:
 </para>
 
 <screen>
@@ -251,7 +225,7 @@ prefix). This can be done with the following command syntax:
 </screen>
 
 <para>
-For example:
+Sebagai contoh:
 </para>
 
 <screen>
@@ -263,18 +237,16 @@ For example:
 </sect1>
 
 <sect1>
-<title>Wireless interfaces</title>
+<title>Antarmuka nirkabel</title>
 
 <para>
-Wireless interfaces usually require some additional configuration, like
-setting the ESSID, WEP keys and the wireless mode. Interface settings that
-are specific to wireless interfaces can be set in the 
-<filename>/etc/rc.d/rc.wireless.conf</filename> file. The
-<command>/etc/rc.d/rc.wireless</command> script configures wireless
-interfaces based on descriptions from
-<filename>/etc/rc.d/rc.wireless.conf</filename>. In
-<filename>rc.wireless.conf</filename> settings are made per interface
-MAC address. By default this file has a section that matches any interface:
+Antarmuka nirkabel biasanya membutuhkan konfigurasi tambahan, seperti pengaturan ESSID, kunci WEP dan mode nirkabel. 
+Pengaturan antarmuka yang khusus pada antarmuka nirkabel bisa ditentukan pada berkas
+<filename>/etc/rc.d/rc.wireless.conf</filename>. Script 
+<command>/etc/rc.d/rc.wireless</command> mengkonfigurasikan antarmuka nirkabel berdasarkan deskripsi dari 
+<filename>/etc/rc.d/rc.wireless.conf</filename>. Pada 
+<filename>rc.wireless.conf</filename> pengaturan dibuat untuk setiap alamat MAC antarmuka. Secara default, berkas ini 
+memiliki sebuah bagian yang cocok dengan setiap antarmuka:
 </para>
 
 <screen>
@@ -289,12 +261,10 @@ MAC address. By default this file has a section that matches any interface:
 </screen>
 
 <para>
-It is generally a good idea to remove this section to make per-card
-settings. If you are lazy and only have one wireless card, you can leave
-this section in and add any configuration parameters you need. Since this
-section matches any wireless interface the wireless card you have will
-be matched and configured. You can now add a sections for your wireless
-interfaces. Each section has the following format:
+Merupakan ide bagus untuk menghapus bagian ini untuk membuat pengaturan per kartu. Jika Anda malas dan hanya memiliki 
+satu kartu nirkabel, Anda bisa membiarkan bagian ini dan menambahkan parameter konfigurasi yang Anda perlukan. Karena bagian 
+ini cocok dengan sembarang antarmuka nirkabel, maka kartu nirkabel Anda akan cocok dengan terkonfigurasi. Anda bisa menambahkan 
+bagian untuk antarmuka kartu nirkabel Anda. Setiap bagian memiliki format sebagai berikut:
 </para>
 
 <screen>
@@ -304,10 +274,9 @@ interfaces. Each section has the following format:
 </screen>
 
 <para>
-You can find the MAC address of an interface by looking at the 
-<command>ifconfig</command> output for the interface. For example,
-if a wireless card has the <emphasis>eth1</emphasis> interface name,
-you can find the MAC address the following way:
+Anda bisa menemukan alamat MAC dari sebuah antarmuka dengan melihat hasil keluaran 
+<command>ifconfig</command> untuk sebuah antarmuka. Sebagai contoh, jika kartu nirkabel memiliki nama antarmuka 
+<emphasis>eth1</emphasis>, Anda bisa mencari alamat MAC dengan cara berikut:
 </para>
 
 <screen>
@@ -323,11 +292,10 @@ eth1      Link encap:Ethernet  HWaddr <emphasis>00:01:F4:EC:A5:32</emphasis>
 </screen>
 
 <para>
-The hexadecimal address that is printed after <emphasis>HWaddr</emphasis>
-is the MAC address, in this case <emphasis>00:01:F4:EC:A5:32</emphasis>.
-When you have found the MAC address of the interface you can add a section
-for the device to <filename>/etc/rc.d/rc.wireless.conf</filename>. For
-example:
+Alamat heksadesimal yang dicetak setelah <emphasis>HWaddr</emphasis> adalah alamat MAC, dalam kasus ini
+<emphasis>00:01:F4:EC:A5:32</emphasis>.
+Ketika Anda telah menemukan alamat MAC dari antarmuka, Anda bisa menambahkan bagian untuk perangkat keras ini 
+pada <filename>/etc/rc.d/rc.wireless.conf</filename>. Sebagai contoh:
 </para>
 
 <screen>
@@ -341,20 +309,17 @@ example:
 </screen>
 
 <para>
-This will set the interface with MAC address
-<emphasis>00:01:F4:EC:A5:32</emphasis> to use the ESSID
-<emphasis>home</emphasis>, work in <emphasis>Managed</emphasis> mode on
-channel <emphasis>8</emphasis>. The key used for WEP encryption is
-<emphasis>1234-5678-AB</emphasis>. There are many other parameters
-that can be set. For an overview of all parameters, refer to the last
-example in <filename>rc.wireless.conf</filename>.
+Hal ini mengatur antarmuka dengan alamat MAC 
+<emphasis>00:01:F4:EC:A5:32</emphasis> untuk menggunakan ESSID
+<emphasis>home</emphasis>, bekerja pada mode <emphasis>Managed</emphasis> pada kanal <emphasis>8</emphasis>. 
+Kunci yang digunakan untuk enkripsi WEP adalah 
+<emphasis>1234-5678-AB</emphasis>. Terdapat banyak parameter lain yang bisa ditentukan. Untuk gambaran dari semua parameter, 
+lihat pada contoh terakhir pada <filename>rc.wireless.conf</filename>.
 </para>
 
 <para>
-After configuring a wireless interface, you can activate the changes
-by executing the network initialization script
-<command>/etc/rc.d/rc.inet1</command>. You can see the current wireless
-settings with the <command>iwconfig</command> command:
+Setelah mengkonfigurasi antarmuka nirkabel, Anda bisa mengaktifkan perubahan dengan menjalankan script inisialisasi jaringan
+<command>/etc/rc.d/rc.inet1</command>. Anda bisa melihat pengaturan nirkabel aktual dengan perintah <command>iwconfig</command> :
 </para>
 
 <screen>
@@ -372,31 +337,26 @@ eth1      IEEE 802.11-DS  ESSID:"home"  Nickname:"HERMES I"
 </sect1>
 
 <sect1>
-<title>Resolving</title>
+<title>Resolve</title>
 
-<bridgehead>Hostname</bridgehead>
+<bridgehead>Nama host</bridgehead>
 
 <para>
-Each computer on the internet has a hostname. If you do not have a
-hostname that is resolvable with DNS, it is still a good idea to
-configure your hostname, because some software uses it. You can
-configure the hostname in <filename>/etc/HOSTNAME</filename>.
-A single line with the hostname of the machine will suffice. Normally
-a hostname has the following form: host.domain.tld, for example
-darkstar.slackfans.org. Be aware that the hostname has to be resolvable,
-meaning that GNU/Linux should be able to convert the hostname to an IP
-address. You can make sure the hostname is resolvable by adding it
-to <filename>/etc/hosts</filename>. Read the following section for
-more information about this file.
+Setiap komputer pada Internet memiliki sebuah nama host. Jika Anda tidak memiliki nama host yang dapat di-resolve oleh DNS, 
+merupakan ide yang bagus untuk mengkonfigurasi nama host Anda, karena beberapa perangkat lunak menggunakannya. Anda bisa 
+mengkonfigurasikan nama host pada <filename>/etc/HOSTNAME</filename>. Sebuah baris tunggal dengan nama host mesin sudah cukup. 
+Biasanya sebuah nama host memiliki bentuk seperti berikut: host.domain.tld, sebagai contoh darkstar.slackfans.org. 
+Hati-hati bahwa nama host harus dapat di-resolve, yang berarti GNU/Linux harus bisa mengkonversi nama host menjadi alamat 
+IP. Anda bisa memastikan nama host dapat di-resolve dengan menambahkan pada <filename>/etc/hosts</filename>. Baca 
+bagian berikutnya untuk informasi tentang berkas ini.
 </para>
 
 <bridgehead>/etc/hosts</bridgehead>
 
 <para>
-<filename>/etc/hosts</filename> is a table of IP addresses with
-associated hostnames. This file can be used to name computers
-in a small network. Let's look at an example of the
-<filename>/etc/hosts</filename> file:
+<filename>/etc/hosts</filename> adalah tabel alamat IP dengan nama host yang berhubungan. Berkas ini bisa digunakan untuk 
+memberi nama komputer pada jaringan yang kecil. Mari kita lihat contoh dari berkas
+<filename>/etc/hosts</filename> :
 </para>
 
 <screen>
@@ -406,18 +366,16 @@ in a small network. Let's look at an example of the
 </screen>
 
 <para>
-The <emphasis>localhost</emphasis> line should always be present. It assigns the name <emphasis>localhost</emphasis>
-to a special interface, the loopback. In this example the names
-<emphasis>tazzy.slackfans.org</emphasis> and <emphasis>tazzy</emphasis> are assigned to the IP address 192.168.1.1,
-and the name <emphasis>flux.slackfans.org</emphasis> is assigned to the IP address 192.168.1.169.
-On the system with this file both computers are available via the
-mentioned hostnames.
+Baris <emphasis>localhost</emphasis> harus selalu ada. Bari ini memberi nama <emphasis>localhost</emphasis> pada antarmuka 
+khusus, loopback. Pada contoh ini, nama 
+<emphasis>tazzy.slackfans.org</emphasis> dan <emphasis>tazzy</emphasis> diberi alamat IP 192.168.1.1,
+dan nama <emphasis>flux.slackfans.org</emphasis> diberi alamat IP 192.168.1.169.
+Pada sistem dimana berkas ini berada, kedua komputer akan tersedia sesuai dengan nama host yang diberikan.
 </para>
 
 <para>
-It is also possible to add IPv6 addresses, which will be used if your system
-is configured for IPv6. This is an example of a <filename>/etc/hosts</filename>
-file with IPv4 and IPv6 entries: 
+Juga dimungkinkan untuk menambahkan alamat IPv6, yang akan digunakan jika sistem Anda terkonfigurasi untuk IPv6. 
+Berikut adalah contoh berkas <filename>/etc/hosts</filename> untuk alamat IPv4 dan IPv6 : 
 </para>
 
 <screen>
@@ -432,18 +390,16 @@ fec0:0:0:bebe::2	flux.slackfans.org
 </screen>
 
 <para>
-Please note that <quote>::1</quote> is the default IPv6 loopback.
+Harap diperhatikan bahwa <quote>::1</quote> adalah loopback IPv6 default.
 </para>
 
 <bridgehead>/etc/resolv.conf</bridgehead>
 
 <para>
-The <filename>/etc/resolv.conf</filename> file is used to specify
-which nameservers the system should use. A nameserver converts hostnames
-to IP addresses. Your provider should have given you at least two name
-name server addresses (DNS servers). You can add these nameservers
-to <filename>/etc/resolv.conf</filename> by adding the line
-<emphasis>nameserver ipaddress</emphasis> for each nameserver. For example: 
+Berkas <filename>/etc/resolv.conf</filename> digunakan untuk menentukan nameserver mana yang harus digunakan sistem. Sebuah 
+nameserver mengkonversi nama host menjadi alamat IP. Penyedia Internet Anda seharusnya memberikan paling tidak dua alamat 
+nameserver (server DNS). Anda bisa menambahkan nameserver ini pada <filename>/etc/resolv.conf</filename> dengan menambahkan 
+baris <emphasis>nameserver alamatIP</emphasis> untuk setiap nameserver. Sebagai contoh:
 </para>
 
 <screen>
@@ -452,10 +408,8 @@ nameserver 192.168.1.169
 </screen>
 
 <para>
-You can check wether the hostnames are tranlated correctly or not with
-the <command>host hostname</command> command. Swap <emphasis>hostname</emphasis> with an
-existing hostname, for example the website of your internet service
-provider.
+Anda bisa menguji apakah nama host ditranslasikan dengan benar atau tidak dengan perintah <command>host namahost</command>. 
+Ganti <emphasis>namahost</emphasis> dengan nama hostname yang ada., sebagai contoh website dari penyedia layanan Internet Anda.
 </para>
 </sect1>
 
@@ -463,15 +417,13 @@ provider.
 <title>IPv4 Forwarding</title>
 
 <para>
-IPv4 forwarding connects two or more networks by sending packets
-which arrive on one interface to another interface. This makes it
-possible to let a GNU/Linux machine act as a router. For example, you
-can connect multiple networks, or your home network with the internet.
-Let's have a look at an example:
+IPv4 forwarding menghubungkan dua atau lebih jaringan dengan mengirimkan paket yang tiba pada satu antarmuka ke antarmuka lain. 
+Hal ini memungkinkan sebuah mesin GNU/Linux berfungsi sebagai sebuah router. Sebagai contoh, Anda bisa menghubungkan 
+banyak jaringan, atau jaringan rumah dengan Internet. Mari kita lihat pada sebuah contoh:
 </para> 
 
 <figure id="router">
-<title>Router example</title>
+<title>Contoh Router</title>
 <mediaobject>
 <imageobject>
 <imagedata fileref="../../images/router.png" format="PNG" />
@@ -480,30 +432,23 @@ Let's have a look at an example:
 </figure>
 
 <para>
-In dit example there are two networks, 192.168.1.0 and 192.168.2.0. Three
-hosts are connected to both network. One of these hosts is connected to
-both networks with interfaces. The interface on the 192.168.1.0 network
-has IP address 192.168.1.3, the interface on the 192.168.2.0 network has
-IP address 192.168.2.3. If the host acts as a router between both networks
-it forwards packets from the 192.168.1.0 network to the 192.168.2.0 network
-and vise versa. Routing of normal IPv4 TCP/IP packages can be enabled
-by enabling IPv4 forwarding.
+Pada contoh terdapat dua jaringan, 192.168.1.0 dan 192.168.2.0. Tiga host terhubung pada kedua jaringan. Salah satu dari host 
+ini terhubung ke kedua jaringan dengan beberapa antarmuka. Antarmuka pada jaringan 192.168.1.0 memiliki alamat IP 192.168.1.3, 
+antarmuka pada jaringan 192.168.2.0 memiliki alamat IP 192.168.2.3. Jika host bertindak sebagai router antar jaringan, maka 
+ia mengirimkan paket dari jaringan 192.168.1.0 ke jaringan 192.168.2.0 dan sebaliknya. Routing dari paket TCP/IP IPv4 normal 
+bisa diaktifkan dengan mengaktifkan IPv4 forwarding.
 </para>
 
 <para>
-IPv4 forwarding
-can be enabled or disabled under Slackware Linux by changing the
-executable bit of the <filename>/etc/rc.d/rc.ip_forward</filename>
-file. If the executable bit is set on this file, IP forwarding will
-be enabled during the system boot, otherwise it will not. You can
-check whether the executable bit is enabled with <command>ls -l</command>
-(a description of the <command>ls</command> command can be found in
-<xref linkend="chap-filesystems-analyzing-listing" />). 
+IPv4 forwarding bisa diaktifkan atau dinonaktifkan pada Slackware Linux dengan mengubah bit executable dari berkas 
+<filename>/etc/rc.d/rc.ip_forward</filename>. Jika bit executable diaktifkan pada berkas ini, IP forwarding akan diaktifkan 
+pada saat sistem boot, selain itu, tidak akan diaktifkan. Anda bisa menguji apakah bit executable sudah diaktifkan dengan 
+<command>ls -l</command> (deskripsi dari perintah <command>ls</command> bisa ditemukan pada <xref linkend="chap-filesystems-analyzing-listing" />). 
 </para>
 
 <para>
-It is also possible to enable IPv4 forwarding on a running system
-with the following command (0 disables forwarding, 1 enables forwarding):
+Juga mungkin untuk mengaktifkan IPv4 forwarding pada sistem yang berjalan dengan perintah berikut (0 menonaktifkan 
+forwarding, 1 mengaktifkan forwarding):
 </para>
 
 <screen>
@@ -511,15 +456,11 @@ with the following command (0 disables forwarding, 1 enables forwarding):
 </screen>
 
 <para>
-Be cautious! By default there are no active packet filters. This means
-that anyone can access other networks. Traffic can be filtered
-and logged with the iptables kernel packet filter. Iptables can
-be administrated through the <command>iptables</command> command.
-NAT (Network Address Translation) is also a subset of iptables,
-and can be controlled and enabled through the <command>iptables</command>
-command. NAT makes it possible to <quote>hide</quote> a network behind one
-IP address. This allows you to use the internet on a complete network
-with only one IP address.
+Hati-hati! Secara default, tidak ada filter paket yang aktif. Hal ini berarti bahwa semua orang bisa mengakses jaringan lain. 
+Beban bisa difilter dan dicatat dengan filter paket kernel iptables. Iptables bisa dikelola melalui perintah <command>iptables</command>.
+NAT (Network Address Translation) juga bagian dari iptables, dan bisa dikontrol dan diaktifkan melalui perintah <command>iptables</command>.
+NAT memungkinkan untuk <quote>menyembunyikan</quote> sebuah jaringan dibelakang sebuah alamat IP. Hal ini memungkinkan Anda menggunakan 
+Internet pada jaringan yang lengkap hanya dengan satu alamat IP.
 </para>
 </sect1>
 

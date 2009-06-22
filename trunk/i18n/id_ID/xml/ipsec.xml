@@ -4,88 +4,70 @@
   <title>IPsec</title>
 
   <sect1>
-    <title>Theory</title>
+    <title>Teori</title>
 
     <para>
-      <acronym>IPsec</acronym> is a standard for securing IP communication
-      through authentication, and encryption. Besides that it can compress
-      packets, reducing traffic.  The following protocols are part of the
-      IPsec standard:
+      <acronym>IPsec</acronym> adalah standar untuk mengamankan komunikasi IP melalui authentikasi, dan enkripsi. 
+      Selain itu, juga bisa mengkompresi paket, mengurangi beban. Protokol berikut merupakan bagian dari standar IPsec:
     </para>
 
     <itemizedlist>
       <listitem>
         <para>
-          <acronym>AH</acronym> (Authentication Header) provides authenticity
-          guarantee for transported packets. This is done by checksumming the
-          packages using a cryptographic algorithm. If the checksum is found to
-          be correct by the receiver, the receiver can be assured that the 
-	  packet is not modified, and that the packet really originated from 
-	  the reported sender (provided that the keys are only known by the 
-	  sender and receiver). 
+          <acronym>AH</acronym> (Authentication Header) menyediakan jaminan authentikasi untuk paket yang dikirimkan. 
+	  Hal ini dilakukan dengan menghitung checksum dari paket menggunakan algoritma kriptografi. Jika checksum 
+	  benar, maka penerima bisa yakin bahwa paket tidak dimodifikasi, dan paket benar-benar berasal dari pengirim
+	  (diasumsikan bahwa kunci hanya diketahui oleh pengirim dan penerima). 
         </para>
       </listitem>
       <listitem>
         <para>
-          <acronym>ESP</acronym> (Encapsulating Security Payload) is used to
-          encrypt packets. This makes the data of the packet confident, and
-	  only readable by the host with the right decryption key.
+          <acronym>ESP</acronym> (Encapsulating Security Payload) digunakan untuk mengenkripsi paket. Hal ini membuat 
+	  data pada paket aman, dan hanya dapat dibaca oleh host yang memiliki kunci dekripsi yang benar.
         </para>
       </listitem>
       <listitem>
         <para>
-          <acronym>IPcomp</acronym> (IP payload compression) provides
-	  compression before a packet is encrypted. This is useful, because
-	  encrypted data generally compresses worse than unencrypted data.
+          <acronym>IPcomp</acronym> (IP payload compression) menyediakan kompresi sebelum paket dienkripsi. Hal ini 
+	  berguna, karena data yang dienkripsi biasanya terkompresi lebih jelek daripada data yang tidak terenkripsi.
         </para>
       </listitem>
       <listitem>
         <para>
-          <acronym>IKE</acronym> (Internet Key Exchange) provides the means to
-          negotiate keys in secrecy. Please note that IKE is optional, keys can
-          be configured manually.
+          <acronym>IKE</acronym> (Internet Key Exchange) menyediakan media untuk melakukan negosiasi kunci secara aman. 
+	  Harap diperhatikan bahwa IKE bersifat opsinal, kunci bisa dikonfigurasikan secara manual.
         </para>
       </listitem>
     </itemizedlist>
 
     <para>
-      There are actually two modes of operation: <emphasis>transport
-      mode</emphasis> is used to encrypt normal connections between two 
-      hosts, <emphasis>tunnel mode</emphasis> encapsulates the original
-      package in a new header. In this chapter we are going to look at the 
-      transport mode, because the primary goal of this chapter is to show 
-      how to set up a secure connection between two hosts.
+      Terdapat dua mode operasi: <emphasis>mode transport</emphasis> digunakan untuk mengenkripsi 
+      koneksi normal antar dua host, <emphasis>mode tunnel</emphasis> mengenkapsulasi paket asli pada header baru. 
+      Pada bab ini, kita akan melihat pada mode transport, karena tujuan utama dari bab ini adalah menunjukan bagaimana 
+      membuat pengaturan koneksi yang aman antara dua host.
     </para>
 
     <para>
-      There are also two major methods of authentication. You can use manual
-      keys, or an Internet Key Exchange (IKE) daemon, like racoon, that 
-      automatically exchanges keys securely betwoon two hosts. In both cases
-      you need to set up a policy in the Security Policy Database (SPD). This
-      database is used by the kernel to decide what kind of security policy
-      is needed to communicate with another host. If you use manual keying you
-      also have to set up Security Association Database (SAD) entries, which
-      specifies what encryption algorithmn and key should be used for secure
-      communication with another host. If you use an IKE daemon the security
-      associations are automatically established.
+      Terdapat dua metode utama untuk otentikasi. Anda bisa menggunakan kunci manual, atau daemon Internet Key Exchange (IKE)
+      seperti racoon, yang secara otomatis bertukar kunci diantara dua host secara aman. Pada kedua kasus, Anda harus menentukan 
+      aturan pada Security Policy Database (SPD). Basis data ini digunakan oleh kernel untuk menentukan jenis aturan keamanan 
+      apa yang diperlukan untuk berkomunikasi dengan host lain. Jika Anda menggunakan kunci manual, Anda harus mengatur 
+      Security Association Database (SAD), yang menentukan algoritma enkripsi dan kunci yang harus digunakan untuk komunikasi 
+      yang aman dengan host lain. Jika Anda menggunakan daemon IKE, asosiasi keamanan akan dibuat secara otomatis.
     </para>
   </sect1>
 
   <sect1>
-    <title>Linux configuration</title>
+    <title>Konfigurasi Linux</title>
 
     <para>
-      Native IPsec support is only available in Linux 2.6.x kernels.
-      Earlier kernels have no native IPsec support. So, make sure that
-      you have a 2.6.x kernel. The 2.6 kernel is available in
-      Slackware Linux 10.0, 10.1, and 10.2 from the
-      <filename>testing</filename> directory on CD2 of the Slackware
-      Linux CD sets, or any of the official Slackware Linux mirrors.
-      The 2.6 kernel is the default kernel since Slackware Linux 12.0.
-      The default Slackware Linux 2.6 kernel has support for AH, ESP
-      and IPcomp in for both IPv4 and IPv6. If you are compiling a
-      custom kernel enable use at least the following options in your
-      kernel configuration:
+      Dukungan native IPsec hanya tersedia pada kernel Linux 2.6.x. Kernel versi sebelumnya tidak memiliki dukungan native 
+      terhadap IPsec. Jadi, pastikan Anda sudah memiliki kernel 2.6.x. Kernel 2.6 tersedia pada 
+      Slackware Linux 10.0, 10.1, dan 10.2 dari direktori <filename>testing</filename> pada CD2 dari CD Slackware
+      Linux, atau sembarang mirror resmi Slackware Linux.
+      Kernel 2.6 adalah kernel default semenjak Slackware Linux 12.0. Default kernel 2.6 Slackware Linux sudah mendukung 
+      AH, ESP dan IPcomp pada IPv4 dan IPv6. Jika Anda mengkompilasi kernel sendiri, aktifkan paling tidak opsi-opsi berikut pada 
+      konfigurasi kernel Anda:
     </para>
 
     <screen>
@@ -95,7 +77,7 @@ CONFIG_INET_IPCOMP=y
     </screen>
 
     <para>
-      Or you can compile support for IPsec protocols as a module:
+      Atau, Anda bisa mengkompilasi dukungan untuk protokol IPsec sebagai modul:
     </para>
 
     <screen>
@@ -106,25 +88,21 @@ CONFIG_INET_IPCOMP=m
 
 
     <para>
-      In this chapter we are only going to use AH and ESP transformations, but
-      it is not a bad idea to enable IPComp transformation for further 
-      configuration of IPsec. Besides support for the IPsec protocols, you
-      have to compile kernel support for the encryption and hashing algorithms
-      that will be used by AH or ESP. Linux or module support for these
-      algorithms can be enabled by twiddling the various
-      <emphasis>CONFIG_CRYPTO</emphasis> options. It does not hurt to
-      compile all ciphers and hash algorithms as a module. 
+      Pada bab ini, kita hanya akan menggunakan transformasi AH dan ESP, tetapi bukan ide yang jelek untuk 
+      mengaktifkan transformasi IPComp untuk konfigurasi lebih lanjut dari IPsec. Selain dukungan untuk protokol IPsec, 
+      Anda harus mengkompilasi dukungan kernel untuk algoritma enkripsi dan hash yang akan digunakan oleh AH atau ESP. 
+      Linux atau dukungan modul untuk algoritma ini bisa diaktifkan pada opsi 
+      <emphasis>CONFIG_CRYPTO</emphasis>. Tidaklah merepotkan untuk mengkompilasi semua algoritma cipher dan hash sebagai 
+      sebuah modul.
     </para>
 
     <para>
-      When you choose to compile IPsec support as a module, make sure
-      that the required modules are loaded. For example, if you are going
-      to use ESP for IPv4 connections, load the <emphasis>esp4</emphasis>
-      module.
+      Ketika Anda memilih untuk mengkompilasi dukungan IPsec sebagai modul, pastikan bahwa modul yang diperlukan sudah 
+      dimuat. Sebagai contoh, jika Anda hendak menggunakan ESP untuk koneksi IPv4, muat modul <emphasis>esp4</emphasis>.
     </para>
 
     <para>
-      Compile the kernel as usual and boot it.
+      Kompilasi kernel seperti biasa dan boot kernel tersebut.
     </para>
   </sect1>
 
@@ -132,11 +110,10 @@ CONFIG_INET_IPCOMP=m
     <title>Installing IPsec-Tools</title>
 
     <para>
-      The next step is to install the
+      Langkah berikutnya adalah menginstall 
       <ulink url="http://ipsec-tools.sourceforge.net">IPsec-Tools</ulink>.
-      These tools are ports of
-      the <ulink url="http://www.kame.net">KAME</ulink> IPsec utilities.
-      Download the latest sources and unpack, configure and install them:
+      Aplikasi ini merupakan port dari utilitas IPsec <ulink url="http://www.kame.net">KAME</ulink>.
+      Download kode terbaru dan uraikan, konfigurasi, dan install:
     </para>
 
     <screen>
@@ -156,57 +133,49 @@ CONFIG_INET_IPCOMP=m
     </screen>
 
       <para>
-        Replace <emphasis>x.y.z</emphasis> with the version of the
-	downloaded sources. The most notable flags that we specify
-	during the configuration of the sources are:
+        Ganti <emphasis>x.y.z</emphasis> dengan kode versi yang didownload. Flag yang kita tentukan selama 
+	konfigurasi kode sumber adalah:
       </para>
 
       <itemizedlist>
         <listitem>
 	  <para>
-	    <emphasis>--enable-dpd</emphasis>: enables
-	    dead peer detection (DPD). DPD is a method for detecting
-	    wether any of the hosts for which security associations
-	    are set up is unreachable. When this is the case the
-	    security associations to that host can be removed.
+	    <emphasis>--enable-dpd</emphasis>: mengaktifkan 
+	    dead peer detection (DPD). DPD adalah metode untuk mendeteksi apakah sembarang host dimana asosiasi keamanan 
+	    sudah ditentukan tidak dapat dapat dicapai. Jika benar, maka asosiasi keamanan untuk host tersebut bisa dihapus.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    <emphasis>--enable-natt</emphasis>: enables NAT traversal
-	    (NAT-T). Since NAT alters the IP headers, this causes
-	    problems for guaranteeing authenticity of a packet. NAT-T
-	    is a method that helps overcoming this problem. Configuring
-	    NAT-T is beyond the scope of this article.
+	    <emphasis>--enable-natt</emphasis>: mengaktifkan NAT traversal
+	    (NAT-T). Karena NAT mengganti header IP, hal ini menimbulkan masalah untuk penjaminan authentikasi dari paket. 
+	    NAT-T adalah metode yang membantu mengatasi masalah ini. Mengkonfigurasi NAT-T diluar batasan dari artikel ini.
 	  </para>
 	</listitem>
       </itemizedlist>
   </sect1>
 
   <sect1>
-    <title>Setting up IPsec with manual keying</title>
+    <title>Mengatur IPsec dengan kunci manual</title>
 
     <sect2>
-      <title>Introduction</title>
+      <title>Perkenalan</title>
 
       <para>
-        We will use an example as the guideline for setting up an encrypted
-        connection between to hosts. The hosts have the IP addresses 
-        <emphasis>192.168.1.1</emphasis> and <emphasis>192.168.1.169</emphasis>.
-        The <quote>transport mode</quote> of operation will be used with
-        AH and ESP transformations and manual keys.
+        Kita akan menggunakan sebuah contoh sebagai panduan untuk mengatur koneksi tidak terenkripsi diantara dua host. 
+	Host akan memiliki alamat IP <emphasis>192.168.1.1</emphasis> dan <emphasis>192.168.1.169</emphasis>.
+        <quote>Mode transport </quote> akan digunakan dengan transformasi AH dan ESP beserta kunci manual.
       </para>
       
     </sect2>
 
     <sect2>
-      <title>Writing the configuration file</title>
+      <title>Menulis berkas konfigurasi</title>
 
       <para>
-        The first step is to write a configuration file we will name
-        <filename>/etc/setkey.conf</filename>. On the first host
-        (192.168.1.1) the following <filename>/etc/setkey.conf</filename>
-        configuration will be used:
+        Langkah pertama adalah menulis berkas konfigurasi yang akan kita beri nama
+        <filename>/etc/setkey.conf</filename>. Pada host pertama 
+        (192.168.1.1) berkas konfigurasi <filename>/etc/setkey.conf</filename> berikut akan digunakan:
       </para>
 
       <screen>
@@ -236,22 +205,18 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </screen>
 
       <para>
-        The first line (a line ends with a <quote>;</quote>) adds a key
-        for the header checksumming for packets coming from 192.168.1.1 
-        going to 192.168.1.169. The second line does the same for packets
-        coming from 192.168.1.169 to 192.168.1.1. The third and the fourth line
-        define the keys for the data encryption the same way as the
-        first two lines. Finally the <quote>spadd</quote> lines define
-        two policies, namely packets going out from 192.168.1.1 to 192.168.1.169
-        should be (require) encoded (esp) and <quote>signed</quote> with
-        the authorization header. The second policy is for incoming packets
-        and it is the same as outgoing packages.
+        Baris pertama (baris yang diakhiri <quote>;</quote>) menambahkan kunci untuk pengujian checksum header untuk 
+	paket yang datang dari 192.168.1.1 dan menuju 192.168.1.169. Baris kedua menambahkan hal yang sama untuk 
+	paket datang dari 192.168.1.169 menuju 192.168.1.1. Baris keempat dan kelima mendefinisikan kunci untuk enkripsi 
+	data seperti yang dilakukan oelh dua baris pertama. Akhirnya, baris <quote>spadd</quote> mendefinisikan dua aturan, 
+	yaitu paket yang keluar dari 192.168.1.1 menuju 192.168.1.169 harus (require) di-enkodekan (esp) dan <quote>signed</quote> 
+	dengan header otorisasi. Aturan kedua adalah untuk paket yang masuk dan melakukan hal yang sama dengan paket keluar.
       </para>
 
       <para>
-        Please be aware that you should not use these keys, but your own
-        secretly kept unique keys. You can generate keys using the
-        <filename>/dev/random</filename> device:
+        Harap Anda perhatikan bahwa Anda tidak seharusnya menggunakan kunci ini, tetapi kunci unik Anda sendiri. Anda bisa 
+	menghasilkan kunci menggunakan perangkat 
+        <filename>/dev/random</filename> :
       </para>
 
       <screen>
@@ -259,12 +224,11 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </screen>
 
       <para>
-        This command uses dd to output 16 bytes from 
-        <filename>/dev/random</filename>. Don't forget to add <quote>0x</quote>
-        at the beginning of the line in the configuration files. You can use 
-        the 16 byte (128 bits) for the hmac-md5 algorithm that is used for AH.
-        The 3des-cbc algorithm that is used for ESP in the example should be fed 
-        with a 24 byte (192 bits) key. These keys can be generated with:
+        Perintah ini menggunakan dd untuk menghasilkan 16 byte dari 
+        <filename>/dev/random</filename>. Jangan lupa untuk menambahkan <quote>0x</quote>
+        pada awal baris pada berkas konfigurasi. Anda bisa menggunakan 16 byte  (128 bit) untuk algoritma hmac-md5 
+	yang digunakan untuk AH. Algoritma 3des-cbc yang digunakan untuk ESP pada contoh harus menggunakan kunci 24 byte (192 bit). 
+	Kunci-kunci ini bisa dihasilkan dengan :
       </para>
 
       <screen>
@@ -272,9 +236,8 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </screen>  
 
       <para>
-        Make sure that the <filename>/etc/setkey.conf</filename> file can only
-        be read by the root user. If normal users can read the keys IPsec
-        provides no security at all. You can do this with:
+        Pastikan bahwa berkas <filename>/etc/setkey.conf</filename> hanya bisa dibaca oleh pengguna root. Jika pengguna biasa dapat 
+	membaca IPsec tidak menyediakan keamanan sama sekali. Anda bisa melakukannya dengan cara:
       </para>
 
       <screen>
@@ -282,10 +245,9 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </screen>
 
       <para>
-        The same <filename>/etc/setkey.conf</filename> can be created on the
-        192.168.1.169 host, with inverted <parameter class="command">-P 
-        in</parameter> and <parameter class="command">-P out</parameter> options. So, 
-        the <filename>/etc/setkey.conf</filename> will look like this:
+        Berkas <filename>/etc/setkey.conf</filename> yang sama bisa dibuat pada host 192.168.1.169, dengan opsi <parameter class="command">-P 
+        in</parameter> dan <parameter class="command">-P out</parameter> dibalik. Jadi, berkas <filename>/etc/setkey.conf</filename> 
+	akan tampak seperti berikut :
       </para>
 
       <screen>
@@ -316,11 +278,10 @@ spdadd 192.168.1.169 192.168.1.1 any -P out ipsec
     </sect2>
 
     <sect2>
-      <title>Activating the IPsec configuration</title>
+      <title>Mengaktifkan konfigurasi IPsec</title>
 
       <para>
-        The IPsec configuration can be activated with the 
-	<command>setkey</command> command:
+        Konfigurasi IPsec bisa diaktifkan dengan perintah <command>setkey</command> :
       </para>
 
       <screen>
@@ -328,8 +289,7 @@ spdadd 192.168.1.169 192.168.1.1 any -P out ipsec
       </screen>
 
       <para>
-        If you want to enable IPsec permanently you can add the following line
-        to <filename>/etc/rc.d/rc.local</filename> on both hosts:
+        Jika Anda hendak mengaktifkan IPsec secara permanen, Anda bisa menambahkan baris berikut pada <filename>/etc/rc.d/rc.local</filename> pada kedua host :
       </para>
 
       <screen>
@@ -337,10 +297,9 @@ spdadd 192.168.1.169 192.168.1.1 any -P out ipsec
       </screen>
 
       <para>
-        After configuring IPsec you can test the connection by running
-        <command>tcpdump</command> and simultaneously pinging the other
-        host. You can see if AH and ESP are actually used in the 
-        <command>tcpdump</command> output:
+        Setelah mengkonfigurasi IPsec, Anda bisa menguji koneksi dengan menjalankan 
+        <command>tcpdump</command> dan melakukan ping ke host yang lain. Anda bisa melihat jika AH dan ESP digunakan pada hasil keluaran 
+	perintah <command>tcpdump</command> :
       </para>
 
       <screen>
@@ -355,73 +314,61 @@ tcpdump: listening on eth0
   </sect1>
   
   <sect1>
-    <title>Setting up IPsec with automatic key exchanging</title>
+    <title>Mengatur IPsec dengan pertukaran kunci otomatis</title>
 
     <sect2>
-      <title>Introduction</title>
+      <title>Perkenalan</title>
     
       <para>
-        The subject of automatical key exchange is already touched shortly
-	in the introduction of this chapter. Put simply, IPsec with IKE
-	works in the following steps.
+        Judul dari pertukaran kunci otomatis sudah dibahas sebentara pada perkenalan dari bab ini. Secara sederhana, IPsec dengan 
+	IKE bekerja seperti berikut.
       </para>
       
       <orderedlist>
         <listitem>
 	  <para>
-	    Some process on the host wants to connect to another host. The
-	    kernel checks whether there is a security policy set up for
-	    the other host. If there already is a security association
-	    corresponding with the policy the connection can be made,
-	    and will be authenticated, encrypted and/or compressed as defined
-	    in the security association. If there is no security association,
-	    the kernel will request a user-land IKE daemon to set up the
-	    necessary security association(s).
+	    Beberapa proses pada host hendak terhubung ke host lain. Kernel menguji apakah terdapat aturan keamanan yang sudah 
+	    ditentukan untuk host lain. Jika sudah terdapat asosiasi keamanan yang berhubungan dengan aturan, koneksi bisa dibuat, 
+	    dan akan diautentikasi, dienkripsi, dan atau dikompresi sesuai dengan definisi. Jika tidak ada asosiasi keamanan, 
+	    kernel akan meminta daemon IKE untuk membuat asoasiasi keamanan yang diperlukan.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    During the first phase of the key exchange the IKE daemon
-	    will try to verify the authenticity of the other host. This
-	    is usually done with a preshared key or certificate. If
-	    the authentication is successful a secure channel is set up
-	    between the two hosts, usually called a IKE security
-	    association, to continue the key exchange.
+	    Pada tahap pertama dari pertukaran kunci, daemon IKE mencoba memverifikasi authentikasi dari host lain. Hal ini 
+	    biasanya dilakukan dengan kunci yang sudah dipersiapkan (preshared) atau sertifikat. Jika authentikasi berhasil, maka kanal 
+	    rahasia akan dibentuk diantara dua host, yang biasanya disebut asosiasi keamananan IKE, untuk melanjutkan dengan 
+	    pertukaran kunci.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    During the second phase of the key exchange the security
-	    associations for communication with the other host are set
-	    up. This involves choosing the encryption algorithm to be
-	    used, and generating keys that are used for encryption
-	    of the communication.
+	    Selama fase kedua dari pertukaran kunci, asosiasi keamanan untuk komunikasi dengan host lain akan dibentuk. Hal ini 
+	    melibatkan pemilihan algoritma enkripsi yang akan digunakan, dan menghasilkan kunci yang akan digunakan untuk 
+	    mengenkripsi komunikasi. 
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    At this point the first step is repeated again, but since
-	    there are now security associations the communication can
-	    proceed.
+	    Pada tahap ini, langkah pertama akan diulangi kembali, tetapi karena sudah ada asosiasi keamanan, komunikasi bisa 
+	    dilanjutkan.
 	  </para>
 	</listitem>
       </orderedlist>
       
       <para>
-        The <command>racoon</command> IKE daemon is included with the KAME IPsec tools,
-	the sections that follow explain how to set up racoon.
+        Daemon IKE <command>racoon</command> disertakan dengan aplikasi KAME IPsec, bagian berikut menjelaskan bagaimana 
+	mengatur racoon.
       </para>
     </sect2>
     
     <sect2>
-      <title>Using racoon with a preshared key</title>
+      <title>Menggunakan dengan kunci yang preshared</title>
       
       <para>
-        As usual the first step to set up IPsec is to define security
-	policies. In contrast to the manual keying example you should
-	not set up security associations, because racoon will make them
-	for you. We will use the same host IPs as in the example above.
-	The security policy rules look like this:
+        Seperti biasa, langkah pertama untuk mengatur IPsec adalah untuk mendefinisikan aturan keamanan. Kebalikan dari 
+	kunci manual, Anda tidak perlu membuat asosiasi keamanan, karena racoon akan membuatkan untuk Anda. Kita akan menggunakan
+	IP host yang sama dengan contoh diatas. Aturan keamanan tampak seperti berikut:
       </para>
 
       <screen>
@@ -439,25 +386,18 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </screen>
 
       <para>
-        Cautious souls have probably noticed that AH policies are missing
-        in this example. In most situations this is no problem, ESP can
-        provide authentication. But you should be aware that the authentication
-        is more narrow; it does not protect information outside the ESP
-        headers. But it is more efficient than encapsulating ESP packets
-        in AH.
+        Orang yang cermat akan melihat bahwa aturan AH tidak ada pada contoh ini. Pada sebagian besar kasus, hal ini 
+	bukanlah masalah, ESP bisa menyediakan authentikasi. Tetapi Anda harus waspada bahwa authentikasi menjadi lebih 
+	lebar; ia tidak menjaga informasi diluar header ESP. Tetapi lebih efisien daripada mengenkapsulasi paket ESP pada AH.
       </para>
 
       <para>
-        With the security policies set up you can configure <command>racoon</command>.
-        Since the connection-specific information, like the authentication
-        method is specified in the phase one configuration. We can use a
-        general phase two configuration. It is also possible to make specific
-        phase two settings for certain hosts. But generally speaking a
-        general configuration will often suffice in simple setups. We
-        will also add paths for the preshared key file, and certification
-        directory. This is an example of 
-        <filename>/etc/racoon.conf</filename> with the paths
-        and a general phase two policy set up:
+        Dengan aturan keamanan sudah terbentuk, Anda bisa mengkonfigurasi <command>racoon</command>.
+        Karena informasi yang spesifik untuk koneksi, seperti metode authentikasi ditentukan pada konfigurasi fase satu, kita 
+	bisa menggunakan konfigurasi fase dua yang lebih umum. Juga dimungkinkan untuk membuat pengaturan fase dua yang spesifik 
+	untuk beberapa host tertentu. Tetapi secara umum, konfigurasi umum akan cukup untuk pengaturan sederhana. Kita juga akan 
+	menambahkan path untuk berkas kunci preshared, dan direktori sertifikat. Ini adalah contoh dari 
+        <filename>/etc/racoon.conf</filename> dengan path dan aturan tahap kedua yang sudah dibuat:
       </para>
 
       <screen>
@@ -475,30 +415,20 @@ sainfo anonymous {
       </screen>
 
       <para>
-        The <parameter>sainfo</parameter> identifier is used to make a
-        block that specifies the settings for security associations. Instead
-        of setting this for a specific host, the <parameter>anonymous</parameter>
-        parameter is used to specify that these settings should be used
-        for all hosts that do not have a specific configuration. The
-        <parameter>pfs_group</parameter> specifies which group of
-        Diffie-Hellman exponentiations should be used. The different
-        groups provide different lengths of base prime numbers that are
-        used for the authentication process. Group 2 provides a 1024 bit
-        length if you would like to use a greater length, for increased
-        security, you can use another group (like 14 for a 2048 bit
-        length). The <parameter>encryption_algorithm</parameter> specifies
-        which encryption algorithms this host is willing to use for
-        ESP encryption. The <parameter>authentication_algorithm</parameter>
-        specifies the algorithm to be used for ESP Authentication or
-        AH. Finally, the <parameter>compression_algorithm</parameter>
-        is used to specify which compression algorithm should be used
-        when IPcomp is specified in an association.
+        Penanda <parameter>sainfo</parameter> digunakan untuk membuat blok yang menentukan pengaturan untuk asosiasi keamanan. 
+	Parameter <parameter>anonymous</parameter> digunakan untuk menentukan bahwa pengaturan ini harus digunakan untuk semua 
+	host yang tidak memiliki konfigurasi spesifik. <parameter>pfs_group</parameter> menentukan grup mana dari 
+	eksponensial Diffie-Hellman yang harus digunakan. Grup yang berbeda menyediakan panjang angka bilangan prima yang berbeda 
+	yang akan digunakan untuk proses authentikasi. Grup 2 menyediakan panjang kunci 1024 bit jika Anda hendak menggunakan panjang 
+	yang lebih besar. Untuk keamanan yang lebih baik, Anda bisa menggunakan grup lain (seperti 14 untuk panjang 2048 bit). 
+	<parameter>encryption_algorithm</parameter> menentukan algoritma enkripsi apa yang hendak digunakan oleh host untuk enkripsi 
+	ESP. <parameter>authentication_algorithm</parameter> menentukan algoritma yang digunakan untuk Authentikasi ESP atau AH. Akhirnya, 
+	<parameter>compression_algorithm</parameter> digunakan untuk menentukan algoritma kompresi ketika IPcomp ditentukan pada asosiasi.
       </para>
 
       <para>
-        The next step is to add a phase one configuration for the key
-        exchange with the other host to the <filename>racoon.conf</filename> configuration file.
-        For example:
+        Langkah berikutnya adalah menambahkan konfigurasi fase satu untuk pertukaran kunci dengan host lain pada berkas konfigurasi <filename>racoon.conf</filename>. 
+	Sebagai contoh:
       </para>
 
       <screen>
@@ -516,34 +446,22 @@ remote 192.168.1.169
       </screen>
 
       <para>
-        The <parameter>remote</parameter> block specifies a phase one
-        configuration. The <parameter>exchange_mode</parameter> is
-        used to configure what exchange mode should be used for
-        phase. You can specify more than one exchange mode, but the
-        first method is used if this host is the initiator of the
-        key exchange. The <parameter>my_identifier</parameter> option
-        specifies what identifier should be sent to the remote host.
-        If this option committed <parameter>address</parameter> is used,
-        which sends the IP address as the identifier. The 
-        <parameter>proposal</parameter> block specifies parameter that
-        will be proposed to the other host during phase one authentication.
-        The <parameter>encryption_algorithm</parameter>, and
-        <parameter>dh_group</parameter> are explained above. The
-        <parameter>hash_algorithm</parameter> option is mandatory, and
-        configures the hash algorithm that should be used. This
-        can be <parameter>md5</parameter>, or <parameter>sha1</parameter>.
-        The <parameter>authentication_method</parameter> is crucial for
-        this configuration, as this parameter is used to specify that
-        a preshared key should be used, with 
-        <parameter>pre_shared_key</parameter>.
+        Blok <parameter>remote</parameter> menentukan konfigurasi fase satu. Opsi <parameter>exchange_mode</parameter> digunakan untuk 
+	mengkonfigurasi mode pertukaran apa yang harus digunakan untuk fase. Anda bisa menyebutkan lebih dari satu mode, tetapi 
+	mode pertama akan digunakan jika host ini adalah pelaku awal dari pertukaran kunci. Opsi <parameter>my_identifier</parameter> 
+	menentukan penanda apa yang harus dikirimkan pada host remote. Jika opsi ini diabaikan, <parameter>address</parameter> akan digunakan,
+        yang mengirimkan alamat IP sebagai penanda. Blok <parameter>proposal</parameter> menentukan parameter yang akan diusulkan 
+	ke host lain selama authentikasi fase satu. Opsi <parameter>encryption_algorithm</parameter>, dan 
+        <parameter>dh_group</parameter> sudah dijelaskan diatas. Opsi <parameter>hash_algorithm</parameter> bersifat wajib, dan 
+	mengkonfigurasi algoritma hash yang harus dipakai. Hal ini bisa berupa <parameter>md5</parameter>, atau <parameter>sha1</parameter>.
+        Opsi <parameter>authentication_method</parameter> sangat penting untuk konfigurasi ini, karena parameter ini digunakan 
+	untuk menentukan kunci preshared apa yang harus digunakan, dengan <parameter>pre_shared_key</parameter>.
       </para>
 
       <para>
-        With racoon set up there is one thing left to do, the preshared
-        key has to be added to <filename>/etc/racoon/psk.txt</filename>.
-        The syntax is very simple, each line contains a host IP address
-        and a key. These parameters are separated with a tab.
-        For example:
+        Dengan racoon yang sudah diatur, terdapat satu hal lagi yang perlu dilakukan, kunci preshared harus ditambahkan pada 
+	<filename>/etc/racoon/psk.txt</filename>. Sintaksnya sangat sederhana, setiap baris berisi alamat IP host dan kunci. 
+	Parameter ini dipisahkan dengan tab. Sebagai contoh:
       </para>
 
       <screen>
@@ -552,15 +470,13 @@ remote 192.168.1.169
     </sect2>
 
     <sect2>
-      <title>Activating the IPsec configuration</title>
+      <title>Mengaktifkan konfigurasi IPsec</title>
 
       <para>
-        At this point the configuration of the security policies and racoon
-        is complete, and you can start to test the configuration. It is a
-        good idea to start <command>racoon</command> with the
-        <parameter class="command">-F</parameter> parameter. This will run
-        <command>racoon</command> in the foreground, making it easier to catch error
-        messages. To wrap it up:
+        Pada tahap ini, konfigurasi dari aturan keamanan dan racoon sudah selesai, dan Anda bisa mulai menguji konfigurasi. 
+	Merupakan ide yang bagus untuk menjalankan <command>racoon</command> dengan parameter <parameter class="command">-F</parameter>. 
+	Hal ini akan menjalankan <command>racoon</command> didepan layar (foreground), membuatnya lebih mudah untuk menangkap pesan kesalahan. 
+	Untuk menjalankannya:
       </para>
 
       <screen>
@@ -569,10 +485,9 @@ remote 192.168.1.169
       </screen>
 
       <para>
-        Now that you have added the security policies to the security policy
-        database, and started <command>racoon</command>, you can test your IPsec configuration.
-        For instance, you could ping the other host to start with. The
-        first time you ping the other host, this will fail:
+        Sekarang karena Anda telah menambahkan aturan keamanan pada basis data, dan menjalankan <command>racoon</command>, Anda bisa 
+	menguji konfigurasi IPsec Anda. Sebagai contoh, Anda bisa melakukan ping ke host lain sebagai permulaan. Pertama kali Anda melakukan 
+	ping, Anda akan menemui kegagalan:
       </para>
 
       <screen>
@@ -581,13 +496,11 @@ connect: Resource temporarily unavailable
       </screen>
 
       <para>
-        The reason for this is that the security associations still
-        have to be set up. But the ICMP packet will trigger the key exchange.
-        ping will trigger the key exchange. You can see whether the exchange
-        was succesful or not by looking at the <command>racoon</command> log messages in
-        <filename>/var/log/messages</filename>, or the output on the terminal
-        if you started <command>racoon</command> in the foreground. A succesful key
-	exhange looks like this:
+        Alasannya adalah karena asosiasi keamanan harus dibentuk. Tetapi paket ICMP akan memicu pertukaran kunci. Ping 
+	akan memicu pertukaran kunci. Anda bisa melihat apakah pertukaran berhasil atau tidak dengan melihat pada pesan log 
+	<command>racoon</command> pada 
+        <filename>/var/log/messages</filename>, atau hasil keluaran dari terminal jika Anda menjalankan 
+	<command>racoon</command> pada foreground. Pertukaran kunci yang sukses akan tampak seperti berikut:
       </para>
 
       <screen>
@@ -603,16 +516,12 @@ connect: Resource temporarily unavailable
       </screen>
 
       <para>
-        After the key exchange, you
-        can verify that IPsec is set up correctly by analyzing the packets
-        that go in and out with <command>tcpdump</command>. <command>tcpdump</command> is
-        available in the <emphasis>n</emphasis> diskset. Suppose that
-        the outgoing connection to the other host goes through the
-        <emphasis>eth0</emphasis> interface, you can analyze the packats
-        that go though the <emphasis>eth0</emphasis> interface with
-        <command>tcpdump -i eth0</command>. If the outgoing packets are
-        encrypted with ESP, you can see this in the <command>tcpdump</command>
-        output. For example:
+        Setelah pertukaran kunci, Anda bisa memastikan bahwa IPsec sudah dikonfigurasi dengan benar dengan menganalisa 
+	paket yang masuk dan keluar dengan <command>tcpdump</command>. <command>tcpdump</command> tersedia pada set disk 
+	<emphasis>n</emphasis>. Misalkan koneksi keluar ke host lain melalui antarmuka <emphasis>eth0</emphasis>, Anda bisa 
+	menganalisa paket yang melalui antarmuka <emphasis>eth0</emphasis> dengan 
+        <command>tcpdump -i eth0</command>. Jika paket keluar dienkripsi dengan ESP, Anda bisa melihatnya pada 
+	hasil keluaran <command>tcpdump</command>. Sebagai contoh:
       </para>
 
       <screen>
