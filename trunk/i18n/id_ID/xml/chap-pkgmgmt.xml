@@ -500,9 +500,10 @@ done
       </screen>
 
       <para>
-        After writing the script to a file you can execute it, and
-        specify a <filename>slackware/</filename> directory that
-        provides the disk sets. For example:
+	Setelah script di tulis ke dalam file, Anda dapat 
+	mengeksekusinya, kemudian menspesifikan 
+	direktori <filename>Slackware</filename> yang menyediakan 
+	kumpulan disk. Sebagai contoh :
       </para>
 
       <screen>
