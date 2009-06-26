@@ -500,9 +500,9 @@ done
       </screen>
 
       <para>
-	Setelah script di tulis ke dalam file, Anda dapat 
-	mengeksekusinya, kemudian menspesifikan 
-	direktori <filename>Slackware</filename> yang menyediakan 
+	Setelah script di tulis ke dalam berkas, Anda dapat 
+	mengeksekusinya, kemudian menentukan 
+	direktori <filename>slackware</filename> yang menyediakan 
 	kumpulan disk. Sebagai contoh :
       </para>
 
