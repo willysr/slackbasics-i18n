@@ -2537,12 +2537,12 @@ $ <userinput>find . \( -perm 0666 -o -perm 0664 \) -exec chmod 0644 {} \;</useri
       <title>which</title>
 
       <para>
-	The <command>which</command> command is not part of the Single
-	UNIX Specification version 3, but it is provided by most
-	sysmtems. <command>which</command> locates a command that is
-	in the user's path (as set by the PATH environment variable),
-	printing its full path. Providing the name of a command as its
-	parameter will show the full path:
+	La commande <command>which</command> ne fait pas partie de la Single
+	UNIX Specification version 3, mais est disponible sur la plupart des
+	systèmes. <command>which</command> trouve une commande dans le chemin de
+	recherche de l'utilisateur (positionné dans la variable d'environnement
+	PATH), et affiche son chemin complet. Ajouter le nom d'une commande en
+	paramètre affichera le chemin complet :
       </para>
 
       <screen>
@@ -2551,7 +2551,7 @@ $ <userinput>which ls</userinput>
       </screen>
 
       <para>
-	You can also query the paths of multiple commands:
+	Vous pouvez aussi demander le chemin de plusieurs commandes:
       </para>
 
       <screen>
@@ -2561,8 +2561,8 @@ $ <userinput>which ls cat</userinput>
       </screen>
 
       <para>
-        <command>which</command> returns a non-zero return value
-	if the command could not be found.
+        <command>which</command> retournes une valeur non nulle si la commande
+	est introuvable.
       </para>
     </sect2>
 
@@ -2570,11 +2570,11 @@ $ <userinput>which ls cat</userinput>
       <title>whereis</title>
 
       <para>
-	This <command>whereis</command> command searches binaries, manual pages and sources of a
-	command in some predefined places. For instance, the following
-	command shows the path of the <command>ls</command> and the
-	<citerefentry><refentrytitle>ls</refentrytitle><manvolnum>1</manvolnum></citerefentry>
-	manual page:
+	La commande <command>whereis</command> recherche des binaires, des pages
+	de manuel et les fichiers source d'une commande à certains endroits
+	pré-définis. Par exemple, la commande suivante affiche le chemin
+	de <command>ls</command> et la page de manuel
+	<citerefentry><refentrytitle>ls</refentrytitle><manvolnum>1</manvolnum></citerefentry> :
       </para>
 
       <screen>
@@ -2587,37 +2587,37 @@ ls: /bin/ls /usr/share/man/man1/ls.1.gz
       <title>locate</title>
 
       <para>
-        Slackware Linux also provides the
-	<command>locate</command> command that searches through a file
-	database that can be generated periodically with the
-	<command>updatedb</command> command. Since it uses a prebuilt
-	database of the filesystem, it is a lot faster than
-	<command>command</command>, especially when directory entry
-	information has not been cached yet. Though, the
-	<command>locate</command>/<command>updatedb</command> combo
-	has some downsides:
+        Slackware Linux offre aussi la commande
+	<command>locate</command> qui recherche à travers une base de données de
+	fichiers qui peut être générée périodiquement avec la commande
+	<command>updatedb</command>. Puisqu'elle utilise une base de donnée
+	pré-construite du système de fichier, elle est bien plus rapide que
+	<command>which</command>, précisément quand l'information de l'entrée de
+	répertoire n'a pas encore été mis en cache. Cependant, la combinaison
+	<command>locate</command>/<command>updatedb</command> a quelques
+	désavantages :
       </para>
 
       <itemizedlist>
 	<listitem>
 	  <para>
-	    New files are not part of the database until the next
-	    <command>updatedb</command> invocation.
+	    Les nouveaux fichiers ne sont pas dans la base de données avant la
+	    prochaine invocation de <command>updatedb</command>.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    <command>locate</command> has no conception of
-	    permissions, so users may locate files that are normally
-	    hidden to them.
+	    <command>locate</command> n'a pas de concept de permissions, donc
+	    les utilisateurs peuvent localiser des fichier qui leur sont
+	    normalement cachés.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    A newer implementation, named <emphasis>slocate</emphasis>
-	    deals with permissions, but requires elevated privileges.
-	    This is the <command>locate</command> variation that is
-	    included with Slackware Linux.
+	    Une nouvelle implémentation, nommée <emphasis>slocate</emphasis>
+	    prend en compte les permissions, mais requiert des privilèges
+	    élevés. C'est cette variante de <command>locate</command> qui est
+	    inclue dans with Slackware Linux.
 	  </para>
 	</listitem>
       </itemizedlist>
