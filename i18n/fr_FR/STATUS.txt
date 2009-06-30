@@ -4,7 +4,6 @@ lignes fichier                  trad     1a-rev  2a-rev
     87 chap-book.xml            OK       TODO       -
    117 bind.xml                 TODO        -       -
    125 chap-x11.xml             TODO        -       -
-   129 services.xml             TODO        -       -
    143 slackware-basics.xml     OK       TODO       -
    144 inetd.xml                TODO        -       -
    156 apache.xml               TODO        -       -
