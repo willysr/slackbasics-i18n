@@ -2701,7 +2701,7 @@ test/test1
 	That looks more like the output you probably expected. This
 	archive seems to contain a directory
 	<filename>test</filename>, which contains the files
-	<filename>test2</filename> and <filename>test2</filename>.  It
+	<filename>test2</filename> and <filename>test1</filename>.  It
 	is also possible to specify the archive file name as an
 	parameter to <command>tar</command>, by using the <parameter
 	class="command">f</parameter> parameter:
