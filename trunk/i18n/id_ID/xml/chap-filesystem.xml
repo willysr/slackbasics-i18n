@@ -2366,7 +2366,7 @@ test/test1
 
       <para>
 	Ini lebih sesuai dengan apa yang Anda harapkan. Arsip ini berisi sebuah direktori <filename>test</filename>, yang 
-	berisi berkas <filename>test2</filename> dan <filename>test2</filename>.  Juga dimungkinkan untuk menentukan nama 
+	berisi berkas <filename>test2</filename> dan <filename>test1</filename>. Juga dimungkinkan untuk menentukan nama 
 	arsip sebagai parameter pada <command>tar</command>, dengan menggunakan parameter <parameter
 	class="command">f</parameter>:
       </para>
