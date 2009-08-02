@@ -2738,7 +2738,7 @@ test/test1
       </screen>
 
       <para>
-	Ca ressemble un peu au résultat que vous attendiez probablement. Cette
+	Ca ressemble plus au résultat que vous attendiez probablement. Cette
 	archive semble contenir un répertoire
 	<filename>test</filename>, qui contient les fichiers 
 	<filename>test2</filename> et <filename>test1</filename>.  Il est aussi
@@ -2843,23 +2843,24 @@ test/test1
   </sect1>
 
   <sect1 xml:id="basics-filesystem-mounting">
-    <title>Mounting filesystems</title>
+    <title>Monter des systèmes de fichiers</title>
 
     <sect2 xml:id="basics-filesystem-mounting-introduction">
       <title>Introduction</title>
 
       <para>
-	Like most Unices Linux uses a technique named
-	<quote>mounting</quote> to access filesystems. Mounting means
-	that a filesystem is connected to a directory in the root
-	filesystem. One could for example mount a CD-ROM drive to the
-	<filename>/mnt/cdrom</filename> directory. Linux supports many
-	kinds of filesystems, like Ext2, Ext3, ReiserFS, JFS, XFS,
-	ISO9660 (used for CD-ROMs), UDF (used on some DVDs) and
-	DOS/Windows filesystems, like FAT, FAT32 and NTFS. These
-	filesystems can reside on many kinds of media, for example
-	hard drives, CD-ROMs and Flash drives. This section explains
-	how filesystems can be mounted and unmounted.
+	Comme la plupart des Unixes Linux utilise une technique nommée
+	<quote>montage</quote> pour accéder aux systèmes de fichiers. Monter
+	signifie qu'un système de fichiers est connecté à un répertoire dans le
+	système de fichiers racine. On peut par exemple monter un lecteur CD-ROM
+	dans le répertoire <filename>/mnt/cdrom</filename>. Linux supporte
+	plusieurs types de systèmes de fichiers, comme Ext2, Ext3, ReiserFS,
+	JFS, XFS, ISO9660 (utilisé pour les CD-ROMs), UDF (utilisé pour
+	certains DVDs) et des systèmes de fichiers DOS/Windows, comme FAT,
+	FAT32 et NTFS. Ces systèmes de fichiers peuvent exister sur plusieurs
+	types de média, comme par exemple les disques durs, CD-ROMs et
+	périphériques à	mémoire Flash. Cette section explique comment les
+	systèmes de fichiers peuvent être montés et démontés.
       </para>
     </sect2>
 
@@ -2867,12 +2868,12 @@ test/test1
       <title>mount</title>
 
       <para>
-	The <command>mount</command> is used to mount filesystems. The
-	basic syntax is: <quote>mount /dev/devname
-	/mountpoint</quote>. The device name can be any block device,
-	like hard disks or CD-ROM drives. The mount point can be an
-	arbitrary point in the root filesystem. Let's look at an
-	example:
+	The <command>mount</command> sert à monter les systèmes de fichiers. La
+	syntaxe de base est : <quote>mount /dev/devname
+	/mountpoint</quote>. Le nom du périphérique peut être un quelconque
+	périphérique à interface bloc, comme disques durs ou lecteurs de CD-ROM.
+	Le point de montage peut être un point arbitraire du système de
+	fichiers racine. Voyons un exemple :
       </para>
 
       <screen>
@@ -2880,16 +2881,16 @@ test/test1
       </screen>
 
       <para>
-	This mounts the <filename>/dev/cdrom</filename> on the
-	<filename>/mnt/cdrom</filename> mountpoint. The
-	<filename>/dev/cdrom</filename> device name is normally a link
-	to the real CD-ROM device name (for example,
-	<filename>/dev/hdc</filename>). As you can see, the concept is
-	actually very simple, it just takes some time to learn the
-	device names ;). Sometimes it is necessary to specify which
-	kind of filesystem you are trying to mount.  The filesystem
-	type can be specified by adding the <parameter
-	class="command">-t</parameter> parameter:
+	Cela monte <filename>/dev/cdrom</filename> sur le point de montage
+	<filename>/mnt/cdrom</filename>. Le nom de périphérique
+	<filename>/dev/cdrom</filename>  est normalement un lien symbolique vers
+	le nom réel du périphérique CD-ROM (par exemple,
+	<filename>/dev/hdc</filename>). Comme vous pouvez le voir, le concept
+	est vraiment simple, cela prend juste un peu de temps d'apprendre les
+	noms des périphériques ;). Parfois il est nécessaire de spécifier quel
+	type de système de fichiers vous essayez de monter.  Le type de système
+	de fichiers peut être spécifié en ajoutant le paramètre <parameter
+	class="command">-t</parameter>:
       </para>
 
       <screen>
@@ -2897,8 +2898,8 @@ test/test1
       </screen>
 
       <para>
-	This mounts the vfat filesystem on
-	<filename>/dev/sda1</filename> to
+	Cela monte le système de fichiers vfat sur
+	<filename>/dev/sda1</filename> en
 	<filename>/mnt/flash</filename>.
       </para>
     </sect2>
@@ -2907,9 +2908,9 @@ test/test1
       <title>umount</title>
 
       <para>
-	The <command>umount</command> command is used to unmount
-	filesystems.  <command>umount</command> accepts two kinds of
-	parameters, mount points or devices. For example:
+	La commande <command>umount</command> est utilisée pour démonter les
+	systèmes de fichiers. <command>umount</command> accepte 2 types de
+	paramètres, les points de montage ou les périphériques. Par exemple :
       </para>
 
       <screen>
@@ -2918,20 +2919,19 @@ test/test1
       </screen>
 
       <para>
-	The first command unmounts the filesystem that was mounted on
-	<filename>/mnt/cdrom</filename>, the second commands unmounts
-	the filesystem on <filename>/dev/sda1</filename>.
+	La première commande démonte le système de fichiers qui a été monté en
+	<filename>/mnt/cdrom</filename>, la seconde commande démonte le système
+	de fichiers sur <filename>/dev/sda1</filename>.
       </para>
     </sect2>
 
     <sect2 xml:id="basics-filesystem-mounting-fstab">
-      <title>The fstab file</title>
+      <title>Le fichier fstab</title>
 
       <para>
-	The GNU/Linux system has a special file,
-	<filename>/etc/fstab</filename>, that specifies which
-	filesystems should be mounted during the system boot.  Let's
-	look at an example:
+	Le système GNU/Linux comporte un fichier spécial,
+	<filename>/etc/fstab</filename>, qui spécifie quel système de fichiers
+	doit être monté au démarrage du système. Voyons un exemple :
       </para>
 
       <screen>
@@ -2948,22 +2948,22 @@ proc             /proc            proc        defaults         0   0
       </screen>
 
       <para>
-	As you can see each entry in the <filename>fstab</filename>
-	file has five entries: fs_spec, fs_file, fs_vfstype,
-	fs_mntops, fs_freq, and fs_passno.  We are now going to look
-	at each entry.
+	Comme vous pouvez le voir chaque ligne dans le fichier
+	<filename>fstab</filename> a 5 entrées : fs_spec, fs_file, fs_vfstype,
+	fs_mntops, fs_freq, and fs_passno.  Nous allons à présent regarder
+	chaque entrée.
       </para>
 
       <sect3>
 	<title>fs_spec</title>
 
 	<para>
-	  The fs_spec option specifies the block device, or remote
-	  filesystem that should be mounted. As you can see in the
-	  example several /dev/hda partitions are specified, as well
-	  as the CD-ROM drive and floppy drive. When NFS volumes are
-	  mounted an IP address and directory can be specified, for
-	  example: <filename>192.168.1.10:/exports/data</filename>.
+	  L'option fs_spec spécifie le périphérique bloc, ou système de fichiers
+	  distant qui doit être monté. Comme vous pouvez le voir dans l'exemple
+	  plusieurs partitions /dev/hda sont spécifiées, ainsique que le lecteur
+	  de CD-ROM et le lecteur de disquettes. Quand des volumes NFS sont
+	  montés une adresse IP et un répertoire peuvent être spécifiés, par
+	  exemple: <filename>192.168.1.10:/exports/data</filename>.
 	</para>
       </sect3>
 
@@ -2971,8 +2971,8 @@ proc             /proc            proc        defaults         0   0
 	<title>fs_file</title>
 
 	<para>
-	  fs_file specifies the mount point. This can be an arbitrary
-	  directory in the filesystem.
+	  fs_file spécifie le point de montage. Cela peut être un répertoire
+	  arbitraire du système de fichiers racine.
 	</para>
       </sect3>
 
@@ -2980,8 +2980,8 @@ proc             /proc            proc        defaults         0   0
 	<title>fs_vfstype</title>
 
 	<para>
-	  This option specifies what kind of filesystem the entry
-	  represents. For example this can be: ext2, ext3, reiserfs,
+	  Cette option spécifie le type de système de fichiers que l'entrée
+	  représente. Par exemple cela peut être : ext2, ext3, reiserfs,
 	  xfs, nfs, vfat, or ntfs.
 	</para>
       </sect3>
@@ -2990,70 +2990,69 @@ proc             /proc            proc        defaults         0   0
 	<title>fs_mntops</title>
 
 	<para>
-	  The fs_mntops option specifies which parameters should be
-	  used for mounting the filesystem. The
-	  <command>mount</command> manual page has an extensive
-	  description of the available options. These are the most
-	  interesting options:
+	  L'option fs_mntops spécifie quels paramètres doivent être utilisés
+	  pour monter le système de fichiers. La page de manuel de 
+	  <command>mount</command> contient une description détaillée des
+	  options disponibles. Voici les options les plus intéressantes :
 	</para>
 
 	<itemizedlist>
 	  <listitem>
 	    <para>
-	      <emphasis>noauto</emphasis>: filesystems that are listed
-	      in <filename>/etc/fstab</filename> are normally mounted
-	      automatically. When the <quote>noauto</quote> option is
-	      specified, the filesystem will not be mounted during the
-	      system boot, but only after issuing a
-	      <command>mount</command> command. When mounting such
-	      filesystem, only the mount point or device name has to
-	      be specified, for example: <command>mount
+	      <emphasis>noauto</emphasis>: les systèmes de fichiers qui sont
+	      décrits dans <filename>/etc/fstab</filename> sont normalement
+	      montés automatiquement. Quand l'option <quote>noauto</quote> est
+	      spécifiée, le système de fichiers ne sera pas monté pendant le
+	      démarrage du système, mais seulement après avoir effectué la
+	      commande <command>mount</command>. Au montage de tels systèmes de
+	      fichiers, seul le point de montage ou le nom du périphérique est
+	      nécessaire, par exemple: <command>mount
 	      /mnt/cdrom</command>
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>user</emphasis>: adding the
-	      <quote>user</quote> option will allow normal users to
-	      mount the filesystem (normally only the superuser is
-	      allowed to mount filesystems).
+	      <emphasis>user</emphasis>: ajouter l'option <quote>user</quote>
+	      permettra les utilisateurs normaux de monter le système de
+	      fichiers (normalement seul le superutilisateur -root- est autorisé
+	      à monter les systèmes de fichiers).
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>owner</emphasis>: the <quote>owner</quote>
-	      option will allow the owner of the specified device to
-	      mount the specified device. You can see the owner of a
-	      device using <command>ls</command>, e.g.  <command>ls -l
+	      <emphasis>owner</emphasis>: l'option <quote>owner</quote>
+	      permettra au propriétaire du périphérique de monter le
+	      périphérique spécifié. Vous pouvez voir le propriétaire d'un
+	      périphérique avec <command>ls</command>, e.g.  <command>ls -l
 	      /dev/cdrom</command>.
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>noexec</emphasis>: with this option enabled
-	      users can not run files from the mounted
-	      filesystem. This can be used to provide more security.
+	      <emphasis>noexec</emphasis>: avec cette option les utilisatuers ne
+	      peuvent pas exécuter les fichiers du système de fichiers monté.
+	      Cela peut être utilisé pour plus de sécurité.
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>nosuid</emphasis>: this option is comparable
-	      to the <quote>noexec</quote> option. With
-	      <quote>nosuid</quote> enabled SUID bits on files on the
-	      filesystem will not be allowed. SUID is used for certain
-	      binaries to provide a normal user to do something
-	      privileged.  This is certainly a security threat, so
-	      this option should really be used for removable media,
-	      etc. A normal user mount will force the nosuid option,
-	      but a mount by the superuser will not!
+	      <emphasis>nosuid</emphasis>: cette option est comparable à
+	      l'option <quote>noexec</quote>. Avec <quote>nosuid</quote> activé
+	      les bits SUID des fichiers du système de fichiers ne seront pas
+	      permis. SUID est utilisé sur certains binaires pour permettre un
+	      utilisateur ordinaire de faire quelque chose de privilégié.
+	      C'est certainement un trou de sécurité, donc cette option doit
+	      vraiment être utilisée pour les média amovibles, etc. Un montage
+	      par un utilisateur ordinaire forcera l'option nosuid, mais un
+	      montage fait par le superutilisateur ne le fera pas !
 	    </para>
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>unhide</emphasis>: this option is only
-	      relevant for normal CD-ROMs with the ISO9660
-	      filesystem. If <quote>unhide</quote> is specified hidden
-	      files will also be visible.
+	      <emphasis>unhide</emphasis>: cette option n'est significative
+	      seulement pour les CD-ROMs avec le système de fichiers ISO9660.
+	      Si <quote>unhide</quote> est spécifié les fichiers chachés seront
+	      aussi visibles.
 	    </para>
 	  </listitem>
 	</itemizedlist>
@@ -3063,11 +3062,11 @@ proc             /proc            proc        defaults         0   0
 	<title>fs_freq</title>
 
 	<para>
-	  If the <quote>fs_freq</quote> is set to 1 or higher, it
-	  specifies after how many days a filesystem dump (backup) has
-	  to be made. This option is only used when <ulink
-	  url="http://dump.sourceforge.net/">dump</ulink> is
-	  installed, and set up correctly to handle this.
+	  Si <quote>fs_freq</quote> est à 1 ou plus, cela spécifie après combien
+	  de jours un dump système de fichiers (sauvegarde) doit être fait.
+	  Cette option est utilisée seulement quand <ulink
+	  url="http://dump.sourceforge.net/">dump</ulink> est installé, et
+	  correctement configuré pour prendre en charge cela.
 	</para>
       </sect3>
 
@@ -3075,8 +3074,9 @@ proc             /proc            proc        defaults         0   0
 	<title>fs_passno</title>
 
 	<para>
-	  This field is used by <command>fsck</command> to determine
-	  the order in which filesystems are checked during the system
+	  Ce champ est utilisé par <command>fsck</command> pour déterminer
+	  l'ordre dans lequel les systèmes de fichiers doivent être vérifiés au
+	  démarrage du système.
 	  boot.
 	</para>
       </sect3>
@@ -3085,69 +3085,69 @@ proc             /proc            proc        defaults         0   0
   </sect1>
 
   <sect1 xml:id="basics-filesystem-gnupg">
-    <title>Encrypting and signing files</title>
+    <title>Chiffrer et signer des fichiers</title>
 
     <sect2>
       <title>Introduction</title>
 
       <para>
-	There are two security mechanisms for securing files: signing
-	files and encrypting files. Signing a file means that a
-	special digital signature is generated for a file. You, or
-	other persons can use the signature to verify the integrity of
-	the file. File encryption encodes a file in a way that only a
-	person for which the file was intended to read can read the
+	Il y a 2 mécanismes de sécurité pour sécuriser des fichiers : signer
+	les fichiers et chiffrer les fichiers. Signer un fichier signifie
+	qu'une signature digitale est générée pour un fichier. Vous, ou d'autres
+	personnes peuvent utiliser la signature pour vérifier l'intégrité du
+	fichier. Le chiffrage de fichier encode un fichier de manière à ce seule
+	la personne à qui le fichier est destiné peut lire le fichier.
 	file.
       </para>
 
       <para>
-	This system relies on two keys: the private and the public
-	key. Public keys are used to encrypt files, and files can only
-	be decrypted with the private key. This means that one can
-	sent his public key out to other persons. Others can use this
-	key to send encrypted files, that only the person with the
-	private key can decode. Of course, this means that the
-	security of this system depends on how well the private is
-	kept secret.
+	Ce système repose sur 2 clés : une clé privée et une clé publique.
+	Les clés publiques sont utilisées pour entrypter, et les fichiers ne
+	peuvent être déchiffrés qu'avec la clé privée. Cela signifie qu'on peut
+	envoyer sa clé publique à d'autres personnes. Les autres peuvent
+	utiliser cette clé pour envoyer des fichiers chiffrés, qui ne pourront
+	être déchiffrés uniquement par les personnes détentrices de la clé
+	privée. Bien sûr, cela signifie que la sécurité du système repose sur
+	le maintien secret de la clé privée.
       </para>
 
       <para>
-	Slackware Linux provides an excellent tool for signing and
-	encrypting files, named GnuPG. GnuPG can be installed from the
-	<quote>n</quote> disk set.
+	Slackware Linux fournit un outil excellent pour signer et chiffrer les
+	fichiers, nommé GnuPG. GnuPG peut être installé depuis la catégorie
+	<quote>n</quote>.
       </para>
     </sect2>
 
     <sect2>
-      <title>Generating your private and public keys</title>
+      <title>Générer vos clés privée et publique</title>
 
       <para>
-	Generating public and private keys is a bit complicated,
-	because GnuPG uses DSA keys by default. DSA is an encryption
-	algorithm, the problem is that the maximum key length of DSA
-	is 1024 bits, this is considered too short for the longer
-	term. That is why it is a good idea to use 2048 bit RSA
-	keys. This section describers how this can be done.
+	Générer vos clés privée et publique est un peu compliqué, car GnuPG
+	utilise les clés DSA par défaut. DSA est un algorithme de chiffrage, le
+	problème est que la longueur maximale d'une clé DSA est 1024 bits, c'est
+	considéré trop court pour sa pérennité. C'est pour cela qu'il est
+	judicieux d'utiliser des clés RSA à 2048 bits. Cette section décrit
+	comment faire.
       </para>
 
       <note>
 	<para>
-	  1024-bit keys were believed to be secure for a long
-	  time. But Bernstein's paper <emphasis>Circuits for Integer
-	  Factorization: a Proposal</emphasis> contests this, the
-	  bottom line is that it is quite feasible for national
-	  security agencies to produce hardware that can break keys in
-	  a relatively short amount of time.  Besides that it has be
-	  shown that 512-bit RSA keys can be broken in a relatively
-	  short time using common hardware. More information about
-	  these issues can by found in this e-mail to the cypherpunks
-	  list:
+	  Les clés 1024 bits ont été considérées sécuritaires pendant un bon
+	  moment. Cependant un écrit de Bernstein <emphasis>Circuits for Integer
+	    Factorization : a Proposal (NdT : Circuits pour factorisation
+	    entière : une proposition)</emphasis> conteste ce fait, en résumé
+	  il est pratiquement réalisable pour les agences nationales de sécurité
+	  de produire le matériel capable  de casser les clés en un temps
+	  relativement court. De plus il a été démontré que les clés RSA
+	  512-bits peuvent être cassées en un temps relativement court en
+	  utilisant du matériel courant. Plus d'informations sur ces problèmes
+	  peuvent être trouvés dans cet e-mail sur la liste cypherpunks :
 	<ulink url="http://lists.saigon.com/vault/security/encryption/rsa1024.html" />
 	</para>
       </note>
 
       <para>
-	We can generate a key by executing:
+	Nous pouvons générer une clé en exécutant :
       </para>
 
       <screen>
@@ -3155,97 +3155,97 @@ $ <userinput>gpg --gen-key</userinput>
       </screen>
 
       <para>
-	The first question is what kind of key you would like to
-	make. We will choose <emphasis>(4) RSA (sign only)</emphasis>:
+	La première question est quel type de clé vous voulez générer. Nous
+	allons choisir <emphasis>(4) RSA (signature seule)</emphasis> :
       </para>
 
       <screen>
-Please select what kind of key you want:
-   (1) DSA and ElGamal (default)
-   (2) DSA (sign only)
-   (4) RSA (sign only)
-Your selection? <userinput>4</userinput>
+Sélectionnez le type de clé désiré:
+   (1) DSA et Elgamal (par défaut)
+   (2) DSA (signature seule)
+   (5) RSA (signature seule)
+Votre choix ? <userinput>4</userinput>
       </screen>
 
       <para>
-	You will then be asked what the size of the key you want to
-	generate has to be. Type in <emphasis>2048</emphasis> to
-	generate a 2048 bit key, and press enter to continue.
+	Il vous sera alors demandé la taille vous désirez pour la clé que vous
+	voulez générer. Saisissez <emphasis>2048</emphasis> pour générer une clé
+	2048 bits, et appuyez sur entrée pour continuer.
       </para>
 
       <screen>
-What keysize do you want? (1024) <userinput>2048</userinput>
+	Quelle taille de clé désirez-vous ? (2048) <userinput>2048</userinput>
       </screen>
 
       <para>
-	The next question is simple to answer, just choose what you
-	like. Generally speaking it is not a bad idea to let the key
-	be valid infinitely. You can always deactivate the key with a
-	special revocation certificate.
+	La question suivante est simple, choisissez juste ce que vous voulez.
+	De manière générale ce n'est pas une mauvaise idée de laisser la clé
+	valide indéfiniment. Vous pouvez toujours désactiver la clé par un
+	certificat spécial de révocation.
       </para>
 
       <screen>
-Please specify how long the key should be valid.
-         0 = key does not expire
-      &lt;n&gt;  = key expires in n days
-      &lt;n&gt;w = key expires in n weeks
-      &lt;n&gt;m = key expires in n months
-      &lt;n&gt;y = key expires in n years
-Key is valid for? (0) <userinput>0</userinput>
+Spécifiez combien de temps cette clé devrait être valide.
+         0 = la clé n'expire pas
+      &lt;n&gt;  = la clé expire dans n jours
+      &lt;n&gt;w = la clé expire dans n semaines
+      &lt;n&gt;m = la clé expire dans n mois
+      &lt;n&gt;y = la clé expire dans n années
+La clé est valide pour ? (0) <userinput>0</userinput>
       </screen>
 
       <para>
-	GnuPG will then ask for confirmation. After confirming your
-	name and e-mail address will be requested. GnuPG will also ask
-	for a comment, you can leave this blank, or you could fill in
-	something like <quote>Work</quote> or <quote>Private</quote>,
-	to indicate what the key is used for. For example:
+	GnuPG va alors demander confirmation. Après confirmation, vote nom et
+	votre adresse e-mail vous seront demandés. GnuPG vous demandera aussi
+	un commentaire, vous pouvez le laisser vide, ou vous pouvez saisir
+	quelque chose comme <quote>Travail</quote> ou <quote>Privé</quote>,
+	pour indiquer l'usage de la clé. Par exemple :
       </para>
 
       <screen>
-Real name: <userinput>John Doe</userinput>
-Email address: <userinput>john@doe.com</userinput>
-Comment: <userinput>Work</userinput>              
-You selected this USER-ID:
-    "John Doe (Work) &lt;john@doe.com&gt;"
+Nom réel: <userinput>John Doe</userinput>
+Adresse e-mail: <userinput>john@doe.com</userinput>
+Commentaire: <userinput>Travail</userinput>              
+Vous avez sélectionné ce nom d'utilisateur:
+    "John Doe (Travail) &lt;john@doe.com&gt;"
       </screen>
 
       <para>
-	GnuPG will the ask you to confirm your user ID. After
-	confirming it GnuPG will ask you to enter a password. Be sure
-	to use a good password:
+	GnuPG vous demandera confirmation votre nom d'utilisateur. Après
+	confirmation GnuPG vous demandera de saisir un mot de passe.
+	Assurez-vous de choisir un bon mot de passe :
       </para>
 
       <screen>
-You need a Passphrase to protect your secret key.    
+Vous avez besoin d'une phrase de passe pour protéger votre clé secrète.
 
-Enter passphrase:
+Entrez la phrase de passe: 
       </screen>
 
       <para>
-	After entering the password twice GnuPG will generate the
-	keys. But we are not done yet. GnuPG has only generated a key
-	for signing information, not for encryption of information. To
-	continue, have a look at the output, and look for the key
-	ID. In the information about the key you will see
-	<emphasis>pub 2048R/</emphasis>. The key ID is printed after
-	this fragment.  In this example:
+	Après la saisie du mot de passe 2 fois GnuPG va générer les clés. Mais
+	ce n'est pas fini. GnuPG a seulement généré une clé pour signer les
+	informations, pas pour chiffrer les informations. Pour continuer,
+	regardez la sortie, et regardez l'identifiant de la clé. Dans
+	l'information à propos de la clé vous allez voir
+	<emphasis>pub 2048R/</emphasis>. L'identifiant de clé est affiché après
+	ce fragment.  Dans cet exemple :
       </para>
 
       <screen>
-public and secret key created and signed.
-key marked as ultimately trusted.
+gpg: clé 8D080768 marquée comme ayant une confiance ultime.
+les clés publique et secrète ont été créées et signées.
 
-pub  2048R/8D080768 2004-07-16 John Doe (Work) &lt;john@doe.com&gt;
-     Key fingerprint = 625A 269A 16B9 C652 B953  8B64 389A E0C9 8D08 0768
+pub  2048R/8D080768 2004-07-16 John Doe (Travail) &lt;john@doe.com&gt;
+     Empreinte de la clé = 625A 269A 16B9 C652 B953  8B64 389A E0C9 8D08 0768
       </screen>
 
       <para>
-	the key ID is <emphasis>8D080768</emphasis>. If you lost the
-	output of the key generation you can still find the key ID in
-	the output of the <command>gpg --list-keys</command>
-	command. Use the key ID to tell GnuPG that you want to edit
-	your key:
+	l'identifiant de la clé est <emphasis>8D080768</emphasis>. Si vous
+	perdez la sortie de la génération de la clé vous pouvez toujours
+	retrouver l'identifiant de la clé par la sortie de la commande
+	<command>gpg --list-keys</command>. Utilisez l'identifiant de la clé
+	pour dire à GnuPG que vous voulez éditer votre clé :
       </para>
 
       <screen>
@@ -3253,7 +3253,7 @@ $ <userinput>gpg --edit-key &lt;Key ID&gt;</userinput>
       </screen>
 
       <para>
-	With the example key above the command would be:
+	Avec la clé d'exemple ci-dessus la commande serait :
       </para>
 
       <screen>
@@ -3261,90 +3261,91 @@ $ <userinput>gpg --edit-key 8D080768</userinput>
       </screen>
 
       <para>
-	GnuPG will now display a command prompt. Execute the
-	<command>addkey</command> command on this command prompt:
+	GnuPG va afficher maintenant un prompt interactif. Executez la commande
+	<command>addkey</command> suite à ce prompt :
       </para>
 
       <screen>
-Command&gt; <userinput>addkey</userinput>
+Commande&gt; <userinput>addkey</userinput>
       </screen>
 
       <para>
-	GnuPG will now ask the password you used for your key:
+	GnuPG va maintenant demander le mot de passe vous avez entré pour votre clé :
       </para>
 
       <screen>
-Key is protected.
+La clé est protégée.
 
-You need a passphrase to unlock the secret key for
-user: "John Doe (Work) &lt;john@doe.com&gt;"
-2048-bit RSA key, ID 8D080768, created 2004-07-16
+Vous avez besoin d'une phrase de passe pour déverrouiller la
+clé secrète pour l'utilisateur: "John Doe (Travail) &lt;john@doe.com&gt;"
+2048-bit RSA key, ID 8D080768, créée le 2004-07-16
 
-Enter passphrase:
+Entrez la phrase de passe: 
       </screen>
 
       <para>
-	After entering the password GnuPG will ask you what kind of
-	key you would like to create. Choose <emphasis>RSA (encrypt
-	only)</emphasis>, and fill in the information like you did
-	earlier (be sure to use a 2048 bit key).  For example:
+	Après la saisie du mot de passe GnuPG va vous demander quel type de clé
+	vous désirez créer. Choisissez <emphasis>RSA (chiffrement seul)
+	</emphasis>, et saisissez l'information comme vous l'avez fait plus tôt
+	(assurez-vous d'utiliser une clé 2048 bits). Par exemple :
       </para>
 
       <screen>
-Please select what kind of key you want:
-   (2) DSA (sign only)
-   (3) ElGamal (encrypt only)
-   (4) RSA (sign only)
-   (5) RSA (encrypt only)
-Your selection? <userinput>5</userinput>
-What keysize do you want? (1024) <userinput>2048</userinput>
-Requested keysize is 2048 bits       
-Please specify how long the key should be valid.
-         0 = key does not expire
-      &lt;n&gt;  = key expires in n days
-      &lt;n&gt;w = key expires in n weeks
-      &lt;n&gt;m = key expires in n months
-      &lt;n&gt;y = key expires in n years
-Key is valid for? (0) <userinput>0</userinput>
+Sélectionnez le type de clé désiré:
+   (2) DSA (signature seule)
+   (4) Elgamal (chiffrement seul)
+   (5) RSA (signature seule)
+   (6) RSA (chiffrement seul)
+Votre choix ? <userinput>6</userinput>
+les clés RSA peuvent faire entre 1024 et 4096 bits de longueur.
+Quelle taille de clé désirez-vous ? (2048) <userinput>2048</userinput>
+La taille demandée est 2048 bits
+Spécifiez combien de temps cette clé devrait être valide.
+         0 = la clé n'expire pas
+      &lt;n&gt  = la clé expire dans n jours
+      &lt;n&gtw = la clé expire dans n semaines
+      &lt;n&gtm = la clé expire dans n mois
+      &lt;n&gty = la clé expire dans n années
+La clé est valide pour ? (0) <userinput>0</userinput>
       </screen>
 
       <para>
-	And confirm that the information is correct. After the key is
-	generated you can leave the GnuPG command prompt, and save the
-	new key with the <command>save</command> command:
+	Et confirmez que les informations sont correctes. Après la génération de
+	la clé vous pouvez quitter le prompt interactif de GnuPG, et sauver la
+	nouvelle clé avec la commande <command>save</command> :
       </para>
 
       <screen>
-Command&gt; <userinput>save</userinput>
+Commande&gt; <userinput>save</userinput>
       </screen>
 
       <para>
-	Congratulations! You have now generated the necessary keys to
-	encrypt and decrypt e-mails and files. You can now configure
-	your e-mail client to use GnuPG. It is a good idea to store
-	the contents of the <filename>.gnupg</filename> directory on
-	some reliable medium, and store that in a safe place! If your
-	private key is lost you can't decrypt files and messages that
-	were encrypted with your public key. If the private key, and
-	your password are stolen, the security of this system is
-	completely compromised.
+	Félicitations! Vous avez généré à présent les clés nécessaires pour
+	chiffrer et déchiffrer les e-mails et les fichiers. Vous pouvez
+	maintenant configurer votre client e-mail d'utiliser GnuPG. Il est
+	judicieux de sauvegarder le contenu du répertoire
+	<filename>.gnupg</filename> sur un média fiable, et le placer dans un
+	endroit sûr ! Si votre clé privée est perdue vous ne pouvez plus
+	déchiffrer les fichiers et messages chiffrés avec votre clé publique. Si
+	la clé privée, et votre mot de passe vous sont volés, la sécurité de ce
+	système est totalement compromise.
       </para>
     </sect2>
 
     <sect2>
-      <title>Exporting your public key</title>
+      <title>Exporter vote clé publique</title>
 
       <para>
-	To make GnuPG useful, you have to give your public key to
-	people who send you files or e-mails. They can use your public
-	key to encrypt files, or use it to verify whether a file has a
-	correct signature or not. The key can be exported using the
-	<parameter class="command">--export</parameter> parameter. It
-	is also a good idea to specify the <parameter
-	class="command">--output</parameter> parameter, this will save
-	the key in a file. The following command would save the public
-	key of <emphasis>John Doe</emphasis>, used in earlier
-	examples, to the file <filename>key.gpg</filename>:
+	Pour que GnuPG soit utile, vous devez donner votre clé publique aux personnes qui vous envoient des fichiers ou des e-mails. Ils peuvent utiliser votre
+	clé publique pour chiffrer des fichiers, ou l'utiliser pour vérifier si
+	un fichier a une signature correcte ou non. La clé peut être exportée
+	en utilisant le paramètre
+	<parameter class="command">--export</parameter>. Il est aussi judicieux
+	de spécifier le paramètre <parameter
+	class="command">--output</parameter>, cela sauvegardera la clé dans un
+	fichier. La commande suivante sauvegarde la clé publique de
+	<emphasis>John Doe</emphasis>, utilisée dans les exemples précédents,
+	dans le fichier <filename>key.gpg</filename> :
       </para>
 
       <screen>
@@ -3352,12 +3353,11 @@ $ <userinput>gpg --output key.gpg --export john@doe.com</userinput>
       </screen>
 
       <para>
-	This saves the key in binary format. Often it is more
-	convenient to use the so-called <quote>ASCII armored
-	output</quote>, which fits better for adding the key to
-	e-mails, or websites. You export an ASCII armored version of
-	the key by adding the <parameter
-	class="command">--armor</parameter> parameter:
+	Cela sauvegarde la clé sous format binaire. Souvent il est plus facile
+	d'utiliser la <quote>sortie ASCII armée (ASCII armored output)</quote>,
+	qui convient mieux à l'ajout de la clé dans les e-mails, ou les sites
+	webs. Vous exportez une version ASCII armée de la clé en ajoutant le
+	paramètre <parameter class="command">--armor</parameter> :
       </para>
 
       <screen>
@@ -3365,9 +3365,8 @@ $ <userinput>gpg --armor --output key.gpg --export john@doe.com</userinput>
       </screen>
 
       <para>
-	If you look at the <filename>key.gpg</filename> file you will
-	notice that the ASCII armored key is a much more comfortable
-	format.
+	Si vous regarder le fichier <filename>key.gpg</filename> vous
+	remarquerez que la clé ASCII armée est un format bien plus confortable.
       </para>
     </sect2>
 
@@ -3375,79 +3374,78 @@ $ <userinput>gpg --armor --output key.gpg --export john@doe.com</userinput>
       <title>Signatures</title>
 
       <para>
-	With GPG you can make a signature for a file. This signature
-	is unique, because your signature can only be made with your
-	private key. This means that other people can check whether
-	the file was really sent by you, and whether it was in any way
-	altered or not. Files can be signed with the <parameter
-	class="command">--detach-sign</parameter> parameter. Let us
-	look at an example. This command will make a signature for the
-	<filename>memo.txt</filename> file. The signature will be
-	stored in <filename>memo.txt.sig</filename>.
+	Avec GPG vous pouvez créer une signature d'un fichier. Cette signature
+	est unique, puisque votre signature ne peut être créée qu'avec votre clé
+	privée. Cela signifie que d'autres personnes peuvent vérifier si le
+	fichier a bien été envoyé par vous, et s'il a été modifié ou non par un
+	quelconque moyen. Les fichiers peuvent être signés avec le paramètre
+	<parameter class="command">--detach-sign</parameter>. Voyons un exemple.
+	Cette commande va créer la signature pour le fichier
+	<filename>memo.txt</filename>. La signature va être sauvegardée dans
+	<filename>memo.txt.sig</filename>.
       </para>
 
       <screen>
 $ <userinput>gpg --output memo.txt.sig --detach-sign memo.txt</userinput>
 
-You need a passphrase to unlock the secret key for
-user: "John Doe (Work) &lt;john@doe.com&gt;"
-2048-bit RSA key, ID 8D080768, created 2004-07-16
+Vous avez besoin d'une phrase de passe pour déverrouiller la
+clé secrète pour l'utilisateur: "John Doe (Travail) &lt;john@doe.com&gt;"
+clé de 2048 bits RSA, ID 8D080768, créée le 2004-07-16
 
-Enter passphrase:
+Entrez la phrase de passe:
       </screen>
 
       <para>
-	As you can see, GnuPG will ask you to enter the password for
-	your private key. After you have entered the right key the
-	signature file (<filename>memo.txt.sig</filename>) will be
-	created.
+	Comme vous pouvez le voir, GnuPG vous demande de saisir le mot de passe
+	pour la clé privée. Après avoir saisi le bon mot de passe le fichier de
+	signature (<filename>memo.txt.sig</filename>) sera créé.
       </para>
 
       <para>
-	You can verify a file with its signature using the <parameter
-	class="command">--verify</parameter> parameter. Specify the
-	signature file as a parameter to the <parameter
-	class="command">--verify</parameter> parameter. The file that
-	needs to be verified can be specified as the final parameter:
+	Vous pouvez vérifier un fichier avec sa signature en utilisant le
+	paramètre <parameter class="command">--verify</parameter>. Specifiez le
+	fichier signature en argument du paramètre <parameter
+	class="command">--verify</parameter>. Le fichier qui nécessite la
+	vérification doit être spécifié en paramètre final :
       </para>
 
       <screen>
 $ <userinput>gpg --verify memo.txt.sig memo.txt</userinput>
-gpg: Signature made Tue Jul 20 23:47:45 2004 CEST using RSA key ID 8D080768
-gpg: Good signature from "John Doe (Work) &lt;john@doe.com&gt;"
+gpg: Signature faite le dim. 26 juil. 2009 22:12:01 CEST avec la clé RSA ID 8D080768
+gpg: Bonne signature de "John Doe (Travail) &lt;john@doe.com&gt;"
       </screen>
 
       <para>
-	This will confirm that the file was indeed signed by
-	<emphasis>John Doe (Work) &lt;john@doe.com&gt;</emphasis>,
-	with the key <emphasis>8D080768</emphasis>, and that the file
-	is unchanged. Suppose the file was changed, GnuPG would have
-	complained about it loudly:
+	Cela confirmera que le fichier a bien été signé par
+	<emphasis>John Doe (Travail) &lt;john@doe.com&gt;</emphasis>,
+	avec la clé <emphasis>8D080768</emphasis>, et que le fichier n'a pas été
+	modifié. Supposez que le fichier a été modifé, GnuPG s'en serait plaint
+	bruyamment :
       </para>
 
       <screen>
 $ <userinput>gpg --verify memo.txt.sig memo.txt</userinput>
-gpg: Signature made Tue Jul 20 23:47:45 2004 CEST using RSA key ID 8D080768
-gpg: BAD signature from "John Doe (Work) &lt;john@doe.com&gt;"
+gpg: Signature faite le dim. 26 juil. 2009 22:12:01 CEST avec la clé RSA ID 8D080768
+gpg: MAUVAISE signature de "John Doe (Travail) &lt;john@doe.com&gt;"
       </screen>
     </sect2>
 
     <sect2>
-      <title>Encryption</title>
+      <title>Chiffrage</title>
 
       <para>
-	One of the main features of GnuPG is encryption. Due to its
-	use of asymmetric cryptography, the person who encrypts a file
-	and the person who decrypts a file do not need to share a
-	key. You can encrypt a file with the public key of another
-	person, and that other person can decrypt it with his or her
-	private key. You can encrypt files with the <parameter
-	class="command">--encrypt</parameter>. If you do not specify a
-	user ID for which the file should be encrypted, GnuPG will
-	prompt for the user ID. You can specify the user ID with the
-	<parameter class="command">-r</parameter> parameter. In the
-	following example, the file <filename>secret.txt</filename>
-	will be encrypted for another person named <emphasis>John
+	Une des fonctionnalités principales de GnuPG est le chiffrage. Grâce à
+	son chiffrage asymétrique, la personne qui chiffre un fichier et la
+	personne qui déchiffre un fichier n'ont pas besoin de partager une clé.
+	Vous pouvez chiffrer un fichier avec la clé publique d'une autre
+	personne, et cette autre personne peut déchiffrer celui-ci avec sa clé
+	privée. Vous pouvez chiffrer des fichiers avec <parameter
+	class="command">--encrypt</parameter>. Si vous ne spécifiez pas de nom
+	d'utilisateur pour lequel le fichier doit être chiffré, GnuPG va
+	demander l'identifiant utilisateur. Vous pouvez spécifier l'identifiant
+	utilisateur avec le paramètre <parameter class="command">-r</parameter>.
+	Dans l'exemple suivant, le fichier <filename>secret.txt</filename>
+	sera chiffré par une autre personne nommée <emphasis>John
 	Doe</emphasis>:
       </para>
 
@@ -3456,35 +3454,34 @@ $ <userinput>gpg --encrypt -r "John Doe" secret.txt</userinput>
       </screen>
 
       <para>
-	The user ID is quoted with double quotes for making sure that
-	the ID is interpreted as a single program argument. After the
-	encryption is completed, the encrypted version of the file
-	will be available as <filename>secret.txt.gpg</filename>.
+	L'identifiant utilisateur est quoté avec des doubles quotes pour être
+	sûr que l'identifiant est interprété comme un seul argument. A la fin
+	du chiffrage, la version chiffrée du fichier est disponible en tant que
+	<filename>secret.txt.gpg</filename>.
       </para>
 
       <para>
-	The user who receives the file can decrypt it with the
-	<parameter class="command">--decrypt</parameter> parameter of
-	the <command>gpg</command> command:
+	L'utilisateur qui reçoit le fichier peut le déchiffrer avec le paramètre
+	<parameter class="command">--decrypt</parameter> de la commande
+	<command>gpg</command> :
       </para>
 
       <screen>
 $ <userinput>gpg --output secret.txt --decrypt secret.txt.gpg</userinput>
 
-You need a passphrase to unlock the secret key for
-user: "John Doe (Work) &lt;john@doe.com&gt;"
-2048-bit RSA key, ID 8D080768, created 2004-07-16 (main key ID EC3ED1AB)
+Vous avez besoin d'une phrase de passe pour débloquer la clé secrète pour l'utilisateur : "John Doe (Travail) &lt;john@doe.com&gt;"
+2048-bit RSA key, ID 8D080768, created 2004-07-16 (ID clé principale ID EC3ED1AB)
 
-Enter passphrase:
+Entrez la phrase de passe: 
 
-gpg: encrypted with 2048-bit RSA key, ID 8D080768, created 2004-07-16
-      "John Doe (Work) &lt;john@doe.com&gt;"
+gpg: chiffré avec une clé de 2048 bits RSA, ID 8D080768, créée le 2004-07-16
+      "John Doe (Travail) &lt;john@doe.com&gt;"
       </screen>
 
       <para>
-	In this example the <parameter
-	class="command">--output</parameter> parameter is used store
-	the decrypted content in <filename>secret.txt</filename>.
+	Dans cet exemple le paramètre <parameter
+	class="command">--output</parameter> est utilisé pour sauvegarder le
+	contenu déchiffré dans <filename>secret.txt</filename>.
       </para>
     </sect2>
   </sect1>

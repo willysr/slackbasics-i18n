@@ -27,4 +27,4 @@ lignes fichier                  trad     1a-rev  2a-rev
    850 chap-install.xml         OK       TODO       -
   1049 chap-shell.xml           OK       TODO       -
   1921 chap-textproc.xml        TODO        -       -
-  3453 chap-filesystem.xml      PARTIAL     -       -
+  3453 chap-filesystem.xml      OK       TODO       -
