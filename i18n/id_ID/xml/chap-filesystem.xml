@@ -25,7 +25,7 @@
 	Sistem berkas terdiri dari dua jenis elemen: data dan metadata. 
 	Metadata menjelaskan blok data yang sesungguhnya ada pada disk. 
 	Sebagian besar sistem berkas menggunakan node informasi (inode) untuk 
-	menyediakan metadata penyimpanan. Sebagian besar sistem berkas 
+	untuk menyimpan metadata. Sebagian besar sistem berkas 
 	menyimpan data berikut pada inodenya:
       </para>
 
@@ -907,7 +907,7 @@ $ <userinput>mv file1 file2</userinput>
       </para>
 
       <screen>
-$ <userinput>targetdir</userinput>
+$ <userinput>mkdir targetdir</userinput>
 $ <userinput>mv file1 directory1 targetdir</userinput>
       </screen>
 
@@ -1134,7 +1134,7 @@ $ <userinput>chmod u+s /bin/su</userinput>
 	untuk meminimalkan penggunaan bit SUID dan SGID pada berkas.</para>
       </note>
 
-      <para> Bit sticky juga menarik jika berhubungan dengan direktori. Bit ini tidak mengijinkan pengguna untuk mengganti berkas yang dihapus linknya 
+      <para> Bit sticky juga menarik jika berhubungan dengan direktori. Bit ini tidak mengijinkan pengguna untuk mengganti nama berkas atau menghapus berkas
       yang tidak dimilikinya, pada direktori dimana mereka memiliki hak akses tulis. Hal ini biasanya digunakan pada direktori yang bersifat 
       world-writeable (bisa ditulis oleh semua), seperti direktori temporal (<filename>/tmp</filename>) pada banyak sistem UNIX. 
       Tag sticky bisa ditentukan dengan <emphasis>t</emphasis>: </para>
@@ -2232,7 +2232,7 @@ ls: /bin/ls /usr/share/man/man1/ls.1.gz
 	melalui berkas basis data yang bisa dihasilkan secara periodik dengan perintah 
 	<command>updatedb</command>. Karena ia menggunakan basis data yang dibangun pada sistem berkas, 
 	maka perintah ini bekerja lebih cepat dari 
-	<command>command</command>, terutama ketika informasi direktori belum disimpan dalam cache. 
+	<command>which</command>, terutama ketika informasi direktori belum disimpan dalam cache. 
 	meski demikian, kombinasi 
 	<command>locate</command>/<command>updatedb</command> memiliki beberapa kekurangan:
       </para>
@@ -2938,7 +2938,7 @@ Enter passphrase:
 
       <para>
 	Seperti yang Anda lihat, GnuPG akan meminta Anda untuk memasukkan kata sandi untuk kunci private
-	Anda. Setelah Anda memasukkan kunci yang benar, berkas signature (<filename>memo.txt.sig</filename>) akan dibuat.
+	Anda. Setelah Anda memasukkan kata sandi yang benar, berkas signature (<filename>memo.txt.sig</filename>) akan dibuat.
       </para>
 
       <para>
