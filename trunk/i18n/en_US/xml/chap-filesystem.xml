@@ -25,7 +25,7 @@
 	The filesystem consists of two types of elements: data and
 	metadata. The metadata describes the actual data blocks that
 	are on the disk. Most filesystems use information nodes
-	(inodes) to provide store metadata. Most filesystems store the
+	(inodes) to store metadata. Most filesystems store the
 	following data in their inodes:
       </para>
 
@@ -1051,7 +1051,7 @@ $ <userinput>mv file1 file2</userinput>
       </para>
 
       <screen>
-$ <userinput>targetdir</userinput>
+$ <userinput>mkdir targetdir</userinput>
 $ <userinput>mv file1 directory1 targetdir</userinput>
       </screen>
 
@@ -1295,7 +1295,7 @@ $ <userinput>chmod u+s /bin/su</userinput>
       </note>
 
       <para> The sticky bit is also interesting when it comes to
-      directory. It disallows users to rename of unlink files that
+      directory. It disallows users to rename or unlink files that
       they do not own, in directories that they do have write access
       to. This is usually used on world-writeable directories, like
       the temporary directory (<filename>/tmp</filename>) on many UNIX
@@ -1325,7 +1325,7 @@ $ <userinput>chmod g+t /tmp</userinput>
 	user, file group, and others), and the effective file creation
 	mask is <emphasis>0022</emphasis>, the effective file
 	permission will be <emphasis>0644</emphasis>. Let's look at
-	anothere example. Suppose that files are still created with
+	another example. Suppose that files are still created with
 	<emphasis>0666</emphasis> permissions, and you are more
 	paranoid, and want to take away all read and write permissions
 	for the file group and others. This means you have to set the
@@ -1387,7 +1387,7 @@ $ <userinput>ls -l test</userinput>
 	control lists allows you to use read, write and execute
 	triplets for additional users or groups. In contrast to the
 	traditional file permissions, additional access control lists
-	are note stored directly in the node, but in extended
+	are not stored directly in the node, but in extended
 	attributes that are associated with files. Two thing to be
 	aware of when you use access control lists is that not all
 	systems support them, and not all programs support them.
@@ -2027,7 +2027,7 @@ $ <userinput>find . -name 'eco*' -type d</userinput>
 	  respectively the <emphasis>-user username</emphasis> and
 	  <emphasis>-group groupname</emphasis> variants. The name of
 	  a user or group will be interpreted as a user ID or group ID
-	  if the name is decimal, and could not be found on the system
+	  if the name as decimal, and could not be found on the system
 	  with
 	  <citerefentry><refentrytitle>getpwnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>
 	  or
@@ -2553,7 +2553,7 @@ ls: /bin/ls /usr/share/man/man1/ls.1.gz
 	database that can be generated periodically with the
 	<command>updatedb</command> command. Since it uses a prebuilt
 	database of the filesystem, it is a lot faster than
-	<command>command</command>, especially when directory entry
+	<command>which</command>, especially when directory entry
 	information has not been cached yet. Though, the
 	<command>locate</command>/<command>updatedb</command> combo
 	has some downsides:
@@ -3360,7 +3360,7 @@ Enter passphrase:
 
       <para>
 	As you can see, GnuPG will ask you to enter the password for
-	your private key. After you have entered the right key the
+	your private key. After you have entered the right password the
 	signature file (<filename>memo.txt.sig</filename>) will be
 	created.
       </para>
