@@ -2061,8 +2061,6 @@ $ <userinput>find . -name 'eco*' -type d</userinput>
 	  ou propriétaires incorrects.
 	</para>
 
-> The name of a user or group will be interpreted as a user ID or group
-> ID if the name is decimal, and could not be found on the system with  
  	<para>
 	  Le propriétaire (user) ou groupe d'un objet peut être repéré avec
 	  respectivement les variantes <emphasis>-user username</emphasis> et
