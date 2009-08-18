@@ -3,19 +3,19 @@
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
   xmlns:xl="http://www.w3.org/1999/xlink" xml:lang="en"
   xml:id="chap-textproc">
-  <title>Text processing</title>
+  <title>Traitement de texte</title>
 
   <para>
-    Text manipulation is one of the things that UNIX excels at,
-    because it forms the heart of the UNIX philosophy, as described in
-    <xref linkend="chap-intro-unix" />. Most UNIX commands
-    are simple programs that read data from the standard input,
-    performs some operation on the data, and sends the result to the
-    program's standard output. These programs basically act as an
-    filters, that can be connected as a pipeline. This allows the user
-    to put the UNIX tools to uses that the writers never
-    envisioned. In later chapters we will see how you can build simple
-    filters yourself. <!-- XXX - xref -->
+    L'édition de texte est un des domaines où UNIX excelle, car cela forme le
+    coeur de la philosophie UNIX, comme décrit dans
+    <xref linkend="chap-intro-unix" />. La plupart des commandes UNIX sont de
+    simples programmes qui lisent des données de l'entrée standard, effectuent
+    des opérations sur les données, et envoient les résultats vers la sortie
+    standard du programme. Ces programmes agissent essentiellement comme des
+    filtres, qui peuvent être connectés en pipeline. Cela permet à l'utilisateur
+    de mettre en oeuvre les outils UNIX dans des situations que l'auteur n'a
+    jamais envisagé. Dans les chapitres suivants nous allons voir comment
+    fabriquer des filtes simples nous-même. <!-- XXX - xref -->
   </para>
 
   <para>
@@ -26,14 +26,14 @@
   </para>
  
   <sect1 xml:id="chap-textproc-simple">
-    <title>Simple text manipulation</title>
+    <title>Manipulation de texte simple</title>
 
     <sect2 xml:id="chap-textproc-simple-cat">
-      <title>Repeating what is said</title>
+      <title>Répeter ce qui est dit</title>
 
       <para>
-	The most simple text filter is the <command>cat</command>, it
-	does nothing else than sending the data from stdin to stdout:
+	La filtre texte le plus simple est <command>cat</command>, il ne fait
+	rien d'autre qu'envoyer les données depuis stdin vers stdout :
       </para>
 
       <screen>
@@ -42,8 +42,8 @@ hello world
       </screen>
 
       <para>
-	Another useful feature is that you can let it send the contents
-	of a file to the standard output:
+	Une autre fonctionnalité utile est que vous pouvez lui faire envoyer le
+	contenu d'un fichier vers la sortie standard :
       </para>
 
       <screen>
@@ -52,12 +52,11 @@ Hello, this is the content of file.txt
       </screen>
 
       <para>
-	<command>cat</command> really lives up to its name when
-	multiple files are added as arguments. This will concatenate
-	the files, in the sense that it will send the contents of all
-	files to the standard output, in the same order as they were
-	specified as an argument. The following screen snippet
-	demonstrates this:
+	<command>cat</command> (Ndt: cat=concatène) porte bien son nom lorsque
+	plusieurs fichiers sont ajoutés en arguments. Cela va concaténer les
+	fichiers, autrement dit, il va envoyer le contenu de tous les fichiers
+	vers la sortie standard, dans le même ordre où ils ont été spécifiés en
+	arguments. La capture d'écran suivante montre cela :
       </para>
 
       <screen>
@@ -69,19 +68,19 @@ Hello, this is the content of file2.txt
     </sect2>
 
     <sect2 xml:id="chap-textproc-simple-wc">
-      <title>Text statistics</title>
+      <title>Statistiques de texte</title>
 
       <para>
-	The <command>wc</command> command provides statistics about a
-	text file or text stream. Without any parameters, it will
-	print the number of lines, the number of words, and the number
-	of bytes respectively. A word is delimited by one white space
-	character, or a sequence of whitespace characters.
+	La commande <command>wc</command> fournit des statistiques sur un
+	fichier texte ou flux texte. Sans paramètre, elle va afficher le nombre
+	de lignes, de mots et le nombre d'octects respectivement. Un mot est
+	délimité par un caractère d'espacement, ou une sequence de caractères
+	d'espacement.
       </para>
 
       <para>
-	The following example shows the number of lines, words, and
-	bytes in the canonical <quote>Hello world!</quote> example:
+	L'exemple suivant montre le nombre de lignes, de mots, et d'octets dans
+	l'exemple classique <quote>Hello world!</quote> :
       </para>
 
       <screen>
@@ -90,13 +89,13 @@ $ <userinput>echo "Hello world!" | wc</userinput>
       </screen>
 
       <para>
-	If you would like to print just one of these components, you
-	can use one of the <parameter class="command">-l</parameter>
-	(lines), <parameter class="command">-w</parameter> (words), or
-	<parameter class="command">-c</parameter> (bytes) parameters.
-	For instance, adding just the <parameter
-	class="command">-l</parameter> parameter will show the number
-	of lines in a file:
+	Si vous désirez afficher seulement une de ces composantes, vous pouvez
+	utiliser un des paramètres <parameter class="command">-l</parameter>
+	(lignes), <parameter class="command">-w</parameter> (mots), ou
+	<parameter class="command">-c</parameter> (octets).
+	Par exemple, ajouter seulement le paramètre
+	<parameter class="command">-l</parameter> affichera le nombre de lignes
+	dans un fichier :
       </para>
 
       <screen>
@@ -105,7 +104,8 @@ $ <command>wc -l /usr/share/dict/words</command>
       </screen>
 
       <para>
-	Or, you can print additional fields by adding a parameter:
+	Ou vous pouvez afficher des champs supplémentaires en ajoutant un
+	paramètre :
       </para>
 
       <screen>
@@ -114,34 +114,33 @@ $ <userinput>wc -lc /usr/share/dict/words</userinput>
       </screen>
 
       <para>
-	Please note that, no matter the order in which the options
-	were specified, the output order will always be the same
-	(lines, words, bytes).
+	Notez que peu importe l'ordre dans lequel les options sont spécifiées,
+	l'ordre d'affichage sera toujours le même (lignes, mots, octets).
       </para>
 
       <para>
-	Since <parameter class="command">-c</parameter> prints the
-	number bytes, this parameter may not represent the number of
-	characters that a text holds, because the character set in use
-	maybe be wider than one byte. To this end, the <parameter
-	class="command">-m</parameter> parameter has been added which
-	prints the number of characters in a text, independent of the
-	character set. <parameter class="command">-c</parameter> and
-	<parameter class="command">-m</parameter> are substitutes, and
-	can never be used at the same time.
+	Puisque <parameter class="command">-c</parameter> affiche le nombre
+	d'octets, ce paramètre peut ne pas représenter le nombre de caractères
+	que comporte un texte, car le jeu de caractères utilisé peut dépasser la
+	taille d'un octet. Pour y remédier, le paramètre <parameter
+	class="command">-m</parameter> a été ajouté affichant le nombre de
+	caractères dans un texte, indépendant du jeu de caractères.
+	<parameter class="command">-c</parameter> et
+	<parameter class="command">-m</parameter> se substituent, et ne peuvent
+	jamais être utilisés en même temps.
       </para>
 
       <para>
-	The statistics that <command>wc</command> provides are more
-	useful than they may seem on the surface. For example, the
-	<parameter class="command">-l</parameter> parameter is often
-	used as a counter for the output of a command. This is
-	convenient, because many commands seperate logical units by a
-	newline.  Suppose that you would like to count the number of
-	files in your home directory having a filename ending with
-	<filename>.txt</filename>. You could do this by combining
-	<command>find</command> to find the relevant files and
-	<command>wc</command> to count the number of occurences:
+	Les statistiques que <command>wc</command> fournit sont plus utiles
+	qu'il n'y paraît. Par exemple, le paramètre
+	<parameter class="command">-l</parameter> est souvent utilisé en tant
+	que compteur de la sortie d'une commande. C'est utile, car beaucoup de
+	commandes séparent les unités logiques par un caractère de nouvelle
+	ligne. Supposez que vous voulez compter le nombre de fichiers dans votre
+	répertoire home ayant l'extension <filename>.txt</filename>. Vous pouvez
+	réaliser ceci en combinant <command>find</command> pour chercher les
+	fichiers concernés et	<command>wc</command> pour compter le nombre
+	d'occurrences :
       </para>
 
       <screen>
@@ -150,51 +149,50 @@ $ <userinput>find ~ -name '*.txt' -type f | wc -l</userinput>
     </sect2>
 
     <sect2 xml:id="chap-textproc-simple-tr">
-      <title>Manipulating characters</title>
+      <title>Manipulation de caractères</title>
 
       <para>
-	The <command>tr</command> command can be used to do common
-	character operations, like swapping characters, deleting
-	characters, and squeezing character sequences. Depending on
-	the operation, one or two sets of characters should be
-	specified. Besides normal characters, there are some special
-	character sequences that can be used:
+	La commande <command>tr</command> peut être utilisée pour réaliser des
+	opérations communes sur les caractères, comme échanger des caractères,
+	supprimer des caractères, et rétrécir des séquences de caractères.
+	Suivant l'opération, 1 ou 2 séquences de caractères doivent être
+	spécifiées. Ajoutés aux caractères normaux, certaines séquences de
+	caractères spéciaux peuvent être utilisées :
       </para>
 
       <variablelist>
 	<varlistentry>
-	  <term>\character</term>
+	  <term>\caractère</term>
 	  <listitem>
 	    <para>
-	      This notation is used to specify characters that need
-	      escaping, most notably <emphasis>\n</emphasis>
-	      (newline), <emphasis>\t</emphasis> (horizontal tab), and
-	      <emphasis>\\</emphasis> (backslash).
+	      Cette notation est utilisée pour spécifier des caractères qui
+	      nécessitent un échappement, les plus célèbres sont
+	      <emphasis>\n</emphasis> (saut de ligne), <emphasis>\t</emphasis>
+	      (tabulation horizontale), et <emphasis>\\</emphasis> (backslash).
 	    </para>
 	  </listitem>
 	</varlistentry>
 	<varlistentry>
-	  <term>character1-character2</term>
+	  <term>caractère1-caractère2</term>
 	  <listitem>
 	    <para>
-	      Implicitly insert all characters from
-	      <emphasis>character1</emphasis> to
-	      <emphasis>character2</emphasis>. This notation should be
-	      used with care, because it does not always give the
-	      expected result. For instance, the sequence
-	      <emphasis>a-d</emphasis> may yield
-	      <emphasis>abcd</emphasis> for the POSIX locale (language
-	      setting), but this may not be true for other locales.
+	      Insère implicitement tout caractère de
+	      <emphasis>caractère1</emphasis> en
+	      <emphasis>caractère2</emphasis>. Cette notation doit être utilisée
+	      avec attention, car elle ne donne pas toujours le résultat escompté. Par exemple, la séquence
+	      <emphasis>a-d</emphasis> peut signifier
+	      <emphasis>abcd</emphasis> pour la locale POSIX (configuration de
+	      la langue), mais cela peut ne pas être vrai pour d'autres locales.
 	      <!-- XXX - locale footnote -->
 	    </para>
 	  </listitem>
 	</varlistentry>
 	<varlistentry>
-	  <term>[:class:]</term>
+	  <term>[:classe:]</term>
 	  <listitem>
 	    <para>
-	      Match a predefined class of characters. All possible
-	      classes are shown in <xref
+	      Trouve une classe prédéfinie de caractères. Toutes les classes
+	      possibles sont dans <xref
 	      linkend="chap-textproc-simple-tr-charclasses" />.
 	    </para>
 	  </listitem>
@@ -203,96 +201,97 @@ $ <userinput>find ~ -name '*.txt' -type f | wc -l</userinput>
 	  <term>[character*]</term>
 	  <listitem>
 	    <para>
-	      Repeat <emphasis>character</emphasis> until the second
-	      set is as long as the first set of characters. This
-	      notation can only be used in the second set.
+	      Répète <emphasis>caractère</emphasis> jusqu'à ce que la seconde
+	      séquence soit aussi longue que la première séquence de caractères.
+	      Cette notation ne peut être employée que dans la seconde séquence.
 	    </para>
 	  </listitem>
 	</varlistentry>
 	<varlistentry>
-	  <term>[character*n]</term>
+	  <term>[caractère*n]</term>
 	  <listitem>
 	    <para>
-	      Repeat <emphasis>character</emphasis>
-	      <emphasis>n</emphasis> times.
+	      Répète <emphasis>caractère</emphasis>
+	      <emphasis>n</emphasis> fois.
 	    </para>
 	  </listitem>
 	</varlistentry>
       </variablelist>
 
       <table xml:id="chap-textproc-simple-tr-charclasses">
-	<title>tr character classes</title>
+	<title>classes de caractères tr</title>
 
 	<tgroup cols="2">
 	  <thead>
-	    <row><entry>Class</entry><entry>Meaning</entry></row>
+	    <row><entry>Classe</entry><entry>Signification</entry></row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>[:alnum:]</entry>
-	      <entry>All letters and numbers.</entry>
+	      <entry>Toute lettre ou tout chiffre.</entry>
 	    </row>
 	    <row>
 	      <entry>[:alpha:]</entry>
-	      <entry>Letters.</entry>
+	      <entry>Lettres.</entry>
 	    </row>
 	    <row>
 	      <entry>[:blank:]</entry>
-	      <entry>Horizontal whitespace (e.g. spaces and tabs).</entry>
+	      <entry>Espace blanc horizontal (e.g. espaces et tabulations).
+	      </entry>
 	    </row>
 	    <row>
 	      <entry>[:cntrl:]</entry>
-	      <entry>Control characters.</entry>
+	      <entry>Caractères de contrôle.</entry>
 	    </row>
 	    <row>
 	      <entry>[:digit:]</entry>
-	      <entry>All digits (0-9).</entry>
+	      <entry>Tout chiffre (0-9).</entry>
 	    </row>
 	    <row>
 	      <entry>[:graph:]</entry>
-	      <entry>All printable characters, except whitespace.</entry>
+	      <entry>Tout caractère imprimable, sauf espace blanc.</entry>
 	    </row>
 	    <row>
 	      <entry>[:lower:]</entry>
-	      <entry>Lowercase letters.</entry>
+	      <entry>Lettres minuscules.</entry>
 	    </row>
 	    <row>
 	      <entry>[:print:]</entry>
-	      <entry>All printable characters, including horizontal
-	      whitespace, but excluding vertical whitespace.</entry>
+	      <entry>Tout caractère imprimable, inclus l'espace blanc
+		horizontal, mais excepté l'espace blanc vertical.</entry>
 	    </row>
 	    <row>
 	      <entry>[:punct:]</entry>
-	      <entry>Punctuation characters.</entry>
+	      <entry>Caractères de ponctuation.</entry>
 	    </row>
 	    <row>
 	      <entry>[:space:]</entry>
-	      <entry>All whitespace.</entry>
+	      <entry>Tout espace blanc.</entry>
 	    </row>
 	    <row>
 	      <entry>[:upper:]</entry>
-	      <entry>Uppercase letters.</entry>
+	      <entry>Lettres majuscules.</entry>
 	    </row>
 	    <row>
 	      <entry>[:xdigit:]</entry>
-	      <entry>Hexadecimal digits (0-9, a-f).</entry>
+	      <entry>Chiffres hexadécimaux (0-9, a-f).</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <sect3 xml:id="chap-textproc-simple-tr-swapping">
-	<title>Swapping characters</title>
+	<title>Echanger des caractères</title>
 
 	<para>
-	  The default operation of <command>tr</command> is to swap
-	  (translate) characters. This means that the
-	  <emphasis>n</emphasis>-th character in the first set is
-	  replaced with the <emphasis>n</emphasis>-th character in the
-	  second set. For example, you can replace all
-	  <emphasis>e</emphasis>'s with <emphasis>i</emphasis>'s and
-	  <emphasis>o</emphasis>'s with <emphasis>a</emphasis>'s with
-	  one <command>tr</command> operation:
+	  L'opération par défaut de <command>tr</command> est d'échanger
+	  (transformer) des caractères. Cela signifie que le
+	  <emphasis>n</emphasis>-ème caractère dans la première séquence est
+	  remplacé par le <emphasis>n</emphasis>-ème caractère dans la seconde
+	  séquence. Par exemple, vous pouvez remplacer tous les
+	  <emphasis>e</emphasis> par des <emphasis>i</emphasis> et les
+	  <emphasis>o</emphasis> par des <emphasis>a</emphasis> avec une seule
+	  opération <command>tr</command> :
 	</para>
 
 	<screen>
@@ -301,13 +300,12 @@ Hilla warld!
 	</screen>
 
 	<para>
-	  When the second set is not as large as the first set,
-	  the last character in the second set will be repeated.
-	  Though, this does not necessarily apply to other UNIX
-	  systems. So, if you want to use
-	  <command>tr</command> in a system-independent manner,
-	  explicitly define what character should be repeated. For
-	  instance
+	  Lorsque la seconde séquence n'est pas aussi longue que la première, le
+	  dernier caractère de la seconde séquence est répété. Cependant cela ne
+	  s'applique pas nécessairement à d'autres systèmes UNIX. Donc, si vous
+	  voulez utiliser <command>tr</command> de façon indépendante du
+	  système, définissez explicitement le caractère qui doit être répété.
+	  Par exemple :
 	</para>
 
 	<screen>
@@ -316,21 +314,21 @@ H@ll@ w@rld!
 	</screen>
 
 	<para>
-	  Another particularity is the use of the repetition syntax in
-	  the middle of the set. Suppose that set 1 is
-	  <emphasis>abcdef</emphasis>, and set 2
-	  <emphasis>@[-*]!</emphasis>. <command>tr</command> will replace
-	  <emphasis>a</emphasis> with <emphasis>@</emphasis>,
+	  Une autre particularité est l'utilisation de la syntaxe de répétition
+	  au milieu de la séquence. Supposez que la séquence 1 est
+	  <emphasis>abcdef</emphasis>, et la séquence 2 est
+	  <emphasis>@[-*]!</emphasis>. <command>tr</command> va remplacer
+	  <emphasis>a</emphasis> avec <emphasis>@</emphasis>,
 	  <emphasis>b</emphasis>, <emphasis>c</emphasis>,
-	  <emphasis>d</emphasis>, and <emphasis>e</emphasis> with
-	  <emphasis>-</emphasis>, and <emphasis>f</emphasis> with
+	  <emphasis>d</emphasis>, et <emphasis>e</emphasis> avec
+	  <emphasis>-</emphasis>, et <emphasis>f</emphasis> avec
 	  <emphasis>!</emphasis>.
-	  Though some other UNIX systems follow replace
-	  <emphasis>a</emphasis> with
-	  <emphasis>@</emphasis>, and the rest of the set characters
-	  with <emphasis>-</emphasis>. So, a more correct notation
-	  would be the more explicit <emphasis>@[-*4]!</emphasis>,
-	  which gives the same results on virtually all UNIX systems:
+	  Cependant d'autres systèmes UNIX remplacent
+	  <emphasis>a</emphasis> avec
+	  <emphasis>@</emphasis>, et le reste de la séquence de caractères avec
+	  <emphasis>-</emphasis>. Donc, une notation plus correcte et explicite
+	  serait <emphasis>@[-*4]!</emphasis>,
+	  ce qui conduit au même résultat sur presque tous les systèmes UNIX :
 	</para>
 
 	<screen>
@@ -340,14 +338,14 @@ $ <userinput>echo 'abcdef' | tr 'abcdef' '@[-*4]!'</userinput>
       </sect3>
 
       <sect3 xml:id="chap-textproc-simple-tr-squeezing">
-	<title>Squeezing character sequences</title>
+	<title>Supprimer des séquences de caractères</title>
 
 	<para>
-	  When the <parameter class="command">-s</parameter> parameter
-	  is used, <command>tr</command> will squeeze all characters
-	  that are in the second set. This means that a sequence of the
-	  same characters will be reduced to one character. Let's
-	  squeeze the character &quot;<emphasis>e</emphasis>&quot;:
+	  Lorque le paramètre <parameter class="command">-s</parameter>
+	  est précisé, <command>tr</command> va supprimer tous les caractères
+	  présent dans la seconde séquence. Cela signifie qu'une séquence d'un
+	  même caractère va être réduite à 1 caractère. Supprimons le caractère
+	  &quot;<emphasis>e</emphasis>&quot; :
 	</para>
 
 	<screen>
@@ -356,13 +354,13 @@ Let's squeze this.
 	</screen>
 
 	<para>
-	  We can combine this with translation to show a useful
-	  example of <command>tr</command> in action. Suppose that we
-	  would like to mark al vowels with the
-	  <emphasis>at</emphasis> sign (<emphasis>@</emphasis>), with
-	  consecutive vowels represented by one
-	  <emphasis>at</emphasis> sign. This can easily be done by
-	  piping two <command>tr</command> commands:
+	  Nous pouvons combiner cela avec la transformation pour montrer un
+	  exemple utile de <command>tr</command> en action. Supposez que vous
+	  voulez marquer toutes les voyelles avec le signe
+	  <emphasis>at</emphasis> (<emphasis>@</emphasis>), ainsi que les
+	  voyelles consécutives par un seul signe <emphasis>at</emphasis>.
+	  Cela se réalise facilement en pipelinant 2 commandes
+	  <command>tr</command> :
 	</para>
 
 	<screen>
@@ -372,13 +370,12 @@ $ <userinput>echo "eenie meenie minie moe" | tr 'aeiou' '[@*]' | tr -s '@'</user
       </sect3>
 
       <sect3 xml:id="chap-textproc-simple-tr-deleting">
-	<title>Deleting characters</title>
+	<title>Supprimer des caractères</title>
 
 	<para>
-	  Finally, <command>tr</command> can be used to delete
-	  characters. If the <parameter class="command">-d</parameter>
-	  parameter is used, all characters from the first set are
-	  removed:
+	  Enfin, <command>tr</command> peut être utilisé pour supprimer des
+	  caractères. Si le paramètre <parameter class="command">-d</parameter>
+	  est précisé, tout caractère de la première séquence est supprimé :
 	</para>
 
 	<screen>
@@ -389,57 +386,56 @@ Heo wod!
     </sect2>
 
     <sect2 xml:id="chap-textproc-cutpaste">
-      <title>Cutting and pasting text columns</title>
+      <title>Couper et coller des colonnes de texte</title>
 
       <para>
-	The <command>cut</command> command is provided by UNIX systems
-	to <quote>cut</quote> one or more columns from a file or
-	stream, printing it to the standard output. It is often useful
-	to selectively pick some information from a
-	text. <command>cut</command> provides three approaches to
-	cutting information from files:
+	La commande <command>cut</command> est fournie par les systèmes UNIX
+	pour <quote>couper</quote> une ou plusieurs colonnes d'un fichier ou
+	d'un flux, et l'afficher sur la sortie standard. Il est souvent utilse
+	d'extraire de façon sélective des informations dans un texte.
+	<command>cut</command> fournit 3 approches pour couper des information
+	provenant de fichiers :
       </para>
 
       <orderedlist>
 	<listitem>
 	  <para>
-	    By byte.
+	    Par octet.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    By character, which is not the same as cutting by byte on
-	    systems that use a character set that is wider than eight
-	    bits.
+	    Par caractère, ce qui est différent du découpage par octet sur des
+	    systèmes qui utilisent un jeu de caractères plus large que 8 bits.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    By field, that is delimited by a character.
+	    Par champ, délimité par un caractère.
 	  </para>
 	</listitem>
       </orderedlist>
 
       <para>
-	In all three approaches, you can specify the element to choose
-	by its number starting at <emphasis>1</emphasis>. You can
-	specify a range by using a dash (<emphasis>-</emphasis>). So,
-	<emphasis>M-N</emphasis> means the Mth to the Nth
-	element. Leaving M out (<emphasis>-N</emphasis>) selects all
-	elements from the first element to the Nth element. Leaving N
-	out (<emphasis>M-</emphasis>) selects the Mth element to the
-	last element. Multiple elements or ranges can be combined by
-	separating them by commas (<emphasis>,</emphasis>). So, for
-	instance, <emphasis>1,3-</emphasis> selects the first element
-	and the third to the last element.
+	Dans les 3 approches, vous pouvez spécifier l'élément à choisir par son
+	numéro en partant de <emphasis>1</emphasis>. Vous pouvez spécifier un
+	intervalle en utilisant le tiret (<emphasis>-</emphasis>). Donc,
+	<emphasis>M-N</emphasis> signifie du Mième au N-ième
+	élément. Omettre M (<emphasis>-N</emphasis>) sélectionne tous les
+	éléments depuis le premier élément jusqu'au N-ième élément. Omettre N
+	(<emphasis>M-</emphasis>) sélectionne le M-ième élément jusqu'au dernier
+	élément. Des éléments multiples ou intervalles peuvent être combinés en
+	les séparant par des virgules (<emphasis>,</emphasis>). Donc, en
+	l'occurrence, <emphasis>1,3-</emphasis> selectionne le premier élément
+	et du troisième jusqu'au dernier élément.
       </para>
 
       <para>
-	Data can be cut by field with the <parameter
-	class="command">-f fields</parameter> parameter. By default,
-	the horizontal tab is used a separator. Let's have a look at
-	<command>cut</command> in action with a tiny Dutch to English
-	dictionary:
+	Les données peuvent être coupée par champ avec le paramètre <parameter
+	class="command">-f champs</parameter>. Par défaut, la tabulation
+	horizontale est utilisée en tant que séparateur. Voyons
+	<command>cut</command> en action avec un petit dictionnaire hollandais à
+	anglais :
       </para>
 
       <screen>
@@ -450,7 +446,8 @@ peer    pear
       </screen>
 
       <para>
-	We can get all English words by selecting the first field:
+	Nous pouvons récupérer tous les mots anglais en sélectionnant le second
+	champ :
       </para>
 
       <screen>
@@ -461,11 +458,11 @@ pear
       </screen>
 
       <para>
-	That was quite easy. Now let's do the same thing with a file
-	that has a colon as the field separator. We can easily try
-	this by converting the dictionary with the
-	<command>tr</command> command that we have seen earlier,
-	replacing all tabs with colons:
+	Plutôt facile. Maintenant faisons la même chose avec un fichier ayant
+	comme séparateur de champs le deux-points. Nous pouvons essayer ceci
+	facilement en convertissant le dictionnaire avec la commande
+	<command>tr</command> que nous avons vu précédamment, en remplaçant les
+	tabulations par des deux-points :
       </para>
 
       <screen>
@@ -477,8 +474,8 @@ peer:pear
       </screen>
 
       <para>
-	If we use the same command as in the previous example, we do
-	not get the correct output:
+	Si nous utilisons la même commande que dans l'exemple précédent, nous
+	n'obtenons pas le résultat correct :
       </para>
 
       <screen>
@@ -489,19 +486,20 @@ peer:pear
       </screen>
 
       <para>
-	What happens here is that the delimiter could not be found.
-	If a line does not contain the delimiter that is being used,
-	the default behavior of <command>cut</command> is to print the
-	complete line. You can prevent this with the <parameter
-	class="command">-s</parameter> parameter.
+	Le délimiteur n'a pas été trouvé, c'est ce qui se produit.
+	Si une ligne ne contient pas le délimiteur escompté, le comportement par
+	défaut de <command>cut</command> est d'afficher la ligne complète. Vous
+	pouvez empêcher cela avec le paramètre <parameter
+	class="command">-s</parameter>.
       </para>
 
       <para>
-	To use a different delimiter than the horizontal tab, add the
-	<parameter class="command">-d delimter_char</parameter>
-	parameter to set the delimiting character. So, in this case of
-	our <filename>dictionary-new</filename> file, we will ask
-	<command>cut</command> to use the colon as a delimiter:
+	Pour utiliser un délimiteur différent de la tabulation horizontale,
+	ajoutez le paramètre <parameter class="command">-d
+        car_délimiteur</parameter> pour fixer le caractère de délimitation.
+	Donc, dans le cas de notre fichier <filename>dictionary-new</filename>,
+	nous allons demander à <command>cut</command> d'utiliser le deux-points
+	comme délimiteur :
       </para>
 
       <screen>
@@ -512,30 +510,32 @@ pear
       </screen>
 
       <para>
-	If a field that was specified does not exist in a line, that
-	particular field is not printed.
+	Si un champ spécifié n'existe pas dans une ligne, ce champ particulier
+	ne sera pas affiché.
       </para>
 
       <para>
-	The <parameter class="command">-b bytes</parameter> and
-	<parameter class="command">-c characters</parameter>
-	respectively select bytes and characters from the text. On
-	older systems a character used to be a byte wide. But newer
-	systems can provide character sets that are wider than one
-	byte. So, if you want to be sure to grab complete characters,
-	use the <parameter class="command">-c</parameter> parameter.
-	An entertaining example of seeing the <parameter
-	class="command">-c</parameter> parameter in action is to find
-	the ten most common sets of the first three characters of a
-	word. Most UNIX systems provide a list of words that are
-	separated by a new line. We can use <command>cut</command> to
-	get the first three characters of the words in the word list,
-	add <parameter class="command">uniq</parameter> <!-- XXX -
-	where? --> to count identical three character sequences, and
-	use <command>sort</command> to sort them reverse-numerically
-	(<command>sort</command> is described in <xref
-	linkend="chap-textproc-simple-sort" />). Finally, we will use
-	<command>head</command> to get the ten most frequent sequences:
+	<parameter class="command">-b bytes</parameter> et
+	<parameter class="command">-c characters</parameter> sélectionnent
+	respectivement les octets et les caractères dans le texte. Sur des
+	systèmes plus anciens, un caractère était traditionnellement sur un
+	octet. Cependant les nouveaux systèmes peuvent fournir des jeux de
+	caractères sur plus d'un octet. Donc, si vous voulez être sûr de
+	capturer des caractères complets, utilisez le paramètre
+	<parameter class="command">-c</parameter>.
+	Un exemple d'entraînement pour voir le paramètre <parameter
+	class="command">-c</parameter> à l'oeuvre est de chercher le top 10 des
+	ensembles de mots ayant les 3 premiers caractères en commun. La plupart
+	des systèmes UNIX fournissent une liste de mots séparés par un caractère
+	de saut de ligne. Nous pouvons utiliser <command>cut</command> pour
+	récupérer les 3 premiers caractères des mots de la liste, ajouter
+	<parameter class="command">uniq</parameter> <!-- XXX -
+	where? --> pour compter les séquences de 3 caractères égales, et
+	utiliser <command>sort</command> pour trier dans l'ordre inverse
+	numérique (<command>sort</command> est décrit dans <xref
+	linkend="chap-textproc-simple-sort" />). Enfin, nous utiliserons
+	<command>head</command> pour obtenir les 10 séquences les plus
+	fréquentes :
       </para>
 
       <screen>
@@ -553,17 +553,18 @@ $ <userinput>cut -c 1-4 /usr/share/dict/words | uniq -c | sort -nr | head</useri
       </screen>
 
       <para>
-	Having concluded with that nice piece of UNIX commands in
-	action, we will move on to the <command>paste</command>
-	command, which combines files in columns in a single text
-	stream.
+	Ayant conclu avec cette jolie mise en oeuvre de commandes UNIX,	nous
+	allons passer à la commande <command>paste</command>
+	(NdT : paste=coller), qui combine des fichiers en colonnes en un seul
+	flux texte.
       </para>
 
       <para>
-	Usage of <command>paste</command> is very simple, it will
-	combine all files given as an argument, separated by a tab.
-	With the list of English and Dutch words, we can generate
-	a tiny dictionary:
+	L'utilisation de <command>paste</command> est très simple, elle va
+	combiner tous les fichiers passés en argument, séparé par une
+	tabulation.
+	Avec la liste des mots anglais et hollandais, nous pouvons générer un
+	petit dictionnaire :
       </para>
 
       <screen>
@@ -574,7 +575,7 @@ pear    peer
       </screen>
 
       <para>
-	You can also combine more than two files:
+	Vous pouvez aussi combiner plus de 2 fichiers :
       </para>
 
       <screen>
@@ -585,15 +586,16 @@ pear    peer    Birne
       </screen>
 
       <para>
-	If one of the files is longer, the column order is maintained,
-	and empty entries are used to fill up the entries of the
-	shorter files.
+	Si un des fichiers est plus long, l'ordre des colonnes est conservé, des
+	entrées vides sont insérées pour compléter les entrées des fichiers plus
+	courts.
       </para>
 
       <para>
-	You can use another delimiter by adding the <parameter
-	class="command">-d delimiter</parameter> parameter. For
-	example, we can make a colon-separated dictionary:
+	Vous pouvez utiliser un autre délimiteur en ajoutant le paramètre
+	<parameter class="command">-d délimiteur</parameter>. Par exemple, nous
+	pouvons fabriquer un dictionnaire avec des deux-points comme
+	séparateurs :
       </para>
 
       <screen>
@@ -604,11 +606,11 @@ pear:peer
       </screen>
 
       <para>
-	Normally, <command>paste</command> combines files as different
-	columns. You can also let <command>paste</command> use the
-	lines of each file as columns, and put the columns of each
-	file on a separate line. This is done with the <parameter
-	class="command">-s</parameter> parameter:
+	Normalement, <command>paste</command> combine les fichiers en colonnes
+	différentes. Vous pouvez aussi dire à <command>paste</command>
+	d'utiliser les lignes de chaque fichier en tant que colonnes, et placer
+	les colonnes de chaque fichier sur une ligne séparée. Cela se fait avec
+	le paramètre <parameter	class="command">-s</parameter> :
       </para>
 
       <screen>
@@ -620,29 +622,25 @@ Apfel   Banane  Birne
     </sect2>
 
     <sect2 xml:id="chap-textproc-simple-sort">
-      <title>Sorting text</title>
+      <title>Trier un texte</title>
 
       <para>
-	UNIX offers the <command>sort</command> command to sort
-	text. <command>sort</command> can also check whether a file is
-	in sorted order, and merge two sorted
-	files. <command>sort</command> can sort in dictionary and
-	numerical orders. The default sort order is the dictionary
-	order. This means that text lines are compared character by
-	character, sorted as specified in the current collating
-	sequence (which is specified through the LC_COLLATE
-	environment variable). This has a catch when you are sorting
-	numbers, for instance, if you have the numbers 1 to 10 on
-	different lines, the sequence will be 1, 10, 2, 3, etc.  This
-	is caused by the per-character interpretation of the
-	dictionary sort. If you want to sort lines by number, use the
-	numerical sort.
+	UNIX offre la commande <command>sort</command> pour trier du texte.
+	<command>sort</command> peut aussi vérifier si un fichier est trié, et
+	fusionner 2 fichiers triés. <command>sort</command> peut trier dans
+	l'ordre du dictionnaire ou dans l'ordre numérique. L'ordre de tri par
+	défaut est l'odre du dictionnaire. Cela signifie que les lignes de texte
+	sont comparées caractère par caractère, trié comme spécifié dans la
+	séquence de groupage courante (spécifiée via la variable d'environnement
+	LC_COLLATE). Cela pose un piège lorsque vous triez des nombre en
+	l'occurrence, si vous avez les nombre de 1 à 10 sur une ligne
+	différente, la séquence triée sera 1, 10, 2, 3, etc. Cela est dû à
+	l'interprétation par caractère du tri par dictionnaire. Si vous voulez
+	trier des lignes en tant que nombres, utilisez le tri numérique.
       </para>
 
       <para>
-	If no additional parameters are specified,
-	<command>sort</command> sorts the input lines in dictionary
-	order. For instance:
+	Si aucun paramètre n'est spécifié, <command>sort</command> trie les lignes en entrée dans l'ordre du dictionnaire. Par exemple :
       </para>
 
       <screen>
@@ -657,10 +655,11 @@ orange
       </screen>
 
       <para>
-	As you can see, the input is correctly ordered. Sometimes
-	there are two identical lines. You can merge identical lines
-	by adding the <parameter class="command">-u</parameter>
-	parameter. The two samples listed below illustrate this.
+	Comme vous pouvez le voir, les entrées sont correctement triées. Parfois
+	il peut y avoir 2 lignes identiques. Vous pouvez fusionner les lignes
+	identiques en ajoutant le paramètre
+	<parameter class="command">-u</parameter>. Les 2 exemples ci-dessous
+	illustrent ceci.
       </para>
 
       <screen>
@@ -686,50 +685,49 @@ orange
       </screen>
 
       <para>
-	There are some additional parameters that can be helpful to
-	modify the results a bit:
+	Il existe quelques paramètres supplémentaires pouvant être utiles pour
+	modifier un peu le résultat :
       </para>
 
       <itemizedlist>
 	<listitem>
 	  <para>
-	    The <parameter class="command">-f</parameter> parameter
-	    makes the sort case-insensitive.
+	    Le paramètre <parameter class="command">-f</parameter> permet un tri
+	    un tri insensible à la casse.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    If <parameter class="command">-d</parameter> is added,
-	    only blanks and alphanumeric characters are used to
-	    determine the order.
+	    Si <parameter class="command">-d</parameter> est ajouté, seuls les
+	    caractères blancs et les caractères sont utilisés pour déterminer
+	    l'ordre de tri.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    The <parameter class="command">-i</parameter> parameter
-	    makes <command>sort</command> ignore non-printable
-	    characters.
+	    Le paramètre <parameter class="command">-i</parameter> dit à
+	    <command>sort</command> d'ignorer les caractères non imprimables.
 	  </para>
 	</listitem>
       </itemizedlist>
 
 
       <para>
-	You can sort files numerically by adding the <parameter
-	class="command">-n</parameter> parameter. This parameter stops
-	reading the input line when a non-numeric character was found.
-	The leading minus sign, decimal point, thousands separator,
-	radix character (that separates an exponential from a normal
-	number), and blanks can be used as a part of a number. These
-	characters are interpreted where applicable.
+	Vous pouvez trier les fichiers par ordre numérique en ajoutant le
+	paramètre <parameter class="command">-n</parameter>. Ce paramètre
+	arrète la lecture de la ligne en entrée dès qu'un caractère non
+	numérique est rencontré. Les signe moins, point décimal, séparateur de
+	milliers, caractère de base numérique (qui distingue une écriture en
+	exponentielle d'un nombre standard), et caractères blancs peuvent être
+	utilisés en tant que nombre. Ces caractères sont interprétés en
+	conséquence.
       </para>
 
       <para>
-	The following example shows numerical sort in action, by
-	piping the output of <command>du</command> to
-	<command>sort</command>. This works because
-	<command>du</command> specifies the size of each file as the
-	first field.
+	L'exemple suivant montre un tri numérique mis en oeuvre, en pipelinant
+	la sortie de <command>du</command> vers	<command>sort</command>. Ca
+	marche car <command>du</command> spécifie la taille de chaque fichier
+	en premier champ.
       </para>
 
       <screen>
@@ -744,11 +742,11 @@ $ <userinput>du -a /bin | sort -n</userinput>
       </screen>
 
       <para>
-	In this case, the output is probably not useful if you want to
-	read the output in a paginator, because the smallest files are
-	listed first. This is where the <parameter
-	class="command">-r</parameter> parameter becomes handy. This
-	reverses the sort order.
+	Dans ce cas, la sortie n'est probablement pas utile si vous voulez lire
+	la sortie dans un outil de mise en pages, car les fichiers les plus
+	petits sont affichés en premier. C'est là que le paramètre
+	<parameter class="command">-r</parameter> devient pratique. Il inverse
+	l'ordre de tri.
       </para>
 
       <screen>
@@ -763,15 +761,15 @@ $ <userinput>du -a /bin | sort -nr</userinput>
       </screen>
 
       <para>
-	The <parameter class="command">-r</parameter> parameter also
-	works with dictionary sorts.
+	Le paramètre <parameter class="command">-r</parameter> fonctionne aussi
+	pour les tris par dictionnaire.
       </para>
 
       <para>
-	Quite often, files use a layout with multiple columns, and you
-	may want to sort a file by a different column than the first
-	column. For instance, consider the following score file named
-	<filename>score.txt</filename>:
+	Assez souvent, les fichiers sont structurés en plusieurs colonnes, et
+	vous voulez trier un fichier par une colonne autre que la première. Par
+	exemple, voyons le fichier score suivant nommé
+	<filename>score.txt</filename> :
       </para>
 
       <programlisting>
@@ -782,37 +780,37 @@ Heinz:DE:3
       </programlisting>
      
     <para>
-      Suppose that we would like to sort the entries in this file by
-      the two-letter country name. <command>sort</command> allows us
-      to sort a file by a column with the <parameter
-      class="command">-k col1[,col2]</parameter> parameter.  Where
-      <emphasis>col1</emphasis> up to <emphasis>col2</emphasis> are
-      used as fields for sorting the input. If
-      <emphasis>col2</emphasis> is not specified, all fields up till
-      the end of the line are used. So, if you want to use just one
-      column, use <parameter class="command">-k col1,col1</parameter>.
-      You can also specify the the starting character within a column
-      by adding a period (<emphasis>.</emphasis>) and a character
-      index. For instance, <parameter class="command">-k
-      2.3,4.2</parameter> means that the second column starting from
-      the third character, the third column, and the fourth column up
-      to (and including) the second character.
+      Supposons que nous voulons trier les entrées dans ce fichier par les noms
+      de pays sur 2 lettres. <command>sort</command> nous permet de trier un
+      fichier par une colonne avec le paramètre <parameter
+      class="command">-k col1[,col2]</parameter>.  Où <emphasis>col1</emphasis>
+      à <emphasis>col2</emphasis> sont utilisés comme champs en entrée soumis au
+      tri. Si <emphasis>col2</emphasis> n'est pas spécifié, tous les champs
+      jusqu'à la fin de la ligne sont utilisés. Donc si vous ne voulez utiliser
+      qu'une seule colonne, utilisez <parameter
+      class="command">-k col1,col1</parameter>. Vous pouvez aussi spécifier le
+      caractère de départ dans une colonne en ajoutant un point
+      (<emphasis>.</emphasis>) et un index de caractère. Par exemple, <parameter
+      class="command">-k 2.3,4.2</parameter> signifie la deuxième colonne
+      démarrant au troisième caractère, la troisième colonne, et la quatrième
+      colonne jusqu'au deuxième caractère inclus.
     </para>
 
     <!-- XXX - document -b? Mentioned lateron (-k) -->
 
     <para>
-      There is yet another particularity when it comes to sorting by
-      columns: by default, <command>sort</command> uses a blank as the
-      column separator. If you use a different separator character,
-      you will have to use the <parameter>-t char</parameter>
-      parameter, that is used to specify the field separator.
+      Il y a encore une autre particularité lors du tri par colonnes : par
+      défaut, <command>sort</command> utilise le caractère blanc comme
+      séparateur de colonne. Si vous utilisez un caractère de séparation
+      différent, vous aurez à utiliser le paramètre
+      <parameter>-t char</parameter>, qui est utilisé pour spécifier le
+      séparateur de champ.
     </para>
 
     <para>
-      With the <parameter class="command">-t</parameter> and
-      <parameter class="command">-k</parameter> parameters combined,
-      we can sort the scores file by country code:
+      Avec les paramètres <parameter class="command">-t</parameter> et
+      <parameter class="command">-k</parameter> combinés, nous pouvons trier le
+      fichier de scores par code de pays :
     </para>
 
     <screen>
@@ -824,25 +822,25 @@ John:US:4
     </screen>
 
     <para>
-      So, how can we sort the file by the score? Obviously, we have to
-      ask sort to use the third column. But sort uses a dictionary
-      sort by default<footnote><para>Of course, that will not really
-      matter in this case, because we don't use numbers higher than 9,
-      and virtually all character sets have numbers in a numerical
-      order).</para></footnote>. You could use the <parameter
-      class="command">-n</parameter>, but <command>sort</command> also
-      allows a more sophisticated approach. You can append the one or
-      more of the <emphasis>n</emphasis>, <emphasis>r</emphasis>>,
+      Donc, comment nous pouvons trier le fichier par score ? Evidemment, nous
+      devons demander à sort d'utiliser la troisième colonne. Cependant sort
+      utilise un tri par dictionnaire par défaut<footnote><para>Bien sûr, ça n'a
+      pas d'importance, car nous n'utilisons pas de nombres supérieurs à 9, et
+      pratiquement tous les jeux de caractères ont les nombres dans l'ordre
+      numérique.</para></footnote>. Vous pouvez utiliser <parameter
+      class="command">-n</parameter>, mais <command>sort</command> permet aussi
+      une tournure plus sophistiquée. Vous pouvez ajouter un ou plusieurs
+      <emphasis>n</emphasis>, <emphasis>r</emphasis>>,
       <emphasis>f</emphasis>, <emphasis>d</emphasis>,
-      <emphasis>i</emphasis>, or <emphasis>b</emphasis> to the column
-      specifier. These letters represent the <command>sort</command>
-      parameters with the same name. If you add just the starting
-      column, append it to that column, otherwise, add it to the
-      ending column.
+      <emphasis>i</emphasis>, ou <emphasis>b</emphasis> au spécifieur de
+      colonne. Ces lettres représentent les paramètres de
+      <command>sort</command> du même nom. Si vous ajoutez seulement la colonne
+      de départ, ajoutez-la dans cette colonne, sinon, ajoutez-la à la dernière
+      colonne.
     </para>
 
     <para>
-      The following command sorts the file by score:
+      La commande suivante trie le fichier par score :
     </para>
 
     <screen>
