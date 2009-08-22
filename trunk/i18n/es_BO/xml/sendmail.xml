@@ -1,0 +1,248 @@
+<!-- $Id: sendmail.xml 301 2007-09-19 23:00:26Z danieldk $ -->
+
+<chapter id="email-sendmail"> <?dbhtml filename="sendmail.html"?>
+  <title>Sendmail</title>
+
+  <indexterm><primary>sendmail</primary></indexterm>
+
+  <sect1 id="email-sendmail-introduction">
+    <title>Introduction</title>
+    
+    <indexterm><primary>MTA</primary></indexterm>
+    <indexterm><primary>Mail Transfer Agent</primary></indexterm>
+
+    <para>
+      Sendmail is the default Mail Transfer Agent (<acronym>MTA</acronym>)
+      that Slackware Linux uses. sendmail was originally written by Eric
+      Allman, who still maintains sendmail. The primary role of the sendmail
+      MTA is delivering messages, either locally or remotely. Delivery
+      is usually done through the SMTP protocol. This means that sendmail
+      can accept e-mail from remote sites through the SMTP port, and that
+      sendmail delivers mail destined for remote sites to other SMTP
+      servers.
+    </para>
+  </sect1>
+
+  <sect1 id="email-sendmail-installation">
+    <title>Installation</title>
+
+    <indexterm><primary>sendmail</primary><secondary>installation</secondary></indexterm>
+
+    <para>
+      Sendmail is available as the <emphasis>sendmail</emphasis> package
+      in the <quote>n</quote> disk set. If you want to generate your own
+      sendmail configuration files, the <emphasis>sendmail-cf</emphasis>
+      package is also required. For information about how to install
+      packages on Slackware Linux, refer to
+      <xref linkend="chap-pkgmgmt" />.
+    </para>
+
+    <para>
+      You can let Slackware Linux start sendmail during each boot by
+      making the <filename>/etc/rc.d/rc.sendmail</filename> executable.
+      You can do this by executing:
+    </para>
+
+    <screen>
+# <command>chmod a+x /etc/rc.d/rc.sendmail</command>
+    </screen>
+
+    <para>
+      You can also start, stop and restart sendmail by using
+      <emphasis>start</emphasis>, <emphasis>stop</emphasis>, and
+      <emphasis>restart</emphasis> as a parameter to the sendmail
+      initialization script. For example, you can restart sendmail
+      in the following way:
+    </para>
+
+    <screen>
+# <command>/etc/rc.d/rc.sendmail restart</command>
+    </screen>
+  </sect1>	
+
+  <sect1 id="email-sendmail-configuration">
+    <title>Configuration</title>
+
+    <para>
+      The most central sendmail configuration file is
+      <filename>/etc/mail/sendmail.cf</filename>; this is where the 
+      behavior of sendmail is configured, and where other files
+      are included. The syntax of <filename>/etc/mail/sendmail.cf</filename>
+      is somewhat obscure, because this file is compiled from a
+      much simpler <filename>.mc</filename> files that uses M4 macros
+      that are defined for sendmail.
+    </para>
+
+    <para>
+      Some definitions can easily be changed in the
+      <filename>/etc/mail/sendmail.cf</filename> file, but for other
+      changes it is better to create your own <filename>.mc</filename>
+      file. Examples in this chapter will be focused on creating a
+      customized mc file.
+    </para>
+
+    <sect2 id="email-sendmail-configuration-mc">
+      <title>Working with mc files</title>
+    
+      <indexterm><primary>sendmail</primary><secondary>mc files</secondary></indexterm>
+
+      <para>
+        In this section we will look how you can start off with an
+        initial mc file, and how to compile your own .mc file to a
+        cf file. There are many interesting example mc files available
+        in <filename>/usr/share/sendmail/cf/cf</filename>. The most
+        interesting examples are <filename>sendmail-slackware.mc</filename>
+        (which is used for generating the default Slackware Linux
+        <filename>sendmail.cf</filename>), and
+        <filename>sendmail-slackware-tls.mc</filename> which adds
+        TLS support to the standard Slackware Linux sendmail configuration.
+        If you want to create your own sendmail configuration, it is
+        a good idea to start with a copy of the standard Slackware Linux
+        mc file. For instance, suppose that we would like to create
+        a configuration file for the server named <emphasis>straw</emphasis>,
+        we could execute:
+      </para>
+
+      <screen>
+# <command>cd /usr/share/sendmail/cf/cf</command>
+# <command>cp sendmail-slackware.mc sendmail-straw.mc</command>
+      </screen>
+
+      <para>
+        and start editing <filename>sendmail-straw.mc</filename>. After
+        the configuration file is modified to our tastes, M4 can be used
+        to compile a cf file:
+      </para>
+
+      <screen>
+# <command>m4 sendmail-straw.mc &gt; sendmail-straw.cf</command>
+      </screen>
+
+      <para>
+        If we want to use this new configuration file as the default
+        configuration, we can copy it to
+        <filename>/etc/mail/sendmail.cf</filename>:
+      </para>
+
+      <screen>
+# <command>cp sendmail-straw.cf /etc/mail/sendmail.cf</command>
+      </screen>
+    </sect2>
+    
+    <sect2 id="email-sendmail-configuration-smarthost">
+      <title>Using a smarthost</title>
+
+      <indexterm><primary>sendmail</primary><secondary>smarthost</secondary></indexterm>
+
+      <para>
+        If you would like to use another host to deliver e-mail to
+        locations to which the sendmail server you are configuring can not
+        deliver you can set up sendmail to use a so-called <quote>smart
+        host</quote>. Sendmail will send the undeliverable e-mail to the
+        smart host, which is in turn supposed to handle the e-mail. You do
+        this by defining <emphasis>SMART_HOST</emphasis> in your mc file.
+        For example, if you want to use <emphasis>smtp2.example.org</emphasis>
+        as the smart host, you can add the following line:
+      </para>
+
+      <screen>
+define(`SMART_HOST',`stmp2.example.org')
+      </screen>
+    </sect2>
+
+    <sect2 id="email-sendmail-configuration-accepthosts">
+      <title>Alternative host/domain names</title>
+
+      <indexterm><primary>sendmail</primary><secondary>local host names</secondary></indexterm>
+
+      <para>
+        By default sendmail will accept mail destined for localhost, and the
+        current hostname of the system. You can simply add additional hosts
+        or domains to accept e-mail for. The first step is to make sure that 
+        the following line is added to your mc configuration:
+      </para>
+
+      <screen>
+FEATURE(`use_cw_file')dnl
+      </screen>
+
+      <para>
+        When this option is enabled you can add host names and domain
+        names to accept mail for to
+        <filename>/etc/mail/local-host-names</filename>. This file
+        is a newline separated database of names. For example, the file
+        could look like this:
+      </para>
+
+      <screen>
+example.org
+mail.example.org
+www.example.org
+      </screen>
+    </sect2>
+
+    <sect2 id="email-sendmail-configuration-mapaddr">
+      <title>Virtual user table</title>
+
+      <indexterm><primary>sendmail</primary><secondary>virtual user table</secondary></indexterm>
+
+      <para>
+        Often you may want to map e-mail addresses to user names. This
+        is needed when the user name differs from the part before the
+        <quote>@</quote> part of an e-mail address. To enable this
+        functionality, make sure the following line is added to your
+        mc file:
+      </para>
+
+      <screen>
+FEATURE(`virtusertable',`hash -o /etc/mail/virtusertable.db')dnl
+      </screen>
+
+      <para>
+        The mappings will now be read from
+        <filename>/etc/mail/virtusertable.db</filename>. This is a
+        binary database file that should not directly edit. You can
+        edit <filename>/etc/mail/virtusertable</filename> instead,
+        and generate <filename>/etc/mail/virtusertable.db</filename>
+        from that file.
+      </para>
+
+      <para>
+        The <filename>/etc/mail/virtusertable</filename> file is a simple
+        plain text file. That has a mapping on each line, with an e-mail
+        address and a user name separated by a tab. For example:
+      </para>
+
+      <screen>
+john.doe@example.org    john
+john.doe@mail.example.org        john
+      </screen>
+
+      <para>
+        In this example both e-mail for
+        <emphasis>john.doe@example.org</emphasis> and
+        <emphasis>john.doe@mail.example.org</emphasis> will be
+        delivered to the <emphasis>john</emphasis> account. It is
+        also possible to deliver some e-mail destined for a domain
+        that is hosted on the server to another e-mail address,
+        by specifying the e-mail address to deliver the e-mail to
+        in the second column. For example:
+      </para>
+
+      <screen>
+john.doe@example.org    john.doe@example.com
+      </screen>
+
+      <para>
+        After making the necessary changes to the
+        <filename>virtusertable</filename> file you can generate the
+        database with the following command:
+      </para>
+
+      <screen>
+# <command>makemap hash /etc/mail/virtusertable &lt; /etc/mail/virtusertable</command>
+      </screen>
+    </sect2>
+  </sect1>
+
+</chapter>

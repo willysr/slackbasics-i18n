@@ -1,0 +1,87 @@
+<chapter xml:id="chap-book">
+  <title>About this book</title>
+
+  <sect1 xml:id="chap-book-availability">
+    <title>Availability</title>
+
+    <para>
+      This book was written in DocBook/XML, and converted to HTML and
+      XSL:FO with <command>xsltproc</command>. The latest version of
+      the book is always available from: <ulink
+      url="http://www.slackbasics.org/" />.
+    </para>
+  </sect1>
+
+  <sect1 xml:id="chap-book-conventions">
+    <title>Conventions</title>
+
+    <para>
+      This section gives a short summary of the conventions in this book.
+    </para>
+
+    <sect2 xml:id="chap-book-conventions-filenames">
+      <title>File names</title>
+
+      <para>
+	File or directory names are printed as:
+	<filename>/path/to/file</filename>.  For example:
+	<filename>/etc/fstab</filename>
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-book-conventions-commands">
+      <title>Commands</title>
+
+      <para>
+	Commands are printed as bold text. For example: <command>ls
+	-l</command>
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-book-conventions-screenoutput">
+      <title>Screen output</title>
+
+      <para>
+	Screen output is printed like this:
+      </para>
+
+      <screen>
+Hello world!
+      </screen>
+
+      <para>
+	If commands are being entered in the screen output the
+	commands will be printed as bold text:
+      </para>
+
+      <screen>
+$ <command>command</command>
+Output
+      </screen>
+
+      <para>
+	If a command is executed as root, the shell will be displayed
+	as <quote>#</quote>. If a command is executed as a normal
+	non-privileged user, the shell will be displayed as
+	<quote>$</quote>.
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-book-conventions-notes">
+      <title>Notes</title>
+
+      <para>
+	Some sections contain extra notes. It is not necessary to know
+	the information in notes, but notes may provide valuable
+	information, or pointers to information. Notes are printed
+	like this:
+      </para>
+
+      <note>
+	<para>
+	  This is a note.
+	</para>
+      </note>
+    </sect2>
+  </sect1>
+</chapter>
