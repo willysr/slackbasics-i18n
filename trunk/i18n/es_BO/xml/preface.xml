@@ -1,7 +1,7 @@
-<preface xmlns="http://docbook.org/ns/docbook" version="5.0"
+ <preface xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xmlns:xl="http://www.w3.org/1999/xlink"
 	 xml:lang="es" xml:id="preface">
-  <title>Preface</title>
+  <title>Prefacio</title>
 
   <para>
     Este libro tiene como objetivo proveer una introducción a Slackware 
@@ -15,7 +15,7 @@
   </para>
 
   <para>
-    Gracias al rapido desarrollo del software de código abierto, existen
+    Gracias al r�pido desarrollo del software de código abierto, existen
     ahora entornos de escritorio y aplicaciones comprehensivas para
     GNU/Linux. La mayoría de las distribuciones actuales y libros
     se enfocan en el uso de GNU/Linux con tales entornos. Yo escogí
