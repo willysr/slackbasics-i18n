@@ -91,6 +91,17 @@
       </para>
 
       <para>
+	Ahora tal vez quieras saber donde residen los nombres de 
+	archivos (y directorios), ya que no existe un campo 
+	'nombre' en el inode. Actualmente, los nombres de archivo
+	están separados del inode y los bloques de datos, esto
+	te permite hacer groovy stuff, como dar a un mismo archivo
+	más de un nombre. Los nombres de archivo son almacenados
+	en algo denominado entradas de directorio. Estas entradas
+	especifican el nombre y el inode del archivo. Debido a que
+	los directorios también se representan a través de inodes,
+	su estructura puede ser construída de esta forma.
+
 	You may wonder by now where the names of files (and
 	directories) reside, since there is no file name field in the
 	inode. Actually, the names of the files are separated from the
@@ -103,6 +114,7 @@
       </para>
 
       <para>
+	
 	We can simply show how this all works by illustrating what the
 	kernel does when we execute the command <command>cat
 	/home/daniel/note.txt</command>
