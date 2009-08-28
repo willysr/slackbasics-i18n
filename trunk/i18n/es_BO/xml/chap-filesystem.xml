@@ -3,87 +3,91 @@
 	 xmlns:xl="http://www.w3.org/1999/xlink"
 	 xml:lang="es"
 	 xml:id="chap-filesystem">
-  <title>Files and directories</title>
+  <title>Archivos y directorios</title>
 
   <sect1 xml:id="chap-filesystem-introduction">
-    <title>Some theory</title>
+    <title>Algo de teoría</title>
 
     <para>
-      Before we move on to look at practical filesystem operations, we
-      are going to look at a more theoretical overview of how
-      filesystems on UNIX-like systems work. Slackware Linux supports
-      many different filesystems, but all these filesystems use
-      virtually the same semantics. These semantics are provided
-      through the <emphasis>Virtual Filesystem</emphasis> (VFS)
-      layer, giving a generic layer for disk and network filesystems.
+      Antes de comenzar a ver las operaciones prácticas en el
+      sistema de archivos, vamos a dar un vistazo a cómo 
+      funcionan los sistemas de archivos en sistemas UNIX-like.
+      Slackware Linux soporta diferentes sistemas de archivos, 
+      pero todos ellos utilizan esencialmente las mismas
+      semánticas. Estas semánticas son proveídas a través
+      de la capa de <emphasis>Sistema de Archivos Virtual</emphasis> 
+      (VFS, de sus siglas en inglés), que brinda una capa 
+      genérica para sistemas de archivos en disco o red.
     </para>
 
     <sect2 xml:id="chap-filesystem-introduction-atoms">
-      <title>inodes, directories and data</title>
+      <title>inodes, directorios y datos</title>
 
       <para>
-	The filesystem consists of two types of elements: data and
-	metadata. The metadata describes the actual data blocks that
-	are on the disk. Most filesystems use information nodes
-	(inodes) to store metadata. Most filesystems store the
-	following data in their inodes:
+	El sistema de archivos consiste en dos tipos de elementos:
+	datos y metadatos. Los metadatos los bloques de datos
+	que están en el disco. La mayoría de los sistemas de 
+	ficheros utilizan nodos de información (inodes, de sus
+	palabras en inglés) para almacenar metadatos. Y 
+	generalmente almacenan los siguientes datos en sus inodes:
       </para>
 
       <table xml:id="chap-filesystem-introduction-atoms-inodes">
-        <title>Common inode fields</title>
+        <title>Campos comunes en inodes</title>
         <tgroup cols="2">
           <thead>
             <row>
-              <entry>Field</entry>
-              <entry>Description</entry>
+              <entry>Campo</entry>
+              <entry>Descripción</entry>
             </row>
           </thead>
           <tbody>
             <row>
               <entry>mode</entry>
-              <entry>The file permissions.</entry>
+              <entry>Permisos del archivo.</entry>
             </row>
             <row>
               <entry>uid</entry>
-              <entry>The user ID of the owner of the file.</entry>
+              <entry>ID de usuario del propietario del archivo.</entry>
             </row>
             <row>
               <entry>gid</entry>
-              <entry>The group ID of the group of the file.</entry>
+              <entry>ID del grupo del archivo.</entry>
             </row>
             <row>
               <entry>size</entry>
-              <entry>Size of the file in bytes.</entry>
+              <entry>Tamaño en bytes del archivo.</entry>
             </row>
             <row>
               <entry>ctime</entry>
-              <entry>File creation time.</entry>
+              <entry>Fecha de creación del archivo.</entry>
             </row>
             <row>
               <entry>mtime</entry>
-              <entry>Time of the last file modification.</entry>
+              <entry>Fecha de la última modificación del archivo.</entry>
             </row>
             <row>
               <entry>links_count</entry>
-              <entry>The number of links pointing to this inode.</entry>
+              <entry>Número de enlaces apuntando a este inode.</entry>
             </row>
             <row>
               <entry>i_block</entry>
-              <entry>Pointers to data blocks</entry>
+              <entry>Punteros a los bloques de datos.</entry>
             </row>
           </tbody>
         </tgroup>
       </table>
 
       <para>
-	If you are not a UNIX or Linux afficiendo, these names will
-	probably sound bogus to you, but we will clear them up in the
-	following sections. At any rate, you can probably deduct the
-	relation between inodes and data from this table, and
-	specifically the <emphasis>i_block</emphasis> field: every
-	inode has pointers to the data blocks that the inode provides
-	information for. Together, the inode and data blocks are the
-	actual file on the filesystem.
+	Si no eres un aficionado UNIX o Linux, estos nombres deben 
+	estar sonando un poco extraños para ti, pero los esclareceremos
+	en las secciones posteriores. En cualquier caso, ya puede
+	deducir la relación entre inodes y datos a través de esta 
+	tabla, y específicamante el campo <emphasis>i_block</emphasis>:
+	cada inode tiene punteros hacia los bloques de datos sobre
+	los cuales el inode provee información. Juntos, el inode
+	y los bloques de datos son el archivo en el sistema de 
+	archivos.
       </para>
 
       <para>
