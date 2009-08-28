@@ -7,7 +7,7 @@
 
   <info>
     <title>Slackware Linux Basics</title>
-    <subtitle>For Slackware Linux 12.0</subtitle>
+    <subtitle>Para Slackware Linux 12.0</subtitle>
     <pubdate>Thu Sep 27 10:20:04 CEST 2007</pubdate>
     <authorgroup>
       <author><personname>Dani&#235;l de Kok</personname></author>
@@ -26,19 +26,19 @@
     </copyright>
 
     <legalnotice>
-      <title>License</title>
+      <title>Licencia</title>
 
       <para>
-        Some rights reserved. This book is made available under the Creative Commons
-        Attribution 3.0 License (CC-BY). This license is available from:
+	Algunos derechos reservados. Este libro está disponible bajo
+	la Licencia Creative Commons Attribution 3.0 (CC-BY). Los
+	términos de la licencia pueden ser consultados en:
         <ulink url="http://creativecommons.org/licenses/by/3.0/" />
       </para>
 
       <para>
-	Linux is a registered trademark of Linus Torvalds. Slackware
-	Linux is a registered trademark of Patrick Volkerding and
-	Slackware Linux, Inc.  UNIX is a registered trademark of The
-	Open Group.
+	Linux es una marca registrada de Linus Torvalds. Slackware
+	es una marca registrada de Patrick Volkerding y Slackware 
+	Linux, Inc. UNIX es una marca registrada de The Open Group.
       </para>
     </legalnotice>
   </info>
@@ -48,7 +48,7 @@
   <xi:include href="preface.xml"/>
 
   <part xml:id="getstarted">
-    <title>Getting started</title>
+    <title>Comenzando</title>
 
     <xi:include href="chap-book.xml"/>
     <xi:include href="chap-intro.xml"/>
@@ -68,19 +68,19 @@
   </part>
 
   <part xml:id="editing">
-    <title>Editing and typesetting</title>
+    <title>Edición y composición</title>
     <xi:include href="latex.xml"/>
   </part>
 
   <part xml:id="email">
-    <title>Electronic mail</title>
+    <title>Correo Electrónico</title>
     
     <xi:include href="mutt.xml"/>
     <xi:include href="sendmail.xml"/>
   </part>
 
   <part xml:id="sysadmin">
-    <title>System administration</title>
+    <title>Administración del sistema</title>
     
     <xi:include href="chap-usermgmt.xml"/>
     <xi:include href="printing.xml"/>
@@ -93,7 +93,7 @@
    </part>
 
   <part xml:id="netadmin">
-    <title>Network administration</title>
+    <title>Administración de red</title>
     <xi:include href="netconfig.xml"/>
     <xi:include href="ipsec.xml"/>
     <xi:include href="inetd.xml"/>
