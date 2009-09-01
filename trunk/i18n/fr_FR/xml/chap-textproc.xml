@@ -42,8 +42,8 @@ hello world
       </screen>
 
       <para>
-	Une autre fonctionnalité utile est que vous pouvez lui faire envoyer le
-	contenu d'un fichier vers la sortie standard :
+	Une autre fonctionnalité utile est de lui faire envoyer le contenu d'un
+	fichier vers la sortie standard :
       </para>
 
       <screen>
@@ -54,9 +54,9 @@ Hello, this is the content of file.txt
       <para>
 	<command>cat</command> (Ndt: cat=concatène) porte bien son nom lorsque
 	plusieurs fichiers sont ajoutés en arguments. Cela va concaténer les
-	fichiers, autrement dit, il va envoyer le contenu de tous les fichiers
+	fichiers ; autrement dit, il va envoyer le contenu de tous les fichiers
 	vers la sortie standard, dans le même ordre où ils ont été spécifiés en
-	arguments. La capture d'écran suivante montre cela :
+	argument. La capture d'écran suivante montre cela :
       </para>
 
       <screen>
@@ -852,26 +852,24 @@ Klaus:DE:5
     </screen>
 
     <para>
-      It is good to follow this approach, rather than using the
-      parameter variants, because <command>sort</command> allows you
-      to use more than one <parameter class="command">-k</parameter>
-      parameter. And, adding these flags to the column specification,
-      will allow you to sort by different columns in different ways.
-      For example using <command>sort</command> with the <parameter
-      class="command">-k 3,3n -k 2,2</parameter> parameters will sort
-      all lines numerically by the third column. If some lines have
-      identical numbers in the third column, these lines can be sorted
-      further with a dictionary sort of the second column.
+      Il est bon de suivre cette approche, plutôt que d'utiliser les paramètres,
+      car <command>sort</command> vous permet d'utiliser plus d'un paramètre
+      <parameter class="command">-k</parameter>. Et l'ajout de ces flags aux
+      spécifieurs de colonnes vous permettra de trier des colonnes différentes
+      de façon différente. Par exemple, utiliser <command>sort</command> avec
+      les paramètres <parameter class="command">-k 3,3n -k 2,2</parameter> va
+      trier toutes les lignes dans l'ordre numérique sur la troisième colonne.
+      Si des lignes on un nombre identique dans la troisième colonne, ces lignes
+      peuvent alors être triées par dictionnaire sur la deuxième colonne.
     </para>
 
     <para>
-      If you want to check whether a file is already sorted, you can
-      use the <parameter class="command">-c</parameter> parameter.  If
-      the file was in a sorted order, sort will return the value
-      <emphasis>0</emphasis>, otherwise <emphasis>1</emphasis>. We can
-      check this by echoing the value of the <emphasis>?</emphasis>
-      variable, which holds the return value of the last executed
-      command.
+      Si vous voulez vérifier si un fichier est déjà trié, vous pouvez utiliser
+      le paramètre <parameter class="command">-c</parameter>. Si un fichier est
+      déja trié, sort retournera la valeur <emphasis>0</emphasis>, sinon
+      <emphasis>1</emphasis>. Nous pouvons vérifier ceci en affichant la valeur
+      de la variable <emphasis>?</emphasis>, qui contient la valeur de retour de
+      la dernière commande exécutée.
     </para>
 
     <screen>
@@ -882,16 +880,15 @@ $ <userinput>sort scores.txt | sort -c ; echo $?</userinput>
     </screen>
 
     <para>
-      The second command shows that this actually works, by piping the
-      output of the sort of <filename>scores.txt</filename> to
+      La seconde commande montre qu'effectivement ça fonctionne, en pipelinant
+      la sortie du tri de <filename>scores.txt</filename> vers
       <command>sort</command>.
     </para>
 
     <para>
-      Finally, you can merge two sorted files with the <parameter
-      class="command">-m</parameter> parameter, keeping the correct
-      sort order. This is faster than concatenating both files, and
-      resorting them.
+      Enfin, vous pouver fusionner 2 fichiers triés avec le paramètre <parameter
+      class="command">-m</parameter>, en conservant l'ordre de tri correct. Cela
+      est plus rapide que de concaténer les fichiers et de les trier ensuite.
     </para>
 
     <screen>
@@ -900,25 +897,24 @@ $ <userinput>sort scores.txt | sort -c ; echo $?</userinput>
   </sect2>
 
     <sect2 xml:id="chap-textproc-simple-diff">
-      <title>Differences between files</title>
+      <title>Différences entre fichiers</title>
 
       <para>
-	Since text streams, and text files are very important in UNIX,
-	it is often useful to show the differences between two text
-	files. The main utilities for working with file differences
-	are <command>diff</command> and
-	<command>patch</command>. <command>diff</command> shows the
-	differences between files. The output of
-	<command>diff</command> can be processed by
-	<command>patch</command> to apply the changes between two
-	files to a file. <quote>diffs</quote> are also form the base
-	of version/source management systems. <!-- XXX - xref to
-	version management chapters --> The following sections
-	describe <command>diff</command> and <command>patch</command>.
-	To have some material to work with, the following two C source
-	files are used to demonstrate these commands. These files are
-	named <filename>hello.c</filename> and
-	<filename>hello2.c</filename> respectively.
+	Vu que les flux de texte et les fichiers texte sont très importants en
+	UNIX, il est souvent utile de voir les différences entre 2 fichiers
+	texte. Les utilitaires principaux pour manipuler les différences entre
+	fichiers sont <command>diff</command> et <command>patch</command>.
+	<command>diff</command> affiche les différences entre fichiers. La
+	sortie de <command>diff</command> (NdT: diff=différence) peut être
+	exploitée par <command>patch</command> pour appliquer les modifications
+	entre 2 fichiers, à un fichier. <quote>Les différences</quote> sont
+	aussi la base des systèmes de gestion de sources/versions.
+	<!-- XXX - xref to version management chapters --> La section suivante
+	décrit <command>diff</command> and <command>patch</command>.
+	Pour avoir un peu de matière sur laquelle travailler, les fichiers
+	source C suivants sont utilisés pour démontrer l'utilisation de ces
+	commandes. Ces fichiers sont nommés respectivement
+	<filename>hello.c</filename> et	<filename>hello2.c</filename>.
       </para>
 
       <programlisting>
@@ -971,24 +967,22 @@ void usage(char *programName) {
       </programlisting>
 
       <sect3 xml:id="chap-textproc-simple-diff-diff">
-	<title>Listing differences between files</title>
+	<title>Lister les différences entre fichiers</title>
 
 	<para>
-	  Suppose that you received the program
-	  <filename>hello.c</filename> from a friend, and you modified
-	  it to give the user the current date and time. You could
-	  just send your friend the updated program. But if a file
-	  grows larger, the can become uncomfortable, because the
-	  changes are harder to spot. Besides that, your friend may
-	  have also received modified program sources from other
-	  persons. This is a typical situation where
-	  <command>diff</command> becomes
-	  handy. <command>diff</command> shows the differences between
-	  two files. It most basic syntax is <command>diff file
-	  file2</command>, which shows the differences between
-	  <filename>file</filename> and
-	  <filename>file2</filename>. Let's try this with the our
-	  source files:
+	  Supposez que vous avez reçu de la part d'un ami le programme
+	  <filename>hello.c</filename>, et que vous l'avez modifié pour fournir
+	  à l'utilisateur les date et heure courantes. Vous pourriez simplement
+	  envoyer à votre ami le programme modifié. Mais si le fichier grossit,
+	  cela peut devenir gênant, car les modifications sont alors difficiles
+	  à trouver. De plus, votre ami a pu aussi recevoir des modifications
+	  des sources du programme d'autres personnes. C'est une situation
+	  typique où <command>diff</command> devient utile.
+	  <command>diff</command> affiche les différences entre 2 fichiers. Sa
+	  syntaxe la plus simple est <command>diff file
+	  file2</command>, qui affiche les différences entre
+	  <filename>file</filename> et
+	  <filename>file2</filename>. Essayons avec nos fichiers source :
 	</para>
 
 	<screen>
@@ -1002,41 +996,40 @@ $ diff hello.c hello2.c
 	</screen>
 
 	<para>
-	  The additions from <filename>hello2.c</filename> are visible
-	  in this output, but the format may look a bit
-	  strange. Actually, these are commands that can be
-	  interpreted by the <command>ed</command> line editor. We will
-	  look at a more comfortable output format after touching the
-	  surface of the default output format.
+	  Les ajouts de <filename>hello2.c</filename> sont visibles par cette
+	  sortie, mais le format peut sembler un peu étrange. En fait, ce sont
+	  des commandes qui peuvent être interprétées par l'éditeur de lignes
+	  <command>ed</command>. Nous allons voir un format plus agréable après
+	  avoir touché du doigt le format de sortie par défaut.
 	</para>
 
 	<para>
-	  Two different elements can be distilled from this output:
+	  2 éléments différents peuvent être tirés de cette sortie :
 	</para>
 
 	<calloutlist>
 	  <callout arearefs="co-diff-append">
 	    <para>
-	      This is an <application>ed</application> command that
-	      specified that text should be appended
-	      (<literal>a</literal>) after line <literal>2</literal>.
+	      C'est une commande <application>ed</application> qui spécifie que
+	      le texte doit être ajouté
+	      (<literal>a</literal>) après la ligne <literal>2</literal>.
 	    </para>
 	  </callout>
 	  <callout arearefs="co-diff-incoming">
 	    <para>
-	      This is the actual text to be appended after the second
-	      line. The <quote><emphasis>&gt;</emphasis></quote> sign
-	      is used to mark lines that are added.
+	      C'est le texte destiné à être ajouté après la deuxième ligne. Le
+	      signe <quote><emphasis>&gt;</emphasis></quote> est utilisé pour
+	      marquer les lignes ajoutées.
 	    </para>
 	  </callout>
 	</calloutlist>
 
 	<para>
-	  The same elements are used to add the second block of text.
-	  What about lines that are removed? We can easily see how
-	  they are represented by swapping the two parameters to
-	  <command>diff</command>, showing the differences between
-	  <filename>hello2.c</filename> and
+	  Les mêmes éléments sont utilisés pour ajouter le second bloc de texte.
+	  Qu'en est-il des lignes supprimées ? Nous pouvons facilement voir
+	  comment elles sont représentées en permutant les 2 paramètres de
+	  <command>diff</command>, affichant les différences entre
+	  <filename>hello2.c</filename> et
 	  <filename>hello.c</filename>:
 	</para>
 
@@ -1051,22 +1044,22 @@ $ <userinput>diff hello2.c hello.c</userinput>
 	</screen>
 
 	<para>
-	  The following elements can be distinguished:
+	  Les éléments suivants peuvent être distingués :
 	</para>
 
 	<calloutlist>
 	  <callout arearefs="co-diff-delete">
 	    <para>
-	      This is the <application>ed</application> delete command
-	      (<literal>d</literal>), stating that line 2 should be
-	      deleted. The second delete command uses a range (line 14
-	      to 17).
+	      C'est la commande de suppression de <application>ed</application>
+	      (<literal>d</literal>), indiquant que la ligne 2 doit être
+	      supprimée. La seconde commande de suppression utilise un
+	      intervalle (ligne 14 à 17).
 	    </para>
 	  </callout>
 	  <callout arearefs="co-diff-outgoing">
 	    <para>
-	      The text that is going to be removed is preceded by the
-	      <quote>&lt;</quote> sign.
+	      Le texte à supprimer est précédé du signe
+	      <quote>&lt;</quote>.
 	    </para>
 	  </callout>
 	</calloutlist>
@@ -1074,12 +1067,12 @@ $ <userinput>diff hello2.c hello.c</userinput>
 	<!-- XXX - Changed lines? -->
 
 	<para>
-	  That's enough of the <application>ed</application>-style
-	  output. The GNU diff program included in Slackware Linux
-	  supports so-called unified diffs. Unified diffs are very
-	  readable, and provide context by
-	  default. <command>diff</command> can provide unified output
-	  with the <parameter class="command">-u</parameter> flag:
+	  C'est suffisant pour la sortie du style <application>ed</application>.
+	  Le programme GNU diff inclus dans Slackware Linux supporte ce qu'on
+	  appelle les diffs unifiés. Les diffs unifiés sont très lisibles et
+	  fournissent le contexte par défaut. <command>diff</command> peut 
+	  fournir une sortie unifiée avec l'option
+	  <parameter class="command">-u</parameter> :
 	</para>
 
 	<screen>
@@ -1105,58 +1098,55 @@ $ diff -u hello.c hello2.c
 	</screen>
 
 	<para>
-	  The following elements can be found in the output
+	  Les éléments suivants peuvent être vus dans la sortie :
 	</para>
 
 	<calloutlist>
 	  <callout arearefs="co-udiff-origfile">
 	    <para>
-	      The name of the original file, and the timestamp of the
-	      last modification time.
+	      Le nom du fichier original, et la date de la dernière
+	      modification.
 	    </para>
 	  </callout>
 	  <callout arearefs="co-udiff-newfile">
 	    <para>
-	      The name of the changed file, and the timestamp of the
-	      last modification time.
+	      Le nom du fichier modifié, et la date de la dernière modification.
 	    </para>
 	  </callout>
 	  <callout arearefs="co-udiff-lines">
 	    <para>
-	      This pair of numbers show the location and size of the
-	      chunk that the text below affects in the original file
-	      and the modified file. So, in this case the numbers mean
-	      that in the affected chunk in the original file starts
-	      at line 1, and is four lines long. In the modified file
-	      the affected chunk starts at line 1, and is five lines
-	      long. Different chunks in diff output are started by
-	      this header.
+	      Ce couple de nombres situe l'endroit et la taille du morceau que
+	      le texte qui suit va impacter dans le fichier original, et dans
+	      le fichier modifié. Donc, ici les nombres signifient que le
+	      morceau impacté dans le fichier original débute à la ligne 1, et
+	      fait 4 lignes. Dans le fichier modifié le morceau impacté débute
+	      à la ligne 1, et fait 5 lignes. Les différents morceaux de la
+	      sortie de diff débutent par cette entête.
 	    </para>
 	  </callout>
 	  <callout arearefs="co-udiff-unmodified">
 	    <para>
-	      A line that is not preceded by a minus
-	      (<emphasis>-</emphasis>) or plus
-	      (<emphasis>+</emphasis>) sign is unchanged. Unmodified
-	      lines are included because they give contextual
-	      information, and to avoid that too many chunks are
-	      made. If there are only a few unmodified lines between
-	      changes, <command>diff</command> will choose to make
-	      only one chunk, rather than two chunks.
+	      Une ligne qui n'est pas précédée par un signe moins
+	      (<emphasis>-</emphasis>) ou un signe plus
+	      (<emphasis>+</emphasis>) reste inchangé. Les lignes inchangées
+	      sont inclues car elles donnent une indication de contexte, et
+	      évitent la multiplication de morceaux. S'il n'y a que quelques
+	      lignes inchangées entre 2 changements, <command>diff</command> va
+	      choisire de ne faire qu'un seul morceau plutôt que 2 morceaux.
 	    </para>
 	  </callout>
 	  <callout arearefs="co-udiff-add">
 	    <para>
-	      A line that is preceded by a plus sign
-	      (<emphasis>+</emphasis>) is an addition to the modified
-	      file, compared to the original file.
+	      Une ligne précédée par un signe plus
+	      (<emphasis>+</emphasis>) est un ajout dans le fichier modifié par
+	      rapport au fichier original.
 	    </para>
 	  </callout>
 	</calloutlist>
 
 	<para>
-	  As with the ed-style <command>diff</command> format, we can
-	  see some removals by swapping the file names:
+	  Comme pour le format à la ed <command>diff</command>, nous pouvons
+	  voir des suppressions en permutant les noms de fichiers :
 	</para>
 
 	<screen>
@@ -1184,20 +1174,19 @@ $ <userinput>diff -u hello2.c hello.c</userinput>
 	</screen>
 
 	<para>
-	  As you can see from this output, lines that are removed from
-	  the modified file, in contrast to the original file are
-	  preceded by the minus (<emphasis>-</emphasis>) sign.
+	  Comme vous pouvez le voir sur cette sortie, les lignes qui sont
+	  supprimées dans le fichier modifié par rapport au fichier original
+	  sont précédés par le signe moins (<emphasis>-</emphasis>).
 	</para>
 
 	<para>
-	  When you are working on larger sets of files, it's often
-	  useful to compare whole directories. For instance, if you
-	  have the original version of a program source in a directory
-	  named <filename>hello.orig</filename>, and the modified
-	  version in a directory named <filename>hello</filename>, you
-	  can use the <parameter class="command">-r</parameter>
-	  parameter to recursively compare both directories. For
-	  instance:
+	  Quand on travaille sur un ensemble plus grand de fichiers, il est
+	  souvent utile de comparer des répertoires entiers. Par exemple, si
+	  vous avez la version d'origine des sources d'un programme dans un
+	  répertoire nommé <filename>hello.orig</filename>, et que la version
+	  modifiée est dans un répertoire nommé <filename>hello</filename>, vous
+	  pouvez utiliser le paramètre <parameter class="command">-r</parameter>
+	  pour comparer récursivement les 2 répertoires. Par exemple :
 	</para>
 
 	<screen>
@@ -1226,16 +1215,16 @@ diff -ru hello.orig/hello.c hello/hello.c
 	</screen>
 
 	<para>
-	  It should be noted that this will only compare files that
-	  are available in both directories. The GNU version of diff,
-	  that is used by Slackware Linux provides the
-	  <parameter class="command">-N</parameter> parameter. This
-	  parameters treats files that exist in only one of both
-	  directories as if it were an empty file. So for instance,
-	  if we have added a file named <filename>Makefile</filename>
-	  to the <filename>hello</filename> directory, using the
-	  <parameter class="command">-N</parameter> parameter will
-	  give the following output:
+	  A noter que cela ne va comparer que les fichiers qui sont présents
+	  dans les 2 répertoires à la fois. La version GNU de diff, qui est
+	  utilisée par Slackware Linux fournit le paramètre
+	  <parameter class="command">-N</parameter>. Ce paramètre considère les
+	  fichiers présents seulement dans un seul des 2 répertoires comme s'il
+	  état vide. Donc par exemple, si nous avons ajouté un fichier nommé
+	  <filename>Makefile</filename> au répertoire
+	  <filename>hello</filename>, utiliser le parausing
+	  <parameter class="command">-N</parameter> produira la sortie
+	  suivante :
 	</para>
 
 	<screen>
@@ -1270,17 +1259,17 @@ diff -ruN hello.orig/Makefile hello/Makefile
 	</screen>
 
 	<para>
-	  As you can see the chunk indicator says that the chunk in
-	  the original file starts at line 0, and is 0 lines long.
+	  Comme vous pouvez le voir l'indicateur du moreceau dans le fichier
+	  original commence à la ligne 0 et fait 0 lignes.
 	</para>
 
 	<para>
-	  UNIX users often exchange the output of
-	  <command>diff</command>, usually called <quote>diffs</quote>
-	  or <quote>patches</quote>. The next section will show you
-	  how you can handle diffs. But you are now able to create
-	  them yourself, by redirecting the output of diff to a file.
-	  For example:
+	  Les utilisateurs UNIX s'échangent souvent les sorties de
+	  <command>diff</command>, généralement appelées <quote>diffs</quote>
+	  ou <quote>patches</quote>. La section suivante va vous montrer comment
+	  manipuler les diffs. Mais vous êtes capables de les créer par
+	  vous-même, en redirigeant la sortie de diff vers un fichier.
+	  Par exemple :
 	</para>
 
 	<screen>
@@ -1288,8 +1277,8 @@ $ <userinput>diff -u hello.c hello2.c > hello_add_date.diff</userinput>
 	</screen>
 
 	<para>
-	  If you have multiple diffs, you can easily combine them to
-	  one diff, by concatenating the diffs:
+	  Si vous avez des diffs multiples, vous pouvez combiner facilement les
+	  combiner en un seul diff, juste en concaténant les diffs :
 	</para>
 
 	<screen>
@@ -1297,14 +1286,14 @@ $ <userinput>cat diff1 diff2 diff3 > combined_diff</userinput>
 	</screen>
 
 	<para>
-	  But make sure that they were created from the same directory
-	  if you want to use the <command>patch</command> utility that
-	  is covered in the next section.
+	  Mais assurez-vous qu'ils ont été créés depuis le même répertoire si
+	  vous voulez vous servir de l'utilitaire <command>patch</command> qui
+	  sera couvert dans la section suivante.
 	</para>
       </sect3>
 
       <sect3 xml:id="chap-textproc-simple-diff-patch">
-	<title>Modifying files with diff output</title>
+	<title>Modifier les fichiers avec la sortie de diff</title>
 
 	<para>
 	  Suppose that somebody would send you the output of
