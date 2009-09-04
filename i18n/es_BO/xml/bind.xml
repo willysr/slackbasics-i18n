@@ -4,67 +4,68 @@
 <title>BIND</title>
 
 <sect1>
-<title>Introduction</title>
+<title>Introducción</title>
 
 <para>
-The domain name system (<acronym>DNS</acronym>) is used to convert
-human-friendly host names (for example www.slackware.com) to IP
-addresses. <acronym>BIND</acronym> (Berkeley Internet Name Domain) is
-the most widely used DNS daemon, and will be covered in this chapter.
+El sistema de nombres de dominio (<acronym>DNS</acronym>) es usado
+para convertir nombres de host (por ejemplo slackware.com) en direcciones
+IP. <acronym>BIND</acronym> (Berkeley Internet Name Domain) es el daemon 
+( demonio o servicio en español) DNS más usado, y el objetivo de este 
+capítulo.
 </para>
 
 <sect2>
-<title>Delegation</title>
+<title>Delegación</title>
 
 <para>
-One of the main features is that DNS requests can be delegated. For example,
-suppose that you own the <quote>linuxcorp.com</quote> domain. You can provide
-the authorized nameservers for this domain, you nameservers are authoritative
-for the <quote>linuxcorp.com</quote>. Suppose that there are different
-branches within your company, and you want to give each branch authority
-over their own zone, that is no problem with DNS. You can delegate DNS
-for e.g. <quote>sales.linuxcorp.com</quote> to another nameserver within
-the DNS configuration for the <quote>linuxcorp.com</quote> zone.
+Una de las principales características los servidores de nombres 
+es que las peticiones DNS pueden ser delegadas. Por ejemplo, suponga que 
+posee el dominio <quote>linuxcorp.com</quote>. 
+Usted puede proveer servidores de nombres autorizados para este dominio, 
+los cuales son autoritarios para <quote>linuxcorp.com</quote>. 
+Suponga que existen diferentes divisiones en su empresa, y quiere proveer a cada
+de estas divisiones autoridad sobre sus propias zonas, esto no es un problema
+con DNS. Puede delegar el DNS para <quote>sales.linuxcorp.com</quote> a otro
+servidor de nombres con la configuración DNS para la zona <quote>sales.linuxcorp.com</quote>.
 </para>
 
 <para>
-The DNS system has so-called root servers, which delegate the DNS for
-millions of domain names and extensions (for example, country specific
-extensions, like <quote>.nl</quote> or <quote>.uk</quote>) to authorized
-DNS servers. This system allows a branched tree of delegation, which is
-very flexible, and distributes DNS traffic.
+El sistema DNS posee los denominados servidores raíz (root servers), que delegan el DNS
+para millones de nombres de dominio y extensiones (por ejemplo, extensiones específicas 
+de cada país, como <quote>.nl</quote> o <quote>.uk</quote>) hacia servidores DNS autorizados. 
+Este sistema permite un arbol ramificado de delegaciones, que es muy flexible y distribuye
+el tráfico DNS.
 </para>
 
 </sect2>
 
 <sect2>
-<title>DNS records types</title>
+<title>Tipos de registros DNS</title>
 
 <para>
-The following types are common DNS record types:
+Los siguientes tipos de registros son comunes en DNS:
 </para>
 
 <table>
-<title>DNS records</title>
+<title>Registros DNS</title>
 <tgroup cols="2">
 <thead>
 <row>
-<entry>Prefix</entry><entry>Description</entry>
+<entry>Prefijo</entry><entry>Descripción</entry>
 </row>
 </thead>
 <tbody>
 <row>
-<entry>A</entry><entry>An A record points to an IPv4 IP address.</entry>
+<entry>A</entry><entry>Un registro A apunta a una dirección IP en su versión 4 (IPv4).</entry>
 </row>
 <row>
-<entry>AAAA</entry><entry>An AAAA record points to an IPv6 IP address.</entry>
+<entry>AAAA</entry><entry>Un registro  AAAA apunta a una dirección IP en su versión 6 (IPv6).</entry>
 </row>
 <row>
-<entry>CNAME</entry><entry>A CNAME record points to another DNS entry.</entry>
+<entry>CNAME</entry><entry>Un registro CNAME apunta a otra entrada DNS.</entry>
 </row>
 <row>
-<entry>MX</entry><entry>A MX record specifies which should handle mail for 
-the domain.</entry>
+<entry>MX</entry><entry>Un registro MX especifica la manipulación de correo electrónico para el dominio.</entry>
 </row>
 </tbody>
 </tgroup>
@@ -72,14 +73,15 @@ the domain.</entry>
 </sect2>
 
 <sect2>
-<title>Masters and slaves</title>
+<title>Maestros y esclavos</title>
 
 <para>
-Two kinds of nameservers can be provided for a domain name: a master and
-slaves. The master server DNS records are authoritative. Slave servers download
-their DNS record from the master servers. Using slave servers besides a
-master server is recommended for high availability and can be used for
-load-balancing.
+Dos tipos de servidores de nombres pueden ser proveídos para un nombre de dominio: 
+un maestro y un esclavo. Los registros del servidor DNS maestro son autoritarios. 
+Los servidores esclavos descargan los registros DNS de los servidores maestros.  
+Es recomendable utilizar servidores esclavos en vez de maestros para lograr 
+alta disponibilidad y ademásp pueden ser usados para balanceo de carga (tráfico 
+de red). 
 </para>
 
 </sect2>
