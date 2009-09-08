@@ -89,20 +89,21 @@ de red).
 </sect1>
 
 <sect1>
-<title>Making a caching nameserver</title>
+<title>Realizando caching del servidor de nombres  Making a caching nameserver</title>
 
 <para>
-A caching nameserver provides DNS services for a machine or a network,
-but does not provide DNS for a domain. That means it can only be used
-to convert hostnames to IP addresses. Setting up a nameserver with
-Slackware Linux is fairly easy, because BIND is configured as a
-caching nameserver by default. Enabling the caching nameserver takes
-just two steps: you have to install BIND and alter the initialization
-scripts. BIND can be installed by adding the bind package from
-the <quote>n</quote> disk set. After that bind can be started by executing the
-<command>named</command> command. If want to start BIND by
-default, make the <filename>/etc/rc.d/rc.bind</filename> file executable.
-This can be done by executing the following command as root:
+El caching de servidores de nombres provee servicios DNS para una
+máquina o una red, pero no provee DNS para un dominio. Esto significa
+que solo puede ser usado para convertir nombres de host a direcciones
+IP. Configurar un servidor de nombres con Slackware Linux es relativamente
+sencillo, debido a que BIND está configurado como servidor de nombres
+con caching por defecto. Habilitar el caching toma solamente dos pasos: 
+debe instalar BIND y modificar los scripts de inicialización. BIND
+puede ser instalado agregando el paquete de la serie <quote>n</quote>.
+Despues de eso, BIND puede ser iniciado ejecutando el comando 
+<command>named</command>. Si se quiere iniciar BIND por defecto, solamente
+se deben dar permisos de ejecución al archivo <filename>/etc/rc.d/rc.bind</filename>.
+Puede hacer esto ejecutando el siguiente comando como root:
 </para>
 
 <screen>
@@ -110,8 +111,8 @@ This can be done by executing the following command as root:
 </screen>
 
 <para>
-If you want to use the nameserver on the machine that runs BIND,
-you also have to alter <filename>/etc/resolv.conf</filename>.
+Si quiere usar el servidor de nombres en la máquina que ejecuta BIND,
+también debe modificar el archivo <filename>/etc/resolv.conf</filename>.
 </para>
 
 </sect1>
