@@ -2,59 +2,60 @@
 
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:id="chap-intro">
-  <title>An introduction to Slackware Linux</title>
+  <title>Una introducción a Slackware Linux</title>
 
   <sect1 xml:id="chap-intro-linux">
-    <title>What is Linux?</title>
+    <title>Qué es Linux?</title>
 
     <para>
-      Linux is a UNIX-like kernel, which is written by Linus Torvalds
-      and other developers. Linux runs on many different
-      architectures, for example on IA32, IA64, Alpha, m68k, SPARC and
-      PowerPC machines. The latest kernel and information about the
-      Linux kernel can be found on the Linux kernel website: <ulink
+      Linux es un kernel UNIX-like, escrito por Linus Torvalds y 
+      otros desarrolladores. Linux se ejecuta en diversas arquitecturas,
+      como por ejemplo IA32, IA64, Alpha, m68k, SPARC y máquinas
+      PowerPC. La última versión e información sobre el kernel Linux
+      pueden ser encontradas en el sitio: <ulink
       url="http://www.kernel.org">http://www.kernel.org</ulink>.
     </para>
 
     <para>
-      The Linux kernel is often confused with the GNU/Linux operating
-      system.  Linux is only a kernel, not a complete operating
-      system. GNU/Linux consists of the GNU operating system with the
-      Linux kernel. The following section gives a more extensive
-      description of GNU/Linux.
+      El kernel Linux es usualmente confundido con el sistema operativo
+      GNU/Linux. Linux es solamente el kernel, no un sistema operativo
+      completo. GNU/Linux se compone de el sistema operativo GNU con
+      el kernel Linux. La siguiente sección brinda una descripción 
+      mas completa sobre GNU/Linux.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-intro-gnulinux">
-    <title>What is GNU/Linux?</title>
+    <title>Qué es GNU/Linux?</title>
 
     <para>
-      In 1984 Richard Stallman started an ambitious project with the
-      goal to write a free UNIX-like operating system. The name of
-      this system is <acronym>GNU</acronym>, which is an acronym of
-      <quote>GNU's Not UNIX</quote>.  Around 1990, all major
-      components of the GNU operating system were written, except the
-      kernel. Two years earlier, in 1988, it was decided that the GNU
-      project would use the Mach 3.0 microkernel as the foundation of
-      its kernel.  However, it took until 1991 for Mach 3.0 to be
-      released under a free software license.  In the the same year
-      Linus Torvalds started to fill the kernel gap in the GNU system
-      by writing the Linux kernel. GNU/Linux thus refers to a GNU
-      system running with the Linux kernel.
+      En 1984, Richar Stallman inició un proyecto ambicioso con el
+      objetivo de escribir un sistema operativo UNIX-like libre. El
+      nombre de este sistema es <acronym>GNU</acronym>, que es un 
+      acrónimo de <quote>GNU's Not UNIX (GNU no es UNIX)</quote>.
+      A mediados de 1990, la mayoría de los componentes del sistema
+      operativo GNU fueron escritos, a excepción del kernel. Dos
+      años antes, en 1988, se decidió que el proyecto GNU usaría el
+      microkernel Mach 3.0 como base de su kernel. Entretanto, tomó
+      hasta 1991 para que Mach 3.0 fuese liberado bajo una licencia
+      de software libre. En el mismo año, Linus Torvalds comenzó a 
+      construir un kernel para el sistema GNU, el kernel Linux. Es 
+      por esto que GNU/Linux referencia un sistema GNU ejecutándose
+      con el kernel Linux.
     </para>
 
     <para>
-      The GNU kernel, named <quote>HURD</quote> was still under
-      development when this book was written, and is available as the
-      GNU/HURD operating system. There are some other kernels that are
-      ported to the GNU operating system as well. For instance, the
-      Debian project has developed a version of the GNU operating
-      system that works with the NetBSD kernel.
+      El kernel GNU, denominado <quote>HURD</quote> estaba aún en 
+      desarrollo cuando este libro fué escrito, pero está disponible
+      como el sistema operativo GNU/HURD. Existen otros kernels que
+      han sido portados al sistema operativo GNU. Por ejemplo, el
+      proyecto Debian ha desarrollado una versión del sistema 
+      operativo GNU que funciona con el kernel NetBSD.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-intro-slackware">
-    <title>What is Slackware Linux?</title>
+    <title>Qué es Slackware Linux?</title>
 
     <para>
       Slackware Linux is a GNU/Linux distribution, which is maintained
