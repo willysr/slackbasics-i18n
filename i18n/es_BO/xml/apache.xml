@@ -4,30 +4,31 @@
 <title>Apache</title>
 
 <sect1>
-<title>Introduction</title>
+<title>Introducción</title>
 
 <para>
-Apache is the most popular web server since April 1996. It was originally
-based on NCSA httpd, and has grown into a full-featured HTTP server.
-Slackware Linux currently uses the 1.3.x branch of Apache. This chapter is 
-based on Apache 1.3.x. 
+Apache es el servidor web más popular desde Abril de 1996. Fué originalmente
+basado en NCSA httpd, y ha crecido como un completo servidor HTTP. 
+Slackware Linux actualmente utiliza la rama 1.3.x de Apache; este capítulo
+está dirigido a esta versión.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Installation</title>
+<title>Instalación</title>
 
 <para>
-Apache can be installed by
-adding the <filename>apache</filename> package from the <quote>n</quote> disk set.
-If you also want to use PHP, the <filename>php</filename> (<quote>n</quote> disk set)
-and <filename>mysql</filename> (<quote>ap</quote> disk set) are also required.
-MySQL is required, because the precompiled PHP depends on MySQL shared 
-libraries. You do not have to run MySQL itself. After installing Apache
-it can be started automatically while booting the system by making
-the <filename>/etc/rc.d/rc.httpd</filename> file executable. You
-can do this by executing: 
+Apache puede ser instalado agregando el paquete <filename>apache</filename> 
+de el directorio <quote>n</quote> en el disco de instalación. 
+Si también quiere utilizar PHP, los paquetes <filename>php</filename>
+(directorio <quote>n</quote>) y <filename>mysql</filename> (directorio
+<quote>ap</quote>) son requeridos. MySQL es requerido, por que el paquete 
+precompilado de PHP depende de las librerías compartidas de MySQL. No es
+necesario ejecutar MySQL para soportar PHP. Después de instalar Apache, 
+puede ser iniciado automáticamente al iniciar el sistema dando permisos 
+de ejecución al script <filename>/etc/rc.d/rc.httpd</filename>. Puede 
+hacer esto ejecutando:
 </para>
 
 <screen>
@@ -35,13 +36,14 @@ can do this by executing:
 </screen> 
 
 <para>
-The Apache configuration can be altered in the 
-<filename>/etc/apache/httpd.conf</filename> file. Apache can be
-stopped/started/restarted every moment with the <command>apachectl</command>
-command, and the <parameter class="command">stop</parameter>, 
-<parameter class="command">start</parameter> and 
-<parameter class="command">restart</parameter> parameters. For example,
-execute the following command to restart Apache:
+La configuración de Apache puede ser modificada en el archivo 
+<filename>/etc/apache/httpd.conf</filename>. Apache puede ser 
+detenido/iniciado/reiniciado en cualquier momento con el comando 
+<command>apachectl</command>, y los parámetros
+<parameter class="command">stop</parameter>, <parameter
+class="command">start</parameter> y <parameter
+class="command">restart</parameter>. Por ejemplo, ejecute el 
+siguiente comando para reiniciar Apache:
 </para>
 
 <screen>

@@ -5,9 +5,9 @@
     <title>Disponibilidad</title>
 
     <para>
-      Este libro fuÈ escrito en DocBook/XML, y convertido a HTML y
-      XSL:FO con <command>xsltproc</command>. La ˙ltima versiÛn 
-      est· siempre disponible en: <ulink
+      Este libro fu√© escrito en DocBook/XML, y convertido a HTML y
+      XSL:FO con <command>xsltproc</command>. La √∫ltima versi√≥n
+      est√° siempre disponible en: <ulink
       url="http://www.slackbasics.org/" />.
     </para>
   </sect1>
@@ -16,7 +16,7 @@
     <title>Convenciones</title>
 
     <para>
-      Esta secciÛn brinda un resumen de las convenciones utilizadas en 
+      Esta secci√≥n brinda un resumen de las convenciones utilizadas en 
       el libro.
     </para>
 
@@ -52,7 +52,7 @@
 
       <para>
 	Si los comandos son ingresados en la salida de pantalla,
-	ser·n impresos como texto resaltado:
+	ser√°n impresos como texto resaltado:
       </para>
 
       <screen>$<command>command</command>
@@ -60,9 +60,9 @@
       </screen>
 
       <para>
-	Si un comando se ejecuta como root, la consola ser· mostrada
+	Si un comando se ejecuta como root, la consola ser√° mostrada
 	como <quote>#</quote>. Si un comando es ejecutado como 
-	usuario normal sin privilegios, la consola se mostrar· 
+	usuario normal sin privilegios, la consola se mostrar√°
 	como <quote>$</quote>.
       </para>
     </sect2>
@@ -72,8 +72,8 @@
 
       <para>
 	Algunas secciones contienen notas extra. No es necesario 
-	saber la informaciÛn en las notas, pero las notas pueden
-	proveer informaciÛn valiosa, o referencias a informaciÛn.
+	saber la informaci√≥n en las notas, pero las notas pueden
+	proveer informaci√≥n valiosa, o referencias a informaci√≥n.
 	Las notas son mostradas asi:
       </para>
 
