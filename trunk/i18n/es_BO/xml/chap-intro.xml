@@ -29,7 +29,7 @@
     <title>Qué es GNU/Linux?</title>
 
     <para>
-      En 1984, Richar Stallman inició un proyecto ambicioso con el
+      En 1984, Richard Stallman inició un proyecto ambicioso con el
       objetivo de escribir un sistema operativo UNIX-like libre. El
       nombre de este sistema es <acronym>GNU</acronym>, que es un 
       acrónimo de <quote>GNU's Not UNIX (GNU no es UNIX)</quote>.
@@ -58,187 +58,194 @@
     <title>Qué es Slackware Linux?</title>
 
     <para>
-      Slackware Linux is a GNU/Linux distribution, which is maintained
-      and developed by Patrick Volkerding. A distribution is a
-      coherent collection of software that provides a usable GNU/Linux
-      system. Volkerding started using GNU/Linux because he needed a
-      LISP interpreter for a project. At the time the dominant
-      GNU/Linux distribution was Softlanding System Linux (SLS
-      Linux). Slackware Linux started out as a private collection of
-      Volkerding's patches for SLS Linux. The first publicly available
-      Slackware Linux release was 1.0, which was released on July 16,
-      1993.
+      Slackware Linux es una distribución GNU/Linux, desarrollada y 
+      mantenida por Patrick Volkerding. Una distribución es una 
+      colección coherente de software que procee un sistema
+      GNU/Linux usable. Volkerding empezó a usar GNU/Linux por
+      que necesitaba un intérprete LISP para un proyecto. En ese
+      momento, la distribución GNU/Linux predominante era Softlanding
+      System Linux (SLS Linux). Slackware Linux inició como una 
+      colección privada de parches realizados por Volkerding para 
+      SLS Linux. La primera publicación disponible de Slackware Linux
+      fué la versión 1.0, liberada el 16 de julio de 1993.
     </para>
 
     <para>
-      In contrast to many other GNU/Linux distributions, Slackware
-      Linux adheres to the so-called KISS (Keep It Simple Stupid)
-      principle. This means that Slackware Linux does not have complex
-      graphical tools to configure the system. As a result the
-      learning curve of Slackware Linux can be high for inexperienced
-      GNU/Linux users, but it provides more transparency and
-      flexibility. Besides that you get a deeper understanding of
-      GNU/Linux with no-frills distributions like Slackware Linux.
+      En contraste con otras distribuciones GNU/Linux, Slackware Linux
+      se basa en el principio KISS (Keep It Simple Stupid, Mantenlo
+      Simple Estúpido). Esto significa que Slackware Linux no cuenta
+      con complejas herramientas gráficas para configurar el sistema.
+      Como resultado, la curva de aprendizaje de Slackware Linux puede
+      ser alta para usuarios GNU/Linux sin experiencia, pero provee 
+      mas transparencia y flexibilidad. Además usted tendrá una 
+      mejor comprensión de las distribuciones GNU/Linux puras como
+      Slackware Linux.
     </para>
 
     <para>
-      Another distinguishing aspect of Slackware Linux, that also
-      <quote>complies</quote> with the KISS principle, is the
-      Slackware Linux package manager. Slackware Linux does not have a
-      complex package manager like RPM or dpkg. Packages are normal
-      tgz (tar/gzip) files, often with an additional installation
-      script and a package description file. For novice users tgz is
-      much more powerful than RPM, and avoids dependency
-      problems. Another widely known feature of Slackware Linux is its
-      initialization scripts. In contrast to most other GNU/Linux
-      distributions Slackware Linux does not have a directory for each
-      runlevel with symbolic links to services that have to be started
-      or killed in that runlevel. It uses a simpler approach in which
-      you can enable or disable services by twiddling the executable
-      bit of an initialization script.
+      Otro aspecto distinguible de Slackware Linux, que también
+      <quote>concuerda</quote> con el principio KISS, es el administrador
+      de paquetes de Slackware Linux. Slackware Linux no posee un 
+      administrador de paquetes complejo como RPM o dpkg. Los paquetes
+      son archivos tgz (tar/gzip) normales, que usualmente contienen
+      scripts de instalación y un archivo de descripción del paquete. 
+      Para usuarios novatos tgz es mucho mas poderoso que RPM, y además
+      evita problemas de dependencia. Otra característica bastante
+      conocida de Slackware Linux son sus scripts de inicio. A diferencia
+      de la mayoría de las distribuciones GNU/Linux, Slackware Linux
+      no posee un directorio para cada nivel de ejecución con enlaces
+      simbólicos hacia los servicios que deben ser iniciados o terminados
+      en ese nivel de ejecución. Utiliza una solución simple en la 
+      cual se puede habilitar o no los servicios asignando los 
+      permisos de ejecución de un script de inicialización.
     </para>
 
     <para>
-      The packages in Slackware Linux are compiled with as little
-      modifications as possible. This means you can use most general
-      GNU/Linux documentation.
+      Los paquetes en Slackware Linux son compilados con las mínimas
+      modificaciones posibles. Esto quiere decir que se puede utilizar
+      la mayoría de la documentación GNU/Linux.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-intro-unix">
-    <title>The UNIX philosophy</title>
+    <title>La filosofía UNIX</title>
 
     <para>
-      Since GNU/Linux is a free reimplementation of the UNIX operating
-      system, it is a good idea to look at the philosophy that made
-      UNIX widely loved.  Doug McIlroy summarized the UNIX philosophy
-      in three simple rules:
+      Debido a que GNU/Linux es una reimplementación libre del sistema
+      operativo UNIX, es una buena idea dar un vistazo a la filosofía 
+      que dió a UNIX una amplia aceptación. Doug McIlroy resumió la
+      filosofía UNIX en tres simples reglas:
     </para>
 
     <itemizedlist>
       <listitem>
         <para>
-          Write programs that do one thing and do it well.
+	  Escriba programas que hacen una cosa y la realizan bien.
         </para>
       </listitem>
       <listitem>
         <para>
-          Write programs to work together.
+	  Escriba programas que funcionan juntos.
         </para>
       </listitem>
       <listitem>
         <para>
-          Write programs to handle text streams, because that is a
-          universal interface.
+	  Escriba programas que manejen flujos de texto, ya que es 
+	  una interfaz universal.
         </para>
       </listitem>
     </itemizedlist>
 
     <para>
-      Odds are that you do not intend to write programs for
-      GNU/Linux. However, even as a user these basic UNIX rules can
-      mean a lot to you. Once you get to know the essential commands
-      that have been part of UNIX for many years, you will be able to
-      combine simple programs to solve complex problems. Keep this in
-      mind while you learn Slackware Linux; try to get a feeling for
-      how you can divide complex tasks in simple combined operations.
+      Las probilidades indican que usted no intentará escribir 
+      programas para GNU/Linux. Sin embargo, aún como usuarios, 
+      estas reglas básicas pueden significar mucho para usted. Una
+      vez que conozca los comandos esenciales que han sido parte 
+      de UNIX por muchos años, será capaz de combinar programas
+      simples para resolver problemas complejos. Tenga esto en 
+      cuenta mientras aprende sobre Slackware Linux; trate de 
+      imaginar como puede dividir tareas complejas en simples
+      operaciones combinadas.
     </para>
   </sect1>
 
   <sect1 xml:id="free-software">
-    <title>Free and open source software</title>
+    <title>Software libre y de código abierto</title>
 
     <para>
-      Most packages in Slackware Linux are published under a free
-      software or open source license. Under these licenses software
-      may be used, studied, changed and distributed
-      freely. Practically, this means that the software is available
-      and redistributable in source and binary form. Although the free
-      software and open source software movements share many licenses
-      and principles, there are subtle differences between both
-      movements. The open source movement tends to focus on the
-      economic and technical advantages of sharing source code, while
-      the free software movement puts accent on the ethical side of
-      providing sources and binaries freely. As the GNU website puts
-      it: <quote>Free software is a matter of liberty, not price.  To
-      understand the concept, you should think of free as in free
-      speech, not as in free beer.<footnote>
+      La mayoría de los paquetes en Slackware Linux son publicados
+      bajo una licencia de software libre o de código abierto. Bajo 
+      estas licencias, el software puede ser usado, estudiado, cambiado
+      y distribuído libremente. Practicamente, esto quiere decir 
+      el software está disponible y es redistribuíble en forma de 
+      código fuente o binario. Aunque los movimientos de software libre
+      y de código abierto comparten varias licencias y principios, 
+      existen sutiles diferencias entre ambos movimientos. El 
+      movimiento de código abierto tiende su enfoque en las ventajas
+      económicas y técnicas del hecho de compartir código fuente, 
+      mientras que el movimiento de software libre se enfoca en 
+      el lado ético de proveer fuentes y binarios libremente. 
+      Como el sitio de GNU indica: <quote>El software libre es una 
+      cuestión de libertad, no de precio. Para entender el concepto,
+      usted debe pensar en "libertad de expresión", y no en 
+      "cerveza gratis".
+    <footnote>
       <para>
 	<ulink url="http://www.gnu.org/philosophy/free-sw.html" />
       </para>
     </footnote></quote>
-
-      In the spirit of free and open source software the source code
-      of almost all packages is included in the official Slackware
-      Linux CD set or DVD.
+      En el espíritu del software libre y de código abierto, el código
+      fuente de casi todos los paquetes están incluídos en el conjunto 
+      oficial de discos (CD, DVD) de Slackware Linux.
     </para>
   </sect1>
 
   <sect1 xml:id="slackware-features">
-    <title>Slackware Linux 12.0 features</title>
+    <title>Características de Slackware Linux 12.0</title>
 
     <para>
       <itemizedlist>
 	<listitem>
 	  <para>
 	    <emphasis role="bold">Linux 2.6.21.5</emphasis> -
-	    Slackware Linux uses as modern high-performance Linux
-	    kernel. The kernel includes support for all modern disk
-	    controllers, LVM, Software RAID, encrypted disks, and
-	    multiple processors/cores. By default,
-	    <emphasis>udev</emphasis> is enabled for automatic
-	    management of device nodes.
+	    Slackware Linux utiliza un kernel moderno y de alto
+	    rendimiento; el kernel incluye soporte para todos
+	    los controladores de disco modernos, LVM, Software RAID, 
+	    discos encriptados, y múltiples procesadores. Por
+	    defecto, <emphasis>udev</emphasis> es activado para 
+	    la administración automática de dispositivos.
           </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    <emphasis role="bold">HAL</emphasis> - the HAL (Hardware
-	    Abstraction Layer) is now included too. This provides a
-	    uniform API for desktop applications to use hardware.  It
-	    makes automatic mounting of disks and CDs considerably
-	    easier under Xfce and KDE.
+	    <emphasis role="bold">HAL</emphasis> - HAL (Hardware
+	    Abstraction Layer) es también incluido ahora. Provee
+	    un API uniforme para aplicaciones de escritorio para
+	    el uso de hardware. Realiza montaje automático de 
+	    discos y CDs de forma simple en los entornos de 
+	    escritorio XFCE y KDE.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-            <emphasis role="bold">X11 7.2.0</emphasis> - This is the
-            first version of Slackware Linux to use modular X.  This
-            means that the X11 components are separated in many small
-            packages for easier maintenance and lighter weight
-            upgrades.
+            <emphasis role="bold">X11 7.2.0</emphasis> - Esta es la
+	    primera versión de Slackware Linux que utiliza X modular. 
+	    Esto significa que los componentes X11 son separados en
+	    varios paquetes pequeños para simplificar su mantenimiento
+	    y para reducir el tamaño de las actualizaciones.
           </para>
         </listitem>
         <listitem>
           <para>
             <emphasis role="bold">GCC 4.1.2</emphasis> - Slackware
-            Linux 12.0 includes a completely revised toolchain based
-            on the GNU Compiler Collection 4.1.2. GCC provides C, C++,
-            Objective-C, Fortran-77/95, and Ada 95
-            compilers. Additionally, version 2.5 of the GNU C library is
-            used.
+            Linux 12.0 incluye una cadena de herramientas basadas en
+	    el GNU Compiler Collection 4.1.2. GCC provee compiladores
+	    para C, C++, Objective-C, Fortran-77/95, y Ada 95. 
+	    Adicionalmente, se usa la versión 2.5 de la librería GNU C.
           </para>
         </listitem>
 	<listitem>
 	  <para>
-	    <emphasis role="bold">Apache 2.2.4</emphasis> - Apache was
-	    upgraded to a new major version. Apache 2.x is a
-	    substantial rewrite of the old 1.3.x series.
+	    <emphasis role="bold">Apache 2.2.4</emphasis> - Apache fué
+	    actualizado a una versión reciente. Apache 2.x es 
+	    sustancialmente una reimplementación de la antigua 
+	    serie 1.3.x.
 	  </para>
 	</listitem>
         <listitem>
           <para>
             <emphasis role="bold">The K Desktop Environment (KDE)
-            3.5.7</emphasis> - The full KDE environment is provided,
-            which includes KOffice, the Konqueror web browser,
-            multimedia programs, development tools, and many more
-            useful applications.
+            3.5.7</emphasis> - Se provee el ambiente completo de KDE, 
+	    que incluye KOffice, el navegador web Konqueror, aplicaciones
+	    multimedia, herramientas de desarrollo, y muchas otras 
+	    aplicaciones útiles.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">Xfce 4.4.1</emphasis> - Xfce is a
-            lightweight desktop environment based on GTK2. It embodies
-            the UNIX spirit of modularity and reusability.
+            <emphasis role="bold">Xfce 4.4.1</emphasis> - Xfce es un
+            ambiente de escritorio ligero basado en GTK2. El cual es acorde
+	    con el principio UNIX de modularidad y rehusabilidad.
           </para>
         </listitem>
       </itemizedlist>
@@ -246,27 +253,27 @@
   </sect1>
 
   <sect1 xml:id="chap-intro-getting">
-    <title>Getting Slackware Linux</title>
+    <title>Obteniendo Slackware Linux</title>
 
     <para>
-      Slackware Linux is freely downloadable from the official
-      Slackware Linux mirrors. The list of Slackware mirrors is
-      available at <ulink url="http://www.slackware.com/getslack/" />.
+      Slackware Linux es libremente descargable a través de los sitios
+      oficiales. La lista de sitios Slackware mirrors está disponible
+      en <ulink url="http://www.slackware.com/getslack/" />.
     </para>
 
     <para>
-      You can also order Slackware Linux as a CD set or DVD from the
-      Slackware Store.  Many Internet shops also provide Slackware
-      Linux cheaply on CD-ROM or DVD, but you are only supporting
-      Slackware Linux financially if you buy an official CD set or
-      DVD. The Slackware Store also offers Slackware Linux
-      subscriptions.  A subscriber automatically receives new
-      Slackware Linux releases at a reduced price.
+      Puede también ordenar Slackware Linux como un conjuento de CDs 
+      o DVDs desde la Slackware Store. Muchos sitios de venta de 
+      internet proveen Slackware Linux en CD-ROM o DVD, pero solamente
+      comprando productos oficiales puede contribuir al proyecto
+      Slackware Linux. La Slackware Store también ofrece subscripciones
+      a Slackware Linux. Un suscriptor recibe automáticamente las 
+      nuevas versiones de Slackware Linux a precios reducidos.
     </para>
 
     <para>
-      If you would like to have more information about purchasing
-      Slackware Linux, visit the Slackware Store website at <ulink
+      Si quisiera tener mas información sobre compras de Slackware Linux,
+      visite el sitio web de Slackware Store <ulink
       url="http://store.slackware.com/" />.
     </para>
   </sect1>
