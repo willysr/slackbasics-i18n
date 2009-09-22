@@ -54,15 +54,15 @@ siguiente comando para reiniciar Apache:
 </sect1>
 
 <sect1>
-<title>User directories</title>
+<title>Directorios de Usuario</title>
 
 <para>
-Apache provides support for so-call user directories. This means every
-user gets web space in the form of <emphasis>http://host/~user/</emphasis>. The
-contents of <quote>~user/</quote> is stored in a subdirectory in the
-home directory of the user. This directory can be specified using the
-<quote>UserDir</quote> option in <filename>httpd.conf</filename>, for
-example:
+Apache provee soporte para los denominados directorios de usuario. Esto
+quiere decir que cada usuario tiene un espacio web en la forma 
+<emphasis>http://host/~user/</emphasis>. El contenido <quote>~user/</quote>
+es almacenado en un subdirectorio en el directorio base del usuario. Este
+directorio puede ser especificado utilizando la opción <quote>UserDir</quote> 
+en <filename>httpd.conf</filename>, por ejemplo:
 </para>
 
 <screen>
@@ -70,36 +70,37 @@ UserDir public_html
 </screen>
 
 <para>
-This specifies that the <filename>public_html</filename> directory should
-be used for storing the web pages. For example, the web pages at URL 
-<emphasis>http://host/~snail/</emphasis> are stored in 
+Esto especifica que el directorio <filename>public_html</filename> debería
+ser usado para almacenar las páginas web. Por ejemplo, las páginas web en
+la URL <emphasis>http://host/~snail/</emphasis> son almacenadas en 
 <filename>/home/snail/public_html</filename>.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Virtual hosts</title>
+<title>Hosts Virtuales</title>
 
 <para>
-The default documentroot for Apache under Slackware Linux is
-<filename>/var/www/htdocs</filename>. Without using virtual hosts
-every client connecting to the Apache server will receive the
-website in this directory. So, if we have two hostnames pointing
-to the server, <quote>www.example.org</quote> and 
-<quote>forum.example.org</quote>, both will display the same website.
-You can make separate sites for different hostnames by using
-virtual hosts.
+El archivo raíz por defecto en Apache bajo Slackware Linux es 
+<filename>/var/www/htdocs</filename>. Sin el uso de hosts virtuales
+cada cliente conectado al servidor Apache recibirá el sitio web 
+de este directorio. Entonces, si tenemos dos nombres de host
+apuntando al servidor, <quote>www.example.org</quote> y 
+<quote>forum.example.org</quote>, ambos serían vistos como el
+mismo sitio web. Usted puede separas sitios para diferentes 
+nombres de host utilizando hosts virtuales.
 </para>
 
 <para>
-In this example we are going to look how you can make two virtual
-hosts, one for <quote>www.example.org</quote>, with the documentroot
-<filename>/var/www/htdocs-www</filename>, and <quote>forum.example.org</quote>,
-with the documentroot <filename>/var/www/htdocs-forum</filename>. First
-of all we have to specify which IP addresses Apache should listen to.
-Somewhere in the <filename>/etc/apache/httpd.conf</filename> configuration
-file you will find the following line:
+En este ejemplo veremos cómo puede utilizar dos hosts virtuales, uno
+para <quote>www.example.org</quote>, con el documento raíz en 
+<filename>/var/www/htdocs-www</filename>, y <quote>forum.example.org</quote>, 
+con el documento raíz en <filename>/var/www/htdocs-forum</filename>. 
+Primeramente debemos especificar que direcciones IP serán escuchadas por 
+Apache. En algún lugar en el archivo de configuración 
+<filename>/etc/apache/httpd.conf</filename> usted encontrará la siguiente 
+linea:
 </para>
 
 <screen>
@@ -107,13 +108,13 @@ file you will find the following line:
 </screen>
 
 <para>
-This line has to be commented out to use name-based virtual hosts.
-Remove the comment character
-(#) and change the parameter to <quote>BindAddress IP:port</quote>, or
-<quote>BindAddress *:port</quote> if you want Apache to bind to all IP addresses
-the host has. Suppose we want to provide virtual hosts for IP address 
-192.168.1.201 port 80 (the default Apache port),
-we would change the line to:
+Esta linea debe ser descomentada para utilizar hosts virtuales basados
+en nombre. Quite el caracter (#) y cambie el parámetro a <quote>BindAddress
+IP:port</quote>, ó <quote>BindAddress *:port</quote> si quiere que 
+Apache enlace a todas las direcciones IP que el host contiene. Suponga que
+quiere proveer hosts virtuales para la dirección IP 192.168.1.201 en el 
+puerto 80 (el puerto Apache por defecto), deberíamos cambiar la línea
+quedando así:
 </para>
 
 <screen>
@@ -121,8 +122,8 @@ NameVirtualHost 192.168.1.201:80
 </screen>
 
 <para>
-Somewhere below the NameVirtualHost line you can find a commented example
-of a virtualhost:
+En algún lugar por debajo de la línea NameVirtualHost, puede encontrar
+un ejemplo comentado de un host virtual:
 </para>
 
 <screen>
@@ -136,9 +137,10 @@ of a virtualhost:
 </screen>
 
 <para>
-You can use this example as a guideline. For example, if we want to use
-all the default values, and we want to write the logs for both virtual
-hosts to the default Apache logs, we would add these lines:
+Puede utilizar este ejemplo como guía. Por ejemplo, si quisiéramos
+utilizar todos los valores por defecto, y además quisiéramos 
+escribir los logs de cada host virtual al log de Apache por defecto, 
+agregaríamos estas lineas:
 </para>
 
 <screen>
