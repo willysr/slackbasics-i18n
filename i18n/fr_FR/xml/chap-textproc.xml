@@ -1296,20 +1296,18 @@ $ <userinput>cat diff1 diff2 diff3 > combined_diff</userinput>
 	<title>Modifier les fichiers avec la sortie de diff</title>
 
 	<para>
-	  Suppose that somebody would send you the output of
-	  <command>diff</command> for a file that you have created. It
-	  would be tedious to manually incorporate all the changes
-	  that were made. Fortunately, the <command>patch</command>
-	  can do this for you. <command>patch</command> accepts diffs
-	  on the standard input, and will try to change the original
-	  file, according to the differences that are registered in
-	  the diff. So, for instance, if we have the
-	  <filename>hello.c</filename> file, and the patch that we
-	  produced previously based on the changes between
-	  <filename>hello.c</filename> and
-	  <filename>hello2.c</filename>, we can patch
-	  <filename>hello.c</filename> to become equal to its
-	  counterpart:
+	  Supposez que quelqu'un vous envoie la sortie de 
+	  <command>diff</command> pour un fichier que vous avez créé. Il serait
+	  fastidieux d'intégrer manuellement toutes les modifications qui ont
+	  été faites. Heureusement, <command>patch</command> peut faire cela
+	  pour vous. <command>patch</command> accepte les diffs en entrée
+	  standard, et va tenter de modifier le fichier original, en fonction
+	  des différences qui sont enregistrées dans le diff. Donc, par exemple,
+	  si nous avons le fichier <filename>hello.c</filename>, et le patch
+	  que nous avons produit précédemment basé sur les modifications entre
+	  <filename>hello.c</filename> et
+	  <filename>hello2.c</filename>, nous pouvons patcher
+	  <filename>hello.c</filename> pour le rendre identique à son associé:
 	</para>
 
 	<screen>
@@ -1318,8 +1316,8 @@ patching file hello.c
 	</screen>
 
 	<para>
-	  If you have <filename>hello2.c</filename>, you can check
-	  whether the files are identical now:
+	  Si vous avez <filename>hello2.c</filename>, vous pouvez vérifier que
+	  les fichiers sont à présent identiques :
 	</para>
 
 	<screen>
@@ -1327,10 +1325,10 @@ $ <userinput>diff -u hello.c hello2.c</userinput>
 	</screen>
 
 	<para>
-	  There is no output, so this is the case. One of the nice
-	  features of <command>patch</command> is that it can revert
-	  the changes made through a diff, by using the <parameter
-	  class="command">-R</parameter> parameter:
+	  Il n'y a rien en sortie, donc c'est bien le cas. Une des
+	  fonctionnalités intéressantes de <command>patch</command> est qu'elle
+	  peut annuler les modifications faites à l'aide de diff, en utilisant
+	  le paramètre <parameter class="command">-R</parameter> :
 	</para>
 
 	<screen>
@@ -1338,10 +1336,10 @@ $ <userinput>patch -R &lt; hello_add_date.diff</userinput>
 	</screen>
 
 	<para>
-	  In these examples, the original file is patched. Sometimes
-	  you may want to want to apply the patch to a file with a
-	  different name. You can do this by providing the name of
-	  a file as the last argument:
+	  Dans ces exemples, le fichier original est patché. Parfois vous voulez
+	  appliquer un patch sur un fichier avec un nom différent. Vous pouvez
+	  le faire en fournissant le nom du fichier en tant que dernier
+	  argument :
 	</para>
 
 	<screen>
@@ -1350,11 +1348,11 @@ patching file helloworld.c
 	</screen>
 
 	<para>
-	  You can also use <command>patch</command> with diffs that
-	  were generated with the <parameter
-	  class="command">-r</parameter> parameter, but you have to
-	  take a bit of care. Suppose that the header of a particular
-	  file in the diff is as follows:
+	  Vous pouvez aussi utiliser <command>patch</command> avec des diffs
+	  qui ont été générés avec le paramètre <parameter
+	  class="command">-r</parameter>, cependant vous devez prendre quelques
+	  précautions. Supposez que l'entête d'un fichier particulier dans le
+	  diff est ainsi :
 	</para>
 
 	<literallayout>
@@ -1366,26 +1364,25 @@ patching file helloworld.c
 	</literallayout>
 
 	<para>
-	  If you process this diff with <command>patch</command>, it
-	  will attempt to change <filename>hello.c</filename>. So, the
-	  directory that holds this file has to be the active
-	  directory. You can use the full pathname with the <parameter
-	  class="command">-p n</parameter>, where
-	  <emphasis>n</emphasis> is the number of pathname components
-	  that should be stripped. A value of <emphasis>0</emphasis>
-	  will use the path as it is specified in the patch,
-	  <emphasis>1</emphasis> will strip the first pathname
-	  component, etc. In this example, stripping the first
-	  component will result in patching of
-	  <filename>hello.c</filename>. According to the Single UNIX
-	  Specification version 3 standard, the path that is preceded
-	  by <emphasis>---</emphasis> should be used to construct the
-	  file that should be patched. The GNU version of patch does
-	  not follow the standard here. So, it is best to strip off to
-	  the point where both directory names are equal (this is
-	  usually the top directory of the tree being changed). In
-	  most cases where relative paths are used this can be done
-	  by using <emphasis>-p 1</emphasis>. For instance:
+	  Si vous traitez ce diff avec <command>patch</command>, il va tenter
+	  de modifier <filename>hello.c</filename>. Donc, le répertoire qui
+	  contient ce fichier doit être le répertoire courant. Vous pouvez
+	  utiliser le chemin d'accès complet avec <parameter
+	  class="command">-p n</parameter>, où <emphasis>n</emphasis> est le
+	  nombre de sous-répertoires composant le chemin qui doivent être
+	  passés. Une valeur à <emphasis>0</emphasis> utilisera 
+	  le chemin comme spécifié dans le patch,
+	  <emphasis>1</emphasis> omettra le premier élément du chemin, etc.
+	  Dans cet exemple, omettre le premier élément aura pour résultat le
+	  patch de <filename>hello.c</filename>. Selon le standard Single UNIX
+	  Specification version 3, le chemin qui est précédé par
+	  <emphasis>---</emphasis> doit être utilisé pour construire le fichier
+	  qui doit être patché. La version GNU de patch ne suit pas le standard
+	  dans ce cas. Donc, c'est mieux d'omettre les éléments jusqu'à avoir
+	  les 2 noms de répertoires identiques (habituellement le répertoire de
+	  plus haut niveau dans le l'arborescence à modifier). Dans la plupart
+	  des cas où on utilise des chemins relatif, on peut le faire en
+	  utilisant <emphasis>-p 1</emphasis>. Par exemple :
 	</para>
 
 	<!-- XXX - add more examples for -p n -->
@@ -1396,9 +1393,9 @@ $ <userinput>patch -p 1 &lt; ../hello.diff</userinput>
 	</screen>
 
 	<para>
-	  Or, you can use the <parameter
-	  class="command">-d</parameter> parameter to specify in which
-	  directory the change has to be applied:
+	  Ou vous pouvez utiliser le paramètre <parameter
+	  class="command">-d</parameter> pour spécifier dans quel répertoire la
+	  modification doit être appliquée :
 	</para>
 
 	<screen>
@@ -1408,12 +1405,12 @@ patching file Makefile
 	</screen>
 
 	<para>
-	  If you want to keep a backup when you are changing a file,
-	  you can use the <parameter class="command">-b</parameter>
-	  parameter of <command>patch</command>. This will make a copy
-	  of every affected file named
-	  <filename>filename.orig</filename>, before actually changing
-	  the file:
+	  Si vous voulez conserver une sauvegarde lors de la modification d'un
+	  fichier, vous pouvez utiliser le paramètre <parameter
+	  class="command">-b</parameter> de <command>patch</command>.
+	  Cela va créer une copie de chaque fichier concerné, nommée
+	  <filename>filename.orig</filename>, avant d'effectuer réellement la
+	  modification du fichier :
 	</para>
 
 	<screen>
@@ -1424,40 +1421,42 @@ $ <userinput>ls -l hello.c*</userinput>
 	</screen>
 
 	<para>
-	  Sometimes a file can not be patched. For instance, if it has
-	  already been patched, it has changed to much to apply the
-	  patch cleanly, or if the file does not exist at all. In this
-	  case, the chunks that could not be saved are stored in a
-	  file with the name <filename>filename.rej</filename>, where
-	  <emphasis>filename</emphasis> is the file that
-	  <command>patch</command> tried to modify.
+	  Parfois un fichier ne peut pas être patché. Par exemple, s'il a déjà
+	  été patché, s'il a trop changé pour appliquer le patch proprement, ou
+	  si le fichier n'existe plus. Dans ce cas, les portions qui n'ont pas
+	  pu être sauvées sont enregistrées dans un fichier nommé
+	  <filename>filename.rej</filename>, où
+	  <emphasis>filename</emphasis> est le fichier que
+	  <command>patch</command> a tenté de modifier.
 	</para>
       </sect3>
     </sect2>
   </sect1>
 
   <sect1 xml:id="chap-textproc-regexps">
-    <title>Regular expressions</title>
+    <title>Expressions régulières</title>
 
     <sect2 xml:id="chap-textproc-regexps-intro">
       <title>Introduction</title>
 
-      <para> In daily life, you will often want to some text that
-      matches to a certain pattern, rather than a literal string. Many
-      UNIX utilities implement a language for matching text patterns,
-      <emphasis>regular expressions</emphasis> (regexps). Over time
-      the regular expression language has grown, there are now
-      basically three regular expression syntaxes: </para>
+      <para>Dans la vie de tous les jours, vous voudrez souvent manipuler du
+	texte correspondant à un certain motif, plutôt qu'une chaîne de
+	caractères litérale. Beaucoup d'utilitaires UNIX implémente un langage
+	pour identifier des motifs de texte,
+      <emphasis>les expressions regulières</emphasis> (regexps). Avec le temps
+      le langage à expressions régulière a grandi, il a principalement à présent
+      3 syntaxes d'expressions régulières : </para>
 
       <itemizedlist>
         <listitem>
-          <para> Traditional UNIX regular expressions. </para>
+          <para> Les expressions régulières traditionnelles UNIX. </para>
         </listitem>
         <listitem>
-          <para> POSIX extended regular expressions. </para>
+          <para> Les expressions régulières étendues POSIX. </para>
         </listitem>
         <listitem>
-          <para> Perl-compatible regular expressions (PCRE). </para>
+          <para> Les expressions régulières compatibles Perl (PCRE - NdT :
+	    Perl-Compatible Regular Expressions). </para>
         </listitem>
       </itemizedlist>
 
