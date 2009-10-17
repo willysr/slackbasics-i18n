@@ -285,12 +285,12 @@ $ <userinput>slackpkg update</userinput>
       </screen>
 
       <para>
-        In this case <command>slackpkg</command> will use the packages
-        from the <filename>patches</filename> directory. In
-        slackware-current updated packages are put in the normal
-        <filename>slackware</filename> package sub-directories. So, we
-        can pass that as an parameter to <command>slackpkg
-        upgrade</command>:
+        En este caso <command>slackpkg</command> utilizará los 
+	paquetes del directorio <filename>patches</filename>. En 
+	slackware-current, los paquetes actualizados se colocan en
+   	los sub-directorios normales <filename>slackware</filename>.
+	Entonces, podemos pasar ese sub-directorio como parámetro a
+	<command>slackpkg upgrade</command>:
       </para>
 
       <screen>
@@ -298,8 +298,8 @@ $ <userinput>slackpkg update</userinput>
       </screen>
 
       <para>
-	You can also upgrade individual packages by specifying the name
-        of the package to be upgraded, for example:
+      	También puede actualizar paquetes individuales especificando el
+	nombre del paquete a ser actualizado, por ejemplo:
       </para>
 
       <screen>
@@ -309,11 +309,11 @@ $ <userinput>slackpkg update</userinput>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-slackpkg-install">
-      <title>Installing packages</title>
+      <title>Instalando paquetes</title>
 
       <para>
-        The <parameter class="command">install</parameter> is used to
-        install packages:
+        El parámetro <parameter class="command">install</parameter> es 
+	utilizado para instalar paquetes:
       </para>
 
       <screen>
@@ -321,27 +321,27 @@ $ <userinput>slackpkg update</userinput>
       </screen>
 
       <para>
-        Be aware that neither slackpkg, nor the Slackware Linux
-        package tools do dependency checking. If some program does not
-        work due to missing libraries, you have to add them yourself
-        with slackpkg.
+        Tenga en cuenta que ni slackpkg, ni las herramientas de paquetes
+	de Slackware Linux realizan verificación de dependencias. Si algún
+	programa no funciona debido a la falta de librerías, debe agregarlas
+	por su cuenta con slackpkg.
       </para>
     </sect2>
   </sect1>
 
   <sect1 xml:id="chap-pkgmgmt-rsync">
-    <title>Getting updates through rsync</title>
+    <title>Actualizando a través de rsync</title>
 
     <para>
-      Another popular method of keeping Slackware Linux up to date is
-      by keeping a local mirror. The ideal way of doing this is via
-      rsync.  rsync is a program that can synchronize two trees of
-      files. The advantage is that rsync only transfers the
-      differences in files, making it very fast. After syncing with a
-      mirror you can upgrade Slackware Linux with
-      <command>upgradepkg</command>, or make a new installation
-      CD. The following example synchronizes a local current tree with
-      an up-to-date tree from on a mirror:
+      Otro método popular de mantener Slackware Linux actualizando es
+      manteniendo un mirror local. La forma ideal de hacer esto es a 
+      través de rsync. rsync es una aplicación que puede sincronizar
+      dos árboles de ficheros. La ventaja es que rsync solamente transfiere
+      las diferencias en archivos, haciéndolo muy rápido. Después de 
+      sincronizar con un mirror, puede actualizar Slackware Linux con 
+      <command>upgradepkg</command>, o hacer un nuevo CD de instalación. 
+      El siguiente ejemplo sincroniza un árbol local con un árbol 
+      actualizado desde un mirror:
     </para>
 
     <screen>
@@ -361,20 +361,22 @@ rsync://fill-in-mirror/pub/slackware/slackware-current/ \
     </screen>
 
     <para>
-      The <parameter class="command">-a</parameter> parameter implies
-      a few other options that try to make a copy that is as exact as
-      possible (in terms of preserving symlinks, permissions and
-      owners). The <parameter class="command">--delete</parameter>
-      deletes files that are not available on the mirror anymore.  It
-      is good idea to use this parameter, because otherwise your tree
-      may get bloated very quickly with older package versions.  With
-      the <parameter class="command">--exclude</parameter> parameter
-      you can specify which files or directories should be ignored.
+      El parámetro <parameter class="command">-a</parameter> implica
+      unas pocas opciones que tratarán de hacer una copia que sea lo
+      más exacta posible (en términos de preservación de enlaces del
+      sistema, permisos y propietarios). El parámetro <parameter
+      class="command">--delete</parameter> elimina ficheros que ya no
+      están disponibles en el mirror. Usar este parámetro es una buena
+      idea, por que de otra forma su árbol se sobrecargaría muy rápido 
+      con las versiones antiguas de paquetes. Con el parámetro <parameter
+      class="command">--exclude</parameter> puede especificar qué ficheros
+      o directorios deberían ser ignorados.
     </para>
 
     <para>
-      After syncing the tree you can use <command>upgradepkg</command>
-      to update your Slackware Linux installation. For example:
+      Después de sincronizar el árbol, puede usar el comando
+      <command>upgradepkg</command> para actualizar su instalación de 
+      Slackware Linux. Por ejemplo:
     </para>
 
     <screen>
@@ -386,43 +388,44 @@ rsync://fill-in-mirror/pub/slackware/slackware-current/ \
     <title>Tagfiles</title>
 
     <sect2 xml:id="chap-pkgmgmt-tagfiles-intro">
-      <title>Introduction</title>
+      <title>Introducción</title>
 
       <para>
-        Tagfiles are a relatively unknown feature of Slackware
-        Linux. A tagfile is a file that can be used to instruct
-        <command>installpkg</command> what packages should be
-        installed from a collection of packages. For instance, the
-        Slackware Linux installer generates a tagfile during the
-        <emphasis>Expert</emphasis> and <emphasis>Menu</emphasis>
-        installation methods to store which packages should be
-        installed during the installation process.
+        Los tagfiles son una característica relativamente desconocida
+	en Slackware Linux. Un tagfile es un fichero que puede
+	ser utilizado para instruir a <command>installpkg</command> 
+	qué paquetes deberían ser instalados de una colección de
+	paquetes. Por ejemplo, el instalador de Slackware Linux 
+	genera un tagfile durante los métodos de instalación 
+	<emphasis>Expert</emphasis> y <emphasis>Menu</emphasis> 
+	para almacenar qué paquetes deberían ser instalados 
+	durante el proceso de instalación.
       </para>
 
       <para>
-        The nice aspect of tagfiles is that you can easily create
-        tagfiles yourself. By writing your own tagfiles you can
-        automate the package installation, which is ideal for larger
-        client or server roll-outs (or smaller set-ups if it gives you
-        more comfort than installing packages manually). The easiest
-        way to create your own tagfiles is by starting out with the
-        tagfiles that are part of the official Slackware Linux
-        distribution. In the following sections we are going to look
-        at how this is done.
+        El atractivo de los tagfiles es que usted puede fácilmente
+        crearlos. Escribiendo sus propios tagfiles puede automatizar
+	la instalación de paquetes, lo cual es ideal para procesos
+	cliente o servidor largos (o pequeñas instalaciones si es
+	que le ofrecen más comfort que las instalaciones manuales). 
+	La forma más sencilla de crear sus propios tagfiles es 
+	empezar con los tagfiles que son parte de la distribución
+	oficial de Slackware Linux. En las secciones siguientes vamos 
+	a ver como realizar esto.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-tagfiles-creating">
-      <title>Creating tagfiles</title>
+      <title>Creando tagfiles</title>
 
       <para>
-        Tagfiles are simple plain-text files. Each line consists of a
-        package name and a flag, these two elements are separated by a
-        colon and a space. The flag specifies what should be done with
-        a package. The fields are described in <xref
-        linkend="chap-pkgmgmt-tagfiles-creating-fields"/>.  Let's look
-        at a few lines from the tagfile in the <quote>a</quote> disk
-        set:
+      	Los tagfiles son archivos de texto plano. Cada línea se compone
+	de un nombre de paquete y una bandera, estos elementos se separan 
+	por dos puntos y un espacio. La bandera especifica que se deberia
+	hacer con el paquete. Los campos son descritos en <xref
+	linkend="chap-pkgmgmt-tagfiles-creating-fields"/>. Veámos unas
+	cuantas lineas de un tagfile en el directorio <quote>a</quote> 
+	del set de instalación:
       </para>
 
       <screen>
