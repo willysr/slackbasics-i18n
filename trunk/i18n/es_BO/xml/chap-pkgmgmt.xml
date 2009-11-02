@@ -438,59 +438,60 @@ bin: ADD
       </screen>
 
       <para>
-        It should be noted that you can also add comments to tagfiles
-        with the usual comment (#) character. As you can see in the
-        snippet above there are different flags. The table listed
-        below describes the four different flags.
+        Debe hacerse notar que se pueden agregar comentarios dentro 
+	de los tagfiles con el usual caracter de comentario (#). Como
+	puede ver en el cuadro anterior, existen diferentes flags. La 
+	tabla siguiente describe los cuatro flags disponibles.
       </para>
 
       <table xml:id="chap-pkgmgmt-tagfiles-creating-fields">
-        <title>Tagfile fields</title>
+        <title>Campos Tagfile</title>
         <tgroup cols="2" align="left" colsep="1" rowsep="1">
           <thead>
             <row>
               <entry>Flag</entry>
-              <entry>Meaning</entry>
+              <entry>Significado</entry>
             </row>
           </thead>
           <tbody>
             <row>
               <entry>ADD</entry>
-              <entry>A package marked by this flag will automatically
-              be installed</entry>
+              <entry>Un paquete marcado con esta flag será instalado.
+	      automáticamente</entry>
             </row>
             <row>
               <entry>SKP</entry>
-              <entry>A package marked by this flag will automatically
-              be skipped</entry>
+              <entry>Un paquete marcado con esta flag será automíticamente.
+	      omitido</entry>
             </row>
             <row>
               <entry>REC</entry>
-              <entry>Ask the user what to do, recommend installation
-              of the package.</entry>
+              <entry>Pregunta al usuario qué hacer, el paquete será
+	      recomendado para la instalación.</entry>
             </row>
             <row>
               <entry>OPT</entry>
-              <entry>Ask the user what to do, the package will be
-              described as optional.</entry>
+              <entry>Pregunta al usuario qué hacer, el paquete será
+	      descrito como opcional.</entry>
             </row>
           </tbody>
         </tgroup>
       </table>
 
       <para>
-        As you can read from the table <command>installpkg</command>
-        will only act automatically when either
-        <emphasis>ADD</emphasis> or <emphasis>SKP</emphasis> is used.
+        Como puede ver en la tabla <command>installpkg</command> 
+	solamente actuará automaticamente cuando las flag 
+	<emphasis>ADD</emphasis> o <emphasis>SKP</emphasis> sean usadas.
       </para>
 
       <para>
-        It would be a bit tedious to write a tagfile for each
-        Slackware Linux disk set. The official Slackware Linux
-        distribution contains a tagfile in the directory for each disk
-        set. You can use these tagfiles as a start. The short script
-        listed below can be used to copy the tagfiles to the current
-        directory, preserving the disk set structure.
+      	Seria tedioso escribir un tagfile para cada paquete de discos
+	Slackware Linux. La distribución oficial de Slackware Linux 
+	contiene un tagfile en el directorio por cada paquete de 
+	discos. Puede usar estos tagfiles como un punto inicial. El
+	corto script mostrado abajo puede ser utilizado para copiar 
+	tagfiles al directorio actual, preservando la estructura del
+	paquete de discos.
       </para>
 
       <screen>
@@ -510,9 +511,9 @@ done
       </screen>
 
       <para>
-        After writing the script to a file you can execute it, and
-        specify a <filename>slackware/</filename> directory that
-        provides the disk sets. For example:
+        Después de escribir el script en un archivo puede ejecutarlo, y
+	especificar un directorio <filename>slackware/</filename> que 
+	provee el paquete de discos. Por ejemplo:
       </para>
 
       <screen>
@@ -520,9 +521,9 @@ $ <command>sh copy-tagfiles.sh /mnt/flux/slackware-current/slackware</command>
       </screen>
 
       <para>
-        After doing this the current directory will contain a
-        directory structure like this, in which you can edit the
-        individual tag files:
+        Después de esto, el directorio actual contendrá una estructura 
+	de directorio como la siguiente, en la cual puede editar tagfiles
+	individuales:
       </para>
 
       <screen>
@@ -538,27 +539,28 @@ e/tagfile.org
       </screen>
 
       <para>
-        The files that end with <emphasis>.org</emphasis> are backups,
-        that you can use as a reference while editing
-        tagfiles. Besides that they are also used in the script that
-        is described in the next section.
+        Los archivos que finalizan con <filename>slackware/</filename> son
+	backups, que puede utilizar como referencia mientras edita tagfiles. 
+	Además son también usados en el script descrito en la siguiente 
+	sección.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-tagfiles-autogen" >
-      <title>Automatically generating tagfiles</title>
+      <title>Generando tagfiles automáticamente</title>
 
       <para>
-        With a simple script, it is also possible to build tagfiles
-        based on the packages that are installed on the current
-        system. I owe thanks to Peter Kaagman for coming up with this
-        nifty idea!
+        Con un script simple, es posible construir tagfiles 
+	basados en los paquetes que están instalados en el
+	sistema actual. Debo las gracias a Peter Kaagman por 
+	tener esta idea!.
       </para>
 
       <para>
-        First build a tagfile directory from the Slackware Linux
-        installation media, as described in the previous section. When
-        you have done that, you can create the following script:
+        Primero, construya un directorio de tagfiles desde lo medios
+	de instalación de Slackware Linux, como fué descrito en la 
+	sección previa. Cuando haya acabado eso, puede crear el 
+	siguiente script:
       </para>
 
       <screen>
@@ -583,10 +585,9 @@ done
       </screen>
 
       <para>
-        Suppose that you have saved it as
-        <filename>build-tagfiles.sh</filename>, you can use it by
-        specifying directory that holds the tagfiles as the first
-        argument:
+        Suponga que ha guardado el script como
+<filename>build-tagfiles.sh</filename>, puede utilizarlo especificando el 
+	directorio que contiene los tagfiles como primer argumento:
       </para>
 
       <screen>
@@ -594,20 +595,19 @@ $ <userinput>sh build-tagfiles.sh .</userinput>
       </screen>
 
       <para>
-        The script will mark packages that are installed as
-        <emphasis>ADD</emphasis>, and packages that are not installed
-        as <emphasis>SKP</emphasis>.
+        El script marcará los paquetes que están instalados 
+	como <emphasis>ADD</emphasis>, y paquetes que no estan 
+	instalados como <emphasis>SKP</emphasis>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-tagfiles-using">
-      <title>Using tagfiles</title>
+      <title>Utilizando tagfiles</title>
 
       <para>
-        On an installed system you can let
-        <command>installpkg</command> use a tagfile with the
-        <parameter class="command">-tagfile</parameter> parameter. For
-        example:
+        En un sistema instalado puede dejar a 
+	<command>installpkg</command> usar un tagfile con el parámetro 
+	<parameter class="command">-tagfile</parameter>. Por ejemplo: 
       </para>
 
       <screen>
@@ -616,26 +616,26 @@ $ <userinput>sh build-tagfiles.sh .</userinput>
 
       <note>
 	<para>
-	  You have to use the <parameter
-	  class="command">-infobox</parameter> option, otherwise the
-	  tagfiles will not be used.
+	  Debe utilizar la opción <parameter
+	  class="command">-infobox</parameter>, sino los tagfiles no 
+	  serán utilizados.
 	</para>
       </note>
 
       <para>
-        Of course, tagfiles would be useless if they cannot be used
-        during the installation of Slackware Linux. This is certainly
-        possible: after selecting which disk sets you want to install
-        you can choose in what way you want to select packages (the
-        dialog is named <emphasis>SELECT PROMPTING
-        MODE</emphasis>. Select <emphasis>tagpath</emphasis> from this
-        menu. You will then be asked to enter the path to the
-        directory structure with the tagfiles.  The usual way to
-        provide tagfiles to the Slackware Linux installation is to put
-        them on a floppy or another medium, and mounting this before
-        or during the installation. E.g. you can switch to the second
-        console with by pressing the &lt;ALT&gt; and &lt;F2&gt; keys,
-        and create a mount point and mount the disk with the tagfiles:
+        Por supuesto, los tagfiles pueden ser inútiles si no pueden ser
+	usados durante la instalación de Slackware Linux. Esto es 
+	ciertamente posible: después de seleccionar el paquete de 
+	discos que quiera instalar, puede seleccionar en qué forma 
+	los paquetes serán seleccinados (el diálogo es nombrado 
+	<emphasis>SELECT PROMPTING MODE</emphasis>). Seleccione 
+	<emphasis>tagpath</emphasis> desde este menú. Entonces será 
+	consultado para ingresar la dirección del directorio con sus
+	tagfiles. La forma usual de proveer tagfiles a la installación
+	de Slackware Linux es colocarlos en un floppy u otro medio, y 
+	montarlo antes de la instalación. E.g. puede cambiar a la 
+	segunda consola presionando las teclas &lt;ALT&gt; y &lt;F2&gt;, 
+	crear un punto de montaje y montar el disco con los tagfiles.
       </para>
 
       <screen>
@@ -644,9 +644,9 @@ $ <userinput>sh build-tagfiles.sh .</userinput>
       </screen>
 
       <para>
-        After mounting the disk you can return to the virtual console
-        on which you run <command>setup</command>, by pressing
-        &lt;ALT&gt; and &lt;F1&gt;.
+        Después de montar el disco, puede retornar a la consola virtual 
+	donde ejecutó <command>setup</command>, presionando &lt;ALT&gt; 
+	y &lt;F1&gt;.
       </para>
     </sect2>
   </sect1>

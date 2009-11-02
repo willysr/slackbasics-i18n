@@ -5,7 +5,7 @@ linhas arquivo                  trad     1a-rev  2a-rev
    117 bind.xml                 OK       -       -
    131 chap-x11.xml             -        -       -
    135 services.xml             -        -       -
-   143 slackware-basics.xml     -        -       -
+   143 slackware-basics.xml     OK       -       -
    149 inetd.xml                -        -       -
    156 apache.xml               OK       -       -
    181 security.xml             -        -       -
@@ -21,7 +21,7 @@ linhas arquivo                  trad     1a-rev  2a-rev
    485 chap-usermgmt.xml        -        -       -
    527 netconfig.xml            -        -       -
    630 ipsec.xml                -        -       -
-   652 chap-pkgmgmt.xml         -        -       -
+   652 chap-pkgmgmt.xml         OK       -       -
    703 chap-init.xml            -        -       -
    758 custom-installation.xml  -        -       -
    780 chap-procmgmt.xml        -        -       -
