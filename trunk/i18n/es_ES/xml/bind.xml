@@ -1,0 +1,120 @@
+<!-- $Id: bind.xml 283 2007-09-18 20:14:31Z danieldk $ -->
+
+<chapter> <?dbhtml filename="bind.html"?>
+<title>BIND</title>
+
+<sect1>
+<title>Introducción</title>
+
+<para>
+El sistema de nombres de dominio (<acronym>DNS</acronym>) es usado
+para convertir nombres de host (por ejemplo slackware.com) en direcciones
+IP. <acronym>BIND</acronym> (Berkeley Internet Name Domain) es el daemon 
+( demonio o servicio en español) DNS más usado, y el objetivo de este 
+capítulo.
+</para>
+
+<sect2>
+<title>Delegación</title>
+
+<para>
+Una de las principales características los servidores de nombres 
+es que las peticiones DNS pueden ser delegadas. Por ejemplo, suponga que 
+posee el dominio <quote>linuxcorp.com</quote>. 
+Usted puede proveer servidores de nombres autorizados para este dominio, 
+los cuales son autoritarios para <quote>linuxcorp.com</quote>. 
+Suponga que existen diferentes divisiones en su empresa, y quiere proveer a cada
+de estas divisiones autoridad sobre sus propias zonas, esto no es un problema
+con DNS. Puede delegar el DNS para <quote>sales.linuxcorp.com</quote> a otro
+servidor de nombres con la configuración DNS para la zona <quote>sales.linuxcorp.com</quote>.
+</para>
+
+<para>
+El sistema DNS posee los denominados servidores raíz (root servers), que delegan el DNS
+para millones de nombres de dominio y extensiones (por ejemplo, extensiones específicas 
+de cada país, como <quote>.nl</quote> o <quote>.uk</quote>) hacia servidores DNS autorizados. 
+Este sistema permite un arbol ramificado de delegaciones, que es muy flexible y distribuye
+el tráfico DNS.
+</para>
+
+</sect2>
+
+<sect2>
+<title>Tipos de registros DNS</title>
+
+<para>
+Los siguientes tipos de registros son comunes en DNS:
+</para>
+
+<table>
+<title>Registros DNS</title>
+<tgroup cols="2">
+<thead>
+<row>
+<entry>Prefijo</entry><entry>Descripción</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry>A</entry><entry>Un registro A apunta a una dirección IP en su versión 4 (IPv4).</entry>
+</row>
+<row>
+<entry>AAAA</entry><entry>Un registro  AAAA apunta a una dirección IP en su versión 6 (IPv6).</entry>
+</row>
+<row>
+<entry>CNAME</entry><entry>Un registro CNAME apunta a otra entrada DNS.</entry>
+</row>
+<row>
+<entry>MX</entry><entry>Un registro MX especifica la manipulación de correo electrónico para el dominio.</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</sect2>
+
+<sect2>
+<title>Maestros y esclavos</title>
+
+<para>
+Dos tipos de servidores de nombres pueden ser proveídos para un nombre de dominio: 
+un maestro y un esclavo. Los registros del servidor DNS maestro son autoritarios. 
+Los servidores esclavos descargan los registros DNS de los servidores maestros.  
+Es recomendable utilizar servidores esclavos en vez de maestros para lograr 
+alta disponibilidad y ademásp pueden ser usados para balanceo de carga (tráfico 
+de red). 
+</para>
+
+</sect2>
+
+</sect1>
+
+<sect1>
+<title>Realizando caching del servidor de nombres  Making a caching nameserver</title>
+
+<para>
+El caching de servidores de nombres provee servicios DNS para una
+máquina o una red, pero no provee DNS para un dominio. Esto significa
+que solo puede ser usado para convertir nombres de host a direcciones
+IP. Configurar un servidor de nombres con Slackware Linux es relativamente
+sencillo, debido a que BIND está configurado como servidor de nombres
+con caching por defecto. Habilitar el caching toma solamente dos pasos: 
+debe instalar BIND y modificar los scripts de inicialización. BIND
+puede ser instalado agregando el paquete de la serie <quote>n</quote>.
+Despues de eso, BIND puede ser iniciado ejecutando el comando 
+<command>named</command>. Si se quiere iniciar BIND por defecto, solamente
+se deben dar permisos de ejecución al archivo <filename>/etc/rc.d/rc.bind</filename>.
+Puede hacer esto ejecutando el siguiente comando como root:
+</para>
+
+<screen>
+# <command>chmod a+x /etc/rc.d/rc.bind</command>
+</screen>
+
+<para>
+Si quiere usar el servidor de nombres en la máquina que ejecuta BIND,
+también debe modificar el archivo <filename>/etc/resolv.conf</filename>.
+</para>
+
+</sect1>
+
+</chapter>

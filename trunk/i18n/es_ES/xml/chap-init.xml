@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
+	 xml:id="chap-init">
+  <title>System initialization</title>
+
+  <para>
+    This chapter describes the initialization of Slackware
+    Linux. Along the way various configuration files that are used to
+    manipulate the initialization process are described.
+  </para>
+
+  <sect1 xml:id="chap-init-lilo">
+    <title>The bootloader</title>
+
+    <para>
+      Arguably the most important piece of an operating system is the
+      kernel. The kernel manages hardware resources and software
+      processes.  The kernel is started by some tiny glue between the
+      system <acronym>BIOS</acronym> (Basic Input/Output System) and
+      the kernel, called the bootloader. The bootloader handles the
+      complications that come with loading a specific (or less
+      specific) kernel.
+    </para>
+
+    <para>
+      Most bootloader actually work in two stages. The first stage
+      loader loads the second stage loader, that does the real
+      work. The boot loader is divided in two stages on x86 machines,
+      because the BIOS only loads one sector (the so-called boot
+      sector) that is 512 bytes in size.
+    </para>
+
+    <para>
+      Slackware Linux uses the <acronym>LILO</acronym> (LInux LOader)
+      boot loader. This bootloader has been in development since 1992,
+      and is specifically written to load the Linux kernel. Lately
+      LILO has been replaced by the <acronym>GRUB</acronym> (GRand
+      Unified Bootloader) in most GNU/Linux distributions. GRUB is
+      available as an extra package on the Slackware Linux
+      distribution media.
+    </para>
+
+    <sect2 xml:id="chap-init-lilo-config">
+      <title>LILO configuration</title>
+
+      <para>
+	LILO is configured through the
+	<filename>/etc/lilo.conf</filename> configuration
+	file. Slackware Linux provides an easy tool to configure
+	LILO. This configuration tool can be started with the
+	<command>liloconfig</command> command, and is described in the
+	installation chapter (<xref linkend="chap-install-installing"
+	/>).
+      </para>
+
+      <para>
+	Manual configuration of LILO is pretty simple. The LILO
+	configuration file usually starts off with some global
+	settings:
+      </para>
+
+      <screen>
+# Start LILO global section
+boot = /dev/sda <co xml:id="liloconf-global-1" />
+#compact        # faster, but won't work on all systems.
+prompt <co xml:id="liloconf-global-2" />
+timeout = 50 <co xml:id="liloconf-global-3" />
+# Normal VGA console
+vga = normal <co xml:id="liloconf-global-4" />
+      </screen>
+
+      <calloutlist>
+	<callout arearefs="liloconf-global-1">
+	  <para>
+	    The <emphasis>boot</emphasis> option specifies where the
+	    LILO bootloader should be installed. If you want to use
+	    LILO as the main bootloader for starting Linux and/or
+	    other operating systems, it is a good idea to install LILO
+	    in the <acronym>MBR</acronym> (Master Boot Record) of the
+	    hard disk that you use to boot the system. LILO is
+	    installed to the MBR by omitting the partition number, for
+	    instance <filename>/dev/hda</filename> or
+	    <filename>/dev/sda</filename>.  If you want to install
+	    LILO to a specific partition, add a partition number, like
+	    <filename>/dev/sda1</filename>.  Make sure that you have
+	    another bootloader in the MBR, or that the partition is
+	    made active using <command>fdisk</command>.  Otherwise you
+	    may end up with an unbootable system.
+	  </para>
+
+	  <para>
+	    Be cautious if you use partitions with a XFS filesystem!
+	    Writing LILO to an XFS partition will overwrite a part of
+	    the filesystem. If you use an XFS root
+	    (<filename>/</filename>) filesystem, create a non-XFS
+	    <filename>/boot</filename> filesystem to which you install
+	    LILO, or install LILO to the MBR.
+	  </para>
+	</callout>
+	<callout arearefs="liloconf-global-2">
+	  <para>
+	    The <emphasis>prompt</emphasis> option will set LILO to
+	    show a boot menu. From this menu you can select which
+	    kernel or operating system should be booted. If you do not
+	    have this option enabled, you can still access the
+	    bootloader menu by holding the &lt;Shift&gt; key when the
+	    bootloader is started.
+            </para>
+	</callout>
+	<callout arearefs="liloconf-global-3">
+	  <para>
+	    The <emphasis>timeout</emphasis> value specifies how long
+	    LILO should wait before the default kernel or OS is
+	    booted.  The time is specified in tenths of a second, so
+	    in the example above LILO will wait 5 seconds before it
+	    proceeds with the boot.
+	  </para>
+	</callout>
+	<callout arearefs="liloconf-global-4">
+	  <para>
+	    You can specify which video mode the kernel should use
+	    with the <emphasis>vga</emphasis> option. When this is set
+	    to <emphasis>normal</emphasis> the kernel will use the
+	    normal 80x25 text mode.
+	  </para>
+	</callout>
+      </calloutlist>
+
+      <para>
+	The global options are followed by sections that add Linux
+	kernels or other operating systems. Most Linux kernel sections
+	look like this:
+      </para>
+
+      <screen>
+image = /boot/vmlinuz <co xml:id="co-liloconf-kernel-1" />
+  root = /dev/sda5 <co xml:id="co-liloconf-kernel-2" /> 
+  label = Slack <co xml:id="co-liloconf-kernel-3" />
+  read-only <co xml:id="co-liloconf-kernel-4" />
+      </screen>
+
+      <calloutlist>
+	<callout arearefs="co-liloconf-kernel-1">
+	  <para>
+	    The <emphasis>image</emphasis> option specifies the kernel
+	    image that should be loaded for this LILO item.
+	  </para>
+	</callout>
+	<callout arearefs="co-liloconf-kernel-2">
+	  <para>
+	    The <emphasis>root</emphasis> parameter is passed to the
+	    kernel, and will be used by the kernel as the root
+	    (<filename>/</filename>) filesystem.
+	  </para>
+	</callout>
+	<callout arearefs="co-liloconf-kernel-3">
+	  <para>
+	    The <emphasis>label</emphasis> text is used as the label
+	    for this entry in the LILO boot menu.
+	  </para>
+	</callout>
+	<callout arearefs="co-liloconf-kernel-4">
+	  <para>
+	    <emphasis>read-only</emphasis> specifies that the root
+	    filesystem should be mounted read-only. The filesystem has
+	    to be mounted in read-only state to conduct a filesystem
+	    check.
+	  </para>
+	</callout>
+      </calloutlist>
+    </sect2>
+
+    <sect2 xml:id="chap-init-lilo-installation">
+      <title>LILO installation</title>
+
+      <para>
+	LILO does not read the <filename>/etc/lilo.conf</filename>
+	file during the second stage. So, you will have to write
+	changes to the second stage loader when you have changed the
+	LILO configuration. This is also necessary if you install a
+	new kernel with the same filename, since the position of the
+	kernel on the disk may have changed. Reinstalling LILO can
+	simply be done with the <command>lilo</command> command:
+      </para>
+
+      <screen>
+# <command>lilo</command>
+Added Slack26 *
+Added Slack
+      </screen>
+    </sect2>
+  </sect1>
+
+  <sect1 xml:id="chap-init-init">
+    <title>init</title>
+
+    <para>
+      After the kernel is loaded and started, the kernel will start
+      the <command>init</command> command. <command>init</command> is
+      the parent of all processes, and takes care of starting the
+      system initialization scripts, and spawning login consoles
+      through <command>agetty</command>. The behavior of
+      <command>init</command> is configured in
+      <filename>/etc/inittab</filename>.
+    </para>
+
+    <para>
+      The <filename>/etc/inittab</filename> file is documented fairly
+      well. It specifies what scripts the system should run for
+      different runlevels. A runlevel is a state the system is running
+      in. For instance, runlevel 1 is single user mode, and runlevel 3
+      is multi-user mode. We will have a short look at a line from
+      <filename>/etc/inittab</filename> to see how it works:
+    </para>
+
+    <screen>
+rc:2345:wait:/etc/rc.d/rc.M
+    </screen>
+
+    <para>
+      This line specifies that <command>/etc/rc.d/rc.M</command>
+      should be started when the system switches to runlevel 2, 3, 4
+      or 5.  The only line you probably ever have to touch is the
+      default runlevel:
+    </para>
+
+    <screen>
+id:3:initdefault:
+    </screen>
+
+    <para>
+      In this example the default runlevel is set to
+      <emphasis>3</emphasis> (multiuser mode). You can set this to
+      another runlevel by replacing 3 with the new default
+      runlevel. Runlevel 4 can particularly be interesting on desktop
+      machines, since Slackware Linux will try to start the GDM, KDM
+      or XDM display manager (in this particular order).  These
+      display managers provide a graphical login, and are respectively
+      part of GNOME, KDE and X11.
+    </para>
+
+    <para>
+      Another interesting section are the lines that specify what
+      command should handle a console. For instance:
+    </para>
+
+    <screen>
+c1:1235:respawn:/sbin/agetty 38400 tty1 linux
+    </screen>
+
+    <para>
+      This line specifies that <command>agetty</command> should be
+      started on <emphasis>tty1</emphasis> (the first virtual
+      terminal) in runlevels 1, 2, 3 and 5.  The
+      <command>agetty</command> command opens the tty port, and
+      prompts for a login name. <command>agetty</command> will then
+      spawn <command>login</command> to handle the login. As you can
+      see from the entries, Slackware Linux only starts one console in
+      runlevel 6, namely <emphasis>tty6</emphasis>. One might ask what
+      happened to <emphasis>tty0</emphasis>, <emphasis>tty0</emphasis>
+      certainly exists, and represents the active console.
+    </para>
+
+    <para>
+      Since <emphasis>/etc/inittab</emphasis> is the right place to
+      spawn <command>agetty</command> instances to listen for logins,
+      you can also let one or more agetties listen to a serial
+      port. This is especially handy when you have one or more
+      terminals connected to a machine. You can add something like the
+      following line to start an <command>agetty</command> instance
+      that listens on COM1:
+    </para>
+
+    <screen>
+s1:12345:respawn:/sbin/agetty -L ttyS0 9600 vt100
+    </screen>
+  </sect1>
+
+  <sect1 xml:id="chap-init-initscripts">
+    <title>Initialization scripts</title>
+
+    <para>
+      As explained in the <command>init</command> (<xref
+      linkend="chap-init-init" />) section,
+      <command>init</command> starts some scripts that handle
+      different runlevels. These scripts perform jobs and change
+      settings that are necessary for a particular runlevel, but they
+      may also start other scripts. Let's look at an example from
+      <filename>/etc/rc.d/rc.M</filename>, the script that
+      <command>init</command> executes when the system switches to a
+      multi-user runlevel:
+    </para>
+
+    <programlisting>
+# Start the sendmail daemon:
+if [ -x /etc/rc.d/rc.sendmail ]; then
+  . /etc/rc.d/rc.sendmail start
+fi
+    </programlisting>
+
+    <para>
+      These lines say <quote>execute <command>/etc/rc.d/rc.sendmail
+      start</command> if <filename>/etc/rc.d/rc.sendmail</filename> is
+      executable</quote>. This indicates the simplicity of the
+      Slackware Linux initialization scripts. Different functionality,
+      for instance network services, can be turned on or off, by
+      twiddling the executable flag on their initialization script.
+      If the initialization script is executable, the service will be
+      started, otherwise it will not. Setting file flags is described
+      in <xref linkend="chap-filesystem-permissions-permbits" />, but
+      we will have a look at a quick example how you can enable and
+      disable sendmail.
+    </para>
+
+    <para>
+      To start sendmail when the system initializes, execute:
+    </para>
+
+    <screen>
+# <command>chmod +x /etc/rc.d/rc.sendmail</command>
+    </screen>
+
+    <para>
+      To disable starting of sendmail when the system initializes,
+      execute:
+    </para>
+
+    <screen>
+# <command>chmod -x /etc/rc.d/rc.sendmail</command>
+    </screen>
+
+    <para>
+      Most service-specific initialization scripts accept three
+      parameters to change the state of the service:
+      <emphasis>start</emphasis>, <emphasis>restart</emphasis> and
+      <emphasis>stop</emphasis>. These parameters are pretty much self
+      descriptive. For example, if you would like to restart sendmail,
+      you could execute:
+    </para>
+
+    <screen>
+# <command>/etc/rc.d/rc.sendmail restart</command>
+    </screen>
+
+    <para>
+      If the script is not executable, you have to tell the shell that
+      you would like to execute the file with
+      <command>sh</command>. For example:
+    </para>
+
+    <screen>
+# <command>sh /etc/rc.d/rc.sendmail start</command>
+    </screen>
+  </sect1>
+
+  <sect1 xml:id="chap-init-udev">
+    <title>Hotplugging and device node management</title>
+
+    <para>
+      Slackware Linux has supported hotplugging since Slackware Linux
+      9.1.  When enabled, the kernel passes notifications about device
+      events to a userspace command. Since Slackware Linux 11.0,
+      the <command>udev</command> set of utilities handle these
+      notifications. <command>udev</command> manages the dynamic
+      <filename>/dev</filename> directory as well.
+    </para>
+
+    <para>
+      The mode of operation of <command>udev</command> for handling
+      hotplugging of devices is fairly simple. When a device is added
+      to the system, the kernel notifies userspace hotplug event
+      listeners. <command>udev</command> will receive the notification
+      of the device being added, and looks whether there are any
+      module mappings for the device. If there are, the appropriate
+      device driver module for the device is automatically
+      loaded. <command>udev</command> will remove the module when it
+      is notified of a device removal, and no devices use the loaded
+      module anymore.
+    </para>
+
+    <para>
+      The udev subsystem is initialized in
+      <filename>/etc/rc.d/rc.S</filename> by executing
+      <command>/etc/rc.d/rc.udev start</command>. As with most
+      functionality, you can enable or disable udev by twiddling the
+      executable flag of the <filename>/etc/rc.d/rc.udev</filename>
+      script (see <xref linkend="chap-init-initscripts" />).
+    </para>
+
+    <para>
+      If udev automatically loads modules that you do not want to
+      load, you can add a <emphasis>blacklist</emphasis> in your
+      <command>modprobe</command> configuration in
+      <filename>/etc/modprobe.d/blacklist</filename>. For example, if
+      you would like to prevent loading of the
+      <emphasis>8139cp</emphasis> module, you can add the following
+      line (actually, this module is already blacklisted in Slackware
+      Linux):
+    </para>
+
+    <screen>
+blacklist 8139cp
+    </screen>
+  </sect1>
+
+  <sect1 xml:id="chap-init-firmware">
+    <title>Device firmware</title>
+
+    <sect2 xml:id="chap-init-firmware-introduction">
+      <title>Introduction</title>
+
+      <para>
+	Some hardware requires the system to upload firmware. Firmware
+	is a piece of software that is used to control the hardware.
+	Traditionally, the firmware was stored permanently in ROM
+	(read-only memory) or non-volatile media like flash memory.
+	However, many new devices use volatile memory to store
+	firmware, meaning that the firmware needs to be reloaded to
+	the device memory when the system is restarted.
+      </para>
+
+      <para>
+	Drivers for devices that require firmware have a table of the
+	firmware files that it needs. For each firmware file that the
+	driver needs, it will issue a firmware addition event. If udev
+	handles hotplugging events, it will try to handle that event.
+	The udev rules contain an entry for firmware addition events
+	in <filename>/etc/udev/rules.d/50-udev.rules</filename>:
+      </para>
+
+      <programlisting>
+# firmware loader
+SUBSYSTEM=="firmware", ACTION=="add", RUN+="/lib/udev/firmware.sh"
+      </programlisting>
+
+      <para>
+	This means that upon firmware addition events, the
+	<filename>/lib/udev/firmware.sh</filename> script should be
+	executed. This script searches the
+	<filename>/lib/firmware</filename> and
+	<filename>/usr/local/lib/firmware</filename> directories for
+	the requested firmware. If the firmware file exists, it will
+	be loaded by copying the contents of the file to a special
+	sysfs node.
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-init-firmware-adding">
+      <title>Adding firmware</title>
+
+      <para>
+	As described in the previous section, some hardware requires
+	firmware to be uploaded to hardware by the operating system.
+	If this is the case, and no firmware is installed, the kernel
+	will emit an error message when the driver for that hardware
+	is loaded. You can see the kernel output with the
+	<command>dmesg</command> command or in the
+	<filename>/var/log/messages</filename> log file. Such error
+	message explicitly says that the firmware could not be loaded,
+	for example:
+      </para>
+
+      <screen>
+ipw2100: eth1: Firmware 'ipw2100-1.3.fw' not available or load failed.
+ipw2100: eth1: ipw2100_get_firmware failed: -2 
+      </screen>
+
+      <para>
+	In this case you will have to find the firmware for your
+	device. This can usually be found by searching the web for the
+	chipset or driver for the device (in this case
+	<emphasis>ipw2100</emphasis>) and the literal term
+	<quote>firmware</quote>. The firmware archive often contains a
+	file with installation instructions. Usually you can just copy
+	the firmware files to <filename>/lib/firmware</filename>.
+      </para>
+
+      <para>
+	After installing the firmware, you can reload the driver with
+	<command>rmmod</command> and <command>modprobe</command>, or
+	by restarting the system.
+      </para>
+    </sect2>
+  </sect1>
+
+<!-- XXX - udev rules sections should be added here <sect2
+     xml:id="chap-init-hotplug-hooks"> <title>Executing scripts on
+     hotplug events</title>
+
+      <para>
+	One of the useful aspects of the hotplug scripts is that you
+	can execute scripts when a device is added or removed. When a
+	device event occurs, hotplug will execute all scripts with the
+	<filename>.hotplug</filename> suffix in
+	<filename>/etc/hotplug.d/&lt;class&gt;/</filename>, in which
+	<emphasis>&lt;class&gt;</emphasis> denotes the class in which
+	the device is in that caused the event. There most important
+	classes are:
+      </para>
+
+      <table>
+	<title>Hotplug device classes</title>
+
+	<tgroup cols="2">
+	  <thead>
+	    <row>
+	      <entry>Prefix</entry><entry>Description</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>default</entry>
+	      <entry>Scripts for this device class are started
+	      after any hotplug event.</entry>
+	    </row>
+	    <row>
+	      <entry>ieee1394</entry>
+	      <entry>IEEE1394/Firewire devices.</entry>
+	    </row>
+	    <row>
+	      <entry>input</entry>
+	      <entry>Input devices like keyboards and mice.</entry>
+	    </row>
+	    <row>
+	      <entry>net</entry>
+	      <entry>Network devices. Network devices will also
+	      trigger bus-specific hotplug events.</entry>
+	    </row>
+	    <row>
+	      <entry>pci</entry>
+	      <entry>Devices on the PCI bus.</entry>
+	    </row>
+	    <row>
+	      <entry>scsi</entry>
+	      <entry>SCSI disks, CD-ROM and tape devices.</entry>
+	    </row>
+	    <row>
+	      <entry>usb</entry>
+	      <entry>Devices that use the USB bus.</entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <para>
+	Besides the device class, there is something some other
+	convention that is worth observing: it is best to add a number
+	and a dash as a prefix to the script, because this will allow
+	you to order the priority of the scripts. For example,
+	<filename>10-dosomething.hotplug</filename> will be executed
+	before <filename>20-dosomething.hotplug</filename>.
+      </para>
+
+      <note>
+	<para>
+	  There is black no magic going on with the priority of the
+	  script :^). <filename>/sbin/hotplug</filename> uses a
+	  wildcard to loop through the scripts, and
+	  <filename>10</filename> matches earlier than
+	  <filename>20</filename>:
+	</para>
+
+	<programlisting>
+for I in "${DIR}/$1/"*.hotplug "${DIR}/"default/*.hotplug ; do
+	</programlisting>
+
+	<para>
+	  Hopefully this will give some taste of the power of shell
+	  scripting.
+	</para>
+      </note>
+
+      <para>
+	Now, let's look at an example stub script, that does nothing
+	besides outputting debug messages:
+      </para>
+
+      <programlisting>
+#!/bin/sh
+
+cd /etc/hotplug
+. ./hotplug.functions
+
+DEBUG=yes export DEBUG
+
+debug_mesg "arguments ($*) env (`env`)"
+
+case $ACTION in
+  add|register)
+    # Stub 
+  ;;
+  remove|unregister)
+    # Stub 
+  ;;
+esac
+      </programlisting>
+
+      <para>
+	By default, the hotplug scripts log at the
+	<emphasis>notice</emphasis> level. The standard syslog
+	configuration on Slackware Linux does not log this. To debug
+	hotplugging scripts, it is best to change the logging
+	level. You can do this by replacing the following line in
+	<filename>/etc/hotplug/hotplug.functions</filename>:
+      </para>
+
+      <programlisting>
+$LOGGER -t $(basename $0)"[$$]" "$@"
+      </programlisting>
+
+      <para>
+	to:
+      </para>
+
+      <programlisting>
+$LOGGER -p user.info -t $(basename $0)"[$$]" "$@"
+      </programlisting>
+
+      <para>
+	After this change hotplug debug messages will be visible in
+	<filename>/var/log/messages</filename>.
+      </para>
+
+      <para>
+	As you can see the script makes use of the
+	<emphasis>$ACTION</emphasis> variable to see what kind of
+	hotplug action took place. Let's take a look at an example
+	action when this script is used for handling USB events, and
+	named <filename>10-stub.hotplug</filename>:
+      </para>
+
+      <screen>
+Jul 19 16:13:23 mindbender 10-stub.hotplug[18970]: arguments (usb) env
+(SUBSYSTEM=usb OLDPWD=/ DEVPATH=/devices/pci0000:00/0000:00:10.0/usb2/2-1/2-1.3/2-1.3:1.2
+PATH=/bin:/sbin:/usr/sbin:/usr/bin ACTION=add PWD=/etc/hotplug HOME=/ SHLVL=2
+DEVICE=/proc/bus/usb/002/009 PHYSDEVDRIVER=snd-usb-audio INTERFACE=1/2/0
+PRODUCT=d8d/651/1 TYPE=0/0/0 DEBUG=yes PHYSDEVBUS=usb SEQNUM=1528 _=/usr/bin/env)
+      </screen>
+
+      <para>
+	That is nice, when I plugged an USB device, the script gets
+	loaded (a couple of times, this is just one of the interesting
+	bits).  Actually, this is my USB Phone, which is represented
+	as an USB audio device under GNU/Linux. The problem with USB
+	audio devices is that the device volumes that are saved with
+	<command>alsactl store</command> are not automatically set
+	when the device is plugged. But right know we can easily
+	execute <command>alsactl restore</command> when the device is
+	plugged. Please note that the script gets very useful
+	information through some environment variables.
+      </para>
+
+      <para>
+	To solve the volume problem, we can create a script, say
+	<filename>/etc/hotplug.d/usb/50-usb-audio-volume.hotplug</filename>,
+	that looks like this:
+      </para>
+
+      <programlisting>
+#!/bin/sh
+
+cd /etc/hotplug
+. ./hotplug.functions
+# DEBUG=yes export DEBUG
+
+debug_mesg "arguments ($*) env (`env`)"
+
+case $ACTION in
+  add|register)
+    if [ $PHYSDEVDRIVER = "snd-usb-audio" ]; then
+      /usr/sbin/alsactl restore
+    fi
+  ;;
+  remove|unregister)
+  ;;
+  *)
+    debug_mesg "Unknown action '$ACTION'"
+  ;;
+esac
+      </programlisting>
+
+      <para>
+	Based on the environment variables this script can be refined
+	to restrict running <command>alsactl</command> for specific
+	USB audio devices.
+      </para>
+    </sect2>
+-->
+</chapter>

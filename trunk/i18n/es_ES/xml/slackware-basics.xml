@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<book xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  version="5.0"
+  xml:lang="es">
+
+  <info>
+    <title>Slackware Linux Basics</title>
+    <subtitle>Para Slackware Linux 12.0</subtitle>
+    <pubdate>Thu Sep 27 10:20:04 CEST 2007</pubdate>
+    <authorgroup>
+      <author><personname>Dani&#235;l de Kok</personname></author>
+    </authorgroup>
+
+    <copyright>
+      <year>2002</year>
+      <year>2003</year>
+      <year>2004</year>
+      <year>2005</year>
+      <year>2006</year>
+      <year>2007</year>
+      <year>2008</year>
+      <year>2009</year>
+      <holder>Dani&#235;l de Kok</holder>
+    </copyright>
+
+    <legalnotice>
+      <title>Licencia</title>
+
+      <para>
+	Algunos derechos reservados. Este libro está disponible bajo
+	la Licencia Creative Commons Attribution 3.0 (CC-BY). Los
+	términos de la licencia pueden ser consultados en:
+        <ulink url="http://creativecommons.org/licenses/by/3.0/" />
+      </para>
+
+      <para>
+	Linux es una marca registrada de Linus Torvalds. Slackware
+	es una marca registrada de Patrick Volkerding y Slackware 
+	Linux, Inc. UNIX es una marca registrada de The Open Group.
+      </para>
+    </legalnotice>
+  </info>
+
+  <toc></toc>
+
+  <xi:include href="preface.xml"/>
+
+  <part xml:id="getstarted">
+    <title>Comenzando</title>
+
+    <xi:include href="chap-book.xml"/>
+    <xi:include href="chap-intro.xml"/>
+    <xi:include href="chap-help.xml"/>
+    <xi:include href="concepts.xml"/>
+    <xi:include href="chap-install.xml"/>
+    <xi:include href="custom-installation.xml"/>
+  </part>
+
+  <part xml:id="basics">
+    <title>Slackware Linux Basics</title>
+
+    <xi:include href="chap-shell.xml"/>
+    <xi:include href="chap-filesystem.xml"/>
+    <xi:include href="chap-textproc.xml"/>
+    <xi:include href="chap-procmgmt.xml"/>
+  </part>
+
+  <part xml:id="editing">
+    <title>Edición y composición</title>
+    <xi:include href="latex.xml"/>
+  </part>
+
+  <part xml:id="email">
+    <title>Correo Electrónico</title>
+    
+    <xi:include href="mutt.xml"/>
+    <xi:include href="sendmail.xml"/>
+  </part>
+
+  <part xml:id="sysadmin">
+    <title>Administración del sistema</title>
+    
+    <xi:include href="chap-usermgmt.xml"/>
+    <xi:include href="printing.xml"/>
+    <xi:include href="chap-x11.xml"/>
+    <xi:include href="chap-pkgmgmt.xml"/>
+    <xi:include href="chap-kernel.xml"/>
+    <xi:include href="chap-init.xml"/>
+    <xi:include href="security.xml"/>
+    <xi:include href="miscadmin.xml"/>
+   </part>
+
+  <part xml:id="netadmin">
+    <title>Administración de red</title>
+    <xi:include href="netconfig.xml"/>
+    <xi:include href="ipsec.xml"/>
+    <xi:include href="inetd.xml"/>
+    <xi:include href="apache.xml"/>
+    <xi:include href="bind.xml"/>
+  </part>
+
+<!--
+  <part> <?dbhtml filename="appendices.html"?>
+    <title>Apéndices</title>
+  </part>
+-->
+
+</book>
