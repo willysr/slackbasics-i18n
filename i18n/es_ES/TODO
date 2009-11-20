@@ -1,0 +1,13 @@
+List of urgent TODOs:
+
+- Prefix filenames with the type of unit (chap, ap, etc.).
+- Get rid of preprocessing tags.
+- Make all XML sources validate with RelaxNG stylesheets.
+- Import relevant contents from the "unixsystems" book,
+  which is a lot more descriptive in a lot of areas.
+- Update administration/configuration bits for Slackware
+  Linux 12.0.
+- Rewrite the IPsec chapter to an OpenVPN chapter. It's
+  easier to set up, and everyone seems to have picked it
+  over ipsec these days.
+- Get more sleep :^).

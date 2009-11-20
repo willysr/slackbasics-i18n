@@ -1,0 +1,40 @@
+ <preface xmlns="http://docbook.org/ns/docbook" version="5.0"
+	 xmlns:xl="http://www.w3.org/1999/xlink"
+	 xml:lang="es" xml:id="preface">
+  <title>Prefacio</title>
+
+  <para>
+    Este libro tiene como objetivo proveer una introducción a Slackware 
+    Linux. Está dirigido a personas que tienen poca o ninguna experiencia
+    en GNU/Linux, y cubre la instalación de Slackware Linux, comandos
+    GNU/Linux básicos y la configuración de Slackware Linux. Después
+    de leer este libro, usted debería estar preparado para usar 
+    Slackware Linux para sus tareas diarias y mucho mas.
+    Espero que este libro sea útil como referencia para usuarios 
+    de Slackware Linux mas experimentados.
+  </para>
+
+  <para>
+    Gracias al rápido desarrollo del software de código abierto, existen
+    ahora entornos de escritorio y aplicaciones comprehensivas para
+    GNU/Linux. La mayoría de las distribuciones actuales y libros
+    se enfocan en el uso de GNU/Linux con tales entornos. Yo escogí
+    ignorar la mayoria de las aplicaciones gráficas, e intenté enfocar 
+    este libro a ayudarte, como lector, para aprender
+    el uso de GNU/Linux en una forma UNIX. Estoy convencido que esta
+    aproximación es a menudo la mas poderosa, y te ayuda a aprender
+    GNU/Linux correctamente, y no solamente una distribución o 
+    entorno de escritorio. La filosofía UNIX está descrita en 
+    <link xl:href="#chap-intro-unix">the overview of UNIX philosophy</link>    
+  </para>
+
+  <para>
+    Espero que todos tengan un buen momento con Slackware Linux, y
+    espero que encuentren este libro util para ustedes.    
+  </para>
+
+  <para>
+    Dani&#235;l de Kok
+  </para>
+
+</preface>

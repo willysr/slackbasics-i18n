@@ -1,0 +1,87 @@
+<chapter xml:id="chap-book">
+  <title>Sobre este libro</title>
+
+  <sect1 xml:id="chap-book-availability">
+    <title>Disponibilidad</title>
+
+    <para>
+      Este libro fué escrito en DocBook/XML, y convertido a HTML y
+      XSL:FO con <command>xsltproc</command>. La última versión
+      está siempre disponible en: <ulink
+      url="http://www.slackbasics.org/" />.
+    </para>
+  </sect1>
+
+  <sect1 xml:id="chap-book-conventions">
+    <title>Convenciones</title>
+
+    <para>
+      Esta sección brinda un resumen de las convenciones utilizadas en 
+      el libro.
+    </para>
+
+    <sect2 xml:id="chap-book-conventions-filenames">
+      <title>Nombres de archivos</title>
+
+      <para>
+	Los archivos o directorios son mostrados como:
+	<filename>/path/to/file</filename>.  Por ejemplo:
+	<filename>/etc/fstab</filename>
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-book-conventions-commands">
+      <title>Comandos</title>
+
+      <para>
+	Los comandos se muestran como texto resaltado. 
+	Por ejemplo:<command>ls -l</command>
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-book-conventions-screenoutput">
+      <title>Salidas de pantalla</title>
+
+      <para>
+	Las salidas de pantalla se muestran asi:
+      </para>
+
+      <screen>
+	Hello world!
+      </screen>
+
+      <para>
+	Si los comandos son ingresados en la salida de pantalla,
+	serán impresos como texto resaltado:
+      </para>
+
+      <screen>$<command>command</command>
+	Output
+      </screen>
+
+      <para>
+	Si un comando se ejecuta como root, la consola será mostrada
+	como <quote>#</quote>. Si un comando es ejecutado como 
+	usuario normal sin privilegios, la consola se mostrará
+	como <quote>$</quote>.
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-book-conventions-notes">
+      <title>Notas</title>
+
+      <para>
+	Algunas secciones contienen notas extra. No es necesario 
+	saber la información en las notas, pero las notas pueden
+	proveer información valiosa, o referencias a información.
+	Las notas son mostradas asi:
+      </para>
+
+      <note>
+	<para>
+	  This is a note.
+	</para>
+      </note>
+    </sect2>
+  </sect1>
+</chapter>
