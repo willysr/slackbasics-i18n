@@ -1,17 +1,17 @@
-linhas arquivo                  trad     1a-rev  2a-rev
+líneas archivo                  trad     1a-rev  2a-rev
 ------+------------------------+--------+-------+-------
-    38 preface.xml              OK       -       -
-    85 chap-book.xml            OK       -       -
-   117 bind.xml                 OK       -       -
+    38 preface.xml              PE       -       -
+    85 chap-book.xml            PE       -       -
+   117 bind.xml                 PE       -       -
    131 chap-x11.xml             -        -       -
    135 services.xml             -        -       -
-   143 slackware-basics.xml     OK       -       -
+   143 slackware-basics.xml     PE       -       -
    149 inetd.xml                -        -       -
    156 apache.xml               OK       -       -
    181 security.xml             -        -       -
    216 chap-help.xml            -        -       -
    258 sendmail.xml             -        -       -
-   265 chap-intro.xml           OK       -       -
+   265 chap-intro.xml           PE       -       -
    310 printing.xml             -        -       -
    338 mutt.xml                 -        -       -
    341 miscadmin.xml            -        -       -
@@ -21,7 +21,7 @@ linhas arquivo                  trad     1a-rev  2a-rev
    485 chap-usermgmt.xml        -        -       -
    527 netconfig.xml            -        -       -
    630 ipsec.xml                -        -       -
-   652 chap-pkgmgmt.xml         OK       -       -
+   652 chap-pkgmgmt.xml         PE       -       -
    703 chap-init.xml            -        -       -
    758 custom-installation.xml  -        -       -
    780 chap-procmgmt.xml        -        -       -
