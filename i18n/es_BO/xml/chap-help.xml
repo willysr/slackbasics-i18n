@@ -3,9 +3,11 @@
          xmlns:xl="http://www.w3.org/1999/xlink"
          xml:lang="es"
          xml:id="chap-help">
-  <title>Sources of help</title>
+  <title>Fuentes de ayuda</title>
 
   <para>
+    
+
     There is a wealth of information available about many subjects
     related to GNU/Linux. Most general documentation applies to
     Slackware Linux, because the software in the distribution has been
