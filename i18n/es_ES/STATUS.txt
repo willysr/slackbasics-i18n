@@ -2,7 +2,7 @@ líneas archivo                  trad     1a-rev  2a-rev
 ------+------------------------+--------+-------+-------
     38 preface.xml              PE       -       -
     85 chap-book.xml            PE       -       -
-   117 bind.xml                 PE       -       -
+   117 bind.xml                 OK       -       -
    131 chap-x11.xml             -        -       -
    135 services.xml             -        -       -
    143 slackware-basics.xml     PE       -       -
