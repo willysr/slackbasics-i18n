@@ -4,11 +4,11 @@
   <title>Prefacio</title>
 
   <para>
-    Este libro tiene como objetivo proveer una introducción a Slackware 
-    Linux. Está dirigido a personas que tienen poca o ninguna experiencia
+    El objetivo de este libro es servir de introducción a Slackware 
+    Linux. Está dirigido a personas con poca o ninguna experiencia
     en GNU/Linux, y cubre la instalación de Slackware Linux, comandos
     GNU/Linux básicos y la configuración de Slackware Linux. Después
-    de leer este libro, usted debería estar preparado para usar 
+    de leer este libro, debería estar preparado para usar 
     Slackware Linux para sus tareas diarias y mucho mas.
     Espero que este libro sea útil como referencia para usuarios 
     de Slackware Linux mas experimentados.
@@ -16,7 +16,7 @@
 
   <para>
     Gracias al rápido desarrollo del software de código abierto, existen
-    ahora entornos de escritorio y aplicaciones comprehensivas para
+    ahora entornos de escritorio y aplicaciones comprensivas para
     GNU/Linux. La mayoría de las distribuciones actuales y libros
     se enfocan en el uso de GNU/Linux con tales entornos. Yo escogí
     ignorar la mayoria de las aplicaciones gráficas, e intenté enfocar 
@@ -29,8 +29,8 @@
   </para>
 
   <para>
-    Espero que todos tengan un buen momento con Slackware Linux, y
-    espero que encuentren este libro util para ustedes.    
+    Espero que lo pasen bien con Slackware Linux, y
+    que encuentren este libro util.    
   </para>
 
   <para>
