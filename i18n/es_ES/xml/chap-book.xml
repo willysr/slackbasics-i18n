@@ -5,7 +5,7 @@
     <title>Disponibilidad</title>
 
     <para>
-      Este libro fu茅 escrito en DocBook/XML, y convertido a HTML y
+      Este libro ha sido escrito en DocBook/XML, y convertido a HTML y
       XSL:FO con <command>xsltproc</command>. La 煤ltima versi贸n
       est谩 siempre disponible en: <ulink
       url="http://www.slackbasics.org/" />.
@@ -47,7 +47,7 @@
       </para>
 
       <screen>
-	Hello world!
+	ola mundo!
       </screen>
 
       <para>
@@ -56,7 +56,7 @@
       </para>
 
       <screen>$<command>command</command>
-	Output
+	Salida
       </screen>
 
       <para>
@@ -74,12 +74,12 @@
 	Algunas secciones contienen notas extra. No es necesario 
 	saber la informaci贸n en las notas, pero las notas pueden
 	proveer informaci贸n valiosa, o referencias a informaci贸n.
-	Las notas son mostradas asi:
+	Las notas se muestran asi:
       </para>
 
       <note>
 	<para>
-	  This is a note.
+	  Esto es una nota.
 	</para>
       </note>
     </sect2>
