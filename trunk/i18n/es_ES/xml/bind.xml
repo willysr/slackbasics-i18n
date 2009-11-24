@@ -7,7 +7,7 @@
 <title>Introducción</title>
 
 <para>
-El sistema de nombres de dominio (<acronym>DNS</acronym>) es usado
+El sistema de nombres de dominio (<acronym>DNS</acronym>) se usa
 para convertir nombres de host (por ejemplo slackware.com) en direcciones
 IP. <acronym>BIND</acronym> (Berkeley Internet Name Domain) es el daemon 
 ( demonio o servicio en español) DNS más usado, y el objetivo de este 
@@ -21,10 +21,10 @@ capítulo.
 Una de las principales características los servidores de nombres 
 es que las peticiones DNS pueden ser delegadas. Por ejemplo, suponga que 
 posee el dominio <quote>linuxcorp.com</quote>. 
-Usted puede proveer servidores de nombres autorizados para este dominio, 
+Puede proveer servidores de nombres autorizados para este dominio, 
 los cuales son autoritarios para <quote>linuxcorp.com</quote>. 
-Suponga que existen diferentes divisiones en su empresa, y quiere proveer a cada
-de estas divisiones autoridad sobre sus propias zonas, esto no es un problema
+Si existen diferentes divisiones en su empresa, y quiere proveer a cada
+de estas divisiones autoridad sobre sus propias zonas, no es un problema
 con DNS. Puede delegar el DNS para <quote>sales.linuxcorp.com</quote> a otro
 servidor de nombres con la configuración DNS para la zona <quote>sales.linuxcorp.com</quote>.
 </para>
@@ -76,11 +76,11 @@ Los siguientes tipos de registros son comunes en DNS:
 <title>Maestros y esclavos</title>
 
 <para>
-Dos tipos de servidores de nombres pueden ser proveídos para un nombre de dominio: 
+Se puede proveer dos tipos de servidores de nombres para un nombre de dominio: 
 un maestro y un esclavo. Los registros del servidor DNS maestro son autoritarios. 
 Los servidores esclavos descargan los registros DNS de los servidores maestros.  
 Es recomendable utilizar servidores esclavos en vez de maestros para lograr 
-alta disponibilidad y ademásp pueden ser usados para balanceo de carga (tráfico 
+alta disponibilidad y ademásp pueden ser usados para un balanceo de la carga (tráfico 
 de red). 
 </para>
 
@@ -89,7 +89,7 @@ de red).
 </sect1>
 
 <sect1>
-<title>Realizando caching del servidor de nombres  Making a caching nameserver</title>
+<title>Realizando caching del servidor de nombres</title>
 
 <para>
 El caching de servidores de nombres provee servicios DNS para una
@@ -97,8 +97,8 @@ máquina o una red, pero no provee DNS para un dominio. Esto significa
 que solo puede ser usado para convertir nombres de host a direcciones
 IP. Configurar un servidor de nombres con Slackware Linux es relativamente
 sencillo, debido a que BIND está configurado como servidor de nombres
-con caching por defecto. Habilitar el caching toma solamente dos pasos: 
-debe instalar BIND y modificar los scripts de inicialización. BIND
+con caching por defecto. Se puede habilitar el caching en solo dos pasos: 
+primero debe instalar BIND y modificar los scripts de inicialización. BIND
 puede ser instalado agregando el paquete de la serie <quote>n</quote>.
 Despues de eso, BIND puede ser iniciado ejecutando el comando 
 <command>named</command>. Si se quiere iniciar BIND por defecto, solamente
