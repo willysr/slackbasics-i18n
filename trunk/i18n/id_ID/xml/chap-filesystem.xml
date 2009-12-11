@@ -2708,7 +2708,7 @@ proc             /proc            proc        defaults         0   0
 	  security agency untuk menghasilkan perangkat keras yang mampu membobol kunci dalam waktu yang relatif singkat.
 	  Selain itu, juga dibuktikan bahwa kunci RSA 512-bit bisa dipecahkan dalam waktu yang relatif singkat dengan 
 	  perangkat keras yang umum. Informasi tentang masalah ini bisa ditemukan pada email berikut:
-	<ulink url="http://lists.saigon.com/vault/security/encryption/rsa1024.html" />
+	<ulink url="http://tin.le.org/vault/security/encryption/rsa1024.html" />
 	</para>
       </note>
 
