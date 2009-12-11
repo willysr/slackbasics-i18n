@@ -3120,7 +3120,7 @@ proc             /proc            proc        defaults         0   0
 	  short time using common hardware. More information about
 	  these issues can by found in this e-mail to the cypherpunks
 	  list:
-	<ulink url="http://lists.saigon.com/vault/security/encryption/rsa1024.html" />
+	<ulink url="http://tin.le.org/vault/security/encryption/rsa1024.html" />
 	</para>
       </note>
 

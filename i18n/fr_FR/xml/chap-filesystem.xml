@@ -3140,7 +3140,7 @@ proc             /proc            proc        defaults         0   0
 	  512-bits peuvent être cassées en un temps relativement court en
 	  utilisant du matériel courant. Plus d'informations sur ces problèmes
 	  peuvent être trouvés dans cet e-mail sur la liste cypherpunks :
-	<ulink url="http://lists.saigon.com/vault/security/encryption/rsa1024.html" />
+	<ulink url="http://tin.le.org/vault/security/encryption/rsa1024.html" />
 	</para>
       </note>
 
