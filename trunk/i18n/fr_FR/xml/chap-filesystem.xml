@@ -564,7 +564,7 @@ $ <userinput>cksum myfile</userinput>
 	d'utiliser <command>cat</command>. <command>cat</command> lit les
 	fichiers qui ont été spécifiés en paramètres ligne par ligne, et écrit
 	les lignes sur la sortie standard. Ainsi, vous pouvez écrire le contenu
-	du fichier <nom_fichier>note.txt</filename> vers le terminal
+	du fichier <filename>note.txt</filename> vers le terminal
 	avec <command>cat note.txt</command>. Alors que certains systèmes et la
 	plupart des émulateurs de terminaux fournissent une fonction de
 	défilement, ce n'est pas un moyen pratique pour visualiser des fichiers
@@ -3300,10 +3300,10 @@ Quelle taille de clé désirez-vous ? (2048) <userinput>2048</userinput>
 La taille demandée est 2048 bits
 Spécifiez combien de temps cette clé devrait être valide.
          0 = la clé n'expire pas
-      &lt;n&gt  = la clé expire dans n jours
-      &lt;n&gtw = la clé expire dans n semaines
-      &lt;n&gtm = la clé expire dans n mois
-      &lt;n&gty = la clé expire dans n années
+      &lt;n&gt;  = la clé expire dans n jours
+      &lt;n&gt;w = la clé expire dans n semaines
+      &lt;n&gt;m = la clé expire dans n mois
+      &lt;n&gt;y = la clé expire dans n années
 La clé est valide pour ? (0) <userinput>0</userinput>
       </screen>
 
