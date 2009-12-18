@@ -453,7 +453,7 @@ peer:pear
       <para>
 	Untuk menggunakan pembatas yang berbeda dengan tab horizontal, tambahkan parameter
 	<parameter class="command">-d karakter_pembatas</parameter>
-	untuk menentukan karakter pembata. Jadi, pada kasus 
+	untuk menentukan karakter pembatas. Jadi, pada kasus 
 	<filename>dictionary-new</filename>, kita akan meminta
 	<command>cut</command> untuk menggunakan tanda titik dua sebagai pembatas:
       </para>
@@ -477,8 +477,9 @@ pear
 	Anda hendak memastikan untuk mengambil seluruh karakter, gunakan parameter <parameter class="command">-c</parameter>.
 	Contoh yang memperagakan parameter <parameter
 	class="command">-c</parameter> adalah mencari sepuluh set yang paling umum dari tiga karakter pertama dari sebuah 
-	kata. Sebagian besar sistem UNIX menyediakan daftar kata yang dipisahkan dengan baris baru. Kita bisa menggunakan 
-	<command>cut</command> untuk mendapatkan tiga karakter pertama dari daftar kata, menambahkan <parameter class="command">uniq</parameter>
+	kata. Sebagian besar sistem UNIX menyediakan daftar kata yang dipisahkan dengan baris baru. Paket bsd-games pada Slackware Linux 
+	mengandung /usr/share/dict/words with dengan sebuah daftar kata. Kita bisa menggunakan 
+	<command>cut</command> untuk mendapatkan empat karakter pertama dari daftar kata, menambahkan <parameter class="command">uniq</parameter>
 	untuk menghitung urutan tiga karakter yang identik, dan menggunakan <command>sort</command> untuk mengurutkan 
 	secara terbalik (<command>sort</command> dijelaskan pada <xref
 	linkend="chap-textproc-simple-sort" />). Akhirnya, kita akan menggunakan 
