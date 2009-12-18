@@ -450,7 +450,7 @@ peer    pear
       </screen>
 
       <para>
-	We can get all English words by selecting the first field:
+	We can get all English words by selecting the second field:
       </para>
 
       <screen>
@@ -526,12 +526,14 @@ pear
 	use the <parameter class="command">-c</parameter> parameter.
 	An entertaining example of seeing the <parameter
 	class="command">-c</parameter> parameter in action is to find
-	the ten most common sets of the first three characters of a
+	the ten most common sets of the first four characters of a
 	word. Most UNIX systems provide a list of words that are
-	separated by a new line. We can use <command>cut</command> to
-	get the first three characters of the words in the word list,
+	separated by a new line. bsd-games package in Slackware Linux
+	contains /usr/share/dict/words with such a list.
+	We can use <command>cut</command> to
+	get the first four characters of the words in the word list,
 	add <parameter class="command">uniq</parameter> <!-- XXX -
-	where? --> to count identical three character sequences, and
+	where? --> to count identical four character sequences, and
 	use <command>sort</command> to sort them reverse-numerically
 	(<command>sort</command> is described in <xref
 	linkend="chap-textproc-simple-sort" />). Finally, we will use
@@ -791,7 +793,7 @@ Heinz:DE:3
       <emphasis>col2</emphasis> is not specified, all fields up till
       the end of the line are used. So, if you want to use just one
       column, use <parameter class="command">-k col1,col1</parameter>.
-      You can also specify the the starting character within a column
+      You can also specify the starting character within a column
       by adding a period (<emphasis>.</emphasis>) and a character
       index. For instance, <parameter class="command">-k
       2.3,4.2</parameter> means that the second column starting from
@@ -829,7 +831,7 @@ John:US:4
       sort by default<footnote><para>Of course, that will not really
       matter in this case, because we don't use numbers higher than 9,
       and virtually all character sets have numbers in a numerical
-      order).</para></footnote>. You could use the <parameter
+      order.</para></footnote>. You could use the <parameter
       class="command">-n</parameter>, but <command>sort</command> also
       allows a more sophisticated approach. You can append the one or
       more of the <emphasis>n</emphasis>, <emphasis>r</emphasis>,
@@ -986,7 +988,7 @@ void usage(char *programName) {
 	  persons. This is a typical situation where
 	  <command>diff</command> becomes
 	  handy. <command>diff</command> shows the differences between
-	  two files. It most basic syntax is <command>diff file
+	  two files. Its most basic syntax is <command>diff file
 	  file2</command>, which shows the differences between
 	  <filename>file</filename> and
 	  <filename>file2</filename>. Let's try this with the our
@@ -1232,7 +1234,7 @@ diff -ru hello.orig/hello.c hello/hello.c
 	  are available in both directories. The GNU version of diff,
 	  that is used by Slackware Linux provides the
 	  <parameter class="command">-N</parameter> parameter. This
-	  parameters treats files that exist in only one of both
+	  parameter treats files that exist in only one of both
 	  directories as if it were an empty file. So for instance,
 	  if we have added a file named <filename>Makefile</filename>
 	  to the <filename>hello</filename> directory, using the
@@ -1438,7 +1440,7 @@ $ <userinput>ls -l hello.c*</userinput>
 
 	<para>
 	  Sometimes a file can not be patched. For instance, if it has
-	  already been patched, it has changed to much to apply the
+	  already been patched, it has changed too much to apply the
 	  patch cleanly, or if the file does not exist at all. In this
 	  case, the chunks that could not be saved are stored in a
 	  file with the name <filename>filename.rej</filename>, where
@@ -1455,7 +1457,7 @@ $ <userinput>ls -l hello.c*</userinput>
     <sect2 xml:id="chap-textproc-regexps-intro">
       <title>Introduction</title>
 
-      <para> In daily life, you will often want to some text that
+      <para> In daily life, you will often want to manipulate some text that
       matches to a certain pattern, rather than a literal string. Many
       UNIX utilities implement a language for matching text patterns,
       <emphasis>regular expressions</emphasis> (regexps). Over time
@@ -1493,7 +1495,7 @@ $ <userinput>ls -l hello.c*</userinput>
             <emphasis role="bold">A character</emphasis>: this is the
             basis of every regular expression, a character or a set of
             characters to be matched. For instance, the letter
-            <emphasis>p</emphasis> or the the sign
+            <emphasis>p</emphasis> or the sign
             <emphasis>,</emphasis>. </para>
         </listitem>
         <listitem>
