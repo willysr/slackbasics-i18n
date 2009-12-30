@@ -4,104 +4,104 @@
 	 xmlns:xl="http://www.w3.org/1999/xlink" xml:lang="en"
 	 xml:id="chap-procmgmt">
 
-  <title>Process management</title>
+  <title>Gestion de processus</title>
 
   <sect1 xml:id="chap-procmgmt-theory">
-    <title>Theory</title>
+    <title>Théorie</title>
 
     <sect2 xml:id="chap-procmgmt-theory-proc">
-      <title>Processes</title>
+      <title>Processus</title>
 
       <para>
-	A running instance of a program is called a
-	<emphasis>process</emphasis>. Each process has its own
-	protected memory, named the <emphasis>process address
-	space</emphasis>. This address space consists of two areas:
-	the <emphasis>text area</emphasis> and the <emphasis>data
-	area</emphasis>. The text area contains the actual program
-	code, and tells the system what to do. The data area stores
-	constant and runtime data of a process. Since there are many
-	processes on a system, and only one or a few processors, the
-	operating system kernel divides processor time between
-	processes. This process is called
-	<emphasis>time-sharing</emphasis>.
+	Une instance d'un programme en cours d'exécution est appelée un
+	<emphasis>processus</emphasis>. Chaque processus a son propre espace
+	mémoire protégé, nommé l'<emphasis>espace d'adressage du processus
+	</emphasis>. Cet espace d'adressage se compose de 2 zones :
+	la <emphasis>zone texte</emphasis> et la <emphasis>zone données
+	</emphasis>. La zone text contient le code réel du programme, et dit au
+	système quoi faire. La zone donnée stocke les données constantes et les
+	données d'exécution d'un processus. Puisqu'il y a beaucoup de processus
+	dans un système, et 1 ou quelques processeurs, le noyau du système
+	d'exploitation divise le temps processeur entre les processus. Cette
+	opération est appelée <emphasis>temps partagé</emphasis>.
       </para>
 
       <table xml:id="chap-procmgmt-theory-proc-struct">
-	<title>The structure of a process</title>
+	<title>La structure d'un processus</title>
 
 	<tgroup cols="2">
 	  <thead>
-	    <row><entry>Field</entry><entry>Description</entry></row>
+	    <row><entry>Champ</entry><entry>Description</entry></row>
 	  </thead>
 
 	  <tbody>
 	    <row>
-	      <entry>pid</entry><entry>The numeric process identifier</entry>
+	      <entry>pid</entry><entry>L'identifiant numérique d'un processus
+	      </entry>
 	    </row>
 	    <row>
-	      <entry>ppid</entry><entry>The process identifier of the
-	      parent process</entry>
+	      <entry>ppid</entry><entry>L'identifiant numérique du père d'un
+		processus</entry>
 	    </row>
 	    <row>
-	      <entry>euid</entry><entry>The effective user ID of the
-	      process.</entry>
+	      <entry>euid</entry><entry>L'ID utilisateur effectif du processus.
+	      </entry>
 	    </row>
 	    <row>
-	      <entry>ruid</entry><entry>The real user ID of the process</entry>
+	      <entry>ruid</entry><entry>L'ID utilisateur réel du processus
+	      </entry>
 	    </row>
 	    <row>
-	      <entry>egid</entry><entry>The group ID of the process</entry>
+	      <entry>egid</entry><entry>L'ID du groupe du processus</entry>
 	    </row>
 	    <row>
-	      <entry>rgid</entry><entry>The real group ID of the
-	      process</entry>
+	      <entry>rgid</entry><entry>L'ID réel du group du processus</entry>
 	    </row>
 	    <row>
-	      <entry>fd</entry><entry>Pointer to the list of open file
-	      descriptors</entry>
+	      <entry>fd</entry><entry>Pointeur sur une liste de descripteurs de
+		fichiers ouverts</entry>
 	    </row>
 	    <row>
-	      <entry>vmspace</entry><entry>Pointer to the process
-	      address space.</entry>
+	      <entry>vmspace</entry><entry>Pointeur vers l'espace d'adressage
+		du processus.</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <para>
-	<xref linkend="chap-procmgmt-theory-proc-struct" /> lists the
-	most important fields of information that a kernel stores
-	about a process. Each process can be identified uniquely by
-	its <emphasis>PID</emphasis> (process identifier), which is an
-	unsigned number. As we will see later, a user can easily
-	retrieve the PID of a process. Each process is associated with
-	a <emphasis>UID</emphasis> (user ID) and
-	<emphasis>GID</emphasis> (group ID) on the system. Each
-	process has a <emphasis>real UID</emphasis>, which is the UID
-	as which the process was started, and the <emphasis>effective
-	UID</emphasis>, which is the UID as which the process
-	operates. Normally, the effective UID is equal to the real
-	UID, but some programs ask the system to change its effective
-	UID. The effective UID determines is used for access
-	control. This means that if a user named joe starts a command,
-	say less, less can only open files that joe has read rights
-	for. In parallel, a process also has an <emphasis>real
-	GID</emphasis> and an <emphasis>effective GID</emphasis>.
+	<xref linkend="chap-procmgmt-theory-proc-struct" /> liste les champs
+	les plus importants d'un processus que le kernel stocke. Chaque
+	processus peut être identifié de manière unique par son
+	<emphasis>PID</emphasis> (NdT: Process IDentifier), qui est un nombre
+	non signé. Comme nous le verrons plus tard, un utilisateur peut aisément
+	récupérer le PID d'un processus. A chaque processus sur le système est
+	associé un <emphasis>UID</emphasis> (NdT: User ID) et un
+	<emphasis>GID</emphasis> (NdT: Group ID). Chaque processus a un
+	<emphasis>UID réel</emphasis>, qui est le UID avec lequel le processus a
+	été démarré, et le <emphasis>UID effectif</emphasis>, qui est l'UID sous
+	lequel le processus travaille. Normalement, le UID effectif est égal au
+	UID réel, mais certains programmes demande au système à changer cet UID
+	effectif. L'UID effectif est utilisé pour les contrôles d'accès. Cela
+	signifie que si un utilisateur nommé joe lance une commande, disons
+	less, less ne peut ouvrir que des fichiers sur lesquels joe a les
+	droits de lecture. De même, un processus a un <emphasis>GID réel
+	</emphasis> et un <emphasis>GID effectif</emphasis>.
       </para>
 
       <para>
-	Many processes open files, the handle used to operate on a
-	file is called a <emphasis>file descriptor</emphasis>. The
-	kernel manages a list of open file descriptors for each
-	process. The <emphasis>fd</emphasis> field contains a pointer
-	to the list of open files. The <emphasis>vmspace</emphasis>
-	field points to the process address space of the process.
+	Beaucoup de processus ouvrent des fichiers, le handle utilisé pour
+	travailler sur un fichier est appelé un
+	<emphasis>descripteur de fichier</emphasis>. Le noyau gère une liste
+	des descripteurs de fichiers ouverts pour chaque processus. Le champ
+	<emphasis>fd</emphasis> contient un pointeur sur la liste des fichiers
+	ouverts. Le champ <emphasis>vmspace</emphasis> pointe sur l'espace
+	d'adressage du processus.
       </para>
 
       <!-- XXX - make more sophisticated (swap)? -->
       <figure xml:id="chap-procmgmt-theory-proc-procstates">
-	<title>Process states</title>
+	<title>Etats d'un processus</title>
 
 	<mediaobject>
 	  <imageobject>
@@ -114,37 +114,36 @@
       </figure>
 
       <para>
-	Not every process is in need of CPU time at a given
-	moment. For instance, some processes maybe waiting for some
-	<emphasis>I/O</emphasis> (Input/Output) operation to complete
-	or may be terminated. Not taking subtleties in account,
-	processes are normally <emphasis>started</emphasis>,
-	<emphasis>running</emphasis>, <emphasis>ready</emphasis> (to
-	run), <emphasis>blocked</emphasis> (waiting for I/O), or
-	<emphasis>terminated</emphasis>. <xref
-	linkend="chap-procmgmt-theory-proc-procstates" /> shows the
-	lifecycle of a process. A process that is terminated, but for
-	which the process table entry is not reclaimed, is often
-	called a <emphasis>zombie process</emphasis>. Zombie processes
-	are useful to let the parent process read the exit status of
-	the process, or reserve the process table entry temporarily.
+	Tous les processus n'ont pas besoin de temps CPU à un instant donné.
+	Par exemple, certains processus peuvent être en attente d'une opération
+	<emphasis>E/S</emphasis> (Entrée/Sortie) pour continuer ou peuvent être
+	finis. Sans entrer dans les détails, les processus sont normalement
+	<emphasis>démarré</emphasis>, <emphasis>actif</emphasis>,
+	<emphasis>prêt</emphasis> (à être actif), <emphasis>bloqué</emphasis>
+	(en attente d'E/S), ou <emphasis>terminé</emphasis>. <xref
+	linkend="chap-procmgmt-theory-proc-procstates" /> montre le cycle de vie
+	d'un processus. Un processus terminé, mais pour lequel l'entrée dans
+	la table des processus n'est pas récupérée, est souvent appelé un
+	<emphasis>processus zombie</emphasis>. Les processus zombie sont utiles
+	pour permetre au processus père de lire le status de fin du processus,
+	ou pour réserver temporairement l'entrée dans la table des processus.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-procmgmt-theory-proc-new">
-      <title>Creating new processes</title>
+      <title>Créer de nouveaux processus</title>
 
       <para>
-	New processes are created with the <emphasis>fork()</emphasis>
-	system call. This system call copies the process address space
-	and process information of the caller, and gives the new
-	process, named the child process, a different PID. The child
-	process will continue execution at the same point as the
-	parent, but will get a different return value from the
-	<emphasis>fork()</emphasis> system call. Based on this return
-	value the code of the parent and child can decide how to
-	continue executing. The following piece of C code shows a
-	<emphasis>fork()</emphasis> call in action:
+	De nouveaux processus sont créés avec l'appel système
+	<emphasis>fork()</emphasis>. Cet appel système copie l'espace
+	d'adressage et les informations du processus appelant, et donne au
+	nouveau processus, nommé le processus fils, un PID différent. Le
+	processus fils continuera son exécution au même point que dans le
+	parent,	mais obtiendra une valeur de retour différente de l'appel
+	système	<emphasis>fork()</emphasis>. En se basant sur cette valeur de
+	retour les processus père et fils peuvent décider comment continuer
+	l'exécution. Le morceau de code C suivant montre une mise en oeuvre de
+	<emphasis>fork()</emphasis> :
       </para>
 
       <programlisting>
@@ -164,35 +163,31 @@ int main() {
       </programlisting>
 
       <para>
-.	This little program calls <emphasis>fork()</emphasis>, storing
-	the return value of <emphasis>fork()</emphasis> in the
-	variable
-	<emphasis>pid</emphasis>. <emphasis>fork()</emphasis> returns
-	the value <emphasis>0</emphasis> to the child, and the PID of
-	the child to the parent. Since this is the case, we can use a
-	simple conditional structure to check the value of the
-	<emphasis>pid</emphasis> variable, and print an appropriate
-	message.
+	Le petit programme appelle <emphasis>fork()</emphasis>, en enregistrant
+	le code retour de <emphasis>fork()</emphasis> dans la variable
+	<emphasis>pid</emphasis>. <emphasis>fork()</emphasis> retourne
+	la valeur <emphasis>0</emphasis> au processus fils, et le PID du fils
+	au processus père. Connaissant cela, nous pouvons utiliser une structure
+	conditionnelle simple pour vérifier la valeur de la variable
+	<emphasis>pid</emphasis>, et afficher un message approprié.
       </para>
 
       <para>
-	You may wonder how it is possible to start new programs, since
-	the <emphasis>fork()</emphasis> call duplicates an existing
-	process. That is a good questions, since with
-	<emphasis>fork()</emphasis> alone, it is not possible to
-	execute new programs. UNIX kernels also provide a set of
-	system calls, starting with <emphasis>exec</emphasis>, that
-	load a new program image in the current process. We saw at the
-	start of this chapter that a process is a running program -- a
-	process was constructed in memory from the program image that
-	is stored on a storage medium. So, the
-	<emphasis>exec</emphasis> family of system calls gives a
-	running process the facilities to replace its contents with a
-	program stored on some medium. In itself, this is not wildly
-	useful, because every time the an <emphasis>exec</emphasis>
-	call is done, the original calling code (or program) is
-	removed from the process. This can be witnessed in the following
-	C program:
+	Peut-être vous vous demandez commes il est possible de démarrer de
+	nouveaux programmes, puisque l'appel <emphasis>fork()</emphasis>
+	duplique un processus existant. C'est une bonne question, puisqu'avec
+	<emphasis>fork()</emphasis> uniquement, il n'est pas possible d'exécuter
+	de nouveaux programmes. Les noyaux UNIX fournissent aussi un lot
+	d'appels système, en commençant par <emphasis>exec</emphasis>, qui
+	charge une nouvelle image d'un programme dans le processus courant. Nous
+	avons vu au début de ce chapitre qu'un processus est un programme en
+	cours d'exécution -- un processus a été construit en mémore à partir de
+	l'image du programme enregistré sur un média de stockage. Donc, la
+	famille d'appels système <emphasis>exec</emphasis> permet à un processus
+	en cours d'exécution de remplacer son contenu par un programme stocké
+	sur un média. En tant que tel, ce n'est pas très utile, car chaque fois
+	qu'un appel exec est effectué, le code (ou programme) appelant d'origine
+	est supprimé du processus. Le programme C suivant démontre ceci :
       </para>
 
       <programlisting>
@@ -202,7 +197,7 @@ int main() {
 int main() {
   execve("/bin/ls", NULL, NULL);
 
-  /* This will never be printed, unless execve() fails. */
+  /* Ne sera jamais affiché, à moins que execve() échoue. */
   printf("Hello world!\n");
 
   return 0;
@@ -210,15 +205,15 @@ int main() {
       </programlisting>
 
       <para>
-	This program executes <command>ls</command> with the
-	<emphasis>execve()</emphasis> call. The message printed with
-	<emphasis>printf()</emphasis> will never be shown, because the
-	running program image is replaced with that of
-	<command>ls</command>. Though, a combination of
-	<emphasis>fork()</emphasis> and the <emphasis>exec</emphasis>
-	functions are very powerful. A process can fork itself, and
-	let the child <quote>sacrifice</quote> itself to run another
-	program. The following program demonstrates this pattern:
+	Ce programme exécute <command>ls</command> avec l'appel
+	<emphasis>execve()</emphasis>. Le message affiché par
+	<emphasis>printf()</emphasis> ne sera jamais affiché, car l'image du
+	programme en cours d'exécution est remplacée par celle de
+	<command>ls</command>. Cependant, une combinaison des fonctions
+	<emphasis>fork()</emphasis> et <emphasis>exec</emphasis> deviennent très
+	puissantes. Un processus peut se dupliquer, et laisser le fils se
+	<quote>sacrifier</quote> pour exécuter un autre programme. Le programme
+	suivant met en oeuvre cette combinaison :
       </para>
 
       <programlisting>
@@ -238,18 +233,18 @@ int main() {
       </programlisting>
 
       <para>
-	This program forks itself first. The program image of the
-	child process will be replaced with <command>ls</command>,
-	while the parent process prints the <quote>Hello world!</quote>
-	message to the screen and returns.
+	Ce programme se duplique d'abord. L'image du programme du processus fils
+	sera remplacé par celle de <command>ls</command>, alors que le processus
+	père affiche le message <quote>Hello world!</quote> sur l'écran et
+	retourne.
       </para>
 
       <para>
-	This procedure is followed by many programs, including the
-	shell, when a command is executed from the shell prompt. In
-	fact all processes on a UNIX system are directly or indirectly
-	derrived from the <emphasis>init</emphasis> process, which is
-	the first program that is started on a UNIX system.
+	Cette procédure est suivie par beaucoup de programmes, y compris le
+	shell, quand une commande est exécutée depuis le prompt shell. En fait
+	tous les processus sur un système UNIX sont directement ou indirectement
+	dérivés du processus <emphasis>init</emphasis>, qui est le premier
+	programme à être démaré sur un système UNIX.
       </para>
 
       <!-- XXX - Describe what is inherited when exec is called. -->
@@ -259,23 +254,22 @@ int main() {
       <title>Threads</title>
 
       <para>
-	Although forks are very useful to build some
-	parallelism<footnote><para>For instance, a web server could
-	fork multiple child processes to handle
-	requests</para></footnote>, they can be to expensive for some
-	purposes. Copying the whole process takes some time, and there
-	is cost involved if processes want to share data. This is
-	solved by offering a more lightweight alternative, namely
-	allowing more than one thread of execution. Each thread of
-	execution is executed separately, but the process data is
-	shared between the threads.
+	Bien que les forks sont très utiles pour effectuer du parallélisme
+	<footnote><para>Par exemple, un seveur web pourrait dupliquer plusieurs
+	processus fils pour traiter les requêtes</para></footnote>, ils peuvent
+	être coûteux sur plusieurs plans. Copier un processus entier prend du
+	temps, et il y a aussi un coût supplémentaire si les processus doivent
+	partager des données. Ceci est résolu par une alternative plus légère,
+	autorisant plus d'un fil ou thread d'exécution. Chaque thread
+	d'exécution est exécuté séparément, mais les données du processus est
+	partagé entre threads.
       </para>
 
       <para>
-	Writing good <emphasis>multithreaded</emphasis> programs
-	requires good knowledge of data sharing and locking. Since all
-	data is shared, uncareful programming can lead to bugs like
-	race conditions.
+	Ecrire de bons programmes <emphasis>multithreadés</emphasis> demande une
+	bonne connaissance du partage et de la protection des données. Puisque
+	toutes les données sont paratagées, programmer sans précautions peut
+	amener à créer des bugs comme sur les concurrences d'accès.
       </para>
     </sect2>
 
@@ -283,28 +277,29 @@ int main() {
   </sect1>
 
   <sect1 xml:id="chap-procmanagement-analyzing">
-    <title>Analyzing running processes</title>
+    <title>Analyser les processus en cours d'exécution</title>
 
     <sect2 xml:id="chap-procmanagement-analyzing-listing">
-      <title>Listing running processes</title>
+      <title>Lister les processus en cours d'exécution</title>
 
       <para>
-	UNIX systems provide the <command>ps</command> command to show
-	a list of running processes. Unfortunately, this command is an
-	example of the pains of the lack of standardization. The BSD
-	and System V variants of <command>ps</command> have their own
-	sets of options. Fortunately, GNU/Linux implements both the
-	System V and BSD-style parameters, as well as some (GNU-style)
-	long options. Options preceded by a dash are interpreted as
-	System V options and options without a dash as BSD options.
-	We will describe the System V-style options in this section.
+	Les systèmes UNIX fournissent la commande <command>ps</command> pour
+	afficher une liste des processus en cours d'exécution. Malheureusement,
+	cette commande est un exemple type des misères causées par le manque de
+	standardisation. Les versions BSD et System V de <command>ps</command>
+	ont leurs propres lots d'options. Malheureusement, GNU/Linux implémente
+	à la fois des paramètres dans le style de System V et de BSD, ainsi que
+	quelques options longues (dans le style GNU). Les options précédées par
+	un tiret sont interprétées comme des options System V et les options
+	sans tiret sont interprétées comme des options BSD.
+	Nous allons décrire dans cette section les options à la System V.
       </para>
 
       <para>
-	If <command>ps</command> is used without any parameters, it
-	shows all processes owned by the user that invokes
-	<command>ps</command> and that are attached to the same
-	controlling terminal. For example:
+	Si <command>ps</command> est utilisée sans paramètre, elle affiche tous
+	les processus appartenant à l'utilisateur invoquant
+	<command>ps</command>, et qui sont attachés au même terminal de
+	contrôle. Par exemple :
       </para>
 
       <screen>
@@ -315,25 +310,24 @@ $ <userinput>ps</userinput>
       </screen>
 
       <para>
-	A lot of useful information can be distilled from this
-	output. As you can see, two processes are listed: the shell
-	that we used to call <command>ps</command>
-	(<emphasis>bash</emphasis>), and the <command>ps</command>
-	command itself. In this case there are four information
-	fields. <emphasis>PID</emphasis> is the process ID of a
-	process, <emphasis>TTY</emphasis> the controlling terminal,
-	<emphasis>TIME</emphasis> the amount of CPU time the proces
-	has used, and <command>CMD</command> the command or program of
-	which a copy is running. The fields that are shown by default
-	may vary a bit per system, but usually at least these fields
-	are shown, with somewhat varying field labels.
+	Beaucoup d'informations utiles peuvent être extraites de cette sortie.
+	Comme vous pouvez le voir, 2 processus sont affichés : le shell que nous
+	avons utilisé pour appeler <command>ps</command>
+	(<emphasis>bash</emphasis>), et la commande <command>ps</command>
+	elle-même. Ici il y a 4 champs d'information. <emphasis>PID</emphasis>
+	est l'ID du processus, <emphasis>TTY</emphasis> est le terminal de
+	contrôle, <emphasis>TIME</emphasis> est la quantité de temps CPU que le
+	processus a utilisé, et <command>CMD</command> la commande ou le
+	programme dont la copie est en cours d'exécution. Ces champs affichés
+	par défaut peuvent varier sensiblement en fonction du système, mais en
+	principe au moins ces champs sont affichés, avec parfois des noms de
+	champs différents.
       </para>
 
       <para>
-	Sometime you may want to have a broader view of processes that
-	are running. Adding the <parameter
-	class="command">-a</parameter> option shows all processes that
-	are associated with terminals. For instance:
+	Parfois vous voulez avoir une vue plus large des processus en cours
+	d'exécution. Ajouter l'option <parameter class="command">-a</parameter>
+	affiche tous les processus associés aux terminaux. Par exemple :
       </para>
 
       <screen>
@@ -345,17 +339,17 @@ $ <userinput>ps -a</userinput>
       </screen>
 
       <para>
-	As you can see, processes with different controlling terminals
-	are shown. Though, in contrast to the plain
-	<command>ps</command> output, only processes that control the
-	terminal at the moment are shown. For instance, the shell that
-	was used to call <command>ps</command> is not shown.
+	Comme vous pouvez le voir, les processus avec différents terminaux de
+	contrôle sont affichés. Cependant, contrairement à la sortie par défaut
+	de <command>ps</command>, seuls les processus que controlent le terminal
+	à cet instant sont affichés. Par exemple, le shell utilisé pour appeler
+	<command>ps</command> n'est pas affiché.
       </para>
 
       <para>
-	You can also print all processes that are running, including
-	processes that are not associated with a terminal, by using the
-	<parameter class="command">-A</parameter> option:
+	Vous pouvez aussi afficher tous les processus en cours d'exécution, y
+	compris les processus non associés à un terminal, en utilisant l'option
+	<parameter class="command">-A</parameter> :
       </para>
 
       <screen>
@@ -373,12 +367,12 @@ $ <userinput>ps -A | head -n 10</userinput>
       </screen>
 
       <para>
-	You can print all processes with a certain user ID, with the
-	<emphasis>-U</emphasis> option. This option accepts a user
-	name as a parameter, or multiple user names that are separated
-	by a comma. The following command shows all processes that
-	have <emphasis>xfs</emphasis> or <emphasis>rpc</emphasis> as
-	their user ID:
+	Vous pouvez afficher tous les processus avec un certain User ID, avec
+	l'option <emphasis>-U</emphasis>. Cette option accepte un nom
+	d'utilisateur en tant que paramètre, ou plusieurs noms d'utilisateur
+	séparés par une virgule. La commande suivante affiche tous les processus
+	qui ont pour User ID <emphasis>xfs</emphasis> ou
+	<emphasis>rpc</emphasis> :
       </para>
 
       <screen>
@@ -389,8 +383,8 @@ $ <userinput>ps -U xfs,rpc</userinput>
       </screen>
 
       <para>
-	Likewise, you can also print processes with a particular group
-	ID, with the <emphasis>-G</emphasis> option:
+	De la même manière, vous pouvez aussi afficher les processus d'un Group
+	ID avec l'option <emphasis>-G</emphasis> :
       </para>
 
       <screen>
@@ -403,9 +397,9 @@ $ <userinput>ps -G messagebus,haldaemon</userinput>
       </screen>
 
       <para>
-	If you would like to have a list for a physical or
-	pseudo-terminal, you can use the <parameter
-	class="command">-t</parameter> option:
+	Si vous désirez avoir la liste des terminaux physiques ou
+	pseudo-terminaux, vous pouvez utiliser l'option <parameter
+	class="command">-t</parameter> :
       </para>
 
       <screen>
@@ -417,50 +411,50 @@ $ <userinput>ps -t tty2</userinput>
   </sect1>
 
   <sect1 xml:id="chap-procmanagement-managing">
-    <title>Managing processes</title>
+    <title>Gérer les processus</title>
 
     <sect2 xml:id="chap-procmanagement-managing-signals">
-      <title>Sending singals to a process</title>
+      <title>Envoyer des signaux à un processus</title>
 
       <para>
-	Signals are a crude, but effective form of inter-process
-	communication (IPC). A signal is basically a number that is
-	delivered to a process that has a special meaning. For all
-	signals there are default signal handlers. Processes can
-	install their own signal handlers, or choose to ignore
-	signals. Some signals (normally SIGKILL and SIGSTOP) can not
-	be ignored. All signals have convenient symbolic names.
+	Les signaux sont un moyen brut, mais efficace de communication
+	inter-processus (IPC - NdT: Inter-Process Communication). Un signal est
+	à la base un nombre envoyé à un processus qui a une signification
+	spéciale. Pour tous les signaux il y a des routines de gestion de
+	signaux par défaut. Les processus peuvent installer leurs propres
+	routines de gestion de signaux, ou peuvent choisir d'ignorer les signaux
+	reçus. Quelques signaux (en principe SIGKILL et SIGSTOP) ne peuvent pas
+	être ignorés. Tous les signaux ont des noms symboliques commodes.
       </para>
 
       <para>
-	Only a few signals are normally interesting for interactive
-	use on UNIX(-like) systems. These are (followed by their number):
+	En principe seuls quelques signaux sont intéressants pour leur utilisation interactive sur les systèmes UNIX(-ressemblant). Ce sont (suivis de leur numéro) :
       </para>
 
       <itemizedlist>
 	<listitem>
-	  <para><emphasis>SIGKILL (9):</emphasis> forcefully kill
-	  a process.</para>
+	  <para><emphasis>SIGKILL (9):</emphasis> tue un processus par la force.
+	  </para>
 	</listitem>
 	<listitem>
-	  <para><emphasis>SIGTERM (15):</emphasis> request a process
-	  to terminate. Since this is a request, a program could ignore
-	  it, in contrast to <emphasis>SIGKILL</emphasis>.</para>
+	  <para><emphasis>SIGTERM (15):</emphasis> demande à un processus de se
+	    terminer. Puisque c'est une requête, le programme peut l'ignorer,
+	    contrairement à <emphasis>SIGKILL</emphasis>.</para>
 	</listitem>
 	<listitem>
-	  <para><emphasis>SIGHUP (1):</emphasis> Traditionally, this
-	  has signalled a terminal hangup. But nowadays some daemons
-	  (e.g. <emphasis>inetd</emphasis>) reread their configuration
-	  when this signal is sent.</para>
+	  <para><emphasis>SIGHUP (1):</emphasis> Traditionellement, cela signale
+	    une déconnexion avec le terminal. Mais de nos jours, des démons
+	    (e.g. <emphasis>inetd</emphasis>) relisent leur configuration
+	    lorsque ce signal leur est envoyé.</para>
 	</listitem>
       </itemizedlist>
 
       <para>
-	The <command>kill</command> command is used to send a signal
-	to a process. By default, <command>kill</command> sends the
-	<emphasis>SIGTERM</emphasis> signal. To send this signal, the
-	process ID of the process that you would like to send this
-	signal to should be added as a parameter. For instance:
+	La commande <command>kill</command> est utilisée pour envoyer un signal
+	à un processus. Par défaut, <command>kill</command> envoie le signal
+	<emphasis>SIGTERM</emphasis>. Pour envoyer ce signal, l'ID processus
+	auquel vous voulez envoyer ce signal doit être précisé en tant que
+	paramètre. Par exemple :
       </para>
 
       <screen>
@@ -468,11 +462,11 @@ $ <userinput>kill 15631</userinput>
       </screen>
 
       <para>
-	To send another signal, you can use one of two options:
-	<emphasis>-signalnumber</emphasis> or
-	<emphasis>-signalname</emphasis>. So, the following commands
-	both send the <emphasis>SIGKILL</emphasis> signal to the process
-	with process ID <emphasis>15631</emphasis>:
+	Pour envoyer un autre signal, vous pouvez une de ces deux options :
+	<emphasis>-numérosignal</emphasis> ou
+	<emphasis>-nomsignal</emphasis>. Donc, les commandes suivantes envoient
+	toutes les 2 le signal <emphasis>SIGKILL</emphasis> au processus dont
+	l'ID processus est <emphasis>15631</emphasis>:
       </para>
 
       <screen>
@@ -487,58 +481,57 @@ $ <userinput>kill -SIGKILL 15631</userinput>
     </sect2>
 
     <sect2 xml:id="chap-procmanagement-managing-nice">
-      <title>Being nice to others</title>
+      <title>Etre sympa avec les autres</title>
 
       <para>
-	In an act of altruism you can be nice to other users of
-	computer resources. If you plan to run a CPU-time intensive
-	process, but do not want that to interfere with work of other
-	users on the system (or other processes), you can assign some
-	grade of 'niceness' to a process. Practically, this means that
-	you will be able to influence the scheduling priority of a
-	process. Nicer processes get a lower scheduling priority. The
-	normal niceness of a process is <emphasis>0</emphasis>, and
-	can be changed by executing a program with the
-	<command>nice</command> command. The <emphasis>-n
-	[niceness]</emphasis> option can be used to specify the
-	niceness:
+	Dans un acte d'altruisme, vous pouvez être gentil (NdT: nice) vis-à-vis
+	des autres utilisateurs des ressources de l'ordinateur. Si vous projetez
+	d'exécuter un processus demandant beaucoup de temps CPU, cependant sans
+	vouloir interférer avec le travail des autres utilisateurs sur le
+	système (ou avec les autres processus), vous pouvez affecter un degré
+	de 'gentillesse' à un processus. En Pratique, cela signifie que vous
+	allez pouvoir influer sur la priorité d'ordonnancement d'un processus.
+	Les processus les plus gentils auront une priorité d'ordonnancement plus
+	faible. La gentillesse normale d'un processus est fixée à
+	<emphasis>0</emphasis>, et peut être changée en exécutant la commande
+	<command>nice</command>. L'option <emphasis>-n [niceness]</emphasis>
+	peut être utilisée pour spécifier le degré de gentillesse :
       </para>
 
       <screen>
-$ <userinput>nice -n 20 cputimewaster</userinput>
+$ <userinput>nice -n 20 mangeurdetempscpu</userinput>
       </screen>
 
       <para>
-	The maximum number for niceness is
-	implementation-dependent. If a program was started with
-	<command>nice</command>, but no niceness was specified, the
-	niceness will be set to <emphasis>10</emphasis>. In case you
-	were wondering: yes, you can also be rude, but this right is
-	restricted to the <emphasis>root</emphasis> user. You can
-	boost the priority of a process by specifying a negative value
-	as the niceness.
+	Le nombre maximum de gentillesse est dépendant de l'implémentation. Si
+	un programme a été démarré avec <command>nice</command>, mais qu'aucun
+	niveau de gentillesse n'a été spécifié, la gentillesse sera fixée à
+	<emphasis>10</emphasis>. Au cas où vous vous le demanderiez : oui, vous
+	pouvez faire le méchant, cependant ce droit est restreint à
+	l'utilisateur <emphasis>root</emphasis>. Vous pouvez booster la priorité
+	d'un processus en spécifiant une valeur négative de gentillesse.
       </para>
 
       <para>
-	You can also modify the niceness of a running processes with
-	the <command>renice</command> command. This can be done for
-	specific process IDs (<parameter class="command">-p
-	PIDs</parameter>), users (<parameter class="command">-u
-	user/uid</parameter>), and effective groups (<parameter
-	class="command">-g group/gid</parameter>). The new niceness
-	is specified as the first parameter.
+	Vous pouvez aussi modifier la gentillesse d'un programme en cours
+	d'exécution avec la commande <command>renice</command>. Cela peut se
+	faire pour des ID processus (<parameter class="command">-p
+	PIDs</parameter>), des utilisateurs (<parameter class="command">-u
+	user/uid</parameter>), et des  groupes effectifs (<parameter
+	class="command">-g group/gid</parameter>). La nouvelle gentillesse est
+	spécifiée en premier paramètre.
       </para>
 
       <para>
-	The niceness of a process can only be increased. And, of
-	course, no user except for <emphasis>root</emphasis> can
-	affect the niceness of processes of other users.
+	La gentillesse d'un processus ne peut être qu'augmentée. Et bien sûr,
+	aucun utilisateur autre que <emphasis>root</emphasis> peut modifier la
+	gentillesse des processus des autres utilisateurs.
       </para>
 
       <para>
-	Lets look at an example, to set the niceness of a process with
-	PID <emphasis>3108</emphasis> to <emphasis>14</emphasis>, you
-	could use the following command:
+	Regardons un exemple, pour fixer la gentillesse d'un processus de
+	PID <emphasis>3108</emphasis> à <emphasis>14</emphasis>, vous pouvez
+	utiliser la commande suivante :
       </para>
 
       <screen>
@@ -548,26 +541,26 @@ $ <command>renice 14 -p 3108</command>
   </sect1>
 
   <sect1 xml:id="chap-procmanagement-jobcontrol">
-    <title>Job control</title>
+    <title>Contrôler un travail</title>
 
     <para>
-      It is often useful to group processes to allow operations on a
-      set of processes, for instance to distribute a signal to all
-      processes in a group rather than a single process. Not too
-      suprisingly, these sets of processes are called
-      <emphasis>program groups</emphasis> in UNIX. After a fork, a
-      child process is automatically a member of the process group of
-      the parent. Though, new process groups can be created by making
-      one process a process group leader, and adding other processes
-      to the group. The process group ID is the PID of the process
-      group leader.
+      Il est souvent utile de grouper des processus pour permettre des
+      opérations sur un lot de processus, par exemple pour distribuer un signal
+      à tous les processus dans un groupe plutôt qu'à chaque processus. Ce n'est
+      pas une surprise, ces lots de processus sont appelés en UNIX des 
+      <emphasis>groupes de programmes</emphasis>. Après un fork, un processus
+      fils est automatiquement un membre du groupe de processus de son père.
+      Néanmoins, de nouveaux groups de processus peuvent être créés en désignant
+      un processus en tant que chef d'un groupe de processus, et en ajoutant les
+      autres processus à ce groupe. L'ID du groupe de processus est le PID du
+      processus chef de groupe.
     </para>
 
     <para>
-      Virtually all modern UNIX shells give processes that are created
-      through the invocation of a command their own process group. All
-      processes in a pipeline are normally added to one process group.
-      If the following commands that create a pipepine are executed
+      Pratiquement tous les shells UNIX modernes attribuent leur propre groupe
+      de processus aux processus créés à travers un appel de commande. Tous les
+      processus dans un pipeline sont ajoutés à un groupe de processus en
+      principe. Si les commandes suivantes créant un pipeline sont exécutées
     </para>
 
     <screen>
@@ -575,56 +568,56 @@ cat | tr -s ' ' | egrep 'foob.r'
     </screen>
 
     <para>
-      the shell roughly performs the following steps:
+      le shell effectue grossièrement les étapes suivantes :
     </para>
 
     <orderedlist>
       <listitem>
 	<para>
-	  Three child processes are forked.
+	  3 processus fils sont forkés.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  The first process in the pipeline is put in a process group
-	  with its own PID as the process group ID, making it the
-	  process leader. The other processes in the pipeline are added
-	  to the process group.
+	  Le premier processus du pipeline est ajouté dans le groupe de
+	  processus avec son propre PID en tant qu'ID de groupe de processus,
+	  faisant de lui le chef des processus. Les autres processus du pipeline
+	  sont ajoutés au groupe de processus.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  The file descriptors of the processes in the pipeline are
-	  reconfigured to form a pipeline.
+	  Les descripteurs de fichier des processus dans le pipeline sont
+	  reconfigurés, pour former un pipeline.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  The programs in the pipeline are executed.
+	  Les programmes dans le pipeline sont exécutées.
 	</para>
       </listitem>
     </orderedlist>
 
     <para>
-      The shell uses process groups to implement <emphasis>job
-      control</emphasis>. A shell can run multiple jobs in the
-      background, there can be multiple stopped job, and one job can
-      be in the foreground. A foreground job is wired to the terminal
-      for its standard input (meaning that it is the job the gets user
-      input).
+      Le shell utilise les groupes de processus pour implémenter le
+      <emphasis>contrôle de travaux</emphasis>. Un shell peut lancer plusieurs
+      travaux en tâche de fond, il peut y avoir plusieurs travaux stoppés, et un
+      travail peut être premier plan d'exécution. Un travail en premier plan est
+      câblé au terminal pour sa sortie standard (cela signifie que c'est ce
+      travail qui récupère les entrées utilisateur).
     </para>
 
     <sect2 xml:id="chap-procmgmt-jobcontrol-stopping">
-      <title>Stopping and continuing a job</title>
+      <title>Stopper et reprendre un travail</title>
       
       <para>
-	A job that is in the foreground (thus, a job that potentially
-	accepts userinput from the terminal) can be stopped by
-	pressing <emphasis>Ctrl-z</emphasis> (pressing both the 'Ctrl' and
-	'z' keys simultaneously). This will stop the job,
-	and will handle control over the terminal back to the shell.
-	Let's try this with the <command>sleep</command> command, which
-	waits for the number of seconds provided as an argument:
+	Un travail en premier plan d'exécution (donc un travail qui accepte
+	potentiellement des entrées utilisateur depuis le terminal) peut être
+	stoppé en pressant <emphasis>Ctrl-z</emphasis> (presser à la fois les
+	touches 'Ctrl' et 'z' simultanément). Cela stoppe le travail, et va
+	redonner le contrôle sur le terminal au shell. Tentons avec la commande
+	<command>sleep</command>, qui attend le nombre de secondes fourni en
+	argument :
       </para>
 
       <screen>
@@ -634,11 +627,11 @@ $ <userinput>sleep 3600</userinput>
       </screen>
 
       <para>
-	The process group, which we will refer to as a job has been
-	stopped now, meaning the the <command>sleep</command> has
-	stopped counting - it's execution is completely stopped. You
-	can retrieve a list of jobs with the <command>jobs</command>
-	command:
+	C'est le groupe de processus, que nous référencerons en tant qu'un
+	travail	stoppé à présent, signifiant que <command>sleep</command> a
+	arrêté de décompter - son exécution est complêtement stoppée. Vous
+	pouvez récupérer une liste des travaux avec la commande
+	<command>jobs</command> :
       </para>
 
       <screen>
@@ -647,10 +640,9 @@ $ <userinput>jobs</userinput>
       </screen>
 
       <para>
-	This shows the job number (<emphasis>1</emphasis>), its state,
-	and the command that was used to start this job. Let's run
-	another program, stop that too, and have another look at the
-	job listing.
+	Cela affiche le numéro de travail (<emphasis>1</emphasis>), son état, et
+	la commande utilisée pour démarrer ce travail. Lançons un autre
+	programme, stoppons-le aussi, et voyons à nouveau la liste des travaux.
       </para>
 
       <screen>
@@ -663,28 +655,27 @@ $ <userinput>jobs</userinput>
       </screen>
 
       <para>
-	As expected, the second job is also stopped, and was assigned
-	job number <emphasis>2</emphasis>. The plus sign
-	(<emphasis>+</emphasis>) following the first job has changed
-	to a minus (<emphasis>-</emphasis>) sign, while the second job
-	is now marked by a plus sign. The plus sign is used to
-	indicate the <emphasis>current job</emphasis>. The
-	<command>bg</command> and <command>fg</command> commands that
-	we will look at shortly, will operate on the current job
-	if no job was specified as a parameter.
+	Comme prévu, le second travail est aussi stoppé, et a eu
+	<emphasis>2</emphasis> comme numéro de travail. Le signe plus
+	(<emphasis>+</emphasis>) suivant le premier travail a été changé en
+	signe moins (<emphasis>-</emphasis>), alors que le second travail est
+	maintenant marqué par un signe plus. Le signe plus est utilisé pour
+	indiquer le <emphasis>travail courant</emphasis>. Les commandes
+	<command>bg</command> et <command>fg</command> que nous allons voir
+	d'ici peu, vont opérer sur le travail courant si aucun travail n'est
+	spécifié en tant que paramètre.
       </para>
      
       <!-- XXX - Document under what circumstances a job becomes the
                  current job. -->
 
       <para>
-	Usually, when you are working with jobs, you will want to move
-	jobs to the foreground again. This is done with the
-	<command>fg</command> command. Executing <command>fg</command>
-	without a parameter will put the current job in the
-	foreground.  Most shells will print the command that is moved
-	to the foreground to give an indication of what process was
-	moved to the foreground:
+	Habituellement, quand vous gérez des travaux, vous voulez passer les
+	travaux en premier plan d'exécution à nouveau. Cela se fait avec la
+	commande <command>fg</command>. Exécuter <command>fg</command> sans
+	paramètre va placer le travail courant au premier plan d'exécution. La
+	plupart des shells affichera la commande placée au premier plan pour
+	indiquer quel processus a été placé au premier plan :
       </para>
 
       <screen>
@@ -693,11 +684,10 @@ cat
       </screen>
 
       <para>
-	Of course, it's not always useful to put the current job in
-	the foreground. You can put another job in the foreground by
-	adding the job number preceded by the percentage sign
-	(<emphasis>%</emphasis>) as an argument to
-	<command>fg</command>:
+	Bien sûr, il n'est pas toujours utile de placer le travail courant au
+	premier plan. Vous pouvez placer un autre travail au premier plan en
+	ajoutant le numéro de travail précédé d'un signe pourcentage
+	(<emphasis>%</emphasis>) en tant qu'argument à <command>fg</command> :
       </para>
 
       <screen>
@@ -706,30 +696,31 @@ sleep 3600
       </screen>
 
       <para>
-	Switching jobs my stopping them and putting them in the
-	foreground is often very useful when the shell is used
-	interactively. For example, suppose that you are editing a
-	file with a text editor, and would like to execute some other
-	command and then continue editing. You could stop the editor
-	with <emphasis>Ctrl-z</emphasis>, execute a command, and put
-	the editor in the foreground again with <command>fg</command>.
+	Basculer entre travaux en les stopper et les placer au premier plan
+	d'exécution est souvent très utile lorsque le shell est utilisé de façon
+	interactive. Par exemple, supposez que vous éditez un fichier avec un
+	éditeur de texte, et que vous voulez exécuter une autre commande et
+	ensuite continuer l'édition. Vous pouvez stopper l'éditeur avec 
+	<emphasis>Ctrl-z</emphasis>, exécuter une commande, et placer l'éditeur
+	au premier plan à nouveau avec <command>fg</command>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-procmgmt-jobcontrol-background">
-      <title>Background jobs</title>
+      <title>Travaux en tâche de fond</title>
 
       <para>
-	Besides running in the foreground, jobs can also run in the
-	background. This means that they are running, but input from
-	the terminal is not redirected to background processes. Most
-	shells do configure background jobs to direct output to the
-	terminal of the shell where they were started.
+	En plus de s'exécuter en premier plan, les travaux peuvent aussi
+	s'exécuter en tâche de fond. Cela signifie qu'ils s'exécutent, mais que
+	l'entrée du terminal n'est pas redirigée vers ces processus en tâche de
+	fond. La plupar des shells configurent les travaux en tâche de fond de
+	façon à rediriger la sortie vers le terminal du shell dans lequel ils
+	ont été démarrés.
       </para>
 
       <para>
-	A process that is stopped can be continued in the background
-	with the <command>bg</command> command:
+	Un processus stoppé peut être poursuivi en tâche de fond avec la
+	commande <command>bg</command> :
       </para>
 
       <screen>
@@ -742,8 +733,8 @@ $
       </screen>
 
       <para>
-	You can see that the job is indeed running with
-	<command>jobs</command>:
+	Vous pouvez voir que le travail est effectivement en cours d'exécution
+	avec <command>jobs</command> :
       </para>
 
       <screen>
@@ -752,9 +743,9 @@ $ <userinput>jobs</userinput>
       </screen>
 
       <para>
-	Like <command>fg</command>, you can also move another job than
-	the current job to the background by specifying its job
-	number:
+	Comme <command>fg</command>, vous pouvez aussi placer en tâche de fond
+	un autre travail que le travail courant en spécifiant son numéro de
+	travail :
       </para>
 
       <screen>
@@ -763,9 +754,9 @@ $ <command>bg %1</command>
       </screen>
 
       <para>
-	You can also run put a job directly in the background when it is
-	started, by adding an trailing ampersand (&amp;) to a command
-	or pipeline. For instance:
+	Vous pouvez aussi placer un travail directement en tâche de fond
+	lorqu'il est démarré, en ajoutant à la fin une esperluette (&amp;)
+	de la commande ou du pipeline. Par exemple :
       </para>
 
       <screen>
