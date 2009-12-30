@@ -83,7 +83,7 @@
 	UID</emphasis>, which is the UID as which the process
 	operates. Normally, the effective UID is equal to the real
 	UID, but some programs ask the system to change its effective
-	UID. The effective UID determines is used for access
+	UID. The effective UID is used for access
 	control. This means that if a user named joe starts a command,
 	say less, less can only open files that joe has read rights
 	for. In parallel, a process also has an <emphasis>real
@@ -178,7 +178,7 @@ int main() {
       <para>
 	You may wonder how it is possible to start new programs, since
 	the <emphasis>fork()</emphasis> call duplicates an existing
-	process. That is a good questions, since with
+	process. That is a good question, since with
 	<emphasis>fork()</emphasis> alone, it is not possible to
 	execute new programs. UNIX kernels also provide a set of
 	system calls, starting with <emphasis>exec</emphasis>, that
@@ -635,7 +635,7 @@ $ <userinput>sleep 3600</userinput>
 
       <para>
 	The process group, which we will refer to as a job has been
-	stopped now, meaning the the <command>sleep</command> has
+	stopped now, meaning that the <command>sleep</command> has
 	stopped counting - it's execution is completely stopped. You
 	can retrieve a list of jobs with the <command>jobs</command>
 	command:
@@ -706,7 +706,7 @@ sleep 3600
       </screen>
 
       <para>
-	Switching jobs may stopping them and putting them in the
+	Switching jobs by stopping them and putting them in the
 	foreground is often very useful when the shell is used
 	interactively. For example, suppose that you are editing a
 	file with a text editor, and would like to execute some other
@@ -763,7 +763,7 @@ $ <command>bg %1</command>
       </screen>
 
       <para>
-	You can also run put a job directly in the background when it is
+	You can also put a job directly in the background when it is
 	started, by adding an trailing ampersand (&amp;) to a command
 	or pipeline. For instance:
       </para>
