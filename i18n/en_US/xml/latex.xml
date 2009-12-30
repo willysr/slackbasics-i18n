@@ -305,7 +305,7 @@ Encryption Standard, the successor of DES.
         time to look at how LaTeX treats end of line characters and empty
         lines. Empty lines are ignored by LaTeX, making the text a
         continuous flow. An empty line starts a new paragraph. All paragraphs
-        but the first paragraph are stared with a extra space left of the
+        but the first paragraph are started with a extra space left of the
         first word.
       </para>
     </sect2>
