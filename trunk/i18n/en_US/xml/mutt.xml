@@ -32,7 +32,7 @@
     <para>
       Mutt is pretty simple to use, though it may take some time to get
       used to the keys that are used to navigate, read and write e-mails.
-      The next few sections describe some of the more important keys. Mutt
+      The next few sections describe some of the most important keys. Mutt
       provides a more thorough overview of available keys after pressing
       the &lt;h&gt; key.
     </para>
@@ -264,7 +264,7 @@ set spoolfile=imap://me@imap.example.org/INBOX
         in <filename>/usr/share/doc/mutt/samples/gpg.rc</filename>.
         In general the contents of this file to your mutt configuration will
         suffice. From the shell you can add the contents of this file
-        to you <filename>.muttrc</filename> with the following command:
+        to your <filename>.muttrc</filename> with the following command:
       </para>
 
       <screen>
