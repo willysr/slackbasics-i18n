@@ -17,7 +17,7 @@ lignes fichier                  trad     1a-rev  2a-rev
    377 latex.xml                OK       TODO       -
    398 concepts.xml             OK       TODO       -
    441 chap-kernel.xml          TODO        -       -
-   485 chap-usermgmt.xml        TODO        -       -
+   485 chap-usermgmt.xml        OK       TODO       -
    526 netconfig.xml            TODO        -       -
    630 ipsec.xml                TODO        -       -
    652 chap-pkgmgmt.xml         TODO        -       -

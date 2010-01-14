@@ -1,56 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
-	 xml:lang="en" xml:id="chap-usermgmt">
-  <title>User management</title>
+	 xml:lang="fr" xml:id="chap-usermgmt">
+  <title>Gestion des utilisateurs</title>
 
   <sect1 xml:id="chap-usermgmt-intro">
     <title>Introduction</title>
 
     <para>
-      GNU/Linux is a multi-user operating system. This means that
-      multiple users can use the system, and they can use the system
-      simultaneously. The GNU/Linux concepts for user management are
-      quite simple. First of all, there are several user accounts on
-      each system. Even on a single user system there are multiple
-      user accounts, because GNU/Linux uses unique accounts for some
-      tasks. Users can be members of groups. Groups are used for more
-      fine grained permissions, for example, you could make a file
-      readable by a certain group. There are a few reserved users and
-      groups on each system. The most important of these is the
-      <emphasis>root</emphasis> account. The <emphasis>root</emphasis>
-      user is the system administrator. It is a good idea to avoid
-      logging in as root, because this greatly enlarges security
-      risks. You can just log in as a normal user, and perform system
-      administration tasks using the <command>su</command> and
-      <command>sudo</command> commands.
+      GNU/Linux est un système d'exploitation multi-utilisateurs. Cela signifie
+      que plusieurs peuvent utiliser le système, et peuvent l'utiliser
+      simultanément. Les concepts GNU/Linux de gestion des utilisateurs sont
+      relativement simples. Tout d'abord, il y a plusieurs comptes utilisateur
+      sur tout système. Même sur un système à un seul utilisateur il y a
+      plusieurs comptes utilisateur, car GNU/Linux utilise des comptes
+      particuliers pour certaines tâches. Les utilisateurs peuvent être des
+      membres de groupes. Les groupes pour affiner les permissions, comme par
+      exemple pour rendre un fichier lisible pour un certain groupe
+      d'utilisateurs. Il y a quelques utilisateurs et groupes réservés sur un
+      système. Le plus important parmis eux est le compte
+      <emphasis>root</emphasis>. L'utilisateur <emphasis>root</emphasis> est
+      l'administrateur système. Il vaut mieux éviter de le logger en tant que
+      root, car cela augmente grandement les risques de sécurité. Vous pouvez
+      vous logger en tant qu'utilisateur normal, et effectuer les tâches
+      d'administration avec les commandes <command>su</command> et
+      <command>sudo</command>.
     </para>
 
     <para>
-      The available user accounts are specified in the
-      <filename>/etc/passwd</filename>. You can have a look at this
-      file to get an idea of which user account are mandatory. As you
-      will probably notice, there are no passwords in this
-      file. Passwords are kept in the separate
-      <filename>/etc/shadow</filename> file, as an encrypted
-      string. Information about groups is stored in
-      <filename>/etc/group</filename>. It is generally speaking not a
-      good idea to edit these files directly. There are some excellent
-      tools that can help you with user and group administration. This
-      chapter will describe some of these tools.
+      Les comptes utilisateur disponibles sont spécifiées dans
+      <filename>/etc/passwd</filename>. Vous pouvez jeter un oeil à ce fichier
+      pour avoir une idée des comptes utilisateur obligatoires. Comme vous le
+      remarquerez probablement, il n'y a pas de mot de passe dans ce fichier.
+      Les mots de passe sont enregistrés dans un fichier séparé
+      <filename>/etc/shadow</filename>, en tant que chaînes de caractères
+      cryptées. Les informations sur les groupes sont stockées dans 
+      <filename>/etc/group</filename>. De manière générale ce n'est pas une
+      bonne idée d'éditer ces fichiers directement. Il y a quelques excellents
+      outils qui peuvent vous aider à l'admistration des utilisateurs et
+      groupes. Ce chapitre décrit certains de ces outils.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-usermgmt-user">
-    <title>Adding and removing users</title>
+    <title>Ajouter et supprimer des utilsateurs</title>
 
     <sect2 xml:id="chap-usermgmt-user-add">
       <title>useradd</title>
 
       <para>
-	The <command>useradd</command> is used to add user accounts to
-	the system.  Running <command>useradd</command> with a user
-	name as parameter will create the user on the system. For
-	example:
+	<command>useradd</command> est utilisé pour ajouter des comptes
+	utilisateurs dans le système. Exécuter <command>useradd</command> avec
+	un nom d'utilisateur en paramètre va créer l'utilisateur dans le
+	système. Par exemple :
       </para>
 
       <screen>
@@ -58,10 +59,10 @@
       </screen>
 
       <para>
-	Creates the user account <emphasis>bob</emphasis>. Please be
-	aware that this does not create a home directory for the
-	user. Add the <parameter class="command">-m</parameter>
-	parameter to create a home directory. For example:
+	Crée le compte utilisateur <emphasis>bob</emphasis>. Veuillez noter que
+	cela ne crée pas le répertoire personnel de l'utilisateur. Ajoutez le
+	paramètre <parameter class="command">-m</parameter> pour créer le
+	répertoire personnel. Par exemple :
       </para>
 
       <screen>
@@ -69,14 +70,13 @@
       </screen>
 
       <para>
-	This would add the user <emphasis>bob</emphasis> to the
-	system, and create the <filename>/home/bob</filename> home
-	directory for this user.  Normally the user is made a member
-	of the <emphasis>users</emphasis> group. Suppose that we would
-	like to make <emphasis>crew</emphasis> the primary group for
-	the user <emphasis>bob</emphasis>. This can be done using the
-	<parameter class="command">-g</parameter> parameter.  For
-	example:
+	Va ajouter l'utilsateur <emphasis>bob</emphasis> dans le système, et
+	créer <filename>/home/bob</filename>, le répertoire personnel de cet
+	utilisateur. En principe l'utilisateur est ajouté membre du groupe
+	<emphasis>users</emphasis>. Supposez que vous voulez que le groupe
+	primaire de l'utilisateur <emphasis>bob</emphasis> soit
+	<emphasis>crew</emphasis>. Cela se fait avec le paramètre
+	<parameter class="command">-g</parameter>. Par exemple :
       </para>
 
       <screen>
@@ -84,14 +84,13 @@
       </screen>
 
       <para>
-	It is also possible to add this user to secondary groups
-	during the creation of the account with the
-	<emphasis>-G</emphasis>. Group names can be separated with a
-	comma. The following command would create the user
-	<emphasis>bob</emphasis>, which is a member of the
-	<emphasis>crew</emphasis> group, and the
-	<emphasis>www-admins</emphasis> and
-	<emphasis>ftp-admins</emphasis> secondary groups:
+	Il est aussi possible d'ajouter à cet utilisateur des groupes
+	secondaires à la création du compte avec <emphasis>-G</emphasis>.
+	Les noms de groupes sont séparés par une virgule. La commande suivante
+	va créer l'utilisateur <emphasis>bob</emphasis>, membre du groupe
+	<emphasis>crew</emphasis>, et des groupes secondaires
+	<emphasis>www-admins</emphasis> et
+	<emphasis>ftp-admins</emphasis> :
       </para>
 
       <screen>
@@ -99,9 +98,10 @@
       </screen>
 
       <para>
-	By default the <command>useradd</command> only adds users, it
-	does not set a password for the added user. Passwords can be
-	set using the <command>passwd</command> command.
+	Par défaut <command>useradd</command> ajoute des utilisateurs seulement,
+	il ne fixe pas le mot de passe pour l'utilisateur ajouté. Les mots de
+	passe peuvent être configurés avec la commande
+	<command>passwd</command>.
       </para>
     </sect2>
 
@@ -109,34 +109,38 @@
       <title>passwd</title>
 
       <para>
-	As you probably guessed the <command>passwd</command> command
-	is used to set a password for a user. Running this command as
-	a user without a parameter will change the password for this
-	user. The password command will ask for the old password,once
-	and twice for the new password:
+	Comme vous l'avez sans doute deviné la commande
+	<command>passwd</command> est utilisée pour changer le mot de passe d'un
+	utilisateur. Lancer cette command en tant qu'utilisateur sans paramètre
+	va changer le mot de passe pour cet utilisateur. La commande
+	<command>passwd</commad> vous demande l'ancien mot de passe, le nouveau
+	mot de passe 2 fois.
       </para>
 
       <screen>
 $ <userinput>passwd</userinput>
-Changing password for bob
-(current) UNIX password: 
-Enter new UNIX password: 
-Retype new UNIX password: 
-passwd: password updated successfully
+Changement du mot de passe de bob
+Ancien mot de passe: 
+Entrez le nouveau mot de passe (minimum de 5, maximum de 127
+caractères). Utilisez une combinaison de lettres en majuscule/minuscule
+et de nombres.
+Nouveau mot de passe : 
+Nouveau mot de passe (à nouveau) :
+Mot de passe changé.
       </screen>
 
       <para>
-	The <emphasis>root</emphasis> user can set passwords for users
-	by specifying the user name as a parameter. The
-	<command>passwd</command> command will only ask for the new
-	password. For example:
+	L'utilisateur <emphasis>root</emphasis> peut modifier les mots de passe
+	des utilisateurs en spécifiant le nom d'utilisateur en paramètre. La
+	commande <command>passwd</command> ne demandera que le nouveau mot de
+	passe. Par exemple :
       </para>
 
       <screen>
 # <userinput>passwd bob</userinput>
-Enter new UNIX password: 
-Retype new UNIX password: 
-passwd: password updated successfully
+Nouveau mot de passe : 
+Nouveau mot de passe (à nouveau) :
+Mot de passe changé.
       </screen>
     </sect2>
 
@@ -144,12 +148,12 @@ passwd: password updated successfully
       <title>adduser</title>
 
       <para>
-	The <command>adduser</command> command combines
-	<command>useradd</command> and <command>passwd</command> in an
-	interactive script. It will ask you to fill in information
-	about the account to-be created. After that it will create an
-	account based on the information you provided. The screen
-	listing below shows a sample session.
+	La commande <command>adduser</command> combine
+	<command>useradd</command> et <command>passwd</command> sous la forme
+	d'un script interactif. Il vous demande les informations sur le compte
+	à créer. Après cela il va créer un compte à partir des informations que
+	vous avez fournies. L'affichage écran ci-dessous montre une session
+	d'exemple.
       </para>
 
       <screen>
@@ -205,8 +209,8 @@ Account setup complete.
       </screen>
 
       <para>
-	You can use the default values, or leave some fields empty, by
-	tapping the &lt;Enter&gt; key.
+	Vous pouvez utiliser les valeurs par défaut, ou laisser des champs
+	vides, en pressant la touche &lt;Entrée&gt;.
       </para>
     </sect2>
 
@@ -214,12 +218,12 @@ Account setup complete.
       <title>userdel</title>
 
       <para>
-	Sometimes it is necessary to remove a user account from the
-	system. GNU/Linux offers the <command>userdel</command> tool
-	to do this. Just specify the username as a parameter to remove
-	that user from the system. For example, the following command
-	will remove the user account <emphasis>bob</emphasis> from the
-	system:
+	Parfois il est nécessaire de supprimer un compte utilisateur d'un
+	système. Pour ce faire, GNU/Linux offre l'outil
+	<command>userdel</command>. Spécifiez seulement le nom d'utilisateur en
+	paramètre pour supprimer celui-ci du système. Par exemple, la commande
+	suivante va supprimer du système le compte utilisateur
+	<emphasis>bob</emphasis> :
       </para>
 
       <screen>
@@ -227,10 +231,11 @@ Account setup complete.
       </screen>
 
       <para>
-	This will only remove the user account, not the user's home
-	directory and mail spool. Just add the <parameter
-	class="command">-r</parameter> parameter to delete the user's
-	home directory and mail spool too. For example:
+	Cela va supprimer le compte utilisateur, pas le répertoire personnel de
+	celui-ci ni son espace de messagerie. Ajoutez simplement le paramètre
+	<parameter class="command">-r</parameter> pour supprimer le répertoire
+	personnel de l'utilisateur ainsi que son espace de messagerie. Par
+	exemple :
       </para>
 
       <screen>
@@ -240,25 +245,25 @@ Account setup complete.
   </sect1>
 
   <sect1 xml:id="chap-usermgmt-su">
-    <title>Avoiding root usage with su</title>
+    <title>Eviter l'utilisation de root avec su</title>
 
     <para>
-      It is a good idea to avoid logging in as
-      <emphasis>root</emphasis>. There are many reasons for not doing
-      this. Accidentally typing a wrong command could cause bad things
-      to happen, and malicious programs can make a lot of damage when
-      you are logged in as <emphasis>root</emphasis>.  Still, there
-      are many situations in which you need to have root access. For
-      example, to do system administration, or to install new
-      software. Fortunately the <command>su</command> can give you
-      temporal root privileges.
+      Il est judicieux d'éviter de se logger en tant que
+      <emphasis>root</emphasis>. Il y a plein de raisons de ne pas le faire.
+      Taper accidentellement une mauvaise commande peut provoquer des dégâts, et
+      des programmes malicieux peuvent causer beaucoup de dommages lorsque vous
+      être loggé en tant que <emphasis>root</emphasis>.  Cela dit, il y a
+      beaucoup de situations où vous avez besoin d'avoir accès à root. Par
+      exemple, pour effectuer les tâches d'administration  système, ou pour
+      installer un nouveau logiciel. Heureusement <command>su</command> peut
+      vous donner temporairement les privilèges de root.
     </para>
 
     <para>
-      Using <command>su</command> is very simple. Just executing
-      <command>su</command> will ask you for the root password, and
-      will start a shell with root privileges after the password is
-      correctly entered:
+      Utiliser <command>su</command> est très simple. Exécuter seulement
+      <command>su</command> vous demande le mot de passe de root, et démarre un
+      shell avec les droits root une fois que le mot de passe a été correctement
+      saisi.
     </para>
 
     <screen>
@@ -275,21 +280,20 @@ bob
     </screen>
 
     <para>
-      In this example the user <emphasis>bob</emphasis> is logged on,
-      the <command>whoami</command> output reflects this. The user
-      executes su and enters the <emphasis>root</emphasis>
-      password. <command>su</command> launches a shell with root
-      privileges, this is confirmed by the <command>whoami</command>
-      output. After exiting the <emphasis>root</emphasis> shell,
-      control is returned to the original running shell running with
-      the privileges of the user <emphasis>bob</emphasis>.
+      Dans cet exemple l'utilisateur <emphasis>bob</emphasis> est loggé, la
+      sortie de <command>whoami</command> témoigne de cela. L'utilisateur
+      exécute su et entre le mot de passe de <emphasis>root</emphasis>.
+      <command>su</command> lance un shell avec les privilèges de root, 
+      ce qui est confirmé par la sortie de <command>whoami</command>. Après être
+      sorti du shell <emphasis>root</emphasis>, le contrêle est redonné au shell
+      d'origine avec les privilèges de l'utilistaeur <emphasis>bob</emphasis>.
     </para>
 
     <para>
-      It is also possible to execute just one command as the
-      <emphasis>root</emphasis> user with the <parameter
-      class="command">-c</parameter> parameter. The following example
-      will run <command>lilo</command>:
+      Il est aussi possible d'exécuter une seule commande en tant que
+      <emphasis>root</emphasis> avec le paramètre <parameter
+      class="command">-c</parameter>. L'exemple suivant lance
+      <command>lilo</command>:
     </para>
 
     <screen>
@@ -297,25 +301,24 @@ $ <userinput>su -c lilo</userinput>
     </screen>
 
     <para>
-      If you want to give parameters to the command you would like to
-      run, use quotes (e.g. <command>su -c &quot;ls -l
-      /&quot;</command>). Without quotes <command>su</command> cannot
-      determine whether the parameters should be used by the specified
-      command, or by <command>su</command> itself.
+      Si vous voulez passer des paramètres à la commande à lancer, utilisez les
+      cotes (e.g. <command>su -c &quot;ls -l /&quot;</command>). Sans les cotes
+      <command>su</command> ne peut pas savoir si les paramètres doivent être
+      interprétes par la commande spécifiée, ou par <command>su</command>
+      elle-même.
     </para>
 
     <sect2 xml:id="chap-usermgmt-su-restrict">
-      <title>Restricting su access</title>
+      <title>Restreindre l'accès à su</title>
 
       <para>
-	You can refine access to <command>su</command> with
-	<emphasis>suauth</emphasis>.  It is a good security practice
-	to only allow members of a special group to
-	<command>su</command> to <emphasis>root</emphasis>. For
-	instance, you can restrict root <command>su</command>-ing in a
-	BSD fashion to members of the <emphasis>wheel</emphasis> group
-	by adding the following line to
-	<filename>/etc/suauth</filename>:
+	Vous pouvez raffiner l'accès à <command>su</command> avec
+	<emphasis>suauth</emphasis>.  C'est une bonne pratique de sécurité de
+	n'autoriser seulement les membres d'un groupe spécifique d'effectuer un
+	<command>su</command> en <emphasis>root</emphasis>. Par exemple, vous
+	pouvez restreindre <command>su</command> en root à la mode 
+	BSD aux membre du groupe <emphasis>wheel</emphasis> en ajoutant la ligne
+	suivante à <filename>/etc/suauth</filename> :
       </para>
 
       <screen>
@@ -325,32 +328,31 @@ root:ALL EXCEPT GROUP wheel:DENY
   </sect1>
 
   <sect1 xml:id="chap-usermgmt-quota">
-    <title>Disk quota</title>
+    <title>Quotas disque</title>
 
     <sect2 xml:id="chap-usermgmt-quota-intro">
       <title>Introduction</title>
 
       <para>
-	Disk quota is a mechanism that allows the system administrator
-	to restrict the number of disk blocks and inodes that a
-	particular user and group can use. Not all filesystems
-	supported by Linux support quota, widely used filesystems that
-	support quota are ext2, ext3 and XFS. Quota are turned on and
-	managed on a per filesystem basis.
+	Le quota disque est un mécanisque qui permet à un administrateur système
+	de restreindre à un utilisateur ou groupe particulier l'utilisation
+	d'un nombre de blocs disque et d'inodes. Tous les systèmes de fichiers
+	supportés par Linux ne gèrent pas les quotas, les systèmes de fichiers
+	populaires qui supportent les quotas sont ext2, ext3 et XFS. Les quotas
+	sont activés et gérés par instance de système de fichiers.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-usermgmt-config">
-      <title>Enabling quota</title>
+      <title>Activer les quotas</title>
 
       <para>
-	Quota can be enabled per filesystem in
-	<filename>/etc/fstab</filename>, by using the
-	<parameter>usrquota</parameter> and
-	<parameter>grpquota</parameter> filesystem options. For
-	example, suppose that we have the following entry for the
-	<filename>/home</filename> partition in
-	<filename>/etc/fstab</filename>:
+	Les quotas peuvent être activés par système de fichiers dans
+	<filename>/etc/fstab</filename>, en utilisant les options système de
+	fichiers <parameter>usrquota</parameter> et
+	<parameter>grpquota</parameter>. Par exemple, supposez que nous avons
+	l'entrée suivante pour la partition <filename>/home</filename> dans
+	<filename>/etc/fstab</filename> :
       </para>
 
       <screen>
@@ -358,8 +360,8 @@ root:ALL EXCEPT GROUP wheel:DENY
       </screen>
 
       <para>
-	We can now enable user quota by adding the
-	<parameter>usrquota</parameter> filesystem option:
+	Nous pouvons activer les quotas utilisateur en ajoutant l'option système
+	de fichiers <parameter>usrquota</parameter> :
       </para>
 
       <screen>
@@ -367,11 +369,10 @@ root:ALL EXCEPT GROUP wheel:DENY
       </screen>
 
       <para>
-	At this point the machine can be rebooted, to let the
-	Slackware Linux initialization scripts enable quota. You can
-	also enable quota without rebooting the machine, by remounting
-	the partition, and running the <command>quotaon</command>
-	command:
+	A ce stade la machine peut être redémarrée, permettant aux scripts
+	d'initialisation de Slackware Linux d'activer les quotas. Vous pouvez
+	aussi activer les quotas sans rebooter la machine, en remontant la
+	partition, et en exécutant la commande <command>quotaon</command> :
       </para>
 
       <screen>
@@ -381,14 +382,14 @@ root:ALL EXCEPT GROUP wheel:DENY
     </sect2>
 
     <sect2 xml:id="chap-usermgmt-quota-edit">
-      <title>Editing quota</title>
+      <title>Editer les quotas</title>
 
       <para>
-	User and group quotas can be edited with the
-	<quote>edquota</quote> utility. This program allows you to
-	edit quotas interactively with the <command>vi</command>
-	editor. The most basic syntax of this command is
-	<command>edquota username</command>. For example:
+	Les quotas utilisateur et groupe peuvent être édités avec l'utilitaire
+	<quote>edquota</quote>. Ce programme vous permet d'éditer les quotas
+	de manière interactive avec l'éditeur <command>vi</command>. La syntaxe
+	la plus simple de cette commande est
+	<command>edquota username</command>. Par exemple :
       </para>
 
       <screen>
@@ -396,8 +397,8 @@ root:ALL EXCEPT GROUP wheel:DENY
       </screen>
 
       <para>
-	This will launch the <command>vi</command> editor with the
-	quota information for the user <emphasis>joe</emphasis>.  It
+	Va lancer l'éditeur <command>vi</command> avec les informations de quota
+	pour l'utilisateur <emphasis>joe</emphasis>.  Cela ressemble à ceci :
 	will look like this:
       </para>
 
@@ -408,36 +409,35 @@ Disk quotas for user joe (uid 1143):
       </screen>
 
       <para>
-	In this example quotas are only turned on for one file system,
-	namely the filesystem on <filename>/dev/hda5</filename>. As
-	you can see there are multiple columns. The
-	<emphasis>blocks</emphasis> column shows how many block the
-	user uses on the file system, and the
-	<emphasis>inodes</emphasis> column the number of inodes a user
-	occupies. Besides that there are <emphasis>soft</emphasis> and
-	<emphasis>hard</emphasis> columns after both
-	<emphasis>blocks</emphasis> and
-	<emphasis>inodes</emphasis>. These columns specify the soft
-	and hard limits on blocks and inodes. A user can exceed the
-	soft limit for a grace period, but the user can never exceed
-	the hard limit. If the value of a limit is
-	<emphasis>0</emphasis>, there is no limit.
+	Dans cet exemple les quotas ne sont activés que pour un système de
+	fichiers, à savoir le système de fichier sur
+	<filename>/dev/hda5</filename>. Comme vous pouvez le voir il y a
+	plusieurs colonnes. La colonne <emphasis>blocks</emphasis> affiche
+	combien de blocs l'utilisateur occupe sur le système de fichiers, et la
+	colonne <emphasis>inodes</emphasis> le nombre d'inodes qu'occupe
+	l'utilisateur. Ajouté à cela les colonnes <emphasis>soft</emphasis> et
+	<emphasis>hard</emphasis> se trouvent après les colonnes
+	<emphasis>blocks</emphasis> et <emphasis>inodes</emphasis>. Ces colonnes
+	spécifent les limites soft et hard sur les blocs et inodes. Un
+	utilisateur peut dépasser la limite soft pendant un délai de grâce, mais
+	un utilisateur ne peut jamais dépasser la limite hard. Si une valeur
+	de limite est <emphasis>0</emphasis>, il n'y a pas de limitation.
       </para>
 
       <note>
 	<para>
-          The term <quote>blocks</quote> might be a bit confusing in
-          this context. In the quota settings a block is 1KB, not the
-          block size of the file system.
+          Le terme <quote>blocks</quote> peut prêter à confusion dans ce
+	  contexte. Pour les réglages de quota un bloc vaut 1Ko, et pas la
+	  taille de bloc du système de fichiers.
         </para>
       </note>
 
       <para>
-	Let's look at a simple example. Suppose that we would like to
-	set the soft limit for the user <emphasis>joe</emphasis> to
-	<emphasis>250000</emphasis>, and the hard limit to
-	<emphasis>300000</emphasis>. We could change the quotas listed
-	above to:
+	Jetons un oeil à un exemple simple. Supposez que vous voulez fixer la
+	limite soft d'un utlisateur <emphasis>joe</emphasis> à
+	<emphasis>250000</emphasis>, et la limite hard à
+	<emphasis>300000</emphasis>. Nous pouvons modifier les quotas cités
+	ci-dessus comme ceci :
       </para>
 
       <screen>
@@ -447,25 +447,26 @@ Disk quotas for user joe (uid 1143):
       </screen>
 
       <para>
-        The new quota settings for this user will be active after
-        saving the file, and quitting <command>vi</command>.
+	Les nouveaux réglages de quota pour cet utilisateurs seront effectifs
+	après sauvegarde du fichier, et sortie de <command>vi</command>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-usermgmt-quota-repquota">
-      <title>Getting information about quota</title>
+      <title>Obtenir les informations sur les quotas</title>
 
       <para> 
-	It is often useful to get statistics about the current quota
-	usage.  The <command>repquota</command> command can be used to
-	get information about what quotas are set for every user, and
-	how much of each quota is used. You can see the quota settings
-	for a specific partition by giving the name of the partition
-	as a parameter. The <parameter class="command">-a</parameter>
-	parameter will show quota information for all partitions with
-	quota enabled. Suppose that you would like to see quota
-	information for <filename>/dev/hda5</filename>, you can use
-	the following command:
+	Il est souvent utile d'avoir des statistiques sur l'utilisation du quota
+	courant. La commande <command>repquota</command> est utilisée pour
+	obtenir les informations sur les quotas fixés pour chaque utilisateur,
+	et combien de chacun des quotas est utilisé. Vous pouvez voir les
+	réglages de quota pour une partition spécifique en donnant le nom de la
+	partition en paramètre. Le paramètre
+	<parameter class="command">-a</parameter> affiche les informations de
+	quota de toutes les partitions pourlesquelles le quota est activé.
+	Supposez que vous désirez voir les informations de quota pour
+	<filename>/dev/hda5</filename>, vous pouvez utiliser la commande
+	suivante :
       </para>
 
       <screen>
