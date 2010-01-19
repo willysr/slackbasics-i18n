@@ -11,7 +11,7 @@ lignes fichier                  trad     1a-rev  2a-rev
    219 chap-help.xml            OK       TODO       -
    248 sendmail.xml             OK       TODO       -
    272 chap-intro.xml           OK       TODO       -
-   295 printing.xml             TODO        -       -
+   295 printing.xml             OK       TODO       -
    313 mutt.xml                 OK       TODO       -
    335 miscadmin.xml            TODO        -       -
    377 latex.xml                OK       TODO       -
