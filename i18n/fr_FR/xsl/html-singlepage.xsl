@@ -22,11 +22,11 @@
 	<!-- Admonitions -->
 	<xsl:param name="admon.graphics" select="1" />
 	<xsl:param name="admon.graphics.extension" select="'.png'"></xsl:param>
-	<xsl:param name="admon.graphics.path">../images/</xsl:param>
+	<xsl:param name="admon.graphics.path">../../images/</xsl:param>
 
 	<!-- Callouts -->
 	<xsl:param name="callout.graphics" select="1" />
-	<xsl:param name="callout.graphics.path" select="'../images/callouts/'" />
+	<xsl:param name="callout.graphics.path" select="'../../images/callouts/'" />
 
 	<!-- Image scaling attributes are used to produce proper printed
 	     output. Ignore this for HTML output. -->

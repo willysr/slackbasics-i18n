@@ -113,7 +113,7 @@
 	<command>passwd</command> est utilisée pour changer le mot de passe d'un
 	utilisateur. Lancer cette command en tant qu'utilisateur sans paramètre
 	va changer le mot de passe pour cet utilisateur. La commande
-	<command>passwd</commad> vous demande l'ancien mot de passe, le nouveau
+	<command>passwd</command> vous demande l'ancien mot de passe, le nouveau
 	mot de passe 2 fois.
       </para>
 

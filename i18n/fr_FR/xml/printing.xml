@@ -83,7 +83,7 @@ ifhp
       CUPS peut être configuré via l'interface web. L'interface de configuration
       est accessible à l'aide d'un navigateur web à l'URL suivante :
       <ulink url="http://localhost:631/">http://localhost:631/</ulink>.
-      Certaines parties de l'interface web requierrent une authentification.
+      Certaines parties de l'interface web requièrent une authentification.
       Si une fenêtre d'authentification apparaît vous pouvez entrer
       <quote>root</quote> en tant que nom d'utilisateur, et donner le mot de
       passe du compte root.
