@@ -2,7 +2,7 @@
 
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:id="chap-pkgmgmt">
-  <title>Package Management</title>
+  <title>Gestion des paquets</title>
 
   <sect1 xml:id="chap-pkgmgmt-pkgtools">
     <title>Pkgtools</title>
@@ -11,27 +11,26 @@
       <title>Introduction</title>
 
       <para>
-	Slackware Linux does not use a complex package system, unlike
-	many other Linux distributions. Package have the
-	<filename>.tgz</filename> extension, and are usually ordinary
-	tarballs which contain two extra files: an installation script
-	and a package description file.  Due to the simplicity of the
-	packages the Slackware Linux package tools do not have the
-	means to handle dependencies. But many Slackware Linux users
-	prefer this approach, because dependencies often cause more
-	problems than they solve.
+	Slackware Linux utilise un système de paquets simple, contrairement à
+	beaucoup d'autres distributions Linux. Les paquets ont une extension
+	<filename>.tgz</filename>, et sont généralement des archives tar
+	ordinaires contenant 2 fichiers additionnels : un script d'installation
+	et un fichier de description du paquet. A cause de cette simplicité des
+	paquets les outils de gestion de paquets Slackware Linux n'ont pas les
+	moyens de gérer les dépendances. Mais nombre d'utilisateurs 
+	Slackware Linux préfèrent cette approche, car les dépendances causent
+	souvent plus de problèmes qu'ils n'en résolvent.
       </para>
 
       <para>
-        Slackware Linux has a few tools to handle packages. The most
-        important tools will be covered in this chapter. To learn to
-        understand the tools we need to have a look at package
-        naming. Let's have a look at an example, imagine that we have
-        a package with the file name
-        <filename>bash-2.05b-i386-2.tgz</filename>. In this case the
-        name of the package is bash-2.05b-i386-2. In the package name
-        information about the package is separated by the '-'
-        character. A package name has the following meaning:
+        Slackware Linux comporte quelques outils pour gérer les paquets. Les
+	outils les plus importants seront abordés dans ce chapitre. Pour
+	arriver à comprendre les outils nous devons jeter un oeil au nommage
+	des paquets. Voyons un exemple, imaginez que nous avons un paquet dont
+	le nom de fichier est <filename>bash-2.05b-i386-2.tgz</filename>. Ici
+	le nom du paquet est bash-2.05b-i386-2. Dans le nom du paquet les
+	informations à propos du paquet sont séparées par le caractère '-'.
+	Un nom de paquet a la signification suivante :
         <emphasis>programname-version-architecture-packagerevision</emphasis>
       </para>
 
@@ -41,21 +40,21 @@
       <title>pkgtool</title>
 
       <para>
-	The <command>pkgtool</command> command provides a menu
-	interface for some package operations. The most important menu
-	items are <emphasis>Remove</emphasis> and
-	<emphasis>Setup</emphasis>. The <emphasis>Remove</emphasis>
-	option presents a list of installed packages. You can select
-	which packages you want to remove with the space bar and
-	confirm your choices with the return key. You can also
-	deselect a package for removal with the space bar.
+	La commande <command>pkgtool</command> fournit une interface de type
+	menu pour quelques opérations sur les paquets. Les éléments du menu les
+	plus importants <emphasis>Remove</emphasis> et
+	<emphasis>Setup</emphasis>. L'option <emphasis>Remove</emphasis>
+	présente la liste des paquets installés. Vous pouvez sélectionner quels
+	paquets vous voulez supprimer avec la barre espace et confirmer vos
+	choix par la touche entrée. Vous pouvez aussi désélectionner un paquet à
+	supprimer avec la barre espace.
       </para>
 
       <para>
-	The <emphasis>Setup</emphasis> option provides access to a few
-	tools which can help you with configuring your system, for
-	example: <command>netconfig</command>,
-	<command>pppconfig</command> and <command>xwmconfig</command>.
+	L'option <emphasis>Setup</emphasis> permet l'accès à quelques outils qui
+	peuvent vous aider à configurer votre système, comme par exemple :
+	<command>netconfig</command>, <command>pppconfig</command> et
+	<command>xwmconfig</command>.
       </para>
     </sect2>
 
@@ -63,10 +62,10 @@
       <title>installpkg</title>
 
       <para>
-	The <command>installpkg</command> command is used to install
-	packages.  <command>installpkg</command> needs a package file
-	as a parameter.  For example, if you want to install the
-	package <filename>bash-2.05b-i386-2.tgz</filename> execute:
+	La commande <command>installpkg</command> est utilisée pour installer
+	des paquets. <command>installpkg</command> requiert un fichier de paquet
+	en tant que paramètre. Par exemple, si vous voulez installer le paquet
+	<filename>bash-2.05b-i386-2.tgz</filename>, executez :
       </para>
 
       <screen>
@@ -79,12 +78,12 @@
       <title>upgradepkg</title>
 
       <para>
-        <command>upgradepkg</command> can be used to upgrade
-        packages. In contrast to <command>installpkg</command> it only
-        installs packages when there is an older version available on
-        the system. The command syntax is comparable to
-        <command>installpkg</command>. For example, if you want to
-        upgrade packages using package in a directory execute:
+        <command>upgradepkg</command> peut être utilisé pour mettre à jour un
+	paquet. Contrairement à <command>installpkg</command> il installe des
+	paquets uniquement si une version précédante est disponible sur le
+	système. La syntaxe de la commande est comparable celle de
+        <command>installpkg</command>. Par exemple, si vous voulez mettre à jour
+	des paquets se trouvant dans un répertoire, lancez :
       </para>
 
       <screen>
@@ -92,8 +91,8 @@
       </screen>
 
       <para>
-        As said only those packages will be installed of which an other
-        version is already installed on the system.
+	Comme prévu seuls les paquets dont une autre version est déjà installée
+	seront traités.
       </para>
     </sect2>
 
@@ -101,10 +100,10 @@
       <title>removepkg</title>
 
       <para>
-	The <command>removepkg</command> can be used to remove
-	installed packages. For example, if you want to remove the
-	<quote>bash</quote> package (it is not recommended to do
-	that!), you can execute:
+	<command>removepkg</command> peut être utilisée pour supprimer des
+	paquets installés. Par exemple, si vous voulez supprimer le paquet
+	<quote>bash</quote> (il est déconseillé de faire ça !), vous pouvez
+	lancer :
       </para>
 
       <screen>
@@ -112,9 +111,9 @@
       </screen>
 
       <para>
-        As you can see only the name of the program is specified in
-        this example. You can also remove a package by specifying its
-        full name:
+	Comme vous pouvez le voir seul le nom du programme est spécifié dans
+	cet exemple. Vous pouvez aussi supprimer un paquet en spécifiant son
+	nom complet :
       </para>
 
       <screen>
@@ -130,12 +129,12 @@
       <title>Introduction</title>
 
       <para>
-        Slackpkg is a package tool written by Roberto F. Batista and
-        Evaldo Gardenali.  It helps users to install and upgrade
-        Slackware Linux packages using one of the Slackware Linux
-        mirrors. Slackpkg is included in the
-        <filename>extra/</filename> directory on the second CD of the
-        Slackware Linux CD set.
+        Slackpkg est un outil de gestion de paquets écrit par
+	Roberto F. Batista et par  Evaldo Gardenali.  Il aide les utilisateurs
+	à installer ou mettre à jour les paquets Slackware Linux par le biais
+	des sites mirroirs de Slackware Linux. Slackpkg est inclus dans le
+	répertoire <filename>extra/</filename> du second CD du lot de CDs de
+        Slackware Linux.
       </para>
 
     </sect2>
@@ -144,13 +143,12 @@
       <title>Configuration</title>
 
       <para>
-        Slackpkg is configured through some files in
-        <filename>/etc/slackpkg</filename>. The first thing you should
-        do is configuring which mirror slackpkg should use. This can
-        be done by editing the
-        <filename>/etc/slackpkg/mirrors</filename>. This file already
-        contains a list of mirrors, you can just uncomment a mirror
-        close to you. For example:
+        Slackpkg est configuré à l'aide de quelques fichiers dans
+        <filename>/etc/slackpkg</filename>. La première chose à faire est de
+	configurer quel site mirroir slackpkg doit utiliser. Cela se fait en
+	éditant <filename>/etc/slackpkg/mirrors</filename>. Ce fichier contient
+	déjà une liste de sites mirroirs, vous pouvez simplement décommenter un
+	site mirroir près de chez vous. Par exemple :
       </para>
 
       <screen>
@@ -158,11 +156,11 @@ ftp://ftp.nluug.nl/pub/os/Linux/distr/slackware/slackware-12.0/
       </screen>
 
       <para>
-        This will use the Slackware Linux 12.0 tree on the
-        ftp.nluug.nl mirror. Be sure to use a tree that matches your
-        Slackware Linux version. If you would like to track
-        slackware-current you would uncomment the following line
-        instead (when you would like to use the NLUUG mirror):
+	Cela va exploiter l'arborescence Slackware Linux 12.0 sur le site
+	mirroir ftp.nluug.nl. Assurez-vous d'utiliser une arborescence
+	correspondant à votre version de Slackware Linux. Si vous désirez
+	synchroniser sur slackware-current vous devez décommenter plutôt la
+	ligne (lorsque vous désirez utiliser le site mirroir NLUUG) :
       </para>
 
       <screen>
@@ -170,24 +168,24 @@ ftp://ftp.nluug.nl/pub/os/Linux/distr/slackware/slackware-current/
       </screen>
 
       <para>
-        Slackpkg will only accept one mirror. Commenting out more
-        mirrors will not work.
+        Slackpkg n'acceptera qu'un seul site mirroir. Décommenter d'autres sites
+	mirroirs ne fonctionnera pas.
       </para>
 
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-slackpkg-gpgkey">
-      <title>Importing the Slackware Linux GPG key</title>
+      <title>Importer les clés GPG Slackware Linux</title>
 
       <para>
-	By default slackpkg checks packages using the package
-	signatures and the public Slackware Linux GPG key. Since this
-	is a good idea from a security point of view, you probably do
-	not want to change this behaviour. To be able to verify
-	packages you have to import the
-	<emphasis>security@slackware.com</emphasis> GPG key. If you
-	have not used GPG before you have to create the GPG directory
-	in the home directory of the <emphasis>root</emphasis> user:
+	Par défaut slackpkg vérifie les paquets en utilisant les signatures de
+	paquets et la clé GPG publique Slackware Linux. Puisque c'est une bonne
+	idée d'un point de vue sécurité, vous ne voulez probablement pas changer
+	ce comportement. Pour permettre de vérifier les paquets vous devez
+	importer la clé GPG <emphasis>security@slackware.com</emphasis>. Si vous
+	n'avez pas utilisé GPG jusqu'alors vous devez créer le répertoire GPG
+	dans le répertoire personnel de l'utilisateur
+	<emphasis>root</emphasis> :
       </para>
 
       <screen>
@@ -195,71 +193,70 @@ ftp://ftp.nluug.nl/pub/os/Linux/distr/slackware/slackware-current/
       </screen>
 
       <para>
-        The next step is to search for the public key of
-        <emphasis>security@slackware.com</emphasis>. We will do this
-        by querying the <emphasis>pgp.mit.edu</emphasis> server:
+	L'étape suivante consiste à chercher la clé publique de
+        <emphasis>security@slackware.com</emphasis>. Nous allons réaliser cela
+	en sollicitant le serveur <emphasis>pgp.mit.edu</emphasis> :
       </para>
 
       <screen>
 # <userinput>gpg --keyserver pgp.mit.edu --search security@slackware.com</userinput>
-gpg: keyring `/root/.gnupg/secring.gpg' created
-gpg: keyring `/root/.gnupg/pubring.gpg' created
-gpg: searching for "security@slackware.com" from HKP server pgp.mit.edu
-Keys 1-2 of 2 for "security@slackware.com"
-(1)     Slackware Linux Project &lt;security@slackware.com&gt;
-          1024 bit DSA key 40102233, created 2003-02-25
-(2)     Slackware Linux Project &lt;security@slackware.com&gt;
-          1024 bit DSA key 40102233, created 2003-02-25
-Enter number(s), N)ext, or Q)uit &gt; 
+bash-3.1# gpg --keyserver pgp.mit.edu --search security@slackware.comgpg: le porte-clés `/root/.gnupg/secring.gpg` a été créé
+gpg: le porte-clés `/root/.gnupg/pubring.gpg` a été créé
+gpg: recherche de "security@slackware.com" du serveur hkp pgp.mit.edu
+(1)	Slackware Linux Project &lt;security@slackware.com&gt;
+	  1024 bit DSA key 40102233, créé: 2003-02-26
+Keys 1-1 of 1 for "security@slackware.com".  Entrez le(s) nombre(s), S)uivant, ou Q)uitter &gt;
       </screen>
 
       <para>
-        As you can see we have got two (identical) hits. Select the
-        first one by entering <quote>1</quote>. GnuPG will import this
-        key in the keyring of the <emphasis>root</emphasis> user:
+	Comme vous pouvez le voir nous avons trouvé 2 occurrences (identiques).
+	Sélectionnez la première en tapant <quote>1</quote>. GnuPG va importer
+	cette clé dans le porte-clés de l'utilisateur
+	<emphasis>root</emphasis> :
       </para>
 
       <screen>
-Enter number(s), N)ext, or Q)uit > <userinput>1</userinput>
-gpg: key 40102233: duplicated user ID detected - merged
-gpg: /root/.gnupg/trustdb.gpg: trustdb created
-gpg: key 40102233: public key "Slackware Linux Project &lt;security@slackware.com&gt;" imported
-gpg: Total number processed: 1
-gpg:               imported: 1
+Entrez le(s) nombre(s), S)uivant, ou Q)uitter &gt; <userinput>1</userinput>
+gpg: requête de la clé 40102233 du serveur hkp pgp.mit.edu
+gpg: /root/.gnupg/trustdb.gpg: base de confiance créée
+gpg: clé 40102233: clé publique "Slackware Linux Project &lt;security@slackware.com&gt;" importée
+gpg: aucune clé de confiance ultime n'a été trouvée
+gpg:        Quantité totale traitée: 1
+gpg:                       importée: 1
       </screen>
 
       <para>
-        Be sure to double check the key you received. The key ID and
-        fingerprint of this particular key can be found on the
-        Internet on many trustworthy sites. The key ID is, as
-        mentioned above <emphasis>40102233</emphasis>.  You can get
-        the key fingerprint with the <parameter
-        class="command">--fingerprint</parameter> parameter:
+	Assurez-vous de revérifier la clé reçue. L'ID clé et l'empreinte
+	de cette clé particulière peut se trouvez sur Internet sur beaucoup de
+	sites de confiance. L'ID clé est, comme mentionné ci-dessus
+	<emphasis>40102233</emphasis>.  Vous pouvez obtenir l'empreinte de la
+	clé avec le paramètre <parameter
+	class="command">--fingerprint</parameter> :
       </para>
 
       <screen>
 # <userinput>gpg --fingerprint security@slackware.com</userinput>
-pub  1024D/40102233 2003-02-26 Slackware Linux Project &lt;security@slackware.com&gt;
-     Key fingerprint = EC56 49DA 401E 22AB FA67  36EF 6A44 63C0 4010 2233
-sub  1024g/4E523569 2003-02-26 [expires: 2012-12-21]
+pub   1024D/40102233 2003-02-26 [expire: 2012-12-21]
+    Empreinte de la clé = EC56 49DA 401E 22AB FA67  36EF 6A44 63C0 4010 2233
+uid                  Slackware Linux Project &lt;security@slackware.com&gt;
+sub   1024g/4E523569 2003-02-26 [expire: 2012-12-21]
       </screen>
 
       <para>
-        Once you have imported and checked this key you can start to
-        use slackpkg, and install packages securely.
+	Dès que vous avez importé et vérifié cette clé clé vous pouvez commencer
+	à utiliser slackpkg, et installer des paquets en toute sécurité.
       </para>
 
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-slackpkg-updatepkglist">
-      <title>Updating the package lists</title>
+      <title>Mettre à jour les listes de paquets</title>
 
       <para>
-        Before upgrading and installing packages you have to let
-        slackpkg download the package lists from the mirror you are
-        using. It is a good idea to do this regularly to keep these
-        lists up to date. The latest package lists can be fetched
-        with:
+	Avant de mettre à jour ou d'installer des paquets vous devez demander à
+        slackpkg de télécharger les listes de paquets depuis le site mirroir que
+	vous utilisez. Il est judicieux de faire ceci régulièrement pour garder
+	ces listes à jour. Les dernières listes peuvent être rappatriées avec :
       </para>
 
       <screen>
@@ -268,18 +265,18 @@ $ <userinput>slackpkg update</userinput>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-slackpkg-upgrade">
-      <title>Upgrading packages</title>
+      <title>Mettre à jour des paquets</title>
 
       <para>
-        The <parameter class="command">upgrade</parameter> parameter
-        is used to upgrade installed packages. You have to add an
-        extra parameter to actually tell <command>slackpkg</command>
-        what you want to upgrade, this differs for a stable Slackware
-        Linux version and slackware-current. Upgrades for stable
-        Slackware Linux releases are in the
-        <filename>patches</filename> directory of FTP mirrors. You can
-        update a slackware-stable installation (e.g. Slackware Linux
-        12.0) with:
+        Le paramètre <parameter class="command">upgrade</parameter> est utilisé
+	pour mettre à jour des paquets installés. Vous devez ajouter un
+	paramètre additionnel pour demander explicitement à
+	<command>slackpkg</command> ce que vous voulez mettre à jour, cela est
+	différent pour une version stable de Slackware et pour
+	slackware-current. Les mises à jour pour une des versions stables
+	Slackware Linux sont dans le répertoire <filename>patches</filename>
+	des sites FTP mirroirs. Vous pouvez mettre à jour une installation
+	slackware-stable (e.g. Slackware Linux 12.0) avec:
       </para>
 
       <screen>
@@ -287,8 +284,8 @@ $ <userinput>slackpkg update</userinput>
       </screen>
 
       <para>
-        In this case <command>slackpkg</command> will use the packages
-        from the <filename>patches</filename> directory. In
+	Ici <command>slackpkg</command> va utiliser les paquets à partir du
+	répertoire <filename>patches</filename>. In
         slackware-current updated packages are put in the normal
         <filename>slackware</filename> package sub-directories. So, we
         can pass that as an parameter to <command>slackpkg
@@ -300,8 +297,8 @@ $ <userinput>slackpkg update</userinput>
       </screen>
 
       <para>
-	You can also upgrade individual packages by specifying the name
-        of the package to be upgraded, for example:
+	Vous pouvez aussi mettre à jour des paquets séparément en spécifiant un
+	nom de paquet à mettre à jour, par exemple :
       </para>
 
       <screen>
@@ -311,11 +308,11 @@ $ <userinput>slackpkg update</userinput>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-slackpkg-install">
-      <title>Installing packages</title>
+      <title>Installer des paquets</title>
 
       <para>
-        The <parameter class="command">install</parameter> is used to
-        install packages:
+        Le paramètre <parameter class="command">install</parameter> est utilisé
+	pour installer des paquets :
       </para>
 
       <screen>
@@ -323,27 +320,27 @@ $ <userinput>slackpkg update</userinput>
       </screen>
 
       <para>
-        Be aware that neither slackpkg, nor the Slackware Linux
-        package tools do dependency checking. If some program does not
-        work due to missing libraries, you have to add them yourself
-        with slackpkg.
+	Soyez conscient que ni slackpkg, ni les outils de gestion de paquets
+	Slackware Linux ne vérifient les dépendances. Si des programmes ne
+	fonctionnement pas à cause de librairies manquantes, vous devez les
+	ajouter vous-même avec slackpkg.
       </para>
     </sect2>
   </sect1>
 
   <sect1 xml:id="chap-pkgmgmt-rsync">
-    <title>Getting updates through rsync</title>
+    <title>Récupérer les mises à jour à travers rsync</title>
 
     <para>
-      Another popular method of keeping Slackware Linux up to date is
-      by keeping a local mirror. The ideal way of doing this is via
-      rsync.  rsync is a program that can synchronize two trees of
-      files. The advantage is that rsync only transfers the
-      differences in files, making it very fast. After syncing with a
-      mirror you can upgrade Slackware Linux with
-      <command>upgradepkg</command>, or make a new installation
-      CD. The following example synchronizes a local current tree with
-      an up-to-date tree from on a mirror:
+      Une autre méthode répandue pour garder Slackware Linux à jour est de
+      garder un site mirroir local. La façon idéale de réaliser cela est via
+      rsync.  rsync est un programme qui synchronise 2 arborescences de 
+      fichiers. L'avantage est que rsync ne transfère que les différences dans
+      les fichiers, faisant de lui un outil très rapide. Après s'être
+      synchronisé avec un site mirroir vous pouvez mettre à jour Slackware Linux
+      avec <command>upgradepkg</command>, ou faire un nouveau CD d'installation.
+      L'exemple suivant synchronise un répertoire local -current avec une
+      arborescence à jour d'un site mirroir :
     </para>
 
     <screen>
@@ -363,20 +360,22 @@ rsync://fill-in-mirror/pub/slackware/slackware-current/ \
     </screen>
 
     <para>
-      The <parameter class="command">-a</parameter> parameter implies
-      a few other options that try to make a copy that is as exact as
-      possible (in terms of preserving symlinks, permissions and
-      owners). The <parameter class="command">--delete</parameter>
-      deletes files that are not available on the mirror anymore.  It
-      is good idea to use this parameter, because otherwise your tree
-      may get bloated very quickly with older package versions.  With
-      the <parameter class="command">--exclude</parameter> parameter
-      you can specify which files or directories should be ignored.
+      Le paramètre <parameter class="command">-a</parameter> requirert quelques
+      autres options qui tentent de faire une copie aussi conforme que 
+      possible (preserver les liens symboliques, permissions et propriétaires).
+      Le paramètre <parameter class="command">--delete</parameter> supprime les
+      fichiers qui ne sont plus disponibles sur le site mirroir. Il est
+      judicieux d'utiliser ce paramètre, car autrement votre arborescense
+      pourrait très rapidement se trouver pollué avec des versions plus 
+      anciennes des paquets. Avec le paramètre
+      <parameter class="command">--exclude</parameter> vous pouvez spécifier les
+      fichier ou répertoires à ignorer.
     </para>
 
     <para>
-      After syncing the tree you can use <command>upgradepkg</command>
-      to update your Slackware Linux installation. For example:
+      Après avoir synchronisé l'arborescence vous pouvez utiliser
+      <command>upgradepkg</command> pour mettre à jour votre installation de
+      Slackware Linux. Par exemple :
     </para>
 
     <screen>
@@ -385,46 +384,45 @@ rsync://fill-in-mirror/pub/slackware/slackware-current/ \
   </sect1>
 
   <sect1 xml:id="chap-pkgmgmt-tagfiles">
-    <title>Tagfiles</title>
+    <title>Fichiers de tag</title>
 
     <sect2 xml:id="chap-pkgmgmt-tagfiles-intro">
       <title>Introduction</title>
 
       <para>
-        Tagfiles are a relatively unknown feature of Slackware
-        Linux. A tagfile is a file that can be used to instruct
-        <command>installpkg</command> what packages should be
-        installed from a collection of packages. For instance, the
-        Slackware Linux installer generates a tagfile during the
-        <emphasis>Expert</emphasis> and <emphasis>Menu</emphasis>
-        installation methods to store which packages should be
-        installed during the installation process.
+	Les fichiers de tag sont une fonctionnalité relativement méconnue de
+	Slackware Linux. Un fichier de tag est un fichier qui peut être utilisé
+	pour dire à <command>installpkg</command> les paquets à installer à
+	partir d'une liste de paquets. Par exemple, l'installeur Slackware Linux
+	génère un fichier de tag lors des méthodes d'installation
+        <emphasis>Expert</emphasis> et <emphasis>Menu</emphasis>
+	pour enregistrer les paquets à installer pendant la phase
+	d'installation.
       </para>
 
       <para>
-        The nice aspect of tagfiles is that you can easily create
-        tagfiles yourself. By writing your own tagfiles you can
-        automate the package installation, which is ideal for larger
-        client or server roll-outs (or smaller set-ups if it gives you
-        more comfort than installing packages manually). The easiest
-        way to create your own tagfiles is by starting out with the
-        tagfiles that are part of the official Slackware Linux
-        distribution. In the following sections we are going to look
-        at how this is done.
+	L'aspect intéressant des fichiers de tag est que vous pouvez facilement
+	créer des fichiers de tag par vous-même. En écrivant vos propres
+	fichiers de tag pour automatiser l'installation des paquets, ce qui est
+	idéal pour de larges déploiements sur clients ou serveurs (ou sur des
+	systèmes plus petits si vous trouvez cela plus confortable qu'installer
+	les paquets manuellement). La façon la plus aisée de créer vos propres
+	fichiers de tag est de démarrer avec les fichiers de tag faisant partie
+	de la distribution officielle Slackware Linux. Dans les sections
+	suivantes nous allons regarder comment cela se passe.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-tagfiles-creating">
-      <title>Creating tagfiles</title>
+      <title>Créer des fichiers de tags</title>
 
       <para>
-        Tagfiles are simple plain-text files. Each line consists of a
-        package name and a flag, these two elements are separated by a
-        colon and a space. The flag specifies what should be done with
-        a package. The fields are described in <xref
-        linkend="chap-pkgmgmt-tagfiles-creating-fields"/>.  Let's look
-        at a few lines from the tagfile in the <quote>a</quote> disk
-        set:
+	Les fichiers de tags sont des fichiers texte. Chaque ligne comporte un
+	nom de paquet et un flag, ces 2 éléments sont séparés par un deux-points
+	et un espace. Le flag spécifie quoi faire avec un paquet. Les champs
+	sont décrits dans <xref
+	linkend="chap-pkgmgmt-tagfiles-creating-fields"/>.  Regardons quelques
+	lignes d'un fichier de tags dans la collection <quote>a</quote> :
       </para>
 
       <screen>
@@ -437,59 +435,60 @@ bin: ADD
       </screen>
 
       <para>
-        It should be noted that you can also add comments to tagfiles
-        with the usual comment (#) character. As you can see in the
-        snippet above there are different flags. The table listed
-        below describes the four different flags.
+	Veuillez noter que vous pouvez aussi ajouter des commentaires dans à des
+	fichiers de tags avec le caractère de commentaire habituel (#). Comme
+	vous pouvez le voir dans l'extrait ci-dessus qu'il y a des flags
+	différents. Le tableau présent ci-dessous décrit les 4 flags différents.
       </para>
 
       <table xml:id="chap-pkgmgmt-tagfiles-creating-fields">
-        <title>Tagfile fields</title>
+        <title>Champs de fichier de tag</title>
         <tgroup cols="2" align="left" colsep="1" rowsep="1">
           <thead>
             <row>
               <entry>Flag</entry>
-              <entry>Meaning</entry>
+              <entry>Signification</entry>
             </row>
           </thead>
           <tbody>
             <row>
               <entry>ADD</entry>
-              <entry>A package marked by this flag will automatically
-              be installed</entry>
+              <entry>Un paquet marqué avec ce flag sera automatiquement installé
+	      </entry>
             </row>
             <row>
               <entry>SKP</entry>
-              <entry>A package marked by this flag will automatically
-              be skipped</entry>
+              <entry>Un paquet marqué avec ce flag sera automatiquement passé
+	      </entry>
             </row>
             <row>
               <entry>REC</entry>
-              <entry>Ask the user what to do, recommend installation
-              of the package.</entry>
+              <entry>Demande à l'utilisateur ce qu'il faut faire, en
+		recommandant l'installation du paquet.</entry>
             </row>
             <row>
               <entry>OPT</entry>
-              <entry>Ask the user what to do, the package will be
-              described as optional.</entry>
+              <entry>Demande à l'utilisateur ce qu'il faut faire, le paquet sera
+		décrit comme optionel.</entry>
             </row>
           </tbody>
         </tgroup>
       </table>
 
       <para>
-        As you can read from the table <command>installpkg</command>
-        will only act automatically when either
-        <emphasis>ADD</emphasis> or <emphasis>SKP</emphasis> is used.
+	Comme vous pouvez le voir dans le tableau <command>installpkg</command>
+        avec travailler automatiquement lorsque soit
+        <emphasis>ADD</emphasis> ou <emphasis>SKP</emphasis> est précisé.
       </para>
 
       <para>
-        It would be a bit tedious to write a tagfile for each
-        Slackware Linux disk set. The official Slackware Linux
-        distribution contains a tagfile in the directory for each disk
-        set. You can use these tagfiles as a start. The short script
-        listed below can be used to copy the tagfiles to the current
-        directory, preserving the disk set structure.
+	Il serait plutôt fastidieux d'écrire un fichier de tag pour chaque
+	collection Slackware Linux. La distribution officielle Slackware Linux
+	contient un fichier de tag dans le répertoire de chaque collection. Vous
+	pouvez utiliser ces fichiers de tags comme base de départ. Le petit
+	fichier de script ci-dessous peut être utilisé pour copier les fichiers
+	de tag dans le répertoire courant, préservant la structure des
+	collections.
       </para>
 
       <screen>
@@ -509,9 +508,9 @@ done
       </screen>
 
       <para>
-        After writing the script to a file you can execute it, and
-        specify a <filename>slackware/</filename> directory that
-        provides the disk sets. For example:
+	Après avoir écrit ce script dans un fichier vous pouvez l'exécuter, et
+	specifier un répertoire <filename>slackware/</filename> qui contient
+	les collections. Par exemple :
       </para>
 
       <screen>
@@ -519,9 +518,9 @@ $ <command>sh copy-tagfiles.sh /mnt/flux/slackware-current/slackware</command>
       </screen>
 
       <para>
-        After doing this the current directory will contain a
-        directory structure like this, in which you can edit the
-        individual tag files:
+	Après avoir effectué ceci le répertoire courant contiendra une structure
+	arborescente comme ceci, dans laquelle vous pouvez éditer chacun des
+	fichiers de tags :
       </para>
 
       <screen>
@@ -537,27 +536,26 @@ e/tagfile.org
       </screen>
 
       <para>
-        The files that end with <emphasis>.org</emphasis> are backups,
-        that you can use as a reference while editing
-        tagfiles. Besides that they are also used in the script that
-        is described in the next section.
+	Les fichiers se terminant par <emphasis>.org</emphasis> sont des copies
+	de sauvegarde, que vous pouvez utiliser en tant que référence lors de
+	l'édition les fichiers de tags. De plus ils sont aussi utilisés dans le
+	script décrit dans la section suivante.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-tagfiles-autogen" >
-      <title>Automatically generating tagfiles</title>
+      <title>Génération automatique des fichiers de tags</title>
 
       <para>
-        With a simple script, it is also possible to build tagfiles
-        based on the packages that are installed on the current
-        system. I owe thanks to Peter Kaagman for coming up with this
-        nifty idea!
+	Avec un script simple, il est aussi possible pour construire des
+	fichiers de tags basés sur les paquets installés sur le système courant.
+	Je dois remercier Peter Kaagman d'avoir soumis cette idée géniale !
       </para>
 
       <para>
-        First build a tagfile directory from the Slackware Linux
-        installation media, as described in the previous section. When
-        you have done that, you can create the following script:
+	D'abourd construisez un répertoire de fichier de tag à partir du média
+	d'installation Slackware Linux, comme décrit dans la section précédente.
+	Lorsque vous avez fait cela, vous pouvez créer le script suivant :
       </para>
 
       <screen>
@@ -582,10 +580,10 @@ done
       </screen>
 
       <para>
-        Suppose that you have saved it as
-        <filename>build-tagfiles.sh</filename>, you can use it by
-        specifying directory that holds the tagfiles as the first
-        argument:
+        Supposes que vous l'avez sauvegardé en tant que
+        <filename>build-tagfiles.sh</filename>, vous pouvez l'utiliser en
+	spécifiant le répertoire qui contient les fichiers de tags ent tant que
+	premier argument :
       </para>
 
       <screen>
@@ -593,20 +591,19 @@ $ <userinput>sh build-tagfiles.sh .</userinput>
       </screen>
 
       <para>
-        The script will mark packages that are installed as
-        <emphasis>ADD</emphasis>, and packages that are not installed
+	Ce script va marquer les paquets les paquets installés en tant que
+        <emphasis>ADD</emphasis>, et les paquets non installés en tant que
         as <emphasis>SKP</emphasis>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-tagfiles-using">
-      <title>Using tagfiles</title>
+      <title>Utiliser les fichiers de tag</title>
 
       <para>
-        On an installed system you can let
-        <command>installpkg</command> use a tagfile with the
-        <parameter class="command">-tagfile</parameter> parameter. For
-        example:
+	Sur un sytème installé vous pouvez donner à
+        <command>installpkg</command> un fichier de tag avec le paramètre
+        <parameter class="command">-tagfile</parameter>. Par exemple :
       </para>
 
       <screen>
@@ -615,26 +612,26 @@ $ <userinput>sh build-tagfiles.sh .</userinput>
 
       <note>
 	<para>
-	  You have to use the <parameter
-	  class="command">-infobox</parameter> option, otherwise the
-	  tagfiles will not be used.
+	  Vous devez utiliser l'option <parameter
+	  class="command">-infobox</parameter>, autrement les fichiers de tag
+	  ne seront pas pris en compte.
 	</para>
       </note>
 
       <para>
-        Of course, tagfiles would be useless if they cannot be used
-        during the installation of Slackware Linux. This is certainly
-        possible: after selecting which disk sets you want to install
-        you can choose in what way you want to select packages (the
-        dialog is named <emphasis>SELECT PROMPTING
-        MODE</emphasis>. Select <emphasis>tagpath</emphasis> from this
-        menu. You will then be asked to enter the path to the
-        directory structure with the tagfiles.  The usual way to
-        provide tagfiles to the Slackware Linux installation is to put
-        them on a floppy or another medium, and mounting this before
-        or during the installation. E.g. you can switch to the second
-        console with by pressing the &lt;ALT&gt; and &lt;F2&gt; keys,
-        and create a mount point and mount the disk with the tagfiles:
+	Bien sûr, les fichiers de tags seraient inutiles s'ils ne pouvaient pas
+	être utilisés lors de l'installation de Slackware Linux. C'est
+	bien sûr possible : après avoir sélectionné quelles collections vous
+	désirez installer vous pouvez choisir la manière de sélectionner les
+	paquets (la boîte de dialogue se nomme <emphasis>SELECT PROMPTING
+        MODE</emphasis>). Sélectionnez <emphasis>tagpath</emphasis> dans ce
+	menu. On vous demandera alors d'entrer le chemin de l'arborescence
+	contenant les fichiers de tags. La manière traditionnelle de fournir
+	les fichiers de tags à l'installation de Slackware Linux est de les
+	placer sur unde disquette ou tout autre média, et de le monter avant ou
+	pendant l'installation. E.g. vous pouvez permuter sur la seconde console
+	en pressant les touches &lt;ALT&gt; and &lt;F2&gt;, et en créant un
+	point de montage et en montant le média avec les fichiers de tags :
       </para>
 
       <screen>
@@ -643,9 +640,9 @@ $ <userinput>sh build-tagfiles.sh .</userinput>
       </screen>
 
       <para>
-        After mounting the disk you can return to the virtual console
-        on which you run <command>setup</command>, by pressing
-        &lt;ALT&gt; and &lt;F1&gt;.
+	Après avoir monté le disque vous pouvez retourner sur la console
+	virtuelle dans laquelle vous exécutez <command>setup</command>, en
+	pressant &lt;ALT&gt; et &lt;F1&gt;.
       </para>
     </sect2>
   </sect1>
