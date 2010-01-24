@@ -2,62 +2,58 @@
 
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:id="chap-init">
-  <title>System initialization</title>
+  <title>Initialisation du système</title>
 
   <para>
-    This chapter describes the initialization of Slackware
-    Linux. Along the way various configuration files that are used to
-    manipulate the initialization process are described.
+    Ce chapitre décrit l'initialisation de Slackware Linux. Plusieurs fichiers
+    de configuration seront décrits au fil de l'eau, utilisés pour manipuler
+    le processus d'initialisation.
   </para>
 
   <sect1 xml:id="chap-init-lilo">
-    <title>The bootloader</title>
+    <title>Le bootloader</title>
 
     <para>
-      Arguably the most important piece of an operating system is the
-      kernel. The kernel manages hardware resources and software
-      processes.  The kernel is started by some tiny glue between the
-      system <acronym>BIOS</acronym> (Basic Input/Output System) and
-      the kernel, called the bootloader. The bootloader handles the
-      complications that come with loading a specific (or less
-      specific) kernel.
+      La pièce sans doute la plus importante d'un système d'exploitation est le
+      noyau. Le noyau gère les ressources matérielles et les processus
+      logiciels. Le noyau est lancé par une interface fine entre le
+      <acronym>BIOS</acronym> (Basic Input/Output System - NdT : système
+      entrée/sortie basique) et le noyau, appelée le bootloader. Le bootloader
+      gère la complexité induite par un noyau spécifique (ou même moins
+      spécifique).
     </para>
 
     <para>
-      Most bootloader actually work in two stages. The first stage
-      loader loads the second stage loader, that does the real
-      work. The boot loader is divided in two stages on x86 machines,
-      because the BIOS only loads one sector (the so-called boot
-      sector) that is 512 bytes in size.
+      La plupart des bootloaders fonctionnent en fait en 2 phases. La première
+      étape du loader charge la seconde phase du loader, qui réalise le vrai
+      travail. Le bootloader est divisé en 2 phases sur les ordinateurs x86, car
+      le BIOS ne charge qu'un seul secteur (le dir secteur de boot) de
+      taille égale à 512 octets.
     </para>
 
     <para>
-      Slackware Linux uses the <acronym>LILO</acronym> (LInux LOader)
-      boot loader. This bootloader has been in development since 1992,
-      and is specifically written to load the Linux kernel. Lately
-      LILO has been replaced by the <acronym>GRUB</acronym> (GRand
-      Unified Bootloader) in most GNU/Linux distributions. GRUB is
-      available as an extra package on the Slackware Linux
-      distribution media.
+      Slackware Linux utilise le bootloader <acronym>LILO</acronym> (LInux
+      LOader - NdT : chargeur Linux). Ce bootloader est développé depuis 1992,
+      et il est écrit spécialement pour charger le kernel Linux. Récemment LILO
+      a été remplacé par <acronym>GRUB</acronym> (GRand Unified Bootloader) dans
+      la plupart des distributions GNU/Linux. GRUB est disponible en tant que
+      paquet supplémentaire sur les médias d'installation de Slackware Linux.
     </para>
 
     <sect2 xml:id="chap-init-lilo-config">
-      <title>LILO configuration</title>
+      <title>Configuration de LILO</title>
 
       <para>
-	LILO is configured through the
-	<filename>/etc/lilo.conf</filename> configuration
-	file. Slackware Linux provides an easy tool to configure
-	LILO. This configuration tool can be started with the
-	<command>liloconfig</command> command, and is described in the
-	installation chapter (<xref linkend="chap-install-installing"
-	/>).
+	LILO est configuré à travers le fichier de configuration
+	<filename>/etc/lilo.conf</filename>. Slackware Linux fournit un outil
+	simple pour configurer LILO. Cet outil de configuration peut être lancé
+	avec la commande <command>liloconfig</command>, décrit dans le chapitre
+	installation (<xref linkend="chap-install-installing"/>).
       </para>
 
       <para>
-	Manual configuration of LILO is pretty simple. The LILO
-	configuration file usually starts off with some global
-	settings:
+	La configuration manuelle de LILO est assez simple. Le fichier de
+	configuration de LILO commence par quelques réglages globaux :
       </para>
 
       <screen>
@@ -73,64 +69,63 @@ vga = normal <co xml:id="liloconf-global-4" />
       <calloutlist>
 	<callout arearefs="liloconf-global-1">
 	  <para>
-	    The <emphasis>boot</emphasis> option specifies where the
-	    LILO bootloader should be installed. If you want to use
-	    LILO as the main bootloader for starting Linux and/or
-	    other operating systems, it is a good idea to install LILO
-	    in the <acronym>MBR</acronym> (Master Boot Record) of the
-	    hard disk that you use to boot the system. LILO is
-	    installed to the MBR by omitting the partition number, for
-	    instance <filename>/dev/hda</filename> or
-	    <filename>/dev/sda</filename>.  If you want to install
-	    LILO to a specific partition, add a partition number, like
-	    <filename>/dev/sda1</filename>.  Make sure that you have
-	    another bootloader in the MBR, or that the partition is
-	    made active using <command>fdisk</command>.  Otherwise you
-	    may end up with an unbootable system.
+	    L'option <emphasis>boot</emphasis> spécifie où le bootloader LILO
+	    doit être installé. Si vous voulez utiliser LILO en tant que
+	    bootloader principal pour démarrer Linux et/ou d'autres systèmes
+	    d'exploitation, il est conseillé d'installer LILO dans le 
+	    <acronym>MBR</acronym> (Master Boot Record) du disuqe dur utilisé
+	    pour démarrer le système. LILO est installé dans le MBR en omettant
+	    le numéro de partition, par exemple <filename>/dev/hda</filename>
+	    ou <filename>/dev/sda</filename>.  Si vous voulez installer LILO
+	    sur une partition spécifique, ajoutez un numéro de partition, comme
+	    <filename>/dev/sda1</filename>.  Assurez-vous que vous avez un autre
+	    bootloader dans le MBR, ou que la partition est active en utilisant
+	    <command>fdisk</command>.  Autrement vous risquez d'obtenir un
+	    système qui ne démarre pas.
 	  </para>
 
 	  <para>
-	    Be cautious if you use partitions with a XFS filesystem!
-	    Writing LILO to an XFS partition will overwrite a part of
-	    the filesystem. If you use an XFS root
-	    (<filename>/</filename>) filesystem, create a non-XFS
-	    <filename>/boot</filename> filesystem to which you install
-	    LILO, or install LILO to the MBR.
+	    Faites attention is vous utilisez des partitions avec un système de
+	    fichiers XFS ! Ecrire LILO sur une partition XFS va écraser une
+	    partie du système de fichiers. Si vous utilisez un système de
+	    fichiers racine (<filename>/</filename>) XFS, créez un système de
+	    fichiers non XFS <filename>/boot</filename> sur lequel vous
+	    installez LILO, ou installez LILO sur le MBR.
 	  </para>
 	</callout>
 	<callout arearefs="liloconf-global-2">
 	  <para>
-	    The <emphasis>prompt</emphasis> option will set LILO to
-	    show a boot menu. From this menu you can select which
-	    kernel or operating system should be booted. If you do not
-	    have this option enabled, you can still access the
-	    bootloader menu by holding the &lt;Shift&gt; key when the
-	    bootloader is started.
+	    L'option <emphasis>prompt</emphasis> va commander à LILO d'afficher
+	    un menu de boot. A partir de ce menu vous pouvez sélectionner quel
+	    kernel ou système d'exploitation doit être démarré. Si vous n'avez
+	    pas activé cette option, vous pouvez toujours accéder au menu
+	    bootloader en maintenant appuyé la touche &lt;Shift&gt; quand le
+	    bootloader est démarré.
             </para>
 	</callout>
 	<callout arearefs="liloconf-global-3">
 	  <para>
-	    The <emphasis>timeout</emphasis> value specifies how long
-	    LILO should wait before the default kernel or OS is
-	    booted.  The time is specified in tenths of a second, so
-	    in the example above LILO will wait 5 seconds before it
-	    proceeds with the boot.
+	    La valeur <emphasis>timeout</emphasis> spécifie combien de temps
+	    LILO doit attendre avant que le kernel ou OS par défaut soit
+	    démarré. Le temps est spécifié en dixièmes de secondes, donc dans
+	    l'exemple ci-dessus LILO va attendre 5 secondes avant d'effectuer le
+	    démarrage.
 	  </para>
 	</callout>
 	<callout arearefs="liloconf-global-4">
 	  <para>
-	    You can specify which video mode the kernel should use
-	    with the <emphasis>vga</emphasis> option. When this is set
-	    to <emphasis>normal</emphasis> the kernel will use the
-	    normal 80x25 text mode.
+	    Vous pouvez spécifier le mode vidéo le noyau doit utiliser avec
+	    l'option <emphasis>vga</emphasis>. Lorsqu'elle est positionnée à
+	    <emphasis>normal</emphasis> le noyau va utiliser le mode texte
+	    normal 80x25.
 	  </para>
 	</callout>
       </calloutlist>
 
       <para>
-	The global options are followed by sections that add Linux
-	kernels or other operating systems. Most Linux kernel sections
-	look like this:
+	Les options globales sont suivies par des section ajoutant des noyaux
+	Linux ou d'autres systèmes d'exploitation. La plupart des sections
+	du noyau Linux ressemblent à ceci :
       </para>
 
       <screen>
@@ -143,45 +138,45 @@ image = /boot/vmlinuz <co xml:id="co-liloconf-kernel-1" />
       <calloutlist>
 	<callout arearefs="co-liloconf-kernel-1">
 	  <para>
-	    The <emphasis>image</emphasis> option specifies the kernel
-	    image that should be loaded for this LILO item.
+	    L'option <emphasis>image</emphasis> spécifie l'image kernel devant
+	    être chargée pour cet item LILO.
 	  </para>
 	</callout>
 	<callout arearefs="co-liloconf-kernel-2">
 	  <para>
-	    The <emphasis>root</emphasis> parameter is passed to the
-	    kernel, and will be used by the kernel as the root
-	    (<filename>/</filename>) filesystem.
+	    Le paramètre <emphasis>root</emphasis> est passé au kernel, et sera
+	    utilisé par le kernel en tant que système de fichiers 
+	    (<filename>/</filename>).
 	  </para>
 	</callout>
 	<callout arearefs="co-liloconf-kernel-3">
 	  <para>
-	    The <emphasis>label</emphasis> text is used as the label
-	    for this entry in the LILO boot menu.
+	    Le texte <emphasis>label</emphasis> est utilisé en tant que label
+	    pour cette entrée dans le menu de démarrage LILO.
 	  </para>
 	</callout>
 	<callout arearefs="co-liloconf-kernel-4">
 	  <para>
-	    <emphasis>read-only</emphasis> specifies that the root
-	    filesystem should be mounted read-only. The filesystem has
-	    to be mounted in read-only state to conduct a filesystem
-	    check.
+	    <emphasis>read-only</emphasis> spécifie que le système de fichiers
+	    racine doit être monté en lecture seule. Le système de fichiers doit
+	    être monté en lecture seule afin de permettre la vérification du
+	    système de fichiers.
 	  </para>
 	</callout>
       </calloutlist>
     </sect2>
 
     <sect2 xml:id="chap-init-lilo-installation">
-      <title>LILO installation</title>
+      <title>Installation de LILO</title>
 
       <para>
-	LILO does not read the <filename>/etc/lilo.conf</filename>
-	file during the second stage. So, you will have to write
-	changes to the second stage loader when you have changed the
-	LILO configuration. This is also necessary if you install a
-	new kernel with the same filename, since the position of the
-	kernel on the disk may have changed. Reinstalling LILO can
-	simply be done with the <command>lilo</command> command:
+	LILO ne lit pas le fichier <filename>/etc/lilo.conf</filename> lors de
+	la seconde phase. Donc, vous devrez enregistrer les modifications de la
+	seconde phase du chargement lors de la configuration de LILO.
+	Ceci est même nécessaire si vous installez un nouveau kernel avec le
+	même nom de fichier, puisque la position du kernel sur le disque peut
+	avoir changé. Réinstaller LILO se fait simplement avec la commande
+	<command>lilo</command> :
       </para>
 
       <screen>
@@ -196,22 +191,22 @@ Added Slack
     <title>init</title>
 
     <para>
-      After the kernel is loaded and started, the kernel will start
-      the <command>init</command> command. <command>init</command> is
-      the parent of all processes, and takes care of starting the
-      system initialization scripts, and spawning login consoles
-      through <command>agetty</command>. The behavior of
-      <command>init</command> is configured in
+      Après le chargement et le démarrage du noyau, celui-ci démarre la commande
+      <command>init</command>. <command>init</command> est le parent de tous les
+      processus, et veille à démarrer les scripts d'initialisation, et à créer
+      les consoles de login avec <command>agetty</command>. Le comportement de
+      <command>init</command> est configuré par
       <filename>/etc/inittab</filename>.
     </para>
 
     <para>
-      The <filename>/etc/inittab</filename> file is documented fairly
-      well. It specifies what scripts the system should run for
-      different runlevels. A runlevel is a state the system is running
-      in. For instance, runlevel 1 is single user mode, and runlevel 3
-      is multi-user mode. We will have a short look at a line from
-      <filename>/etc/inittab</filename> to see how it works:
+      Le fichier <filename>/etc/inittab</filename> est assez bien documenté. Il
+      spécifie les scripts que le système doit lancer pour chacun des niveaux
+      d'exécution. Un niveau d'exécution traduit l'état dans lequel le système
+      s'exécute. Par exemple, le niveau d'exécution 1 est le mode utilisateur
+      unique, et le niveau d'exécution 3 est le mode utilisateurs multiples.
+      Nous allons regarder rapidement les lignes de
+      <filename>/etc/inittab</filename> pour voir comment ça fonctionne :
     </para>
 
     <screen>
@@ -219,10 +214,10 @@ rc:2345:wait:/etc/rc.d/rc.M
     </screen>
 
     <para>
-      This line specifies that <command>/etc/rc.d/rc.M</command>
-      should be started when the system switches to runlevel 2, 3, 4
-      or 5.  The only line you probably ever have to touch is the
-      default runlevel:
+      Cette ligne spécifie que <command>/etc/rc.d/rc.M</command>
+      doit être démarré quand le système passe au niveau d'exécution 2, 3, 4 ou
+      5. La seule ligne que vous aurez à toucher est probablement celle du
+      niveau d'exécution :
     </para>
 
     <screen>
@@ -230,19 +225,19 @@ id:3:initdefault:
     </screen>
 
     <para>
-      In this example the default runlevel is set to
-      <emphasis>3</emphasis> (multiuser mode). You can set this to
-      another runlevel by replacing 3 with the new default
-      runlevel. Runlevel 4 can particularly be interesting on desktop
-      machines, since Slackware Linux will try to start the GDM, KDM
-      or XDM display manager (in this particular order).  These
-      display managers provide a graphical login, and are respectively
-      part of GNOME, KDE and X11.
+      Dans cet exemple le niveau d'exécution par défaut est positionné à
+      <emphasis>3</emphasis> (mode multiutilisateurs). Vous pouvez le changer
+      pour un autre niveau d'exécution en remplaçant le 3 par le nouveau niveau
+      d'exécution par défaut. Le niveau d'exécution 4 est particulièrement
+      intéressant sur des ordinateurs de bureau, puisque Slackware Linux va
+      tenter de démarrer le gestionnaire d'affichage GDM, KDM ou XDM (dans cet
+      ordre). Les gestionnaires d'affichage offrent un login graphique, et font
+      partie respectivement de GNOME, KDE et X11.
     </para>
 
     <para>
-      Another interesting section are the lines that specify what
-      command should handle a console. For instance:
+      Une autre section intéressante, les lignes spécifiant la commande pour
+      gérer une console. Par exemple :
     </para>
 
     <screen>
@@ -250,26 +245,26 @@ c1:1235:respawn:/sbin/agetty 38400 tty1 linux
     </screen>
 
     <para>
-      This line specifies that <command>agetty</command> should be
-      started on <emphasis>tty1</emphasis> (the first virtual
-      terminal) in runlevels 1, 2, 3 and 5.  The
-      <command>agetty</command> command opens the tty port, and
-      prompts for a login name. <command>agetty</command> will then
-      spawn <command>login</command> to handle the login. As you can
-      see from the entries, Slackware Linux only starts one console in
-      runlevel 6, namely <emphasis>tty6</emphasis>. One might ask what
-      happened to <emphasis>tty0</emphasis>, <emphasis>tty0</emphasis>
-      certainly exists, and represents the active console.
+      Cette ligne spécifie que <command>agetty</command> doit être démarré sur
+      <emphasis>tty1</emphasis> (le premier terminal virtuel) pour les niveaux
+      d'exécution 1, 2, 3 et 5. La commande <command>agetty</command> ouvre le
+      port tty, et affiche le prompt de saisie du login.
+      <command>agetty</command> va alors invoquer <command>login</command> pour
+      gérer le login. Comme vous pouvez le voir par ces entrées, Slackware Linux
+      ne démarre qu'une seule console, <emphasis>tty6</emphasis>. Vous vous 
+      demandez peut-être ce qu'il advient de <emphasis>tty0</emphasis>,
+      <emphasis>tty0</emphasis> existe bien sûr, et représente la console
+      active.
     </para>
 
     <para>
-      Since <emphasis>/etc/inittab</emphasis> is the right place to
-      spawn <command>agetty</command> instances to listen for logins,
-      you can also let one or more agetties listen to a serial
-      port. This is especially handy when you have one or more
-      terminals connected to a machine. You can add something like the
-      following line to start an <command>agetty</command> instance
-      that listens on COM1:
+      Puisque <emphasis>/etc/inittab</emphasis> est l'endroit pour invoquer des
+      instances de <command>agetty</command> pour demander des logins, vous
+      pouvez ajouter un ou plusieurs agettys écoutant sur le port série. C'est
+      particulièrement pratique lorsque vous avez un ou plusieurs terminaux
+      connectés à une machine. Vous pouvez ajouter quelque chose ressemblant à
+      ce qui suit pour démarrer une instance de <command>agetty</command>
+      écoutant sur le port COM1:
     </para>
 
     <screen>
@@ -278,18 +273,17 @@ s1:12345:respawn:/sbin/agetty -L ttyS0 9600 vt100
   </sect1>
 
   <sect1 xml:id="chap-init-initscripts">
-    <title>Initialization scripts</title>
+    <title>Scripts d'initialisation</title>
 
     <para>
-      As explained in the <command>init</command> (<xref
-      linkend="chap-init-init" />) section,
-      <command>init</command> starts some scripts that handle
-      different runlevels. These scripts perform jobs and change
-      settings that are necessary for a particular runlevel, but they
-      may also start other scripts. Let's look at an example from
-      <filename>/etc/rc.d/rc.M</filename>, the script that
-      <command>init</command> executes when the system switches to a
-      multi-user runlevel:
+      Comme décrit dans la section <command>init</command> (<xref
+      linkend="chap-init-init" />), <command>init</command> démarre des scripts
+      gérant les différents niveaux d'exécution. Ces scripts effectuent des
+      travaux et modifient les réglages nécessaires pour un niveau d'exécution
+      donné, mais aussi ils démarrent d'autres scripts. Examinons un exemple
+      extrait de <filename>/etc/rc.d/rc.M</filename>, le script
+      qu'<command>init</command> exécute lorsque le système bascule dans le
+      niveau d'exécution multiutilisateurs :
     </para>
 
     <programlisting>
@@ -300,21 +294,21 @@ fi
     </programlisting>
 
     <para>
-      These lines say <quote>execute <command>/etc/rc.d/rc.sendmail
-      start</command> if <filename>/etc/rc.d/rc.sendmail</filename> is
-      executable</quote>. This indicates the simplicity of the
-      Slackware Linux initialization scripts. Different functionality,
-      for instance network services, can be turned on or off, by
-      twiddling the executable flag on their initialization script.
-      If the initialization script is executable, the service will be
-      started, otherwise it will not. Setting file flags is described
-      in <xref linkend="chap-filesystem-permissions-permbits" />, but
-      we will have a look at a quick example how you can enable and
-      disable sendmail.
+      Ces lignes demandent d'<quote>exécuter <command>/etc/rc.d/rc.sendmail
+      start</command> si <filename>/etc/rc.d/rc.sendmail</filename> est
+      exécutable</quote>. Cela témoigne de la simplicité des script
+      d'initalisation de Slackware Linux. Des fonctionnalités différentes, comme
+      par exemple les services réseau, peuvent être activés ou désactivés, en
+      modifiant le flag d'exécution de leur script d'initialisation. Si le
+      script d'initialisation est exécutable, le service sera démarré, sinon il
+      ne le sera pas. Modifier les flags de fichiers est décrit dans
+      <xref linkend="chap-filesystem-permissions-permbits" />, cependant nous
+      allons voir un petit exemple sur la façon d'activer ou de désactiver
+      sendmail.
     </para>
 
     <para>
-      To start sendmail when the system initializes, execute:
+      Pour démarrer sendmail lors de l'initialisation du système, lancez :
     </para>
 
     <screen>
@@ -322,8 +316,8 @@ fi
     </screen>
 
     <para>
-      To disable starting of sendmail when the system initializes,
-      execute:
+      Pour empêcher le démarrage de sendmail lors de l'initialisation du
+      système, lancez :
     </para>
 
     <screen>
@@ -331,12 +325,11 @@ fi
     </screen>
 
     <para>
-      Most service-specific initialization scripts accept three
-      parameters to change the state of the service:
-      <emphasis>start</emphasis>, <emphasis>restart</emphasis> and
-      <emphasis>stop</emphasis>. These parameters are pretty much self
-      descriptive. For example, if you would like to restart sendmail,
-      you could execute:
+      La plupart des scripts d'initialisation spécifiques à un service acceptent
+      3 paramètres pour changer l'état du service :
+      <emphasis>start</emphasis>, <emphasis>restart</emphasis> et
+      <emphasis>stop</emphasis>. Ces paramètres sont plutôt explicites. Par
+      exemple, si vous désirez redémarrer sendmail, vous pouvez lancer :
     </para>
 
     <screen>
@@ -344,9 +337,8 @@ fi
     </screen>
 
     <para>
-      If the script is not executable, you have to tell the shell that
-      you would like to execute the file with
-      <command>sh</command>. For example:
+      Si le script n'est pas exécutable, vous devrez dire au shell que vous
+      voulez exécuter le fichier avec <command>sh</command>. Par exemple :
     </para>
 
     <screen>
@@ -355,48 +347,47 @@ fi
   </sect1>
 
   <sect1 xml:id="chap-init-udev">
-    <title>Hotplugging and device node management</title>
+    <title>Connexion à chaud (hotplugging) et gestion des points d'accès de périphérique</title>
 
     <para>
-      Slackware Linux has supported hotplugging since Slackware Linux
-      9.1.  When enabled, the kernel passes notifications about device
-      events to a userspace command. Since Slackware Linux 11.0,
-      the <command>udev</command> set of utilities handle these
-      notifications. <command>udev</command> manages the dynamic
-      <filename>/dev</filename> directory as well.
+      Slackware Linux supporte le hotplugging depuis Slackware Linux
+      9.1.  Activé, le kernel passe les notifications d'événements à propos des
+      périphériques à une commande de l'espace utilisateur. Depuis Slackware
+      Linux 11.0, la collection d'outils <command>udev</command> gère ces
+      notifications. <command>udev</command> gère aussi le répertoire dynamique
+      <filename>/dev</filename>.
     </para>
 
     <para>
-      The mode of operation of <command>udev</command> for handling
-      hotplugging of devices is fairly simple. When a device is added
-      to the system, the kernel notifies userspace hotplug event
-      listeners. <command>udev</command> will receive the notification
-      of the device being added, and looks whether there are any
-      module mappings for the device. If there are, the appropriate
-      device driver module for the device is automatically
-      loaded. <command>udev</command> will remove the module when it
-      is notified of a device removal, and no devices use the loaded
-      module anymore.
+      Le mode opératoire de <command>udev</command> pour la gestion du
+      hotplugging des périphériques est plutôt simple. Lorsqu'un périphérique
+      est ajouté au système, le kernel notifie les clients des événements
+      hotplug du monde utilisateur. <command>udev</command> reçoit la
+      notification d'ajout du périphérique, et regarde s'il y a une
+      correspondance avec un module pour ce périphérique. Si c'est le cas, le
+      module pilote de périphérique pour celui-ci est chargé automatiquement.
+      <command>udev</command> enlèvera le module lorsqu'il sera notifié du
+      retrait du périphérique, et que plus aucun périphérique n'utilise le
+      module chargé.
     </para>
 
     <para>
-      The udev subsystem is initialized in
-      <filename>/etc/rc.d/rc.S</filename> by executing
-      <command>/etc/rc.d/rc.udev start</command>. As with most
-      functionality, you can enable or disable udev by twiddling the
-      executable flag of the <filename>/etc/rc.d/rc.udev</filename>
-      script (see <xref linkend="chap-init-initscripts" />).
+      Le sous-système udev est initialisé dans
+      <filename>/etc/rc.d/rc.S</filename> par l'exécution de
+      <command>/etc/rc.d/rc.udev start</command>. Comme pour la plupart des
+      fonctionnalités, vous pouvez activer ou désactiver udev en changeant le
+      flag d'exécution du script <filename>/etc/rc.d/rc.udev</filename> (voir
+      <xref linkend="chap-init-initscripts" />).
     </para>
 
     <para>
-      If udev automatically loads modules that you do not want to
-      load, you can add a <emphasis>blacklist</emphasis> in your
-      <command>modprobe</command> configuration in
-      <filename>/etc/modprobe.d/blacklist</filename>. For example, if
-      you would like to prevent loading of the
-      <emphasis>8139cp</emphasis> module, you can add the following
-      line (actually, this module is already blacklisted in Slackware
-      Linux):
+      Si udev charge automatiquement des modules que vous ne voulez pas, vous
+      pouvez ajouter une <emphasis>blacklist</emphasis> à votre configuration
+      <command>modprobe</command> dans
+      <filename>/etc/modprobe.d/blacklist</filename>. Par exemple, si vous
+      voulez empêcher le chargement du module <emphasis>8139cp</emphasis>, vous
+      pouvezz ajouter la ligne suivante (en fait, ce module est déjà blacklisté
+      dans Slackware Linux):
     </para>
 
     <screen>
@@ -405,28 +396,31 @@ blacklist 8139cp
   </sect1>
 
   <sect1 xml:id="chap-init-firmware">
-    <title>Device firmware</title>
+    <title>Firmware de périphérique</title>
 
     <sect2 xml:id="chap-init-firmware-introduction">
       <title>Introduction</title>
 
       <para>
-	Some hardware requires the system to upload firmware. Firmware
-	is a piece of software that is used to control the hardware.
-	Traditionally, the firmware was stored permanently in ROM
-	(read-only memory) or non-volatile media like flash memory.
-	However, many new devices use volatile memory to store
-	firmware, meaning that the firmware needs to be reloaded to
-	the device memory when the system is restarted.
+	Certains composants matériels requièrent le téléchargement d'un
+	firmware. Un firmware est un morceau de logicielutilisé pour contrôler
+	le matériel. En principe, le firmware est enregistré de façon permanente
+	dans un média ROM (mémoire à lecture seule - NdT : read-only memory) ou
+	non-volatile comme une mémoire flash.
+	Cependant, beaucoup de périphériques récents utilisent de la mémoire
+	volatile pour enregistrer leur firmware, ce qui signifie que le firmware
+	doit être rechargé dans la mémoire du périphérique lorsque le système
+	est redémarré.
       </para>
 
       <para>
-	Drivers for devices that require firmware have a table of the
-	firmware files that it needs. For each firmware file that the
-	driver needs, it will issue a firmware addition event. If udev
-	handles hotplugging events, it will try to handle that event.
-	The udev rules contain an entry for firmware addition events
-	in <filename>/etc/udev/rules.d/50-udev.rules</filename>:
+	Les pilotes pour les périphériques ayant besoin d'un firmware possèdent
+	une table des fichiers firmware requis. Pour chaque fichier firmware
+	requis par le pilote, il va générer un événement d'ajout de firmware. Si
+	udev gère les événement hotplug, il va tenter de gérer cet événement.
+	Les règles udev contiennent une entrée pour les événement d'ajout de
+	firmware dans
+	<filename>/etc/udev/rules.d/50-udev.rules</filename> :
       </para>
 
       <programlisting>
@@ -435,30 +429,28 @@ SUBSYSTEM=="firmware", ACTION=="add", RUN+="/lib/udev/firmware.sh"
       </programlisting>
 
       <para>
-	This means that upon firmware addition events, the
-	<filename>/lib/udev/firmware.sh</filename> script should be
-	executed. This script searches the
-	<filename>/lib/firmware</filename> and
-	<filename>/usr/local/lib/firmware</filename> directories for
-	the requested firmware. If the firmware file exists, it will
-	be loaded by copying the contents of the file to a special
-	sysfs node.
+	Cela signifie que sur événement d'ajout de firmware, le script
+	<filename>/lib/udev/firmware.sh</filename> doit être exécuté. Ce script
+	cherche dans les répertoires <filename>/lib/firmware</filename> et
+	<filename>/usr/local/lib/firmware</filename> le firmware demandé. Si le
+	fichier firmware existe, il sera chargé en le copiant son contenu dans
+	un point d'accès spécial de sysfs.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-init-firmware-adding">
-      <title>Adding firmware</title>
+      <title>Ajouter un firmware</title>
 
       <para>
-	As described in the previous section, some hardware requires
-	firmware to be uploaded to hardware by the operating system.
-	If this is the case, and no firmware is installed, the kernel
-	will emit an error message when the driver for that hardware
-	is loaded. You can see the kernel output with the
-	<command>dmesg</command> command or in the
-	<filename>/var/log/messages</filename> log file. Such error
-	message explicitly says that the firmware could not be loaded,
-	for example:
+	Comme décrit dans la section précédente, certains composants matériels
+	demandent le téléchargement d'un firmware au système d'exploitation.
+	Si tel est le cas, et qu'aucun firmware n'est installé, le kernel va
+	émettre un message d'erreur lorsque le pilote de ce matériel est chargé.
+	Vous pouvez voir la sortie du kernel output avec la commande
+	<command>dmesg</command> ou dans le fichier de log
+	<filename>/var/log/messages</filename>. Un tel message d'erreur dit
+	explicitement que le firmware n'a pas pu être chargé, comme par
+	exemple :
       </para>
 
       <screen>
@@ -467,19 +459,19 @@ ipw2100: eth1: ipw2100_get_firmware failed: -2
       </screen>
 
       <para>
-	In this case you will have to find the firmware for your
-	device. This can usually be found by searching the web for the
-	chipset or driver for the device (in this case
-	<emphasis>ipw2100</emphasis>) and the literal term
-	<quote>firmware</quote>. The firmware archive often contains a
-	file with installation instructions. Usually you can just copy
-	the firmware files to <filename>/lib/firmware</filename>.
+	Dans ce cas, vous devrez chercher le firmware pour votre périphérique.
+	Habituellement il suffit de chercher sur le web le chipset ou le pilote
+	(ici <emphasis>ipw2100</emphasis>) avec le terme litéral
+	<quote>firmware</quote>. L'archive du firmware contient souvent un
+	fichier avec les instructions d'installation. En principe vous pouvez
+	juste copier les fichiers du firmware dans
+	<filename>/lib/firmware</filename>.
       </para>
 
       <para>
-	After installing the firmware, you can reload the driver with
-	<command>rmmod</command> and <command>modprobe</command>, or
-	by restarting the system.
+	Après avoir installé le firmware, vous pouvez recharger le pilote avec
+	<command>rmmod</command> et <command>modprobe</command>, ou en
+	redémarrant le système.
       </para>
     </sect2>
   </sect1>

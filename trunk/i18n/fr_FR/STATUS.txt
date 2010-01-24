@@ -21,7 +21,7 @@ lignes fichier                  trad     1a-rev  2a-rev
    526 netconfig.xml            TODO        -       -
    630 ipsec.xml                TODO        -       -
    652 chap-pkgmgmt.xml         OK       TODO       -
-   690 chap-init.xml            TODO        -       -
+   690 chap-init.xml            OK       TODO       -
    757 custom-installation.xml  OK       TODO       -
    780 chap-procmgmt.xml        OK       TODO       -
    850 chap-install.xml         OK       TODO       -
