@@ -1,69 +1,72 @@
 <!-- $Id: security.xml 283 2007-09-18 20:14:31Z danieldk $ -->
 
 <chapter> <?dbhtml filename="security.html"?>
-<title>Security</title>
+<title>Sécurité</title>
 
 <sect1>
 <title>Introduction</title>
 
 <para>
-With the increasing usage of the Internet and wireless networks security
-is getting more important every day. It is impossible to cover this subject
-in a single chapter of an introduction to GNU/Linux. This chapter covers
-some basic security techniques that provide a good start for desktop
-and server security.
+Avec l'utilisation croissante d'Internet et des réseaux sans fil, la sécurité
+devient de plus en plus importante au fil du temps. Il est impossible de couvrir
+ce sujet en un seul chapitre d'introduction à GNU/Linux. Ce chapitre couvre
+quelques techniques de sécurité de base fournissant un bon début pour la
+sécurité d'un ordinateur de bureau ou un serveur.
 </para>
 
 <para>
-Before we go on to specific subjects, it is a good idea to make some remarks
-about passwords. Computer authorization largely relies on passwords. Be
-sure to use good passwords in all situations. Avoid using words, names,
-birth dates and short passwords. These passwords can easily be cracked
-with dictionary attacks or brute force attacks against hosts or password
-hashes. Use long passwords, ideally eight characters or longer, consisting
-of random letters (including capitals) and numbers.
+Avant d'entrer dans des sujets plus spécifiques, il est judicieux d'émettre
+quelques remarques au sujet des mots de passe. L'autorisation d'accès à
+un ordinateur repose essentiellement sur les mots de passe. Assurez-vous
+d'utiliser de bons mots de passe en toutes situations. Evitez d'utiliser des
+mots, noms, année de naissance, et mots de passe courts. Ces mots de passe
+peuvent aisément être cassés à l'aide d'attaques par dictionnaire ou d'attaques
+par force brute contre les hôtes ou les tables de mots de passe. Utilisez des
+mots de passe longs, 8 caractères ou plus idéalement, composé de lettre
+aléatoires (majuscules inclues) et de nombres.
 </para>
 </sect1>
 
 <sect1>
-<title>Closing services</title>
+<title>Fermer des services</title>
 
 <sect2>
 <title>Introduction</title>
 
 <para>
-Many GNU/Linux run some services that are open to a local network or the
-Internet. Other hosts can connect to these services by connecting to specific
-ports. For example, port 80 is used for WWW traffic. The
-<filename>/etc/services</filename> file contains a table with all commonly
-used services, and the port numbers that are used for these services.
+Beaucoup de systèmes GNU/Linux exécutent des services ouverts au réseau local ou
+à l'Internet. D'autres hôtes peuvent accéder à ces services en se connectant à
+des ports spécifiques. Par exemple, le port 80 est utilisé pour le trafic WWW.
+Le fichier <filename>/etc/services</filename> contient un tableau avec
+les services les plus utilisés, et les numéros de ports employés pour ces
+services.
 </para>
 
 <para>
-A secure system should only run the services that are necessary. So, suppose
-that a host is acting as a web server, it should not have ports open (thus
-servicing) FTP or SMTP. With more open ports security risks increase very
-fast, because there is a bigger chance that the software servicing a port
-has a vulnerability, or is badly configured. The following few sections
-will help you tracking down which ports are open, and closing them.
+Un système sécurisé doit exécuter les services nécessaires. Donc, supposez qu'un
+hôte joue le rôle de serveur web, il de devrait pas avoir (et donc servir) les
+ports FTP ou SMTP. Les riques de sécurité augmentent d'autant plus qu'il y a de
+ports ouverts, car il y a plus de chances qu'un logiciel servant un port donné
+contienne une vulnérabilité, ou qu'il soit mal configuré. Les sections suivantes
+vous aideront à traquer les ports ouverts, et à les fermer.
 </para>
 </sect2>
 
 <sect2>
-<title>Finding open ports</title>
+<title>Trouver les ports ouverts</title>
 
 <para>
-Open ports can be found using a port scanner. Probably the most famous 
-port scanner for GNU/Linux is <command>nmap</command>. <command>nmap</command>
-is available through the <quote>n</quote> disk set. 
+Les ports ouverts peuvent être repérés grâce à un scanner de ports. Probablement
+le plus célèbre scanner de ports pour GNU/Linux est <command>nmap</command>.
+<command>nmap</command> est disponible dans la collection <quote>n</quote>. 
 </para>
 
 <para>
-The basic <command>nmap</command> syntax is: <command>nmap host</command>. The
-<emphasis>host</emphasis> parameter can either be a hostname or IP address.
-Suppose that we would like to scan the host that <command>nmap</command>
-is installed on. In this case we could specify the 
-<emphasis>localhost</emphasis> IP address, <emphasis>127.0.0.1</emphasis>:
+La syntaxe de base de <command>nmap</command> est :
+<command>nmap hôte</command>. Le paramêtre <emphasis>hôte</emphasis> peut aussi
+bien être un nom d'hôte qu'une adresse IP. Supposez que vous voulez scanner
+l'hôte sur lequel <command>nmap</command> est installé. Dans ce cas vous pouvez
+spécifier l'adresse IP de <emphasis>localhost</emphasis>, <emphasis>127.0.0.1</emphasis> :
 </para>
 
 <screen>
@@ -83,8 +86,8 @@ Nmap run completed -- 1 IP address (1 host up) scanned in 0 seconds
 </screen>
 
 <para>
-In this example you can see that the host has five open ports that are
-being serviced; ftp, ssh, telnet, http and X11.
+Dans cet exemple vous pouvez voir que l'hôte a 5 ports servis ouverts ; ftp,
+ssh, telnet, http et X11.
 </para>
 </sect2>
 
@@ -92,22 +95,19 @@ being serviced; ftp, ssh, telnet, http and X11.
 <title>inetd</title>
 
 <para>
-There are two ways to offer TCP/IP services: by running server
-applications  stand-alone as a daemon or by using the internet super
-server, <command>inetd</command>. inetd  is a daemon which monitors
-a range of ports. If a client attempts to connect  to a port inetd
-handles the connection and forwards the connection to the  server
-software which handles that kind of connection. The advantage of this
-approach is that it adds an extra layer of security and it makes it
-easier to  log incoming connections. The disadvantage is that it is
-somewhat slower than  using a stand-alone daemon. It is thus a good
-idea to run a stand-alone daemon on, for example, a heavily loaded FTP
-server.
+Il y a 2 façons d'offrir des services TCP/IP : en lançant les applications serveur en tant que démons autonomes ou en utilisant le super serveur Internet,
+<command>inetd</command>. inetd est un démon surveillant un éventail de ports.
+Si un client tente de se connecter à un port écouté par inetd, celui-ci
+transfère la connexion au logiciel serveur qui gère ce genre de connexion.
+L'avantage de cette approche est l'ajout d'une couche supplémentaire de sécurité
+et la facilité de log des connexions entrantes. L'inconvénient est que cela
+peut ralentir par rapport à l'utilisation d'un démon autonome. Il est donc
+conseillé de lancer un démon autonome, par exemple, un serveur FTP très chargé.
 </para>
 
 <para>
-You can check whether <command>inetd</command> is running on a host or
-not with <command>ps</command>, for example:
+Vous pouvez vérifier si <command>inetd</command> s'exécute ou non avec
+<command>ps</command>, par exemple :
 </para>
 
 <screen>
@@ -116,10 +116,10 @@ $ <command>ps ax | grep inetd</command>
 </screen>
 
 <para>
-In this example inetd is running with PID (process ID) 2845. 
-<command>inetd</command> can be configured using the
-<filename>/etc/inetd.conf</filename> file. Let's have a look at an example 
-line from inetd.conf:
+Dans cet exemple inetd s'exécute avec le PID (ID processus) 2845. 
+<command>inetd</command> peut être configuré par le fichier
+<filename>/etc/inetd.conf</filename>. Jetons un oeil à une ligne d'exemple de
+inetd.conf :
 </para>
 
 <screen>
@@ -128,22 +128,23 @@ ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
 </screen>
 
 <para>
-This line specifies that inetd should accept FTP connections and pass them to 
-<command>tcpd</command>. This may seem a bit odd, because 
-<command>proftpd</command> normally handles FTP connections. You can also 
-specify to use proftpd directly in <filename>inetd.conf</filename>, but 
-it is a good idea to give the connection to <command>tcpd</command>. This 
-program passes the connection to <command>proftpd</command> in turn, as 
-specified. <command>tcpd</command> is used to monitor services and to provide 
-host based access control. 
+Cette ligne spécifie que inetd doit accepter les connexions FTP et les passer
+à <command>tcpd</command>. Cela peut sembler un peu étrange, car c'est
+<command>proftpd</command> qui gère en principe les connexions FTP. Vous pouvez
+dire aussi d'utiliser proftpd directement dans <filename>inetd.conf</filename>,
+mais il est conseillé de laisser la connexion à <command>tcpd</command>. Ce
+programme passe la connexion à <command>proftpd</command> à son tour, comme
+spécifié. <command>tcpd</command> est utilisé pour surveiller les services et
+pour fournir un contrôle d'accès à l'hôte.
 </para>
 
 <para>
-Services can be disabled by adding the comment character (#) at the beginning 
-of the line. It is a good idea to disable all services and enable services you 
-need one at a time. After changing <filename>/etc/inetd.conf</filename> 
-<command>inetd</command> needs to be restarted to activate the changes. This 
-can be done by sending the HUP signal to the inetd process:
+Les services peuvent être désactivés en ajoutant un caractère de commentaire (#)
+au début de la ligne. Il est conseillé de désactiver tous les services et
+d'activer les services dont vous avez besoin un par un. Après avoir changé
+<filename>/etc/inetd.conf</filename> <command>inetd</command> doit être
+redémarré pour prendre en compte les modifications. Cela se fait en envoyant le
+signal HUP au processus inetd :
 </para>
 
 <screen>
@@ -153,9 +154,9 @@ can be done by sending the HUP signal to the inetd process:
 </screen>
 
 <para>
-If you do not need <command>inetd</command> at all, it is a good idea to
-remove it. If you want to keep it installed, but do not want Slackware Linux
-to load it at the booting process, execute the following command as root:
+Si vous n'avez pas du tout besoin d'<command>inetd</command>, il est judicieux
+de l'enlever. Si vous voulez le garder installé, mais sans vouloir que Slackware Linux ne le lance durant le processus de démarrage, exécutez la commande
+suivante en tant que root :
 </para>
 
 <screen>
