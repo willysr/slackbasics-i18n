@@ -46,7 +46,7 @@
 	  are many unofficial patches for the Linux kernel. Generally
 	  speaking it is a good idea to avoid unofficial patches. But
 	  some third party software, like <ulink
-	  url="http://www.netraverse.com">Win4Lin</ulink>, require
+	  url="http://www.win4lin.com">Win4Lin</ulink>, require
 	  that you install an additional kernel patch.
 	</para>
       </listitem>
@@ -62,7 +62,7 @@
       This chapter focuses on the default kernel series used in
       Slackware Linux 12.0, Linux 2.6. Compiling a kernel is not
       really difficult, just keep around a backup kernel that you can
-      use when something goes wrong. Linux compilation involves these
+      use when something goes wrong. The Linux kernel compilation involves these
       steps:
     </para>
 

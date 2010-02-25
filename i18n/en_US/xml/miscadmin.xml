@@ -286,7 +286,7 @@ procs -----------memory---------- ---swap-- -----io---- --system-- ----cpu----
         </listitem>
         <listitem>
           <para>
-            <emphasis>si</emphasis>: The amount of memory that is
+            <emphasis>so</emphasis>: The amount of memory that is
             swapped to disk per second.
           </para>
         </listitem>

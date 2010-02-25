@@ -280,7 +280,7 @@ Allow From 192.168.1.203
       Ghostscript by using the
       <parameter class="command">-sPAPERSIZE=size</parameter> parameter
       of the <command>gs</command> command. For example, you could
-      use add <emphasis>-sPAPERSIZE=a4</emphasis> parameter when you
+      add the <emphasis>-sPAPERSIZE=a4</emphasis> parameter when you
       start <command>gs</command> to use A4 as the paper size for an
       invocation of Ghostscript.
     </para>

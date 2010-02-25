@@ -138,7 +138,7 @@ fec0:ffff:a300:2312:0:0:0:1
 
 <para>
 A block of zeroes can be replaced by two colons (<quote>::</quote>). Thus,
-thee address above can be written as:
+the address above can be written as:
 </para>
 
 <screen>
