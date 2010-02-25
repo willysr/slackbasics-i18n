@@ -2,11 +2,11 @@ lignes fichier                  trad     1a-rev  2a-rev
 ------+------------------------+--------+-------+-------
     39 preface.xml              OK       TODO       -
     87 chap-book.xml            OK       TODO       -
-   117 bind.xml                 TODO        -       -
+   117 bind.xml                 OK       TODO       -
    125 chap-x11.xml             OK       TODO       -
    143 slackware-basics.xml     OK       TODO       -
    144 inetd.xml                OK       TODO       -
-   156 apache.xml               TODO        -       -
+   156 apache.xml               OK       TODO       -
    167 security.xml             OK       TODO       -
    219 chap-help.xml            OK       TODO       -
    248 sendmail.xml             OK       TODO       -
