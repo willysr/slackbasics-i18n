@@ -7,10 +7,10 @@
 <title>Introduction</title>
 
 <para>
-Apache is the most popular web server since April 1996. It was originally
-based on NCSA httpd, and has grown into a full-featured HTTP server.
-Slackware Linux currently uses the 1.3.x branch of Apache. This chapter is 
-based on Apache 1.3.x. 
+Apache est le serveur web le plus populaire depuis Avril 1996. Il était basé à
+l'origine sur NCSA httpd, et a grandi pour devenir un serveur HTTP complet.
+Slackware Linux utilise actuellement la branche 1.3.x d'Apache. Ce chapitre est
+basé sur Apache 1.3.x. 
 </para>
 
 </sect1>
@@ -19,15 +19,15 @@ based on Apache 1.3.x.
 <title>Installation</title>
 
 <para>
-Apache can be installed by
-adding the <filename>apache</filename> package from the <quote>n</quote> disk set.
-If you also want to use PHP, the <filename>php</filename> (<quote>n</quote> disk set)
-and <filename>mysql</filename> (<quote>ap</quote> disk set) are also required.
-MySQL is required, because the precompiled PHP depends on MySQL shared 
-libraries. You do not have to run MySQL itself. After installing Apache
-it can be started automatically while booting the system by making
-the <filename>/etc/rc.d/rc.httpd</filename> file executable. You
-can do this by executing: 
+Apache peut être installé en ajoutant le paquet <filename>apache</filename>
+de la collection <quote>n</quote>. Si vous voulez aussi utiliser PHP,
+<filename>php</filename> (collection <quote>n</quote>) et
+<filename>mysql</filename> (collection <quote>ap</quote>) sont également requis.
+MySQL est requis, car la version précompilée de PHP dépend des librairies
+partagées MySQL. Vous n'avez pas à exécuter MySQL en lui-même. Après avoir
+installé Apache il peut être démarré automatiquement au démarrage du système en
+rendant le fichier <filename>/etc/rc.d/rc.httpd</filename> exécutable. Vous
+pouvez faire cela en exécutant : 
 </para>
 
 <screen>
@@ -35,13 +35,14 @@ can do this by executing:
 </screen> 
 
 <para>
-The Apache configuration can be altered in the 
-<filename>/etc/apache/httpd.conf</filename> file. Apache can be
-stopped/started/restarted every moment with the <command>apachectl</command>
-command, and the <parameter class="command">stop</parameter>, 
-<parameter class="command">start</parameter> and 
-<parameter class="command">restart</parameter> parameters. For example,
-execute the following command to restart Apache:
+La configuration Apache peut être modifiée via le fichier
+<filename>/etc/apache/httpd.conf</filename>. Apache peut être
+stoppé/démarré/redémarré à tout moment avec la commande
+<command>apachectl</command>, et avec les paramètres
+<parameter class="command">stop</parameter>, 
+<parameter class="command">start</parameter> et 
+<parameter class="command">restart</parameter>. Par exemple, executez la
+commande suivante pour redémarrer Apache :
 </para>
 
 <screen>
@@ -52,15 +53,15 @@ execute the following command to restart Apache:
 </sect1>
 
 <sect1>
-<title>User directories</title>
+<title>Répertoires utilisateur</title>
 
 <para>
-Apache provides support for so-call user directories. This means every
-user gets web space in the form of <emphasis>http://host/~user/</emphasis>. The
-contents of <quote>~user/</quote> is stored in a subdirectory in the
-home directory of the user. This directory can be specified using the
-<quote>UserDir</quote> option in <filename>httpd.conf</filename>, for
-example:
+Apache supporte ce que l'on appelle les répertoires web utilisateur. Cela
+signifie que chaque utilisateur obtient un espace web sous la forme
+<emphasis>http://host/~user/</emphasis>. Le contenu de <quote>~user/</quote> est
+stocké dans un sous-répertoire du répertoire personnel de l'utilisateur. Ce
+répertoire peut être spécifié en utilisant l'option <quote>UserDir</quote> dans
+<filename>httpd.conf</filename>, par exemple :
 </para>
 
 <screen>
@@ -68,36 +69,35 @@ UserDir public_html
 </screen>
 
 <para>
-This specifies that the <filename>public_html</filename> directory should
-be used for storing the web pages. For example, the web pages at URL 
-<emphasis>http://host/~snail/</emphasis> are stored in 
+Cela spécifie que le répertoire <filename>public_html</filename> doit être
+utilisé pour stocker les pages web. Par exemple, les pages web à l'URL 
+<emphasis>http://host/~snail/</emphasis> sont stockée dans
 <filename>/home/snail/public_html</filename>.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Virtual hosts</title>
+<title>Hôtes virtuels</title>
 
 <para>
-The default documentroot for Apache under Slackware Linux is
-<filename>/var/www/htdocs</filename>. Without using virtual hosts
-every client connecting to the Apache server will receive the
-website in this directory. So, if we have two hostnames pointing
-to the server, <quote>www.example.org</quote> and 
-<quote>forum.example.org</quote>, both will display the same website.
-You can make separate sites for different hostnames by using
-virtual hosts.
+Le documentroot par défaut pour Apache sous Slackware Linux est
+<filename>/var/www/htdocs</filename>. Sans utiliser les hôtes virtuels tout
+client se connectant au serveur Apache recevra le site web de ce répertoire.
+Dans, si nous avons 2 noms d'hôte pointant vers le serveur,
+<quote>www.example.org</quote> et <quote>forum.example.org</quote>, les 2 vont
+afficher le même site web. Vous pouvez réaliser des sites webs séparés pour
+différents noms d'hôtes en utilisant les hôtes virtuels.
 </para>
 
 <para>
-In this example we are going to look how you can make two virtual
-hosts, one for <quote>www.example.org</quote>, with the documentroot
-<filename>/var/www/htdocs-www</filename>, and <quote>forum.example.org</quote>,
-with the documentroot <filename>/var/www/htdocs-forum</filename>. First
-of all we have to specify which IP addresses Apache should listen to.
-Somewhere in the <filename>/etc/apache/httpd.conf</filename> configuration
-file you will find the following line:
+Dans cet exemple nous allons voir comment vous pouvez mettre en place 2 hôtes
+virtuels, un pour <quote>www.example.org</quote>, avec le documentroot
+<filename>/var/www/htdocs-www</filename>, et <quote>forum.example.org</quote>,
+avec le documentroot <filename>/var/www/htdocs-forum</filename>. Tout d'abord
+vous devons spécifier quelles adresses IP Apache doit écouter. Quelque part dans
+le fichier de configuration <filename>/etc/apache/httpd.conf</filename> vous
+allez trouver la ligne suivante :
 </para>
 
 <screen>
@@ -105,13 +105,13 @@ file you will find the following line:
 </screen>
 
 <para>
-This line has to be commented out to use name-based virtual hosts.
-Remove the comment character
-(#) and change the parameter to <quote>BindAddress IP:port</quote>, or
-<quote>BindAddress *:port</quote> if you want Apache to bind to all IP addresses
-the host has. Suppose we want to provide virtual hosts for IP address 
-192.168.1.201 port 80 (the default Apache port),
-we would change the line to:
+Cette ligne doit être décommentée pour utiliser les hôtes virtuels basés sur le
+nom. Supprimez  the caractère de commentaire (#) et changez le paramètre en
+<quote>BindAddress IP:port</quote>, ou <quote>BindAddress *:port</quote> si vous
+voulez que Apache s'associe à toutes les adresses IP que possède l'hôte.
+Supposez que vous voulez fournir des hôtes virtuels pour les adresses IP 
+192.168.1.201 port 80 (le port par défaut d'Apache), vous devez changer la ligne
+en :
 </para>
 
 <screen>
@@ -119,8 +119,8 @@ NameVirtualHost 192.168.1.201:80
 </screen>
 
 <para>
-Somewhere below the NameVirtualHost line you can find a commented example
-of a virtualhost:
+Quelque par en-dessous la ligne NameVirtualHost, vous trouverez un exemple
+commenté d'un hôte virtuel :
 </para>
 
 <screen>
@@ -134,9 +134,10 @@ of a virtualhost:
 </screen>
 
 <para>
-You can use this example as a guideline. For example, if we want to use
-all the default values, and we want to write the logs for both virtual
-hosts to the default Apache logs, we would add these lines:
+Vous pouvez utiliser cet exemple comme référence. Par exemple, si vous voulez
+utiliser toutes les valeurs par défaut, et que vous voulez écrire les logs pour
+les 2 hôtes virtuels dans les logs par défaut d'Apache, vous devriez ajouter ces
+lignes :
 </para>
 
 <screen>

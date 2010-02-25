@@ -7,64 +7,67 @@
 <title>Introduction</title>
 
 <para>
-The domain name system (<acronym>DNS</acronym>) is used to convert
-human-friendly host names (for example www.slackware.com) to IP
-addresses. <acronym>BIND</acronym> (Berkeley Internet Name Domain) is
-the most widely used DNS daemon, and will be covered in this chapter.
+Le Domain Name System (<acronym>DNS</acronym> - NdT : système de nom de domaine)
+est utilisé pour convertir les noms d'hôte littéraux (par exemple
+www.slackware.com) en adresses IP. <acronym>BIND</acronym> (Berkeley Internet Name Domain) est le démon DNS le plus utilisé, et c'est celui-ci sur lequel sera
+basé ce chapitre.
 </para>
 
 <sect2>
-<title>Delegation</title>
+<title>Délégation</title>
 
 <para>
-One of the main features is that DNS requests can be delegated. For example,
-suppose that you own the <quote>linuxcorp.com</quote> domain. You can provide
-the authorized nameservers for this domain, you nameservers are authoritative
-for the <quote>linuxcorp.com</quote>. Suppose that there are different
-branches within your company, and you want to give each branch authority
-over their own zone, that is no problem with DNS. You can delegate DNS
-for e.g. <quote>sales.linuxcorp.com</quote> to another nameserver within
-the DNS configuration for the <quote>linuxcorp.com</quote> zone.
+Une des fonctionnalités principales est la délégation des requêtes DNS. Par
+exemple, supposez que vous possédiez le domaine <quote>linuxcorp.com</quote>.
+Vous pouvez fournir les serveurs de noms autorisés pour ce domaine, vos
+serveurs de noms ont autorité sur <quote>linuxcorp.com</quote>. Supposez qu'il
+y a des branches differentes à l'intérieur de votre entreprise, et que vous
+voulez donner à chaque branche l'authorité sur leur propre zone, ce n'est pas un
+problème avec DNS. Vous pouvez déleguer DNS, par exemple
+<quote>sales.linuxcorp.com</quote> à un autre serveur de noms dans la
+configuration de DNS pour la zone <quote>linuxcorp.com</quote>.
 </para>
 
 <para>
-The DNS system has so-called root servers, which delegate the DNS for
-millions of domain names and extensions (for example, country specific
-extensions, like <quote>.nl</quote> or <quote>.uk</quote>) to authorized
-DNS servers. This system allows a branched tree of delegation, which is
-very flexible, and distributes DNS traffic.
+Le système DNS a ce qu'on appelle des serveurs racine, qui délèguent le DNS pour
+des millions de noms de domaine et extensions (par exemple, les extensions
+spécifiques aux pays, comme <quote>.nl</quote> ou <quote>.uk</quote>) à des
+serveurs DNS autorisés. Ce système permet une ramification des délégations,
+ce qui est très flexible, et ça distribue le trafic DNS.
 </para>
 
 </sect2>
 
 <sect2>
-<title>DNS records types</title>
+<title>Types d'enregistrements DNS</title>
 
 <para>
-The following types are common DNS record types:
+Le types suivants sont les types d'enregistrements DNS les plus communs :
 </para>
 
 <table>
-<title>DNS records</title>
+<title>Enregistrements DNS</title>
 <tgroup cols="2">
 <thead>
 <row>
-<entry>Prefix</entry><entry>Description</entry>
+<entry>Préfixe</entry><entry>Description</entry>
 </row>
 </thead>
 <tbody>
 <row>
-<entry>A</entry><entry>An A record points to an IPv4 IP address.</entry>
+<entry>A</entry><entry>Un enregistrement A pointe vers une adresse IP IPv4.</entry>
 </row>
 <row>
-<entry>AAAA</entry><entry>An AAAA record points to an IPv6 IP address.</entry>
+<entry>AAAA</entry><entry>Un enregistrement AAAA pointe vers une adresse IP
+IPv6.</entry>
 </row>
 <row>
-<entry>CNAME</entry><entry>A CNAME record points to another DNS entry.</entry>
+<entry>CNAME</entry><entry>Un enregistrement CNAME pointe vers une autre
+entrée DNS.</entry>
 </row>
 <row>
-<entry>MX</entry><entry>A MX record specifies which should handle mail for 
-the domain.</entry>
+<entry>MX</entry><entry>Un enregistrement MX spécifie qui doit gérer la
+messagerie pour le domaine.</entry>
 </row>
 </tbody>
 </tgroup>
@@ -72,14 +75,15 @@ the domain.</entry>
 </sect2>
 
 <sect2>
-<title>Masters and slaves</title>
+<title>Maîtres et esclaves</title>
 
 <para>
-Two kinds of nameservers can be provided for a domain name: a master and
-slaves. The master server DNS records are authoritative. Slave servers download
-their DNS record from the master servers. Using slave servers besides a
-master server is recommended for high availability and can be used for
-load-balancing.
+2 types de serveurs de noms peuvent être fournis pour un nom de domaine : un
+maître et des esclaves. Les enregistrements du serveur DNS maître font autorité.
+Les serveurs esclaves téléchargent leurs enregistrements DNS depuis les serveurs
+mâitre. L'utilisation de serveurs esclaves à côté d'un serveur maître est
+recommandée pour fournir une haute disponibilité et peut être utilisé pour la
+balance de charge.
 </para>
 
 </sect2>
@@ -87,19 +91,19 @@ load-balancing.
 </sect1>
 
 <sect1>
-<title>Making a caching nameserver</title>
+<title>Créer un serveur DNS cache</title>
 
 <para>
-A caching nameserver provides DNS services for a machine or a network,
-but does not provide DNS for a domain. That means it can only be used
-to convert hostnames to IP addresses. Setting up a nameserver with
-Slackware Linux is fairly easy, because BIND is configured as a
-caching nameserver by default. Enabling the caching nameserver takes
-just two steps: you have to install BIND and alter the initialization
-scripts. BIND can be installed by adding the bind package from
-the <quote>n</quote> disk set. After that bind can be started by executing the
-<command>named</command> command. If want to start BIND by
-default, make the <filename>/etc/rc.d/rc.bind</filename> file executable.
+Un serveur DNS cache fournit les services DNS pour une machine ou un réseau,
+mais ne fournit pas le DNS pour un domaine. Cela signifie qu'il ne peut être
+utilisé que pour convertir les noms d'hôtes en adresses IP. Configurer un
+serveur de noms avec Slackware Linux est relativement simple, car BIND est
+configuré en tant que serveur DNS cache par défaut. L'activation du serveur
+DNS cache se fait en seulement 2 étapes : vous devez installer BIND et
+modifier les scripts d'initialisation. BIND peut être installé en ajoutant le
+paquet bind dans la collection <quote>n</quote>. Après, bind peut être démarré
+en exécutant la commande <command>named</command>. Si vous voulez démarrer BIND
+par défaut, rendez le fichier <filename>/etc/rc.d/rc.bind</filename> exécutable.
 This can be done by executing the following command as root:
 </para>
 
@@ -108,8 +112,8 @@ This can be done by executing the following command as root:
 </screen>
 
 <para>
-If you want to use the nameserver on the machine that runs BIND,
-you also have to alter <filename>/etc/resolv.conf</filename>.
+Si vous voulez utiliser le serveurs de noms sur la machine exécutant BIND,
+vous devez aussi modifier <filename>/etc/resolv.conf</filename>.
 </para>
 
 </sect1>
