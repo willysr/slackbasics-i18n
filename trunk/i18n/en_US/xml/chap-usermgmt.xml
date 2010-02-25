@@ -112,17 +112,18 @@
 	As you probably guessed the <command>passwd</command> command
 	is used to set a password for a user. Running this command as
 	a user without a parameter will change the password for this
-	user. The password command will ask for the old password,once
-	and twice for the new password:
+	user. The <command>passwd</command> command will ask for the old
+	password,once and twice for the new password:
       </para>
 
       <screen>
 $ <userinput>passwd</userinput>
-Changing password for bob
-(current) UNIX password: 
-Enter new UNIX password: 
-Retype new UNIX password: 
-passwd: password updated successfully
+Old password: 
+Enter the new password (minimum of 5, maximum of 127 characters)
+Please use a combination of upper and lower case letters and numbers.
+New password: 
+Re-enter new password: 
+Password changed.
       </screen>
 
       <para>
