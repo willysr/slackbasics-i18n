@@ -6,20 +6,20 @@
     <title>Démarrer le CD-ROM d'installation</title>
 
     <para>
-      La méthode la plus facile de lancer le système d'installation est en 
-      utilisant le CD-ROM d'installation. Le CD-ROM d'installation Slackware 
+      La méthode la plus simple pour lancer le système d'installation est 
+      d'utiliser le CD-ROM d'installation. Le CD-ROM d'installation Slackware 
       Linux est un CD bootable, ce qui veut dire que le BIOS peut booter le 
       CD, tout comme pour une disquette par exemple. La plupart des systèmes 
       modernes ont un BIOS qui supporte le démarrage depuis un CD-ROM.
     </para>
 
     <para>
-      Si le CD n'est pas démarré quand vous avez inséré le CD dans le lecteur 
+      Si le CD n'est pas démarré lorsque vous avez inséré le CD dans le lecteur 
       de CD-ROM durant le boot du système, la séquence de boot est sûrement 
       mal configurée dans le BIOS. Entrez dans le menu BIOS (généralement en 
       maintenant appuyé sur la touche &lt;Suppr&gt; ou &lt;Esc&gt; quand l'écran
       du BIOS apparaît) et assurez-vous que le CD-ROM est la première entrée 
-      de la liste de la séquence de boot. Si vous utiliseé un lecteur de CD-ROM
+      de la liste de la séquence de boot. Si vous utilisez un lecteur de CD-ROM
       SCSI CD-ROM vous devez configurer la séquence de boot dans le BIOS SCSI 
       au lieu du BIOS système. Consultez le manuel de la carte SCSI pour plus 
       d'informations.
@@ -31,7 +31,7 @@
       charger le noyau Linux par défaut (<filename>hugesmp.s</filename>). Ce 
       noyau requiert au minimum un CPU Pentium Pro. Vous pouvez choisir un 
       noyau alternatif en saisissant le nom du noyau au prompt, et en appuyant 
-      sur &lt;Entrée&gt;. Le tableau suivant liste les noyaux différents inclus 
+      sur &lt;Entrée&gt;. Le tableau suivant liste les différents noyaux inclus 
       dans le CD ou DVD Slackware Linux.
     </para>
 
@@ -48,9 +48,9 @@
 	  <row>
 	    <entry>huge.s</entry>
 	    <entry>
-	      Précédemment, il y avait des noyaux spécifique pour chaque type de
+	      Avant, il y avait des noyaux spécifiques pour chaque type de
 	      contrôleur disque. Les nouveaux noyaux huge incluent le support
-	      des contrôleurs ATA, SATA and SCSI controllers les plus communs.
+	      des contrôleurs ATA, SATA and SCSI les plus communs.
 	      Ce noyau ne comporte pas le support SMP, et fonctionne sur CPUs
 	      i486 et plus. Si vous avez un CPU Pentium Pro ou supérieur, il
 	      est recommandé d'utiliser le noyau <emphasis>hugesmp.s</emphasis>,
@@ -91,9 +91,9 @@
     <title>Partitionnement du disque dur</title>
 
     <para>
-      Installer Slackware Linux requiert au moint une partition Linux, créer
+      Installer Slackware Linux requiert au moins une partition Linux, créer
       une partition swap est aussi conseillé. Pour pouvoir créer une partition,
-      il est nécessaire d'avoir un espace disque non partitionné sur le disque.
+      il est nécessaire d'avoir un espace non partitionné sur le disque.
       Il y a des programmes capables de redimensionner les partitions. Par
       exemple, FIPS peut redimensionner des partitions FAT. Des programmes
       commerciaux comme Partition Magic peuvent aussi redimensionner des
@@ -101,7 +101,7 @@
     </para>
 
     <para>
-      Après avoir démarré le CD-ROM Slackware Linux CD-ROM et s'être logué, il
+      Après avoir démarré le CD-ROM Slackware Linux et s'être logué, il
       y a 2 programmes de partitionnement disque disponibles :
       <command>fdisk</command> et <command>cfdisk</command>.
       <command>cfdisk</command> est le plus simple des 2, car il est pourvu
@@ -194,7 +194,7 @@
     <para>
       L'installation de Slackware Linux est démarrée par le lancement de
       <command>setup</command> dans le shell du disque d'installation. Setup
-      affiche un menu à plusieurs choix. Vous pouvez voir une copie d'écran de
+      affiche un menu à choix multiples. Vous pouvez voir une copie d'écran de
       l'installeur là <xref linkend="chap-install-installing-setup"/>. Chaque
       option est requise pour une installation complète de Slackware Linux, mais
       une fois que vous avez démarré, le programme <command>setup</command>
@@ -214,7 +214,7 @@
       La première partie de l'installation est nommée <quote>ADDSWAP</quote>.
       L'outil <command>setup</command> va chercher une partition de type
       <quote>Linux Swap</quote>, et va demander si vous voulez formater et
-      activer cette partition swap (voir figure
+      activer cette partition swap (voir
       <xref linkend="chap-install-installing-addswap"/>). Normalement vous
       pouvez simplement répondre <quote>Yes</quote>.
     </para>
@@ -248,7 +248,7 @@
     <para>
       Après avoir sélectionné une partition, l'outil d'installation vous
       demandera si vous souhaitez formater une partition ou non, et si vous
-      voulez formater, si vous voulez vérifier les secteurs défectueux du disque
+      voulez formater, si vous voulez également vérifier les secteurs défectueux du disque
       ou non (<xref linkend="chap-install-installing-fscheck"/>). Vérifier le
       disque peut prendre beaucoup de temps.
     </para>
@@ -276,7 +276,7 @@
       effectuées. Ext3 est le même système de fichiers que Ext2, mais avec
       journalisation. Reiserfs est un système de fichiers qui fournit aussi la
       journalisation. Reiserfs utilise des B-arbres (Balanced trees), ce qui
-      permet beaucoup d'opération système de fichiers d'être plus rapide qu'avec
+      permet aux opérations système de fichiers d'être plus rapides que pour
       Ext2 ou Ext3, particulièrement sur des opérations sur beaucoup de petits
       fichiers. Un inconvénient de Reiserfs est qu'il est plus récent, donc peut
       être un peu plus instable.
@@ -298,7 +298,7 @@
       séparées pour <filename>/</filename>, <filename>/var</filename>,
       <filename>/tmp</filename>, <filename>/home</filename> et
       <filename>/usr</filename>. Cela permet une protection supplémentaire
-      contre les crashs. Etant donné que <filename>/</filename> est rarement
+      contre les crashes. Etant donné que <filename>/</filename> est rarement
       modifié après installation, vous pouvez créer ces partitions, les chances
       qu'un crash survienne en plein milieu d'une opération d'écriture seront
       bien plus réduites. En outre, il est plus sûr de créer un système de
@@ -314,7 +314,7 @@
     </para>
 
     <para>
-      L'étape suivante est la sélection du média source
+      L'étape suivante présente la sélection du média source
       (<xref linkend="chap-install-installing-medium"/>). Ce dialogue permet
       plusieurs choix, comme installer Slackware Linux depuis un CD-ROM ou
       installer Slackware Linux via NFS. Slackware Linux est habituellement
@@ -610,7 +610,7 @@
 
     <para>
       Si le réseau ne dispose pas d'un serveur DHCP, vous pouvez choisir 
-      l'option <emphasis>static IP</emphasis>, qui vous permettra de définir
+      l'option <emphasis>static IP</emphasis>, ce qui vous permettra de définir
       l'adresse IP et les paramètres manuellement.
     </para>
 
@@ -725,7 +725,7 @@
       Après la configuration du réseau, vous pouvez définir quels services
       doivent être activés
       (<xref linkend="chap-install-installing-startup-services"/>). Vous pouvez
-      cocher/décocher les services avec la touche &lt;SPACE&gt;.
+      cocher/décocher les services avec la touche &lt;ESPACE&gt;.
     </para>
 
     <figure xml:id="chap-install-installing-startup-services">
@@ -797,7 +797,7 @@
     <para>
       L'étape finale est de choisir le mot de passe root
       (<xref linkend="chap-install-installing-rootpasswd"/>). Le setup vous
-      demande si vous voulez le configurer ou non Il n'y a aucune raison de ne
+      demande si vous voulez le configurer ou non. Il n'y a aucune raison de ne
       pas le faire, et sans mot de passe pour root, votre système est
       dangereusement vulnérable.
     </para>

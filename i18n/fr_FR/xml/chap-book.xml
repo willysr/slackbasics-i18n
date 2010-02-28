@@ -7,7 +7,7 @@
     <para>
       Ce livre a été écrit en DocBook/XML, et a été converti en HTML et XSL:FO
       à l'aide de <command>xsltproc</command>. La dernière version de ce livre
-      est constamment disponible sur: <ulink
+      est constamment disponible sur : <ulink
       url="http://www.slackbasics.org/" />.
     </para>
   </sect1>
@@ -16,15 +16,15 @@
     <title>Conventions</title>
 
     <para>
-      Cette section résume les conventions dans ce livre.
+      Cette section résume les conventions utilisées dans ce livre.
     </para>
 
     <sect2 xml:id="chap-book-conventions-filenames">
       <title>Noms de fichiers</title>
 
       <para>
-	Les fichiers et répertoires sont écrits ainsi:
-	<filename>/path/to/file</filename>.  Par exemple:
+	Les fichiers et répertoires sont écrits ainsi :
+	<filename>/path/to/file</filename>.  Par exemple :
 	<filename>/etc/fstab</filename>
       </para>
     </sect2>
@@ -33,7 +33,7 @@
       <title>Commandes</title>
 
       <para>
-	Les commandes sont écrites en gras. Par exemple: <command>ls
+	Les commandes sont écrites en gras. Par exemple : <command>ls
 	-l</command>
       </para>
     </sect2>
@@ -42,7 +42,7 @@
       <title>Sorties d'écran</title>
 
       <para>
-	Les sorties d'écran sont écrites ainsi:
+	Les sorties d'écran sont écrites ainsi :
       </para>
 
       <screen>
@@ -51,7 +51,7 @@ Hello world!
 
       <para>
 	Si dans la sortie écran des saisies de commandes apparaissent celles-ci
-	seront affichées en gras:
+	seront affichées en gras :
       </para>
 
       <screen>

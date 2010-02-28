@@ -58,7 +58,7 @@
 	fonctionnement est appelé <emphasis>partage de temps</emphasis>. Sur un
 	système multi-CPU ou multi-core, plus d'un processus tourne
 	simultanément, mais le partage de temps est toujours utilisé pour
-	diviser le temps CPU par processus.
+	diviser le temps CPU disponible par processus.
       </para>
 
       <para>
@@ -103,7 +103,7 @@
 
       <para>
 	Les systèmes d'exploitation stockent les données dans des systèmes de
-	fichiers. Un système de fichier est une structure arborescente de
+	fichiers. Un système de fichiers est une structure arborescente de
 	répertoires qui contiennent des fichiers, comme le système
 	d'exploitation, des programmes et données utilisateur. La plupart des
 	systèmes de fichiers peuvent aussi stocker des méta-données concernant
@@ -135,16 +135,16 @@
         <filename>home</filename> a 2 répertoires fils, <filename>joe</filename>
 	et <filename>jack</filename>. Le diagramme montre le chemin complet de
 	chaque répertoire. La même notation est utilisée pour les fichiers.
-	Supposez qu'il y a un fichier nommé <filename>memo.txt</filename> dans
+	Supposez qu'il y ait un fichier nommé <filename>memo.txt</filename> dans
 	le répertoire <filename>/home/jack</filename>, le chemin complet du
 	fichier est <filename>/home/jack/memo.txt</filename>.
       </para>
 
       <para>
-	Chaque répertoire a 2 entrées spéciale,
+	Chaque répertoire a 2 entrées spéciales,
         <quote><filename>.</filename></quote>, et
         <quote><filename>..</filename></quote>. La première fait référence au
-	répertoire lui-même, le second fait référence au répertoire parent.
+	répertoire lui-même, la seconde fait référence au répertoire parent.
 	Ces entrées sont utilisées pour créer des chemins relatifs. Si vous
 	travaillez dans le répertoire <filename>jack</filename> vous pouvez
 	faire référence au répertoire <filename>/home/joe</filename> avec 
@@ -300,7 +300,7 @@ $ <command>file /dev/zero</command>
       </screen>
 
       <para>
-	La commande <command>file</command> peut être utilisée pour savoir le
+	La commande <command>file</command> peut être utilisée pour connaître le
 	type d'un fichier. Ce fichier particulier est reconnu comme un fichier
 	de périphérique qui a <emphasis>1</emphasis> pour numéro de périphérique
 	majeur, et <emphasis>5</emphasis> pour numéro de périphérique mineur.
@@ -320,10 +320,10 @@ $ <command>file /dev/zero</command>
       </para>
 
       <para>
-	Le noyau Linux kernel gère 2 types de périphériques : les périphériques
-        <emphasis>caractère</emphasis> et <emphasis>bloc</emphasis>. Les
+	Le noyau Linux gère 2 types de périphériques : les périphériques
+        <emphasis>caractère</emphasis> et les périphériques <emphasis>bloc</emphasis>. Les
 	périphériques caractère peuvent être lus octet par octet, les
-	périphériques bloc ne peuvent pas. Les périphériques bloc sont lus par
+	périphériques bloc ne le peuvent pas. Les périphériques bloc sont lus par
 	blocs (par exemple 4096 octets à la fois). Un périphérique est de type
 	caractère ou bloc en fonction de la nature de ce périphérique. Par
 	exemple, la plupart des médias de stockage sont des périphériques bloc,
@@ -332,7 +332,7 @@ $ <command>file /dev/zero</command>
 	peuvent être mis en cache. Cela signifie que les blocs les plus
 	fréquemment lus ou écrits sont stockés dans une zone spécifique de la
 	mémoire, nommée cache. La mémoire est bien plus rapide que la plupart
-	des médias de stockage, donc il y a un fort gain de performance en
+	des médias de stockage, donc il y a un fort gain de performances en
 	effectuant les opérations fréquentes de lecture et d'écriture de blocs
 	en mémoire. Evidemment,	les modifications finissent par être écrites sur
 	le média de stockage afin de refléter les changements qui ont été faits
@@ -346,7 +346,7 @@ $ <command>file /dev/zero</command>
       <para>
 	Il y a deux types de périphériques de bloc que nous allons examiner
         en détail, car la compréhension du nommage de ces périphériques est
-        cruciale pour le partitionnement d'un disque dur et de leur montage.
+        cruciale pour le partitionnement d'un disque dur et leur montage.
 	Presque tous les ordinateurs modernes à architecture x86 utilisent des
 	disques durs et CD-ROMs ATA.
         Sous Linux, ces périphériques sont nommés de la manière suivante :
@@ -361,7 +361,7 @@ $ <command>file /dev/zero</command>
 
       <para>
 	Sur la plupart des ordinateurs avec un seul disque dur, le disque dur
-	est le périphérique maîttre sur le premier canal ATA
+	est le périphérique maître sur le premier canal ATA
 	(<filename>/dev/hda</filename>), et le CD-ROM est le périphérique
 	maître sur le second canal ATA. Les partitions disque dur sont nommées
 	d'après le nom du disque auquel elles appartiennent suivi d'un numéro.
