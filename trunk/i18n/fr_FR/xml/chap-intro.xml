@@ -13,7 +13,7 @@
       différentes, comme par exemple les machines IA32, IA64, Alpha, m68k,
       SPARC et PowerPC.
       La dernière version du noyau et les informations à propos du noyau Linux
-      se trouvent sur le site web Linux kernel: <ulink
+      se trouvent sur le site web Linux kernel : <ulink
       url="http://www.kernel.org">http://www.kernel.org</ulink>.
     </para>
 
@@ -36,9 +36,9 @@
       1990, tous les composants majeurs du système d'exploitation GNU étaient
       codés, à l'exception du noyau. Deux ans plus tôt, en 1988, il a été
       décidé que le projet GNU utiliserait le microkernel Mach 3.0 comme base
-      de son probre kernel. Cependant, il a fallu attendre jusqu'en 1991 pour
+      de son propre kernel. Cependant, il a fallu attendre jusqu'en 1991 pour
       que Mach 3.0 soit publié sous licence libre. Dans la même année Linus
-      Torvalds a comblé le besoin de noyau pour le système GNU en écrivant
+      Torvalds a comblé le besoin d'un noyau pour le système GNU en écrivant
       le noyau Linux. GNU/Linux alors fait référence au système GNU fonctionnant
       avec le kernel Linux.
     </para>
@@ -80,14 +80,14 @@
     </para>
 
     <para>
-      Un autre aspect qui distingue Slackware Linux, qui est également
+      Un autre aspect qui distingue Slackware Linux, également
       <quote>conforme</quote> au principe KISS, est le gestionnaire de paquets
       Slackware Linux. Slackware Linux n'a pas de gestionnaire de paquets
       compliqué comme RPM ou dpkg. Les paquets sont des archives classiques
       tgz (tar/gzip), souvent avec un script d'installation et un fichier de
       description du paquet. Pour les novices tgz est bien plus puissant que
       RPM, et évite les problèmes de dépendances entre paquets. Une autre
-      fonctionnalité populaire de Slackware Linux est sont lot de scripts
+      fonctionnalité populaire de Slackware Linux est son lot de scripts
       d'initialisation. Contrairement à la plupart des autres distributions
       GNU/Linux, Slackware Linux n'a pas de répertoire pour chaque niveau
       d'exécution avec un lien symbolique pour les services qui doivent être
@@ -167,7 +167,7 @@
     </footnote></quote>
 
       Dans l'esprit du logiciel libre et open source, le code source de la
-      plupart des paquets est inclu dans le jeu de CDs ou DVD officiels de
+      plupart des paquets est inclus dans le jeu de CDs ou DVD officiels de
       Slackware Linux.
     </para>
   </sect1>
@@ -219,7 +219,7 @@
 	<listitem>
 	  <para>
 	    <emphasis role="bold">Apache 2.2.4</emphasis> - Apache a été mis à
-	    jour à la nouvelle version majeure. Apache 2.x et une réécriture
+	    jour à la nouvelle version majeure. Apache 2.x est une réécriture
 	    conséquente de l'ancienne série 1.3.x.
 	  </para>
 	</listitem>
@@ -263,7 +263,7 @@
     </para>
 
     <para>
-      Pour plus d'information sur l'achat de Slackware Linux, visitez le site
+      Pour plus d'informations sur l'achat de Slackware Linux, visitez le site
       web de la boutique Slackware Store à l'adresse <ulink
       url="http://store.slackware.com/" />.
     </para>

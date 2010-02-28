@@ -2,11 +2,11 @@
   <title>Installation personnalisée</title>
 
   <para>
-    Parfois, vous aimeriez faire une installation personnalisée de Linux
-    Slackware, par exemple pour mieux comprendre la façon dont les systèmes
+    Parfois, vous aimeriez faire une installation personnalisée de Slackware
+    Linux, par exemple pour mieux comprendre la façon dont les systèmes
     GNU/Linux travaillent, ou pour préparer un script d'installation
-    automatique. Ce chapitre décrit les étapes nécessaires pour installer Linux
-    Slackware manuellement. Un exemple de script d'installation est également
+    automatique. Ce chapitre décrit les étapes nécessaires pour installer Slackware
+    Linux manuellement. Un exemple de script d'installation est également
     disponible à <xref linkend="getstarted-custominstall-script" />.
   </para>
 
@@ -86,12 +86,12 @@ EOF</command>
     </para>
 
     <para>
-      Pour l'instant, il est important d'initaliser les partitions cible. Cela
+      A présent, il est important d'initaliser les partitions cible. Cela
       peut être réalisé avec la commande <command>mkfs</command>. Vous pouvez
       spécifier quel système de fichiers doit être utilisé en ajoutant le
       paramètre <parameter class="command">-t</parameter>.
       <command>mkfs</command> lancera automatiquement la commande
-      <command>mkfs.filesystem</command> basée sur le système de fichiers vous
+      <command>mkfs.filesystem</command> basée sur le système de fichiers que vous
       avez choisi. Attention, les systèmes de fichiers que vous pouvez utiliser
       dépendent du noyau installé sur lequel vous avez démarré. Si vous avez
       démarré avec le noyau <emphasis>bare.i</emphasis>, vous pouvez utiliser
@@ -141,8 +141,8 @@ EOF</command>
       /var/log/mount, vous pouvez charger le disque réseau en faisant :
       <command>network /var/log/mount/network.dsk</command>. Après avoir chargé
       le disque réseau, vous devez configurer l'interface réseau. Si le serveur
-      NFS server est sur le même réseau vous n'aurez qu'à saisir une adresse IP
-      à votre interface réseau. Par exemple, pour utiliser l'adresse
+      NFS est sur le même réseau vous n'aurez qu'à saisir une adresse IP
+      pour votre interface réseau. Par exemple, pour utiliser l'adresse
       <emphasis>192.168.2.201</emphasis>, vous devez exécuter la commande
       suivante :
     </para>
@@ -176,7 +176,7 @@ EOF</command>
     </screen>
 
     <para>
-      Si aucune erreur n'apparaît quand le volume est monté, il devrait être
+      Si aucune erreur n'est apparue quand le volume a été monté, il devrait être
       accessible via <filename>/var/log/mount</filename>
     </para>
   </sect1>
@@ -189,7 +189,7 @@ EOF</command>
       le média d'installation. Puisque <command>installpkg</command> est
       disponible sur le système d'installation, vous pouvez l'utiliser pour
       installer les paquets Slackware Linux. Pour installer les paquets sur
-      la(les) partition(s) cible(s) montée dans <filename>/mnt</filename>,
+      la(les) partition(s) cible(s) montée(s) dans <filename>/mnt</filename>,
       ajoutez l'option <parameter class="command">-root</parameter>. La
       commande suivante installe tous les paquets depuis le média source :
     </para>
@@ -205,7 +205,7 @@ EOF</command>
       que vous avez enregistré les fichiers de tags pour chaque catégorie dans
       <filename>/usr/share/tagfiles/small-desktop</filename>, vous pouvez
       installer les paquets en fonction des fichiers de tags de la façon
-      suivante:
+      suivante :
     </para>
 
     <screen>
@@ -413,7 +413,7 @@ EOF</command>
 	<filename>/usr/lib/libgtk-x11-2.0.so</filename>, plutôt que
 	<filename>/usr/lib/libgtk-x11-2.0.so.0.600.8</filename>).
         Le cache et les liens symboliques sont mis à jour en une seule
-	exéctution de <command>ldconfig</command> :
+	exécution de <command>ldconfig</command> :
       </para>
 
       <screen>
@@ -425,13 +425,13 @@ EOF</command>
 	; c'est une commande qui exécute une commande avec un autre répertoire
 	racine que le répertoire racine courant. Dans cet exemple, le répertoire
 	racine est changé en <filename>/mnt</filename>, et à partir de là
-	<command>chroot</command> lance <command>/sbin/ldconfig</command>. Après
-	la fin de la commande le système reviendra sur le shell, qui utilise la
+	<command>chroot</command> lance <command>/sbin/ldconfig</command>. Une
+	fois la commande terminée le système reviendra sur le shell, qui utilise la
 	racine originale. Pour utiliser <command>chroot</command> avec d'autres
 	commandes cette commande <command>ldconfig</command> doit être exécutée
 	une fois avant tout, car sans l'initialisation des associations	runtime
 	du linker dynamique la plupart des commandes ne se lanceront pas, à
-	cause de dépendances à de librairies non résolues.
+	cause de dépendances de librairies non résolues.
       </para>
     </sect2>
 
@@ -446,7 +446,7 @@ EOF</command>
 	utilisée pour configurer le mot de passe d'un utilisateur existant
 	(l'utilisateur <emphasis>root</emphasis> fait partie du fichier initial
 	<filename>/etc/passwd</filename>). Nous allons utiliser la commande
-	<command>chroot</command> encore, pour lancer la commande sur la
+	<command>chroot</command> à nouveau, pour lancer la commande sur la
 	partition cible :
       </para>
 
@@ -466,7 +466,7 @@ EOF</command>
 	pour calculer la différence de temps entre un client et un serveur. Sur
 	Slackware Linux le fuseau horaire peut être configuré en créant un lien
 	symbolique de <filename>/etc/localtime</filename> sur un fichier de
-	fuseau horaire. Vous pouvez le fuseau horaire pour votre zone en
+	fuseau horaire. Vous pouvez trouver le fuseau horaire pour votre zone en
 	consultant le répertoire <filename>/mnt/usr/share/zoneinfo</filename>.
 	La plupart des fuseaux horaires se trouvent dans les sous-répertoires
 	de leurs régions respectives. Par exemple pour utiliser
@@ -501,7 +501,7 @@ EOF</command>
     </sect2>
 
     <sect2 id="getstarted-custominstall-fonts">
-      <title>Crée le cache de fontes X11</title>
+      <title>Créer le cache de fontes X11</title>
 
       <para>
 	Si vous allez utiliser X11, vous devez initialiser le cache de fontes
@@ -522,7 +522,7 @@ EOF</command>
       Il est facile de rassembler les étapes d'une installation personalisée
       dans un script, qui effectue les étapes de configuration automatiquement.
       C'est idéal pour fabriquer des installations par défaut de serveurs ou
-      pour procéder à des installations de masse de clients Linux. Ces sections
+      pour procéder à des installations en masse de clients Linux. Ces sections
       contiennent un script d'exemple qui a été écrit par William Park. Il est
       facile d'ajouter un script d'installation sur le média d'installation de
       Slackware Linux, particulièrement si vous utilisez un CD-ROM
