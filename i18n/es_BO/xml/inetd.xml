@@ -24,12 +24,12 @@ en un servidor FTP sobrecargado.
 </sect1>
 
 <sect1>
-<title>Configuration</title>
+<title>Configuracion</title>
 
 <para>
-<command>inetd</command> can be configured using the
-<filename>/etc/inetd.conf</filename> file. Let's have a look at
-an example line from <filename>inetd.conf</filename>:
+<command>inetd</command> puede ser configurado utilizando 
+el archivo <filename>/etc/inetd.conf</filename>. Demos un  
+vistazo a una linea de ejemplo de <filename>inetd.conf</filename>:
 </para>
 
 <screen>
@@ -38,24 +38,24 @@ ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
 </screen>
 
 <para>
-This line specifies that <command>inetd</command> should accept
-FTP connections and pass them to <command>tcpd</command>. This
-may seem a bit odd, because <command>proftpd</command> normally 
-handles FTP connections. You can also specify to use <command>proftpd</command>
-directly in <filename>inetd.conf</filename>, but Slackware Linux normally
-passes the connection to <command>tcpd</command>. This program
-passes the connection to <command>proftpd</command> in turn, as specified.
-<command>tcpd</command> is used to monitor services and to provide
-host based access control.
+Esta linea especifica que el <command>inetd</command> debería  
+aceptar conexiones FTP y pasarlas a <command>tcpd</command>. Esto  
+puede parecer un poco extraño, por que normalmente <command>proftpd</command>  
+maneja las conexiones FTP. Tambien puede especificar el uso de  
+<command>proftpd</command> directamente en <filename>inetd.conf</filename>,  
+pero Slackware Linux normalmente pasa la conexion a <command>tcpd</command>. 
+Este programa a su vez pasa la conexion a <command>proftpd</command>, como  
+fué especificado. <command>tcpd</command> es usado para monitorear servicios 
+y para proveer control basado en host.
 </para>
 
 <para>
-Services can be disabled by adding the comment character (#) at
-the beginning of the line. It is a good idea to disable all services
-and enable services you need one at a time. After changing
-<filename>/etc/inetd.conf</filename> <command>inetd</command>
-needs to be restarted to activate the changes. This can be done
-by sending the HUP signal to the inetd process:
+Los servicios pueden ser deshabilitados agregando el caracter de  
+comentario (#) al inicio de la linea. Es una buena idea deshabilitar 
+todos los servicios y despues habilitar los servicios que requiera uno a la vez. 
+Despues de cambiar <filename>/etc/inetd.conf</filename>, <command>inetd</command> 
+necesita ser reiniciado para activar los cambios. Esto puede realizarse 
+enviando una señal HUP al proceso inetd:
 </para>
 
 <screen>
@@ -65,8 +65,8 @@ by sending the HUP signal to the inetd process:
 </screen>
 
 <para>
-  Or you can use the <filename>rc.inetd</filename> initialization script to
-  restart <command>inetd</command>:
+  O puede usar el script de inicialización <filename>rc.inetd</filename> para 
+  reiniciar <command>inetd</command>:
 </para>
 
 <screen>

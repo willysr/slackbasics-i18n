@@ -623,31 +623,31 @@ find ~/music -name '*.ogg' -print
       <title>Edición de lineas</title>
 
       <para>
-	The highest level we can edit is the line itself.
+    El nivel más alto que podemos editar es la linea misma.	
 	<xref linkend="chap-shell-moving-line-shortcuts-move" />
-	lists the two movement shortcuts.
+	enlista los dos atajos de movimiento.
       </para>
 
       <table xml:id="chap-shell-moving-line-shortcuts-move">
-	<title>Moving through lines</title>
+	<title>Moviéndose a través de lineas</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
-	      <entry>Description</entry>
+	      <entry>Teclas</entry>
+	      <entry>Descripcion</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-a</entry>
 	      <entry>
-		Move to the beginning of the current line.
+	    Moverse al inicio de la linea actual.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-e</entry>
 	      <entry>
-		Move to the end of the current line.
+	    Moverse al final de la linea actual.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -655,7 +655,7 @@ find ~/music -name '*.ogg' -print
       </table>
 
       <para>
-	Suppose that the cursor is somewhere halfway a line:
+    Suponga que el cursor esta en algún lugar en medio de la linea:
       </para>
 
       <screen>
@@ -663,8 +663,7 @@ find ~/music -name<emphasis role="cursor">&#32;</emphasis>'*.ogg' -print
       </screen>
 
       <para>
-	Pressing Ctrl-e once will move the cursor to the end of the
-	line:
+    Presionando Ctrl-e una vez moverá el cursor al final de la linea:
       </para>
 
       <screen>
@@ -672,7 +671,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	Pressing Ctrl-a will move the cursor to the beginning of the line:
+    Presionando Ctrl-a moverá el cursor al inicio de la linea:
       </para>
 
       <screen>
@@ -680,38 +679,38 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	You can also delete characters by line level. The shortcuts
-	are listed in <xref
-	linkend="chap-shell-moving-line-shortcuts-delete" />.  These
-	shortcuts work like movement, but deletes all characters that
-	are encountered. Ctrl-k will delete the character the cursor
-	is on, but Ctrl-x Backspace will not. Moving to the beginning
-	of the line with Ctrl-a, followed by Ctrl-k, is a fast trick
-	to remove a line completely.
+    Tambien puede eliminar caracteres al nivel de linea. Los atajos  
+    estan listados en <xref
+	linkend="chap-shell-moving-line-shortcuts-delete" />. Estos 
+	atajos trabajan como un movimiento, pero elimina todos los  
+	caracteres que se encuentran. Ctrl-k eliminará el caracter 
+	sobre el cual el cursor se encuentra, pero Ctrl-x Retroceso no 
+	lo hará. Moviéndose al inicio de la linea con Ctrl-a, combinado 
+	con Ctrl-k, es un tip rápido para eliminar una linea completa.
       </para>
 
       <table xml:id="chap-shell-moving-line-shortcuts-delete">
-	<title>Deleting lines</title>
+	<title>Eliminando lineas</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
-	      <entry>Description</entry>
+	      <entry>Teclas</entry>
+	      <entry>Descripcion</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-k</entry>
 	      <entry>
-		Delete all characters in the line, starting at the
-		cursor position.
+	    Borra todos los caracteres en la linea, iniciando en 
+	    la posicion del cursor.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-x Backspace</entry>
 	      <entry>
-		Delete all characters in the line up till the current
-		cursor position.
+	    Borra todos los caracteres en la linea hasta la posicion 
+	    actual del cursor.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -721,128 +720,126 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
   </sect1>
 
   <sect1 xml:id="chap-shell-history">
-    <title>Command history</title>
+    <title>Historial de Comandos</title>
 
     <para>
-      It often happens that you have to execute commands that you
-      executed earlier. Fortunately, you do not have to type them all
-      over again.  You can browse through the history of executed
-      commands with the up and down arrows. Besides that it is also
-      possible to search for a command. Press Control-r and start
-      typing the command you want to execute. You will notice that
-      bash will display the first match it can find. If this is not
-      the match you were looking for you can continue typing the
-      command (until it is unique and a match appears), or press
-      Control-r once more to get the next match. When you have found
-      the command you were looking for, you can execute it by pressing
-      &lt;Enter&gt;.
+      A veces se deben ejecutar comandos que se ejecutaron antes. 
+      Afortunadamente, usted no tiene que escribirlos de nuevo. 
+      Puede navegar a traves del historial de comandos ejecutados 
+      con las teclas arriba y abajo. Además es tambien posible 
+      buscar un comando. Presione Ctrl-r y comience a escribir el 
+      comando que quiere ejecutar. Se dará cuenta de que Bash 
+      mostrará el primer resultado similar que encuentre. Si el 
+      resultado no era lo que estaba buscando puede continuer 
+      escribiendo el comando (hasta que es único y una similitud aparece), 
+      o presione Ctrl-r una vez mas para obtener la siguiente similitud. 
+      Cuando haya encontrado el comando que estaba buscando, puede ejecutarlo 
+      presionando &lt;Enter&gt;.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-shell-completion">
-    <title>Completion</title>
+    <title>Autocompletado</title>
 
     <para>
-      Completion is one of the most useful functionalities of
-      UNIX-like shells.  Suppose that you have a directory with two
-      files named <filename>websites</filename> and
-      <filename>recipe</filename>. And suppose you want to
-      <command>cat</command> the file <filename>websites</filename>
-      (<command>cat</command> shows the contents of a file), by
-      specifying <filename>websites</filename> as a parameter to
-      cat. Normally you would type <quote>cat websites</quote>, and
-      execute the command. Try typing <quote>cat w</quote>, and hit
-      the &lt;Tab&gt; key. Bash will automatically expand what you
-      typed to <quote>cat websites</quote>.
+      El Autocompletado es una de las funcionalidades mas útiles  
+      de las consolas UNIX-like. Suponga que tiene un directorio con 
+      dos archivos nombrados <filename>websites</filename> y 
+      <filename>recipe</filename>. Y suponga que quiere 
+      <command>cat</command> el archivo <filename>websites</filename> 
+      (<command>cat</command> muestra el contenido de un archivo), 
+      especificando <filename>websites</filename> como parámetro 
+      para cat. Normalmente tendria que escribir <quote>cat websites</quote>, 
+      y ejecutar el comando. Intente escribiendo <quote>cat w</quote>, y 
+      presione la tecla &lt;Tab&gt;. Bash expandirá automáticamente  
+      lo que usted escribió a <quote>cat websites</quote>.
     </para>
 
     <para>
-      But what happens if you have files that start with the same
-      letter? Suppose that you have the
-      <filename>recipe1.txt</filename> and
-      <filename>recipe2.txt</filename> files. Type <quote>cat
-      r</quote> and hit &lt;Tab&gt;, Bash will complete the filename
-      as far as it can. It would leave you with <quote>cat
-      recipe</quote>. Try hitting &lt;Tab&gt; again, and Bash will
-      show you a list of filenames that start with
-      <quote>recipe</quote>, in this case both recipe files. At this
-      point you have to help Bash by typing the next character of the
-      file you need.  Suppose you want to <command>cat</command>
-      <filename>recipe2.txt</filename>, you can push the &lt;2&gt;
-      key. After that there are no problems completing the filename,
-      and hitting &lt;Tab&gt; completes the command to <quote>cat
+      Pero que sucede si tiene archivos que inician con la misma letra? 
+      Suponga que tiene los archivos <filename>recipe1.txt</filename> y 
+      <filename>recipe2.txt</filename>. Teclee <quote>cat r</quote> y 
+      presione &lt;Tab&gt;, Bash completará el nombre del archivo  
+      tanto como pueda. Lo dejaría con <quote>cat recipe</quote>. 
+      Intente presionando &lt;Tab&gt; de nuevo, y Bash mostrará una  
+      lista de nombres de archivo que comienzan con <quote>recipe</quote>, 
+      en este caso ambos archivos 'recipe'. En este punto debe ayudar 
+      a Bash tecleando el siguiente caracter del archivo que necesita. 
+      Suponga que quiere ejecutar <command>cat</command>
+      <filename>recipe2.txt</filename>, puede presionar la tecla &lt;2&gt;. 
+      Despues de eso no hay problemas completando el nombre del archivo, y 
+      presionando &lt;Tab&gt; completa el comando <quote>cat
       recipe2.txt</quote>.
     </para>
 
     <para>
-      It is worth noting that completion also works with
-      commands. Most GNU/Linux commands are quite short, so it will
-      not be of much use most of the time.
+      Vale la pena señalar que el autocompletado también funciona 
+      con comandos. La mayoría de los comandos GNU/Linux son bastante  
+      cortos, entonces no será de mucho uso la mayor parte del tiempo.
     </para>
 
     <para>
-      It is a good idea to practice a bit with completion, it can save
-      a lot of keystrokes if you can handle completion well. You can
-      make some empty files to practice with using the
-      <command>touch</command> command.  For example, to make a file
-      named <filename>recipe3.txt</filename>, execute <command>touch
+      Es una buena idea practicar un poco con el autocompletado, puede 
+      ahorrar muchos golpes de teclado si se maneja bien. Usted puede 
+      crear algunos archivos vacios para practicar utilizando el comando 
+      <command>touch</command>. Por ejemplo, para crear un archivo 
+      con el nombre <filename>recipe3.txt</filename>, ejecute <command>touch
       recipe3.txt</command>.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-shell-wildcards">
-    <title>Wildcards</title>
+    <title>Comodines</title>
 
     <para>
-      Most shells, including Bash and ksh, support
-      wildcards. Wildcards are special characters that can be used to
-      do pattern matching. The table listed below displays some
-      commonly used wildcards. We are going to look at several
-      examples to give a general idea how wildcards work.
+      La mayoria de las consolas, incluyendo Bash y ksh, soportan  
+      caracteres comodin. Los comodines son caracteres especiales que  
+      pueden ser utilizados para igualar patrones. La tabla siguiente 
+      describe algunos comodines comunmente usados. Veremos varios 
+      ejemplos para dar una idea general de como trabajan los comodines.
     </para>
 
     <table xml:id="chap-shell-wildcards-thewildcards">
-      <title>Bash wildcards</title>
+      <title>Comodines Bash</title>
 
       <tgroup cols="2" align="left" colsep="1" rowsep="1">
 	<thead>
 	  <row>
-	    <entry>Wildcard</entry> <entry>Matches</entry>
+	    <entry>Comodin</entry> <entry>Iguala</entry>
 	  </row>
 	</thead>
 	<tbody>
 	  <row>
 	    <entry>*</entry>
-	    <entry>A string of characters</entry>
+	    <entry>Una cadena de caracteres</entry>
 	  </row>
 	  <row>
 	    <entry>?</entry>
-	    <entry>A single character</entry>
+	    <entry>Un solo caracter</entry>
 	  </row>
 	  <row>
 	    <entry>[]</entry>
-	    <entry>A character in an array of characters</entry>
+	    <entry>Un caracter en un arreglo de caracteres</entry>
 	  </row>
 	</tbody>
       </tgroup>
     </table>
 
     <sect2 xml:id="chap-shell-wildcards-string">
-      <title>Matching a string of characters</title>
+      <title>Igualando una cadena de caracteres</title>
 
       <para>
-	As you can see in the table above the <quote>*</quote>
-	character matches a string of characters. For example,
-	<emphasis>*.html</emphasis> matches everything ending with
-	<emphasis>.html</emphasis>, <emphasis>d*.html</emphasis>
-	matches everything starting with a <emphasis>d</emphasis> and
-	ending with <emphasis>.html</emphasis>.
+    Como puede ver en la tabla anterior el caracter <quote>*</quote> 
+    iguala una cadena de caracteres. Por ejemplo, <emphasis>*.html</emphasis> 
+    iguala todo lo que termine con <emphasis>.html</emphasis>, 
+    <emphasis>d*.html</emphasis> iguala todo lo que comienza con 
+    <emphasis>d</emphasis> y termina con <emphasis>.html</emphasis>.
       </para>
 
       <para>
-	Suppose that you would like to list all files in the current
-	directory with the <emphasis>.html</emphasis> extension, the
-	following command will do the job:
+    Suponga que quiere listar todos los archivos en el directorio 
+    actual con la extension <emphasis>.html</emphasis>, el siguiente 
+    comando hará el trabajo:
       </para>
 
       <screen>
@@ -854,8 +851,8 @@ help.html        slackware-basics.html shell.html
       </screen>
 
       <para>
-	Likewise we could remove all files starting with an
-	<emphasis>in</emphasis>:
+    De la misma forma podríamos eliminar todos los archivos que comiencen 
+    con <emphasis>in</emphasis>:
       </para>
 
       <screen>
@@ -864,55 +861,55 @@ $ <userinput>rm in*</userinput>
     </sect2>
 
     <sect2 xml:id="chap-shell-wildcards-single">
-      <title>Matching single characters</title>
+      <title>Igualando caracteres individuales</title>
 
       <para>
-	The <quote>?</quote> wildcard works as the <quote>*</quote>
-	wildcard, but matches single characters. Suppose that we have
-	three files, <filename>file1.txt</filename>,
-	<filename>file2.txt</filename> and
-	<filename>file3.txt</filename>. The string
-	<emphasis>file?.txt</emphasis> matches all three of these
-	files, but it does not match <filename>file10.txt</filename>
-	(<quote>10</quote> are two characters).
+    El comodin <quote>?</quote> funciona como el comodin <quote>*</quote>, 
+    pero iguala caracteres individuales. Suponga que tenemos tres  
+    archivos <filename>file1.txt</filename>,
+	<filename>file2.txt</filename> y
+	<filename>file3.txt</filename>. La cadena 
+	<emphasis>file?.txt</emphasis> iguala con los tres archivos, 
+	pero no iguala con <filename>file10.txt</filename> 
+	(<quote>10</quote> son dos caracteres).
       </para>
     </sect2>
 
     <sect2 xml:id="chap-shell-wildcards-set">
-      <title>Matching characters from a set</title>
+      <title>Igualando caracteres desde un conjunto</title>
 
       <para>
-	The <quote>[]</quote> wildcard matches every character between
-	the brackets.  Suppose we have the files from the previous
-	example, <filename>file1.txt</filename>,
-	<filename>file2.txt</filename> and
-	<filename>file3.txt</filename>. The string
-	<emphasis>file[23].txt</emphasis> matches
-	<filename>file2.txt</filename> and
-	<filename>file3.txt</filename>, but not
+    El comodin <quote>[]</quote> iguala cada caracter entre los  
+    corchetes. Suponga que tenemos los archivos del ejemplo previo, 
+    <filename>file1.txt</filename>,
+	<filename>file2.txt</filename> y
+	<filename>file3.txt</filename>. La cadena 
+	<emphasis>file[23].txt</emphasis> iguala con
+	<filename>file2.txt</filename> y
+	<filename>file3.txt</filename>, pero no con
 	<filename>file1.txt</filename>.
       </para>
     </sect2>
   </sect1>
 
   <sect1 xml:id="chap-shell-inout">
-    <title>Redirections and pipes</title>
+    <title>Redirecciones y conductos</title>
 
     <para>
-      One of the main features of UNIX-like shells are redirections
-      and pipes.  Before we start to look at both techniques we have
-      to look how most UNIX-like commands work. When a command is not
-      getting data from a file, it will open a special pseudo-file
-      named <emphasis>stdin</emphasis>, and wait for data to appear on
-      it. The same principle can be applied for command output, when
-      there is no explicit reason for saving output to a file, the
-      pseudo-file <emphasis>stdout</emphasis> will be opened for
-      output of data. This principle is shown schematically in <xref
-      linkend="fig-shell-inout" />
+      Una de las características principales de las consolas UNIX-like  
+      son redirecciones y conductos. Antes de que veamos ambas tecnicas 
+      debemos ver cómo funcionan la mayoría de los comandos UNIX-like. 
+      Cuando un comando no esta obteniendo datos desde un archivo, abrirá  
+      un pseudo-archivo llamado <emphasis>stdin</emphasis>, y esperará 
+      a datos que aparezcan en el. El mismo principio puede ser aplicado 
+      para la salida de comandos, cuando no hay una razon explícita para  
+      salvar la salida a un archivo, el pseudo-archivo <emphasis>stdout</emphasis> 
+      será abierto para los datos de salida. Este principio se muestra 
+      esquemáticamente en <xref linkend="fig-shell-inout" />
     </para>
 
     <figure xml:id="fig-shell-inout">
-      <title>Standard input and output</title>
+      <title>Entrada y salida estandar</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/shell-inout.png" format="PNG"/>
@@ -921,15 +918,13 @@ $ <userinput>rm in*</userinput>
     </figure>
 
     <para>
-      You can see <emphasis>stdin</emphasis> and
-      <emphasis>stdout</emphasis> in action with the
-      <command>cat</command> command. If cat is started without any
-      parameters it will just wait for input on
-      <emphasis>stdin</emphasis> and output the same data on
-      <emphasis>stdout</emphasis>. If no redirection is used keyboard
-      input will be used for <emphasis>stdin</emphasis>, and
-      <emphasis>stdout</emphasis> output will be printed to the
-      terminal:
+      Puede ver <emphasis>stdin</emphasis> y <emphasis>stdout</emphasis> en 
+      acción con el comando <command>cat</command>. Si cat es iniciado 
+      sin parámetros, esperará por datos de entrada en <emphasis>stdin</emphasis> 
+      y retornará la misma información en <emphasis>stdout</emphasis>. Si 
+      la redirección no es usada, la entrada de teclado será usada para 
+      <emphasis>stdin</emphasis>, y la salida de <emphasis>stdout</emphasis> 
+      será impresa en la terminal:
     </para>
 
     <screen>
@@ -939,21 +934,22 @@ Hello world!
     </screen>
 
     <para>
-      As you can see cat will print data to
-      <emphasis>stdout</emphasis> after inputting data to
-      <emphasis>stdin</emphasis> using the keyboard.
+      Como puede ver 'cat' imprimirá los datos a 
+      <emphasis>stdout</emphasis> despues de haber ingresado  
+      los datos a <emphasis>stdin</emphasis> usando el teclado.
     </para>
 
     <sect2 xml:id="chap-shell-inout-redir">
-      <title>Redirection</title>
+      <title>Redirección</title>
 
       <para>
-	The shell allows you to take use of <emphasis>stdin</emphasis>
-	and <emphasis>stdout</emphasis> using the <quote>&lt;</quote>
-	and <quote>&gt;</quote>. Data is redirected in which way the
-	sharp bracket points. In the following example we will
-	redirect the md5 summaries calculated for a set of files to a
-	file named <filename>md5sums</filename>:
+    La consola le permite usar <emphasis>stdin</emphasis> y 
+    <emphasis>stdout</emphasis> utilizando <quote>&lt;</quote> 
+    y <quote>&gt;</quote>. Los datos se redireccionan en el sentido 
+    de los caracteres ('&lt;' izquierda, '&gt;' derecha). En el 
+    siguiente ejemplo redirigiremos el resumen md5 calculado 
+    para un conjunto de archivos hacia un archivo llamado 
+    <filename>md5sums</filename>:
       </para>
 
       <screen>
@@ -965,10 +961,10 @@ $ <userinput>cat md5sums</userinput>
       </screen>
 
       <para>
-	As we can see in the <command>cat</command> output the output
-	of the <command>md5sum *</command> output was redirected to
-	the <filename>md5sums</filename> file. We can also use
-	redirection to provide input to a command:
+    Como podemos ver en la salida de <command>cat</command>, la 
+    salida de <command>md5sum *</command> fué redirigida a el 
+    archivo <filename>md5sums</filename>. Tambien podemos 
+    usar la redirección para proveer datos de entrada a un comando:
       </para>
 
       <screen>
@@ -977,26 +973,26 @@ $ <userinput>md5sum &lt; test1</userinput>
       </screen>
 
       <para>
-	This feeds the contents of the <filename>test1</filename> to
-	<command>md5sum</command>.
+    Esto toma el contenido de <filename>test1</filename> como 
+    entrada para <command>md5sum</command>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-shell-inout-pipes">
-      <title>Pipes</title>
+      <title>Conductos</title>
 
       <para>
-	You can also connect the input and output of commands using
-	so-called <emphasis>pipes</emphasis>. A pipe between commands
-	can be made with the <quote>|</quote> character. Two or more
-	combined commands are called a
-	<emphasis>pipeline</emphasis>. <xref
-	linkend="fig-shell-pipeline" /> shows a schematic overview of
-	a pipeline consisting of two commands.
+    Tambien puede conectar la entrada y salida de comandos 
+    usando los denominadas <emphasis>conductos</emphasis>. Un  
+    conducto entre comandos puede hacerse con el caracter <quote>|</quote>. 
+    Dos o mas comandos combinados se denominan una 
+    <emphasis>tubería</emphasis>. <xref
+	linkend="fig-shell-pipeline" /> da un vistazo esquemático a  
+	una tubería compuesta por dos comandos.
       </para>
 
       <figure xml:id="fig-shell-pipeline">
-	<title>A pipeline</title>
+	<title>Una tubería</title>
 	<mediaobject>
 	  <imageobject>
 	    <imagedata fileref="../../images/shell-pipeline.png" format="PNG"/>
@@ -1005,10 +1001,10 @@ $ <userinput>md5sum &lt; test1</userinput>
       </figure>
 
       <para>
-	The <quote>syntax</quote> of a pipeline is: <command>command1
-	| command2 ... | commandn</command>. If you know how the most
-	basic UNIX-like commands work you can now let these commands
-	work together. Let's look at a quick example:
+    La <quote>sintaxis</quote> de una tubería es: <command>comando1
+	| comando2 ... | comandon</command>. Si usted conoce como trabajan
+	la mayoría de los comandos UNIX-like puede ahora dejar que estos 
+	comandos trabajen en conjunto. Veamos un ejemplo rápido:
       </para>
 
       <screen>
@@ -1017,25 +1013,24 @@ $ <userinput>cat /usr/share/dict/american-english | grep "aba" | wc -l</userinpu
       </screen>
 
       <para>
-	The first command, <command>cat</command>, reads the
-	dictionary file
-	<filename>/usr/share/dict/american-english</filename>. The
-	output of the <command>cat</command> command is piped to
-	<command>grep</command>, which prints out all files containing
-	the phrase <quote>aba</quote>.  In turn, the output of
-	<quote>grep</quote> is piped to <command>wc -l</command>,
-	which counts the number of lines it receives from
-	<emphasis>stdin</emphasis>. Finally, when the stream is
-	finished <command>wc</command> prints the number of lines it
-	counted. So, combined three commands to count the number of
-	lines containing the phrase <quote>aba</quote> in this
-	particular dictionary.
+    El primer comando, <command>cat</command>, lee el archivo  
+    diccionario <filename>/usr/share/dict/american-english</filename>. 
+    La salida de el comando <command>cat</command> es conducida a  
+    <command>grep</command>, que imprime todos los archivos 
+    conteniendo la frase <quote>aba</quote>. A su vez, la salida 
+    de <quote>grep</quote> es conducida a <command>wc -l</command>, 
+    que cuenta el número de lineas que recibe desde 
+    <emphasis>stdin</emphasis>. Finalmente, cuando el flujo se 
+    completa <command>wc</command> imprime el número de lineas 
+    que contó. Entonces, se combinarion tres comandos para 
+    contar el número de lineas conteniendo la frase <quote>aba</quote>  
+    en este diccionario en particular.
       </para>
 
       <para>
-	There are hundreds of small utilities that handle specific
-	tasks. As you can imagine, together these commands provide a
-	very powerful toolbox by making combinations using pipes.
+    Existen cientos de pequeñas utilidades que manejan tareas  
+    específicas. Como puede imaginar, estos comandos juntos proveen 
+    una poderosa caja de herramientas al combinarse utilizando conductos.
       </para>
     </sect2>
   </sect1>
