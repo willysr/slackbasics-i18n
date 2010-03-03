@@ -2,42 +2,42 @@
 
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:id="chap-shell">
-  <title>The shell</title>
+  <title>La consola</title>
 
   <sect1 xml:id="chap-shell-intro">
-    <title>Introduction</title>
+    <title>Introducción</title>
 
     <para>
-      In this chapter we will look at the traditional working
-      environment of UNIX systems: the shell. The shell is an
-      interpreter that can be used interactively and
-      non-interactively. When the shell is used non-interactively it
-      functions as a simple, but powerful scripting language.
+      En este capítulo veremos el ambiente de trabajo tradicional
+      para entornos UNIX: la consola. La consola es un intérprete 
+      que puede ser usado intera y no interactivamente. Cuando la
+      consola es usada de forma no interactiva, trabaja como un simple 
+      pero potente lenguaje script.
     </para>
 
     <para>
-      The procedure for starting the shell depends on whether you use
-      a graphical or text-mode login. If you are logging on in
-      text-mode the shell is immediately started after entering the
-      (correct) password.  If you use a graphical login manager like
-      KDM, log on as you would normally, and look in your window
-      manager or desktop environment menu for an entry named
-      <quote>XTerm</quote>, <quote>Terminal</quote> or
-      <quote>Konsole</quote>. XTerm is a terminal emulator, after the
-      terminal emulator is started the shell comes up.
+      El procedimiento para iniciar la consola depende del modo de inicio
+      de sesión, sea en modo texto o gráfico. Si esta iniciando sesión
+      en modo texto la consola es inmediatamente iniciada despues de 
+      ingresar su contraseña (correcta). Si utiliza un administrador 
+      gráfico de sesiones como KDM, inicie sesión de forma normal, y 
+      busque en su gestor de ventanas o el menú del entorno de escritorio
+      por una entrada llamada <quote>XTerm</quote>, <quote>Terminal</quote> 
+      o <quote>Konsole</quote>. XTerm es un emulador de terminal, despues
+      de que el emulador de terminal es iniciado la consola se inicia.
     </para>
 		
     <para>
-      Before we go any further, we have to warn you that Slackware
-      Linux provides more than just one shell. There are two shell
-      flavors that have become popular over time, the Bourne shell and
-      the C shell.  In this chapter we will describe Bourne shells
-      that conform to the IEEE 1003.1 standard. The Bash (Bourne Again
-      Shell) and ksh (Korn Shell) shells conform well to these
-      standards. So, it is a good idea to use one of these two
-      shells. You can easily see what shell the system is running by
-      executing <command>echo $SHELL</command>.  This is what a Bash
-      shell may report:
+      Antes de ir mas lejos, tenemos que advertir que Slackware Linux
+      provee mas de una consola. Existen dos consolas que ganaron 
+      popularidad a través del tiempo, la consola Bourne y la consola
+      C. En este capítulo describiremos consolas Bourne que cumplan 
+      los estandares IEEE 1003.1. Bash (Bourne Again Shell) y Ksh (Korn Shell)
+      cumplen con estos estandares. Entonces, es una buena idea utilizar
+      una de estas consolas. Usted puede ver facilmente cual consola 
+      esta siendo ejecutada en el sistema, a traves de la ejecución 
+      del comando <command>echo $SHELL</command>. Esto es lo que una 
+      consola Bash reportaría:
     </para>
 
     <screen>
@@ -46,10 +46,10 @@ $ <userinput>echo $SHELL</userinput>
     </screen>
 		
     <para>
-      If you are using a different shell, you can change your default
-      shell. Before setting a different shell, you have to establish
-      the full path of the shell. You can do this with the
-      <command>which</command> command. For example:
+      Si esta utilizando una consola diferente, puede cambiar su consola
+      por defecto. Antes asignar una consola diferente, debe establecer la
+      ruta completa de la misma. Puede hacer esto con el comando <command>which</command>. 
+      Por ejemplo: 
     </para>
 
     <screen>
@@ -60,11 +60,11 @@ $ <userinput>which ksh</userinput>
     </screen>
 
     <para>
-      On this Slackware system, the full path to the bash shell is
-      <filename>/bin/bash</filename>, and to the ksh shell
-      <filename>/bin/ksh</filename>. With this information, and the
-      <command>chsh</command> command you change the default
-      shell. The following example will set the default shell to bash:
+      En este sistema Slackware, la ruta completa a la consola bash es 
+      <filename>/bin/bash</filename>, y para la consola ksh <filename>/bin/ksh</filename>. 
+      Con esta información, y el comando <command>chsh</command> puede 
+      cambiar la consola por defecto. El siguiente ejemplo asignará 
+      a bash como la consola por defecto:
     </para>
 
     <screen>
@@ -75,44 +75,44 @@ Shell changed.
     </screen>
 
     <para>
-      The new shell will be activated after logging out from the
-      current shell (with <command>logout</command> or
-      <command>exit</command>), or by opening a new X terminal window
-      if you are running X11.
+      La nueva consola será activada despues de cerrar la sesión 
+      de la consola actual (con el comando <command>logout</command> 
+      o <command>exit</command>), o abriendo una nueva ventana
+      X terminal si esta ejecutando X11.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-shell-executing">
-    <title>Executing commands</title>
+    <title>Ejecutando comandos</title>
 
     <para>
-      An interactive shell is used to start programs by executing
-      commands.  There are two kinds of commands that a shell can
-      start:
+      Una consola interactiva es utilizada para iniciar programas 
+      ejecutando comandos. Existen dos tipos de comandos que una 
+      consola puede iniciar:
     </para>
 
     <itemizedlist>
       <listitem>
 	<para>
-	  <emphasis>Built-in commands:</emphasis> built-in commands
-	  are integrated in the shell. Commonly used built-in commands
-	  are: <command>cd</command>, <command>fg</command>,
+	  <emphasis>Comandos built-in:</emphasis> los comnandos built-in 
+	  estan integrados en la consola. Comandos built-in comúnmente
+	  usados son: <command>cd</command>, <command>fg</command>,
 	  <command>bg</command>, and <command>jobs</command>.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  <emphasis>External commands:</emphasis> external commands
-	  are programs that are not part of the shell program, and are
-	  separately stored on the filesystem. Commonly used external
-	  commands are: <command>ls</command>, <command>cat</command>,
+	  <emphasis>Comandos externos:</emphasis> los comandos externos 
+	  son programas que no son parte del shell, y estan almacenados 
+	  de forma separada en el sistema de archivos. Comandos externos 
+	  comúnmente usados son:<command>ls</command>, <command>cat</command>,
 	  <command>rm</command>, and <command>mkdir</command>.
 	</para>
       </listitem>
     </itemizedlist>
 
     <para>
-      All shell commands are executed with the same syntax:
+      Todos los comandos del consola se ejecutan con la misma sintaxis:
     </para>
 		
     <screen>
@@ -120,20 +120,20 @@ Shell changed.
     </screen>
 
     <para>
-      The number of arguments is arbitrary, and are always passed to
-      the command. The command can decide what it does with these
-      arguments.
+      El número de argumentos es arbitrario, y siempre son pasados 
+      al comando. El comando puede decidir que hacer con estos 
+      argumentos.
     </para>
 
     <para>
-      All built-in commands can always be executed, because they are
-      part of the shell. External commands can be executed by name
-      when the program is in the search path of the shell. Otherwise,
-      you will have to specify the path to the program. The search
-      path of the shell is stored in a variable named
-      <emphasis>PATH</emphasis>.  A variable is a named piece of
-      memory, of which the contents can be changed. We can see the
-      contents of the PATH variable in the following manner:
+      Todos los comandos built-in pueden ser ejecutados siempre, ya que 
+      son parte de la consola. Los comandos externos pueden ser ejecutados 
+      por su nombre cuando el programa esta en la ruta de busqueda de la 
+      consola. De lo contrario, se debe especificar la ruta al programa. 
+      La ruta de busqueda de la consola se almacena en una variable llamada  
+      <emphasis>PATH</emphasis>. Una variable es una pieza nombrada de 
+      memoria, de la cual el contenido puede ser cambiado. Podemos ver el 
+      contenido de la variable PATH de la siguiente forma:
     </para>
 
     <screen>
@@ -142,12 +142,11 @@ $ <userinput>echo $PATH</userinput>
     </screen>
 
     <para>
-      The directory paths in the <emphasis>PATH</emphasis> variable
-      are separated with the colon (<emphasis>:</emphasis>)
-      character. You can use the <command>which</command> command to
-      check whether a given command is in the current shell path. You
-      can do this by providing the command as an argument to
-      <command>which</command>. For example:
+      Las rutas de directorio en la variable <emphasis>PATH</emphasis> estan 
+      separadas con el caracter (<emphasis>:</emphasis>). Usted puede usar 
+      el comando <command>which</command> para verificar si un comando dado 
+      se encuentra en la ruta actual de la consola. Puede realizar esto proveyendo 
+      el comando como argumento a <command>which</command>. Por ejemplo:
     </para>
 
     <screen>
@@ -158,30 +157,29 @@ $ <userinput>which sysstat</userinput>
     </screen>
 
     <para>
-      If a program is not in the path, you can still run it by
-      entering its absolute or relative path.
+      Si un programa no esta en la ruta, todavía puede ejecutarlo 
+      ingresando su ruta absoluta o relativa.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-shell-moving">
-    <title>Moving around</title>
+    <title>Navegando</title>
 
     <para>
-      It is often necessary to jump through various parts of a line,
-      and to alter it, when you are editing larger commands. Both
-      <command>bash</command> and <command>ksh</command> have keyboard
-      shortcuts for doing common operations.  There are two shell
-      modes, in which the shortcut keys differ. These modes correspond
-      with two popular editors for UNIX in their behavior.  These
-      editors are <command>vi</command> and
-      <command>emacs</command>. In this book we will only cover the
-      EMACS-like keystrokes. You can check in which mode a shell is
-      running by printing the <emphasis>SHELLOPTS</emphasis>
-      variable. In the first example the shell is used in
-      <emphasis>emacs</emphasis> mode, in the second example the
-      <emphasis>vi</emphasis> mode is used. You identify the mode by
-      looking for the <emphasis>emacs</emphasis> or
-      <emphasis>vi</emphasis> strings in the contents of the variable.
+      Es a veces necesario saltar a través de varias partes de una linea, 
+      y alterarla, cuando esta editando comandos extensos. Ambas consolas 
+      <command>bash</command> y <command>ksh</command> tienen atajos 
+      de teclado para realizar tareas comunes. Existen dos modos consola, 
+      en donde los atajos difieren. Estos modos corresponden en su 
+      comportamiento con dos editores populares para UNIX. Estos editores 
+      son <command>vi</command> y <command>emacs</command>. En este libro 
+      solamente cubriremos los atajos EMACS-like. Puede revisar en que 
+      modo se ejecuta una consola imprimiendo la variable 
+      <emphasis>SHELLOPTS</emphasis>. En el primer ejemplo la consola es 
+      usada en modo <emphasis>emacs</emphasis>, en el segundo ejemplo el 
+      modo <emphasis>vi</emphasis> es usado. Identifique el modo buscando 
+      las cadenas <emphasis>emacs</emphasis> o <emphasis>vi</emphasis> 
+      en el contenido de la variable.
     </para>
 
     <screen>
@@ -195,9 +193,9 @@ braceexpand:hashall:histexpand:history:interactive-comments:monitor:vi
     </screen>
 
     <para>
-      If your shell is currently using the <emphasis>vi</emphasis>
-      mode, you can switch to the <emphasis>emacs</emphasis> mode by
-      setting the <emphasis>emacs</emphasis> option:
+      Si su consola esta actualmente usando el modo <emphasis>vi</emphasis>, 
+      puede cambiarla a modo <emphasis>emacs</emphasis> asignado la 
+      opcion <emphasis>emacs</emphasis>:
     </para>
 
     <screen>
@@ -205,51 +203,50 @@ $ <userinput>set -o emacs</userinput>
     </screen>
 
     <para>
-      With the <emphasis>emacs</emphasis> editing mode enabled, you
-      can start using shortcuts. We will look at three kinds of
-      shortcuts: character editing shortcuts, word editing shortcuts,
-      and line editing shortcuts. Later in this chapter, we will also
-      have a look at some shortcuts that are used to retrieve entries
-      from the command history.
+      Con el modo <emphasis>emacs</emphasis> activado, puede empezar 
+      a utilizar los atajos de teclado. Tomaremos en cuenta tres 
+      tipos de atajos: atajos de edicion de caracteres, atajos de 
+      edicion de palabras y atajos de edicion de linea. Luego en 
+      este capitulo, daremos un vistazo a algunos atajos que son 
+      usados para obtener entradas del historial de comandos.
     </para>
 
     <sect2 xml:id="chap-shell-moving-char">
-      <title>Character editing</title>
+      <title>Editando caracteres</title>
 
       <para>
-	The first group of shortcuts have characters as their logic
-	unit, meaning that they allow command line editing operations
-	on characters.  <xref
-	linkend="chap-shell-moving-char-shortcuts-move" /> provides an
-	overview of the shortcuts that are used to move through a line
-	by character.
+      El primer grupo de atajos tiene caracteres como su unidad lógica, 
+      esto quiere decir que permiten operaciones de edicion sobre caracteres
+      de linea de comando. <xref linkend="chap-shell-moving-char-shortcuts-move" /> 
+      provee una introducción de los atajos que son usados para desplazarse 
+      a través de una linea por caracter.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-move">
-	<title>Moving by character</title>
+	<title>Desplazándose por caracter</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry><entry>Description</entry>
+	      <entry>Teclas</entry><entry>Descripcion</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-b</entry>
-	      <entry>Move a character backwards.</entry>
+	      <entry>Desplaza un caracter hacia atras.</entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-f</entry>
-	      <entry>Move a character forward.</entry>
+	      <entry>Desplaza un caracter hacia adelante.</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <para>
-	These shortcuts are simple, and don't do anything unexpected.
-	Suppose that you have typed the following line:
+    Estos atajos son sencillos, y no hacen nada inesperado. Suponga 
+    que ha tipeado la siguiente linea:
       </para>
 
       <screen>
@@ -257,8 +254,8 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	The cursor will be at the end. You can now move to the start
-	of the line by holding <emphasis>Ctrl-b</emphasis>:
+    El cursor estará al final. Ahora usted puede moverse al inicio 
+    de la linea mantieniendo <emphasis>Ctrl-b</emphasis> presionado:
       </para>
 
       <screen>
@@ -266,39 +263,39 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	Likewise, you can go back again to the end by holding
-	<emphasis>Ctrl-f</emphasis>. There is an error in this line,
-	since there is one erroneous dash. To remove this dash, you
-	can use one of the character deletion shortcuts.
+    De la misma forma, puede puede volver al final de la linea manteniendo  
+    <emphasis>Ctrl-f</emphasis> presionado. Existe un error en esta linea, 
+    porque hay un guion erróneo. Para remover este guion, puede utilizar el 
+    atajo de borrado de caracter.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-delete">
-	<title>Deleting characters</title>
+	<title>Borrando caracteres</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry><entry>Description</entry>
+	      <entry>Teclas</entry><entry>Descripcion</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-h</entry>
-	      <entry>Delete a character before the cursor. This has
-	      the same effect as using the Backspace key on most
-	      personal computers.</entry>
+	      <entry>Borra un caracter antes del cursor. Tiene 
+	      el mismo efecto que utilizar la tecla Retroceso en 
+	      la mayoría de los ordenadores personales.</entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-d</entry>
-	      <entry>Delete the character the cursor is on.</entry>
+	      <entry>Borra el caracter sobre el que esta el cursor.</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <para>
-	You can delete the dash in two manners. The first way is to
-	move the cursor to the dash:
+    Puede eliminar el guion de dos formas. La primera es mover el  
+    cursor hasta el guion:
       </para>
 
       <screen>
@@ -306,9 +303,8 @@ find ~/music <emphasis role="cursor">-</emphasis> -name '*.ogg' -print
       </screen>
 
       <para>
-	and then press <emphasis>Ctrl-d</emphasis> twice. This will
-	delete the dash character, and the space that follows the
-	dash:
+    y presionar <emphasis>Ctrl-d</emphasis> dos veces. Esto eliminará 
+    el guion y el espacio que le sigue:
       </para>
 
       <screen>
@@ -316,8 +312,8 @@ find ~/music <emphasis role="cursor">-</emphasis>name '*.ogg' -print
       </screen>
 
       <para>
-	Looking at the original fragment, the other approach is to
-	position the cursor on the space after the dash:
+    Observando el fragmento original, la otra opción es posicionar 
+    el cursor en el espacio siguiente al guion: 
       </para>
 
       <screen>
@@ -325,10 +321,9 @@ find ~/music -<emphasis role="cursor">&#32;</emphasis> -name '*.ogg' -print
       </screen>
 
       <para>
-	and then press <emphasis>Ctrl-h</emphasis> twice to delete the
-	two preceding characters, namely the dash and the space before
-	the dash. The result will be the same, except that the cursor
-	will move:
+    y presionar <emphasis>Ctrl-h</emphasis> dos veces para eliminar los 
+    dos caracteres previos, el guion y el espacio anterior al guion. El 
+    resultado será el mismo, excepto que el cursor se posicionará en: 
       </para>
 
       <screen>
@@ -336,35 +331,35 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
       </screen>
 
       <para>
-	One of the nice features of most modern shells is that you can
-	transpose (swap) characters. This is handy if you make a
-	typing error in which two characters are swapped.  <xref
-	linkend="chap-shell-moving-char-shortcuts-swap" /> lists the
-	shortcut for transposing characters.
+      Una de las mejores características de la mayoría de las consolas 
+      modernas es que se pueden intercambiar caracteres. Esto es útil si 
+      se produce un error de tipeo en el cual dos caracteres son 
+      intercambiados. <xref linkend="chap-shell-moving-char-shortcuts-swap" />  
+      lista los atajos para intercambiar caracteres.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-swap">
-	<title>Swapping characters</title>
+	<title>Intercambiando caracteres</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry><entry>Description</entry>
+	      <entry>Teclas</entry><entry>Descripcion</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-t</entry>
-	      <entry>Swap (transpose) the characters the cursor is on,
-	      and the character before the cursor. This is handy for
-	      quickly correcting typing errors.</entry>
+	      <entry> Intercambia los caracteres sobre el cual 
+	      esta el cursor, y el caracter previo. Esto es útil para 
+	      correciones de tipeo rápidas.</entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
 
       <para>
-	Suppose that you have typed the following command:
+      Suponga que usted ha tipeado el siguiente comando:
       </para>
 
       <screen>
@@ -372,11 +367,11 @@ cat myreport.ttx
       </screen>
 
       <para>
-	The extension contains a typing error if you intended to
-	<command>cat</command> <filename>myreport.txt</filename>. This
-	can be corrected with the character transpose shortcut. First
-	move to the second character of the pair of characters that
-	are in the wrong order:
+    La extensión contiene un error de tipeo si intentaba ejecutar  
+    <command>cat</command> <filename>myreport.txt</filename>. Puede
+    ser corregido con el atajo de intercambio de caracteres. Primero 
+    desplácese hacia el segundo caracter del par de caracteres que  
+    están tipeados en orden incorrecto:
       </para>
 
       <screen>
@@ -384,9 +379,9 @@ cat myreport.tt<emphasis role="cursor">x</emphasis>
       </screen>
 
       <para>
-	You can then press <emphasis>Ctrl-t</emphasis>. The characters
-	will be swapped, and the cursor will be put behind the swapped
-	characters:
+    Puede entonces presionar <emphasis>Ctrl-t</emphasis>. Los caracteres 
+    serán intercambiados, y el cursor se ubicará detrás de los caracteres 
+    intercambiados:
       </para>
 
       <screen>
@@ -395,41 +390,40 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
     </sect2>
 
     <sect2 xml:id="chap-shell-moving-word">
-      <title>Word editing</title>
+      <title>Editando palabras</title>
 
       <para>
-	It is often tedious to move at character level. Fortunately
-	the Korn and Bash shells can also move through lines at a word
-	level.  Words are sequences of characters that are separated
-	by a special character, such as a space.
-	<xref linkend="chap-shell-moving-word-shortcuts-move" />
-	summarizes the shortcuts that can be used to navigate through
-	a line by word.
+    Con frecuencia es tedioso moverse a nivel de caracteres. Afortunadamente 
+    las consolas Korn y Bash pueden moverse a traves de lineas a 
+    nivel de palabras. Las palabras son secuencias de caracteres 
+    separadas por un caracter especial, como un espacio.  
+    <xref linkend="chap-shell-moving-word-shortcuts-move" /> resume los  
+    atajos que pueden ser utilizados para navegar a través de una 
+    linea por palabra.
       </para>
 
       <table xml:id="chap-shell-moving-word-shortcuts-move">
-	<title>Moving by word</title>
+	<title>Moviendose por palabra</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
-	      <entry>Description</entry>
+	      <entry>Teclas</entry>
+	      <entry>Descripcion</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Esc b</entry>
 	      <entry>
-		Move back to the start of the current or previous
-		word.
+	    Moverse hacia atrás al inicio de la palabra actual o previa.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Esc f</entry>
 	      <entry>
-		Move forward to the last character of the current or
-		next word.
+	    Moverse hacia adelante al último caracter de la palabra actual 
+	    o la siguiente.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -437,13 +431,13 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
       </table>
 
       <para>
-	As you can see the letters in these shortcuts are equal to
-	those of moving forward and backwards by character. The
-	movement logic is a bit curious. Moving forward puts the
-	cursor to the end of the current word, not to the first
-	character of the next word as you may have predicted. Let's
-	look at a quick example. In the beginning the cursor is on the
-	first character of the line.
+    Como puede ver las letras de estos atajos son iguales a 
+    aquellas utilizadas para caracteres. La lógica de movimiento  
+    es un poco curiosa. Moverse hacia adelante coloca el cursor 
+    al final de la palabra actual, no en el primer caracter de 
+    la siguiente palabra como usted debe haber predicho. Veamos un 
+    ejemplo. En el inicio, el cursor esta en el primer caracter de 
+    la linea.
       </para>
 
       <screen>
@@ -451,9 +445,9 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-	Pressing <emphasis>Esc f</emphasis> will move the cursor
-	behind the last character of the first word, which is
-	<emphasis>find</emphasis> in this case:
+    Presionando <emphasis>Esc f</emphasis> moverá el cursor 
+    detrás de el último caracter de la primera palabra, que es  
+    en este case <emphasis>find</emphasis>:
       </para>
 
       <screen>
@@ -461,7 +455,7 @@ find<emphasis role="cursor">&#32;</emphasis>~/music -name '*.ogg' -print
       </screen>
 
       <para>
-	Going forward once more will put the cursor behind
+    Yendo hacia adelante una vez mas colocará el cursor detrás de 	
 	<emphasis>~/music</emphasis>:
       </para>
 
@@ -470,11 +464,12 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
       </screen>
 
       <para>
-	Backwards movement puts the cursor on the first character of
-	the current word, or on the first character of the previous
-	word if the cursor is currently on the first character of a
-	word. So, moving back one word in the previous example will
-	put the cursor on the first letter of <quote>music</quote>:
+    El movimiento hacia atrás coloca el cursor en el primer caracter 
+    de la palabra actual, o en el primer caracter de la palabra 
+    previa si el cursor esta actualmente en el primer caracter de 
+    una palabra. Entonces, moverse hacia atrás una palabra en el 
+    ejemplo previo colocará el cursor en la primera letra de 
+    <quote>music</quote>:
       </para>
 
       <screen>
@@ -482,19 +477,19 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
       </screen>
 
       <para>
-	Deleting words works equal to moving by word, but the
-	characters that are encountered are deleted.  <xref
-	linkend="chap-shell-moving-word-shortcuts-delete" /> lists the
-	shortcuts that are used to delete words.
+        El borrado de palabras funciona igual al movimiento entre palabras, 
+	pero los caracteres intermedios son eliminados. <xref
+	linkend="chap-shell-moving-word-shortcuts-delete" /> enlista 
+	los atajos usados para borrar palabras.
       </para>
 
       <table  xml:id="chap-shell-moving-word-shortcuts-delete">
-	<title>Deleting words</title>
+	<title>Borrando palabras</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
-	      <entry>Description</entry>
+	      <entry>Teclas</entry>
+	      <entry>Descripcion</entry>
 	    </row>
 	  </thead>
 	  <tbody>
@@ -503,7 +498,7 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 		Alt-d
 	      </entry>
 	      <entry>
-		Delete the word, starting at the current cursor position.
+		Elimina la palabra, iniciando en la posicion actual del cursor.
 	      </entry>
 	    </row>
 	    <row>
@@ -511,8 +506,8 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 		Alt-Backspace
 	      </entry>
 	      <entry>
-		Delete every character from the current cursor position
-		to the first character of a word that is encountered.
+		Elimina cada caracter desde la posicion actual del cursor 
+		hasta el primer caracter de la palabra identificada.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -520,46 +515,46 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
       </table>
 
       <para>
-	Finally, there are some shortcuts that are useful to
-	manipulate words. These shortcuts are listed in <xref
+	Finalmente, existen atajos útiles para manipular palabras. 
+	Estos atajos estan listados en <xref
 	linkend="chap-shell-moving-word-shortcuts-modify" />.
       </para>
 
       <table  xml:id="chap-shell-moving-word-shortcuts-modify">
-	<title>Modifying words</title>
+	<title>Modificando palabras</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Keys</entry>
-	      <entry>Description</entry>
+	      <entry>Teclas</entry>
+	      <entry>Descripcion</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Alt-t</entry>
 	      <entry>
-		Swap (transpose) the current word with the previous word.
+		Intercambia la palabra actual con la palabra previa.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Alt-u</entry>
 	      <entry>
-		Make the word uppercase, starting at the current cursor
-		position.
+		Convierte los caracteres de la palabra a mayúscula, 
+		iniciando en la posicion del cursor.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Alt-l</entry>
 	      <entry>
-		Make the word lowercase, starting at the current
-		cursor position.
+		Convierte los caracteres de la palabra a minúscula, 
+		iniciando en la posicion del cursor.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Alt-c</entry>
 	      <entry>
-		Capitalize the current word character or the next word
-		character that is encountered.
+		Capitaliza el primer caracter de la palabra actual o 
+		de la siguiente palabra.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -567,9 +562,9 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
       </table>
 
       <para>
-	Transposition swaps words. If normal words are used, it's
-	behavior is predictable. For instance, if we have the
-	following line with the cursor on <quote>two</quote>
+	En el intercambio de palabras, si las palabras usadas son normales, 
+	el comportamiento es predecible. Por ejemplo, si se tiene la 
+	siguiente linea con el cursor en <quote>two</quote>
       </para>
 
       <screen>
@@ -577,7 +572,7 @@ one <emphasis role="cursor">t</emphasis>wo three
       </screen>
 
       <para>
-	Word transposition will swap <quote>two</quote> and
+	El intercambio afectará a <quote>two</quote> y
 	<quote>one</quote>:
       </para>
 
@@ -586,12 +581,11 @@ two one three
       </screen>
 
       <para>
-	But if there are any non-word characters, the shell will swap
-	the word with the previous word while preserving the order of
-	non-word characters. This is very handy for editing arguments
-	to commands. Suppose that you made an error, and mixed up the
-	file extension you want to look for, and the
-	<emphasis>print</emphasis> parameter:
+	Pero si hay caracteres no comunes en palabras, la consola intercambiará 
+	la palabra con la palabra previa preservando el orden de los caracteres 
+	especiales. Esto es muy útil para la edicion de argumentos de comandos. 
+	Suponga que comete un error, mezclando la extension de archivos que 
+	desea buscar, y el parámetro <emphasis>print</emphasis>:
       </para>
 
       <screen>
@@ -599,9 +593,9 @@ find ~/music -name '*.print' -ogg
       </screen>
 
       <para>
-	You can fix this by putting the cursor on the second faulty
-	word, in this case <quote>ogg</quote>, and transposing the two
-	words. This will give the result that we want:
+	Puede arreglar esto colocando el cursor en la segunda palabra 
+	errónea, en este caso <quote>ogg</quote>, e intercambiando las 
+	dos palabras. Esto le dará el resultado esperado:
       </para>
 
       <screen>
@@ -609,25 +603,24 @@ find ~/music -name '*.ogg' -print
       </screen>
 
       <para>
-	Finally, there are some shortcuts that change the
-	capitalization of words. The Alt-u shortcut makes all
-	characters uppercase, starting at the current cursor position
-	till the end of the word. So, if we have the lowercase name
-	<quote>alice</quote>, uppercasing the name with the cursor on
-	<quote>i</quote> gives <quote>alICE</quote>. Alt-l has the
-	same behavior, but changes letters to lowercase. So, using
-	Alt-l on <quote>alICE</quote> with the cursor on
-	<quote>I</quote> will change the string to
-	<quote>alice</quote>. Alt-c changes just the character the
-	cursor is on, or the next word character that is encountered,
-	to uppercase. For instance, pressing Alt-c with the cursor on
-	<quote>a</quote> in <quote>alice</quote> will yield
-	<quote>Alice</quote>.
+	Finalmente, existen atajos que cambian la capitalizacion de 
+	las palabras. El atajo Alt-u convierte todos los caracteres 
+	a mayúscula, iniciando en la posicion actual del cursor hasta 
+	el final de la palabra. Entonces, si tenemos un nombre en 
+	minúscula <quote>alice</quote>, capitalizando el nombre con 
+	el cursor en <quote>i</quote> retorna <quote>alICE</quote>. Alt-l 
+	tiene el mismo comportamiento, pero cambia las letras a minúscula. 
+	Entonces, usando Alt-l en <quote>alICE</quote> con el cursor en 
+	<quote>I</quote> cambiará la cadena a <quote>alice</quote>. Alt-c 
+	cambia solamente el caracter sobre el cual el cursor esta, o el 
+	caracter de la siguiente palabra que es encontrada, a mayúscula. 
+	Por ejemplo, presionand Alt-c con el cursor sobre <quote>a</quote> 
+	en <quote>alice</quote> producirá <quote>Alice</quote>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-shell-moving-line">
-      <title>Line editing</title>
+      <title>Edición de lineas</title>
 
       <para>
 	The highest level we can edit is the line itself.
