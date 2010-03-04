@@ -1,11 +1,12 @@
-linhas arquivo                  trad     1a-rev  2a-rev
+lines   file                   trad    1st-rev  2nd-rev
 ------+------------------------+--------+-------+-------
     38 preface.xml              OK       -       -
     85 chap-book.xml            OK       -       -
    117 bind.xml                 OK       -       -
    131 chap-x11.xml             -        -       -
-   #invalid 135 services.xml             -        -       -
+   #invalid 135 services.xml    -        -       -
    143 slackware-basics.xml     OK       -       -
+   144 inetd.xml				OK		 - 		 - 
    149 inetd.xml                -        -       -
    156 apache.xml               OK       -       -
    181 security.xml             -        -       -

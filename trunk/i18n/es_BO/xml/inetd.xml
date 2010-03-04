@@ -79,9 +79,9 @@ enviando una señal HUP al proceso inetd:
 <title>TCP wrappers</title>
 
 <para>
-As you can see in <filename>/etc/inetd.conf</filename> connections for most
-protocols are made through <command>tcpd</command>, instead of directly 
-passing the connection to a service program. For example:
+Como puede ver en <filename>/etc/inetd.conf</filename> las conexiones para 
+la mayoría de los protocolos se realizan a través de <command>tcpd</command>, 
+en vez de pasar la conexion directamente al programa de servicio. Por ejemplo:
 </para>
 
 <screen>
@@ -90,13 +90,13 @@ ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
 </screen>
 
 <para>
-In this example ftp connections are passed through <command>tcpd</command>.
-<command>tcpd</command> logs the connection through syslog and allows for
-additional checks. One of the most used features of <command>tcpd</command>
-is host-based access control. Hosts that should be denied are controlled
-via <filename>/etc/hosts.deny</filename>, hosts that should be allowed
-via <filename>/etc/hosts.allow</filename>. Both files have one rule on
-each line of the following form:
+En este ejemplo las conexiones ftp pasan a través <command>tcpd</command>. 
+<command>tcpd</command> registra la conexion a través de syslog y permite 
+chequeos adicionales. Una de las características mas usadas de <command>tcpd</command>  
+es el control de acceso basado en host. Los hosts que deberían ser negados  
+son controlados via <filename>/etc/hosts.deny</filename>, los host que 
+deberían ser permitidos via <filename>/etc/hosts.allow</filename>. Ambos  
+archivos tienen una regla en cada linea en la forma siguiente:
 </para>
 
 <screen>
@@ -104,16 +104,16 @@ service: hosts
 </screen>
 
 <para>
-Hosts can be specified by hostname or IP address. The ALL keyword specifies
-all hosts or all services.
+Los hosts se pueden especificar por hostname o direccion IP. La palabra clase 
+ALL especifica todos los hosts o todos los servicios.
 </para>
 
 <para>
-Suppose we want to block access to all services managed through 
-<command>tcpd</command>, except for host 
-<quote>trusted.example.org</quote>. To do this the following
-<filename>hosts.deny</filename> and <filename>hosts.allow</filename>
-files should be created.
+Suponga que quiere bloquear el acceso a todos los servicios administrados 
+a través de <command>tcpd</command>, a excepción del host <quote>trusted.example.org</quote>. 
+Para hacer esto, los siguientes archivos 
+<filename>hosts.deny</filename> and <filename>hosts.allow</filename>  
+deberían ser creados.
 </para>
 
 <para>
@@ -133,10 +133,10 @@ ALL: trusted.example.org
 </screen>
 
 <para>
-In the <filename>hosts.deny</filename> access is blocked to all (ALL)
-services for all (ALL) hosts. But <filename>hosts.allow</filename>
-specifies that all (ALL) services should be available to
-<quote>trusted.example.org</quote>.
+En el archivo <filename>hosts.deny</filename> el acceso esta bloqueado  
+a todos (ALL) los servicios para todos los hosts (ALL). Pero  
+<filename>hosts.allow</filename> especifica que todos los servicios (ALL)  
+deberían estar disponibles a <quote>trusted.example.org</quote>.
 </para>
 
 </sect1>
