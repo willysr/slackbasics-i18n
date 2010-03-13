@@ -121,17 +121,18 @@ Contoh:
 	<command>passwd</command> digunakan untuk mengubah password 
 	pengguna. Menjalankan perintah ini sebagai pengguna tanpa 
 	memberikan parameter akan mengubah password untuk pengguna 
-	tersebut. Perintah password akan menanyakan password lama 
+	tersebut. Perintah <command>passwd</command> akan menanyakan password lama 
 	sekali, kemudian meminta password baru sebanyak dua kali.
       </para>
 
       <screen>
 $ <userinput>passwd</userinput>
-Changing password for bob
-(current) UNIX password: 
-Enter new UNIX password: 
-Retype new UNIX password: 
-passwd: password updated successfully
+Old password:
+Enter the new password (minimum of 5, maximum of 127 characters)
+Please use a combination of upper and lower case letters and numbers.
+New password:
+Re-enter new password:
+Password changed.
       </screen>
 
       <para>

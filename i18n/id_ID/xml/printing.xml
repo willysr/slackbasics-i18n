@@ -297,7 +297,7 @@ Allow From 192.168.1.203
 	permintaan kepada Ghostscript dengan menggunakan parameter  
 	<parameter class="command">-sPAPERSIZE=size</parameter>  pada 
 	perintah <command>gs</command>. Sebagai contoh, Anda dapat 
-	menggunakan parameter <emphasis>-sPAPERSIZE=a4</emphasis> ketika 
+	menambahkan parameter <emphasis>-sPAPERSIZE=a4</emphasis> ketika 
 	Anda memulai perintah <command>gs</command> untuk menggunakan 
 	ukuran kertas A4 sebagai permintaan ke Ghostscript.
     </para>

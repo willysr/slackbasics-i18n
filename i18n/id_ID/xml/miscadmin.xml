@@ -253,7 +253,7 @@ procs -----------memory---------- ---swap-- -----io---- --system-- ----cpu----
         </listitem>
         <listitem>
           <para>
-            <emphasis>si</emphasis>: Jumlah memori yang di-swap ke disk per detik.
+            <emphasis>so</emphasis>: Jumlah memori yang di-swap ke disk per detik.
           </para>
         </listitem>
       </itemizedlist>
