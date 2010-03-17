@@ -2305,7 +2305,7 @@ $ <userinput>find . -depth</userinput>
 	  not to decend into a directory that is being evaluated.
 	  <emphasis>-prune</emphasis> is discarded if the
 	  <emphasis>-depth</emphasis> operand is also
-	  used. <emphasis>-depth</emphasis> always evaluates to
+	  used. <emphasis>-prune</emphasis> always evaluates to
 	  <emphasis>true</emphasis>.
 	</para>
       </sect3>
