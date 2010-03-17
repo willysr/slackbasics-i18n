@@ -10,13 +10,14 @@
 
     <para>
       Avant de regarder la pratique des opération sur les systèmes de fichiers,
-      nous allors voir une vue d'ensemble plus théorique sur comment les
+      nous allors voir une vue d'ensemble plus théorique sur la façon dont les
       systèmes de fichiers sur les systèmes de type UNIX fonctionnent. Slackware
       Linux supporte beaucoup de systèmes de fichiers différents, cependant tous
       ces systèmes de fichiers utilisent pratiquement la même sémantique. Cette
       sématique est fournie à travers la couche <emphasis>Système de Fichiers
       Virtuel</emphasis> (Virtual FileSystem - VFS), fournissant une interface
-      générique pour les systèmes de fichiers disque et les réseau.
+      générique pour les systèmes de fichiers disque et les systèmes de fichiers
+      réseau.
     </para>
 
     <sect2 xml:id="chap-filesystem-introduction-atoms">
@@ -96,12 +97,12 @@
 	stockés dans ce qu'on appelle les entrées de répertoire. Ces entrées
 	spécifient un nom de fichier et l'inode du fichier. Puisque les
 	répertoires sont aussi représentés par des inodes, une structure de
-	répertoire peut aussi être construit de cette manière.
+	répertoire peut aussi être construite de cette manière.
       </para>
 
       <para>
 	Nous pouvons montrer simplement comment tout cela fonctionne en
-	illustrant ce que le noyau fait can nous exécutons la
+	illustrant ce que le noyau fait quand nous exécutons la
 	commande <command>cat /home/daniel/note.txt</command>
       </para>
 
@@ -109,7 +110,7 @@
         <listitem>
 	  <para>
 	    Le système lit l'inode du répertoire <filename>/</filename>, vérifie
-	    si l'utilisateur est autorisé d'accéder à cet inode, et lit le bloc
+	    si l'utilisateur est autorisé à accéder à cet inode, et lit le bloc
 	    de données pour trouver le numéro d'inode du
 	    répertoire <filename>home</filename>.
 	  </para>
@@ -117,7 +118,7 @@
         <listitem>
           <para>
 	    Le système lit l'inode du répertoire <filename>home</filename>,
-	    vérifie si l'utilisateur est autorisé d'accéder à cet inode, et lit
+	    vérifie si l'utilisateur est autorisé à accéder à cet inode, et lit
 	    le bloc de données pour trouver le numéro d'inode du
 	    répertoire <filename>daniel</filename>. </para>
         </listitem>
@@ -125,14 +126,14 @@
           <para>
 	    Le système lit l'inode du répertoire 
 	    <filename>daniel</filename>, vérifie si l'utilisateur est autorisé
-	    d'accéder à cet inode, et lit le bloc de données pour trouver le
+	    à accéder à cet inode, et lit le bloc de données pour trouver le
 	    numéro d'inode du fichier <filename>note.txt</filename>.
 	  </para>
         </listitem>
         <listitem>
           <para>
 	    Le système lit l'inode du fichier <filename>note.txt</filename>,
-	    vérifie si l'utilisateur est autorisé d'accéder à cet inode, et
+	    vérifie si l'utilisateur est autorisé à accéder à cet inode, et
 	    retourne les blocs de données à <command>cat</command> à travers
 	    l'appel système <emphasis>read()</emphasis>. </para>
         </listitem>
@@ -143,25 +144,25 @@
       <title>Droits d'accès fichier</title>
 
       <para>
-	Comme décrit précédemment, Linux est un système multi-utilisateur. Cela
+	Comme décrit précédemment, Linux est un système multi-utilisateurs. Cela
 	signifie que chaque utilisateur possède ses propres fichiers
 	(habituellement situés dans le répertoire personnel). De plus les
 	utilisateurs peuvent être membres d'un groupe, ce qui peut donner à
-	l'utilsateur des privilèges supplémentaires.
+	l'utilisateur des privilèges supplémentaires.
       </para>
 
       <para>
 	Comme vous avez pu voir dans la table des champs d'inode, chaque fichier
-	at sont propriétaire et un groupe. Le contrôle d'accès traditionel UNIX
+	a son propriétaire et un groupe. Le contrôle d'accès traditionel UNIX
 	offre les droits de lecture, d'écriture ou d'exécution au propriétaire
 	du fichier, au groupe, et aux autres utilisateurs. Ces permissions sont
 	stockées dans le champ <emphasis>mode</emphasis> de l'inode. Ce champ
-	mode représenté les droits d'accès du fichier sous forme d'un nombre
-	octal à 4 chiffres. Le premier chiffre représents quelques options
+	mode représente les droits d'accès du fichier sous forme d'un nombre
+	octal à 4 chiffres. Le premier chiffre représente quelques options
 	spéciales, le deuxième chiffre stocke les permissions du propriétaire,
 	le troisième les permissions du groupe, et le quatrième les permissions
-	pour les autres utilisateurs. Les permissions sont établies par chiffre
-	par chiffre en utilisant ou en additionnant un des nombres de
+	pour les autres utilisateurs. Les permissions sont établies  chiffre
+	par chiffre en utilisant ou en additionnant un des nombres du
 	<xref linkend="chap-filesystem-permissions-numbers"/>
       </para>
 
@@ -202,7 +203,7 @@
 	La plupart des utilisateurs ne veulent pas manipuler les nombres octals,
 	donc c'est pourquoi beaucoup d'utilitaires sont capables de manipuler
 	les représentations alphabétiques des permissions de fichiers. Les
-	lettres listées dans
+	lettres listées dans le
 	<xref linkend="chap-filesystem-permissions-numbers"/> entre parenthèses
 	sont utilisées dans cette notation. Dans l'exemple suivant les
 	informations sur un fichier ayant les
@@ -217,8 +218,8 @@ $ <userinput>ls -l note.txt</userinput>
       </screen>
 
       <para>
-	Avec les années ces permissions UNIX traditionelles ont prouvé leurs
-	lacunes dans certains cas. La spécification POSIX 1003.1e visant à
+	Avec les années ces permissions UNIX traditionnelles ont prouvé leurs
+	lacunes dans certains cas. La spécification POSIX 1003.1e visait à
 	étendre le modèle de contrôle d'accès UNIX avec les <emphasis>Liste de
 	Contrôle d'Accès</emphasis> (Access Control Lists - ACLs).
 	Malheureusement cet effort a été vain, même si quelques systèmes (comme
@@ -232,7 +233,7 @@ $ <userinput>ls -l note.txt</userinput>
 
       <para>
 	L'exemple suivant montre la liste de contrôle d'accès d'un
-	fichier. Comme vous pouvez le voir, les permissions ressemblents aux
+	fichier. Comme vous pouvez le voir, les permissions ressemblent aux
 	permissions UNIX normales (les droits d'accès pour l'utilisateur, le
 	groupe, et les autres sont spécifiés). Mais il y a aussi des entrées
 	supplémentaires pour l'utilisateur <emphasis>joe</emphasis>.
@@ -261,7 +262,7 @@ other::---
       <para>
 	Une entrée de répertoire qui pointe vers un inode est nommé un
 	<emphasis>lien physique</emphasis> (hard link). La plupart des fichiers
-	sont liés une seule fois, mais rien ne vous empêche des lier un fichier
+	sont liés une seule fois, mais rien ne vous empêche de lier un fichier
 	deux fois. Cela va incrémenter le champ <emphasis>links_count</emphasis>
 	de l'inode. C'est un bon moyen pour le système de voir quels inodes et
 	blocs de données sont libres. Si links_count est égal à 0, l'inode n'est
@@ -289,8 +290,8 @@ other::---
 	plupart des systèmes de fichiers ne vous autorisent pas de créer des
 	liens physiques vers des répertoires. Autoriser la création de liens
 	physiques sur des répertoires pourrait conduire à des boucles de
-	répertoires, potentiellement générateurs de bloquages et incohérence du
-	système de fichiers. En plus, la plupart des implémentations
+	répertoires, potentiellement génératrices de bloquages et d'incohérence
+	du système de fichiers. En plus, la plupart des implémentations
 	de <command>rm</command> et <command>rmdir</command> ne savent pas se
 	débrouiller avec les liens physiques de répertoires.
       </para>
@@ -330,8 +331,8 @@ other::---
 	</para>
 
         <para>
-	  Pour cette raison, il est judicieux de placer tout répertoire que les
-	  utilisateurs peuvent écrire sur des systèmes de fichiers
+	  Pour cette raison, il est judicieux de placer tout répertoire sur
+	  lesquels les utilisateurs peuvent écrire sur des systèmes de fichiers
 	  différents. En pratique, cela signifie qu'il est conseillé de mettre
 	  au moins <filename>/home</filename> et <filename>/tmp</filename> sur
 	  des systèmes de fichiers séparés.
@@ -344,7 +345,8 @@ other::---
     <title>Analyser des fichiers</title>
 
     <para>
-      Avant de s'aventurer autrepart, nous allons commencer par quelques bases sur l'utilisation des fichiers et répertoires.
+      Avant de s'aventurer plus loin, nous allons commencer par quelques bases
+      sur l'utilisation des fichiers et répertoires.
     </para>
 
     <sect2 xml:id="chap-filesystems-analyzing-listing">
@@ -352,7 +354,7 @@ other::---
 
       <para>
 	Une des choses les plus fréquentes que vous voudrez faire est de lister
-	la totalité ou certains fichiers. La commande <command>ls</command>
+	tout ou partie d'un ensemble de fichiers. La commande <command>ls</command>
 	remplit très bien cet objectif. Utiliser <command>ls</command> sans
 	argument affichera le contenu du répertoire courant :
       </para>
@@ -394,7 +396,7 @@ drwxrwxr-x  2 daniel daniel  4096 Sep  4 15:55 papers
 	répertoire lui-même). Les troisième et la quatrième colonnes listent
 	respectivement le propriétaire du fichier et le groupe. La cinquième
 	colonne contient la taille du fichier en octets. La sixième colonne est
-	la date de dernière modification et la date du fichier. Et enfin, la
+	la date et l'heure de dernière modification du fichier. Et enfin, la
 	dernière colonne indique le nom de cette entrée.
       </para>
 
@@ -419,7 +421,7 @@ drwxrwxr-x   2 daniel daniel  4096 Sep  4 15:55 papers
 
       <para>
 	Comme vous pouvez le voir, 3 entrées supplémentaires sont
-	apparues. Premi_rement, le fichier <filename>.settings</filename> est
+	apparues. Premièrement, le fichier <filename>.settings</filename> est
 	maintenant affiché. De plus vous pouvez voir 2 entrées de répertoire
 	supplémentaires, <filename>.</filename>
 	et <filename>..</filename>. Celles-ci représentent respectivement le
@@ -452,7 +454,7 @@ $ <userinput>ls -i dns*</userinput>
 	Parfois vous voulez de l'aide pour déterminer le type d'un
 	fichier. C'est là que l'utilitaire <command>file</command> devient
 	pratique. Supposez que j'aie trouvé un fichier
-	nommé <filename>HelloWorld.class</filename> quelque par sur mon
+	nommé <filename>HelloWorld.class</filename> quelque part sur mon
 	disque. Je suppose que c'est un fichier qui contient du bytecode Java,
 	mais nous pouvons utiliser <command>file</command> pour vérifier ceci :
       </para>
@@ -497,11 +499,11 @@ $ <userinput>file -L /usr/X11R6/bin/X</userinput>
 
       <para>
 	Vous vous demandez comment <command>file</command> peut déterminer le
-	type de fichier si facilement. La plupart des fichiers commencent par un
-	soit-disant <emphasis>magic number</emphasis> (numéro magique), C'est un
+	type de fichier si facilement. La plupart des fichiers commencent par ce
+	qu'on nomme un <emphasis>magic number</emphasis> (numéro magique), C'est un
 	numéro unique qui dit aux programmes qui peuvent lire le fichier de quel
 	type de fichier il s'agit. Le programme <command>file</command> utilise
-	un fichier qui décrit beaucoup de types de fichiers avec leur magic
+	un fichier décrivant beaucoup de types de fichiers avec leur magic
 	number. Par exemple, le fichier magic sur mon système contient les
 	lignes suivantes pour les fichiers de classes Java compilé :
       </para>
@@ -585,9 +587,9 @@ $ <userinput>less note.txt</userinput>
       </screen>
 
       <para>
-	Le paginateur <command>less</command> vous permet de faire défiler en
+	Le paginateur <command>less</command> vous permet de naviguer en
 	avant et en arrière dans un
-	fichier. <xref linkend="chap-filesystem-analyzing-viewing-less-keys"/>
+	fichier. Le <xref linkend="chap-filesystem-analyzing-viewing-less-keys"/>
 	fournit un aperçu des touches les plus importantes utilisées pour
 	contrôler <command>less</command>.
       </para>
@@ -771,7 +773,7 @@ $ <userinput>du -k -s ~/qconcord</userinput>
     <title>Travailler avec les répertoires</title>
 
     <para>
-      Après avoir survolé les répertoires dans
+      Après avoir survolé les répertoires dans la
       <xref linkend="chap-filesystem-introduction-atoms"/>, nous allons voir
       quelques commandes liées aux répertoires.
     </para>
@@ -780,7 +782,7 @@ $ <userinput>du -k -s ~/qconcord</userinput>
       <title>Lister des répertoires</title>
 
       <para>
-	La commande <command>ls</command> que nous avons vue dans
+	La commande <command>ls</command> que nous avons vue dans la
 	<xref linkend="chap-filesystems-analyzing-listing"/> peut aussi être
 	utilisée pour lister les répertoires de plusieurs manières. Comme nous
 	avons vu, la sortie par défaut de <command>ls</command> inclut les
@@ -799,7 +801,7 @@ drwxrwxr-x  2 daniel daniel  4096 Sep  4 15:55 papers
       <para>
 	Si un répertoire, ou si des jokers sont spécifiés,
 	<command>ls</command> va lister respectivement le contenu du répertoire
-	ou des répertoires qui correspondent au jocker. Par exemple, s'il y a un
+	ou des répertoires qui correspondent au joker. Par exemple, s'il y a un
 	répertoire <filename>papers</filename>, <command>ls paper*</command> va
 	lister le contenu de ce répertoire <filename>paper</filename>. Cela est
 	souvent ennuyeux si vous voulez juste voir les occurrences, et non le
@@ -909,7 +911,7 @@ $ <userinput>cp file1 /home/joe/design_documents/file2</userinput>
 
       <para>
 	Vous pouvez aussi spécifier un répertoire en tant que second
-	parametètre. Dans ce cas, <command>cp</command> va créer la copie du
+	paramètre. Dans ce cas, <command>cp</command> va créer la copie du
 	fichier dans ce répertoire, lui donnant le même nom que celui du fichier
 	original. S'il y a plus d'un paramètre, le dernier paramètre sera
 	considéré comme le répertoire destination. Par exemple
@@ -922,7 +924,7 @@ $ <userinput>cp file1 file2 somedir</userinput>
       <para>
 	va copier à la fois <filename>file1</filename> et
 	<filename>file2</filename> dans le répertoire
-	<filename>somedir</filename>. Vous ne vous pouvez pas copier plusieurs
+	<filename>somedir</filename>. Vous ne pouvez pas copier plusieurs
 	fichiers dans un fichier. Vous devrez pour cela utiliser
 	plutôt <command>cat</command> : <!-- XXX href -->
       </para>
@@ -936,9 +938,9 @@ $ <userinput>cat file1 file2 > combined_file</userinput>
 	répertoires entiers, en
 	ajoutant <parameter class="command">-R</parameter>. Cela va copier
 	récursivement un répertoire et tous ses sous-répertoires. Si le
-	répertoire destination existe, Le ou les répertoire(s) source seront
+	répertoire destination existe, le ou les répertoires source seront
 	copiés sous le répertoire destination. Si le répertoire destination
-	n'existe pas, il sera créé s'il n'y a qu'un répertoire source.
+	n'existe pas, il sera créé s'il n'y a qu'un seul répertoire source.
       </para>
 
       <screen>
@@ -979,7 +981,7 @@ usage: cp [-R [-H | -L | -P]] [-f | -i] [-pv] src target
 	utiliser <command>cp</command> dans des scripts portables. La Single
 	UNIX Specification version 3 ne spécifie pas comment ils doivent être
 	gérés par défaut. Si <parameter class="command">-P</parameter> est
-	utilisé, les liens symbolique ne seront pas explorés, mais recopiés tel
+	utilisé, les liens symboliques ne seront pas explorés, mais recopiés tel
 	quels. Si <parameter class="command">-H</parameter> est utilisé, les
 	liens symboliques spécifiés en paramètre de <command>cp</command>
 	devraient être explorés, en fonction du type et du contenu du fichier
@@ -991,7 +993,7 @@ usage: cp [-R [-H | -L | -P]] [-f | -i] [-pv] src target
       </para>
 
       <para>
-	Si vous voulez préserver les droits droits d'utilisation, les bits
+	Si vous voulez préserver les droits d'utilisation, les bits
 	SGID/SUID, et les dates de modification et d'accès d'un fichier, vous
 	pouvez utiliser le flag <parameter>-p</parameter>. Cela va tenter de
 	préserver ces propriétés pour la copie du fichier ou répertoire. Des
@@ -1009,12 +1011,12 @@ usage: cp [-R [-H | -L | -P]] [-f | -i] [-pv] src target
 	La commande UNIX pour déplacer les fichiers, <command>mv</command>, peut
 	déplacer ou renommer des fichiers ou répertoires. Ce qu'il se passe
 	vraiment dépend de l'endroit où se trouvent les fichiers ou
-	répertoires. Si l'emplacement de source et la destination sont sur le
+	répertoires. Si l'emplacement de la source et la destination sont sur le
 	même système de fichiers, généralement <command>mv</command> crée
 	seulement des nouveaux liens physiques, renommant dans les faits les
-	fichiers ou répertoires. Si les 2 sont sur des systèmes de fichiers, les
-	fichiers sont réellement copiés et les fichiers ou répertoires source
-	sont supprimés.
+	fichiers ou répertoires. Si les 2 sont sur des systèmes de fichiers
+	différents, les	fichiers sont réellement copiés et les fichiers ou
+	répertoires source sont supprimés.
       </para>
 
       <para>
@@ -1028,7 +1030,7 @@ $ <userinput>mv file1 file2</userinput>
       </screen>
 
       <para>
-	La même syntaxe peut être utilisée pour deux répertoires, ainsi, ce qui
+	La même syntaxe peut aussi être utilisée pour deux répertoires, ce qui
 	va renommer le répertoire donné en premier paramètre vers le second
 	paramètre.
       </para>
@@ -1041,7 +1043,7 @@ $ <userinput>mv file1 file2</userinput>
       </para>
 
       <screen>
-$ <userinput>targetdir</userinput>
+$ <userinput>mkdir targetdir</userinput>
 $ <userinput>mv file1 directory1 targetdir</userinput>
       </screen>
 
@@ -1079,14 +1081,14 @@ $ <userinput>rm file1 file2</userinput>
 
       <para>
 	Si vous devez supprimer un nombre important de fichiers qui demandent
-	confirmation avant d'être effacé, ou si vous voulez
+	confirmation avant d'être effacés, ou si vous voulez
 	utiliser <citerefentry>
           <refentrytitle>rm</refentrytitle>
           <manvolnum>1</manvolnum>
         </citerefentry> pour supprimer des fichiers depuis un script qui ne sera
         pas exécuté depuis un terminal, ajoutez le paramètre
           <parameter class="command">-f</parameter> pour passer outre
-          l'utilisation des questions. Les fichiers qui ne sont pas accessibles
+          les demandes de confirmation. Les fichiers qui ne sont pas accessibles
           en écriture sont effacés avec le flag <filename>-f</filename> si les
           droits de propriété le permettent. Ce paramètre va aussi supprimer
           l'affichage des erreurs sur
@@ -1099,7 +1101,7 @@ $ <userinput>rm file1 file2</userinput>
           <manvolnum>1</manvolnum>
         </citerefentry> va parcourir la structure des répertoires, supprimant le
         lien et supprimant les répertoires à leur rencontre. La même sémantique
-        est aussi utilisée pour supprimer des fichiers normaux, pour ce qui
+        que celle pour supprimer des fichiers normaux est utilisée, en ce qui
         concerne le flag <parameter class="command">-f</parameter>. Pour donner
         un petit exemple, vous pouvez supprimer récursivement des fichiers et
         répertoires dans le répertoire <filename>notes</filename> avec :</para>
@@ -1116,7 +1118,7 @@ $ <userinput>rm -r notes</userinput>
         </citerefentry> utilise la fonction <citerefentry>
           <refentrytitle>unlink</refentrytitle>
           <manvolnum>2</manvolnum>
-        </citerefentry>, les blocs de données ne sont pas réécrit à une valeur
+        </citerefentry>, les blocs de données ne sont pas réécrits à une valeur
         non initialisée. L'information dans les blocs de données ne sont
         écrasées que lorsqu'ils sont réalloués et réutilisés
         ultérieurement. Pour supprimer les fichiers y compris leur blocs de
@@ -1125,9 +1127,9 @@ $ <userinput>rm -r notes</userinput>
           <refentrytitle>shred</refentrytitle>
           <manvolnum>1</manvolnum>
         </citerefentry> qui écrase les blocs de données avec des informations
-        aléatoires. Mais cela n'est pas le cas sur beaucoup de systèmes de
+        aléatoires. Mais cela n'est pas efficace sur beaucoup de systèmes de
         fichiers modernes (avec journalisation), car ils n'écrivent pas les
-        données localisées. </para>
+        données à la même place. </para>
 
       <para> La commande <citerefentry>
           <refentrytitle>unlink</refentrytitle>
@@ -1161,13 +1163,13 @@ $ <userinput>rm -r notes</userinput>
     <sect2 xml:id="chap-filesystem-permissions-ownership">
       <title>Changer le propriétaire d'un fichier</title>
 
-      <para> Comme nous l'avons vu précédemment, chaque fichier a un IP
+      <para> Comme nous l'avons vu précédemment, chaque fichier a un ID
       propriétaire (user) et un ID groupe stockés dans l'inode. La
       commande <citerefentry>
           <refentrytitle>chown</refentrytitle>
           <manvolnum>1</manvolnum>
-        </citerefentry> peut être utilisée pour configurer ces champs. Cela est
-        possible par IDs numérique, ou par leur noms. Par exemple, pour changer
+        </citerefentry> peut être utilisée pour configurer ces champs. Il est
+        possible d'opérer par IDs numérique, ou par noms. Par exemple, pour changer
         le propriétaire du fichier <filename>note.txt</filename>
         en <emphasis>john</emphasis>, et son groupe
         en <emphasis>staff</emphasis>, la commande suivante est lancée : </para>
@@ -1197,20 +1199,20 @@ $ <userinput>chown :staff note.txt</userinput>
 $ <userinput>chown -R john:staff notes</userinput>
       </screen>
 
-      <para> Si le nom d'utilisateur et le nom de groupe ont été spécifié,
+      <para> Si le nom d'utilisateur et le nom de groupe ont été spécifiés,
       plutôt que des IDs, les noms sont convertis par <citerefentry>
           <refentrytitle>chown</refentrytitle>
           <manvolnum>1</manvolnum>
         </citerefentry>. Cette conversion se base habituellement sur la base de
         données de mots de passe définie au niveau système. Si vous utilisez un
         système de fichiers qui utilise une autre base de données de mots de
-        passe (e.g. si vous montez un système de fichiers racide depuis un autre
+        passe (e.g. si vous montez un système de fichiers racine depuis un autre
         système pour une restauration), il est souvent utile de changer le
         propriétaire du fichier en utilisant les ID utilisateur et groupe. De
         cette façon, vous pouvez préserver les correspondances des noms
         utilisateur/groupe et ID intactes. Donc, changer le propriétaire
         de <filename>note</filename> en UID 1000 et GUID 1000 est fait de la
-        façon suivante (prévisible) : </para>
+        façon (prévisible) suivante : </para>
 
       <screen>
 $ <userinput>chown 1000:1000 note.txt</userinput>
@@ -1220,7 +1222,7 @@ $ <userinput>chown 1000:1000 note.txt</userinput>
     <sect2 xml:id="chap-filesystem-permissions-permbits">
       <title>Changer les bits de permission</title>
 
-      <para> Après avoir la lecture de l'introduction sur les permissions du
+      <para> Après avoir lu l'introduction sur les permissions du
           système de fichiers en
           <xref linkend="chap-filesystem-introduction-permissions"/>, changer
           les bits de permission qui sont stockés dans l'inode est plutôt facile
@@ -1231,7 +1233,7 @@ $ <userinput>chown 1000:1000 note.txt</userinput>
           <refentrytitle>chmod</refentrytitle>
           <manvolnum>1</manvolnum>
         </citerefentry> accepte à la fois la représentation numérique et
-        symbolique des permissions.  Representer les permissions d'un fichier
+        symbolique des permissions.  Représenter les permissions d'un fichier
         numeriquement est très pratique, car cela permet de configurer toutes
         les permissions brièvement. Par exemple : </para>
 
@@ -1264,11 +1266,11 @@ $ <userinput>chmod 0644 note.txt</userinput>
 
       <screen>
 ug+rw        # Donne les droits de lecture/écriture à l'utilisateur et au groupe
-             # du fichier
+                # du fichier
 chmod go-x   # Supprime les droits d'exécution pour le groupe et autres du
-             # fichier
+                   # fichier
 chmod ugo-wx # Interdit toute classe d'utilisateur d'écrire dans le fichier et
-             #d'exécuter le fichier.
+                    #d'exécuter le fichier.
       </screen>
 
       <para> Ces commandes peuvent être utilisées avec chmod de la manière
@@ -1303,11 +1305,11 @@ $ <userinput>chmod -R ugo+r notes</userinput>
         </citerefentry><!-- XXX xref -->. </para>
 
       <para> Il y a quelques bits de permission supplémentaires pouvant être
-      configurés qui ont une signification spéciale. SUID et SGID sont les bitsz
+      configurés qui ont une signification spéciale. SUID et SGID sont les bits
       les plus intéressants parmi ces bits supplémentaires. Ces bits remplacent
       l'ID utilisateur et ID du groupe effectifs par l'ID utilisateur et l'ID
       groupe du fichier qui est exécuté. La commande <command>su(1)</command>
-      est un bon exemple qui a le bit SUID activé : </para>
+      est un bon exemple de fichier ayant le bit SUID activé : </para>
 
       <screen>
 $ <userinput>ls -l /bin/su</userinput>
@@ -1335,7 +1337,7 @@ $ <userinput>chmod u+s /bin/su</userinput>
       <para> Le sticky bit est aussi interessant quand il s'applique à un
       répertoire. Il interdit les utilisateurs de renommer ou supprimer des
       fichiers dont ils ne sont pas propriétaires, dans des répertoires pour
-      lesquels ils ont les droits d'écriture. Cest habituellement utilisé sur
+      lesquels ils ont les droits d'écriture. C'est habituellement utilisé sur
       des répertoires avec des accès en écriture pour tout le monde, comme le
       répertoire temporaire (<filename>/tmp</filename>) sur beaucoup de systèmes
       UNIX. Le sticky bit peut être mis avec le
@@ -1351,13 +1353,13 @@ $ <userinput>chmod g+t /tmp</userinput>
 
       <para>
 	La question qui reste est quelles sont les permissions initiales à la
-	cration d'un fichier. Cela dépend de 2 facteurs : le flag de mode passé
+	création d'un fichier. Cela dépend de 2 facteurs : le flag de mode passé
 	à l'appel système <emphasis>open(2)</emphasis>, utilisé pour créer un
 	fichier, et le masque de création de fichier. Le masque de création de
 	fichier peut être représenté comme un nombre octal. Les permissions
 	effectives pour la création du fichiers sont définies par
-	le <emphasis>mode &amp; ~masque</emphasis>. Ou bien, si en
-	représentation octale, vous pouvez soustraire les chiffres du masque du
+	le <emphasis>mode &amp; ~masque</emphasis>. Ou bien, en
+	représentation octale, vous pouvez soustraire les chiffres du masque au
 	mode. Par exemple, si un fichier est créé avec les
 	permissions <emphasis>0666</emphasis> (lecture et écriture pour le
 	propriétaire du fichier, le groupe, et les autres), et le masque de
@@ -1366,9 +1368,9 @@ $ <userinput>chmod g+t /tmp</userinput>
 	autre exemple. Supposez que les fichiers sont toujours créés avec pour
 	permissions <emphasis>0666</emphasis>, et que vous êtes paranoïaque, et
 	voulez supprimer toute permission en lecture et écriture sur le groupe
-	d'appartenance du fichier et les autres. Cela signifie que vous devez
+	d'appartenance du fichier et des autres. Cela signifie que vous devez
 	avoir pour masque de création de fichiers <emphasis>0066</emphasis>, car
-	soustraire <emphasis>0066</emphasis> de
+	soustraire <emphasis>0066</emphasis> à
 	<emphasis>0666</emphasis> donne
 	<emphasis>0600</emphasis>
       </para>
@@ -1449,7 +1451,7 @@ $ <userinput>ls -l index.html</userinput>
 	<para>
 	  Comme vous pouvez le voir, la colonne des permissions affiche un signe
 	  plus (<emphasis>+</emphasis>) additionnel. Les bits de permission ne
-	  sont pas vraiment à ce que vous espériez. Nous allons y revenir dans
+	  sont pas vraiment ceux que vous espériez. Nous allons y revenir dans
 	  une minute.
 	</para>
 
@@ -1502,9 +1504,9 @@ other::---
 	      Les permissions de l'entrée <emphasis>group::</emphasis>
 	      correspondent aux permissions du groupe du fichier à moins qu'il y
 	      ait une entrée <emphasis>mask::</emphasis> . S'il y a une
-	      entrée <emphasis>mask::</emphasis> entry, les permissions du
+	      entrée <emphasis>mask::</emphasis>, les permissions du
 	      groupe correspondent à l'entrée groupe avec comme permissions
-	      maximum celles de l'entrée mask (cela veut dirque que les
+	      maximum celles de l'entrée mask (cela veut dire que que les
 	      permissions du groupe peuvent être plus restrictives, mais pas
 	      moins).
 	    </para>
@@ -1521,7 +1523,7 @@ other::---
 
 	<para>
 	  Les deuxième et troisième règles peuvent vraiment se voir s'il y a un
-	  utilisateur ou group qui a plus de droits que le masque pour le
+	  utilisateur ou groupe qui a plus de droits que le masque pour le
 	  fichier :
 	</para>
 
@@ -1538,8 +1540,8 @@ other::---
 	</screen>
 
 	<para>
-	  Bien ques les permissions en lecture et écritures sont données pour le
-	  groupe du fichier fichier et pour le
+	  Bien ques les permissions en lecture et écriture sont données pour le
+	  groupe du fichier et pour le
 	  groupe <emphasis>www-data</emphasis>, ces deux groupes n'auront dans
 	  les faits qu'une permission de lecture, car c'est la permission
 	  maximale que l'entrée mask permet.
@@ -1604,16 +1606,16 @@ other::---
       </sect3>
 
       <sect3 xml:id="chap-filesystem-permissions-acl-setting">
-	<title>Creating access control lists</title>
+	<title>Créer des listes de contrôle d'accès</title>
 
 	<para>
 	  L'ACL pour un fichier ou répertoire peut être changée avec le
 	  programme <command>setfacl</command>. Malheureusement, l'utilisation
-	  de ce programme est fortement dépendant du système utilisé. Pour
+	  de ce programme est fortement dépendante du système utilisé. Pour
 	  ajouter à la confusion, au moins un flag important
 	  (<parameter class="command">-d</parameter>) a des significations
 	  différentes sur différents systèmes. On ne peut qu'espérer que cette
-	  commande va être standardisée.
+	  commande soit standardisée.
 	</para>
 
 	<table xml:id="chap-filesystem-permissions-acl-setting-flags">
@@ -1653,8 +1655,8 @@ other::---
 	      <row>
 		<entry>Recalcule le masque</entry>
 		<entry>
-		  Toulouse recalculé, sauf si <parameter
-		  class="command">-n</parameter> est utilisé, ou une entrée mask
+		  Toujours recalculé, sauf si <parameter
+		  class="command">-n</parameter> est utilisé, ou si une entrée mask
 		  est specifiée explicitement.
 		</entry>
 	      </row>
@@ -1698,8 +1700,8 @@ other::---
 	  <title>Modifier les entrées ACL</title>
 
 	  <para>
-	    L'opération la plus simple est de modifier une entrée ACL
-	    entry. Cela va créer une nouvelle entrée si l'entrée est
+	    L'opération la plus simple est de modifier une entrée ACL.
+	    Cela va créer une nouvelle entrée si l'entrée est
 	    inexistante. Les entrées peuvent être modifiées avec <parameter
 	    class="command">-m</parameter>. Par exemple, supposez que vous
 	    voulez donner au groupe <emphasis>friend</emphasis> les accès en
@@ -1713,7 +1715,7 @@ $ <userinput>setfacl -m group:friends:rw- report.txt</userinput>
 
 	  <para>
 	    L'entrée mask va être recalculée, à partir de l'union de toutes les
-	    entrées groupe, et les entrées utilisateur additionnels :
+	    entrées groupe, et les entrées utilisateur additionnelles :
 	  </para>
 
 	  <screen>
@@ -1761,7 +1763,7 @@ $ <userinput>setfacl -x group:friends: report.txt</userinput>
 	  <para>
 	    L'option <parameter class="command">--set</parameter> est disponible
 	    pour créer une nouvelle liste de contrôle d'accès pour un fichier,
-	    effaçant les entrées existante, sauf les 3 entrées obligatoires.
+	    effaçant les entrées existantse, sauf les 3 entrées obligatoires.
 	    Il faut que les entrées utilisateur, groupe et autres (user, group
 	    et other) soient spécifiées. Par exemple :
 	  </para>
@@ -1825,8 +1827,8 @@ default:other::r-x
 	    d'entrée suit la même syntaxe que la spécification des entrées en
 	    paramètre de <command>setfacl</command>, mais les entrées sont
 	    séparées par des retours à la ligne, plutôt que des virgules. C'est
-	    très utile car vous pouvez l'ACL pour un fichier existant comme
-	    référence :
+	    très utile car vous pouvez utiliser l'ACL d'un fichier existant
+	    comme référence :
 	  </para>
 
 	  <screen>
@@ -1834,8 +1836,8 @@ $ <userinput>getfacl report.txt > ref</userinput>
 	  </screen>
 
 	  <para>
-	    L'option <parameter class="command">-M</parameter> est disponible
-	    pour modifier l'ACL pour un fichier en lisant les entrées d'un autre
+	    L'option <parameter class="command">-M</parameter> permet de
+	    modifier l'ACL pour un fichier en lisant les entrées d'un autre
 	    fichier. Donc, si nous avons un fichier
 	    nommé <filename>report2.txt</filename>, nous pouvons modifier l'ACL
 	    pour ce fichier avec les entrées depuis <filename>ref</filename>
@@ -1859,8 +1861,8 @@ $ <userinput>setfacl -b -M ref report2.txt</userinput>
 
 	  <para>
 	    Bien sûr, il n'est pas nécessaire d'utiliser ce fichier
-	    intermédiaire. Nous pouvons utiliser rediriger directement la sortie
-	    de <command>getfacl</command> ver <command>setfacl</command>, en
+	    intermédiaire. Nous pouvons rediriger directement la sortie
+	    de <command>getfacl</command> vers <command>setfacl</command>, en
 	    utilisant le nom symbolique de l'entrée standard
 	    (<emphasis>-</emphasis>), plutôt qu'un nom de fichier :
 	  </para>
@@ -1873,7 +1875,7 @@ $ <userinput>getfacl report.txt | setfacl -b -M - report2.txt</userinput>
 	    <parameter class="command">-X</parameter> supprime toutes les
 	    entrées ACL définies dans un fichier. Cela suit la même syntaxe que
 	    le flag <parameter class="command">-x</parameter>, avec des virgules
-	    remplaçant les retours à la ligne.
+	    à la place des retours à la ligne.
 	  </para>
 	</sect4>
       </sect3>
@@ -1896,8 +1898,8 @@ $ <userinput>getfacl report.txt | setfacl -b -M - report2.txt</userinput>
 	expression qui sera évaluée sur chaque fichier et répertoire trouvé.
 	Le nom d'un fichier ou répertoire sera affiché si l'expression est
 	évaluée à <emphasis>vrai</emphasis>. Le premier argument qui commence
-	par un tirer (<emphasis>-</emphasis>), point d'exclamation
-	(<emphasis>!</emphasis>, ou une parenthèse ouvrante
+	par un tiret (<emphasis>-</emphasis>), point d'exclamation
+	(<emphasis>!</emphasis>, ou parenthèse ouvrante
 	(<emphasis>(</emphasis>, signifie le début de l'expression. L'expression
 	peut être constituée de plusieurs opérandes. En bref, la syntaxe de
 	<command>find</command> est : <emphasis>find chemins
@@ -2038,7 +2040,7 @@ $ <userinput>find . -type d</userinput>
 	  en spécifiant plusieurs opérandes. Par exemple <emphasis>operand1
 	  operand2</emphasis> est vrai si à la fois
 	  <emphasis>operand1</emphasis> et
-	  <emphasis>operand2</emphasis> sont vraisare true pour l'objet en cours
+	  <emphasis>operand2</emphasis> sont vrais pour l'objet en cours
 	  d'évaluation. Donc, vous pouvez combiner les opérandes
 	  <emphasis>-name</emphasis> et <emphasis>-type</emphasis>
 	  pour rechercher tous les répertoires qui commencent par 
@@ -2058,7 +2060,7 @@ $ <userinput>find . -name 'eco*' -type d</userinput>
 	  En plus de chercher les objets par nom ou type, vous pouvez aussi
 	  chercher par leur permissions ou par propriétaire d'objet.
 	  Il est souvent utile de rechercher des fichiers avec des permissions
-	  ou propriétaires incorrects.
+	  ou propriétaire incorrects.
 	</para>
 
  	<para>
@@ -2093,7 +2095,7 @@ $ <userinput>find . -group friends</userinput>
 	<para>
 	  L'opérande pour vérifier les permissions du fichier
 	  <emphasis>-perm</emphasis> est moins évident. Comme la commande
-	  <command>chmod</command> cet opérateur peut travailler avec les
+	  <command>chmod</command>, cet opérateur peut travailler avec les
 	  notations octale et symbolique. Nous allons commencer par la
 	  notation octale. Si un nombre octal est spécifié en paramètre de
 	  l'opérande <emphasis>-perm</emphasis>, cela va trouver tous les objets
@@ -2144,7 +2146,7 @@ $ <userinput>find /dev -perm -0002</userinput>
 	<para>
 	  La notation symbolique des paramètres <emphasis>-perm</emphasis>
 	  utilise la même notation que la commande <command>chmod</command>. Les
-	  permissions symboliques sont contruite avec un mode de fichier où tous
+	  permissions symboliques sont contruites avec un mode de fichier où tous
 	  les bits sont effacés, donc il n'est jamais nécessaire d'utiliser le
 	  tiret pour supprimer les droits. Cela lève aussi toute ambiguité qu'il
 	  pourrait y avoir avec le préfixe tiret. Comme la syntaxe en octal,
@@ -2175,16 +2177,16 @@ $ <userinput>find /dev -perm -o+w</userinput>
       </sect3>
 
       <sect3 xml:id="chap-filesystem-finding-find-time">
-	<title>Opérandes qui filtrent par date de creation d'object</title>
+	<title>Opérandes qui filtrent par date de creation d'objet</title>
 
 	<para>
 	  Il y a 3 opérandes qui fonctionnent sur des intervalles de temps.
-	  La syntax de l'opérande est <emphasis>operand n</emphasis>,
-	  où <emphasis>n</emphasis> est le temps en jours. Tous les 3 operateurs
+	  La syntaxe de l'opérande est <emphasis>operande n</emphasis>,
+	  où <emphasis>n</emphasis> est le temps en jours. Les 3 operateurs
 	  calculent un delta de temps en secondes divisé par le nombre de
-	  secondes dans un jour (86400), supprimant le reste de la
+	  secondes dans un jour (86400), sans le reste de la
 	  division. Donc, si le delta est un jour,
-	  <emphasis>operand 1</emphasis> va chercher l'objet. Les 3 opérandes
+	  <emphasis>operande 1</emphasis> va chercher l'objet. Les 3 opérandes
 	  sont :
 	</para>
 
@@ -2215,7 +2217,7 @@ $ <userinput>find /dev -perm -o+w</userinput>
 	</itemizedlist>
 
 	<para>
-	  Donc, ces opérandent cherchent si le dernier accès, changement,
+	  Donc, ces opérandes cherchent si le dernier accès, changement,
 	  modification respectivement a été fait il y a <emphasis>n</emphasis>
 	  jours. Pour donner un exemple, la commande suivante montre tous les
 	  objets dans <filename>/etc</filename> qui ont été modifiés il y a 1
@@ -2233,10 +2235,10 @@ $ <userinput>find /etc -mtime 1</userinput>
 	</screen>
 
 	<para>
-	  Le signe plus ou moins peut être utilisé pour modifier sa
+	  Le signe plus ou moins peut être utilisé pour modifier la
 	  signification de <emphasis>n</emphasis>. <emphasis>+n</emphasis>
 	  signifie de plus de <emphasis>n</emphasis>
-	  jours, <emphasis>-n</emphasis> signifie de moins
+	  jours, <emphasis>-n</emphasis> signifie moins
 	  de <emphasis>n</emphasis> jours. Donc, pour trouver tous les fichiers
 	  dans <filename>/etc</filename> qui ont été modifiés depuis moins de 2
 	  jours, vous pouvez exécuter :
@@ -2259,7 +2261,7 @@ $ <userinput>find /etc -mtime -2</userinput>
 	  fichiers qui ont été modifiés plus tard que le fichier dont le nom est
 	  <filename>reffile</filename>. L'exemple suivant montre comment
 	  utiliser cela pour lister tous les fichiers qui ont une date de
-	  modification supérieure que celle
+	  modification supérieure à celle
 	  de <filename>economic/report2.txt</filename> :
 	</para>
 
@@ -2279,13 +2281,13 @@ $ <userinput>find . -newer economic/report2.txt</userinput>
 
 	<para>
 	  Certains opérandes influent sur la façon dont la commande
-	  <command>find</command> parcours l'arborescence. Le premier de ces
+	  <command>find</command> parcourt l'arborescence. Le premier de ces
 	  opérandes est
 	  l'opérande <emphasis>-xdev</emphasis>. <emphasis>-xdev</emphasis>
 	  empêche <command>find</command> d'explorer les répertoires qui ont un
-	  ID de périphérique, empêchant dans les fait l'exploration d'autres
+	  ID de périphérique, empêchant dans les faits l'exploration d'autres
 	  systèmes de fichiers. Le répertoire dans lequel le système de fichiers
-	  est monté, est affiché, car cet opérande retourne
+	  est monté est affiché, car cet opérande retourne
 	  toujours <emphasis>vrai</emphasis>. Un bon exemple est un système où
 	  <filename>/usr</filename> est monté sur un système de fichiers
 	  différent de <filename>/</filename>. Par conséquent, si nous cherchons
@@ -2314,7 +2316,7 @@ $ <userinput>find / -name 'bin' -type d -xdev</userinput>
 	  L'opérande <emphasis>-depth</emphasis> change l'ordre d'évaluation des
 	  répertoires. Avec <emphasis>-depth</emphasis> le contenu d'un
 	  répertoire est évalué en premier, et ensuite le répertoire
-	  lui-même. Cela peut être vu dans l'exmple suivant :
+	  lui-même. Cela peut être vu dans l'exemple suivant :
 	</para>
 
 	<screen>
@@ -2342,7 +2344,7 @@ $ <userinput>find . -depth</userinput>
 	  pas dans un répertoire en cours d'évaluation.
 	  <emphasis>-prune</emphasis> est ignoré si l'opérande
 	  <emphasis>-depth</emphasis> est aussi
-	  spécifié. <emphasis>-depth</emphasis> est toujours évalué à
+	  spécifié. <emphasis>-prune</emphasis> est toujours évalué à
 	  <emphasis>vrai</emphasis>.
 	</para>
       </sect3>
@@ -2352,18 +2354,17 @@ $ <userinput>find . -depth</userinput>
 
 	<para>
 	  <command>find</command> devient un outil très puissant dès qu'il est
-	  combiné avec des utilitaires externes. Cela peut être fait avec
+	  combiné avec des utilitaires externes. Cela se fait avec
 	  l'opérande <emphasis>-exec</emphasis>. Il y a 2 syntaxes pour
 	  l'opérande <emphasis>-exec</emphasis>. La première syntaxe
 	  est <emphasis>-exec utilitaire arguments ;</emphasis>. La
 	  commande <emphasis>utilitaire</emphasis> sera exécutée avec les
 	  arguments qui ont été spécifiés pour chaque objet évalué. Si un
 	  quelconque argument est <emphasis>{}</emphasis>, ces accolades seront
-	  remplacées par le fichier évalué. Cela est très utile, spécialement
+	  remplacées par le fichier évalué. Cela est très utile spécialement
 	  quand on considère que, si nous n'utilisons pas d'autre syntaxe
 	  d'expression supplémentaire, les operandes seront évalués de gauche à
 	  droite. Regardons un exemple :
-	  an example:
 	</para>
 
 	<screen>
@@ -2382,18 +2383,18 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} \;</userinput>
 	 <emphasis>et</emphasis> est automatiquement appliqué entre les 2
 	 opérandes. Si le premier opérande est évalué
 	 à <emphasis>faux</emphasis>, il n'y a aucune raison pour évaluer un
-	 quelconque autre opérande, cat l'expression complète sera toujours
+	 quelconque autre opérande, car l'expression complète sera toujours
 	 évaluée à faux. Donc, l'opérande <emphasis>-exec</emphasis> ne sera
 	 évalué que si le premier opérande est vrai. Une autre particularité est
-	 que le point-virgule qui clos le <emphasis>-exec</emphasis> est préfixé
-	 par le caractère d'échappementis escaped, pour empêcher le shell de le
+	 que le point-virgule qui clôt le <emphasis>-exec</emphasis> est préfixé
+	 par le caractère d'échappement, pour empêcher le shell de le
 	 prendre en compte.
 	</para>
 
 	<para>
 	  Une chose intéressante sur l'opérateur <emphasis>-exec</emphasis> est
 	  qu'il évalue à <emphasis>vrai</emphasis> si la commande se termine
-	  avec succès.Donc, vous pouvez aussi utiliser la
+	  avec succès. Donc, vous pouvez aussi utiliser la
 	  commande <emphasis>-exec</emphasis> pour ajouter des conditions
 	  supplémentaires qui ne sont pas representées par les opérandes
 	  de <command>find</command>. Par exemple, la commande suivante affiche
@@ -2421,7 +2422,7 @@ $ <userinput>find . -name '*.txt' -exec grep -q 'gross income' {} \; -print</use
 	  est <emphasis>-exec utilitaire arguments {} +</emphasis>. Cela
 	  récupère la liste de tous les objets trouvés pour lesquels
 	  l'expression est vraie, et fournit cette liste de fichiers en argument
-	  de l'utlitaire spécifié. Le permier exemple de l'opérande
+	  de l'utilitaire spécifié. Le permier exemple de l'opérande
 	  <emphasis>-exec</emphasis> peut aussi être écrit :
 	</para>
 
@@ -2448,8 +2449,8 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} +</userinput>
 	<title>Opérateurs pour la construction d'expressions complexes</title>
 
 	<para>
-	  <command>find</command> fournir quelques opérateurs qui peuvent être
-	  combinés pour faire des expressions plus complexes :
+	  <command>find</command> fournit quelques opérateurs qui peuvent être
+	  combinés pour constituer des expressions plus complexes :
 	</para>
 
 	<variablelist>
@@ -2478,7 +2479,7 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} +</userinput>
 	      <para>
 		<command>find</command> va utiliser le court-circuit quand cet
 		opérateur est évalué : <emphasis>expr2</emphasis>
-		ne sera pas évalue quand <emphasis>expr1</emphasis>
+		ne sera pas évalué si <emphasis>expr1</emphasis>
 		est évalué à <emphasis>faux</emphasis>
 	      </para>
 	    </listitem>
@@ -2559,7 +2560,7 @@ $ <userinput>which ls cat</userinput>
       </screen>
 
       <para>
-        <command>which</command> retournes une valeur non nulle si la commande
+        <command>which</command> retourne une valeur non nulle si la commande
 	est introuvable.
       </para>
     </sect2>
@@ -2615,7 +2616,7 @@ ls: /bin/ls /usr/share/man/man1/ls.1.gz
 	    Une nouvelle implémentation, nommée <emphasis>slocate</emphasis>
 	    prend en compte les permissions, mais requiert des privilèges
 	    élevés. C'est cette variante de <command>locate</command> qui est
-	    inclue dans with Slackware Linux.
+	    inclue dans Slackware Linux.
 	  </para>
 	</listitem>
       </itemizedlist>
@@ -2654,7 +2655,7 @@ $ <userinput>locate locate</userinput>
 	fichiers sur GNU/Linux. Il est souvent utilisé combiné à
 	<command>gzip</command> ou <command>bzip2</command>. Ces 2 commandes
 	peuvent compresser des fichiers et des archives.
-	<xref linkend="archive-extentions" /> liste les extensions fréquemment
+	Le <xref linkend="archive-extentions" /> liste les extensions fréquemment
 	utilisées, ainsi que leur signification.
       </para>
 
@@ -2696,7 +2697,7 @@ $ <userinput>locate locate</userinput>
 	La différence entre <command>bzip2</command> et	<command>gzip</command>
 	est que <command>bzip2</command> peut trouver des informations
 	répétitives dans des blocs plus larges, 
-	find repeating information in larger blocks, donnant une meilleure
+	permettant une meilleure
 	compression. Cependant <command>bzip2</command> est aussi beaucoup plus
 	lent, car il fait plus d'analyses de données.
       </para>
@@ -2708,7 +2709,7 @@ $ <userinput>locate locate</userinput>
       <para>
 	Puisque beaucoup de logiciels et de données dans le monde GNU/Linux sont
 	archivées avec <command>tar</command> il est important d'être habitué
-	à extraire des archives tar. La première chose que vous voudrez faire
+	à extraire des archives tar. La chose que vous voudrez faire
 	le plus souvent quand vous recevez une archive tar est de lister son
 	contenu. Cela peut être réalisé en utilisant le paramètre <parameter
 	class="command">t</parameter>. Cependant, si nous exécutons uniquement
@@ -2723,8 +2724,8 @@ $ <userinput>tar t test.tar</userinput>
 
       <para>
 	Ca se passe car <command>tar</command> lit des données depuis son entrée
-	standard. Si vous avez oublié comment fonctionnent les redirection, il
-	est judicieux de relire <xref linkend="chap-shell-inout" />. Voyons ce
+	standard. Si vous avez oublié comment fonctionnent les redirections, il
+	est judicieux de relire la <xref linkend="chap-shell-inout" />. Voyons ce
 	qu'il se passe si nous redirigeons notre archive tar vers tar :
       </para>
 
@@ -2776,8 +2777,8 @@ test1  test2
 	Extraire ou lister des fichiers depuis une archive gzippée ou bzippée
 	n'est pas plus difficile. Cela peut être réalisé par l'ajout de
 	<parameter class="command">z</parameter> ou <parameter
-	class="command">j</parameter> pour respectivement des archives
-	compressées avec <command>gzip</command> ou
+	class="command">j</parameter> pour des archives
+	compressées respectivement avec <command>gzip</command> ou
 	<command>bzip2</command>.  Par exemple, nous pouvons lister le contenu
 	d'une archive gzippée avec :
       </para>
@@ -2827,7 +2828,7 @@ test/test1
       <para>
 	Créer une archive gzippée ou bzippée reprend les mêmes idées que pour
 	l'extraction des archives compressées : ajoutez un <parameter
-	class="command">z</parameter> pour gzippper une archive, ou un
+	class="command">z</parameter> pour gzipper une archive, ou un
 	<parameter class="command">b</parameter> pour bzipper une
 	archive. Supposez que vous vouliez créer une version compressée
 	<command>gzip</command> de l'archive créée ci-dessus.
@@ -2847,7 +2848,7 @@ test/test1
       <title>Introduction</title>
 
       <para>
-	Comme la plupart des Unixes Linux utilise une technique nommée
+	Comme la plupart des Unix, Linux utilise une technique nommée
 	<quote>montage</quote> pour accéder aux systèmes de fichiers. Monter
 	signifie qu'un système de fichiers est connecté à un répertoire dans le
 	système de fichiers racine. On peut par exemple monter un lecteur CD-ROM
@@ -2867,9 +2868,9 @@ test/test1
 
       <para>
 	The <command>mount</command> sert à monter les systèmes de fichiers. La
-	syntaxe de base est : <quote>mount /dev/devname
-	/mountpoint</quote>. Le nom du périphérique peut être un quelconque
-	périphérique à interface bloc, comme disques durs ou lecteurs de CD-ROM.
+	syntaxe de base est : <quote>mount /dev/nomperiph
+	/pointmontage</quote>. Le nom du périphérique peut être un quelconque
+	périphérique à interface bloc, comme les disques durs ou les lecteurs de CD-ROM.
 	Le point de montage peut être un point arbitraire du système de
 	fichiers racine. Voyons un exemple :
       </para>
@@ -2958,7 +2959,7 @@ proc             /proc            proc        defaults         0   0
 	<para>
 	  L'option fs_spec spécifie le périphérique bloc, ou système de fichiers
 	  distant qui doit être monté. Comme vous pouvez le voir dans l'exemple
-	  plusieurs partitions /dev/hda sont spécifiées, ainsique que le lecteur
+	  plusieurs partitions /dev/hda sont spécifiées, ainsi que que le lecteur
 	  de CD-ROM et le lecteur de disquettes. Quand des volumes NFS sont
 	  montés une adresse IP et un répertoire peuvent être spécifiés, par
 	  exemple: <filename>192.168.1.10:/exports/data</filename>.
@@ -2980,7 +2981,7 @@ proc             /proc            proc        defaults         0   0
 	<para>
 	  Cette option spécifie le type de système de fichiers que l'entrée
 	  représente. Par exemple cela peut être : ext2, ext3, reiserfs,
-	  xfs, nfs, vfat, or ntfs.
+	  xfs, nfs, vfat, ou ntfs.
 	</para>
       </sect3>
 
@@ -3035,7 +3036,7 @@ proc             /proc            proc        defaults         0   0
 	  <listitem>
 	    <para>
 	      <emphasis>nosuid</emphasis>: cette option est comparable à
-	      l'option <quote>noexec</quote>. Avec <quote>nosuid</quote> activé
+	      l'option <quote>noexec</quote>. Avec <quote>nosuid</quote> activé,
 	      les bits SUID des fichiers du système de fichiers ne seront pas
 	      permis. SUID est utilisé sur certains binaires pour permettre un
 	      utilisateur ordinaire de faire quelque chose de privilégié.
@@ -3047,9 +3048,9 @@ proc             /proc            proc        defaults         0   0
 	  </listitem>
 	  <listitem>
 	    <para>
-	      <emphasis>unhide</emphasis>: cette option n'est significative
+	      <emphasis>unhide</emphasis>: cette option est significative
 	      seulement pour les CD-ROMs avec le système de fichiers ISO9660.
-	      Si <quote>unhide</quote> est spécifié les fichiers chachés seront
+	      Si <quote>unhide</quote> est spécifié les fichiers cachés seront
 	      aussi visibles.
 	    </para>
 	  </listitem>
@@ -3075,7 +3076,6 @@ proc             /proc            proc        defaults         0   0
 	  Ce champ est utilisé par <command>fsck</command> pour déterminer
 	  l'ordre dans lequel les systèmes de fichiers doivent être vérifiés au
 	  démarrage du système.
-	  boot.
 	</para>
       </sect3>
     </sect2>
@@ -3093,9 +3093,8 @@ proc             /proc            proc        defaults         0   0
 	les fichiers et chiffrer les fichiers. Signer un fichier signifie
 	qu'une signature digitale est générée pour un fichier. Vous, ou d'autres
 	personnes peuvent utiliser la signature pour vérifier l'intégrité du
-	fichier. Le chiffrage de fichier encode un fichier de manière à ce seule
+	fichier. Le chiffrage de fichier encode un fichier de manière à ce que seule
 	la personne à qui le fichier est destiné peut lire le fichier.
-	file.
       </para>
 
       <para>
@@ -3122,7 +3121,7 @@ proc             /proc            proc        defaults         0   0
       <para>
 	Générer vos clés privée et publique est un peu compliqué, car GnuPG
 	utilise les clés DSA par défaut. DSA est un algorithme de chiffrage, le
-	problème est que la longueur maximale d'une clé DSA est 1024 bits, c'est
+	problème est que la longueur maximale d'une clé DSA est 1024 bits, ce qui est
 	considéré trop court pour sa pérennité. C'est pour cela qu'il est
 	judicieux d'utiliser des clés RSA à 2048 bits. Cette section décrit
 	comment faire.
@@ -3133,13 +3132,13 @@ proc             /proc            proc        defaults         0   0
 	  Les clés 1024 bits ont été considérées sécuritaires pendant un bon
 	  moment. Cependant un écrit de Bernstein <emphasis>Circuits for Integer
 	    Factorization : a Proposal (NdT : Circuits pour factorisation
-	    entière : une proposition)</emphasis> conteste ce fait, en résumé
+	    entière : une proposition)</emphasis> conteste ce fait ; en résumé
 	  il est pratiquement réalisable pour les agences nationales de sécurité
 	  de produire le matériel capable  de casser les clés en un temps
 	  relativement court. De plus il a été démontré que les clés RSA
 	  512-bits peuvent être cassées en un temps relativement court en
 	  utilisant du matériel courant. Plus d'informations sur ces problèmes
-	  peuvent être trouvés dans cet e-mail sur la liste cypherpunks :
+	  peuvent être trouvées dans cet e-mail sur la liste cypherpunks :
 	<ulink url="http://tin.le.org/vault/security/encryption/rsa1024.html" />
 	</para>
       </note>
@@ -3159,14 +3158,15 @@ $ <userinput>gpg --gen-key</userinput>
 
       <screen>
 Sélectionnez le type de clé désiré:
-   (1) DSA et Elgamal (par défaut)
-   (2) DSA (signature seule)
-   (5) RSA (signature seule)
+   (1) RSA and RSA (default)
+   (2) DSA and Elgamal
+   (3) DSA (signature seule)
+   (4) RSA (signature seule)
 Votre choix ? <userinput>4</userinput>
       </screen>
 
       <para>
-	Il vous sera alors demandé la taille vous désirez pour la clé que vous
+	Il vous sera alors demandé la taille que vous désirez pour la clé que vous
 	voulez générer. Saisissez <emphasis>2048</emphasis> pour générer une clé
 	2048 bits, et appuyez sur entrée pour continuer.
       </para>
@@ -3209,7 +3209,7 @@ Vous avez sélectionné ce nom d'utilisateur:
       </screen>
 
       <para>
-	GnuPG vous demandera confirmation votre nom d'utilisateur. Après
+	GnuPG vous demandera confirmation de votre nom d'utilisateur. Après
 	confirmation GnuPG vous demandera de saisir un mot de passe.
 	Assurez-vous de choisir un bon mot de passe :
       </para>
@@ -3221,7 +3221,7 @@ Entrez la phrase de passe:
       </screen>
 
       <para>
-	Après la saisie du mot de passe 2 fois GnuPG va générer les clés. Mais
+	Après la saisie du mot de passe 2 fois, GnuPG va générer les clés. Mais
 	ce n'est pas fini. GnuPG a seulement généré une clé pour signer les
 	informations, pas pour chiffrer les informations. Pour continuer,
 	regardez la sortie, et regardez l'identifiant de la clé. Dans
@@ -3318,11 +3318,11 @@ Commande&gt; <userinput>save</userinput>
       </screen>
 
       <para>
-	Félicitations! Vous avez généré à présent les clés nécessaires pour
+	Félicitations ! Vous avez généré à présent les clés nécessaires pour
 	chiffrer et déchiffrer les e-mails et les fichiers. Vous pouvez
-	maintenant configurer votre client e-mail d'utiliser GnuPG. Il est
+	maintenant configurer votre client e-mail pour utiliser GnuPG. Il est
 	judicieux de sauvegarder le contenu du répertoire
-	<filename>.gnupg</filename> sur un média fiable, et le placer dans un
+	<filename>.gnupg</filename> sur un média fiable, et de le placer dans un
 	endroit sûr ! Si votre clé privée est perdue vous ne pouvez plus
 	déchiffrer les fichiers et messages chiffrés avec votre clé publique. Si
 	la clé privée, et votre mot de passe vous sont volés, la sécurité de ce
@@ -3372,7 +3372,7 @@ $ <userinput>gpg --armor --output key.gpg --export john@doe.com</userinput>
       <title>Signatures</title>
 
       <para>
-	Avec GPG vous pouvez créer une signature d'un fichier. Cette signature
+	Avec GPG vous pouvez créer la signature d'un fichier. Cette signature
 	est unique, puisque votre signature ne peut être créée qu'avec votre clé
 	privée. Cela signifie que d'autres personnes peuvent vérifier si le
 	fichier a bien été envoyé par vous, et s'il a été modifié ou non par un
@@ -3417,7 +3417,7 @@ gpg: Bonne signature de "John Doe (Travail) &lt;john@doe.com&gt;"
 	Cela confirmera que le fichier a bien été signé par
 	<emphasis>John Doe (Travail) &lt;john@doe.com&gt;</emphasis>,
 	avec la clé <emphasis>8D080768</emphasis>, et que le fichier n'a pas été
-	modifié. Supposez que le fichier a été modifé, GnuPG s'en serait plaint
+	modifié. Supposez que le fichier ait été modifé, GnuPG s'en serait plaint
 	bruyamment :
       </para>
 

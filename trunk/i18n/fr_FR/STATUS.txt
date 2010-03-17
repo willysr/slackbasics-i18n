@@ -25,6 +25,6 @@ lignes fichier                  trad     1a-rev  2a-rev
    757 custom-installation.xml  OK       OK         -
    780 chap-procmgmt.xml        OK       TODO       -
    850 chap-install.xml         OK       OK         -
-  1049 chap-shell.xml           OK       TODO       -
+  1049 chap-shell.xml           OK       OK         -
   1921 chap-textproc.xml        OK       TODO       -
-  3453 chap-filesystem.xml      OK       TODO       -
+  3453 chap-filesystem.xml      OK       OK         -

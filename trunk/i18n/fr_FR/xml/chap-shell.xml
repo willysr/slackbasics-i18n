@@ -23,18 +23,18 @@
       comme d'habitude, et cherchez dans le menu de votre gestionnaire de
       fenêtres ou de votre environnement de bureau une entrée nommée
       <quote>XTerm</quote>, <quote>Terminal</quote> ou <quote>Konsole</quote>.
-      XTerm est un émulateur de terminal, dès que l'émulateur de terminal est
+      XTerm est un émulateur de terminal ; dès que l'émulateur de terminal est
       démarré le shell apparaît.
     </para>
 		
     <para>
       Avant d'aller plus loin, vous devez être avertis que Slackware Linux
-      fournit plus qu'un seul shell. Il y a 2 types de shell devenus populaires
+      fournit plus d'un seul shell. Il y a 2 types de shell devenus populaires
       avec le temps, le Bourne shell et le C shell.  Dans ce chapitre nous
       décrirons le Bourne shell qui est conforme au standard IEEE 1003.1. Les
       shells Bash (Bourne Again Shell) et ksh (Korn Shell) sont conformes à ces
       standards. Donc, il est judicieux d'utiliser un de ces 2 shells. Vous
-      pouvez facilement quel shell le système exécute en lançant
+      pouvez facilement voir quel shell le système exécute en lançant
       <command>echo $SHELL</command>.  Voici ce qu'un shell Bash doit
       retourner :
     </para>
@@ -84,7 +84,7 @@ Shell changed.
     <title>Exécuter des commandes</title>
 
     <para>
-      Un shell interactif est utilisé pour lancer des programmes en exécutant
+      Un shell interactif sert à lancer des programmes en exécutant
       des commandes. Il y a 2 sortes de commandes qu'un shell peut lancer :
     </para>
 
@@ -165,7 +165,7 @@ $ <userinput>which sysstat</userinput>
 
     <para>
       Il est souvent nécessaire de passer d'un endroit à un autre d'une ligne,
-      et modifier celle-ci, quand vous éditez des commandes plus larges.
+      et modifier celle-ci, quand vous éditez des commandes longues.
       <command>bash</command> et <command>ksh</command> on tous les deux des
       raccourcis clavier pour effectuer ces opérations communes. Il y a 2 modes
       shell, dans lesquels les raccourcis clavier sont différents. Ces modes
@@ -201,7 +201,7 @@ $ <userinput>set -o emacs</userinput>
     </screen>
 
     <para>
-      Avec le mode d'édition <emphasis>emacs</emphasis> activé, vous pouvez
+      Le mode d'édition <emphasis>emacs</emphasis> étant activé, vous pouvez
       commencer à utiliser des raccourcis. Nous allons voir 3 types de
       raccourcis : les raccourcis d'édition de caractères, les raccourcis
       d'édition de mots et les raccourcis d'édition de ligne. Plus tard dans ce
@@ -333,7 +333,7 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
 	Une des fonctions intéressantes sur la plupart des shells modernes est
 	que vous pouvez transposer (permuter) des caractères. C'est utile si
 	vous faites une faute de frappe dans laquelle 2 caractères sont
-	intervertis.  <xref linkend="chap-shell-moving-char-shortcuts-swap" />
+	intervertis.  Le <xref linkend="chap-shell-moving-char-shortcuts-swap" />
 	liste les raccourcis pour transposer des caractères.
       </para>
 
@@ -358,7 +358,7 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
       </table>
 
       <para>
-	Supposez que vous avez tapé la commande suivante :
+	Supposez que vous ayez tapé la commande suivante :
       </para>
 
       <screen>
@@ -379,7 +379,7 @@ cat myreport.tt<emphasis role="cursor">x</emphasis>
 
       <para>
 	Vous pouvez alors appuyer sur <emphasis>Ctrl-t</emphasis>. Les
-	caractères vont être échangés, et le curseur sera placé avant les
+	caractères vont être échangés, et le curseur sera placé après les
 	caractères échangés :
       </para>
 
@@ -433,7 +433,7 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
 	que pour se déplacer en avant et en arrière au niveau caractère. La
 	logique de déplacement est un peu curieuse. Aller de l'avant met le
 	curseur à la fin du mot courant, pas au premier caractère du mot
-	suivant contrairement à ce que vous pouviez espérer. Regardons un petit
+	suivant contrairement à ce que vous pouviez prévoir. Regardons un petit
 	exemple. Au début, le curseur est sur le premier caractère de la ligne.
       </para>
 
@@ -598,8 +598,8 @@ find ~/music -name '*.ogg' -print
       </screen>
 
       <para>
-	Enfin, il y a quelques raccourcis qui changent la capitalization des
-	mots. Le raccourci Alt-u passe tous les caractèes en majuscules, depuis
+	Enfin, il y a quelques raccourcis qui changent la casse des
+	mots. Le raccourci Alt-u passe tous les caractères en majuscules, depuis
 	la position courante du curseur jusqu'à la fin du mot. Donc, si nous
 	avons un nom en minuscules <quote>alice</quote>, passer en majuscules
 	le nom avec le curseur sur <quote>i</quote> donne <quote>alICE</quote>.
@@ -719,8 +719,8 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
 
     <para>
       Il arrive souvent que vous deviez exécuter des commandes que vous avez
-      déjà exécuté plus tôt. Heureusement, vous n'avez pas à toutes les retaper
-      de nouveau. Vous pouvez consulter l'historique des commandes exécutées
+      déjà exécuté auparavant. Heureusement, vous n'avez pas à toutes les retaper
+      à nouveau. Vous pouvez consulter l'historique des commandes exécutées
       avec les touches flèche haut et bas. En outre, il est également possible
       de chercher une commande. Pressez Control-r et commencez à taper la
       commande que vous souhaitez exécuter. Vous remarquerez que bash affiche
@@ -753,7 +753,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
       avec la même lettre ? Supposez que vous avez les fichiers
       <filename>recipe1.txt</filename> et <filename>recipe2.txt</filename>.
       Tapez <quote>cat r</quote> et tapez &lt;Tab&gt;, Bash va compléter le nom
-      de fichier du mieux qu'il le peut. I devrait vous laisser avec
+      de fichier du mieux qu'il le peut. Il devrait vous laisser avec
       <quote>cat recipe</quote>. Essayez de taper encore &lt;Tab&gt;, et Bash va
       vous afficher une liste de noms de fichiers qui commencent par
       <quote>recipe</quote>, dans ce cas les 2 fichiers recipe. A ce niveau vous
@@ -889,16 +889,16 @@ $ <userinput>rm in*</userinput>
     <title>Redirections et tubes</title>
 
     <para>
-      Parmi les fonctionnalités principales des shells de type UNIX-like il y a
+      Parmi les fonctionnalités principales des shells de type UNIX il y a
       les redirections et les tubes (pipes en anglais). Avant de regarder ces 2
-      techniques nous devons regarder command la plupart des commandes de type
+      techniques nous devons regarder comment la plupart des commandes de type
       UNIX fonctionnent. Quand une commande ne prend pas de données dans un
       fichier, elle va ouvrir un pseudo-fichier spécial nommé
       <emphasis>stdin</emphasis>, et attendre que des données y arrivent. Le
       même principe s'applique pour la sortie de la commande, quand il n'y a
       pas de raison explicite de sauver la sortie dans un fichier, le
       pseudo-fichier <emphasis>stdout</emphasis> sera ouvert pour la sortie des
-      données. Ce principe est décrit schématiquement dans <xref
+      données. Ce principe est décrit schématiquement dans la <xref
       linkend="fig-shell-inout" />
     </para>
 
@@ -980,7 +980,7 @@ $ <userinput>md5sum &lt; test1</userinput>
 	utilisant les dits <emphasis>tubes</emphasis>. Un tube entre commandes
 	peut être fait avec le caractère <quote>|</quote>. La combinaison de 2
 	ou plus de commandes est appelée un <emphasis>pipeline</emphasis>.
-	<xref linkend="fig-shell-pipeline" /> montre une vue d'ensemble
+	La <xref linkend="fig-shell-pipeline" /> montre une vue d'ensemble
 	schématique d'un pipeline constitué de 2 commandes.
       </para>
 
@@ -1013,7 +1013,7 @@ $ <userinput>cat /usr/share/dict/american-english | grep "aba" | wc -l</userinpu
 	phrase <quote>aba</quote>.  A son tour, la sortie de <quote>grep</quote>
 	est redirigée vers <command>wc -l</command>, qui compte le nombre de
 	lignes qu'elle reçoit de <emphasis>stdin</emphasis>. Enfin, quand le
-	flux est terminé <command>wc</command> affiche le nombre de ligne
+	flux est terminé <command>wc</command> affiche le nombre de lignes
 	qu'elle a compté. Donc, la combinaison des 3 commandes compte le nombre
 	de lignes contenant la phrase <quote>aba</quote> dans ce dictionnaire
 	particulier.
