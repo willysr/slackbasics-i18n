@@ -6,41 +6,41 @@
   <indexterm><primary>sendmail</primary></indexterm>
 
   <sect1 id="email-sendmail-introduction">
-    <title>Introduction</title>
+    <title>Introducción</title>
     
     <indexterm><primary>MTA</primary></indexterm>
     <indexterm><primary>Mail Transfer Agent</primary></indexterm>
 
     <para>
-      Sendmail is the default Mail Transfer Agent (<acronym>MTA</acronym>)
-      that Slackware Linux uses. sendmail was originally written by Eric
-      Allman, who still maintains sendmail. The primary role of the sendmail
-      MTA is delivering messages, either locally or remotely. Delivery
-      is usually done through the SMTP protocol. This means that sendmail
-      can accept e-mail from remote sites through the SMTP port, and that
-      sendmail delivers mail destined for remote sites to other SMTP
-      servers.
+      Sendmal es el Agente de Transferencia de Correo(Mail Transfer Agent, 
+      <acronym>MTA</acronym>) por defecto utilizado en Slackware Linux. 
+      Sendmail fue escrito originalmente por Eric Allman, quien aún 
+      mantiene sendmail. El rol primario del MTA sendmail es entregar 
+      mensajes, ya sea local o remotamente. La entrega es usualmente 
+      realizada a través del protocolo SMTP. Esto significa que sendmail 
+      puede aceptar e-mail desde sitios remotos a través del puerto 
+      SMTP, y que entrega el correo destinado para sitios remotos 
+      a otros servidores SMTP.
     </para>
   </sect1>
 
   <sect1 id="email-sendmail-installation">
-    <title>Installation</title>
+    <title>Instalación</title>
 
     <indexterm><primary>sendmail</primary><secondary>installation</secondary></indexterm>
 
     <para>
-      Sendmail is available as the <emphasis>sendmail</emphasis> package
-      in the <quote>n</quote> disk set. If you want to generate your own
-      sendmail configuration files, the <emphasis>sendmail-cf</emphasis>
-      package is also required. For information about how to install
-      packages on Slackware Linux, refer to
-      <xref linkend="chap-pkgmgmt" />.
+      Sendmail esta disponible como el paquete <emphasis>sendmail</emphasis> 
+      en la serie de paquetes <quote>n</quote>. Si quiere generar sus propios 
+      archivos de configuración de senmail, se requiere del paquete 
+      <emphasis>sendmail-cf</emphasis>. Para información sobre como instalar 
+      paquetes en Slackware Linux, refiérase a <xref linkend="chap-pkgmgmt" />.
     </para>
 
     <para>
-      You can let Slackware Linux start sendmail during each boot by
-      making the <filename>/etc/rc.d/rc.sendmail</filename> executable.
-      You can do this by executing:
+      Puede dejar a Slackware Linux iniciar sendmail durante el booteo 
+      haciendo ejecutable el archivo <filename>/etc/rc.d/rc.sendmail</filename>. 
+      Para realizar esto, ejecute:
     </para>
 
     <screen>
@@ -48,11 +48,11 @@
     </screen>
 
     <para>
-      You can also start, stop and restart sendmail by using
-      <emphasis>start</emphasis>, <emphasis>stop</emphasis>, and
-      <emphasis>restart</emphasis> as a parameter to the sendmail
-      initialization script. For example, you can restart sendmail
-      in the following way:
+      También puede iniciar, detener y reiniciar sendmail usando 
+      <emphasis>start</emphasis>, <emphasis>stop</emphasis>, y
+      <emphasis>restart</emphasis> como parámetros para el script 
+      de inicialización de sendmail. Por ejemplo, puede reiniciar 
+      sendmail de la siguiente forma:
     </para>
 
     <screen>
@@ -61,46 +61,44 @@
   </sect1>	
 
   <sect1 id="email-sendmail-configuration">
-    <title>Configuration</title>
+    <title>Configuración</title>
 
     <para>
-      The most central sendmail configuration file is
-      <filename>/etc/mail/sendmail.cf</filename>; this is where the 
-      behavior of sendmail is configured, and where other files
-      are included. The syntax of <filename>/etc/mail/sendmail.cf</filename>
-      is somewhat obscure, because this file is compiled from a
-      much simpler <filename>.mc</filename> files that uses M4 macros
-      that are defined for sendmail.
+      El principal archivo de configuración para sendmail es 
+      <filename>/etc/mail/sendmail.cf</filename>; aquí es donde 
+      el comportamiento de sendmail es configurado, y donde otros 
+      archivos son incluídos. La sintaxis de <filename>/etc/mail/sendmail.cf</filename> 
+      es algo oscura, debido a que este archivo es compilado a 
+      partir de archivos <filename>.mc</filename> mucho mas simples 
+      que utilizan macros M4 definidas para sendmail.
     </para>
 
     <para>
-      Some definitions can easily be changed in the
-      <filename>/etc/mail/sendmail.cf</filename> file, but for other
-      changes it is better to create your own <filename>.mc</filename>
-      file. Examples in this chapter will be focused on creating a
-      customized mc file.
+      Algunas definiciones pueden ser fácilmente cambiadas en el 
+      archivo <filename>/etc/mail/sendmail.cf</filename>, pero para 
+      otros cambios es mejor crear su propio archivo <filename>.mc</filename>. 
+      Los ejemplos en este capítulo estarán orientados en la creación 
+      de un archivo mc personalizado.
     </para>
 
     <sect2 id="email-sendmail-configuration-mc">
-      <title>Working with mc files</title>
+      <title>Trabajando con archivos mc</title>
     
       <indexterm><primary>sendmail</primary><secondary>mc files</secondary></indexterm>
 
       <para>
-        In this section we will look how you can start off with an
-        initial mc file, and how to compile your own .mc file to a
-        cf file. There are many interesting example mc files available
-        in <filename>/usr/share/sendmail/cf/cf</filename>. The most
-        interesting examples are <filename>sendmail-slackware.mc</filename>
-        (which is used for generating the default Slackware Linux
-        <filename>sendmail.cf</filename>), and
-        <filename>sendmail-slackware-tls.mc</filename> which adds
-        TLS support to the standard Slackware Linux sendmail configuration.
-        If you want to create your own sendmail configuration, it is
-        a good idea to start with a copy of the standard Slackware Linux
-        mc file. For instance, suppose that we would like to create
-        a configuration file for the server named <emphasis>straw</emphasis>,
-        we could execute:
+      	En esta sección veremos como puede empezar con un archivo mc 
+      	inicial, y como compilarlo a un archivo cf. Hay muchos archivos 
+      	mc de ejemplo interesantes disponibles en <filename>/usr/share/sendmail/cf/cf</filename>. 
+      	Los más interesantes son <filename>sendmail-slackware.mc</filename> 
+      	(que es usado para la generar el <filename>sendmail.cf</filename> por 
+      	defecto para Slackware Linux), y  <filename>sendmail-slackware-tls.mc</filename> 
+      	el cual agrega soporte TLS a la configuración estandar de sendmail de 
+      	Slackware Linux. Si quiere crear su propia configuración sendmail, 
+      	es una buena idea empezar copiando el archivo mc estandar de Slackware 
+      	Linux. Por ejemplo, suponga que quisieramos crear un archivo de 
+      	configuración para el servidor llamado <emphasis>straw</emphasis>, 
+      	para realizar esto podríamos ejecutar:
       </para>
 
       <screen>
@@ -109,9 +107,9 @@
       </screen>
 
       <para>
-        and start editing <filename>sendmail-straw.mc</filename>. After
-        the configuration file is modified to our tastes, M4 can be used
-        to compile a cf file:
+        y empezar a editar <filename>sendmail-straw.mc</filename>. Después 
+        de que el archivo de configuración esta modificado a nuestro gustos, 
+        M4 puede ser utilizado para compilar un archivo cf:
       </para>
 
       <screen>
@@ -119,9 +117,8 @@
       </screen>
 
       <para>
-        If we want to use this new configuration file as the default
-        configuration, we can copy it to
-        <filename>/etc/mail/sendmail.cf</filename>:
+        Si queremos utilizar este nuevo archivo de configuración como 
+        configuracion por defecto, podemos copiarlo a <filename>/etc/mail/sendmail.cf</filename>:      
       </para>
 
       <screen>
@@ -130,19 +127,19 @@
     </sect2>
     
     <sect2 id="email-sendmail-configuration-smarthost">
-      <title>Using a smarthost</title>
+      <title>Utilizando un smarthost (host inteligente)</title>
 
       <indexterm><primary>sendmail</primary><secondary>smarthost</secondary></indexterm>
 
       <para>
-        If you would like to use another host to deliver e-mail to
-        locations to which the sendmail server you are configuring can not
-        deliver you can set up sendmail to use a so-called <quote>smart
-        host</quote>. Sendmail will send the undeliverable e-mail to the
-        smart host, which is in turn supposed to handle the e-mail. You do
-        this by defining <emphasis>SMART_HOST</emphasis> in your mc file.
-        For example, if you want to use <emphasis>smtp2.example.org</emphasis>
-        as the smart host, you can add the following line:
+        Si quisiera utilizar otro host para entregar correos a ubicaciones 
+        a las cuales el servidor de correo que esta configurando no puede, 
+        podría configurar sendmail para utilizar un denominado <quote>smart
+        host</quote>. Sendmail enviará los correos que no se pueden entregar 
+        al el smart host, al cual le toca manejar los correos. Puede hacer 
+        esto denifiendo <emphasis>SMART_HOST</emphasis> en su arhivo mc. 
+        Por ejemplo, si quiere usar <emphasis>smtp2.example.org</emphasis> 
+        como smart host, puede agregar la siguiente linea:
       </para>
 
       <screen>
@@ -151,15 +148,16 @@ define(`SMART_HOST',`stmp2.example.org')
     </sect2>
 
     <sect2 id="email-sendmail-configuration-accepthosts">
-      <title>Alternative host/domain names</title>
+      <title>Nombres alternativos de host/dominio</title>
 
       <indexterm><primary>sendmail</primary><secondary>local host names</secondary></indexterm>
 
       <para>
-        By default sendmail will accept mail destined for localhost, and the
-        current hostname of the system. You can simply add additional hosts
-        or domains to accept e-mail for. The first step is to make sure that 
-        the following line is added to your mc configuration:
+        Por defecto, sendmail aceptará correos destinados para localhost, y el 
+        nombre actual de host del sistema. Usted puede aceptar correos para 
+        otros hosts o dominios simplemente agregándolos en su configuración. 
+        Para esto, el primer paso es asegurarse de que la siguiente linea esté  
+        agregada en su configuración mc:
       </para>
 
       <screen>
@@ -167,11 +165,10 @@ FEATURE(`use_cw_file')dnl
       </screen>
 
       <para>
-        When this option is enabled you can add host names and domain
-        names to accept mail for to
-        <filename>/etc/mail/local-host-names</filename>. This file
-        is a newline separated database of names. For example, the file
-        could look like this:
+        Cuando esta opción es activada, puede agregar nombres de host o dominio 
+        para los cuales aceptar correo en <filename>/etc/mail/local-host-names</filename>. 
+        Este archivo es una base de datos de nombres separados por lineas, el 
+        archivo podría verse como esto:
       </para>
 
       <screen>
@@ -182,16 +179,16 @@ www.example.org
     </sect2>
 
     <sect2 id="email-sendmail-configuration-mapaddr">
-      <title>Virtual user table</title>
+      <title>Tabla virtual de usuario</title>
 
       <indexterm><primary>sendmail</primary><secondary>virtual user table</secondary></indexterm>
 
       <para>
-        Often you may want to map e-mail addresses to user names. This
-        is needed when the user name differs from the part before the
-        <quote>@</quote> part of an e-mail address. To enable this
-        functionality, make sure the following line is added to your
-        mc file:
+        A veces podría querer mapear direcciones e-mail a 
+        nombres de usuarios. Esto es necesario cuando el nombre de usuario 
+        difiere del segmento que precede la <quote>@</quote> en la dirección 
+        e-mail. Para habilitar esta funcionalidad, asegúrese de que la 
+        siguiente linea esté agregada en su archivo mc:
       </para>
 
       <screen>
@@ -199,18 +196,18 @@ FEATURE(`virtusertable',`hash -o /etc/mail/virtusertable.db')dnl
       </screen>
 
       <para>
-        The mappings will now be read from
-        <filename>/etc/mail/virtusertable.db</filename>. This is a
-        binary database file that should not directly edit. You can
-        edit <filename>/etc/mail/virtusertable</filename> instead,
-        and generate <filename>/etc/mail/virtusertable.db</filename>
-        from that file.
+        Ahora los mapeos serán leídos desde <filename>/etc/mail/virtusertable.db</filename>. 
+        Esta es una base de datos binaria que no debería ser editada directamente. 
+        Puede editar <filename>/etc/mail/virtusertable</filename> en su cuenta, 
+        y generar <filename>/etc/mail/virtusertable.db</filename> a partir de 
+        ese archivo.
       </para>
 
       <para>
-        The <filename>/etc/mail/virtusertable</filename> file is a simple
-        plain text file. That has a mapping on each line, with an e-mail
-        address and a user name separated by a tab. For example:
+        El archivo <filename>/etc/mail/virtusertable</filename> es un 
+        archivo simple de texto plano. Contiene un mapeo por linea, con una 
+        dirección e-mail y un nombre de usuario separados por una tabulación. 
+        Por ejemplo:
       </para>
 
       <screen>
@@ -219,14 +216,14 @@ john.doe@mail.example.org        john
       </screen>
 
       <para>
-        In this example both e-mail for
-        <emphasis>john.doe@example.org</emphasis> and
-        <emphasis>john.doe@mail.example.org</emphasis> will be
-        delivered to the <emphasis>john</emphasis> account. It is
-        also possible to deliver some e-mail destined for a domain
-        that is hosted on the server to another e-mail address,
-        by specifying the e-mail address to deliver the e-mail to
-        in the second column. For example:
+        En este ejemplo ambos e-mail para 
+        <emphasis>john.doe@example.org</emphasis> y
+        <emphasis>john.doe@mail.example.org</emphasis> serán  
+        entregados a la cuenta <emphasis>john</emphasis>. 
+        También es posible entregar algunos e-mails destinados 
+        para un dominio alojado en el servidor, a otra dirección 
+        e-mail, especificando la dirección e-mail destino en la 
+        secunda columna. Por ejemplo:
       </para>
 
       <screen>
@@ -234,9 +231,9 @@ john.doe@example.org    john.doe@example.com
       </screen>
 
       <para>
-        After making the necessary changes to the
-        <filename>virtusertable</filename> file you can generate the
-        database with the following command:
+        Después de hacer los cambios necesarios al archivo
+        <filename>virtusertable</filename>, puede generar 
+        la base de datos con el siguiente comando:
       </para>
 
       <screen>
