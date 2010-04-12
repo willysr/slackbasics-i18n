@@ -1,29 +1,29 @@
 <!-- $Id: printing.xml 283 2007-09-18 20:14:31Z danieldk $ -->
 
 <chapter id="printing"> <?dbhtml filename="printer.html"?>
-  <title>Printer configuration</title>
+  <title>Configuración de impresora</title>
 
   <indexterm><primary>printing</primary></indexterm>
 
   <sect1 id="printing-intro">
-    <title>Introduction</title>
+    <title>Introducción</title>
 
     <indexterm><primary>cups</primary><secondary>installation</secondary></indexterm>
 
     <para>
-      GNU/Linux supports a large share of the available USB, parallel and
-      network printers. Slackware Linux provides two printing systems,
-      <acronym>CUPS</acronym> (Common UNIX Printing System) and
-      <acronym>LPRNG</acronym> (LPR Next Generation). This chapter covers
-      the CUPS system.
+	  GNU/Linux soporta una gran cantidad de impresoras USB, paralelas y 
+	  de red. Slackware Linux provee dos sistemas de impresión, 
+	  <acronym>CUPS</acronym> (Common UNIX Printing System) y
+      <acronym>LPRNG</acronym> (LPR Next Generation). Este capítulo cubre 
+	  el sistema CUPS.
     </para>
 
     <para>
-      Independent of which printing system you are going to use, it is
-      a good idea to install some printer filter collections. These can
-      be found in the <quote>ap</quote> disk set. If you want to have
-      support for most printers, make sure the following packages are
-      installed:
+	  Independientemente de que sistema de impresión vaya a usar, es una 
+	  buena idea instalar algunas colecciones de filtro de impresora. Estos 
+	  se encuentran en el directorio de paquetes <quote>ap</quote>. Si quiere 
+	  tener soporte para la mayoría de las impresoras, asegúrese de que los 
+	  siguientes paquetes esten instalados:
     </para>
 
     <screen>
@@ -37,25 +37,25 @@ ifhp
     </screen>
 
     <para>
-      Both printing systems have their own advantages and disadvantages. If
-      you do not have much experience with configuring printers under GNU/Linux,
-      it is a good idea to use CUPS, because CUPS provides a comfortable web
-      interface which can be accessed through a web browser.
+	  Ambos sistemas tiene sus propias ventajas y desventajas. Si no tiene mucha 
+	  experiencia configurando impresoras bajo GNU/Linux, es una buena idea usar 
+	  CUPS, ya que CUPS provee una confortable interfaz web que puede ser accedida 
+	  a través de un navegador web.
     </para> 
 
   </sect1>
 
   <sect1 id="printing-preparations">
-    <title>Preparations</title>
+    <title>Preparaciones</title>
 
     <indexterm><primary>cups</primary><secondary>starting</secondary></indexterm>
 
     <para>
-      To be able to use CUPS the <quote>cups</quote> package from the
-      <quote>a</quote> disk set has to be installed. After the installation
-      CUPS can be started automatically during each system boot by making
-      <filename>/etc/rc.d/rc.cups</filename> executable. This can be
-      done with the following command:
+	  Para poder utilizar CUPS, el paquete <quote>cups</quote> de el 
+	  conjunto de paquetes <quote>a</quote> debe ser instalado. Despues 
+	  de la instalación, CUPS puede ser iniciado automáticamente desde 
+	  el arranque del sistema haciendo el archivo <filename>/etc/rc.d/rc.cups</filename> 
+	  ejecutable. Esto se realiza ejecutando el siguiente comando: 
     </para>
 
     <screen>
@@ -63,9 +63,8 @@ ifhp
     </screen>
 
     <para>
-      After restarting the system CUPS will also be restarted automatically. 
-      You can start CUPS on a running system by executing the following 
-      command:
+	  Después de reiniciar el sistema, CUPS también sera reiniciado automáticamente. 
+	  Puede iniciar CUPS en un sistema en ejecución con el siguiente comando:
     </para>
 
     <screen>
@@ -75,24 +74,23 @@ ifhp
   </sect1>
 
   <sect1 id="printing-configuration">
-    <title>Configuration</title>
+    <title>Configuración</title>
 
     <indexterm><primary>cups</primary><secondary>configuration</secondary></indexterm>
 
     <para>
-      CUPS can be configured via a web interface. The configuration interface
-      can be accessed with a web browser at the following URL:
-      <ulink url="http://localhost:631/">http://localhost:631/</ulink>.
-      Some parts of the web interface require that you authenticate yourself.
-      If an authentication window pops up you can enter <quote>root</quote>
-      as the user name, and fill in the root account password.
+	  CUPS puede ser configurado a través de una interfaz web. La interfaz de 
+	  configuración puede ser accedida con un navegador web en la siguiente 
+	  URL: <ulink url="http://localhost:631/">http://localhost:631/</ulink>. 
+	  Algunas partes de la interfaz web requieren autenticación. Si una ventana 
+	  de autenticación es mostrada, puede ingresar <quote>root</quote> como 
+	  nombre de usuario y su correspondiente contraseña.
     </para>
 
     <para>
-      A printer can be added to the CUPS configuration by clicking on
-      <quote>Administrate</quote>, and clicking on the <quote>Add
-      Printer</quote> button after that. The web interface will ask for 
-      three options:
+	  Una impresora puede ser agregada a la configuración CUPS a través del 
+	  menu <quote>Administrate</quote>, y luego seleccionando el boton <quote>Add
+      Printer</quote>. La interfaz web preguntará por tres opciones:
     </para>
 
     <itemizedlist>
@@ -117,16 +115,16 @@ ifhp
     </itemizedlist> 
 
     <para>
-      You can proceed by clicking the <quote>Continue</quote> button. On
-      the next page you can configure how the printer is connected. If you
-      have an USB printer which is turned on, the web interface will show
-      the name of the printer next to the USB port that is used. After
-      configuring the printer port you can select the printer brand and
-      model. After that the printer configuration is finished, and the
-      printer will be added to the CUPS configuration.
+	  Puede proceder presionando en el boton <quote>Continue</quote>. En 
+	  la siguiente página puede configurar la conexion de la impresora. Si 
+	  tiene una impresora USB encendida, la interfaz web mostrará el nombre 
+	  de la impresora junto al puerto USB usado. Después de configurar el 
+	  puerto de la impresora puede seleccionar su marca y modelo. Después 
+	  de eso, la configuración está finalizada y la impresora será agregada 
+	  a la configuración CUPS.
     </para>
 
-    <para>
+    <para>	
       An overview of the configured printers can be found on the
       <quote>Printers</quote> page. On this page you can also do some
       printer operations. For example, <quote>Print Test Page</quote>
