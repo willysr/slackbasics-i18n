@@ -11,7 +11,7 @@ lines   file                   trad    1st-rev  2nd-rev
    216 chap-help.xml            OK       -       -
    258 sendmail.xml             OK       -       -
    265 chap-intro.xml           OK       -       -
-   310 printing.xml             -        -       -
+   310 printing.xml             OK       -       -
    338 mutt.xml                 -        -       -
    341 miscadmin.xml            -        -       -
    377 latex.xml                -        -       -
