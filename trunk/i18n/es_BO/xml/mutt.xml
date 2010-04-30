@@ -1,101 +1,103 @@
 <!-- $Id: mutt.xml 333 2007-10-21 17:20:54Z danieldk $ -->
 
 <chapter id="email-mutt"> <?dbhtml filename="mutt.html"?>
-  <title>Reading and writing e-mail with mutt</title>
+  <title>Leyendo y escribiendo email con mutt</title>
 
   <indexterm><primary>mutt</primary></indexterm>
 
   <sect1 id="email-mutt-introduction">
-    <title>Introduction</title>
+    <title>Introducción</title>
 
     <indexterm><primary>MUA</primary></indexterm>
     <indexterm><primary>Mail User Agent</primary></indexterm>
 
     <para>
-      Mutt is a mail user agent (<acronym>MUA</acronym>) that can be used
-      for reading and writing e-mail. Mutt is a text-mode installation,
-      meaning that it can be used on the console, over SSH and in an X
-      terminal. Due to its menu interface, it is very easy to read large
-      amounts of e-mail in a short time, and mutt can be configured to
-      use your favorite text editor.
+      Mutt es un agente usuario de correo (<acronym>MUA</acronym>,
+      mail user agent) que puede ser utilizado para leer y escribir
+      e-mail. Mutt se instala en modo texto, esto significa que puede
+      ser utilizado en la consola, sobre SSH y en una terminal
+      X. Debido a su interfaz de menú, es muy fácil leer grandes
+      cantidades de e-mail en corto tiempo, y mutt puede configurarse
+      para utilizar su editor de texto preferido.
     </para>
 
     <para>
-      This chapter will discuss how you can customize mutt for your needs,
-      how to use it, and how PGP/GnuPG support is used.
+      En este capítulo hablaremos sobre como puede personalizar mutt a
+      sus necesidades, como utilizarlo, y como el soporte PGP/GnuPG es
+      utilizado.
     </para>
   </sect1>
 
   <sect1 id="email-mutt-usage">
-    <title>Usage</title>
+    <title>Uso</title>
 
     <para>
-      Mutt is pretty simple to use, though it may take some time to get
-      used to the keys that are used to navigate, read and write e-mails.
-      The next few sections describe some of the more important keys. Mutt
-      provides a more thorough overview of available keys after pressing
-      the &lt;h&gt; key.
+      Mutt es bastante simple de usar, a pesar de que puede tomar
+      algún tiempo acostumbrarse a las teclas usadas para navegación,
+      lectura y escritura de e-mails. Las siguientes secciones
+      describen algunas de las teclas más importantes. Mutt provee un
+      resumen mas completo de las teclas disponibles después de
+      presionar la tecla &lt;h&gt;.
     </para>
 
     <sect2 id="email-mutt-usage-browsing">
-      <title>Browsing the list of e-mails</title>
+      <title>Navegando por la lista de e-mails</title>
       
       <para>
-        After invoking the <command>mutt</command> command, an overview
-        of all e-mails will show up. You can browse through the list of
-        e-mails with the up and down arrow keys, or the &lt;k&gt; and
-        &lt;j&gt; keys. 
+	Después de invocar el comando <command>mutt</command>, se
+	mostrará un resumen de todos los e-mails. Puede navegar a
+	través de la lista de e-mails con las teclas direccionales
+	arriba y abajo, o las teclas &lt;k&gt; y &lt;j&gt;.
       </para>
 
     </sect2>
 
     <sect2 id="email-mutt-usage-reading">
-      <title>Reading e-mails</title>
+      <title>Leyendo e-mails</title>
       
       <para>
-        To read an e-mail, use the &lt;Enter&gt; key, after selecting an
-        e-mail in the overview of e-mails.
-        When reading an e-mail you can use the &lt;Page Up&gt; and
-        &lt;Page Down&gt; to browse through an e-mail. You can still use
-        the navigational keys used to browse the list of e-mail to browse
-        to other e-mails.
+	Para leer un e-mail, utilice la tecla &lt;Enter&gt; después de
+	seleccionar un e-mail de la lista de e-mails.  Cuando esté
+	leyendo un e-mail puede utilizar la tecla &lt;Page Up&gt; y
+	&lt;Page Down&gt; para navegar a través del e-mail. Todavía
+	puede utilizar las teclas de navegación para navegar a través
+	de los e-mails de la lista.
       </para>
 
       <para>
-        If an e-mail has any attachments, you can see them by pressing
-        the &lt;v&gt; key. You can view individual attachments by selecting
-        them and pressing the &lt;Enter&gt; key. To save an attachment to
-        a file, press the &lt;s&gt; key.
+	Si un e-mail tiene datos adjuntos, puede verlos presionando la
+	tecla &lt;v&gt;. Puede ver los adjuntos individuales
+	seleccionándolos y presionando la tecla &lt;Enter&gt;. Para
+	guardar un adjunto en un archivo, presione la tecla &lt;s&gt;.
       </para>
     </sect2>
     
     <sect2 id="email-mutt-usage-sending">
-      <title>Sending e-mails</title>
+      <title>Enviando e-mails</title>
 
       <para>
-        You can compose a new e-mail with the &lt;m&gt; key, or reply
-        to a selected e-mail with the &lt;r&gt; key. Mutt will ask you
-        to specify the recipient (<emphasis>To:</emphasis>), and a
-        subject (<emphasis>Subject:</emphasis>). After entering this
-        information an editor is launched (<command>vi</command> is used
-        by default), which you can use to compose the e-mail. After saving
-        the e-mail, and quitting the editor, mutt will give you the
-        opportunity to make any changes to the e-mail. If you decide
-        that you want to alter the e-mail, you can restart the editor
-        with the &lt;e&gt; key. You can change the recipient or the
-        subject with respectively &lt;t&gt; or &lt;s&gt;. Finally, you
-        can send the e-mail by pressing &lt;y&gt;. If you would like to
-        cancel the e-mail, press &lt;q&gt;. Mutt will ask you whether you
-        want to postpone the e-mail. If you do so, you will be given the
-        opportunity to re-do the e-mail the next time you compose a
-        message.
+	Puede crear un email con la tecla &lt;m&gt; o responder a un
+	e-mail seleccionado con la tecla &lt;r&gt;. Mutt le pedirá
+	especificar el recipiente (<emphasis>To:</emphasis>), y el
+	tema (<emphasis>Subject:</emphasis>). Después de ingresar esta
+	información se ejecutará un editor(<command>vi</command> es
+	usado por defecto), el cual puede usar para componer el
+	e-mail. Después de guardar el e-mail y abandonar el editor,
+	mutt le dará la oportunidad de realizar cambios al e-mail. Si
+	decide alterar el e-mail, puede reiniciar el editor con la
+	tecla &lt;e&gt;. Puede cambiar el recipiente o el tema con
+	&lt;t&gt; o &lt;s&gt;. Finalmente, puede enviar el e-mail
+	presionando &lt;y&gt;. Si quisiera cancelar el e-mail,
+	presione &lt;q&gt; Mutt preguntará si quiere posponer el
+	e-mail. Si asi lo desea, tendrá la oportunidad de rehacer el
+	e-mail la próxima vez que cree un mensaje.
       </para>
     </sect2>
 
   </sect1>
 
   <sect1 id="email-mutt-basicsetup">
-    <title>Basic setup</title>
+    <title>Configuración basica</title>
 
     <para>
       There are a few mutt settings you often want to configure. This section
