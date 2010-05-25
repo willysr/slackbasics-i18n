@@ -18,12 +18,12 @@
 	mémoire protégé, nommé l'<emphasis>espace d'adressage du processus
 	</emphasis>. Cet espace d'adressage se compose de 2 zones :
 	la <emphasis>zone texte</emphasis> et la <emphasis>zone données
-	</emphasis>. La zone text contient le code réel du programme, et dit au
-	système quoi faire. La zone donnée stocke les données constantes et les
+	</emphasis>. La zone texte contient le code réel du programme, et dit au
+	système quoi faire. La zone données stocke les données constantes et les
 	données d'exécution d'un processus. Puisqu'il y a beaucoup de processus
 	dans un système, et 1 ou quelques processeurs, le noyau du système
 	d'exploitation divise le temps processeur entre les processus. Cette
-	opération est appelée <emphasis>temps partagé</emphasis>.
+	opération est appelée <emphasis>partage de temps</emphasis>.
       </para>
 
       <table xml:id="chap-procmgmt-theory-proc-struct">
@@ -55,7 +55,7 @@
 	      <entry>egid</entry><entry>L'ID du groupe du processus</entry>
 	    </row>
 	    <row>
-	      <entry>rgid</entry><entry>L'ID réel du group du processus</entry>
+	      <entry>rgid</entry><entry>L'ID réel du groupe du processus</entry>
 	    </row>
 	    <row>
 	      <entry>fd</entry><entry>Pointeur sur une liste de descripteurs de
@@ -71,7 +71,7 @@
 
       <para>
 	<xref linkend="chap-procmgmt-theory-proc-struct" /> liste les champs
-	les plus importants d'un processus que le kernel stocke. Chaque
+	les plus importants que le kernel stocke sur un processus. Chaque
 	processus peut être identifié de manière unique par son
 	<emphasis>PID</emphasis> (NdT: Process IDentifier), qui est un nombre
 	non signé. Comme nous le verrons plus tard, un utilisateur peut aisément
@@ -81,7 +81,7 @@
 	<emphasis>UID réel</emphasis>, qui est le UID avec lequel le processus a
 	été démarré, et le <emphasis>UID effectif</emphasis>, qui est l'UID sous
 	lequel le processus travaille. Normalement, le UID effectif est égal au
-	UID réel, mais certains programmes demande au système à changer cet UID
+	UID réel, mais certains programmes demandent au système à changer cet UID
 	effectif. L'UID effectif est utilisé pour les contrôles d'accès. Cela
 	signifie que si un utilisateur nommé joe lance une commande, disons
 	less, less ne peut ouvrir que des fichiers sur lesquels joe a les
@@ -117,7 +117,7 @@
 	Tous les processus n'ont pas besoin de temps CPU à un instant donné.
 	Par exemple, certains processus peuvent être en attente d'une opération
 	<emphasis>E/S</emphasis> (Entrée/Sortie) pour continuer ou peuvent être
-	finis. Sans entrer dans les détails, les processus sont normalement
+	terminés. Sans entrer dans les détails, les processus sont normalement
 	<emphasis>démarré</emphasis>, <emphasis>actif</emphasis>,
 	<emphasis>prêt</emphasis> (à être actif), <emphasis>bloqué</emphasis>
 	(en attente d'E/S), ou <emphasis>terminé</emphasis>. <xref
@@ -154,9 +154,9 @@
 int main() {
   pid_t pid = fork();
   if (pid == 0)
-    printf("Hi, I am the child!\n");
+    printf("Salut, je suis le fils !\n");
   else
-    printf("Hi, I am the parent, the child PID is %d!\n", pid);
+    printf("Salut, je suis le parent, le PID fils est %d !\n", pid);
 
   return 0;
 }
@@ -173,7 +173,7 @@ int main() {
       </para>
 
       <para>
-	Peut-être vous vous demandez commes il est possible de démarrer de
+	Peut-être vous vous demandez comment il est possible de démarrer de
 	nouveaux programmes, puisque l'appel <emphasis>fork()</emphasis>
 	duplique un processus existant. C'est une bonne question, puisqu'avec
 	<emphasis>fork()</emphasis> uniquement, il n'est pas possible d'exécuter
@@ -181,7 +181,7 @@ int main() {
 	d'appels système, en commençant par <emphasis>exec</emphasis>, qui
 	charge une nouvelle image d'un programme dans le processus courant. Nous
 	avons vu au début de ce chapitre qu'un processus est un programme en
-	cours d'exécution -- un processus a été construit en mémore à partir de
+	cours d'exécution -- un processus a été construit en mémoire à partir de
 	l'image du programme enregistré sur un média de stockage. Donc, la
 	famille d'appels système <emphasis>exec</emphasis> permet à un processus
 	en cours d'exécution de remplacer son contenu par un programme stocké
@@ -197,7 +197,7 @@ int main() {
 int main() {
   execve("/bin/ls", NULL, NULL);
 
-  /* Ne sera jamais affiché, à moins que execve() échoue. */
+  /* Ne sera jamais affiche, a moins que execve() echoue. */
   printf("Hello world!\n");
 
   return 0;
@@ -210,8 +210,8 @@ int main() {
 	<emphasis>printf()</emphasis> ne sera jamais affiché, car l'image du
 	programme en cours d'exécution est remplacée par celle de
 	<command>ls</command>. Cependant, une combinaison des fonctions
-	<emphasis>fork()</emphasis> et <emphasis>exec</emphasis> deviennent très
-	puissantes. Un processus peut se dupliquer, et laisser le fils se
+	<emphasis>fork()</emphasis> et <emphasis>exec</emphasis> devient très
+	puissante. Un processus peut se dupliquer, et laisser le fils se
 	<quote>sacrifier</quote> pour exécuter un autre programme. Le programme
 	suivant met en oeuvre cette combinaison :
       </para>
@@ -234,7 +234,7 @@ int main() {
 
       <para>
 	Ce programme se duplique d'abord. L'image du programme du processus fils
-	sera remplacé par celle de <command>ls</command>, alors que le processus
+	sera remplacée par celle de <command>ls</command>, alors que le processus
 	père affiche le message <quote>Hello world!</quote> sur l'écran et
 	retourne.
       </para>
@@ -254,22 +254,22 @@ int main() {
       <title>Threads</title>
 
       <para>
-	Bien que les forks sont très utiles pour effectuer du parallélisme
+	Bien que les forks soient très utiles pour effectuer du parallélisme
 	<footnote><para>Par exemple, un seveur web pourrait dupliquer plusieurs
 	processus fils pour traiter les requêtes</para></footnote>, ils peuvent
 	être coûteux sur plusieurs plans. Copier un processus entier prend du
 	temps, et il y a aussi un coût supplémentaire si les processus doivent
 	partager des données. Ceci est résolu par une alternative plus légère,
 	autorisant plus d'un fil ou thread d'exécution. Chaque thread
-	d'exécution est exécuté séparément, mais les données du processus est
-	partagé entre threads.
+	d'exécution est exécuté séparément, mais les données du processus sont
+	partagées entre threads.
       </para>
 
       <para>
 	Ecrire de bons programmes <emphasis>multithreadés</emphasis> demande une
 	bonne connaissance du partage et de la protection des données. Puisque
-	toutes les données sont paratagées, programmer sans précautions peut
-	amener à créer des bugs comme sur les concurrences d'accès.
+	toutes les données sont partagées, programmer sans précaution peut
+	amener à créer des bugs comme les concurrences d'accès.
       </para>
     </sect2>
 
@@ -428,7 +428,7 @@ $ <userinput>ps -t tty2</userinput>
       </para>
 
       <para>
-	En principe seuls quelques signaux sont intéressants pour leur utilisation interactive sur les systèmes UNIX(-ressemblant). Ce sont (suivis de leur numéro) :
+	En principe seuls quelques signaux sont intéressants pour leur utilisation interactive sur les systèmes UNIX (et ressemblants). Ce sont (suivis de leur numéro) :
       </para>
 
       <itemizedlist>
@@ -462,7 +462,7 @@ $ <userinput>kill 15631</userinput>
       </screen>
 
       <para>
-	Pour envoyer un autre signal, vous pouvez une de ces deux options :
+	Pour envoyer un autre signal, vous pouvez utiliser une de ces deux options :
 	<emphasis>-numérosignal</emphasis> ou
 	<emphasis>-nomsignal</emphasis>. Donc, les commandes suivantes envoient
 	toutes les 2 le signal <emphasis>SIGKILL</emphasis> au processus dont
@@ -550,7 +550,7 @@ $ <command>renice 14 -p 3108</command>
       pas une surprise, ces lots de processus sont appelés en UNIX des 
       <emphasis>groupes de programmes</emphasis>. Après un fork, un processus
       fils est automatiquement un membre du groupe de processus de son père.
-      Néanmoins, de nouveaux groups de processus peuvent être créés en désignant
+      Néanmoins, de nouveaux groupes de processus peuvent être créés en désignant
       un processus en tant que chef d'un groupe de processus, et en ajoutant les
       autres processus à ce groupe. L'ID du groupe de processus est le PID du
       processus chef de groupe.
@@ -593,7 +593,7 @@ cat | tr -s ' ' | egrep 'foob.r'
       </listitem>
       <listitem>
 	<para>
-	  Les programmes dans le pipeline sont exécutées.
+	  Les programmes dans le pipeline sont exécutés.
 	</para>
       </listitem>
     </orderedlist>
@@ -627,9 +627,9 @@ $ <userinput>sleep 3600</userinput>
       </screen>
 
       <para>
-	C'est le groupe de processus, que nous référencerons en tant qu'un
+	C'est le groupe de processus, que nous référencerons en tant que
 	travail	stoppé à présent, signifiant que <command>sleep</command> a
-	arrêté de décompter - son exécution est complêtement stoppée. Vous
+	arrêté de décompter - son exécution est complètement stoppée. Vous
 	pouvez récupérer une liste des travaux avec la commande
 	<command>jobs</command> :
       </para>
@@ -655,7 +655,7 @@ $ <userinput>jobs</userinput>
       </screen>
 
       <para>
-	Comme prévu, le second travail est aussi stoppé, et a eu
+	Comme prévu, le second travail est aussi stoppé, et a reçu
 	<emphasis>2</emphasis> comme numéro de travail. Le signe plus
 	(<emphasis>+</emphasis>) suivant le premier travail a été changé en
 	signe moins (<emphasis>-</emphasis>), alors que le second travail est
@@ -696,7 +696,7 @@ sleep 3600
       </screen>
 
       <para>
-	Basculer entre travaux en les stopper et les placer au premier plan
+	Basculer entre travaux en les stoppant et en les plaçant au premier plan
 	d'exécution est souvent très utile lorsque le shell est utilisé de façon
 	interactive. Par exemple, supposez que vous éditez un fichier avec un
 	éditeur de texte, et que vous voulez exécuter une autre commande et
@@ -713,7 +713,7 @@ sleep 3600
 	En plus de s'exécuter en premier plan, les travaux peuvent aussi
 	s'exécuter en tâche de fond. Cela signifie qu'ils s'exécutent, mais que
 	l'entrée du terminal n'est pas redirigée vers ces processus en tâche de
-	fond. La plupar des shells configurent les travaux en tâche de fond de
+	fond. La plupart des shells configurent les travaux en tâche de fond de
 	façon à rediriger la sortie vers le terminal du shell dans lequel ils
 	ont été démarrés.
       </para>
@@ -755,7 +755,7 @@ $ <command>bg %1</command>
 
       <para>
 	Vous pouvez aussi placer un travail directement en tâche de fond
-	lorqu'il est démarré, en ajoutant à la fin une esperluette (&amp;)
+	lorsqu'il est démarré, en ajoutant à la fin une esperluette (&amp;)
 	de la commande ou du pipeline. Par exemple :
       </para>
 

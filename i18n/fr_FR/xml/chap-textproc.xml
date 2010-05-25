@@ -7,7 +7,7 @@
 
   <para>
     L'édition de texte est un des domaines où UNIX excelle, car cela forme le
-    coeur de la philosophie UNIX, comme décrit dans
+    coeur de la philosophie UNIX, comme décrit dans la
     <xref linkend="chap-intro-unix" />. La plupart des commandes UNIX sont de
     simples programmes qui lisent des données de l'entrée standard, effectuent
     des opérations sur les données, et envoient les résultats vers la sortie
@@ -19,10 +19,10 @@
   </para>
 
   <para>
-    This chapter describes some simple, but important, UNIX commands
-    that can be used to manipulate text. After that, we will dive into
-    regular expressions, a sublanguage that can be used to match text
-    patterns.
+    Ce chapitre décrit quelques commandes UNIX simples, mais importantes,
+    pouvant être utilisées pour manipuler du texte. Ensuite, nous nous
+    plongerons dans les expressions régulières, un sous-langage qui peut être
+    utilisé pour filtrer des motifs de texte.
   </para>
  
   <sect1 xml:id="chap-textproc-simple">
@@ -52,11 +52,11 @@ Hello, this is the content of file.txt
       </screen>
 
       <para>
-	<command>cat</command> (Ndt: cat=concatène) porte bien son nom lorsque
+	<command>cat</command> (Ndt : cat=concatène) porte bien son nom lorsque
 	plusieurs fichiers sont ajoutés en arguments. Cela va concaténer les
 	fichiers ; autrement dit, il va envoyer le contenu de tous les fichiers
 	vers la sortie standard, dans le même ordre où ils ont été spécifiés en
-	argument. La capture d'écran suivante montre cela :
+	arguments. La capture d'écran suivante montre cela :
       </para>
 
       <screen>
@@ -72,9 +72,9 @@ Hello, this is the content of file2.txt
 
       <para>
 	La commande <command>wc</command> fournit des statistiques sur un
-	fichier texte ou flux texte. Sans paramètre, elle va afficher le nombre
-	de lignes, de mots et le nombre d'octects respectivement. Un mot est
-	délimité par un caractère d'espacement, ou une sequence de caractères
+	fichier texte ou flux texte. Sans paramètre, elle va afficher  respectivement le nombre
+	de lignes, de mots et le nombre d'octets. Un mot est
+	délimité par un caractère d'espacement, ou une séquence de caractères
 	d'espacement.
       </para>
 
@@ -124,7 +124,7 @@ $ <userinput>wc -lc /usr/share/dict/words</userinput>
 	que comporte un texte, car le jeu de caractères utilisé peut dépasser la
 	taille d'un octet. Pour y remédier, le paramètre <parameter
 	class="command">-m</parameter> a été ajouté affichant le nombre de
-	caractères dans un texte, indépendant du jeu de caractères.
+	caractères dans un texte, indépendamment du jeu de caractères.
 	<parameter class="command">-c</parameter> et
 	<parameter class="command">-m</parameter> se substituent, et ne peuvent
 	jamais être utilisés en même temps.
@@ -136,7 +136,7 @@ $ <userinput>wc -lc /usr/share/dict/words</userinput>
 	<parameter class="command">-l</parameter> est souvent utilisé en tant
 	que compteur de la sortie d'une commande. C'est utile, car beaucoup de
 	commandes séparent les unités logiques par un caractère de nouvelle
-	ligne. Supposez que vous voulez compter le nombre de fichiers dans votre
+	ligne. Supposez que vous vouliez compter le nombre de fichiers dans votre
 	répertoire home ayant l'extension <filename>.txt</filename>. Vous pouvez
 	réaliser ceci en combinant <command>find</command> pour chercher les
 	fichiers concernés et	<command>wc</command> pour compter le nombre
@@ -166,7 +166,7 @@ $ <userinput>find ~ -name '*.txt' -type f | wc -l</userinput>
 	  <listitem>
 	    <para>
 	      Cette notation est utilisée pour spécifier des caractères qui
-	      nécessitent un échappement, les plus célèbres sont
+	      nécessitent un échappement, les plus connus sont
 	      <emphasis>\n</emphasis> (saut de ligne), <emphasis>\t</emphasis>
 	      (tabulation horizontale), et <emphasis>\\</emphasis> (backslash).
 	    </para>
@@ -177,7 +177,7 @@ $ <userinput>find ~ -name '*.txt' -type f | wc -l</userinput>
 	  <listitem>
 	    <para>
 	      Insère implicitement tout caractère de
-	      <emphasis>caractère1</emphasis> en
+	      <emphasis>caractère1</emphasis> à
 	      <emphasis>caractère2</emphasis>. Cette notation doit être utilisée
 	      avec attention, car elle ne donne pas toujours le résultat escompté. Par exemple, la séquence
 	      <emphasis>a-d</emphasis> peut signifier
@@ -192,7 +192,7 @@ $ <userinput>find ~ -name '*.txt' -type f | wc -l</userinput>
 	  <listitem>
 	    <para>
 	      Trouve une classe prédéfinie de caractères. Toutes les classes
-	      possibles sont dans <xref
+	      possibles sont dans le <xref
 	      linkend="chap-textproc-simple-tr-charclasses" />.
 	    </para>
 	  </listitem>
@@ -318,14 +318,14 @@ H@ll@ w@rld!
 	  au milieu de la séquence. Supposez que la séquence 1 est
 	  <emphasis>abcdef</emphasis>, et la séquence 2 est
 	  <emphasis>@[-*]!</emphasis>. <command>tr</command> va remplacer
-	  <emphasis>a</emphasis> avec <emphasis>@</emphasis>,
+	  <emphasis>a</emphasis> par <emphasis>@</emphasis>,
 	  <emphasis>b</emphasis>, <emphasis>c</emphasis>,
-	  <emphasis>d</emphasis>, et <emphasis>e</emphasis> avec
-	  <emphasis>-</emphasis>, et <emphasis>f</emphasis> avec
+	  <emphasis>d</emphasis>, et <emphasis>e</emphasis> par
+	  <emphasis>-</emphasis>, et <emphasis>f</emphasis> par
 	  <emphasis>!</emphasis>.
 	  Cependant d'autres systèmes UNIX remplacent
-	  <emphasis>a</emphasis> avec
-	  <emphasis>@</emphasis>, et le reste de la séquence de caractères avec
+	  <emphasis>a</emphasis> par
+	  <emphasis>@</emphasis>, et le reste de la séquence de caractères par
 	  <emphasis>-</emphasis>. Donc, une notation plus correcte et explicite
 	  serait <emphasis>@[-*4]!</emphasis>,
 	  ce qui conduit au même résultat sur presque tous les systèmes UNIX :
@@ -343,7 +343,7 @@ $ <userinput>echo 'abcdef' | tr 'abcdef' '@[-*4]!'</userinput>
 	<para>
 	  Lorque le paramètre <parameter class="command">-s</parameter>
 	  est précisé, <command>tr</command> va supprimer tous les caractères
-	  présent dans la seconde séquence. Cela signifie qu'une séquence d'un
+	  présents dans la seconde séquence. Cela signifie qu'une séquence d'un
 	  même caractère va être réduite à 1 caractère. Supprimons le caractère
 	  &quot;<emphasis>e</emphasis>&quot; :
 	</para>
@@ -391,9 +391,9 @@ Heo wod!
       <para>
 	La commande <command>cut</command> est fournie par les systèmes UNIX
 	pour <quote>couper</quote> une ou plusieurs colonnes d'un fichier ou
-	d'un flux, et l'afficher sur la sortie standard. Il est souvent utilse
-	d'extraire de façon sélective des informations dans un texte.
-	<command>cut</command> fournit 3 approches pour couper des information
+	d'un flux, et l'afficher sur la sortie standard. Il est souvent utile
+	d'extraire de façon sélective des informations d'un texte.
+	<command>cut</command> fournit 3 approches pour couper des informations
 	provenant de fichiers :
       </para>
 
@@ -431,7 +431,7 @@ Heo wod!
       </para>
 
       <para>
-	Les données peuvent être coupée par champ avec le paramètre <parameter
+	Les données peuvent être coupées par champ avec le paramètre <parameter
 	class="command">-f champs</parameter>. Par défaut, la tabulation
 	horizontale est utilisée en tant que séparateur. Voyons
 	<command>cut</command> en action avec un petit dictionnaire hollandais à
@@ -461,7 +461,7 @@ pear
 	Plutôt facile. Maintenant faisons la même chose avec un fichier ayant
 	comme séparateur de champs le deux-points. Nous pouvons essayer ceci
 	facilement en convertissant le dictionnaire avec la commande
-	<command>tr</command> que nous avons vu précédamment, en remplaçant les
+	<command>tr</command> que nous avons vu précédemment, en remplaçant les
 	tabulations par des deux-points :
       </para>
 
@@ -532,7 +532,7 @@ pear
 	<parameter class="command">uniq</parameter> <!-- XXX -
 	where? --> pour compter les séquences de 3 caractères égales, et
 	utiliser <command>sort</command> pour trier dans l'ordre inverse
-	numérique (<command>sort</command> est décrit dans <xref
+	numérique (<command>sort</command> est décrit dans la <xref
 	linkend="chap-textproc-simple-sort" />). Enfin, nous utiliserons
 	<command>head</command> pour obtenir les 10 séquences les plus
 	fréquentes :
@@ -629,11 +629,11 @@ Apfel   Banane  Birne
 	<command>sort</command> peut aussi vérifier si un fichier est trié, et
 	fusionner 2 fichiers triés. <command>sort</command> peut trier dans
 	l'ordre du dictionnaire ou dans l'ordre numérique. L'ordre de tri par
-	défaut est l'odre du dictionnaire. Cela signifie que les lignes de texte
+	défaut est l'ordre du dictionnaire. Cela signifie que les lignes de texte
 	sont comparées caractère par caractère, trié comme spécifié dans la
 	séquence de groupage courante (spécifiée via la variable d'environnement
 	LC_COLLATE). Cela pose un piège lorsque vous triez des nombre en
-	l'occurrence, si vous avez les nombre de 1 à 10 sur une ligne
+	l'occurrence, si vous avez les nombres de 1 à 10 chacun sur une ligne
 	différente, la séquence triée sera 1, 10, 2, 3, etc. Cela est dû à
 	l'interprétation par caractère du tri par dictionnaire. Si vous voulez
 	trier des lignes en tant que nombres, utilisez le tri numérique.
@@ -693,13 +693,13 @@ orange
 	<listitem>
 	  <para>
 	    Le paramètre <parameter class="command">-f</parameter> permet un tri
-	    un tri insensible à la casse.
+	    insensible à la casse.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
 	    Si <parameter class="command">-d</parameter> est ajouté, seuls les
-	    caractères blancs et les caractères sont utilisés pour déterminer
+	    caractères blancs et les caractères alphanumériques sont utilisés pour déterminer
 	    l'ordre de tri.
 	  </para>
 	</listitem>
@@ -767,7 +767,7 @@ $ <userinput>du -a /bin | sort -nr</userinput>
 
       <para>
 	Assez souvent, les fichiers sont structurés en plusieurs colonnes, et
-	vous voulez trier un fichier par une colonne autre que la première. Par
+	vous voulez trier un fichier sur une colonne autre que la première. Par
 	exemple, voyons le fichier score suivant nommé
 	<filename>score.txt</filename> :
       </para>
@@ -782,7 +782,7 @@ Heinz:DE:3
     <para>
       Supposons que nous voulons trier les entrées dans ce fichier par les noms
       de pays sur 2 lettres. <command>sort</command> nous permet de trier un
-      fichier par une colonne avec le paramètre <parameter
+      fichier sur une colonne avec le paramètre <parameter
       class="command">-k col1[,col2]</parameter>.  Où <emphasis>col1</emphasis>
       à <emphasis>col2</emphasis> sont utilisés comme champs en entrée soumis au
       tri. Si <emphasis>col2</emphasis> n'est pas spécifié, tous les champs
@@ -830,7 +830,7 @@ John:US:4
       numérique.</para></footnote>. Vous pouvez utiliser <parameter
       class="command">-n</parameter>, mais <command>sort</command> permet aussi
       une tournure plus sophistiquée. Vous pouvez ajouter un ou plusieurs
-      <emphasis>n</emphasis>, <emphasis>r</emphasis>>,
+      <emphasis>n</emphasis>, <emphasis>r</emphasis>,
       <emphasis>f</emphasis>, <emphasis>d</emphasis>,
       <emphasis>i</emphasis>, ou <emphasis>b</emphasis> au spécifieur de
       colonne. Ces lettres représentent les paramètres de
@@ -905,12 +905,12 @@ $ <userinput>sort scores.txt | sort -c ; echo $?</userinput>
 	texte. Les utilitaires principaux pour manipuler les différences entre
 	fichiers sont <command>diff</command> et <command>patch</command>.
 	<command>diff</command> affiche les différences entre fichiers. La
-	sortie de <command>diff</command> (NdT: diff=différence) peut être
+	sortie de <command>diff</command> (NdT : diff=différence) peut être
 	exploitée par <command>patch</command> pour appliquer les modifications
 	entre 2 fichiers, à un fichier. <quote>Les différences</quote> sont
 	aussi la base des systèmes de gestion de sources/versions.
 	<!-- XXX - xref to version management chapters --> La section suivante
-	décrit <command>diff</command> and <command>patch</command>.
+	décrit <command>diff</command> et <command>patch</command>.
 	Pour avoir un peu de matière sur laquelle travailler, les fichiers
 	source C suivants sont utilisés pour démontrer l'utilisation de ces
 	commandes. Ces fichiers sont nommés respectivement
@@ -1000,7 +1000,7 @@ $ diff hello.c hello2.c
 	  sortie, mais le format peut sembler un peu étrange. En fait, ce sont
 	  des commandes qui peuvent être interprétées par l'éditeur de lignes
 	  <command>ed</command>. Nous allons voir un format plus agréable après
-	  avoir touché du doigt le format de sortie par défaut.
+	  avoir aperçu le format de sortie par défaut.
 	</para>
 
 	<para>
@@ -1067,7 +1067,7 @@ $ <userinput>diff hello2.c hello.c</userinput>
 	<!-- XXX - Changed lines? -->
 
 	<para>
-	  C'est suffisant pour la sortie du style <application>ed</application>.
+	  Ca suffit pour la sortie du style <application>ed</application>.
 	  Le programme GNU diff inclus dans Slackware Linux supporte ce qu'on
 	  appelle les diffs unifiés. Les diffs unifiés sont très lisibles et
 	  fournissent le contexte par défaut. <command>diff</command> peut 
@@ -1128,11 +1128,11 @@ $ diff -u hello.c hello2.c
 	    <para>
 	      Une ligne qui n'est pas précédée par un signe moins
 	      (<emphasis>-</emphasis>) ou un signe plus
-	      (<emphasis>+</emphasis>) reste inchangé. Les lignes inchangées
-	      sont inclues car elles donnent une indication de contexte, et
+	      (<emphasis>+</emphasis>) reste inchangée. Les lignes inchangées
+	      sont incluses car elles donnent une indication de contexte, et
 	      évitent la multiplication de morceaux. S'il n'y a que quelques
 	      lignes inchangées entre 2 changements, <command>diff</command> va
-	      choisire de ne faire qu'un seul morceau plutôt que 2 morceaux.
+	      choisir de ne faire qu'un seul morceau plutôt que 2 morceaux.
 	    </para>
 	  </callout>
 	  <callout arearefs="co-udiff-add">
@@ -1220,9 +1220,9 @@ diff -ru hello.orig/hello.c hello/hello.c
 	  utilisée par Slackware Linux fournit le paramètre
 	  <parameter class="command">-N</parameter>. Ce paramètre considère les
 	  fichiers présents seulement dans un seul des 2 répertoires comme s'il
-	  état vide. Donc par exemple, si nous avons ajouté un fichier nommé
+	  était vide. Donc par exemple, si nous avons ajouté un fichier nommé
 	  <filename>Makefile</filename> au répertoire
-	  <filename>hello</filename>, utiliser le parausing
+	  <filename>hello</filename>, utiliser le paramètre
 	  <parameter class="command">-N</parameter> produira la sortie
 	  suivante :
 	</para>
@@ -1259,7 +1259,7 @@ diff -ruN hello.orig/Makefile hello/Makefile
 	</screen>
 
 	<para>
-	  Comme vous pouvez le voir l'indicateur du moreceau dans le fichier
+	  Comme vous pouvez le voir l'indicateur du morceau dans le fichier
 	  original commence à la ligne 0 et fait 0 lignes.
 	</para>
 
@@ -1277,7 +1277,7 @@ $ <userinput>diff -u hello.c hello2.c > hello_add_date.diff</userinput>
 	</screen>
 
 	<para>
-	  Si vous avez des diffs multiples, vous pouvez combiner facilement les
+	  Si vous avez des diffs multiples, vous pouvez facilement les
 	  combiner en un seul diff, juste en concaténant les diffs :
 	</para>
 
@@ -1307,7 +1307,7 @@ $ <userinput>cat diff1 diff2 diff3 > combined_diff</userinput>
 	  que nous avons produit précédemment basé sur les modifications entre
 	  <filename>hello.c</filename> et
 	  <filename>hello2.c</filename>, nous pouvons patcher
-	  <filename>hello.c</filename> pour le rendre identique à son associé:
+	  <filename>hello.c</filename> pour le rendre identique à son associé :
 	</para>
 
 	<screen>
@@ -1425,8 +1425,8 @@ $ <userinput>ls -l hello.c*</userinput>
 	  été patché, s'il a trop changé pour appliquer le patch proprement, ou
 	  si le fichier n'existe plus. Dans ce cas, les portions qui n'ont pas
 	  pu être sauvées sont enregistrées dans un fichier nommé
-	  <filename>filename.rej</filename>, où
-	  <emphasis>filename</emphasis> est le fichier que
+	  <filename>fichier.rej</filename>, où
+	  <emphasis>fichier</emphasis> est le fichier que
 	  <command>patch</command> a tenté de modifier.
 	</para>
       </sect3>
@@ -1441,10 +1441,10 @@ $ <userinput>ls -l hello.c*</userinput>
 
       <para>Dans la vie de tous les jours, vous voudrez souvent manipuler du
 	texte correspondant à un certain motif, plutôt qu'une chaîne de
-	caractères litérale. Beaucoup d'utilitaires UNIX implémente un langage
+	caractères littérale. Beaucoup d'utilitaires UNIX implémentent un langage
 	pour identifier des motifs de texte,
       <emphasis>les expressions regulières</emphasis> (regexps). Avec le temps
-      le langage à expressions régulière a grandi, il a principalement à présent
+      le langage à expressions régulières a grandi, à présent il a principalement 
       3 syntaxes d'expressions régulières : </para>
 
       <itemizedlist>
@@ -1484,8 +1484,8 @@ $ <userinput>ls -l hello.c*</userinput>
         <listitem>
           <para>
             <emphasis role="bold">Quantification</emphasis>: un quantifieur
-	    spécifie combien de fois le caractère précédé ou l'ensemble de
-	    caractère doivent être trouvés.</para>
+	    spécifie combien de fois le caractère ou l'ensemble de
+	    caractères précédés doivent être trouvés.</para>
         </listitem>
         <listitem>
           <para>
@@ -1522,15 +1522,15 @@ $ <userinput>ls -l hello.c*</userinput>
 
         <para>
 	  Les caractères sont recherchés en tant que tels. Si un caractère
-	  spécial est utilisé comme un caractère syntaxique pour les expressions
-	  régulières, vous pouvez chercher ce caractère en ajoutant un
+	  spécial est utilisé en tant que caractère syntaxique pour les expressions
+	  régulières, vous devez chercher ce caractère en ajoutant un
 	  backslash. Par exemple, <emphasis>\+</emphasis> correspond au
 	  caractère plus. </para>
 
         <para>
-	  Un point (<emphasis>.</emphasis>) correspond à tout caractère, par
+	  Un point (<emphasis>.</emphasis>) correspond à tout caractère ; par
 	  exemple, l'expression régulière <emphasis>b.g</emphasis> correspond à
-	  <emphasis>bag</emphasis>, <emphasis>big</emphasis>, et
+	  <emphasis>bag</emphasis>, <emphasis>big</emphasis>, et à
 	  <emphasis>blg</emphasis>, mais pas à
 	  <emphasis>bit</emphasis>. </para>
 
@@ -1540,7 +1540,7 @@ $ <userinput>ls -l hello.c*</userinput>
 	  liste des caractères qui peuvent être cherchés. Par exemple,
 	  l'expression régulière <emphasis>b[aei]g</emphasis> correspond à
 	  <emphasis>bag</emphasis>, <emphasis>beg</emphasis>, et
-	  <emphasis>big</emphasis>, mais rien d'autre. Vous pouvez chercher tout
+	  <emphasis>big</emphasis>, mais à rien d'autre. Vous pouvez chercher tout
 	  caractère sauf les caractères d'un ensemble en utilisant les crochets,
 	  et en utilisant l'accent circonflexe (<emphasis>^</emphasis>) en
 	  premier caractère. Par exemple, <emphasis>b[^aei]g</emphasis>
@@ -1603,7 +1603,7 @@ $ <userinput>ls -l hello.c*</userinput>
         <title>Alternative</title>
 
         <para>
-	  La barre verticale préfixée de bacslash
+	  La barre verticale préfixée de backslash
 	  (<emphasis>\|</emphasis>) vous permet de chercher une des 2
 	  expressions. Ce n'est pas utile pour des caractères uniques, car
 	  <emphasis>a\|b</emphasis> est équivalent à <emphasis>[ab]</emphasis>,
@@ -1625,7 +1625,7 @@ $ <userinput>ls -l hello.c*</userinput>
 	  parenthèses de groupement, les accolades de quantification, et le
 	  signe d'alternative (<emphasis>|</emphasis>) ne sont pas backslashées.
 	  S'ils sont backslashés, il correspondront plutôt aux caractères
-	  litéraux, comportement opposé aux expressions régulières
+	  littéraux, comportement opposé aux expressions régulières
 	  traditionnelles. La plupart des gens trouvent les expressions
 	  régulières étendues POSIX beaucoup plus confortables, faisant de
 	  celles-ci les plus utilisées.
@@ -1645,17 +1645,17 @@ $ <userinput>ls -l hello.c*</userinput>
 	  <title>Quantification</title>
 
 	  <para>
-	    En plus de l'astérisque (<emphasis>*</emphasis>), qui correspond au
-	    caractère ou groupe précédent zéro ou plusieurs fois, les
-	    expresssions régulières étentues POSIX ajoutent 2 nouvelles
+	    En plus de l'astérisque (<emphasis>*</emphasis>), qui correspond à
+	    zéro ou plusieurs fois le caractère ou groupe précédent, les
+	    expresssions régulières étendues POSIX ajoutent 2 nouvelles
 	    primitives simples de quantification. Le signe plus
-	    (<emphasis>+</emphasis>) correspond au caractère ou groupe précédent
-	    une ou plusieurs fois. Par exemple, <emphasis>a+</emphasis>,
+	    (<emphasis>+</emphasis>) correspond à une ou plusieurs fois le
+	    caractère ou groupe précédent. Par exemple, <emphasis>a+</emphasis>,
 	    correspond à <emphasis>a</emphasis> (ou toute chaîne de caractères
 	    avec d'autres <emphasis>a</emphasis> consécutifs), mais ne
 	    correspond pas à zéro <emphasis>a</emphasis>. Le caractère point
-	    d'interrogation (<emphasis>?</emphasis>) correspond au caractère
-	    précédent zéro ou une fois. Donc, <emphasis>ba?d</emphasis>
+	    d'interrogation (<emphasis>?</emphasis>) correspond à zéro ou une
+	    fois le caractère précédent. Donc, <emphasis>ba?d</emphasis>
 	    correspond à <emphasis>bd</emphasis> et <emphasis>bad</emphasis>,
 	    mais pas <emphasis>baad</emphasis> ou <emphasis>bed</emphasis>.
 	  </para>
@@ -1711,7 +1711,7 @@ $ <userinput>ls -l hello.c*</userinput>
 
       <para>
 	Nous sommes maintenant arrivés à un des outils les plus importants du
-	système UNIX, et c'est la première occasion d'essayer et utiliser les
+	système UNIX, et c'est la première occasion d'essayer et d'utiliser les
 	expressions régulières. La commande <command>grep</command> est utilisée
 	pour chercher un motif dans un flux de texte ou dans un fichier. Ce
 	motif est une expression régulière, et peut être soit une expression
