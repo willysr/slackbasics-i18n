@@ -22,7 +22,7 @@
     </para>
 
     <para>
-      Ce chapitre va exposer comment vous pouvez adapter mutt à vos besoins,
+      Ce chapitre va exposer comment adapter mutt à vos besoins,
       comment l'utiliser, et comment ajouter le support PGP/GnuPG.
     </para>
   </sect1>
@@ -65,8 +65,8 @@
       <para>
 	Si un e-mail a des attachements, vous pouvez les voir en pressant la
 	touche &lt;v&gt;. Vous pouvez voir chaque attachement en les
-	sélectionnant et en pressant la touche &lt;Entrée&gt;. Pour sauver une
-	attachement dans un fichier, pressez la touche &lt;s&gt;.
+	sélectionnant et en pressant la touche &lt;Entrée&gt;. Pour sauver un
+	attachement vers un fichier, pressez la touche &lt;s&gt;.
       </para>
     </sect2>
     
@@ -75,7 +75,7 @@
 
       <para>
 	Vous pouvez composer un nouvel e-mail avec la touche &lt;m&gt;, ou
-	répondre à l'e-mail sélectionner à l'aide de la touche &lt;r&gt;. Mutt
+	répondre à l'e-mail sélectionné à l'aide de la touche &lt;r&gt;. Mutt
 	va vous demander de préciser le destinataire (<emphasis>To:</emphasis>),
 	et un sujet (<emphasis>Subject:</emphasis>). Après avoir entré ces
 	informations un éditeur est lancé (<command>vi</command> est utilisé par
@@ -98,9 +98,9 @@
     <title>Configuration de base</title>
 
     <para>
-      Il y a quelques réglage de mutt qui vous voudrez configurer fréquemment.
+      Il y a quelques réglages de mutt que vous voudrez configurer fréquemment.
       Cette section décrit ces réglages. Les personnalisations spécifiques à un
-      utilisateur peuvent être faite dans <filename>.muttrc</filename> dans le
+      utilisateur peuvent être faites dans <filename>.muttrc</filename> dans le
       répertoire personnel de l'utilisateur. Vous pouvez modifier les paramètres
       globaux de mutt dans <filename>/etc/mutt/Muttrc</filename>.
     </para>
@@ -176,7 +176,7 @@ set sendmail="/usr/bin/msmtp"
 
       <para>
 	Lorsque vous avez remplacé complètement sendmail par un autre MTA, par
-        exemple Postfix, il n'est en principe pas requis de modifier ce
+        exemple Postfix, en principe il n'est pas requis de modifier ce
 	paramètre car la plupart des MTAs fournissent un fichier binaire
 	sendmail alternatif.
       </para>
@@ -250,7 +250,7 @@ set spoolfile=imap://me@imap.example.org/INBOX
 	signez vos e-mails, ils n'ouvriront pas le faux e-mail contenant les
 	virus. De plus, cela paraît bien plus professionnel si les gens peuvent
 	vérifier votre identité, particulièrement pour des communications de
-	travail. Par exemple, à qui feriez vous plus confiance, à
+	travail. Par exemple, à qui feriez-vous plus confiance, à
 	vampire_boy93853@hotmail.com, ou à quelqu'un utilisant une adresse
 	e-mail professionnelle avec des e-mails signés numériquement ?
       </para>
@@ -303,15 +303,15 @@ set crypt_replyencrypt = yes
       <title>Utilisation</title>
 
       <para>
-	Si vous avez positionné quelques unes des options automatiques, comme
+	Si vous avez positionné quelques-unes des options automatiques, comme
         <emphasis>crypt_autosign</emphasis>, l'utilisation de GnuPG par mutt
-	est quasiment automatique. Sinon, vous pouvez presser la touche
+	est quasi-automatique. Sinon, vous pouvez presser la touche
 	&lt;p&gt; lors de l'étape finale de l'envoi d'un e-mail. Au bas de
-	l'écran plusieurs options GnuPG/PGP vont apparaître, qui vous pourrez
+	l'écran plusieurs options GnuPG/PGP vont apparaître, auxquelles vous pourrez
 	accéder via les lettres affichées entre parenthèses. Par exemple,
-        &lt;s&gt; signe les e-mails, et &lt;e&gt; encrypte un e-mail.
+        &lt;s&gt; signe les e-mails, et &lt;e&gt; encrypte les e-mails.
         Vous pouvez toujours effacer une option quelconque de GnuPG que vous
-	que vous avez modifié en pressant &lt;p&gt; et ensuite &lt;c&gt;.
+	avez modifié en pressant &lt;p&gt; et ensuite &lt;c&gt;.
       </para>
     </sect2>
   </sect1>

@@ -14,7 +14,7 @@
     <para>
       Sendmail est l'agent de transfert de messagerie (<acronym>MTA</acronym> - 
       NdT : Mail Transfer Agent) qu'utilise Slackware Linux. sendmail a été
-      écrit à l'origine par Eric Allman, qui maintient encore sendmail. Le role
+      écrit à l'origine par Eric Allman, qui maintient encore sendmail. Le rôle
       principal du MTA sendmail est de délivrer les messages, que ce soit
       localement ou à distance. La livraison est faite en principe via le
       protocole SMTP. Cela signifie que sendmail accepte des e-mails de sites
@@ -117,8 +117,8 @@
       </screen>
 
       <para>
-	Si nous voulons utiliser ce nouveau fichier de configuration comme
-	configuration par défaut, nous pouvons le copier en
+	Si vous voulez utiliser ce nouveau fichier de configuration comme
+	configuration par défaut, vous pouvez le copier en
         <filename>/etc/mail/sendmail.cf</filename>:
       </para>
 
@@ -171,7 +171,7 @@ FEATURE(`use_cw_file')dnl
 	Lorsque cette option est activée vous pouvez ajouter à
         <filename>/etc/mail/local-host-names</filename> des noms d'hôte et des
 	noms de domaine pour lesquels accepter les e-mails. Ce fichier est une
-	base de donnée de noms séparés par un caractère de fin de ligne. Par
+	base de données de noms séparés par un caractère de fin de ligne. Par
 	exemple, le fichier peut ressembler à cela :
       </para>
 
