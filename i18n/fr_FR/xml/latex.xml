@@ -11,18 +11,18 @@
 
     <para>
       LaTeX est un système d'édition typographique qui peut être utilisé pour
-      produire des articles, livres, lettres et autres publication avec un bon
+      produire des articles, livres, lettres et autres publications avec un bon
       niveau de qualité. LaTeX est basé sur TeX, un langage d'édition
       typographique bas niveau créé par Donald E. Knuth. LaTeX ne fonctionne pas
       comme un éditeur de texte <acronym>WYSIWYG</acronym> (ce que vous voyez
-      est ce que vous obtenez - NdT: what you see is what you get), le type de
+      est ce que vous obtenez - NdT : what you see is what you get), le type de
       système d'édition de documents dont la plupart des gens a l'habitude de
       voir. Avec LaTeX vous n'avez pas à vous soucier du formatage du document,
-      uniquement de l'écriture du document.
+      mais uniquement de l'écriture du document.
     </para>
 
     <para>
-      Les fichies LaTeX sont des fichiers texte qui contiennent des macros
+      Les fichiers LaTeX sont des fichiers texte qui contiennent des macros
       LaTeX. LaTeX formatte le document à partir des macros utilisées. Au départ
       utiliser LaTeX peut sembler un peu bizarre pour un débutant. Mais au bout
       d'un moment, vous allez décrouvrir qu'utiliser LaTeX peut avoir des
@@ -39,7 +39,7 @@
       <listitem>
         <para>
 	  Vous n'avez pas à vous soucier de la mise en page de vos documents.
-	  Vous ajouter uniquement de la structure à vos documents, et LaTeX se
+	  Vous ajoutez uniquement de la structure à vos documents, et LaTeX se
 	  soucie du formattage.
         </para>
       </listitem>
@@ -109,7 +109,7 @@ Ceci est un document de base. <co id="latex-struct-5" />
 	    paramètres optionnels, tels que la taille de fonte et la taille de
 	    la page. Ici la taille de fonte est changée de la taille par défaut
 	    12pt en 10pt, et A4 est utilisée en tant que taille de page. Les
-	    classes de document disponible dans LaTeX sont listée dans le <xref linkend="latex-documentclasses" />.
+	    classes de document disponible dans LaTeX sont listées dans le <xref linkend="latex-documentclasses" />.
           </para>
         </callout>
         <callout arearefs="latex-struct-2">
@@ -261,12 +261,12 @@ $ <command>ps2pdf crypto.ps</command>
 	Maintenant que vous savez créer un document LaTeX de base, il est temps
 	d'ajouter un peu de structure. Une structure est ajoutée en utilisant
 	des sections, sous-sections, et sous-sous-sections. Ces éléments
-	structurels sont réalisées avec les commandes respectivement
+	structurels sont réalisés avec les commandes respectivement
 	<emphasis>\section</emphasis>, <emphasis>\subsection</emphasis> et
         <emphasis>\subsubsection</emphasis>. Le paramètre obligatoire pour une
 	section est le titre de cette section. Les sections normales, les
 	sous-sections et les sous-sous-sections sont numérotées automatiquement,
-	et ajoutées à la table des matières. En ajoutant une astérisque après la
+	et ajoutées à la table des matières. En ajoutant un astérisque après la
 	commande section, par exemple <emphasis>\section*{title}</emphasis>, la
 	numérotation de la section est supprimée, et la section n'est pas
 	ajoutée à la table des matières. L'exemple suivant montre comment
@@ -323,7 +323,7 @@ Encryption Standard, the successor of DES.
       </para>
 
       <screen>
-Manipuler les fontes est facile. \emp{Ce texte est en italique} et
+Manipuler les fontes est facile. \emph{Ce texte est en italique} et
 \textbf{ce texte est en gras}.
       </screen>
 
