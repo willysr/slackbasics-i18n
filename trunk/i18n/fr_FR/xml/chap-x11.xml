@@ -52,7 +52,7 @@ $ <userinput>startx</userinput>
 	X11 fournit 2 outils pour configurer X de façon interactive,
 	<command>xorgcfg</command> et <command>xorgconfig</command>.
 	<command>xorgcfg</command> essaie de détecter la carte vidéo
-	automatiquement, et démarre un outil qui peut être utiliser pour
+	automatiquement, et démarre un outil qui peut être utilisé pour
 	mettre au point la configuration.  Parfois <command>xorgcfg</command>
 	passe à un mode vidéo non supporté par le moniteur. Dans ce cas
 	<command>xorgcfg</command> peut aussi être utilisé en mode texte, en
@@ -87,7 +87,7 @@ $ <userinput>startx</userinput>
       </listitem>
       <listitem>
 	<para>
-	  BlackBox: gestionnaire de fenêtres léger, BlackBox a aucune dépendance
+	  BlackBox: gestionnaire de fenêtres léger, BlackBox n'a aucune dépendance
 	  à part les librairies X11.
 	</para>
       </listitem>
@@ -110,7 +110,7 @@ $ <userinput>startx</userinput>
       Si vous êtes habitué à un environnement de bureau, utiliser KDE ou Xfce
       est un choix logique. Cependant il est judicieux d'essayer des
       gestionnaires de fenêtres plus légers. Ils sont plus rapides, et
-      consomment moins de mémoires, d'ailleurs la plupart des applications KDE
+      consomment moins de mémoire ; d'ailleurs la plupart des applications KDE
       et Xfce sont parfaitement utilisables sous d'autres gestionnaires de
       fenêtres.
     </para>
@@ -119,7 +119,7 @@ $ <userinput>startx</userinput>
       Sous Slackware Linux la commande <command>xwmconfig</command> peut être
       utilisée pour positionner le gestionnaire de fenêtres par défaut. Ce
       programme affiche une liste des gestionnaires de fenêtres installés, parmi
-      laquelle vous pouvez effectuer un choix. Vous pouvez positionner le
+      lesquels vous pouvez effectuer un choix. Vous pouvez positionner le
       gestionnaire de fenêtres globalement en exécutant
       <command>xwmconfig</command> en tant que root.
     </para>

@@ -22,7 +22,7 @@ d'utiliser de bons mots de passe en toutes situations. Evitez d'utiliser des
 mots, noms, année de naissance, et mots de passe courts. Ces mots de passe
 peuvent aisément être cassés à l'aide d'attaques par dictionnaire ou d'attaques
 par force brute contre les hôtes ou les tables de mots de passe. Utilisez des
-mots de passe longs, 8 caractères ou plus idéalement, composé de lettre
+mots de passe longs, 8 caractères ou plus idéalement, composés de lettre
 aléatoires (majuscules inclues) et de nombres.
 </para>
 </sect1>
@@ -45,7 +45,7 @@ services.
 <para>
 Un système sécurisé doit exécuter les services nécessaires. Donc, supposez qu'un
 hôte joue le rôle de serveur web, il de devrait pas avoir (et donc servir) les
-ports FTP ou SMTP. Les riques de sécurité augmentent d'autant plus qu'il y a de
+ports FTP ou SMTP. Les risques de sécurité augmentent d'autant plus qu'il y a de
 ports ouverts, car il y a plus de chances qu'un logiciel servant un port donné
 contienne une vulnérabilité, ou qu'il soit mal configuré. Les sections suivantes
 vous aideront à traquer les ports ouverts, et à les fermer.
@@ -56,17 +56,16 @@ vous aideront à traquer les ports ouverts, et à les fermer.
 <title>Trouver les ports ouverts</title>
 
 <para>
-Les ports ouverts peuvent être repérés grâce à un scanner de ports. Probablement
-le plus célèbre scanner de ports pour GNU/Linux est <command>nmap</command>.
+Les ports ouverts peuvent être repérés grâce à un scanner de ports. <command>nmap</command> est probablement le plus célèbre scanner de ports pour GNU/Linux .
 <command>nmap</command> est disponible dans la collection <quote>n</quote>. 
 </para>
 
 <para>
 La syntaxe de base de <command>nmap</command> est :
-<command>nmap hôte</command>. Le paramêtre <emphasis>hôte</emphasis> peut aussi
+<command>nmap hôte</command>. Le paramètre <emphasis>hôte</emphasis> peut aussi
 bien être un nom d'hôte qu'une adresse IP. Supposez que vous voulez scanner
 l'hôte sur lequel <command>nmap</command> est installé. Dans ce cas vous pouvez
-spécifier l'adresse IP de <emphasis>localhost</emphasis>, <emphasis>127.0.0.1</emphasis> :
+spécifiez l'adresse IP de <emphasis>localhost</emphasis>, <emphasis>127.0.0.1</emphasis> :
 </para>
 
 <screen>

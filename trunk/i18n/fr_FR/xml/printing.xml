@@ -14,7 +14,7 @@
       GNU/Linux supporte un large éventail d'imprimantes USB, parallèle ou
       réseau. Slackware Linux fournit 2 systèmes d'impression,
       <acronym>CUPS</acronym> (Common UNIX Printing System - Ndt : système
-      commun d'ipression UNIX) et <acronym>LPRNG</acronym> (LPR Nouvelle
+      commun d'impression UNIX) et <acronym>LPRNG</acronym> (LPR Nouvelle
       Génération). Ce chapitre couvre le système CUPS.
     </para>
 
@@ -63,7 +63,7 @@ ifhp
     </screen>
 
     <para>
-      Après avoir redémarré le système CUPS est aussi redémarré automatiquement.
+      Après avoir redémarré le système, CUPS est aussi redémarré automatiquement.
       Vous pouvez démarrer CUPS sur un système en cours d'exécution en lançant
       la commande suivante :
     </para>
@@ -133,7 +133,7 @@ ifhp
       <quote>Imprimantes</quote>. Sur cette page vous pouvez aussi effectuer
       quelques actions sur les imprimantes. Par exemple, vous pouvez utiliser
       <quote>Imprimer la page de test CUPS</quote> pour vérifier la
-      configuration de l'imprimante en imprimante une page de test.
+      configuration de l'imprimante en imprimant une page de test.
     </para>
 
   </sect1>

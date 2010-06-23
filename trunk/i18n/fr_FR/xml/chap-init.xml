@@ -27,7 +27,7 @@
       La plupart des bootloaders fonctionnent en fait en 2 phases. La première
       étape du loader charge la seconde phase du loader, qui réalise le vrai
       travail. Le bootloader est divisé en 2 phases sur les ordinateurs x86, car
-      le BIOS ne charge qu'un seul secteur (le dir secteur de boot) de
+      le BIOS ne charge qu'un seul secteur (le dit secteur de boot) de
       taille égale à 512 octets.
     </para>
 
@@ -73,7 +73,7 @@ vga = normal <co xml:id="liloconf-global-4" />
 	    doit être installé. Si vous voulez utiliser LILO en tant que
 	    bootloader principal pour démarrer Linux et/ou d'autres systèmes
 	    d'exploitation, il est conseillé d'installer LILO dans le 
-	    <acronym>MBR</acronym> (Master Boot Record) du disuqe dur utilisé
+	    <acronym>MBR</acronym> (Master Boot Record) du disque dur utilisé
 	    pour démarrer le système. LILO est installé dans le MBR en omettant
 	    le numéro de partition, par exemple <filename>/dev/hda</filename>
 	    ou <filename>/dev/sda</filename>.  Si vous voulez installer LILO
@@ -114,7 +114,7 @@ vga = normal <co xml:id="liloconf-global-4" />
 	</callout>
 	<callout arearefs="liloconf-global-4">
 	  <para>
-	    Vous pouvez spécifier le mode vidéo le noyau doit utiliser avec
+	    Vous pouvez spécifier le mode vidéo que le noyau doit utiliser avec
 	    l'option <emphasis>vga</emphasis>. Lorsqu'elle est positionnée à
 	    <emphasis>normal</emphasis> le noyau va utiliser le mode texte
 	    normal 80x25.
@@ -123,7 +123,7 @@ vga = normal <co xml:id="liloconf-global-4" />
       </calloutlist>
 
       <para>
-	Les options globales sont suivies par des section ajoutant des noyaux
+	Les options globales sont suivies par des sections ajoutant des noyaux
 	Linux ou d'autres systèmes d'exploitation. La plupart des sections
 	du noyau Linux ressemblent à ceci :
       </para>
@@ -245,7 +245,7 @@ c1:1235:respawn:/sbin/agetty 38400 tty1 linux
     </screen>
 
     <para>
-      Cette ligne spécifie que <command>agetty</command> doit être démarré sur
+      Cette ligne spécifie que <command>agetty</command> doit être démarrée sur
       <emphasis>tty1</emphasis> (le premier terminal virtuel) pour les niveaux
       d'exécution 1, 2, 3 et 5. La commande <command>agetty</command> ouvre le
       port tty, et affiche le prompt de saisie du login.
@@ -264,7 +264,7 @@ c1:1235:respawn:/sbin/agetty 38400 tty1 linux
       particulièrement pratique lorsque vous avez un ou plusieurs terminaux
       connectés à une machine. Vous pouvez ajouter quelque chose ressemblant à
       ce qui suit pour démarrer une instance de <command>agetty</command>
-      écoutant sur le port COM1:
+      écoutant sur le port COM1 :
     </para>
 
     <screen>
@@ -386,7 +386,7 @@ fi
       <command>modprobe</command> dans
       <filename>/etc/modprobe.d/blacklist</filename>. Par exemple, si vous
       voulez empêcher le chargement du module <emphasis>8139cp</emphasis>, vous
-      pouvezz ajouter la ligne suivante (en fait, ce module est déjà blacklisté
+      pouvez ajouter la ligne suivante (en fait, ce module est déjà blacklisté
       dans Slackware Linux):
     </para>
 
@@ -403,7 +403,7 @@ blacklist 8139cp
 
       <para>
 	Certains composants matériels requièrent le téléchargement d'un
-	firmware. Un firmware est un morceau de logicielutilisé pour contrôler
+	firmware. Un firmware est un morceau de logiciel utilisé pour contrôler
 	le matériel. En principe, le firmware est enregistré de façon permanente
 	dans un média ROM (mémoire à lecture seule - NdT : read-only memory) ou
 	non-volatile comme une mémoire flash.
@@ -433,7 +433,7 @@ SUBSYSTEM=="firmware", ACTION=="add", RUN+="/lib/udev/firmware.sh"
 	<filename>/lib/udev/firmware.sh</filename> doit être exécuté. Ce script
 	cherche dans les répertoires <filename>/lib/firmware</filename> et
 	<filename>/usr/local/lib/firmware</filename> le firmware demandé. Si le
-	fichier firmware existe, il sera chargé en le copiant son contenu dans
+	fichier firmware existe, il sera chargé en copiant son contenu dans
 	un point d'accès spécial de sysfs.
       </para>
     </sect2>
@@ -446,7 +446,7 @@ SUBSYSTEM=="firmware", ACTION=="add", RUN+="/lib/udev/firmware.sh"
 	demandent le téléchargement d'un firmware au système d'exploitation.
 	Si tel est le cas, et qu'aucun firmware n'est installé, le kernel va
 	émettre un message d'erreur lorsque le pilote de ce matériel est chargé.
-	Vous pouvez voir la sortie du kernel output avec la commande
+	Vous pouvez voir la sortie du kernel avec la commande
 	<command>dmesg</command> ou dans le fichier de log
 	<filename>/var/log/messages</filename>. Un tel message d'erreur dit
 	explicitement que le firmware n'a pas pu être chargé, comme par
