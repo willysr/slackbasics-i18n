@@ -3,25 +3,25 @@ lignes fichier                  trad     1a-rev  2a-rev
     39 preface.xml              OK       OK         -
     87 chap-book.xml            OK       OK         -
    117 bind.xml                 OK       TODO       -
-   125 chap-x11.xml             OK       TODO       -
+   125 chap-x11.xml             OK       OK         -
    143 slackware-basics.xml     OK       OK         -
    144 inetd.xml                OK       TODO       -
    156 apache.xml               OK       TODO       -
-   167 security.xml             OK       TODO       -
+   167 security.xml             OK       OK         -
    219 chap-help.xml            OK       OK         -
    248 sendmail.xml             OK       OK         -
    272 chap-intro.xml           OK       TODO       -
-   295 printing.xml             OK       TODO       -
+   295 printing.xml             OK       OK         -
    313 mutt.xml                 OK       OK         -
-   335 miscadmin.xml            OK       TODO       -
+   335 miscadmin.xml            OK       OK         -
    377 latex.xml                OK       OK         -
    398 concepts.xml             OK       OK         -
-   441 chap-kernel.xml          OK       TODO       -
-   485 chap-usermgmt.xml        OK       TODO       -
+   441 chap-kernel.xml          OK       OK         -
+   485 chap-usermgmt.xml        OK       OK         -
    526 netconfig.xml            OK       TODO       -
    630 ipsec.xml                OK       TODO       -
-   652 chap-pkgmgmt.xml         OK       TODO       -
-   690 chap-init.xml            OK       TODO       -
+   652 chap-pkgmgmt.xml         OK       OK         -
+   690 chap-init.xml            OK       OK         -
    757 custom-installation.xml  OK       OK         -
    780 chap-procmgmt.xml        OK       OK         -
    850 chap-install.xml         OK       OK         -

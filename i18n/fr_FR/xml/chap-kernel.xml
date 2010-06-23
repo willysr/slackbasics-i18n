@@ -59,7 +59,7 @@
 
     <para>
       Ce chapitre se concentre sur la série par défaut du kernel utilisée dans
-      Slackware Linux 12.0, Linux 2.6. Compiler un kernel n'est pas tellement
+      Slackware Linux 12.0, Linux 2.6. Compiler un kernel n'est pas vraiment
       difficile, gardez sous la main un kernel de sauvegarde que vous pourrez
       utiliser quand quelque chose tourne mal. La compilation du kernel Linux
       implique ces étapes :
@@ -127,7 +127,7 @@
       désirez utiliser la configuration du kernel <filename>hugesmp.s</filename>
       comme point de départ (qui est le kernel par défaut), et que vous avez le
       CD-ROM Slackware Linux monté en <filename>/mnt/cdrom</filename>, vous
-      pouvez copiper la configuration du kernel Slackware Linux avec :
+      pouvez copier la configuration du kernel Slackware Linux avec :
     </para>
     
     <screen>
@@ -149,9 +149,9 @@
     </screen>
 
     <para>
-      Si vous utilisez un fichier de configuration destinée à une autre version
+      Si vous utilisez un fichier de configuration destiné à une autre version
       du kernel en cours de compilation, il est probable que les 2 versions
-      n'ont pas les mêmes options. De nouvelles options sont fréquemment
+      n'aient pas les mêmes options. De nouvelles options sont fréquemment
       ajoutées (i.e., car de nouveaux drivers sont ajoutés), et parfois des
       composants du kernel sont supprimés. Vous pouvez configurer les nouvelles
       options (et supprimer les options non utilisées) avec la commande
@@ -166,7 +166,7 @@
       Cela vous demande si vous désirez soit la compilation intégrée du support
       de l'option (<emphasis>Y</emphasis>), soit la compilation du support de
       l'option en tant que module (<emphasis>M</emphasis>), soit de ne pas
-      inclure le support (<emphasis>N</emphasis>). Par exemple :
+      inclure le support de l'option (<emphasis>N</emphasis>). Par exemple :
     </para>
 
     <screen>
@@ -206,7 +206,7 @@ If you have an IBM ThinkPad laptop, say Y or M here.
     <para>
       A ce stade vous pouvez réellement démarrer la configuration du kernel en
       détails. Il y a 3 interfaces de configuration pour le kernel. La
-      première est <parameter class="command">config</parameter>, elle demande
+      première est <parameter class="command">config</parameter> ; elle demande
       juste ce que vous voulez faire pour chaque option kernel. Cela prend
       beaucoup de temps. Donc, normalement ce n'est pas une bonne façon de
       configurer le kernel. Une approche plus conviviale est l'interface
@@ -216,7 +216,7 @@ If you have an IBM ThinkPad laptop, say Y or M here.
       <parameter class="command">xconfig</parameter>. Vous pouvez démarrer une
       interface de configuration en allant dans le répertoire source, et en
       exécutant <command>make &lt;front-end&gt;</command>. Par exemple, pour
-      configurer le kernel avec l'interface en menu vous pouvez utiliser les
+      configurer le kernel avec l'interface en menus vous pouvez utiliser les
       commandes suivantes :
     </para>
     
@@ -238,11 +238,11 @@ If you have an IBM ThinkPad laptop, say Y or M here.
       tant que module. La configuration par défaut du kernel Slackware Linux est
       une très bonne configuration, elle inclut le support des contrôleurs de
       disques et les systèmes de fichiers les plus communs, le reste est compilé
-      en tant que module. Quelque soit les choix que vous faites, vous devez
+      en tant que module. Quel que soient les choix que vous faites, vous devez
       vous assurer qu'à la fois le driver pour le contrôleur de disque et le
       type de système de fichiers gérant votre système de fichiers racine est
       inclus. S'ils ne le sont pas, le kernel ne sera pas capable de monter le
-      systèm de fichiers racine, et le kernel va causer un panic car il ne
+      système de fichiers racine, et le kernel va causer un panic car il ne
       pourra pas poursuivre l'initialisation en passant la main au programme
       <command>init</command>.
     </para>
@@ -254,7 +254,7 @@ If you have an IBM ThinkPad laptop, say Y or M here.
 	kernel compilé a le même numéro de version que le kernel en cours
 	d'exécution, vous devriez vraiment veiller à modifier l'option
 	<emphasis>CONFIG_LOCALVERSION</emphasis>. La chaîne spécifiée dans cette
-	option est ajoutée à la fin du nom de version. Par exemple, is le kernel
+	option est ajoutée à la fin du nom de version. Par exemple, si le kernel
 	a pour nom de version 2.6.21.6, et si
 	<emphasis>CONFIG_LOCALVERSION</emphasis> a pour valeur
 	<emphasis>"-smp-ddk"</emphasis>, la version du kernel sera
@@ -274,7 +274,7 @@ If you have an IBM ThinkPad laptop, say Y or M here.
     <title>Compilation</title>
 
     <para>
-      La compilation du kernel comporte habituellement en plusieus étapes, mais
+      La compilation du kernel comporte habituellement plusieus étapes, mais
       les kernels Linux 2.6 Linux peuvent être compilés en executant
       <command>make</command> dans le répertoire source du kernel. Cela va
       calculer les dépendances, compiler le kernel, et compiler et linker les
@@ -302,7 +302,7 @@ If you have an IBM ThinkPad laptop, say Y or M here.
       <title>Installer le kernel</title>
       
       <para>
-	L'étape suivante l'installation du kernel et de ses modules.
+	L'étape suivante est l'installation du kernel et de ses modules.
 	Nous alors commencer par installer les modules kernel, car cela est
 	réalisé avec une commande depuis l'arborescence source du kernel :
       </para>
@@ -346,7 +346,7 @@ If you have an IBM ThinkPad laptop, say Y or M here.
       <title>Configurer LILO</title>
       
       <para>
-        <acronym>LILO</acronym> (LInux LOader - NdT : Chargeur Linux) est le
+        <acronym>LILO</acronym> (LInux LOader - NdT : chargeur Linux) est le
 	loader par défaut utilisé par Slackware Linux. La configuration de LILO
 	se fait en 2 étapes ; la première étape consiste à modifier la
 	configuration de LILO dans <filename>/etc/lilo.conf</filename>. La
@@ -406,7 +406,7 @@ Added SlackOld
       </screen>
 
       <para>
-	La prochaine fois que vous booterez les 2 entrées seront disponibles, et
+	La prochaine fois que vous booterez, les 2 entrées seront disponibles, et
 	l'entrée <quote>Slack</quote> sera bootée par défaut.
       </para>
       

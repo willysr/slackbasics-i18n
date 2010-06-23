@@ -42,7 +42,7 @@
       <para>
 	La commande <command>pkgtool</command> fournit une interface de type
 	menu pour quelques opérations sur les paquets. Les éléments du menu les
-	plus importants <emphasis>Remove</emphasis> et
+	plus importants sont <emphasis>Remove</emphasis> et
 	<emphasis>Setup</emphasis>. L'option <emphasis>Remove</emphasis>
 	présente la liste des paquets installés. Vous pouvez sélectionner quels
 	paquets vous voulez supprimer avec la barre espace et confirmer vos
@@ -227,7 +227,7 @@ gpg:                       importée: 1
 
       <para>
 	Assurez-vous de revérifier la clé reçue. L'ID clé et l'empreinte
-	de cette clé particulière peut se trouvez sur Internet sur beaucoup de
+	de cette clé particulière peut se trouver sur Internet sur beaucoup de
 	sites de confiance. L'ID clé est, comme mentionné ci-dessus
 	<emphasis>40102233</emphasis>.  Vous pouvez obtenir l'empreinte de la
 	clé avec le paramètre <parameter
@@ -276,7 +276,7 @@ $ <userinput>slackpkg update</userinput>
 	slackware-current. Les mises à jour pour une des versions stables
 	Slackware Linux sont dans le répertoire <filename>patches</filename>
 	des sites FTP mirroirs. Vous pouvez mettre à jour une installation
-	slackware-stable (e.g. Slackware Linux 12.0) avec:
+	slackware-stable (e.g. Slackware Linux 12.0) avec :
       </para>
 
       <screen>
@@ -285,11 +285,10 @@ $ <userinput>slackpkg update</userinput>
 
       <para>
 	Ici <command>slackpkg</command> va utiliser les paquets à partir du
-	répertoire <filename>patches</filename>. In
-        slackware-current updated packages are put in the normal
-        <filename>slackware</filename> package sub-directories. So, we
-        can pass that as an parameter to <command>slackpkg
-        upgrade</command>:
+	répertoire <filename>patches</filename>. Dans 
+        slackware-current les paquets mis à jour sont dans les sous-répertoires
+	classiques de <filename>slackware</filename>. Donc, nous pouvons passer
+	celui-ci en tant que paramètre de <command>slackpkg upgrade</command> :
       </para>
 
       <screen>
@@ -320,9 +319,9 @@ $ <userinput>slackpkg update</userinput>
       </screen>
 
       <para>
-	Soyez conscient que ni slackpkg, ni les outils de gestion de paquets
+	Soyez conscients que ni slackpkg, ni les outils de gestion de paquets
 	Slackware Linux ne vérifient les dépendances. Si des programmes ne
-	fonctionnement pas à cause de librairies manquantes, vous devez les
+	fonctionnent pas à cause de librairies manquantes, vous devez les
 	ajouter vous-même avec slackpkg.
       </para>
     </sect2>
@@ -360,13 +359,13 @@ rsync://fill-in-mirror/pub/slackware/slackware-current/ \
     </screen>
 
     <para>
-      Le paramètre <parameter class="command">-a</parameter> requirert quelques
+      Le paramètre <parameter class="command">-a</parameter> requiert quelques
       autres options qui tentent de faire une copie aussi conforme que 
       possible (preserver les liens symboliques, permissions et propriétaires).
       Le paramètre <parameter class="command">--delete</parameter> supprime les
       fichiers qui ne sont plus disponibles sur le site mirroir. Il est
-      judicieux d'utiliser ce paramètre, car autrement votre arborescense
-      pourrait très rapidement se trouver pollué avec des versions plus 
+      judicieux d'utiliser ce paramètre, car autrement votre arborescence
+      pourrait très rapidement se trouver polluée avec des versions plus 
       anciennes des paquets. Avec le paramètre
       <parameter class="command">--exclude</parameter> vous pouvez spécifier les
       fichier ou répertoires à ignorer.
@@ -384,30 +383,30 @@ rsync://fill-in-mirror/pub/slackware/slackware-current/ \
   </sect1>
 
   <sect1 xml:id="chap-pkgmgmt-tagfiles">
-    <title>Fichiers de tag</title>
+    <title>Fichiers de tags</title>
 
     <sect2 xml:id="chap-pkgmgmt-tagfiles-intro">
       <title>Introduction</title>
 
       <para>
-	Les fichiers de tag sont une fonctionnalité relativement méconnue de
-	Slackware Linux. Un fichier de tag est un fichier qui peut être utilisé
-	pour dire à <command>installpkg</command> les paquets à installer à
+	Les fichiers de tags sont une fonctionnalité relativement méconnue de
+	Slackware Linux. Un fichier de tags est un fichier qui peut être utilisé
+	pour dire à <command>installpkg</command> les paquets à installer, à
 	partir d'une liste de paquets. Par exemple, l'installeur Slackware Linux
-	génère un fichier de tag lors des méthodes d'installation
+	génère un fichier de tags lors des méthodes d'installation
         <emphasis>Expert</emphasis> et <emphasis>Menu</emphasis>
 	pour enregistrer les paquets à installer pendant la phase
 	d'installation.
       </para>
 
       <para>
-	L'aspect intéressant des fichiers de tag est que vous pouvez facilement
-	créer des fichiers de tag par vous-même. En écrivant vos propres
-	fichiers de tag pour automatiser l'installation des paquets, ce qui est
+	L'aspect intéressant des fichiers de tags est est le fait de facilement
+	pouvoir créer des fichiers de tags par vous-même. En écrivant vos propres
+	fichiers de tags pour automatiser l'installation des paquets, ce qui est
 	idéal pour de larges déploiements sur clients ou serveurs (ou sur des
 	systèmes plus petits si vous trouvez cela plus confortable qu'installer
 	les paquets manuellement). La façon la plus aisée de créer vos propres
-	fichiers de tag est de démarrer avec les fichiers de tag faisant partie
+	fichiers de tags est de démarrer avec les fichiers de tags faisant partie
 	de la distribution officielle Slackware Linux. Dans les sections
 	suivantes nous allons regarder comment cela se passe.
       </para>
@@ -435,9 +434,9 @@ bin: ADD
       </screen>
 
       <para>
-	Veuillez noter que vous pouvez aussi ajouter des commentaires dans à des
+	Veuillez noter que vous pouvez aussi ajouter des commentaires dans des
 	fichiers de tags avec le caractère de commentaire habituel (#). Comme
-	vous pouvez le voir dans l'extrait ci-dessus qu'il y a des flags
+	vous pouvez le voir dans l'extrait ci-dessus, il y a des flags
 	différents. Le tableau présent ci-dessous décrit les 4 flags différents.
       </para>
 
@@ -477,17 +476,17 @@ bin: ADD
 
       <para>
 	Comme vous pouvez le voir dans le tableau <command>installpkg</command>
-        avec travailler automatiquement lorsque soit
+        ne va agir automatiquement que si
         <emphasis>ADD</emphasis> ou <emphasis>SKP</emphasis> est précisé.
       </para>
 
       <para>
 	Il serait plutôt fastidieux d'écrire un fichier de tag pour chaque
 	collection Slackware Linux. La distribution officielle Slackware Linux
-	contient un fichier de tag dans le répertoire de chaque collection. Vous
+	contient un fichier de tags dans le répertoire de chaque collection. Vous
 	pouvez utiliser ces fichiers de tags comme base de départ. Le petit
 	fichier de script ci-dessous peut être utilisé pour copier les fichiers
-	de tag dans le répertoire courant, préservant la structure des
+	de tags dans le répertoire courant, préservant la structure des
 	collections.
       </para>
 
@@ -518,7 +517,7 @@ $ <command>sh copy-tagfiles.sh /mnt/flux/slackware-current/slackware</command>
       </screen>
 
       <para>
-	Après avoir effectué ceci le répertoire courant contiendra une structure
+	Après avoir effectué cela, le répertoire courant contiendra une structure
 	arborescente comme ceci, dans laquelle vous pouvez éditer chacun des
 	fichiers de tags :
       </para>
@@ -547,13 +546,13 @@ e/tagfile.org
       <title>Génération automatique des fichiers de tags</title>
 
       <para>
-	Avec un script simple, il est aussi possible pour construire des
+	Avec un script simple, il est aussi possible de construire des
 	fichiers de tags basés sur les paquets installés sur le système courant.
 	Je dois remercier Peter Kaagman d'avoir soumis cette idée géniale !
       </para>
 
       <para>
-	D'abourd construisez un répertoire de fichier de tag à partir du média
+	D'abord construisez un répertoire de fichier de tags à partir du média
 	d'installation Slackware Linux, comme décrit dans la section précédente.
 	Lorsque vous avez fait cela, vous pouvez créer le script suivant :
       </para>
@@ -580,7 +579,7 @@ done
       </screen>
 
       <para>
-        Supposes que vous l'avez sauvegardé en tant que
+        Supposez que vous l'ayez sauvegardé en tant que
         <filename>build-tagfiles.sh</filename>, vous pouvez l'utiliser en
 	spécifiant le répertoire qui contient les fichiers de tags ent tant que
 	premier argument :
@@ -591,18 +590,18 @@ $ <userinput>sh build-tagfiles.sh .</userinput>
       </screen>
 
       <para>
-	Ce script va marquer les paquets les paquets installés en tant que
+	Ce script va marquer les paquets installés en tant que
         <emphasis>ADD</emphasis>, et les paquets non installés en tant que
-        as <emphasis>SKP</emphasis>.
+        <emphasis>SKP</emphasis>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-pkgmgmt-tagfiles-using">
-      <title>Utiliser les fichiers de tag</title>
+      <title>Utiliser les fichiers de tags</title>
 
       <para>
 	Sur un sytème installé vous pouvez donner à
-        <command>installpkg</command> un fichier de tag avec le paramètre
+        <command>installpkg</command> un fichier de tags avec le paramètre
         <parameter class="command">-tagfile</parameter>. Par exemple :
       </para>
 
@@ -621,8 +620,8 @@ $ <userinput>sh build-tagfiles.sh .</userinput>
       <para>
 	Bien sûr, les fichiers de tags seraient inutiles s'ils ne pouvaient pas
 	être utilisés lors de l'installation de Slackware Linux. C'est
-	bien sûr possible : après avoir sélectionné quelles collections vous
-	désirez installer vous pouvez choisir la manière de sélectionner les
+	évidemment possible : après avoir sélectionné quelles collections vous
+	désirez installer, vous pouvez choisir la manière de sélectionner les
 	paquets (la boîte de dialogue se nomme <emphasis>SELECT PROMPTING
         MODE</emphasis>). Sélectionnez <emphasis>tagpath</emphasis> dans ce
 	menu. On vous demandera alors d'entrer le chemin de l'arborescence
@@ -630,8 +629,8 @@ $ <userinput>sh build-tagfiles.sh .</userinput>
 	les fichiers de tags à l'installation de Slackware Linux est de les
 	placer sur unde disquette ou tout autre média, et de le monter avant ou
 	pendant l'installation. E.g. vous pouvez permuter sur la seconde console
-	en pressant les touches &lt;ALT&gt; and &lt;F2&gt;, et en créant un
-	point de montage et en montant le média avec les fichiers de tags :
+	en pressant les touches &lt;ALT&gt; and &lt;F2&gt;, et créer un
+	point de montage et monter le média avec les fichiers de tags :
       </para>
 
       <screen>

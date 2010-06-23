@@ -27,7 +27,7 @@
 
     <para>Slackware Linux comporte une implémentation du démon traditionnel UNIX
       cron permettant aux utilisateurs de planifier des tâches à exécuter à
-      intervalles réguliers.  Chaque utilisateur peut créer supprimer ou
+      intervalles réguliers.  Chaque utilisateur peut créer, supprimer ou
       modifier un fichier individuel crontab. Ce fichier crontab spécifie les
       commandes ou les scripts à lancer à des intervalles de temps donnés.
       Les lignes blanches dans la crontab ou les lignes commençant par un dièse
@@ -43,7 +43,7 @@
 
     <programlisting>10 6 * * * date</programlisting>
 
-    <para>Une crontab utilisateur peut être visualisé avec la commande
+    <para>Une crontab utilisateur peut être visualisée avec la commande
     <command>crontab -l</command>. Pour une explication plus en profondeur de la
     syntaxe du fichier crontab, examinons le crontab par défaut de
     <emphasis>root</emphasis>.</para>
@@ -76,7 +76,7 @@
     <calloutlist>
       <callout arearefs="co-crontab-1">
         <para>Le premier champ, <literal>47</literal>, spécifie quel travail
-	  doit être lancé à 47 après l'heure.</para>
+	  doit être lancé à 47 minutes après l'heure.</para>
       </callout>
 
       <callout arearefs="co-crontab-2">
@@ -102,7 +102,7 @@
 
       <callout arearefs="co-crontab-6">
         <para>Ce sixième champ, <command>/usr/bin/run-parts
-	  /etc/cron.hourly 1> /dev/null</command>, spécifie la commande doit
+	  /etc/cron.hourly 1> /dev/null</command>, spécifie la commande qui doit
 	  être lancée au temps spécifié défini dans les 5 premiers champs.
 	</para>
       </callout>
@@ -119,10 +119,10 @@
       <filename>/etc/cron.hourly</filename> toutes les heures. Pour cette raison
       ils n'est absolument pas nécessaire pour un administrateur de comprendre
       les rouages internes de cron. Avec Slackware Linux, vous pouvez simplement
-      ajouter un nouveau script des répertoires ci-dessus pour planifier de
-      nouvelles tâches périodiques. En effet, en parcourant ces répertoires vous
+      ajouter un nouveau script dans les répertoires ci-dessus pour planifier de
+      nouvelles tâches périodiques. En effet, parcourir ces répertoires vous
       donnera une bonne idée du travail réalisé dans l'ombre régulièrement par
-      Slackware Linux pour garder les choses à jour comme la base de données
+      Slackware Linux pour garder les choses à jour, comme la base de données
       <command>slocate</command>.</para>
 
   </sect1>
@@ -138,7 +138,7 @@
       améliorer les performances disque et pour améliorer l'intégrité. Beaucoup
       de ces fonctionnalités peuvent être configurées avec la commande
       <command>hdparm</command>. Attention en changeant les réglages disque avec
-      cet utilitaire, car quelques modifications peut endommager votre disque.
+      cet utilitaire, car quelques modifications peuvent endommager votre disque.
     </para>
 
     <para>
@@ -163,7 +163,7 @@
 
     <para>
       Une cause commune de mauvaise performance est que le DMA n'est pas utilisé
-      pour un disque automatiquement par le noyau. Le DMA va accélerer le débit
+      automatiquement pour un disque par le noyau. Le DMA va accélerer le débit
       entrée/sortie et décharger la CPU, en permettant au disque de transférer
       directement de celui-ci vers la mémoire du système. Si le DMA est
       désactivé, l'aperçu des réglages devraient contenir cette ligne :
