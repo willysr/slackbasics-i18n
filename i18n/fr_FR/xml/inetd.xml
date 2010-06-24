@@ -10,7 +10,7 @@
 Il y a 2 manières d'offrir des services TCP/IP : en lançant les applications
 serveur autonome en tant que démon ou en utilisant le super serveur Internet,
 <command>inetd</command>. <command>inetd</command> est un démon qui surveille
-une plage de ports. Si un client tente de se connecter à un port
+une plage de ports. Si un client tente de se connecter à un port,
 <command>inetd</command> gère la connexion et transfère la connexion au logiciel
 serveur qui gère ce type de connexion. L'avantage de cette approche est qu'elle
 ajoute une couche supplémentaire de sécurité et facilite le log des connexions
@@ -25,7 +25,7 @@ par exemple sur un serveur FTP très chargé.
 <title>Configuration</title>
 
 <para>
-<command>inetd</command> peut être configuré par le fichier
+<command>inetd</command> peut être configuré via le fichier
 <filename>/etc/inetd.conf</filename>. Voyons une ligne d'exemple de
 <filename>inetd.conf</filename> :
 </para>
@@ -40,9 +40,9 @@ Cette ligne spécifie que <command>inetd</command> doit accepter des connexions
 FTP et les passer à <command>tcpd</command>. Cela peut sembler un peu étrange,
 vu que normalement c'est <command>proftpd</command> qui gère les connexions FTP.
 Vous pouvez aussi spécifier <command>proftpd</command> directement dans
-<filename>inetd.conf</filename>, cependant habituellement Slackware Linux passe
+<filename>inetd.conf</filename>, cependant Slackware Linux passe habituellement
 la connexion à <command>tcpd</command>. Ce programme passe la connexion à
-<command>proftpd</command> à son tour, comme il est spécifié.
+<command>proftpd</command> à son tour, comme spécifié.
 <command>tcpd</command> est utilisé pour surveiller les services et pour fournir
 un contrôle d'accès au niveau de l'hôte.
 </para>
@@ -78,7 +78,7 @@ envoyant le signal HUP au processus inetd :
 
 <para>
 Comme vous pouvez le voir dans <filename>/etc/inetd.conf</filename> les
-connexions pour la plupart des protocoles s'effectuent à travers de
+connexions pour la plupart des protocoles s'effectuent au travers de
 <command>tcpd</command>, plutôt que de passer la connexion directement au
 programme rendant le service. Par exemple :
 </para>
@@ -99,16 +99,16 @@ Les 2 fichiers fichiers ont une règle par ligne, de la forme suivante :
 </para>
 
 <screen>
-service: hosts
+service: hôtes
 </screen>
 
 <para>
-Les hôtes peuvent être spécifié par leur nom d'hôte pour par leur adresse IP.
+Les hôtes peuvent être spécifié par leur nom d'hôte ou par leur adresse IP.
 Le mot-clé ALL spécifie tout hôte ou tout service.
 </para>
 
 <para>
-Supposez que nous voulons bloquer l'accès à tous les services gérés à travers
+Supposez que vous vouliez bloquer l'accès à tous les services gérés à travers
 <command>tcpd</command>, sauf pour l'hôte
 <quote>trusted.example.org</quote>. Pour réaliser cela les fichiers suivants
 <filename>hosts.deny</filename> et <filename>hosts.allow</filename> doivent être
