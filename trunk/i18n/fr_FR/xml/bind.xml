@@ -7,7 +7,7 @@
 <title>Introduction</title>
 
 <para>
-Le Domain Name System (<acronym>DNS</acronym> - NdT : système de nom de domaine)
+Le Domain Name System (<acronym>DNS</acronym> - NdT : système de noms de domaine)
 est utilisé pour convertir les noms d'hôte littéraux (par exemple
 www.slackware.com) en adresses IP. <acronym>BIND</acronym> (Berkeley Internet Name Domain) est le démon DNS le plus utilisé, et c'est celui-ci sur lequel sera
 basé ce chapitre.
@@ -21,10 +21,10 @@ Une des fonctionnalités principales est la délégation des requêtes DNS. Par
 exemple, supposez que vous possédiez le domaine <quote>linuxcorp.com</quote>.
 Vous pouvez fournir les serveurs de noms autorisés pour ce domaine, vos
 serveurs de noms ont autorité sur <quote>linuxcorp.com</quote>. Supposez qu'il
-y a des branches differentes à l'intérieur de votre entreprise, et que vous
-voulez donner à chaque branche l'authorité sur leur propre zone, ce n'est pas un
+y ait des branches differentes à l'intérieur de votre entreprise, et que vous
+vouliez donner à chaque branche l'authorité sur leur propre zone, ce n'est pas un
 problème avec DNS. Vous pouvez déleguer DNS, par exemple
-<quote>sales.linuxcorp.com</quote> à un autre serveur de noms dans la
+<quote>sales.linuxcorp.com</quote>, à un autre serveur de noms dans la
 configuration de DNS pour la zone <quote>linuxcorp.com</quote>.
 </para>
 
@@ -33,7 +33,7 @@ Le système DNS a ce qu'on appelle des serveurs racine, qui délèguent le DNS p
 des millions de noms de domaine et extensions (par exemple, les extensions
 spécifiques aux pays, comme <quote>.nl</quote> ou <quote>.uk</quote>) à des
 serveurs DNS autorisés. Ce système permet une ramification des délégations,
-ce qui est très flexible, et ça distribue le trafic DNS.
+ce qui est très flexible, et cela distribue le trafic DNS.
 </para>
 
 </sect2>
@@ -104,7 +104,7 @@ modifier les scripts d'initialisation. BIND peut être installé en ajoutant le
 paquet bind dans la collection <quote>n</quote>. Après, bind peut être démarré
 en exécutant la commande <command>named</command>. Si vous voulez démarrer BIND
 par défaut, rendez le fichier <filename>/etc/rc.d/rc.bind</filename> exécutable.
-This can be done by executing the following command as root:
+Cela s'effectue en exécutant la commande suivante en tant que root :
 </para>
 
 <screen>
@@ -112,7 +112,7 @@ This can be done by executing the following command as root:
 </screen>
 
 <para>
-Si vous voulez utiliser le serveurs de noms sur la machine exécutant BIND,
+Si vous voulez utiliser le serveur de noms sur la machine exécutant BIND,
 vous devez aussi modifier <filename>/etc/resolv.conf</filename>.
 </para>
 

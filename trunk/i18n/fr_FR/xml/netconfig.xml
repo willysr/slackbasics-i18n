@@ -22,7 +22,7 @@ pouvez reconfigurer votre carte réseau avec la commande
 Il est aussi possible de configurer manuellement les modules devant être chargés
 durant l'initialisation du système. Cela se fait en ajoutant une ligne
 <command>modprobe</command> à <filename>/etc/rc.d/rc.modules</filename>. Par
-exemple, si vous voulez charger le module cartes réseau 3Com 59x (3c59x.o),
+exemple, si vous voulez charger le module carte réseau 3Com 59x (3c59x.o),
 ajoutez la ligne suivante à <filename>/etc/rc.d/rc.modules</filename> :
 </para>
 
@@ -46,7 +46,8 @@ fonctionalité PCMCIA à Slackware Linux.
 <para>
 Les cartes réseau sont accessibles sous Linux à travers de ce qu'on nomme des
 <quote>interfaces</quote>.
-La commande <command>ifconfig</command> est utilisé les interfaces disponibles :
+La commande <command>ifconfig</command> est utilisée pour afficher les
+interfaces disponibles :
 </para>
 
 <screen>
@@ -72,7 +73,7 @@ lo        Link encap:Local Loopback
 <para>
 Les cartes réseau on pout nom ethn, où n est un nombre, commençant à 0. Dans
 l'exemple ci-dessus, la première carte réseau (eth0) a déjà une adresse IP.
-Cependant les cartes non configurées n'ont pas d'adresse IP, la commande
+Cependant les cartes non configurées n'ont pas d'adresse IP ; la commande
 <command>ifconfig</command> n'affichera pas d'adresse IP pour les interfaces non
 configurées. Les interfaces sont configurées dans le fichier
 <filename>/etc/rc.d/rc.inet1.conf</filename>. Vous pouvez simplement lire les
@@ -88,9 +89,9 @@ DHCP_HOSTNAME[0]=""
 </screen>
 
 <para>
-Dans cet exemple l'adresse IP 192.168.1.1 avec le netmask 255.255.255.0 est affectée à la première interface ethernet (eth0). Si vous utilisez un serveur DHCP
+Dans cet exemple l'adresse IP 192.168.1.1 avec le netmask 255.255.255.0 sont affectés à la première interface ethernet (eth0). Si vous utilisez un serveur DHCP
 vous pouvez modifier la ligne <emphasis>USE_DHCP=""</emphasis> en
-<emphasis>USE_DHP[n]="yes"</emphasis> (remplacez <quote>n</quote> avec le numéro
+<emphasis>USE_DHP[n]="yes"</emphasis> (remplacez <quote>n</quote> par le numéro
 d'interface). Les autres variables, excepté <emphasis>DHCP_HOSTNAME</emphasis>
 sont ignorées lors de l'utilisation de DHCP. Par exemple :
 </para>
@@ -103,7 +104,7 @@ DHCP_HOSTNAME[1]=""
 </screen>
 
 <para>
-Procédez même pour les autres interfaces. Vous pouvez activer les réglages en
+Procédez de même pour les autres interfaces. Vous pouvez activer les réglages en
 redémarrant le système ou en exécutant <command>/etc/rc.d/rc.inet1</command>.
 Il est aussi possible de reconfigurer seulement une interface avec
 <command>/etc/rc.d/rc.inet1 ethX_restart</command>, où <emphasis>ethX</emphasis>
@@ -118,14 +119,14 @@ doit être remplacé par le nom de l'interface que vous voulez reconfigurer.
 <title>Introduction</title>
 
 <para>
-<acronym>IPv6</acronym> est le protocole internet nouvelle génération. Un ce ses
+<acronym>IPv6</acronym> est le protocole Internet nouvelle génération. Un ce ses
 avantages est l'espace d'adressage bien plus grand. Dans IPv4
 (le protocole internet utilisé communément aujourd'hui) les adresses sont en
 32-bit, cet espace d'adressage est presque totalement alloué à ce jour, et on
 manque d'adresses IPv4. IPv6 utilise des adresses sur 128-bit, ce qui fournit
 un espace d'adressage inimaginable (2^128 adresses). IPv6 utilise une autre
 notation pour les adresses, premièrement on utilise des nombre hexadécimaux
-au lie de nombre décimaux, et l'adresse est notée par lots de 16 bits, séparé
+au lieu de nombres décimaux, et l'adresse est notée par lots de 16 bits, séparés
 par des deux-points (<quote>:</quote>).  Regardons un exemple d'adresse :
 </para>
 
@@ -179,7 +180,7 @@ Il y a quelques préfixes réservés, les plus notables sont :
 </row>
 <row>
 <entry>fec0::</entry><entry>Adresses locales au site, routées localement, mais
-pas sur ou ventant d'internet.</entry>
+pas de ou vers Internet.</entry>
 </row>
 <row>
 <entry>2002::</entry><entry>adresses 6to4, utilisées pour la transition de IPv4
@@ -293,7 +294,7 @@ Il est en principe conseillé de supprimer cette section pour configurer les
 réglages spéficiques à chaque carte. Si vous êtes fénéant et que vous avez
 seulement une carte sans fil, vous pouvez conserver cette section et y ajouter
 les paramètres de configuration dont vous avez besoin. Puisque cette section
-correspond à n'importe quelle interface sans fil la carte sans fil que vous avez
+correspond à n'importe quelle interface sans fil, la carte sans fil que vous avez
 correspondra et sera configurée. Vous pouvez cependant ajouter une section pour
 vos interfaces sans fil. Chaque section est sous le format suivant :
 </para>
@@ -343,7 +344,7 @@ périphérique dans <filename>/etc/rc.d/rc.wireless.conf</filename>. Par exemple
 <para>
 Cela va demander à l'interface ayant pour adresse MAC
 <emphasis>00:01:F4:EC:A5:32</emphasis> d'utiliser le ESSID
-<emphasis>home</emphasis>, de travailler en mode <emphasis>Managed</emphasis>
+<emphasis>home</emphasis> et de travailler en mode <emphasis>Managed</emphasis>
 sur le canal <emphasis>8</emphasis>. La clé utilisée pour le cryptage WEP est
 <emphasis>1234-5678-AB</emphasis>. Il y a beaucoup d'autres paramètres
 modifiables. Pour un aperçu de tous les paramètres, voir le dernier exemple dans
@@ -353,7 +354,7 @@ modifiables. Pour un aperçu de tous les paramètres, voir le dernier exemple da
 <para>
 Après avoir configuré une interface sans fil, vous pouvez appliquer les
 changements en exécutant le script d'initialisation du réseau
-<command>/etc/rc.d/rc.inet1</command>. Vous pouvez voir les réglages courant
+<command>/etc/rc.d/rc.inet1</command>. Vous pouvez voir les réglages courants
 du réseau sans fil avec la commande <command>iwconfig</command> :
 </para>
 
@@ -382,7 +383,7 @@ résoluble par DNS, il est toujours conseillé de configurer votre nom d'hôte,
 car certains logiciels l'utilisent. Vous pouvez configurer le nom d'hôte dans
 <filename>/etc/HOSTNAME</filename>.
 Une seule ligne avec le nom d'hôte de la machine suffit. Normalement un nom
-d'hôte a la forme suivante : hôtet.domaine.tld, par exemple
+d'hôte a la forme suivante : hôte.domaine.tld, par exemple
 darkstar.slackfans.org. Veillez à ce que le nom d'hôte soit résoluble, ce qui
 veut dire que GNU/Linux doit être capable de convertir le nom d'hôte en adresse
 IP. Vous pouvez vous assurer que le nom d'hôte est résoluble en l'ajoutant à
@@ -393,7 +394,7 @@ d'informations sur ce fichier.
 <bridgehead>/etc/hosts</bridgehead>
 
 <para>
-<filename>/etc/hosts</filename> est une table d'adresses IP avec les noms d'hôte
+<filename>/etc/hosts</filename> est une table d'adresses IP avec les noms d'hôtes
 associés. Ce fichier peut être utilisé pour nommer des ordinateurs sur un petit
 réseau. Voyons un exemple de fichier <filename>/etc/hosts</filename> :
 </para>
@@ -417,7 +418,7 @@ disponibles sous les noms d'hôte mentionés.
 
 <para>
 Il est aussi possible d'ajouter des adresses IPv6, qui seront utilisées si votre
-système est configuré pour l'IPv6. Voici un exemple d'un fichier
+système est configuré pour l'IPv6. Voici l'exemple d'un fichier
 <filename>/etc/hosts</filename> avec des entrées IPv4 et IPv6 : 
 </para>
 
@@ -444,7 +445,7 @@ serveurs de noms que doit utiliser le système. Un serveur de noms convertit des
 noms d'hôtes en adresses IP. Votre FAI vous a donné au moins 2 noms de serveurs
 de noms de domaine (serveurs DNS). Vous pouvez ajouter ces serveurs de noms dans
 <filename>/etc/resolv.conf</filename> en ajoutant la ligne
-<emphasis>nameserver adresseip</emphasis> pour chaque serveur de noms. Par exemple: 
+<emphasis>nameserver adresseip</emphasis> pour chaque serveur de noms. Par exemple :
 </para>
 
 <screen>
@@ -455,7 +456,7 @@ nameserver 192.168.1.169
 <para>
 Vous pouvez vérifier si les noms d'hôtes sont convertis correctement avec la
 commande <command>host nomhôte</command>. Remplacez
-<emphasis>hostname</emphasis> par un nom d'hôte existant, par exemple le site
+<emphasis>nomhôte</emphasis> par un nom d'hôte existant, par exemple le site
 web de votre fournisseur d'accès Internet.
 </para>
 </sect1>
@@ -503,7 +504,7 @@ est positionné avec <command>ls -l</command> (une description de la commande
 </para>
 
 <para>
-Il est aussi possible d'activer la redirection IPv4 forwarding sur un système en
+Il est aussi possible d'activer la redirection IPv4 sur un système en
 cours d'exécution avec la commande suivante (0 désactive la redirection, 1
 active la redirection) :
 </para>
@@ -518,7 +519,7 @@ que tout le monde peut accéder aux autres réseaux. Le trafic peut être filtr�
 loggé avec le filtre de paquets kernel iptables. Iptables peut être
 administré à l'aide de la commande <command>iptables</command>.
 NAT (Network Address Translation - NdT : traduction d'adresse réseau),
-sous-ensemble de iptables, peut être contrôlé et activer à travers la commande
+sous-ensemble de iptables, peut être contrôlé et activé à travers la commande
 <command>iptables</command>. NAT permet de <quote>cacher</quote> un réseau
 derrnière une adresse IP. Cela vous permet d'utiliser Internet sur un réseau
 entier avec seulement une adresse IP.

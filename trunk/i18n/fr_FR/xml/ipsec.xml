@@ -17,12 +17,12 @@
       <listitem>
         <para>
           <acronym>AH</acronym> (Authentication Header) fournit la garantie
-	  d'autthenticité des paquets transportés. Cela se fait par le calcul
+	  d'authenticité des paquets transportés. Cela se fait par le calcul
 	  d'une somme de contrôle sur les paquets à l'aide d'un algorithme
 	  cryptographique. Si la somme de contrôle est détectée correcte par le
-	  receveur, le receveur peut être assuré que le paquet n'a pas été
+	  receveur, le récepteur peut être assuré que le paquet n'a pas été
 	  modifié, et que le paquet provient bien de l'émetteur déclaré (pourvu
-	  que les clés soient connues seulement de l'émetteur et du receveur).
+	  que les clés soient connues seulement de l'émetteur et du récepteur).
         </para>
       </listitem>
       <listitem>
@@ -64,12 +64,12 @@
       qui échange automatiquement les clés de façon sécurisée entre 2 hôtes.
       Dans les 2 cas vous devez configurer une politique dans la Security Policy
       Database (SPD - NdT : base de données de politique de sécurité). Cette
-      base de données est utilisée par le kernel pour decider le type de
+      base de données est utilisée par le kernel pour decider quel type de
       politique de sécurité doit être utilisée pour communiquer avec un autre
       hôte. Si vous utilisez un système de clés manuelles vous devez aussi
       configurer des entrées de la Security Association Database (SAD - NdT :
       base de données d'association de sécurité), qui spécifient quel algorithme
-      de cryptage et quell clé doivent être utilisés pour les communications
+      de cryptage et quelle clé doivent être utilisés pour les communications
       sécurisées avec un autre hôte. Si vous utilisez un démon IKE les
       associations de sécurité sont automatiquement établies.
     </para>
@@ -116,7 +116,7 @@ CONFIG_INET_IPCOMP=m
       support des protocoles IPsec, vous devez compiler le support noyau des
       algorithmes de cryptage et de hachage utilisés par AH et ESP. Le support
       Linux ou module de ces algorithmes peut être activé en manipulant les
-      diverses options <emphasis>CONFIG_CRYPTO</emphasis>. Ca ne fait pas de mal
+      diverses options <emphasis>CONFIG_CRYPTO</emphasis>. Cela ne fait pas de mal
       de compiler tous les algorithmes de chiffrage et de hachage en tant que
       modules.
     </para>
@@ -141,7 +141,7 @@ CONFIG_INET_IPCOMP=m
       <ulink url="http://ipsec-tools.sourceforge.net">IPsec-Tools</ulink>.
       Ces outils sont le portage des utilitaires IPsec
       <ulink url="http://www.kame.net">KAME</ulink> .
-      Téléchargez les dernières sources et décompressez, configurez et
+      Téléchargez les dernières sources puis décompressez, configurez et
       installez-les :
     </para>
 
@@ -200,7 +200,7 @@ CONFIG_INET_IPCOMP=m
 	connexion cryptée entre 2 hôtes. Les hôtes ont pour adresses IP
         <emphasis>192.168.1.1</emphasis> et <emphasis>192.168.1.169</emphasis>.
         Le <quote>mode transport</quote> sera utilisé avec les transformations
-        AH and ESP et des clés manuelles.
+        AH and ESP, avec des clés manuelles.
       </para>
       
     </sect2>
@@ -209,7 +209,7 @@ CONFIG_INET_IPCOMP=m
       <title>Ecrire le fichier de configuration</title>
 
       <para>
-	La première étape consiste à écrite le fichier de configuration que nous
+	La première étape consiste à écrire le fichier de configuration que nous
 	nommerons <filename>/etc/setkey.conf</filename>. Sur le premier hôte
         (192.168.1.1) la configuration suivante
 	<filename>/etc/setkey.conf</filename> sera utilisée :
@@ -243,7 +243,7 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
 
       <para>
 	La première ligne (une ligne se termine par un <quote>;</quote>) ajoute
-	une clé pour l'opétation de somme de contrôle de l'en-tête des paquets
+	une clé pour l'opération de somme de contrôle de l'en-tête des paquets
 	venant de 192.168.1.1 et allant vers 192.168.1.169. La deuxième ligne
 	fait de même pour les paquets venant de 192.168.1.169 et allant vers
 	192.168.1.1. Les troisième et quatrième lignes définissent les clés pour
@@ -375,7 +375,7 @@ tcpdump: listening on eth0
       <para>
 	Le sujet de l'échange automatique de clés a déjà été abordé brièvement
 	à l'introduction de ce chapitre. En termes simples, IPsec avec IKE
-	fonctionne suivant les étapes suivantes.
+	fonctionne selon les étapes suivantes.
       </para>
       
       <orderedlist>
@@ -387,7 +387,7 @@ tcpdump: listening on eth0
 	    correspondant à la politique la connexion peut s'effectuer, et sera
 	    authentifiée, cryptée et/ou compressée comme défini dans
 	    l'association de sécurité. S'il n'y a pas d'association de sécurité,
-	    le noyau va demander à un démon IKE user-land de définir le(s)
+	    le noyau va demander à un démon IKE dans l'espace utilisateur de définir l'(les)
 	    association(s) de sécurité nécessaire(s).
 	  </para>
 	</listitem>
@@ -429,7 +429,7 @@ tcpdump: listening on eth0
       <title>Utiliser racoon avec une clé pré-partagée</title>
       
       <para>
-	Comme d'habitude la première étape de configuration IPsec est de définir
+	Comme d'habitude la première étape de configuration IPsec consisre à définir
 	les politiques de sécurité. Contrairement à l'exemple à clés manuelles
 	vous ne devez pas définir d'association de sécurité, car racoon va les
 	fabriquer pour vous. Nous allons utiliser les mêmes IPs d'hôtes que dans
@@ -452,7 +452,7 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </screen>
 
       <para>
-	Les esprits prudents auront probablement remarqué que les politiques AH
+	Les esprits vigilants auront probablement remarqué que les politiques AH
 	sont absents de cet exemple. Dans la plupart des cas ce n'est pas un
 	problème, ESP peut fournir l'authentification. Cependant vous devez
 	savoir que l'authentification est moins étendue ; elle ne protège pas
@@ -464,7 +464,7 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
         Avec les politiques de sécurité définies vous pouvez configurer
 	<command>racoon</command>.
 	Puisque les informations spécifiques à la connexion, comme la méthode
-	d'authentification, ont été définies lors de phase un de la
+	d'authentification, ont été définies lors de phase 1 de la
 	configuration, nous pouvons utiliser, de manière générale, la phase de
 	configuration 2. Il est aussi possible de réaliser des réglages
 	spécifiques de la phase 2 pour certains hôtes. Mais de manière générale
@@ -507,7 +507,7 @@ sainfo anonymous {
 	<parameter>authentication_algorithm</parameter> spécifie l'algorithme
 	à utiliser pour authentification ESP ou AH. Enfin,
 	<parameter>compression_algorithm</parameter> est utilisé pour spécifier
-	quel algorithm de compression doit être utilisé lorsque IPcomp est
+	quel algorithme de compression doit être utilisé lorsque IPcomp est
 	spécifié dans une association.
       </para>
 
@@ -545,7 +545,7 @@ remote 192.168.1.169
         <parameter>proposal</parameter> spécifie les paramètres qui seront
 	proposés à l'autre hôte lors de la phase 1 d'authentification.
         <parameter>encryption_algorithm</parameter>, et
-        <parameter>dh_group</parameter> sont décrit ci-dessus. L'option
+        <parameter>dh_group</parameter> sont décrits ci-dessus. L'option
         <parameter>hash_algorithm</parameter> est obligatoire, et configure
 	l'algorithme de hachage à utiliser. Cela peut être
 	<parameter>md5</parameter>, ou <parameter>sha1</parameter>.

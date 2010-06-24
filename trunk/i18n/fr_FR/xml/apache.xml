@@ -84,7 +84,7 @@ utilisé pour stocker les pages web. Par exemple, les pages web à l'URL
 Le documentroot par défaut pour Apache sous Slackware Linux est
 <filename>/var/www/htdocs</filename>. Sans utiliser les hôtes virtuels tout
 client se connectant au serveur Apache recevra le site web de ce répertoire.
-Dans, si nous avons 2 noms d'hôte pointant vers le serveur,
+Donc, si nous avons 2 noms d'hôte pointant vers le serveur,
 <quote>www.example.org</quote> et <quote>forum.example.org</quote>, les 2 vont
 afficher le même site web. Vous pouvez réaliser des sites webs séparés pour
 différents noms d'hôtes en utilisant les hôtes virtuels.
@@ -95,7 +95,7 @@ Dans cet exemple nous allons voir comment vous pouvez mettre en place 2 hôtes
 virtuels, un pour <quote>www.example.org</quote>, avec le documentroot
 <filename>/var/www/htdocs-www</filename>, et <quote>forum.example.org</quote>,
 avec le documentroot <filename>/var/www/htdocs-forum</filename>. Tout d'abord
-vous devons spécifier quelles adresses IP Apache doit écouter. Quelque part dans
+vous devez spécifier quelles adresses IP Apache doit écouter. Quelque part dans
 le fichier de configuration <filename>/etc/apache/httpd.conf</filename> vous
 allez trouver la ligne suivante :
 </para>
@@ -106,10 +106,10 @@ allez trouver la ligne suivante :
 
 <para>
 Cette ligne doit être décommentée pour utiliser les hôtes virtuels basés sur le
-nom. Supprimez  the caractère de commentaire (#) et changez le paramètre en
+nom. Supprimez le caractère de commentaire (#) et changez le paramètre en
 <quote>BindAddress IP:port</quote>, ou <quote>BindAddress *:port</quote> si vous
 voulez que Apache s'associe à toutes les adresses IP que possède l'hôte.
-Supposez que vous voulez fournir des hôtes virtuels pour les adresses IP 
+Supposez que vous vouliez fournir des hôtes virtuels pour les adresses IP 
 192.168.1.201 port 80 (le port par défaut d'Apache), vous devez changer la ligne
 en :
 </para>
@@ -119,7 +119,7 @@ NameVirtualHost 192.168.1.201:80
 </screen>
 
 <para>
-Quelque par en-dessous la ligne NameVirtualHost, vous trouverez un exemple
+Quelque part en-dessous la ligne NameVirtualHost, vous trouverez un exemple
 commenté d'un hôte virtuel :
 </para>
 
@@ -136,7 +136,7 @@ commenté d'un hôte virtuel :
 <para>
 Vous pouvez utiliser cet exemple comme référence. Par exemple, si vous voulez
 utiliser toutes les valeurs par défaut, et que vous voulez écrire les logs pour
-les 2 hôtes virtuels dans les logs par défaut d'Apache, vous devriez ajouter ces
+les 2 hôtes virtuels dans les logs par défaut d'Apache, vous devez ajouter ces
 lignes :
 </para>
 
