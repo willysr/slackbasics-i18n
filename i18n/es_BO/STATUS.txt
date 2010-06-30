@@ -13,7 +13,7 @@ lines   file                   trad    1st-rev  2nd-rev
    265 chap-intro.xml           OK       -       -
    310 printing.xml             OK       -       -
    338 mutt.xml                 OK       -       -
-   341 miscadmin.xml            -        -       -
+   341 miscadmin.xml            OK       -       -
    377 latex.xml                -        -       -
    398 concepts.xml             -        -       -
    444 chap-kernel.xml          -        -       -
