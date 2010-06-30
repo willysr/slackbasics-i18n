@@ -7,74 +7,78 @@
   <indexterm><primary>typesetting</primary></indexterm>
 
   <sect1 id="editing-latex-introduction">
-    <title>Introduction</title>
+    <title>Introducción</title>
 
     <para>
-      LaTeX is a typesetting system that can be used to produce high-quality
-      articles, books, letters and other publications. LaTeX is based on
-      TeX, a lower-level typesetting language that was designed by Donald
-      E. Knuth. LaTeX does not work like a <acronym>WYSIWYG</acronym>
-      (what you see is what you get) word processor, the kind of document
-      preparation system most people are accustomed to. With LaTeX you
-      do not have to care about formatting the document, only about writing
-      the document.
+      LaTex es un sistema de tipografía que puede ser usado para
+      producir artículos, libros, cartas y otras publicaciones de alta
+      calidad. LaTex está basado en Tex, un lenguaje de tipografía de
+      bajo nivel diseñado por Donald E. Knuth. LaTex no funciona como
+      un procesador de texto <acronym>WYSIWYG</acronym> (what you see
+      is what you get, lo que ve es lo que obtiene), el tipo de
+      sistema de preparación de documentos al que la mayoría de la
+      gente esta acostumbrado. Con LaTex usted no se debe preocupar
+      sobre el formateo del documento, solamente de escribir el
+      documento.
     </para>
 
-    <para>
-      LaTeX files are plain-text files that contain LaTeX macros. LaTeX
-      formats the document based on the macros that are used. In the
-      beginning using LaTeX may be a bit awkward to a new user. But after
-      a while you will discover that using LaTeX has some distinct
-      advantages. To name a few:
+    <para>      
+      Los archivos LaTex son archivos de texto plano que contienen
+      macros LaTex. LaTex formatea el documento basado en las macros
+      que son usados. Al inicio usar LaTex puede ser algo incómodo
+      para un usuario nuevo. Pero después de un tiempo descubrirá que
+      usar LaTex tiene algunas ventajas distintivas. Para nombrar
+      algunas:
     </para>
 
     <itemizedlist>
       <listitem>
         <para>
-          LaTeX-formatted documents look very professional.
+	  Los documentos formateados por LaTex se ven muy profesionales.
         </para>
       </listitem>
       <listitem>
         <para>
-          You do not have to care about the layout of your documents. You
-          just add structure to your documents, and LaTeX takes care of
-          the formatting.
+	  Usted no se debe preocupar del diseño de sus
+	  documentos. Solamente agregue estructura a los mismos, y
+	  LaTex se encarga de el formateo.
         </para>
       </listitem>
       <listitem>
         <para>
-          LaTeX files are plain text, and can easily be changed using
-          standard UNIX tools, such as <command>vi</command>,
-          <command>sed</command> or <command>awk</command>
+	  Los archivos LaTex son texto plano, y pueden ser fácilmente
+	  modificados utilizando herramientas UNIX estandar, como
+	  <command>vi</command>, <command>sed</command> o
+	  <command>awk</command>.
         </para>
       </listitem>
       <listitem>
         <para>
-          LaTeX provides very good support for typesetting things like
-          mathematical formula, references and Postscript images.
+	  LaTex provee muy buen soporte para cosas tipográficas como
+	  fórmulas matemáticas, referencias e imágenes Postscript.
         </para>
       </listitem>
     </itemizedlist>
 
     <para>
-      LaTeX is very extensive, so this chapter will only touch the
-      surface of LaTeX. But it should be enough to get you started
-      to be able to make simple documents.
+      LaTex es muy extenso, por lo que este capítulo solamente tocará 
+      la superficie de LaTex. Pero debería ser suficiente para que usted
+      sea capaz de elaborar documentos simples.      
     </para>
   </sect1>
 
   <sect1 id="editing-latex-basic">
-    <title>Preparing basic LaTeX documents</title>
+    <title>Preparando documentos LaTex básicos</title>
 
     <indexterm><primary>LaTeX</primary><secondary>documentclass</secondary></indexterm>
     <indexterm><primary>LaTeX</primary><secondary>environments</secondary></indexterm>
 
     <sect2 id="editing-latex-basic-minimal">
-      <title>Minimal document structure</title>
+      <title>Estructura mínima del documento</title>
 
       <para>
-        Each LaTeX document has some basic minimal structure that
-        describes the document. Let's look at an example:
+	Cada documento LaTex tiene una mínima estructura básica que
+	describe el documento. Veamos un ejemplo:
       </para>
 
       <screen>
@@ -91,25 +95,27 @@ This is a basic document. <co id="latex-struct-5" />
       </screen>
 
       <para>
-        You can already see the basic syntactical structure of LaTeX
-        commands. A command is started with a backslash, followed by the
-        name of the command. Each macro has a mandatory argument that
-        is placed in accolades, and an optional argument that is placed
-        in square brackets.
+	Usted ya puede ver la estructura sintáctica básica de los
+	comandos LaTex. Un comando es iniciado con una barra
+	invertida, seguida del nombre del comando. Cada macro tiene un
+	argumento obligatorio que es colocado entre llaves, y un
+	argumento opcional colocado entre corchetes.
       </para>
 
       <calloutlist>
         <callout arearefs="latex-struct-1">
           <para>
-            The first command in every document is the
-            <emphasis>documentclass</emphasis>. This command specifies
-            what kind of document LaTeX is dealing with. The type of
-            document is specified as a mandatory parameter. You can
-            also specify some optional parameters, such as the font
-            size and the paper size. In this case the font size is changed
-            from the default 12pt to 10pt, and A4 is used as the
-            paper size. The document classes that are available in
-            LaTeX are shown in <xref linkend="latex-documentclasses" />.
+	    El primer comando en cada documento es
+	    <emphasis>documentclass</emphasis>. Este comando
+	    especifica con que tipo de documento LaTex esta
+	    tratando. El tipo de documento es especificado como un
+	    parámetro obligatorio. También puede especificar algunos
+	    parámetros opcionales, como el tamaño de fuente y el
+	    tamaño de papel. En este caso el tamaño de fuente es
+	    cambiado del valor por defecto 12pt a 10pt, y A4 es usado
+	    como el tamaño de papel. Las clases de documento que están
+	    disponibles en LaTex se muestran en <xref
+	    linkend="latex-documentclasses" />.
           </para>
         </callout>
         <callout arearefs="latex-struct-2">
