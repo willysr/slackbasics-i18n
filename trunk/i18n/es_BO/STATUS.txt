@@ -14,7 +14,7 @@ lines   file                   trad    1st-rev  2nd-rev
    310 printing.xml             OK       -       -
    338 mutt.xml                 OK       -       -
    341 miscadmin.xml            OK       -       -
-   377 latex.xml                -        -       -
+   377 latex.xml                OK       -       -
    398 concepts.xml             -        -       -
    444 chap-kernel.xml          -        -       -
    485 chap-usermgmt.xml        -        -       -
