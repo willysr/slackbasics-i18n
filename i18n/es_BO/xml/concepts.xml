@@ -1,20 +1,21 @@
 <!-- $Id: concepts.xml 333 2007-10-21 17:20:54Z danieldk $ -->
 
 <chapter id="concepts"> <?dbhtml filename="concepts.html"?>
-  <title>General concepts</title>
+  <title>Conceptos generales</title>
 
   <para>
-    This chapter gives an introduction to some general UNIX and GNU/Linux 
-    concepts. It is important to read this chapter thoroughly if you do
-    not have any UNIX or GNU/Linux experience. Many concepts covered in
-    this chapter are used in this book and in GNU/Linux.
+    Este capítulo brinda una introducción a algunos conceptos
+    generales sobre UNIX y GNU/Linux. Es importante leer este capítulo
+    extensivamente si no tiene ninguna experiencia en UNIX ó
+    GNU/Linux. Muchos conceptos cubiertos en este capítulo son usados
+    en este libro y en GNU/Linux.
   </para>
 
   <sect1 id="concepts-multitasking">
-    <title>Multitasking</title>
+    <title>Multitarea</title>
 
     <sect2 id="concepts-multitasking-intro">
-      <title>Introduction</title>
+      <title>Introducción</title>
 
       <para>
         One of UNIX's traditional strengths is multitasking. Multitasking
