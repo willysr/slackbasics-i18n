@@ -7,74 +7,78 @@
   <indexterm><primary>typesetting</primary></indexterm>
 
   <sect1 id="editing-latex-introduction">
-    <title>Introduction</title>
+    <title>Introducción</title>
 
     <para>
-      LaTeX is a typesetting system that can be used to produce high-quality
-      articles, books, letters and other publications. LaTeX is based on
-      TeX, a lower-level typesetting language that was designed by Donald
-      E. Knuth. LaTeX does not work like a <acronym>WYSIWYG</acronym>
-      (what you see is what you get) word processor, the kind of document
-      preparation system most people are accustomed to. With LaTeX you
-      do not have to care about formatting the document, only about writing
-      the document.
+      LaTex es un sistema tipográfico que puede ser usado para
+      producir artículos, libros, cartas y otras publicaciones de alta
+      calidad. LaTex está basado en Tex, un lenguaje de tipografía de
+      bajo nivel diseñado por Donald E. Knuth. LaTex no funciona como
+      un procesador de texto <acronym>WYSIWYG</acronym> (what you see
+      is what you get, lo que ve es lo que obtiene), el tipo de
+      sistema de preparación de documentos al que la mayoría de la
+      gente esta acostumbrado. Con LaTex usted no se debe preocupar
+      sobre el formateo del documento, solamente de escribir el
+      documento.
     </para>
 
-    <para>
-      LaTeX files are plain-text files that contain LaTeX macros. LaTeX
-      formats the document based on the macros that are used. In the
-      beginning using LaTeX may be a bit awkward to a new user. But after
-      a while you will discover that using LaTeX has some distinct
-      advantages. To name a few:
+    <para>      
+      Los archivos LaTex son archivos de texto plano que contienen
+      macros LaTex. LaTex formatea el documento basado en las macros
+      que son usados. Al inicio usar LaTex puede ser algo incómodo
+      para un usuario nuevo. Pero después de un tiempo descubrirá que
+      usar LaTex tiene algunas ventajas distintivas. Para nombrar
+      algunas:
     </para>
 
     <itemizedlist>
       <listitem>
         <para>
-          LaTeX-formatted documents look very professional.
+	  Los documentos formateados por LaTex se ven muy profesionales.
         </para>
       </listitem>
       <listitem>
         <para>
-          You do not have to care about the layout of your documents. You
-          just add structure to your documents, and LaTeX takes care of
-          the formatting.
+	  Usted no se debe preocupar del diseño de sus
+	  documentos. Solamente agregue estructura a los mismos, y
+	  LaTex se encarga de el formateo.
         </para>
       </listitem>
       <listitem>
         <para>
-          LaTeX files are plain text, and can easily be changed using
-          standard UNIX tools, such as <command>vi</command>,
-          <command>sed</command> or <command>awk</command>
+	  Los archivos LaTex son texto plano, y pueden ser fácilmente
+	  modificados utilizando herramientas UNIX estandar, como
+	  <command>vi</command>, <command>sed</command> o
+	  <command>awk</command>.
         </para>
       </listitem>
       <listitem>
         <para>
-          LaTeX provides very good support for typesetting things like
-          mathematical formula, references and Postscript images.
+	  LaTex provee muy buen soporte para cosas tipográficas como
+	  fórmulas matemáticas, referencias e imágenes Postscript.
         </para>
       </listitem>
     </itemizedlist>
 
     <para>
-      LaTeX is very extensive, so this chapter will only touch the
-      surface of LaTeX. But it should be enough to get you started
-      to be able to make simple documents.
+      LaTex es muy extenso, por lo que este capítulo solamente tocará 
+      la superficie de LaTex. Pero debería ser suficiente para que usted
+      sea capaz de elaborar documentos simples.      
     </para>
   </sect1>
 
   <sect1 id="editing-latex-basic">
-    <title>Preparing basic LaTeX documents</title>
+    <title>Preparando documentos LaTex básicos</title>
 
     <indexterm><primary>LaTeX</primary><secondary>documentclass</secondary></indexterm>
     <indexterm><primary>LaTeX</primary><secondary>environments</secondary></indexterm>
 
     <sect2 id="editing-latex-basic-minimal">
-      <title>Minimal document structure</title>
+      <title>Estructura mínima del documento</title>
 
       <para>
-        Each LaTeX document has some basic minimal structure that
-        describes the document. Let's look at an example:
+	Cada documento LaTex tiene una mínima estructura básica que
+	describe el documento. Veamos un ejemplo:
       </para>
 
       <screen>
@@ -91,75 +95,78 @@ This is a basic document. <co id="latex-struct-5" />
       </screen>
 
       <para>
-        You can already see the basic syntactical structure of LaTeX
-        commands. A command is started with a backslash, followed by the
-        name of the command. Each macro has a mandatory argument that
-        is placed in accolades, and an optional argument that is placed
-        in square brackets.
+	Usted ya puede ver la estructura sintáctica básica de los
+	comandos LaTex. Un comando es iniciado con una barra
+	invertida, seguida del nombre del comando. Cada macro tiene un
+	argumento obligatorio que es colocado entre llaves, y un
+	argumento opcional colocado entre corchetes.
       </para>
 
       <calloutlist>
         <callout arearefs="latex-struct-1">
           <para>
-            The first command in every document is the
-            <emphasis>documentclass</emphasis>. This command specifies
-            what kind of document LaTeX is dealing with. The type of
-            document is specified as a mandatory parameter. You can
-            also specify some optional parameters, such as the font
-            size and the paper size. In this case the font size is changed
-            from the default 12pt to 10pt, and A4 is used as the
-            paper size. The document classes that are available in
-            LaTeX are shown in <xref linkend="latex-documentclasses" />.
+	    El primer comando en cada documento es
+	    <emphasis>documentclass</emphasis>. Este comando
+	    especifica con que tipo de documento LaTex esta
+	    tratando. El tipo de documento es especificado como un
+	    parámetro obligatorio. También puede especificar algunos
+	    parámetros opcionales, como el tamaño de fuente y el
+	    tamaño de papel. En este caso el tamaño de fuente es
+	    cambiado del valor por defecto 12pt a 10pt, y A4 es usado
+	    como el tamaño de papel. Las clases de documento que están
+	    disponibles en LaTex se muestran en <xref
+	    linkend="latex-documentclasses" />.
           </para>
         </callout>
         <callout arearefs="latex-struct-2">
           <para>
-            After the documentclass you can add some meta-information
-            to the document, like the title of the document. In this
-            case the title is <emphasis>The history of symmetric 
-            ciphers</emphasis>.
+	    Después de documentclass, usted puede agregar
+	    meta-información al documento, como su título. En este
+	    caso el título es <emphasis>Historia de los cifrados
+	    simétricos</emphasis>.
           </para>
         </callout>
         <callout arearefs="latex-struct-3">
           <para>
-            The author command specifies the author of the book.
+	    El comando author especifica el autor del libro.
           </para>
         </callout>
         <callout arearefs="latex-struct-4">
           <para>
-            The <emphasis>\begin</emphasis> command marks the beginning
-            of an environment. There are many different environments,
-            but they all implicate certain typesetting conventions for the
-            text that is in an environment. In this case we start an
-            <emphasis>document</emphasis> environment. This is a very
-            basic environment, LaTeX interprets everything in this
-            environment as the body of the text.
+	    El comando <emphasis>\begin</emphasis> marca el inicio de
+	    un ambiente. Existen muchos ambientes diferentes, pero
+	    todos ellos implican ciertas convenciones tipográficas
+	    para el texto que está en un ambiente. En este caso,
+	    nosotros iniciamos un ambiente
+	    <emphasis>document</emphasis>. Este es un ambiente muy
+	    básico, LaTeX interpreta todo en este ambiente como el
+	    cuerpo del texto.
           </para>
         </callout>
         <callout arearefs="latex-struct-5">
           <para>
-            The content of the document can be placed within the
-            <emphasis>document</emphasis>, in this case a friendly
-            warning about the nature of the document.
+	    El contenido del documento puede colocado dentro de
+	    <emphasis>document</emphasis>, en este caso, una alerta
+	    intuitiva alerta sobre la naturaleza del documento.
           </para>
         </callout>
         <callout arearefs="latex-struct-6">
           <para>
-            All environments eventually have to be closed. The
-            <emphasis>document</emphasis> environment is the last
-            environment that is closed, because it denotes the end
-            of the body of the text.
+	    Todos los ambientes deben ser eventualmente cerrados. El
+	    ambiente <emphasis>document</emphasis> es el último
+	    ambiente a cerra, porque denota el fin de cuerpo del
+	    texto.
           </para>
         </callout>
       </calloutlist>
 
       <table id="latex-documentclasses">
-        <title>LaTeX document classes</title>
+        <title>Clases de documento LaTeX</title>
 
         <tgroup cols="1">
           <thead>
             <row>
-              <entry>Class</entry>
+              <entry>Clase</entry>
             </row>
           </thead>
           <tbody>
@@ -181,12 +188,13 @@ This is a basic document. <co id="latex-struct-5" />
     </sect2>
 
     <sect2 id="editing-latex-basic-print">
-      <title>Generating printable formats</title>
+      <title>Generando formatos imprimibles</title>
 
       <para>
-        Once you have a LaTeX file, you can use the <command>latex</command>
-        command to generate a <acronym>DVI</acronym> (Device Independent
-        format) file:
+	Una vez que tenga un archivo LaTeX, puede usar el comando
+	<command>latex</command> para generar un archivo
+	<acronym>DVI</acronym> (Device Independent format, Formato
+	Independiente de Dispositivo):
       </para>
 
       <screen>
@@ -209,9 +217,10 @@ Document Class: article 2004/02/16 v1.4f Standard LaTeX document class
       </screen>
 
       <para>
-        As the LaTeX command reports a DVI file is created after running
-        the <command>latex</command> command. You can view this file with
-        an X viewer for DVI files, <command>xdvi</command>:
+	Como el comando LaTeX reporta, un archivo DVI es creado
+	después de ejecutar el comando <command>latex</command>. Puede
+	ver este archivo con un visor X para archivos DVI, como
+	<command>xdvi</command>:
       </para>
 
       <screen>
@@ -219,10 +228,11 @@ $ <command>xdvi crypto.dvi</command>
       </screen>
 
       <para>
-        This file is not directly printable (although DVI files can be
-        printed with <command>xdvi</command>). An ideal format for
-        printable files is Postscript. You can generate a Postscript
-        file from the DVI file with one simple command:
+	Este archivo no es directamente imprimible (aunque los
+	archivos DVI pueden imprimirse con el comando
+	<command>xdvi</command>). Un formato ideal para archivos
+	imprimibles es Postscript. Usted puede generar un archivo
+	Postscript a partir de un archivo DVI con un simple comando:
       </para>
 
       <screen>
@@ -230,16 +240,17 @@ $ <command>dvips -o crypto.ps crypto.dvi</command>
       </screen>
 
       <para>
-        The <parameter class="command">-o</parameter> specifies the output
-        (file) for the Postscript document. If this parameter is not
-        specified, the output will be piped through <command>lpr</command>,
-        which will schedule the document to be printed.
+	El parámetro <parameter class="command">-o</parameter>
+	especifica la salida (archivo) para el archivo Postscript. Si
+	este parámetro no es especificado, la salida será canalizada a
+	traǘes de <command>lpr</command>, que programará el documento
+	para su impresión.
       </para>
 
       <para>
-        <acronym>PDF</acronym> (Portable Document Format) is another
-        popular format for electronic documents. PDF can easily be
-        generated from Postscript:
+	<acronym>PDF</acronym> (Portable Document Format) es otro
+	formato popular para documentos electrónicos. PDF puede ser
+	fácilmente generado a partir de Postscript:
       </para>
 
       <screen>
@@ -247,31 +258,33 @@ $ <command>ps2pdf crypto.ps</command>
       </screen>
 
       <para>
-        The resulting output file will be the same as the input file,
-        with the <filename>.ps</filename> extension replaced with
-        <command>.pdf</command>.
+	El archivo resultante será el mismo que el archivo de entrada,
+	con la extensión <filename>.ps</filename> reemplazada con
+	<command>.pdf</command>.
       </para>
     </sect2>
 
     <sect2 id="editing-latex-basic-sections">
-      <title>Sections</title>
+      <title>Secciones</title>
 
       <indexterm><primary>LaTeX</primary><secondary>sections</secondary></indexterm>
 
       <para>
-        Now that you know how to create a basic LaTeX document, it is
-        a good time to add some more structure. Structure is added using
-        sections, subsections, and subsubsections. These structural
-        elements are made with respectively the <emphasis>\section</emphasis>,
-        <emphasis>\subsection</emphasis> and
-        <emphasis>\subsubsection</emphasis> commands. The mandatory parameter
-        for a section is the title for the section. Normal sections,
-        subsections and subsubsections are automatically numbered, and
-        added to the table of contents. By adding a star after a section
-        command, for example <emphasis>\section*{title}</emphasis> section
-        numbering is suppressed, and the section is not added to the
-        table of contents. The following example demonstrates how
-        you can use sections:
+	Ahora que ya sabe como crear un documento LaTeX básico, es un
+	buen momento para agregar algo mas de estructura. La
+	estructura es agregada usando secciones, sub-secciones y
+	sub-sub-secciones. Estos elementos estructurales se elaboran
+	con los comandos respectivos <emphasis>\section</emphasis>,
+	<emphasis>\subsection</emphasis> y
+	<emphasis>\subsubsection</emphasis>. El parámetro obligatorio
+	para una sección es el título de la sección. Secciones
+	normales, sub-secciones y sub-sub-secciones son
+	automáticamente numeradas y agregadas a la tabla de
+	contenidos. Al agregar un asterisco después del comando
+	<command>section</command>, la numeración es suprimida y no es
+	agregada a la tabla de contenidos, por ejemplo
+	<emphasis>\section*{title}</emphasis>. El siguiente ejemplo
+	demuestra como pueden ser usadas la secciones:
       </para>
 
       <screen>
@@ -301,27 +314,28 @@ Encryption Standard, the successor of DES.
       </screen>
 
       <para>
-        The example above is pretty straightforward, but this is a good
-        time to look at how LaTeX treats end of line characters and empty
-        lines. Empty lines are ignored by LaTeX, making the text a
-        continuous flow. An empty line starts a new paragraph. All paragraphs
-        but the first paragraph are stared with a extra space left of the
-        first word.
+	El ejemplo anterior es bastante sencillo, pero es un buen
+	momento para ver como LaTeX trata los caracteres de fin de
+	línea y líneas vacias. Las líneas vacías son ignoradas por
+	LaTeX, haciendo del texto un flujo continuo. Una línea vacía
+	empieza un párrafo nuevo. Todos los párrafos a excepción del
+	primero tienen un espacio extra al lado izquierdo de la primer
+	palabra.
       </para>
     </sect2>
 
     <sect2 id="editing-latex-basic-fontstyle">
-      <title>Font styles</title>
+      <title>Estilos de fuente</title>
 
       <para>
-        Usually you may want to work with different font styles too. LaTeX
-        has some commands that can be used to change the appearance of the
-        current font. The most commonly used font commands are
-        <emphasis>\emph</emphasis> for emphasized text, and
-        <emphasis>\textbf</emphasis>. Have a look at <xref
-        linkend="latex-fontstyles" /> for a more extensive list of font
-        styles. Emphasis and bold text are demonstrated in this example
-        paragraph:
+	Usualmente usted querrá trabajar con diferentes estilos de
+	fuente también. LaTeX tiene algunos comandos que pueden ser
+	usados para cambiar la apariencia de la fuente actual. Los
+	comandos de fuente más comunes son <emphasis>\emph</emphasis>
+	para textos resaltados y <emphasis>\textbf</emphasis>. Dele un
+	vistazo a <xref linkend="latex-fontstyles" /> para una lista
+	mas extensa de estilos de fuente. Textos resaltado y en
+	negrita son demostrados en este párrafo de ejemplo:
       </para>
 
       <screen>
@@ -335,38 +349,39 @@ Working with font styles is easy. \emp{This text is emphasized} and
         <tgroup cols="2">
           <thead>
             <row>
-              <entry>Command</entry>
-              <entry>Description</entry>
+              <entry>Comando</entry>
+              <entry>Descripción</entry>
             </row>
           </thead>
           <tbody>
             <row>
               <entry>\emph</entry>
-              <entry>Add emphasis to a font.</entry>
+              <entry>Agrega énfasis a una fuente.</entry>
             </row>
             <row>
               <entry>\textbf</entry>
-              <entry>Print the text in bold.</entry>
+              <entry>Imprime el texto en negrita.</entry>
             </row>
             <row>
               <entry>\textit</entry>
-              <entry>Use an italic font.</entry>
+              <entry>Utiliza una fuente itálica.</entry>
             </row>
             <row>
               <entry>\textsl</entry>
-              <entry>Use a font that is slanted.</entry>
+              <entry>Utiliza una fuente inclinada.</entry>
             </row>
             <row>
               <entry>\textsc</entry>
-              <entry>Use small capitals.</entry>
+              <entry>Utiliza versalitas.</entry>
             </row>
             <row>
               <entry>\texttt</entry>
-              <entry>Use a typewriter font.</entry>
+              <entry>Utiliza una fuente similar a las 
+	      de las máquinas de escribir.</entry>
             </row>
             <row>
               <entry>\textsf</entry>
-              <entry>Use a sans-serif font.</entry>
+              <entry>Utiliza una fuente sans-serif.</entry>
             </row>
           </tbody>
         </tgroup>

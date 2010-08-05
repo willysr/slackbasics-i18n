@@ -19,34 +19,36 @@
 
     </sect1info>
 
-    <title>Scheduling tasks with cron</title>
+    <title>Programando tareas con cron</title>
 
     <indexterm><primary>cron</primary></indexterm>
     <indexterm><primary>crontab file</primary></indexterm>
     <indexterm><primary>scheduling</primary><secondary>tasks</secondary></indexterm>
 
-    <para>Slackware Linux includes an implementation of the classic UNIX 
-      cron daemon that allows users to schedule tasks for execution at
-      regular intervals.  Each user can create, remove, or modify an
-      individual crontab file.  This crontab file specifies commands
-      or scripts to be run at specified time intervals.  Blank lines
-      in the crontab or lines that begin with a hash
-      (<quote><literal>#</literal></quote>) are ignored.</para>
+    <para>Slackware Linux incluye una implementación del clásico 
+	demonio UNIX cron, que permite a los usuarios programar tareas 
+	para su ejecución en intervalos regulares. Cada usuario puede 
+	crear, remover, o modificar un archivo crontab individual. Este 
+	archivo crontab especifica comandos o scripts a ser ejecutados 
+	en intervalos de tiempo especificados. Líneas vacías o que 
+	empiezan con numeral (<quote><literal>#</literal></quote>) 
+	son ignoradas.</para>
 
-    <para>Each entry in the crontab file must contain 6 fields
-      separated by spaces.  These fields are minute, hour, day, month,
-      day of week, and command.  Each of the first five fields may
-      contain a time or the <quote><literal>*</literal></quote>
-      wildcard to match all times for that field.  For example, to
-      have the <command>date</command> command run every day at 6:10
-      AM, the following entry could be used.</para>
+    <para>Cada entrada en el archivo crontab debe contener 
+	  6 campos separados por espacios. Estos campos son: 
+	  minuto, hora, día, mes, día de la semana y comando. 
+	  Los cinco campos iniciales pueden contener un valor 
+	  de tiempo o el caracter especial <quote><literal>*</literal></quote>
+	  para representar cualquier valor de tiempo para ese campo. 
+	  Por ejemplo, para tener corriendo el comando <command>date</command> 
+	  cada día a las 6:10 AM, la siguiente entrada puede ser usada.</para>
 
     <programlisting>10 6 * * * date</programlisting>
 
-    <para>A user crontab may be viewed with the <command>crontab
-    -l</command> command.  For a deeper introduction to the syntax of
-    a crontab file, let us examine the default
-    <emphasis>root</emphasis> crontab.</para>
+    <para>El crontab de un usuario puede ser visto con el 
+	comando <command>crontab -l</command>. Para una introducción 
+	mas detallada a la sintaxis de un archivo crontab, examinemos 
+	el <emphasis>root</emphasis> crontab.</para>
 
     <screen># <userinput>crontab -l</userinput>
 # If you don't want the output of a cron job mailed to you, you have to direct
@@ -75,75 +77,76 @@
 
     <calloutlist>
       <callout arearefs="co-crontab-1">
-        <para>The first field, <literal>47</literal>, specifies that
-          this job should occur at 47 minutes after the hour.</para>
+        <para>El primer campo, <literal>47</literal>, especifica que 
+          este trabajo debería ocurrir a los 47 minutos despues de la hora.</para>
       </callout>
 
       <callout arearefs="co-crontab-2">
-        <para>The second field, <literal>*</literal>, is a wildcard,
-          so this job should occur <emphasis>every</emphasis> hour.</para>
+        <para>El segundo campo, <literal>*</literal>, es un caracter especial,
+          este trabajo debería ocurrir <emphasis>cada</emphasis> hora.</para>
       </callout>
 
       <callout arearefs="co-crontab-3">
-        <para>The third field, <literal>*</literal>, is a wildcard,
-          so this job should occur <emphasis>every</emphasis> day.</para>
+        <para>El tercer campo, <literal>*</literal>, es un caracter especial,
+          este trabajo debería ocurrir <emphasis>cada</emphasis> día.</para>
       </callout>
 
       <callout arearefs="co-crontab-4">
-        <para>The fourth field, <literal>*</literal>, is a wildcard,
-          so this job should occur <emphasis>every</emphasis> month.</para>
+        <para>El cuarto campo, <literal>*</literal>, es un caracter especial,
+          este trabajo debería ocurrir <emphasis>cada</emphasis> mes.</para>
       </callout>
 
       <callout arearefs="co-crontab-5">
-        <para>The fifth field, <literal>*</literal>, is a wildcard,
-          so this job should occur <emphasis>every</emphasis> day of the week.</para>
+        <para>El quinto campo, <literal>*</literal>, es un caracter especial,
+		  este trabajo debería ocurrir <emphasis>cada</emphasis> día de la semana.</para>          
       </callout>
 
       <callout arearefs="co-crontab-6">
-        <para>The sixth field, <command>/usr/bin/run-parts
-	  /etc/cron.hourly 1> /dev/null</command>, specifies the
-	  command that should be run at the time specification defined
-	  in the first five fields.</para>
+        <para>El sexto campo, <command>/usr/bin/run-parts
+	  /etc/cron.hourly 1> /dev/null</command>, especifica 
+	  el comando que debería ser ejecutado en la especificación 
+	  de tiempo definida en los cinco primeros campos.</para>
       </callout>
     </calloutlist>
 
     <indexterm><primary>periodic scripts</primary></indexterm>
     <indexterm><primary>slocate</primary></indexterm>
 
-    <para>The default root crontab is setup to run scripts in
-      <filename>/etc/cron.monthly</filename> on a monthly basis, the
-      scripts in <filename>/etc/cron.weekly</filename> on a weekly
-      basis, the scripts in <filename>/etc/cron.daily</filename> on a
-      daily basis, and the scripts in
-      <filename>/etc/cron.hourly</filename> on an hourly basis.  For
-      this reason it is not strictly necessary for an administrator to
-      understand the inner workings of cron at all.  With Slackware Linux,
-      you can simply add a new script to one of the above directories
-      to schedule a new periodic task.  Indeed, perusing those
-      directories will give you a good idea of the work that Slackware Linux
-      does behind the scenes on a regular basis to keep things like
-      the <command>slocate</command> database updated.</para>
+    <para>El root crontab por defecto esta configurado para 
+	  ejecutar scripts en <filename>/etc/cron.monthly</filename> de 
+	  forma mensual, los scripts en <filename>/etc/cron.weekly</filename> 
+	  de forma semanal, los scripts en <filename>/etc/cron.daily</filename> 
+	  de forma diaria y los scripts en <filename>/etc/cron.hourly</filename> 
+	  cada hora. Por esta razón no es estrictamente necesario para 
+	  un administrador entender los trabajos internos de cron en absoluto. 
+	  Con Slackware Linux, puede simplemente agregar un nuevo script en 
+	  alguno de los directorios listados anteriormente para programar 
+	  una nueva tarea periódica. De hecho, revisar esos directorios 
+	  le data una buena idea del trabajo que Slackware Linux realiza 
+	  detrás de escenas de forma regular para mantener cosas como la 
+	  base de datos  <command>slocate</command> actualizada.</para>
 
   </sect1>
 
   <sect1 id="sysadmin-misc-hdparm">
-    <title>Hard disk parameters</title>
+    <title>Parámetros de disco duro</title>
 
     <indexterm><primary>hdparm</primary></indexterm>
     <indexterm><primary>DMA</primary><secondary>switching on</secondary></indexterm>
 
     <para>
-      Many modern disks offer various features for increasing disk
-      performance and improving integrity. Many of these features can be
-      tuned with the <command>hdparm</command> command. Be careful with
-      changing disk settings with this utility, because some changes
-      can damage data on your disk.
+	  Muchos discos modernos ofrecen varias características para 
+	  incrementar el rendimiento y mejorar la integridad de disco. 
+	  Muchas de estas características pueden ser personalizadas con el 
+	  comando <command>hdparm</command>. Sea cuidadoso cambiando 
+	  configuraciones de disco con esta utilidad, porque algunos cambios 
+	  pueden dañar la información en su disco.
     </para>
 
     <para>
-      You can get an overview of the active settings for a disk by
-      providing the device node of a disk as a parameter to
-      <command>hdparm</command>:
+	  Puede obtener un resumen de las configuraciones activas para 
+	  un disco proveyendo el nodo dispositivo del disco como parámetro 
+	  para <command>hdparm</command>:
     </para>
 
     <screen>
@@ -161,12 +164,12 @@
     </screen>
 
     <para>
-      A common cause for bad disk performance is that DMA was not
-      automatically used by the kernel for a disk. DMA will speed up
-      I/O throughput and offload CPU usage, by making it possible
-      for the disk to directly transfer data from the disk to the
-      system memory. If DMA is turned off, the overview of settings
-      would shows this line:
+	  Una causa común para mal rendimiento de disco es que DMA no 
+	  fue automáticamente usada por el kernel para un disco. DMA 
+	  acelerará el rendimiento I/O y disminuirá el uso de CPU al 
+	  hacer posible que el disco transfiera información del mismo 
+	  a la memoria del sistema. Si DMA esta desactivado, el resumen 
+	  de las configuraciones mostraría esta línea:
     </para>
 
     <screen>
@@ -174,8 +177,8 @@ using_dma    =  0 (off)
     </screen>
 
     <para>
-      You can easily turn on DMA for this disk with the
-      <parameter class="command">-d</parameter> parameter of
+	  Puede fácilmente activar DMA para este disco con el 
+	  parámetro <parameter class="command">-d</parameter> de 
       <command>hdparm</command>:
     </para>
 
@@ -188,14 +191,14 @@ using_dma    =  0 (off)
     </screen>
 
     <para>
-      You can do this during every boot by adding the hdparm
-      command to <filename>/etc/rc.d/rc.local</filename>.
+	  Puede hacer esto durante cada inicio del sistema agregando 
+	  el comando hdparm a <filename>/etc/rc.d/rc.local</filename>.
     </para>
 
     <para>
-      The <parameter class="command">-i</parameter> parameter
-      of <command>hdparm</command> is also very useful, because
-      it gives detailed information about a disk:
+	  El parámetro <parameter class="command">-i</parameter> de 
+	  <command>hdparm</command> es también muy útil, porque provee 
+	  información detallada acerca del disco:
     </para>
 
     <screen>
@@ -219,25 +222,25 @@ using_dma    =  0 (off)
   </sect1>
 
   <sect1 id="sysadmin-memory-hdparm">
-    <title>Monitoring memory usage</title>
+    <title>Monitoreando uso de memoria</title>
 
     <para>
-      In some situations it is handy to diagnose information about how
-      memory is used. For example, on a badly performing server you may
-      want to look whether RAM shortage is causing the system to swap
-      pages, or maybe you are setting up a network service, and want to
-      find the optimum caching parameters. Slackware Linux provides some
-      tools that help you analyse how memory is used.
+	  En algunas situaciones es útil diagnosticar información sobre cómo 
+	  es usada la memoria. Por ejemplo, en un servidor que este rindiendo 
+	  mal usted querria verificar si la escasez de RAM esta causando el uso 
+	  de la memoria de intercambio, o tal vez esta iniciando un servicio de red 
+	  y quiere hallar los parámetros óptimos de caching. Slackware Linux provee 
+	  algunas herramientas que le ayudan a analizae cómo la memoria es usada.
     </para>
 
     <sect2 id="sysadmin-misc-memory-vmstat">
       <title>vmstat</title>
 
       <para>
-        <command>vmstat</command> is a command that can provide
-        statistics about various parts of the virtual memory system.
-        Without any extra parameters <command>vmstat</command>
-        provides a summary of some relevant statistics:
+	    <command>vmstat</command> es un comando que puede proveer 
+		estadísticas sobre varias partes de la memoria virtual del sistema. 
+		Sin parámetros extra <command>vmstat</command> provee un 
+		resumen de algunas estadísticas relevantes:
       </para>
 
       <screen>
@@ -248,56 +251,51 @@ procs -----------memory---------- ---swap-- -----io---- --system-- ----cpu----
       </screen>
 
       <para>
-        Since we are only looking at memory usage in this section, we will
-        only have a look at the <emphasis>memory</emphasis> and
-        <emphasis>swap</emphasis> fields.
+	    Ya que solamente estamos viendo el uso de memoria en esta sección, 
+		solamente veremos a los cmapos <emphasis>memory</emphasis> y <emphasis>swap</emphasis>.
       </para>
 
       <itemizedlist>
         <listitem>
           <para>
-            <emphasis>swpd</emphasis>: The amount of virtual memory
-            being used.
+            <emphasis>swpd</emphasis>: La cantidad de memoria virtual siendo usada.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis>free</emphasis>: The amount of memory that is not
-            used at the moment.
+            <emphasis>free</emphasis>: La cantidad de memoria que no es usada en ese momento.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis>buff</emphasis>: The amount of memory used as
-            buffers.
+            <emphasis>buff</emphasis>: La cantidad de memoria usada como buffers.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis>cache</emphasis>: The amount of memory used as
-            cached.
+            <emphasis>cache</emphasis>: La cantidad de memoria usada como caché.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis>si</emphasis>: The amount of memory that is
-            swapped in from disk per second.
+            <emphasis>si</emphasis>: La cantidad de memoria que es intercambiada 
+			desde el disco por segundo.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis>si</emphasis>: The amount of memory that is
-            swapped to disk per second.
+            <emphasis>si</emphasis>: La cantidad de memoria que es intercambiada 
+			hacia el disco por segundo.
           </para>
         </listitem>
       </itemizedlist>
 
       <para>
-        It is often useful to see how memory usage changes over time.
-        You can add an interval as a parameter to <command>vmstat</command>,
-        to run <command>vmstat</command> continuously, printing the current
-        statistics. This interval is in seconds. So, if you want to get
-        updated statistics every second, you can execute:
+	    Es a veces útil ver cómo el uso de memoria cambia durante el tiempo. 
+		Puede agregar un intérvalo como parámetro a <command>vmstat</command> 
+		para ejecutar <command>vmstat</command> continuamente, imprimiendo las 
+		estadísticas actuales. Este intérvalo esta en segundos. Entonces, si 
+		quiere obtener estadísticas actualizadas cada segundo, puede ejecutar:
       </para>
 
       <screen>
@@ -311,11 +309,11 @@ procs -----------memory---------- ---swap-- -----io---- --system-- ----cpu----
       </screen>
 
       <para>
-        Additionally, you can tell <command>vmstat</command> how many times
-        it should output these statistics (rather than doing this infinitely). 
-        For example, if you would like to print these statistics every
-        two seconds, and five times in total, you could execute
-        <command>vmstat</command> in the following manner:
+	    Adicionalmente, puede decirle a <command>vmstat</command>, cuantas 
+		veces debería devolver estas estadísticas (en vez de hacerla infinitamente). 
+		Por ejemplo, si quisiera imprimir estas estadísticas cada dos segundos y 
+		cinco veces en total, usted podría ejecutar <command>vmstat</command> 
+		de la siguiente manera:
       </para>
 
       <screen>
