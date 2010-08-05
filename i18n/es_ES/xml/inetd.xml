@@ -11,8 +11,8 @@ Existen dos formas de ofrecer servicios TCP/IP: ejecutando un
 servidor de aplicaciones auto-suficiente como demonio o usando
 el Internet super server, <command>inetd</command>. <command>inetd</command> 
 es un demonio que monitorea un rango de puertos. Si un cliente 
-intenta conectarse a un puerto <command>inetd</command> 
-maneja la conexión y delega la misma a el software servidor 
+intenta conectarse a un puerto, <command>inetd</command> 
+maneja la conexión y delega la misma al software servidor 
 que maneja ese tipo de conexión. La ventaja de esta alternativa 
 es que agrega una capa extra de seguridad y facilita el 
 registro de historial de conexiones entrantes. La desventaja 
@@ -24,12 +24,12 @@ en un servidor FTP sobrecargado.
 </sect1>
 
 <sect1>
-<title>Configuration</title>
+<title>Configuración</title>
 
 <para>
-<command>inetd</command> can be configured using the
-<filename>/etc/inetd.conf</filename> file. Let's have a look at
-an example line from <filename>inetd.conf</filename>:
+<command>inetd</command> puede ser configurado utilizando 
+el archivo <filename>/etc/inetd.conf</filename>. Demos un  
+vistazo a una linea de ejemplo de <filename>inetd.conf</filename>:
 </para>
 
 <screen>
@@ -38,24 +38,24 @@ ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
 </screen>
 
 <para>
-This line specifies that <command>inetd</command> should accept
-FTP connections and pass them to <command>tcpd</command>. This
-may seem a bit odd, because <command>proftpd</command> normally 
-handles FTP connections. You can also specify to use <command>proftpd</command>
-directly in <filename>inetd.conf</filename>, but Slackware Linux normally
-passes the connection to <command>tcpd</command>. This program
-passes the connection to <command>proftpd</command> in turn, as specified.
-<command>tcpd</command> is used to monitor services and to provide
-host based access control.
+Esta línea especifica que el <command>inetd</command> debería  
+aceptar conexiones FTP y pasarlas a <command>tcpd</command>. Esto  
+puede parecer un poco extraño, por que normalmente <command>proftpd</command>  
+maneja las conexiones FTP. Tambien puede especificar el uso de  
+<command>proftpd</command> directamente en <filename>inetd.conf</filename>,  
+pero Slackware Linux normalmente pasa la conexión a <command>tcpd</command>. 
+Este programa a su vez pasa la conexión a <command>proftpd</command>, como  
+fue especificado. <command>tcpd</command> es usado para monitorear servicios 
+y para proveer control basado en host.
 </para>
 
 <para>
-Services can be disabled by adding the comment character (#) at
-the beginning of the line. It is a good idea to disable all services
-and enable services you need one at a time. After changing
-<filename>/etc/inetd.conf</filename> <command>inetd</command>
-needs to be restarted to activate the changes. This can be done
-by sending the HUP signal to the inetd process:
+Los servicios pueden ser deshabilitados agregando el caracter de  
+comentario (#) al inicio de la linea. Es una buena idea deshabilitar 
+todos los servicios y despues habilitar los servicios que requiera uno a la vez. 
+Despues de cambiar <filename>/etc/inetd.conf</filename>, <command>inetd</command> 
+necesita ser reiniciado para activar los cambios. Esto puede realizarse 
+enviando una señal HUP al proceso inetd:
 </para>
 
 <screen>
@@ -65,8 +65,8 @@ by sending the HUP signal to the inetd process:
 </screen>
 
 <para>
-  Or you can use the <filename>rc.inetd</filename> initialization script to
-  restart <command>inetd</command>:
+  O puede usar el script de inicialización <filename>rc.inetd</filename> para 
+  reiniciar <command>inetd</command>:
 </para>
 
 <screen>
@@ -79,9 +79,9 @@ by sending the HUP signal to the inetd process:
 <title>TCP wrappers</title>
 
 <para>
-As you can see in <filename>/etc/inetd.conf</filename> connections for most
-protocols are made through <command>tcpd</command>, instead of directly 
-passing the connection to a service program. For example:
+Como puede ver en <filename>/etc/inetd.conf</filename> las conexiones para 
+la mayoría de los protocolos se realizan a través de <command>tcpd</command>, 
+en vez de pasar la conexion directamente al programa de servicio. Por ejemplo:
 </para>
 
 <screen>
@@ -90,13 +90,13 @@ ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
 </screen>
 
 <para>
-In this example ftp connections are passed through <command>tcpd</command>.
-<command>tcpd</command> logs the connection through syslog and allows for
-additional checks. One of the most used features of <command>tcpd</command>
-is host-based access control. Hosts that should be denied are controlled
-via <filename>/etc/hosts.deny</filename>, hosts that should be allowed
-via <filename>/etc/hosts.allow</filename>. Both files have one rule on
-each line of the following form:
+En este ejemplo las conexiones ftp pasan a través <command>tcpd</command>. 
+<command>tcpd</command> registra la conexión a través de syslog y permite 
+chequeos adicionales. Una de las características mas usadas de <command>tcpd</command>  
+es el control de acceso basado en host. Los hosts que deberían ser negados  
+son controlados via <filename>/etc/hosts.deny</filename>, los host que 
+deberían ser permitidos via <filename>/etc/hosts.allow</filename>. Ambos  
+archivos tienen una regla en cada linea en la forma siguiente:
 </para>
 
 <screen>
@@ -104,16 +104,16 @@ service: hosts
 </screen>
 
 <para>
-Hosts can be specified by hostname or IP address. The ALL keyword specifies
-all hosts or all services.
+Los hosts se pueden especificar por hostname o direccion IP. La palabra clase 
+ALL especifica todos los hosts o todos los servicios.
 </para>
 
 <para>
-Suppose we want to block access to all services managed through 
-<command>tcpd</command>, except for host 
-<quote>trusted.example.org</quote>. To do this the following
-<filename>hosts.deny</filename> and <filename>hosts.allow</filename>
-files should be created.
+Suponga que quiere bloquear el acceso a todos los servicios administrados 
+a través de <command>tcpd</command>, a excepción del host <quote>trusted.example.org</quote>. 
+Para hacer esto, los siguientes archivos 
+<filename>hosts.deny</filename> and <filename>hosts.allow</filename>  
+deberían ser creados.
 </para>
 
 <para>
@@ -133,10 +133,10 @@ ALL: trusted.example.org
 </screen>
 
 <para>
-In the <filename>hosts.deny</filename> access is blocked to all (ALL)
-services for all (ALL) hosts. But <filename>hosts.allow</filename>
-specifies that all (ALL) services should be available to
-<quote>trusted.example.org</quote>.
+En el archivo <filename>hosts.deny</filename> el acceso esta bloqueado  
+a todos (ALL) los servicios para todos los hosts (ALL). Pero  
+<filename>hosts.allow</filename> especifica que todos los servicios (ALL)  
+deberían estar disponibles a <quote>trusted.example.org</quote>.
 </para>
 
 </sect1>
