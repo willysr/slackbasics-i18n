@@ -18,63 +18,70 @@
       <title>Introducción</title>
 
       <para>
-        One of UNIX's traditional strengths is multitasking. Multitasking
-        means that multiple programs can be run at the same time.
-        You may wonder why this is important, because most people use
-        only one application at a time. Multitasking is a bare necessity
-        for UNIX-like systems. Even if you have not started any applications,
-        there are programs that run in the background. For instance,
-        some programs provide network services, while others show a login
-        prompt and wait until a user logs in on a (virtual) terminal. Programs
-        that are running in the background are often called <emphasis>daemon
-        processes</emphasis><footnote>
+	Una de las fortalezas tradicionales de UNIX es ser multitarea.
+	Multitarea quiere decir que múltiples programas pueden ser
+	ejecutados al mismo tiempo. Usted podría preguntarse por qué
+	esto es importante, ya que la mayoría de las personas utilizan
+	solamente una aplicación a la vez. El ser multitarea es una
+	necesidad vital para sistemas del tipo UNIX. Aún si no ha
+	iniciado aplicación alguna, existen programas ejecutándose en
+	segundo plano. Por ejemplo, algunos programas servicios de
+	red, mientras otros muestran un mensaje de inicio de sesión y
+	esperan hasta que el usuario inicie sesión en una terminal
+	virtual.  Los programas que se ejecutan en segundo plano son
+	comúnmente denominados <emphasis>daemon processes</emphasis>.
+        <footnote>
           <para>
-            The word <emphasis>daemon</emphasis> should not to be confused
-	    with the word <emphasis>demon</emphasis>, the word
-            <emphasis>daemon</emphasis> refers to supernatural beings
-            in Greek mythology.
+            La palabra <emphasis>daemon</emphasis> no debería ser 
+	    confundida con la palabra <emphasis>demon</emphasis>, 
+	    la palabra <emphasis>daemon</emphasis> se refiere a 
+	    seres sobrenaturales de la mitología griega.
           </para>
         </footnote>.
       </para>
     </sect2>
 
     <sect2 id="concepts-multitasking-procsthreads">
-      <title>Processes and threads</title>
+      <title>Procesos e hilos</title>
 
       <para>
-        After a program is loaded from a storage medium, an instance
-        of the program is started. This instance is called a
-        <emphasis>process</emphasis>. A process has its own protected
-        memory, named the <emphasis>process address space</emphasis>.
-        The process address space has two important areas: the
-        <emphasis>text</emphasis> area and the
-        <emphasis>data</emphasis> area. The <emphasis>text</emphasis>
-        area is the actual program code; it is used to tell the system
-        what to do. The <emphasis>data</emphasis> area is used to
-        store constant and runtime data. The operating system gives
-        every process time to execute. On single processor systems
-        processes are not really running simultaneously. In reality a
-        smart scheduler in the kernel divides CPU time among
-        processes, giving the illusion that processes run
-        simultaneously. This process is called
-        <emphasis>time-sharing</emphasis>. On systems with more than
-        one CPU or CPU cores, more than one process can run
-        simultaneously, but time-sharing is still used to divide the
-        available CPU time among processes.
+	Después de que un programa es cargado desde un medio de
+	almacenamiento, una instancia del mismo es iniciada. Esta
+	instancia es llamada <emphasis>proceso</emphasis>. Un proceso
+	tiene su propia memoria protegida, denominada el
+	<emphasis>espacio de direccionamiento de
+	memoria</emphasis>. El espacion de direccionamiento de memoria
+	tiene dos áreas importantes: el área de
+	<emphasis>texto</emphasis> y el área de
+	<emphasis>datos</emphasis>. El área de
+	<emphasis>texto</emphasis> es el código actual del programa;
+	es usado para decirle al sistema qué hacer. El área de
+	<emphasis>datos</emphasis> es usada para almacenar constantes
+	y datos de ejecución. El sistema operativo entrega a cada
+	proceso un tiempo de ejecución. En sistemas de un solo
+	procesador los procesos en realidad no se ejecutan
+	simultáneamente. En realidad un programador en el kernel
+	divide el tiempo de CPU entre los procesos, dando la sensación
+	de que los procesos se ejecutan simultáneamente.  Este proceso
+	es llamado <emphasis>time-sharing</emphasis>. En sistemas con
+	más de un CPU, más de un proceso puede ejecutarse
+	simultáneamente, pero time-sharing se utiliza todavía para
+	dividir el CPU disponible entre los procesos.
       </para>
 
       <para>
-        New processes are created by duplicating a running process
-        with the <command>fork</command> system call. <xref
-        linkend="fork" /> shows a fork() call in action
-        schematically. The parent process issues a fork() call. The
-        kernel will respond to this call by duplicating the process,
-        and naming one process the <emphasis>parent</emphasis>, and
-        the other process the <emphasis>child</emphasis>.
+	Nuevos procesos son creados duplicando un proceso en ejecución
+	con la llamada del sistem <command>fork</command>. <xref
+	linkend="fork" /> muestra una llamada fork(bifurcar)
+	esquemáticamente.  El proceso padre ejecuta una llamada
+	fork(). El kernel responderá a esta llamada duplicando el
+	proceso, nombrando a uno de los procesos como
+	<emphasis>padre</emphasis> y al otro
+	<emphasis>hijo</emphasis>.
       </para>
 
       <figure id="fork">
-        <title>Forking of a process</title>
+        <title>Duplicando(bifurcando) un proceso</title>
         <mediaobject>
           <imageobject>
             <imagedata fileref="../../images/fork.png" format="PNG"/>
@@ -83,45 +90,49 @@
       </figure>
 
       <para>
-        Forking can be used by a program to create two processes that
-        can run simultaneously on multiprocessor machines. However,
-        this is often not ideal, because both processes will have
-        their own process address space.  The initial duplication of
-        the process memory takes relatively much time, and it is
-        difficult to share data between two processes. This problem is
-        solved by a concept named
-        <emphasis>multithreading</emphasis>. Multithreading means that
-        multiple instances of the text area can run at the same time,
-        sharing the data area. These instances, named threads, can be
-        executed in parallel on multiple CPUs.
+	La duplicación puede ser usada por un programa para crear dos
+	procesos que pueden ejecutarse simultáneamente en máquinas
+	multi-proceso. Sin embargo, esto no es siempre ideal, porque
+	ambos procesos tendrán su propio espacio de direccionamiento
+	de memoria. La duplicación inicial de la memoria del proceso
+	toma relativamente mucho tiempo, y es difícil compartir datos
+	entre dos procesos. Este problema es resuelto por un concepto
+	denominado <emphasis>multithreading</emphasis>. Multithreading
+	significa que múltiples instancias del área de texto pueden
+	ejecutarse al mismo tiempo, compartiendo el área de
+	datos. Estas instancias, denominadas threads(hilos) pueden ser
+	ejecutadas en paralelo en múltiples CPUs.
       </para>
     </sect2>
   </sect1>
 
   <sect1 id="concepts-fshierarchy">
-    <title>Filesystem hierarchy</title>
+    <title>Jerarquía del sistema de archivos</title>
 
     <sect2 id="concepts-fshierarchy-structure">
-      <title>Structure</title>
+      <title>Estructura</title>
 
       <para>
-        Operating systems store data in filesystems. A filesystem is
-        basically a tree-like structure of directories that hold
-        files, like the operating system, user programs and user
-        data. Most filesystems can also store various metadata about
-        files and directories, for instance access and modification
-        times. In GNU/Linux there is only one filesystem hierarchy, this
-        means GNU/Linux does not have drive letters (e.g. A:, C:, D:) for
-        different filesystems, like DOS and Windows. The filesystem
-        looks like a tree, with a root directory (which has no parent
-        directory), branches, and leaves (directories with no
-        subdirectories). The root directory is alway denoted with a
-        slash (<quote>/</quote>). Directories are separated by the
-        same character.
+	Los sistemas operativos almacenan datos en sistemas de
+	archivos.  Un sistema de archivos es basicamente una
+	estructura tipo-árbol de directorios que contienen archivos,
+	como el sistema operativo, los programas de usuario y los
+	datos de usuario. La mayoría de los sistemas de archivos
+	pueden tambien almacenar metadatos sobre los archivos y
+	directorios, por ejemplo fechas de acceso y modificación. En
+	GNU/Linux hay una sola jerarquía del sistema de archivos, esto
+	quiere decir que GNU/Linux no tiene letras de dispositivos
+	(e.g. A:, C:, D:) para diferentes sistemas de archivos como
+	DOS y Windows. El sistema de archivos se parece a un árbol,
+	con un directorio raíz (que no tiene directorio padre),
+	ramificaciones y hojas (directorios sin sub-directorios). El
+	directorio raíz es siempre denotado con una barra
+	(<quote>/</quote>). Los directorios se separan por el mismo
+	caracter.
       </para>
 
       <figure id="filesystem-structure">
-        <title>The filesystem structure</title>
+        <title>La estructura del sistema de archivos</title>
         <mediaobject>
           <imageobject>
             <imagedata fileref="../../images/fs-structure.png" format="PNG"/>
