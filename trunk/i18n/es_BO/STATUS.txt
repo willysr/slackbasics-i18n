@@ -15,7 +15,7 @@ lines   file                   trad    1st-rev  2nd-rev
    338 mutt.xml                 OK       -       -
    341 miscadmin.xml            OK       -       -
    377 latex.xml                OK       -       -
-   398 concepts.xml             -        -       -
+   398 concepts.xml             OK       -       -
    444 chap-kernel.xml          -        -       -
    485 chap-usermgmt.xml        -        -       -
    527 netconfig.xml            -        -       -
