@@ -2,107 +2,109 @@
 
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:lang="es" xml:id="kernel">
-  <title>Building a kernel</title>
+  <title>Construyendo un kernel</title>
 
   <sect1 xml:id="chap-kernel-intro">
-    <title>Introduction</title>
+    <title>Introducción</title>
 
     <para>
-      The Linux kernel is shortly discussed in <xref
-      linkend="chap-intro-linux" />. One of the advantages of Linux is
-      that the full sources are available (as most of the Slackware
-      Linux system). This means that you can recompile the
-      kernel. There are many situations in which recompiling the
-      kernel is useful. For example:
+      El kernel Linux es brevemente discutido en <xref
+      linkend="chap-intro-linux" />. Una de las ventajas de Linux 
+      es que los archivos fuente están disponibles (como la mayoría 
+      del sistema Slackware Linux). Esto quiere decir que usted puede 
+      recompilar el kernel. Hay muchas situaciones en las que es útil 
+      recompilar el kernel. Por ejemplo:
     </para> 
 
     <itemizedlist>
       <listitem>
 	<para>
-	  <emphasis role="bold">Making the kernel leaner</emphasis>:
-	  One can disable certain functionality of the kernel, to
-	  decrease its size. This is especially useful in environments
-	  where memory is scarce.
+	  <emphasis role="bold">Agilizar el kernel</emphasis>: Uno
+	  puede deshabilitar ciertas funcionalidades del kernel, para
+	  reducir su tamaño. Esto es especialmente útil en ambientes
+	  donde la memoria es escasa.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  <emphasis role="bold">Optimizing the kernel</emphasis>: it
-	  is possible to optimize the kernel. For instance, by
-	  compiling it for a specific processor type.
+	  <emphasis role="bold">Optimizar el kernel</emphasis>: Es
+	  posible optimizar el kernel. Por ejemplo, compilándolo para
+	  un tipo específico de procesador.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  <emphasis role="bold">Hardware support</emphasis>: Support
-	  for some hardware is not enabled by default in the Linux
-	  kernel provided by Slackware Linux. A common example is
-	  support for SMP systems.
+	  <emphasis role="bold">Soporte de hardware</emphasis>: El
+	  soporte para algunos dispositivos de hardware no está
+	  habilitado por defecto en el kernel Linux proveído por
+	  Slackware Linux. Un ejemplo común es el soporte para
+	  sistemas SMP.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  <emphasis role="bold">Using custom patches</emphasis>: There
-	  are many unofficial patches for the Linux kernel. Generally
-	  speaking it is a good idea to avoid unofficial patches. But
-	  some third party software, like <ulink
-	  url="http://www.netraverse.com">Win4Lin</ulink>, require
-	  that you install an additional kernel patch.
+	  <emphasis role="bold">Utilizar parches personalizados</emphasis>: 
+	  Existen muchos parches no oficiales para el kernel Linux. 
+	  Generalmente hablando, es aconsejable evitar parches no 
+	  oficiales. Pero algun software de terceros requiere instalar 
+	  parches adicionales al kernel, como <ulink
+	  url="http://www.netraverse.com">Win4Lin</ulink>.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  Making the proper headers and build infrastucture available
-	  to build third-party modules.
+	  Preparar las cabeceras correctas y construir una infraestructura 
+	  disponible para construir módulos de terceros.
 	</para>
       </listitem>
     </itemizedlist>
 
     <para>
-      This chapter focuses on the default kernel series used in
-      Slackware Linux 12.0, Linux 2.6. Compiling a kernel is not
-      really difficult, just keep around a backup kernel that you can
-      use when something goes wrong. Linux compilation involves these
-      steps:
+      Este capítulo se enfoca en la serie del kernel por defecto usada
+      en Slackware Linux 12.0, Linux 2.6. Compilar un kernel no es
+      difícil, solamente mantenga una copia de seguridad del kernel
+      que pueda usar cuando algo malo ocurra. La compilación de Linux
+      incluye estos pasos:
     </para>
 
     <itemizedlist>
       <listitem>
 	<para>
-	  Configuring the kernel.
+	  Configuración del kernel.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  Building the kernel.
+	  Construcción del kernel.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  Building modules.
+	  Construcción de módulos.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  Installing the kernel and modules.
+	  Instalación del kernel y los módulos.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  Updating the LILO configuration.
+	  Actualización de la configuración de LILO.
 	</para>
       </listitem>
     </itemizedlist>
     
     <para>
-      In this chapter, we suppose that the kernel sources are
-      available in <filename>/usr/src/linux</filename>. If you have
-      installed the kernel-sources from the <quote>k</quote> disk set,
-      the kernel sources are available in
-      <filename>/usr/src/linux-kernelversion</filename>, and
-      <filename>/usr/src/linux</filename> is a symbolic link to the
-      real kernel source directory. So, if you use the standards
-      Slackware Linux kernel package you are set to go.
+      En este capítulo, suponemos que las fuentes del kernel están 
+      disponibles en <filename>/usr/src/linux</filename>. Si ha instalado 
+      las fuentes del kernel desde el conjunto de paquetes <quote>k</quote>, 
+      las fuentes del kernel están disponibles en 
+      <filename>/usr/src/linux-kernelversion</filename> y 
+      <filename>/usr/src/linux</filename> es un enlace simbólico al 
+      directorio real de las fuentes del kernel. Entonces, si usted 
+      usa el paquete estándar del kernel Slackware Linux está listo 
+      para continuar.
     </para>
 
     <para>
