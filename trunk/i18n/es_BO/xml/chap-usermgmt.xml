@@ -1,56 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:lang="es" xml:id="chap-usermgmt">
-  <title>User management</title>
+  <title>Administración de usuarios</title>
 
   <sect1 xml:id="chap-usermgmt-intro">
-    <title>Introduction</title>
+    <title>Introducción</title>
 
     <para>
-      GNU/Linux is a multi-user operating system. This means that
-      multiple users can use the system, and they can use the system
-      simultaneously. The GNU/Linux concepts for user management are
-      quite simple. First of all, there are several user accounts on
-      each system. Even on a single user system there are multiple
-      user accounts, because GNU/Linux uses unique accounts for some
-      tasks. Users can be members of groups. Groups are used for more
-      fine grained permissions, for example, you could make a file
-      readable by a certain group. There are a few reserved users and
-      groups on each system. The most important of these is the
-      <emphasis>root</emphasis> account. The <emphasis>root</emphasis>
-      user is the system administrator. It is a good idea to avoid
-      logging in as root, because this greatly enlarges security
-      risks. You can just log in as a normal user, and perform system
-      administration tasks using the <command>su</command> and
-      <command>sudo</command> commands.
+      GNU/Linux es un sistema operativo multi-usuario. Esto significa
+      que múltiples usuarios pueden usar el sistema simultáneamente.
+      Los conceptos GNU/Linux para la administración de usuarios son
+      bastante simples. En primer lugar, existen varias cuentas de
+      usuario en cada sistema. Inclusive en sistemas con un solo
+      usuario existen múltiples cuentas, porque GNU/Linux usa cuentas
+      únicas para algunas tareas. Los usuarios pueden ser miembros de
+      grupos. Los grupos son usados para permisos mas detallados, por
+      ejemplo, puede hacer un archivo leíble para un grupo
+      específico. Hay unos pocos usuarios y grupos reservados en cada
+      sistema. La más importante de estas es la cuenta
+      <emphasis>root</emphasis>. El usuario <emphasis>root</emphasis>
+      es el administrador del sistema. Es aconsejable evitar loguearse
+      como roo, porque implica grandes riesgos de seguridad. Usted
+      puede loguearse como usuario normal y realizar tareas
+      administrativas utilizando los comandos <command>su</command> y
+      <command>sudo</command>.
     </para>
 
     <para>
-      The available user accounts are specified in the
-      <filename>/etc/passwd</filename>. You can have a look at this
-      file to get an idea of which user account are mandatory. As you
-      will probably notice, there are no passwords in this
-      file. Passwords are kept in the separate
-      <filename>/etc/shadow</filename> file, as an encrypted
-      string. Information about groups is stored in
-      <filename>/etc/group</filename>. It is generally speaking not a
-      good idea to edit these files directly. There are some excellent
-      tools that can help you with user and group administration. This
-      chapter will describe some of these tools.
+      Las cuentas de usuario disponibles están especificadas en
+      <filename>/etc/passwd</filename>. Puede dar un vistazo a este
+      archivo para darse una idea de qué cuentas de usuario son
+      obligatorias. Como usted probablemente notará, no hay
+      contraseñas en este archivo. Las contraseñas se aloja en un
+      archivo separado <filename>/etc/shadow</filename> como una
+      cadena encriptada. La información sobre grupos es almacenada en
+      <filename>/etc/group</filename>. En general no es aconsejable
+      editar estos archivos directamente. Existen algunas excelentes
+      herramientas que pueden ayudarle con la administración de
+      usuarios y grupos. Este capítulo describirá algunas de estas
+      herramientas.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-usermgmt-user">
-    <title>Adding and removing users</title>
+    <title>Agregando y eliminando usuarios</title>
 
     <sect2 xml:id="chap-usermgmt-user-add">
       <title>useradd</title>
 
       <para>
-	The <command>useradd</command> is used to add user accounts to
-	the system.  Running <command>useradd</command> with a user
-	name as parameter will create the user on the system. For
-	example:
+	El comando <command>useradd</command> es usado para agregar
+	cuentas de usuario al sistema. Ejecutando
+	<command>useradd</command> con un nombre de usuario como
+	parámetro creará el usuario en el sistema. Por ejemplo:
       </para>
 
       <screen>
@@ -58,10 +60,11 @@
       </screen>
 
       <para>
-	Creates the user account <emphasis>bob</emphasis>. Please be
-	aware that this does not create a home directory for the
-	user. Add the <parameter class="command">-m</parameter>
-	parameter to create a home directory. For example:
+	Crea la cuenta de usuario <emphasis>bob</emphasis>. Por favor
+	tenga en cuenta que esto no crea un directorio home para el
+	usuario. Agregue el parámetro <parameter
+	class="command">-m</parameter> para crear un directorio
+	home. Por ejemplo:
       </para>
 
       <screen>
@@ -69,14 +72,15 @@
       </screen>
 
       <para>
-	This would add the user <emphasis>bob</emphasis> to the
-	system, and create the <filename>/home/bob</filename> home
-	directory for this user.  Normally the user is made a member
-	of the <emphasis>users</emphasis> group. Suppose that we would
-	like to make <emphasis>crew</emphasis> the primary group for
-	the user <emphasis>bob</emphasis>. This can be done using the
-	<parameter class="command">-g</parameter> parameter.  For
-	example:
+	Esto debería agregar el usuario <emphasis>bob</emphasis> al
+	sistema y crear el directorio home
+	<filename>/home/bob</filename> para este usuario. Normalmente
+	el usuario se agrega como miembro el grupo
+	<emphasis>users</emphasis>. Suponga que quisiéramos colocar el
+	grupo <emphasis>crew</emphasis> como grupo primario para el
+	usuario <emphasis>bob</emphasis>. Esto puede hacerse usando el
+	parámetro <parameter class="command">-g</parameter>. Por
+	ejemplo:
       </para>
 
       <screen>
@@ -84,14 +88,14 @@
       </screen>
 
       <para>
-	It is also possible to add this user to secondary groups
-	during the creation of the account with the
-	<emphasis>-G</emphasis>. Group names can be separated with a
-	comma. The following command would create the user
-	<emphasis>bob</emphasis>, which is a member of the
-	<emphasis>crew</emphasis> group, and the
-	<emphasis>www-admins</emphasis> and
-	<emphasis>ftp-admins</emphasis> secondary groups:
+	También es posible agregar este usuario a grupos secundarios
+	durante la creación de la cuenta con el parámetro
+	<emphasis>-G</emphasis>. Los nombres de los grupos pueden
+	estar separados con comas. El siguiente comando creará el
+	usuario <emphasis>bob</emphasis>, que es miembro del grupo
+	<emphasis>crew</emphasis> y de los grupos secundarios
+	<emphasis>www-admins</emphasis> y
+	<emphasis>ftp-admins</emphasis>:
       </para>
 
       <screen>
@@ -99,9 +103,10 @@
       </screen>
 
       <para>
-	By default the <command>useradd</command> only adds users, it
-	does not set a password for the added user. Passwords can be
-	set using the <command>passwd</command> command.
+	Por defecto el comando <command>useradd</command> solamente
+	agrega usuarios, no asigna una contraseña para el usuario
+	agregado.  Las contraseñas pueden asignarse usando el comando
+	<command>passwd</command>.
       </para>
     </sect2>
 
@@ -109,11 +114,12 @@
       <title>passwd</title>
 
       <para>
-	As you probably guessed the <command>passwd</command> command
-	is used to set a password for a user. Running this command as
-	a user without a parameter will change the password for this
-	user. The password command will ask for the old password,once
-	and twice for the new password:
+	Como probablemente ya haya notado, el comando
+	<command>passwd</command> es usado para asignar una contraseña
+	para un usuario. Ejecutando este comando como un usuario sin
+	parámetros cambiará la contraseña para este usuario. El
+	comando <command>passwd</command> preguntará por la contraseña
+	anterior una vez, y dos veces por la nueva contraseña:
       </para>
 
       <screen>
@@ -126,10 +132,10 @@ passwd: password updated successfully
       </screen>
 
       <para>
-	The <emphasis>root</emphasis> user can set passwords for users
-	by specifying the user name as a parameter. The
-	<command>passwd</command> command will only ask for the new
-	password. For example:
+	El usuario <emphasis>root</emphasis> puede asignar contraseñas
+	para usuarios especificando el nombre de usuario como
+	parámetro.  El comando <command>passwd</command> solamente
+	preguntará por la nueva contraseña. Por ejemplo:
       </para>
 
       <screen>
@@ -144,12 +150,12 @@ passwd: password updated successfully
       <title>adduser</title>
 
       <para>
-	The <command>adduser</command> command combines
-	<command>useradd</command> and <command>passwd</command> in an
-	interactive script. It will ask you to fill in information
-	about the account to-be created. After that it will create an
-	account based on the information you provided. The screen
-	listing below shows a sample session.
+	El comando <command>adduser</command> combina
+	<command>useradd</command> y <command>passwd</command> en un
+	script interactivo. Le pedirá llenar información sobre la
+	cuenta a ser creada. Después de eso creará una cuenta basado
+	en la información proveída. La pantalla listada abajo muestra
+	una sesión de ejemplo.
       </para>
 
       <screen>
@@ -205,8 +211,8 @@ Account setup complete.
       </screen>
 
       <para>
-	You can use the default values, or leave some fields empty, by
-	tapping the &lt;Enter&gt; key.
+	Puede usar los valores por defecto, o dejar algunos campos
+	vacíos presionando la tecla &lt;Enter&gt;.
       </para>
     </sect2>
 
@@ -214,12 +220,13 @@ Account setup complete.
       <title>userdel</title>
 
       <para>
-	Sometimes it is necessary to remove a user account from the
-	system. GNU/Linux offers the <command>userdel</command> tool
-	to do this. Just specify the username as a parameter to remove
-	that user from the system. For example, the following command
-	will remove the user account <emphasis>bob</emphasis> from the
-	system:
+	Algunas veces es necesario remover una cuenta de usuario del
+	sistema. GNU/Linux ofrece la herramienta
+	<command>userdel</command> para hacer esto. Solamente
+	espeficique el nombre de usuario como parámetros para remover
+	ése usuario del sistema. Por ejemplo, el siguiente comando
+	removerá la cuenta de usuario <emphasis>bob</emphasis> del
+	sistema:
       </para>
 
       <screen>
@@ -227,10 +234,11 @@ Account setup complete.
       </screen>
 
       <para>
-	This will only remove the user account, not the user's home
-	directory and mail spool. Just add the <parameter
-	class="command">-r</parameter> parameter to delete the user's
-	home directory and mail spool too. For example:
+	Esto solamente removerá la cuenta de usuario, no el directorio
+	home del usuario ni su cola de correo. Solamente agregue el
+	parámetro <parameter class="command">-r</parameter> para
+	también eliminar el directorio home y la cola de correo del
+	usuario. Por ejemplo:
       </para>
 
       <screen>
@@ -240,18 +248,18 @@ Account setup complete.
   </sect1>
 
   <sect1 xml:id="chap-usermgmt-su">
-    <title>Avoiding root usage with su</title>
+    <title>Evitando el uso de root con su</title>
 
     <para>
-      It is a good idea to avoid logging in as
-      <emphasis>root</emphasis>. There are many reasons for not doing
-      this. Accidentally typing a wrong command could cause bad things
-      to happen, and malicious programs can make a lot of damage when
-      you are logged in as <emphasis>root</emphasis>.  Still, there
-      are many situations in which you need to have root access. For
-      example, to do system administration, or to install new
-      software. Fortunately the <command>su</command> can give you
-      temporal root privileges.
+      Es aconsejable evitar loguearse como
+      <emphasis>root</emphasis>. Hay muchar razones para no hacer
+      esto. Teclear erróneamente un comando puede causar problemas, y
+      programas maliciosos pueden hacer mucho daño cuando se está
+      logueado como <emphasis>root</emphasis>. Aún asi, hay muchas
+      situaciones en las que requerirá acceder como root. Por ejemplo,
+      para realizar tareas de administración o para instalar nuevos
+      programas. Afortunadamente el comando <command>su</command>
+      puede darle temporalmente privilegios de usuario root.
     </para>
 
     <para>
