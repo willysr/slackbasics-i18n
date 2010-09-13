@@ -1,53 +1,57 @@
 <!-- $Id: netconfig.xml 295 2007-09-18 23:03:49Z danieldk $ -->
 
 <chapter id="sysadmin-netconfig"> <?dbhtml filename="netconfig.html"?>
-<title>Networking configuration</title>
+<title>Configuración de red</title>
 
 <sect1 id="sysadmin-netconfig-hardware">
 <title>Hardware</title>
 
-<bridgehead>Network cards (NICs)</bridgehead>
+<bridgehead>Tarjetas de red (NICs)</bridgehead>
 
-<para>
-Drivers for NICs are installed as kernel modules. The module for
-your NIC has to be loaded during the initialization of Slackware Linux.
-On most systems the NIC is automatically detected and configured
-during the installation of Slackware Linux. You can reconfigure
-your NIC with the <command>netconfig</command> command.
-<command>netconfig</command> adds the driver (module) for the detected
-card to <filename>/etc/rc.d/rc.netdevice</filename>. 
+<para>  
+    Los controladores para NICs se instalan como módulos del
+    kernel. El módulo para su NIC debe ser cargado durante la
+    inicialización de Slackware Linux. En la mayoría de los sistemas
+    la NIC es automáticamente detectada y configurada durante la
+    instalación de Slackware Linux. Usted puede reconfigurar su NIC
+    con el comando <command>netconfig</command>.
+    <command>netconfig</command> agrega el controlador (módulo) para
+    la tarjeta detectada a
+    <filename>/etc/rc.d/rc.netdevice</filename>.
 </para>
 
 <para>
-It is also possible to manually configure which modules should be
-loaded during the initialization of the system. This can be done
-by adding a <command>modprobe</command> line to
-<filename>/etc/rc.d/rc.modules</filename>. For example, if you want
-to load the module for 3Com 59x NICs (3c59x.o), add the following
-line to <filename>/etc/rc.d/rc.modules</filename> 
+    También es posible configurar manualmente qué módulos deberían ser
+    cargado durante la inicialización del sistema. Esto puede
+    realizarse agregando una línea <command>modprobe</command> en
+    <filename>/etc/rc.d/rc.modules</filename>. Por ejemplo, si quiere
+    cargar el módulo para NICs 3Com 59x (3c59x.o), agregue la
+    siguiente línea en <filename>/etc/rc.d/rc.modules</filename>:
 </para>
 
 <screen>
 /sbin/modprobe 3c59x
 </screen>
 
-<bridgehead>PCMCIA cards</bridgehead>
+<bridgehead>Tarjetas PCMCIA</bridgehead>
 
 <para>
-Supported PCMCIA cards are detected automatically by the PCMCIA
-software. The pcmcia-cs packages from the <quote>a</quote> disk set provides
-PCMCIA functionality for Slackware Linux.
+    Las tarjetas PCMCIA soportadas se detectan automáticamente por el
+    software PCMCIA. Los paquetes pcmcia-cs del conjunto de paquetes
+    <quote>a</quote> proveen funcionalidades PCMCIA para Slackware
+    Linux.
 </para> 
 
 </sect1>
 
 <sect1>
-<title>Configuration of interfaces</title>
+<title>Configuración de interfaces</title>
 
 <para>
-Network cards are available under Linux through so-called <quote>interfaces</quote>.
-The <command>ifconfig</command> command can be used to display the
-available interfaces:
+    Las tarjetas de red estan disponibles bajo Linux a través de
+    componentes denominados <quote>interfaces</quote>. El comando
+    <command>ifconfig</command> puede ser usado para mostrar las
+    interfaces disponibles:
 </para>
 
 <screen>
