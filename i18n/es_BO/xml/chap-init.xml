@@ -2,7 +2,7 @@
 
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:id="chap-init">
-  <title>System initialization</title>
+  <title> Inicialización del sistema</title>
 
   <para>
     This chapter describes the initialization of Slackware
