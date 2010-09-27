@@ -1,16 +1,17 @@
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:id="chap-install">
-  <title>Installing Slackware Linux</title>
+  <title>Instalando Slackware Linux</title>
 
   <sect1 xml:id="chap-install-bootcd">
-    <title>Booting the installation CD-ROM</title>
+    <title>Boteando el CD-ROM de instalación</title>
 
     <para>
-      The easiest method for booting the installation system is by
-      using the installation CD-ROM. The Slackware Linux installation
-      CD-ROM is a bootable CD, which means that the BIOS can boot the
-      CD, just like it can boot, for example, a floppy disk. Most
-      modern systems have a BIOS which supports CD-ROM booting.
+      El método mas sencillo para botear el sistema es usando el
+      CD-ROM de instalación. El CD-ROM de instalación de Slackware
+      Linux es un CD boteable, esto quiere decir que la BIOS puede
+      iniciar desde el CD, asi como puede iniciar desde discos
+      floppy. La mayoría de los sistemas modernos tienen una BIOS que
+      soporta el arranque desde CD-ROM.
     </para>
 
     <para>
