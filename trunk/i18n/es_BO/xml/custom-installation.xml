@@ -1,13 +1,14 @@
 <chapter id="getstarted-custominstall"> <?dbhtml filename="custom-installation.html" ?>
-  <title>Custom installation</title>
+  <title>Instalación personalizada</title>
 
   <para>
-    Sometimes you may want to do a custom installation of Slackware Linux,
-    for example to get better understanding of how GNU/Linux systems work,
-    or to prepare an automatic installation script. This chapter outlines
-    the steps that are required to install Slackware Linux manually. A
-    sample installation script is also provided in <xref
-    linkend="getstarted-custominstall-script" />.
+    Algunas veces usted podría querer realizar una instalación
+    personalizada de Slackware Linux, por ejemplo, para tener un mejor
+    entendimiento de como funciona un sistema GNU/Linux, o como
+    preparar un script de instalación automática. Este capítulo
+    remarca los pasos requeridos para instalar Slackware Linux
+    manualmente. Un script de instalación de ejemplo es también
+    proveído en <xref linkend="getstarted-custominstall-script" />.
   </para>
 
   <sect1 id="getstarted-custominstall-partition">
