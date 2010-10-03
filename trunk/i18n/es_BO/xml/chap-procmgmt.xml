@@ -4,26 +4,27 @@
 	 xmlns:xl="http://www.w3.org/1999/xlink" xml:lang="es"
 	 xml:id="chap-procmgmt">
 
-  <title>Process management</title>
+  <title>Administración de procesos</title>
 
   <sect1 xml:id="chap-procmgmt-theory">
-    <title>Theory</title>
+    <title>Teoría</title>
 
     <sect2 xml:id="chap-procmgmt-theory-proc">
-      <title>Processes</title>
+      <title>Procesos</title>
 
       <para>
-	A running instance of a program is called a
-	<emphasis>process</emphasis>. Each process has its own
-	protected memory, named the <emphasis>process address
-	space</emphasis>. This address space consists of two areas:
-	the <emphasis>text area</emphasis> and the <emphasis>data
-	area</emphasis>. The text area contains the actual program
-	code, and tells the system what to do. The data area stores
-	constant and runtime data of a process. Since there are many
-	processes on a system, and only one or a few processors, the
-	operating system kernel divides processor time between
-	processes. This process is called
+	Una instancia en ejecución de un programa es llamada
+	<emphasis>proceso</emphasis>. Cada proceso tiene su propia
+	memoria protegida, denominada <emphasis>process address
+	space</emphasis> (espacio de direccionamiento del
+	programa). Este espacio de direccionamiento consiste en dos
+	áreas: el <emphasis>text area</emphasis> el <emphasis>data
+	area</emphasis>. El text area contiene el código del programa
+	actual y le dice al sistema qué hacer. El data area almacena
+	datos constantes y de ejecución de un proceso. Debido a que
+	existen muchos procesos en un sistema y solamente uno o pocos
+	procesadores, el kernel del sistema operativo el tiempo del
+	procesador entre procesos. Este proceso es llamado
 	<emphasis>time-sharing</emphasis>.
       </para>
 
