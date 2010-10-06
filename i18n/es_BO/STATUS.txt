@@ -23,7 +23,7 @@ lines   file                   trad    1st-rev  2nd-rev
    652 chap-pkgmgmt.xml         OK       -       -
    703 chap-init.xml            OK       -       -
    758 custom-installation.xml  -        -       -
-   780 chap-procmgmt.xml        -        -       -
+   780 chap-procmgmt.xml        OK       -       -
    868 chap-install.xml         OK       -       -
   1044 chap-shell.xml           OK       -       -
   1924 chap-textproc.xml        -        -       -
