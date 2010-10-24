@@ -27,4 +27,4 @@ lines   file                   trad    1st-rev  2nd-rev
    868 chap-install.xml         OK       -       -
   1044 chap-shell.xml           OK       -       -
   1924 chap-textproc.xml        OK       -       -
-  3475 chap-filesystem.xml      -        -       -
+  3475 chap-filesystem.xml      OK       -       -
