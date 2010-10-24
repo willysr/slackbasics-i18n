@@ -3213,63 +3213,65 @@ proc             /proc            proc        defaults         0   0
       <title>Introducción</title>
 
       <para>
-	There are two security mechanisms for securing files: signing
-	files and encrypting files. Signing a file means that a
-	special digital signature is generated for a file. You, or
-	other persons can use the signature to verify the integrity of
-	the file. File encryption encodes a file in a way that only a
-	person for which the file was intended to read can read the
-	file.
+	Existen dos mecanismos de seguridad para archivos: firmar y
+	encriptar los archivos. Firmar un archivo significa que una
+	firma digital especial es generada para un archivo. Usted, u
+	otras personas pueden usar la firma para verificar la
+	integridad del archivo. La encriptación codifica un archivo de
+	forma que solamente puede ser leído por la persona a la que el
+	archivo está dirigido.
       </para>
 
       <para>
-	This system relies on two keys: the private and the public
-	key. Public keys are used to encrypt files, and files can only
-	be decrypted with the private key. This means that one can
-	sent his public key out to other persons. Others can use this
-	key to send encrypted files, that only the person with the
-	private key can decode. Of course, this means that the
-	security of this system depends on how well the private is
-	kept secret.
+	Este sistema se base en dos llaves: privada y pública. Las
+	llaves públicas son usadas para encriptar archivos, los cuales
+	solamente pueden ser desencriptados con la llave privada. Esto
+	significa que uno puede enviar su llave pública a otras
+	personas. Otras personas pueden usar esta llave pública para
+	enviar archivos encriptados, que solamente pueden ser
+	decodificados por la persona con la llave privada. Por
+	supuesto, esto significa que la seguridad de este sistema
+	depende de qué tan bien esta llave privada es mantenida en
+	secreto.
       </para>
 
       <para>
-	Slackware Linux provides an excellent tool for signing and
-	encrypting files, named GnuPG. GnuPG can be installed from the
-	<quote>n</quote> disk set.
+	Slackware Linux provee una excelente herramienta para firmar y
+	encriptar archivos, llamada GnuPG. GnuPG puede ser instalado
+	desde el conjunto de paquetes <quote>n</quote>.
       </para>
     </sect2>
 
     <sect2>
-      <title>Generating your private and public keys</title>
+      <title>Generando sus llaves pública y privada</title>
 
       <para>
-	Generating public and private keys is a bit complicated,
-	because GnuPG uses DSA keys by default. DSA is an encryption
-	algorithm, the problem is that the maximum key length of DSA
-	is 1024 bits, this is considered too short for the longer
-	term. That is why it is a good idea to use 2048 bit RSA
-	keys. This section describers how this can be done.
+	Generar las llaves pública y privada es un poco complicado,
+	porque GnuPG usa llaves DSA por defecto. DSA es un algoritmo
+	de encriptado, el problema es que la longitud máxima de llave
+	para DSA es de 1024 bits, esto es considerado demasiado corto
+	para términos largos. Por eso es recomendable usar llaves RSA
+	de 2048 bits. Esta sección describe cómo puede hacer esto.
       </para>
 
       <note>
 	<para>
-	  1024-bit keys were believed to be secure for a long
-	  time. But Bernstein's paper <emphasis>Circuits for Integer
-	  Factorization: a Proposal</emphasis> contests this, the
-	  bottom line is that it is quite feasible for national
-	  security agencies to produce hardware that can break keys in
-	  a relatively short amount of time.  Besides that it has be
-	  shown that 512-bit RSA keys can be broken in a relatively
-	  short time using common hardware. More information about
-	  these issues can by found in this e-mail to the cypherpunks
-	  list:
-	<ulink url="http://tin.le.org/vault/security/encryption/rsa1024.html" />
+	  Se pensaba que las llaves de 1024 bits eran seguras por un
+	  largo tiempo. Pero el documento de Bernstein
+	  <emphasis>Circuits for Integer Factorization: a
+	  Proposal</emphasis> debate esto, el punto flojo es que es
+	  bastante factible para una agencia de seguridad nacional
+	  producir hardware que puede romper llaves en relativamente
+	  corto tiempo. Además de mostrar que las llaves RSA de 512
+	  bits pueden ser rotas en relativamente poco tiempo usando
+	  hardware común. Puede encontrar mas información sobre estos
+	  temas en este email a la lista cypherpunks:
+	  <ulink url="http://tin.le.org/vault/security/encryption/rsa1024.html" />
 	</para>
       </note>
 
       <para>
-	We can generate a key by executing:
+	Podemos generar una llave ejecutando:
       </para>
 
       <screen>
@@ -3277,8 +3279,9 @@ $ <userinput>gpg --gen-key</userinput>
       </screen>
 
       <para>
-	The first question is what kind of key you would like to
-	make. We will choose <emphasis>(4) RSA (sign only)</emphasis>:
+	La primera pregunta es qué tipo de llave quisiera
+	crear. Nosotrs eligirermos <emphasis>(4) RSA (sign
+	only)</emphasis>:
       </para>
 
       <screen>
@@ -3290,9 +3293,9 @@ Your selection? <userinput>4</userinput>
       </screen>
 
       <para>
-	You will then be asked what the size of the key you want to
-	generate has to be. Type in <emphasis>2048</emphasis> to
-	generate a 2048 bit key, and press enter to continue.
+	Entonces se le pedirá el tamaño de la llave que quiere
+	generar.  Ingrese <emphasis>2048</emphasis> para generar una
+	llave de 2048 bits y presione enter para continuar.
       </para>
 
       <screen>
@@ -3300,10 +3303,10 @@ What keysize do you want? (1024) <userinput>2048</userinput>
       </screen>
 
       <para>
-	The next question is simple to answer, just choose what you
-	like. Generally speaking it is not a bad idea to let the key
-	be valid infinitely. You can always deactivate the key with a
-	special revocation certificate.
+	La siguiente pregunta es simple de responder, solamente elija
+	lo que quiera. Generalmente hablando no es una mala idea dejar
+	la llave válida infinitamente. Usted siempre puede desactivar
+	la llave con un certificado especial de revocación.
       </para>
 
       <screen>
@@ -3317,11 +3320,11 @@ Key is valid for? (0) <userinput>0</userinput>
       </screen>
 
       <para>
-	GnuPG will then ask for confirmation. After confirming your
-	name and e-mail address will be requested. GnuPG will also ask
-	for a comment, you can leave this blank, or you could fill in
-	something like <quote>Work</quote> or <quote>Private</quote>,
-	to indicate what the key is used for. For example:
+	GnuPG entonces pedirá confirmacióm. Después de confirmar se le
+	pedirá su nombre y dirección e-mail. GnuPG también pedirá un
+	comentario, puede dejar esto en blanco, o puede llenarlo con
+	algo como <quote>Trabajo</quote> o <quote>Privado</quote>,
+	para indicar para qué se usa la llave. Por ejemplo:
       </para>
 
       <screen>
@@ -3333,9 +3336,9 @@ You selected this USER-ID:
       </screen>
 
       <para>
-	GnuPG will the ask you to confirm your user ID. After
-	confirming it GnuPG will ask you to enter a password. Be sure
-	to use a good password:
+	GnuPG le pedirá confirmar su ID de usuario. Despues de
+	confirmarlo GnuPG le pedirá ingresar una contraseña. Asegúrese
+	de usar una buena contraseña:
       </para>
 
       <screen>
@@ -3345,13 +3348,13 @@ Enter passphrase:
       </screen>
 
       <para>
-	After entering the password twice GnuPG will generate the
-	keys. But we are not done yet. GnuPG has only generated a key
-	for signing information, not for encryption of information. To
-	continue, have a look at the output, and look for the key
-	ID. In the information about the key you will see
-	<emphasis>pub 2048R/</emphasis>. The key ID is printed after
-	this fragment.  In this example:
+	Después de ingresar la contraseña dos veces, GnuPG generará
+	las llaves. Pero aún no hemos terminado. GnuPG solamente ha
+	generado una llave para firmar información, no para encriptar
+	información. Para continuar, dé un vistazo a la salida y
+	busque el ID de llave. En la información sobre la llave usted
+	verá <emphasis>pub 2048R/</emphasis>. El ID de la llave se
+	imprime después de este fragmento. En este ejemplo:
       </para>
 
       <screen>
@@ -3363,11 +3366,11 @@ pub  2048R/8D080768 2004-07-16 John Doe (Work) &lt;john@doe.com&gt;
       </screen>
 
       <para>
-	the key ID is <emphasis>8D080768</emphasis>. If you lost the
-	output of the key generation you can still find the key ID in
-	the output of the <command>gpg --list-keys</command>
-	command. Use the key ID to tell GnuPG that you want to edit
-	your key:
+	el ID de llave es <emphasis>8D080768</emphasis>. Si usted
+	pierde la salida de la generación de llave, todavía puede
+	encontrar el ID de llave en la salida del comando <command>gpg
+	--list-keys</command>. Use el ID de llave para decirle a GnuPG
+	que quiere editar su llave:
       </para>
 
       <screen>
@@ -3375,7 +3378,7 @@ $ <userinput>gpg --edit-key &lt;Key ID&gt;</userinput>
       </screen>
 
       <para>
-	With the example key above the command would be:
+	Con el ejemplo anterior el comando sería:
       </para>
 
       <screen>
@@ -3383,8 +3386,8 @@ $ <userinput>gpg --edit-key 8D080768</userinput>
       </screen>
 
       <para>
-	GnuPG will now display a command prompt. Execute the
-	<command>addkey</command> command on this command prompt:
+	Ahora GnuPG mostrará una petición de comando. Ejecute el
+	comando <command>addkey</command> en esta petición:
       </para>
 
       <screen>
@@ -3392,7 +3395,8 @@ Command&gt; <userinput>addkey</userinput>
       </screen>
 
       <para>
-	GnuPG will now ask the password you used for your key:
+	Ahora GnuPG le pedirá la contraseña que usted usó para su
+	llave:
       </para>
 
       <screen>
@@ -3406,10 +3410,11 @@ Enter passphrase:
       </screen>
 
       <para>
-	After entering the password GnuPG will ask you what kind of
-	key you would like to create. Choose <emphasis>RSA (encrypt
-	only)</emphasis>, and fill in the information like you did
-	earlier (be sure to use a 2048 bit key).  For example:
+	Después de ingresar la contraseña GnuPG le pedirá el tipo de
+	llave que quisiera crear. Elija <emphasis>RSA (encrypt
+	only)</emphasis>, y llene la información como lo hizo
+	anteriormente (asegúrese de usar una llave de 2048 bits). Por
+	ejemplo:
       </para>
 
       <screen>
@@ -3431,9 +3436,10 @@ Key is valid for? (0) <userinput>0</userinput>
       </screen>
 
       <para>
-	And confirm that the information is correct. After the key is
-	generated you can leave the GnuPG command prompt, and save the
-	new key with the <command>save</command> command:
+	Y confirme que la información es correcta. Después de que la
+	llave es generada puede dejar la petición de comando de GnuPG,
+	y guarde la nueva llave con el comando
+	<command>save</command>:
       </para>
 
       <screen>
@@ -3441,32 +3447,34 @@ Command&gt; <userinput>save</userinput>
       </screen>
 
       <para>
-	Congratulations! You have now generated the necessary keys to
-	encrypt and decrypt e-mails and files. You can now configure
-	your e-mail client to use GnuPG. It is a good idea to store
-	the contents of the <filename>.gnupg</filename> directory on
-	some reliable medium, and store that in a safe place! If your
-	private key is lost you can't decrypt files and messages that
-	were encrypted with your public key. If the private key, and
-	your password are stolen, the security of this system is
-	completely compromised.
+	Felicidades! Ha generado las llaves necesarias para encriptar
+	y desencriptar archivos y e-mails. Ahora puede configurar su
+	cliente de e-mail para usar GnuPG. Es recomendable almacenar
+	el contenido del directorio <filename>.gnupg</filename> en
+	algún medio reliable, y guardar ese medio en un lugar
+	seguro!. Si su llave privada se pierde usted no puede
+	desencriptar archivos y mensajes que fueron encriptados con su
+	llave pública. Si la llave privada y su contraseña son
+	robados, la seguridad de este sistema está completamente
+	comprometida.
       </para>
     </sect2>
 
     <sect2>
-      <title>Exporting your public key</title>
+      <title>Exportando su llave pública</title>
 
       <para>
-	To make GnuPG useful, you have to give your public key to
-	people who send you files or e-mails. They can use your public
-	key to encrypt files, or use it to verify whether a file has a
-	correct signature or not. The key can be exported using the
-	<parameter class="command">--export</parameter> parameter. It
-	is also a good idea to specify the <parameter
-	class="command">--output</parameter> parameter, this will save
-	the key in a file. The following command would save the public
-	key of <emphasis>John Doe</emphasis>, used in earlier
-	examples, to the file <filename>key.gpg</filename>:
+	Para hacer uso útil de GnuPG, debe proveer su llave pública a
+	la gente a la que envía e-mails. Ellos pueden usar su llave
+	pública para encriptar archivos, o usarla para verificar si un
+	archivo tiene una firma correcta o no. Las llaves pueden ser
+	exportadas usando el parámetro <parameter
+	class="command">--export</parameter>. También es recomendable
+	especificar el parámetro <parameter
+	class="command">--output</parameter>, esto guardará la llave
+	en un archivo. El siguiente comando puede guardar la llave
+	pública de <emphasis>John Doe</emphasis>, usada en ejemplos
+	previos, al archivo <filename>key.gpg</filename>:
       </para>
 
       <screen>
@@ -3474,12 +3482,12 @@ $ <userinput>gpg --output key.gpg --export john@doe.com</userinput>
       </screen>
 
       <para>
-	This saves the key in binary format. Often it is more
-	convenient to use the so-called <quote>ASCII armored
-	output</quote>, which fits better for adding the key to
-	e-mails, or websites. You export an ASCII armored version of
-	the key by adding the <parameter
-	class="command">--armor</parameter> parameter:
+	Esto guarda la llave en formato binario. A menudo es mas
+	conveniente usar el llamado <quote>ASCII armored output
+	(salida ASCII blindada)</quote>, el cual se acopla mejor para
+	agregar la llave a e-mails o sitios web. Usted exporta una
+	version ASCII blindada de la llave agregando el parámetro
+	<parameter class="command">--armor</parameter>:
       </para>
 
       <screen>
@@ -3487,25 +3495,25 @@ $ <userinput>gpg --armor --output key.gpg --export john@doe.com</userinput>
       </screen>
 
       <para>
-	If you look at the <filename>key.gpg</filename> file you will
-	notice that the ASCII armored key is a much more comfortable
-	format.
+	Si mira el archivo <filename>key.gpg</filename> notará que la
+	llave ASCII blindada tiene un formato mucho mas comfortable.
       </para>
     </sect2>
 
     <sect2>
-      <title>Signatures</title>
+      <title>Firmas</title>
 
       <para>
-	With GPG you can make a signature for a file. This signature
-	is unique, because your signature can only be made with your
-	private key. This means that other people can check whether
-	the file was really sent by you, and whether it was in any way
-	altered or not. Files can be signed with the <parameter
-	class="command">--detach-sign</parameter> parameter. Let us
-	look at an example. This command will make a signature for the
-	<filename>memo.txt</filename> file. The signature will be
-	stored in <filename>memo.txt.sig</filename>.
+	Con GPG usted puede crear una firma para un archivo. Esta
+	firma es única, porque su firma solamente puede ser creada con
+	su llave privada. Esto significa que otras personas pueden
+	verificar si un archivo fué realmente enviado por usted, y si
+	fué alterado o no. Los archivos pueden ser firmados con el
+	parámetro <parameter
+	class="command">--detach-sign</parameter>. Vamos a ver un
+	ejemplo. Este comando creará una firma para el archivo
+	<filename>memo.txt</filename>. La firma será almacenada en
+	<filename>memo.txt.sig</filename>.
       </para>
 
       <screen>
@@ -3519,18 +3527,18 @@ Enter passphrase:
       </screen>
 
       <para>
-	As you can see, GnuPG will ask you to enter the password for
-	your private key. After you have entered the right password the
-	signature file (<filename>memo.txt.sig</filename>) will be
-	created.
+	Como puede ver, GnuPG le pedirá ingresar la contraseña para su
+	llave privada. Despues de que haya ingresado la contraseña
+	correcta, el archivo de firma
+	(<filename>memo.txt.sig</filename>) será creado.
       </para>
 
       <para>
-	You can verify a file with its signature using the <parameter
-	class="command">--verify</parameter> parameter. Specify the
-	signature file as a parameter to the <parameter
-	class="command">--verify</parameter> parameter. The file that
-	needs to be verified can be specified as the final parameter:
+	Puede verificar un archivo con su firma usando el parámetro
+	<parameter class="command">--verify</parameter>. Especifique
+	el archivo firma como parámetro para <parameter
+	class="command">--verify</parameter>. El archivo que necesita
+	ser verificado puede ser especificado como el parámetro final:
       </para>
 
       <screen>
@@ -3540,11 +3548,11 @@ gpg: Good signature from "John Doe (Work) &lt;john@doe.com&gt;"
       </screen>
 
       <para>
-	This will confirm that the file was indeed signed by
-	<emphasis>John Doe (Work) &lt;john@doe.com&gt;</emphasis>,
-	with the key <emphasis>8D080768</emphasis>, and that the file
-	is unchanged. Suppose the file was changed, GnuPG would have
-	complained about it loudly:
+	Esto confirmará que el archivo fué de hecho firmado por
+	<emphasis>John Doe (Work) &lt;john@doe.com&gt;</emphasis>, con
+	la llave <emphasis>8D080768</emphasis>, y que el archivo no
+	fue alterado. Suponga que el archivo fué modificado, GnuPG
+	podría alertar esto en voz alta:
       </para>
 
       <screen>
@@ -3555,22 +3563,23 @@ gpg: BAD signature from "John Doe (Work) &lt;john@doe.com&gt;"
     </sect2>
 
     <sect2>
-      <title>Encryption</title>
+      <title>Encriptado</title>
 
       <para>
-	One of the main features of GnuPG is encryption. Due to its
-	use of asymmetric cryptography, the person who encrypts a file
-	and the person who decrypts a file do not need to share a
-	key. You can encrypt a file with the public key of another
-	person, and that other person can decrypt it with his or her
-	private key. You can encrypt files with the <parameter
-	class="command">--encrypt</parameter>. If you do not specify a
-	user ID for which the file should be encrypted, GnuPG will
-	prompt for the user ID. You can specify the user ID with the
-	<parameter class="command">-r</parameter> parameter. In the
-	following example, the file <filename>secret.txt</filename>
-	will be encrypted for another person named <emphasis>John
-	Doe</emphasis>:
+	Una de las características principales de GnuPG es el cifrado
+	o encriptado. Debido al uso de criptografía asimétrica, la
+	persona que encripta un archivo y la persona que lo
+	desencripta no necesitan compartir una llave. Usted puede
+	encriptar un archivo con la llave pública de otra persona, y
+	esa otra persona puede desencriptarlo con su llave
+	privada. Puede encriptar archivos con el parámetro <parameter
+	class="command">--encrypt</parameter>. Si no especifica un ID
+	de usuario para el cual el archivo debería ser encriptado,
+	GnuPG pedirá el ID de usuario. Puede especificar el ID de
+	usuario con el parámetro <parameter
+	class="command">-r</parameter>. En el siguiente ejemplo, el
+	archivo <filename>secret.txt</filename> será encriptado para
+	otra persona llamada <emphasis>John Doe</emphasis>:
       </para>
 
       <screen>
@@ -3578,16 +3587,17 @@ $ <userinput>gpg --encrypt -r "John Doe" secret.txt</userinput>
       </screen>
 
       <para>
-	The user ID is quoted with double quotes for making sure that
-	the ID is interpreted as a single program argument. After the
-	encryption is completed, the encrypted version of the file
-	will be available as <filename>secret.txt.gpg</filename>.
+	El ID de usuario esta entre comillas para asegurarse de que el
+	ID es interpretado como un simple argumento de
+	programa. Después de que el encriptado es completado, la
+	versión encriptada del archivo estará disponible como
+	<filename>secret.txt.gpg</filename>.
       </para>
 
       <para>
-	The user who receives the file can decrypt it with the
-	<parameter class="command">--decrypt</parameter> parameter of
-	the <command>gpg</command> command:
+	El usuario que recibe el archivo puede desencriptarlo con el
+	parámetro <parameter class="command">--decrypt</parameter> del
+	comando <command>gpg</command>:
       </para>
 
       <screen>
@@ -3604,9 +3614,9 @@ gpg: encrypted with 2048-bit RSA key, ID 8D080768, created 2004-07-16
       </screen>
 
       <para>
-	In this example the <parameter
-	class="command">--output</parameter> parameter is used store
-	the decrypted content in <filename>secret.txt</filename>.
+	En este ejemplo el parámetro <parameter
+	class="command">--output</parameter> es usado para almacenar
+	el contenido desencriptado en <filename>secret.txt</filename>.
       </para>
     </sect2>
   </sect1>
