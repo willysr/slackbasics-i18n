@@ -6,9 +6,9 @@
 
     <para>
       Este libro fué escrito en DocBook/XML, y convertido a HTML y
-      XSL:FO con <command>xsltproc</command>. La última versión
-      está siempre disponible en: <ulink
-      url="http://www.slackbasics.org/" />.
+      XSL:FO con <command>xsltproc</command>. La última versión está
+      siempre disponible en: <ulink url="http://www.slackbasics.org/"
+      />.
     </para>
   </sect1>
 
@@ -16,12 +16,12 @@
     <title>Convenciones</title>
 
     <para>
-      Esta sección brinda un resumen de las convenciones utilizadas en 
+      Esta sección brinda un resumen de las convenciones utilizadas en
       el libro.
     </para>
 
     <sect2 xml:id="chap-book-conventions-filenames">
-      <title>Nombres de archivos</title>
+      <title>Nombres de archivo</title>
 
       <para>
 	Los archivos o directorios son mostrados como:
@@ -34,8 +34,8 @@
       <title>Comandos</title>
 
       <para>
-	Los comandos se muestran como texto resaltado. 
-	Por ejemplo:<command>ls -l</command>
+	Los comandos se muestran como texto resaltado.  Por
+	ejemplo:<command>ls -l</command>
       </para>
     </sect2>
 
@@ -47,23 +47,24 @@
       </para>
 
       <screen>
-	Hello world!
+Hello world!
       </screen>
 
       <para>
-	Si los comandos son ingresados en la salida de pantalla,
-	serán impresos como texto resaltado:
+	Si los comandos son ingresados en la salida de pantalla, serán
+	mostrados como texto resaltado:
       </para>
 
-      <screen>$<command>command</command>
-	Output
+      <screen>
+$<command>command</command>
+Output
       </screen>
 
       <para>
 	Si un comando se ejecuta como root, la consola será mostrada
-	como <quote>#</quote>. Si un comando es ejecutado como 
-	usuario normal sin privilegios, la consola se mostrará
-	como <quote>$</quote>.
+	como <quote>#</quote>. Si un comando es ejecutado como usuario
+	normal sin privilegios, la consola se mostrará como
+	<quote>$</quote>.
       </para>
     </sect2>
 
@@ -71,10 +72,10 @@
       <title>Notas</title>
 
       <para>
-	Algunas secciones contienen notas extra. No es necesario 
-	saber la información en las notas, pero las notas pueden
-	proveer información valiosa, o referencias a información.
-	Las notas son mostradas asi:
+	Algunas secciones contienen notas extra. No es necesario saber
+	la información en las notas, pero las notas pueden proveer
+	información valiosa, o referencias a información.  Las notas
+	se muestran de esta forma:
       </para>
 
       <note>
