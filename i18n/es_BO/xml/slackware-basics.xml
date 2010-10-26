@@ -6,7 +6,7 @@
   xml:lang="es">
 
   <info>
-    <title>Slackware Linux Basics</title>
+    <title>Fundamentos de Slackware Linux</title>
     <subtitle>Para Slackware Linux 12.0</subtitle>
     <pubdate>Thu Sep 27 10:20:04 CEST 2007</pubdate>
     <authorgroup>
@@ -36,9 +36,9 @@
       </para>
 
       <para>
-	Linux es una marca registrada de Linus Torvalds. Slackware
-	es una marca registrada de Patrick Volkerding y Slackware 
-	Linux, Inc. UNIX es una marca registrada de The Open Group.
+	Linux es una marca registrada de Linus Torvalds. Slackware es
+	una marca registrada de Patrick Volkerding y Slackware Linux,
+	Inc. UNIX es una marca registrada de The Open Group.
       </para>
     </legalnotice>
   </info>
@@ -59,7 +59,7 @@
   </part>
 
   <part xml:id="basics">
-    <title>Slackware Linux Basics</title>
+    <title>Fundamentos de Slackware Linux</title>
 
     <xi:include href="chap-shell.xml"/>
     <xi:include href="chap-filesystem.xml"/>

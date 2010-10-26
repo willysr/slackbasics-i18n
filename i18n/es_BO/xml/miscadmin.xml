@@ -1,7 +1,7 @@
 <!-- $Id: miscadmin.xml 283 2007-09-18 20:14:31Z danieldk $ -->
 
 <chapter id="sysadmin-misc"> <?dbhtml filename="miscadmin.html"?>
-  <title>Miscellaneous</title>
+  <title>Misceláneo</title>
 
   <sect1 id="sysadmin-misc-cron">
     <sect1info>
@@ -9,7 +9,7 @@
       <author>
         <firstname>Murray</firstname>
 	<surname>Stokely</surname>
-	<contrib>Written by </contrib>
+	<contrib>Escrito por </contrib>
       </author>
     </authorgroup>
 
@@ -25,30 +25,36 @@
     <indexterm><primary>crontab file</primary></indexterm>
     <indexterm><primary>scheduling</primary><secondary>tasks</secondary></indexterm>
 
-    <para>Slackware Linux incluye una implementación del clásico 
-	demonio UNIX cron, que permite a los usuarios programar tareas 
-	para su ejecución en intervalos regulares. Cada usuario puede 
-	crear, remover, o modificar un archivo crontab individual. Este 
-	archivo crontab especifica comandos o scripts a ser ejecutados 
-	en intervalos de tiempo especificados. Líneas vacías o que 
-	empiezan con numeral (<quote><literal>#</literal></quote>) 
-	son ignoradas.</para>
+    <para>
+      Slackware Linux incluye una implementación del clásico demonio
+      UNIX cron, que permite a los usuarios programar tareas para su
+      ejecución en intervalos regulares. Cada usuario puede crear,
+      remover, o modificar un archivo crontab individual. Este archivo
+      crontab especifica comandos o scripts a ser ejecutados en
+      intervalos de tiempo especificados. Líneas vacías o que empiezan
+      con numeral (<quote><literal>#</literal></quote>) son
+      ignoradas.
+    </para>
 
-    <para>Cada entrada en el archivo crontab debe contener 
-	  6 campos separados por espacios. Estos campos son: 
-	  minuto, hora, día, mes, día de la semana y comando. 
-	  Los cinco campos iniciales pueden contener un valor 
-	  de tiempo o el caracter especial <quote><literal>*</literal></quote>
-	  para representar cualquier valor de tiempo para ese campo. 
-	  Por ejemplo, para tener corriendo el comando <command>date</command> 
-	  cada día a las 6:10 AM, la siguiente entrada puede ser usada.</para>
+    <para>
+      Cada entrada en el archivo crontab debe contener 6 campos
+      separados por espacios. Estos campos son: minuto, hora, día,
+      mes, día de la semana y comando.  Los cinco campos iniciales
+      pueden contener un valor de tiempo o el caracter especial
+      <quote><literal>*</literal></quote> para representar cualquier
+      valor de tiempo para ese campo.  Por ejemplo, para tener
+      corriendo el comando <command>date</command> cada día a las 6:10
+      AM, la siguiente entrada puede ser usada.
+    </para>
 
     <programlisting>10 6 * * * date</programlisting>
 
-    <para>El crontab de un usuario puede ser visto con el 
-	comando <command>crontab -l</command>. Para una introducción 
-	mas detallada a la sintaxis de un archivo crontab, examinemos 
-	el <emphasis>root</emphasis> crontab.</para>
+    <para>
+      El crontab de un usuario puede ser visto con el comando
+      <command>crontab -l</command>. Para una introducción mas
+      detallada a la sintaxis de un archivo crontab, examinemos el
+      <emphasis>root</emphasis> crontab.
+    </para>
 
     <screen># <userinput>crontab -l</userinput>
 # If you don't want the output of a cron job mailed to you, you have to direct
@@ -77,54 +83,73 @@
 
     <calloutlist>
       <callout arearefs="co-crontab-1">
-        <para>El primer campo, <literal>47</literal>, especifica que 
-          este trabajo debería ocurrir a los 47 minutos despues de la hora.</para>
+        <para>
+	  El primer campo, <literal>47</literal>, especifica que este
+	  trabajo debería ocurrir a los 47 minutos despues de la hora.
+	</para>
       </callout>
 
       <callout arearefs="co-crontab-2">
-        <para>El segundo campo, <literal>*</literal>, es un caracter especial,
-          este trabajo debería ocurrir <emphasis>cada</emphasis> hora.</para>
+        <para>
+	  El segundo campo, <literal>*</literal>, es un caracter
+	  especial, este trabajo debería ocurrir
+	  <emphasis>cada</emphasis> hora.
+	</para>
       </callout>
 
       <callout arearefs="co-crontab-3">
-        <para>El tercer campo, <literal>*</literal>, es un caracter especial,
-          este trabajo debería ocurrir <emphasis>cada</emphasis> día.</para>
+        <para>
+	  El tercer campo, <literal>*</literal>, es un caracter
+	  especial, este trabajo debería ocurrir
+	  <emphasis>cada</emphasis> día.
+	</para>
       </callout>
 
       <callout arearefs="co-crontab-4">
-        <para>El cuarto campo, <literal>*</literal>, es un caracter especial,
-          este trabajo debería ocurrir <emphasis>cada</emphasis> mes.</para>
+        <para>
+	  El cuarto campo, <literal>*</literal>, es un caracter
+	  especial, este trabajo debería ocurrir
+	  <emphasis>cada</emphasis> mes.
+	</para>
       </callout>
 
       <callout arearefs="co-crontab-5">
-        <para>El quinto campo, <literal>*</literal>, es un caracter especial,
-		  este trabajo debería ocurrir <emphasis>cada</emphasis> día de la semana.</para>          
+        <para>
+	  El quinto campo, <literal>*</literal>, es un caracter
+	  especial, este trabajo debería ocurrir
+	  <emphasis>cada</emphasis> día de la semana.
+	</para>
       </callout>
 
       <callout arearefs="co-crontab-6">
-        <para>El sexto campo, <command>/usr/bin/run-parts
-	  /etc/cron.hourly 1> /dev/null</command>, especifica 
-	  el comando que debería ser ejecutado en la especificación 
-	  de tiempo definida en los cinco primeros campos.</para>
+        <para>
+	  El sexto campo, <command>/usr/bin/run-parts /etc/cron.hourly
+	  1> /dev/null</command>, especifica el comando que debería
+	  ser ejecutado en la especificación de tiempo definida en los
+	  cinco primeros campos.
+	</para>
       </callout>
     </calloutlist>
 
     <indexterm><primary>periodic scripts</primary></indexterm>
     <indexterm><primary>slocate</primary></indexterm>
 
-    <para>El root crontab por defecto esta configurado para 
-	  ejecutar scripts en <filename>/etc/cron.monthly</filename> de 
-	  forma mensual, los scripts en <filename>/etc/cron.weekly</filename> 
-	  de forma semanal, los scripts en <filename>/etc/cron.daily</filename> 
-	  de forma diaria y los scripts en <filename>/etc/cron.hourly</filename> 
-	  cada hora. Por esta razón no es estrictamente necesario para 
-	  un administrador entender los trabajos internos de cron en absoluto. 
-	  Con Slackware Linux, puede simplemente agregar un nuevo script en 
-	  alguno de los directorios listados anteriormente para programar 
-	  una nueva tarea periódica. De hecho, revisar esos directorios 
-	  le data una buena idea del trabajo que Slackware Linux realiza 
-	  detrás de escenas de forma regular para mantener cosas como la 
-	  base de datos  <command>slocate</command> actualizada.</para>
+    <para>
+      El root crontab por defecto esta configurado para ejecutar
+      scripts en <filename>/etc/cron.monthly</filename> de forma
+      mensual, los scripts en <filename>/etc/cron.weekly</filename> de
+      forma semanal, los scripts en
+      <filename>/etc/cron.daily</filename> de forma diaria y los
+      scripts en <filename>/etc/cron.hourly</filename> cada hora. Por
+      esta razón no es estrictamente necesario para un administrador
+      entender los trabajos internos de cron en absoluto.  Con
+      Slackware Linux, puede simplemente agregar un nuevo script en
+      alguno de los directorios listados anteriormente para programar
+      una nueva tarea periódica. De hecho, revisar esos directorios le
+      data una buena idea del trabajo que Slackware Linux realiza
+      detrás de escenas de forma regular para mantener cosas como la
+      base de datos <command>slocate</command> actualizada.
+    </para>
 
   </sect1>
 
@@ -135,18 +160,18 @@
     <indexterm><primary>DMA</primary><secondary>switching on</secondary></indexterm>
 
     <para>
-	  Muchos discos modernos ofrecen varias características para 
-	  incrementar el rendimiento y mejorar la integridad de disco. 
-	  Muchas de estas características pueden ser personalizadas con el 
-	  comando <command>hdparm</command>. Sea cuidadoso cambiando 
-	  configuraciones de disco con esta utilidad, porque algunos cambios 
-	  pueden dañar la información en su disco.
+	  Muchos discos modernos ofrecen varias características para
+	  incrementar el rendimiento y mejorar la integridad de disco.
+	  Muchas de estas características pueden ser personalizadas
+	  con el comando <command>hdparm</command>. Sea cuidadoso
+	  cambiando configuraciones de disco con esta utilidad, porque
+	  algunos cambios pueden dañar la información en su disco.
     </para>
 
     <para>
-	  Puede obtener un resumen de las configuraciones activas para 
-	  un disco proveyendo el nodo dispositivo del disco como parámetro 
-	  para <command>hdparm</command>:
+	  Puede obtener un resumen de las configuraciones activas para
+	  un disco proveyendo el nodo dispositivo del disco como
+	  parámetro para <command>hdparm</command>:
     </para>
 
     <screen>
@@ -164,12 +189,12 @@
     </screen>
 
     <para>
-	  Una causa común para mal rendimiento de disco es que DMA no 
-	  fue automáticamente usada por el kernel para un disco. DMA 
-	  acelerará el rendimiento I/O y disminuirá el uso de CPU al 
-	  hacer posible que el disco transfiera información del mismo 
-	  a la memoria del sistema. Si DMA esta desactivado, el resumen 
-	  de las configuraciones mostraría esta línea:
+	  Una causa común para mal rendimiento de disco es que DMA no
+	  fue automáticamente usada por el kernel para un disco. DMA
+	  acelerará el rendimiento I/O y disminuirá el uso de CPU al
+	  hacer posible que el disco transfiera información del mismo
+	  a la memoria del sistema. Si DMA esta desactivado, el
+	  resumen de las configuraciones mostraría esta línea:
     </para>
 
     <screen>
@@ -177,9 +202,9 @@ using_dma    =  0 (off)
     </screen>
 
     <para>
-	  Puede fácilmente activar DMA para este disco con el 
-	  parámetro <parameter class="command">-d</parameter> de 
-      <command>hdparm</command>:
+	  Puede fácilmente activar DMA para este disco con el
+	  parámetro <parameter class="command">-d</parameter> de
+	  <command>hdparm</command>:
     </para>
 
     <screen>
@@ -191,13 +216,13 @@ using_dma    =  0 (off)
     </screen>
 
     <para>
-	  Puede hacer esto durante cada inicio del sistema agregando 
+	  Puede hacer esto durante cada inicio del sistema agregando
 	  el comando hdparm a <filename>/etc/rc.d/rc.local</filename>.
     </para>
 
     <para>
-	  El parámetro <parameter class="command">-i</parameter> de 
-	  <command>hdparm</command> es también muy útil, porque provee 
+	  El parámetro <parameter class="command">-i</parameter> de
+	  <command>hdparm</command> es también muy útil, porque provee
 	  información detallada acerca del disco:
     </para>
 
@@ -222,25 +247,27 @@ using_dma    =  0 (off)
   </sect1>
 
   <sect1 id="sysadmin-memory-hdparm">
-    <title>Monitoreando uso de memoria</title>
+    <title>Monitoreando el uso de memoria</title>
 
     <para>
-	  En algunas situaciones es útil diagnosticar información sobre cómo 
-	  es usada la memoria. Por ejemplo, en un servidor que este rindiendo 
-	  mal usted querria verificar si la escasez de RAM esta causando el uso 
-	  de la memoria de intercambio, o tal vez esta iniciando un servicio de red 
-	  y quiere hallar los parámetros óptimos de caching. Slackware Linux provee 
-	  algunas herramientas que le ayudan a analizae cómo la memoria es usada.
+	  En algunas situaciones es útil diagnosticar información
+	  sobre cómo es usada la memoria. Por ejemplo, en un servidor
+	  que este rindiendo mal usted querria verificar si la escasez
+	  de RAM esta causando el uso de la memoria de intercambio, o
+	  tal vez esta iniciando un servicio de red y quiere hallar
+	  los parámetros óptimos de caching. Slackware Linux provee
+	  algunas herramientas que le ayudan a analizae cómo la
+	  memoria es usada.
     </para>
 
     <sect2 id="sysadmin-misc-memory-vmstat">
       <title>vmstat</title>
 
       <para>
-	    <command>vmstat</command> es un comando que puede proveer 
-		estadísticas sobre varias partes de la memoria virtual del sistema. 
-		Sin parámetros extra <command>vmstat</command> provee un 
-		resumen de algunas estadísticas relevantes:
+	    <command>vmstat</command> es un comando que puede proveer
+	    estadísticas sobre varias partes de la memoria virtual del
+	    sistema.  Sin parámetros extra <command>vmstat</command>
+	    provee un resumen de algunas estadísticas relevantes:
       </para>
 
       <screen>
@@ -251,51 +278,58 @@ procs -----------memory---------- ---swap-- -----io---- --system-- ----cpu----
       </screen>
 
       <para>
-	    Ya que solamente estamos viendo el uso de memoria en esta sección, 
-		solamente veremos a los cmapos <emphasis>memory</emphasis> y <emphasis>swap</emphasis>.
+	    Ya que solamente estamos viendo el uso de memoria en esta
+	    sección, solamente veremos a los cmapos
+	    <emphasis>memory</emphasis> y <emphasis>swap</emphasis>.
       </para>
 
       <itemizedlist>
         <listitem>
           <para>
-            <emphasis>swpd</emphasis>: La cantidad de memoria virtual siendo usada.
+            <emphasis>swpd</emphasis>: La cantidad de memoria virtual
+            siendo usada.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis>free</emphasis>: La cantidad de memoria que no es usada en ese momento.
+            <emphasis>free</emphasis>: La cantidad de memoria que no
+            es usada en ese momento.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis>buff</emphasis>: La cantidad de memoria usada como buffers.
+            <emphasis>buff</emphasis>: La cantidad de memoria usada
+            como buffers.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis>cache</emphasis>: La cantidad de memoria usada como caché.
+            <emphasis>cache</emphasis>: La cantidad de memoria usada
+            como caché.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis>si</emphasis>: La cantidad de memoria que es intercambiada 
-			desde el disco por segundo.
+            <emphasis>si</emphasis>: La cantidad de memoria que es
+            intercambiada desde el disco por segundo.
           </para>
         </listitem>
         <listitem>
           <para>
-            <emphasis>si</emphasis>: La cantidad de memoria que es intercambiada 
-			hacia el disco por segundo.
+            <emphasis>si</emphasis>: La cantidad de memoria que es
+            intercambiada hacia el disco por segundo.
           </para>
         </listitem>
       </itemizedlist>
 
       <para>
-	    Es a veces útil ver cómo el uso de memoria cambia durante el tiempo. 
-		Puede agregar un intérvalo como parámetro a <command>vmstat</command> 
-		para ejecutar <command>vmstat</command> continuamente, imprimiendo las 
-		estadísticas actuales. Este intérvalo esta en segundos. Entonces, si 
-		quiere obtener estadísticas actualizadas cada segundo, puede ejecutar:
+	    Es a veces útil ver cómo el uso de memoria cambia durante
+	    el tiempo.  Puede agregar un intérvalo como parámetro a
+	    <command>vmstat</command> para ejecutar
+	    <command>vmstat</command> continuamente, imprimiendo las
+	    estadísticas actuales. Este intérvalo esta en
+	    segundos. Entonces, si quiere obtener estadísticas
+	    actualizadas cada segundo, puede ejecutar:
       </para>
 
       <screen>
@@ -309,11 +343,12 @@ procs -----------memory---------- ---swap-- -----io---- --system-- ----cpu----
       </screen>
 
       <para>
-	    Adicionalmente, puede decirle a <command>vmstat</command>, cuantas 
-		veces debería devolver estas estadísticas (en vez de hacerla infinitamente). 
-		Por ejemplo, si quisiera imprimir estas estadísticas cada dos segundos y 
-		cinco veces en total, usted podría ejecutar <command>vmstat</command> 
-		de la siguiente manera:
+	    Adicionalmente, puede decirle a <command>vmstat</command>,
+	    cuantas veces debería devolver estas estadísticas (en vez
+	    de hacerla infinitamente).  Por ejemplo, si quisiera
+	    imprimir estas estadísticas cada dos segundos y cinco
+	    veces en total, usted podría ejecutar
+	    <command>vmstat</command> de la siguiente manera:
       </para>
 
       <screen>

@@ -7,10 +7,10 @@
 <title>Introducción</title>
 
 <para>
-Apache es el servidor web más popular desde Abril de 1996. Fué originalmente
-basado en NCSA httpd, y ha crecido como un completo servidor HTTP. 
-Slackware Linux actualmente utiliza la rama 1.3.x de Apache; este capítulo
-está dirigido a esta versión.
+  Apache es el servidor web más popular desde Abril de 1996. Fué
+  originalmente basado en NCSA httpd, y ha crecido como un completo
+  servidor HTTP.  Slackware Linux actualmente utiliza la rama 1.3.x de
+  Apache; este capítulo está dirigido a esta versión.
 </para>
 
 </sect1>
@@ -19,16 +19,17 @@ está dirigido a esta versión.
 <title>Instalación</title>
 
 <para>
-Apache puede ser instalado agregando el paquete <filename>apache</filename> 
-de el directorio <quote>n</quote> en el disco de instalación. 
-Si también quiere utilizar PHP, los paquetes <filename>php</filename>
-(directorio <quote>n</quote>) y <filename>mysql</filename> (directorio
-<quote>ap</quote>) son requeridos. MySQL es requerido, por que el paquete 
-precompilado de PHP depende de las librerías compartidas de MySQL. No es
-necesario ejecutar MySQL para soportar PHP. Después de instalar Apache, 
-puede ser iniciado automáticamente al iniciar el sistema dando permisos 
-de ejecución al script <filename>/etc/rc.d/rc.httpd</filename>. Puede 
-hacer esto ejecutando:
+  Apache puede ser instalado agregando el paquete
+  <filename>apache</filename> de el directorio <quote>n</quote> en el
+  disco de instalación.  Si también quiere utilizar PHP, los paquetes
+  <filename>php</filename> (directorio <quote>n</quote>) y
+  <filename>mysql</filename> (directorio <quote>ap</quote>) son
+  requeridos. MySQL es requerido, por que el paquete precompilado de
+  PHP depende de las librerías compartidas de MySQL. No es necesario
+  ejecutar MySQL para soportar PHP. Después de instalar Apache, puede
+  ser iniciado automáticamente al iniciar el sistema dando permisos de
+  ejecución al script <filename>/etc/rc.d/rc.httpd</filename>. Puede
+  hacer esto ejecutando:
 </para>
 
 <screen>
@@ -36,14 +37,14 @@ hacer esto ejecutando:
 </screen> 
 
 <para>
-La configuración de Apache puede ser modificada en el archivo 
-<filename>/etc/apache/httpd.conf</filename>. Apache puede ser 
-detenido/iniciado/reiniciado en cualquier momento con el comando 
-<command>apachectl</command>, y los parámetros
-<parameter class="command">stop</parameter>, <parameter
-class="command">start</parameter> y <parameter
-class="command">restart</parameter>. Por ejemplo, ejecute el 
-siguiente comando para reiniciar Apache:
+  La configuración de Apache puede ser modificada en el archivo
+  <filename>/etc/apache/httpd.conf</filename>. Apache puede ser
+  detenido/iniciado/reiniciado en cualquier momento con el comando
+  <command>apachectl</command>, y los parámetros <parameter
+  class="command">stop</parameter>, <parameter
+  class="command">start</parameter> y <parameter
+  class="command">restart</parameter>. Por ejemplo, ejecute el
+  siguiente comando para reiniciar Apache:
 </para>
 
 <screen>
@@ -57,12 +58,13 @@ siguiente comando para reiniciar Apache:
 <title>Directorios de Usuario</title>
 
 <para>
-Apache provee soporte para los denominados directorios de usuario. Esto
-quiere decir que cada usuario tiene un espacio web en la forma 
-<emphasis>http://host/~user/</emphasis>. El contenido <quote>~user/</quote>
-es almacenado en un subdirectorio en el directorio base del usuario. Este
-directorio puede ser especificado utilizando la opción <quote>UserDir</quote> 
-en <filename>httpd.conf</filename>, por ejemplo:
+  Apache provee soporte para los denominados directorios de
+  usuario. Esto quiere decir que cada usuario tiene un espacio web en
+  la forma <emphasis>http://host/~user/</emphasis>. El contenido
+  <quote>~user/</quote> es almacenado en un subdirectorio en el
+  directorio base del usuario. Este directorio puede ser especificado
+  utilizando la opción <quote>UserDir</quote> en
+  <filename>httpd.conf</filename>, por ejemplo:
 </para>
 
 <screen>
@@ -70,10 +72,10 @@ UserDir public_html
 </screen>
 
 <para>
-Esto especifica que el directorio <filename>public_html</filename> debería
-ser usado para almacenar las páginas web. Por ejemplo, las páginas web en
-la URL <emphasis>http://host/~snail/</emphasis> son almacenadas en 
-<filename>/home/snail/public_html</filename>.
+  Esto especifica que el directorio <filename>public_html</filename>
+  debería ser usado para almacenar las páginas web. Por ejemplo, las
+  páginas web en la URL <emphasis>http://host/~snail/</emphasis> son
+  almacenadas en <filename>/home/snail/public_html</filename>.
 </para>
 
 </sect1>
@@ -82,25 +84,26 @@ la URL <emphasis>http://host/~snail/</emphasis> son almacenadas en
 <title>Hosts Virtuales</title>
 
 <para>
-El archivo raíz por defecto en Apache bajo Slackware Linux es 
-<filename>/var/www/htdocs</filename>. Sin el uso de hosts virtuales
-cada cliente conectado al servidor Apache recibirá el sitio web 
-de este directorio. Entonces, si tenemos dos nombres de host
-apuntando al servidor, <quote>www.example.org</quote> y 
-<quote>forum.example.org</quote>, ambos serían vistos como el
-mismo sitio web. Usted puede separas sitios para diferentes 
-nombres de host utilizando hosts virtuales.
+  El archivo raíz por defecto en Apache bajo Slackware Linux es
+  <filename>/var/www/htdocs</filename>. Sin el uso de hosts virtuales
+  cada cliente conectado al servidor Apache recibirá el sitio web de
+  este directorio. Entonces, si tenemos dos nombres de host apuntando
+  al servidor, <quote>www.example.org</quote> y
+  <quote>forum.example.org</quote>, ambos serían vistos como el mismo
+  sitio web. Usted puede separas sitios para diferentes nombres de
+  host utilizando hosts virtuales.
 </para>
 
 <para>
-En este ejemplo veremos cómo puede utilizar dos hosts virtuales, uno
-para <quote>www.example.org</quote>, con el documento raíz en 
-<filename>/var/www/htdocs-www</filename>, y <quote>forum.example.org</quote>, 
-con el documento raíz en <filename>/var/www/htdocs-forum</filename>. 
-Primeramente debemos especificar que direcciones IP serán escuchadas por 
-Apache. En algún lugar en el archivo de configuración 
-<filename>/etc/apache/httpd.conf</filename> usted encontrará la siguiente 
-linea:
+  En este ejemplo veremos cómo puede utilizar dos hosts virtuales, uno
+  para <quote>www.example.org</quote>, con el documento raíz en
+  <filename>/var/www/htdocs-www</filename>, y
+  <quote>forum.example.org</quote>, con el documento raíz en
+  <filename>/var/www/htdocs-forum</filename>.  Primeramente debemos
+  especificar que direcciones IP serán escuchadas por Apache. En algún
+  lugar en el archivo de configuración
+  <filename>/etc/apache/httpd.conf</filename> usted encontrará la
+  siguiente linea:
 </para>
 
 <screen>
@@ -108,13 +111,13 @@ linea:
 </screen>
 
 <para>
-Esta linea debe ser descomentada para utilizar hosts virtuales basados
-en nombre. Quite el caracter (#) y cambie el parámetro a <quote>BindAddress
-IP:port</quote>, ó <quote>BindAddress *:port</quote> si quiere que 
-Apache enlace a todas las direcciones IP que el host contiene. Suponga que
-quiere proveer hosts virtuales para la dirección IP 192.168.1.201 en el 
-puerto 80 (el puerto Apache por defecto), deberíamos cambiar la línea
-quedando así:
+  Esta linea debe ser descomentada para utilizar hosts virtuales
+  basados en nombre. Quite el caracter (#) y cambie el parámetro a
+  <quote>BindAddress IP:port</quote>, ó <quote>BindAddress
+  *:port</quote> si quiere que Apache enlace a todas las direcciones
+  IP que el host contiene. Suponga que quiere proveer hosts virtuales
+  para la dirección IP 192.168.1.201 en el puerto 80 (el puerto Apache
+  por defecto), deberíamos cambiar la línea quedando así:
 </para>
 
 <screen>
@@ -122,8 +125,8 @@ NameVirtualHost 192.168.1.201:80
 </screen>
 
 <para>
-En algún lugar por debajo de la línea NameVirtualHost, puede encontrar
-un ejemplo comentado de un host virtual:
+  En algún lugar por debajo de la línea NameVirtualHost, puede
+  encontrar un ejemplo comentado de un host virtual:
 </para>
 
 <screen>
@@ -137,10 +140,10 @@ un ejemplo comentado de un host virtual:
 </screen>
 
 <para>
-Puede utilizar este ejemplo como guía. Por ejemplo, si quisiéramos
-utilizar todos los valores por defecto, y además quisiéramos 
-escribir los logs de cada host virtual al log de Apache por defecto, 
-agregaríamos estas lineas:
+  Puede utilizar este ejemplo como guía. Por ejemplo, si quisiéramos
+  utilizar todos los valores por defecto, y además quisiéramos
+  escribir los logs de cada host virtual al log de Apache por defecto,
+  agregaríamos estas lineas:
 </para>
 
 <screen>

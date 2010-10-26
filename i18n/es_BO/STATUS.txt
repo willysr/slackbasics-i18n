@@ -1,14 +1,14 @@
 lines   file                   trad    1st-rev  2nd-rev
 ------+------------------------+--------+-------+-------
-    38 preface.xml              OK       -       -
-    85 chap-book.xml            OK       -       -
-   117 bind.xml                 OK       -       -
-   131 chap-x11.xml             OK       -       -   
-   143 slackware-basics.xml     OK       -       -    
-   149 inetd.xml                OK       -       -
-   156 apache.xml               OK       -       -
-   181 security.xml             OK       -       -
-   216 chap-help.xml            OK       -       -
+    38 preface.xml              OK       OK      -
+    85 chap-book.xml            OK       OK      -
+   117 bind.xml                 OK       OK      -
+   131 chap-x11.xml             OK       OK      -   
+   143 slackware-basics.xml     OK       OK      -    
+   149 inetd.xml                OK       OK      -
+   156 apache.xml               OK       OK       -
+   181 security.xml             OK       OK       -
+   216 chap-help.xml            OK       OK      -
    258 sendmail.xml             OK       -       -
    265 chap-intro.xml           OK       -       -
    310 printing.xml             OK       -       -

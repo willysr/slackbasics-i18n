@@ -7,12 +7,12 @@
 
   <para>
     Existe una gran cantidad de información disponible sobre muchos
-    temas relativos a GNU/Linux. La mayor parte de la documentación
-    es aplicable a Slackware Linux, por que el software en la 
-    distribución a sido compilado desde el código fuente que ha 
-    sido apenas alterado. Este capítulo provee algunos enlaces a 
-    información y documentación que puede ser encontrada en un 
-    sistema Slackware Linux instalado, y en Internet.
+    temas relativos a GNU/Linux. La mayor parte de la documentación es
+    aplicable a Slackware Linux, por que el software en la
+    distribución que ha sido compilado desde el código fuente ha sido
+    apenas alterado. Este capítulo provee algunos enlaces a
+    información y documentación que puede ser encontrada en un sistema
+    Slackware Linux instalado, y en Internet.
   </para>
 
   <sect1 xml:id="chap-help-system">
@@ -22,20 +22,22 @@
       <title>HOWTO's de Linux</title>
 
       <para>
-	Los HOWTO's de Linux son una coleccion de documentos que 
+	Los HOWTO's de Linux son una colección de documentos que
 	abarcan temas específicos relacionados a GNU/Linux. La mayoría
-	de los HOWTOs no están dirigidos a una distribución específica, 
-	por lo tanto son muy útiles para usuarios de Slackware Linux. 
-	El paquete <emphasis>linux-howtos</emphasis> en el conjunto de 
-	paquetes <quote>f</quote> de instalación contiene la colección HOWTO. 
-	Después de instalar este paquete, los HOWTOs están disponibles 
-	en el directorio <filename>/usr/doc/Linux-HOWTOs/</filename>. 
-	Slackware Linux también contiene una pequeña colección de 
-	<acronym>FAQs</acronym>  (FAQs son documentos que responden
-	preguntas frecuentes) relacionados a Linux. Los FAQs Linux 
-	se instalan en el directorio <filename>/usr/doc/Linux-FAQs/</filename>, 
-	y están disponibles en el paquete <emphasis>linux-faqs</emphasis>, 
-	que tambien es parte del conjunto de paquetes <quote>f</quote>.
+	de los HOWTOs no estan dirigidos a una distribución
+	específica, por lo tanto son muy útiles para usuarios de
+	Slackware Linux.  El paquete <emphasis>linux-howtos</emphasis>
+	en el conjunto de paquetes <quote>f</quote> de instalación
+	contiene la colección HOWTO.  Después de instalar este
+	paquete, los HOWTOs están disponibles en el directorio
+	<filename>/usr/doc/Linux-HOWTOs/</filename>.  Slackware Linux
+	también contiene una pequeña colección de
+	<acronym>FAQs</acronym> (FAQs son documentos que responden
+	preguntas frecuentes) relacionados a Linux. Los FAQs Linux se
+	instalan en el directorio
+	<filename>/usr/doc/Linux-FAQs/</filename>, y están disponibles
+	en el paquete <emphasis>linux-faqs</emphasis>, que tambien es
+	parte del conjunto de paquetes <quote>f</quote>.
       </para>
     </sect2>
 
@@ -43,12 +45,12 @@
       <title>Páginas de manual</title>
 
       <para>
-	La mayoría de los commandos UNIX-like son descritos por un 
-	tradicional sistema de ayuda de UNIX llamado <emphasis>páginas de manual</emphasis>. 
-	Puede leer la página de manual de un programa con el comando
-	<command>man</command>. Ejecutando <command></command> con 
-	el nombre de un comando como argumento muestra la página de 
-	manual para ese comando. Por ejemplo, 
+	La mayoría de los commandos UNIX-like son descritos por un
+	tradicional sistema de ayuda de UNIX llamado <emphasis>páginas
+	de manual</emphasis>.  Puede leer la página de manual de un
+	programa con el comando <command>man</command>. Ejecutando
+	<command>man</command> con el nombre de un comando como argumento
+	muestra la página de manual para ese comando. Por ejemplo,
       </para>
 
       <screen>
@@ -60,10 +62,10 @@ $ <userinput>man ls</userinput>
       </para>
 
       <para>
-	Si usted no conoce el nombre exacto de la página manual o comando, 
-	puede buscar entre las páginas manuales con palabras clave. La 
-	opción <parameter class="command">-k</parameter> permite el uso 
-	de esta facilidad:
+	Si usted no conoce el nombre exacto de la página manual o
+	comando, puede buscar entre las páginas manuales con palabras
+	clave. La opción <parameter class="command">-k</parameter>
+	permite el uso de esta facilidad:
       </para>
 
       <screen>
@@ -74,8 +76,8 @@ rmdir                (2)  - delete a directory
       </screen>
 
       <para>
-	La coleccion de páginas manual es larga, y describe mas temas 
-	que solo comandos. Las siguientes secciones de páginas 
+	La coleccion de páginas manual es larga, y describe mas temas
+	que solo comandos. Las siguientes secciones de páginas
 	manuales estan disponibles:
       </para>
 
@@ -93,10 +95,10 @@ rmdir                (2)  - delete a directory
       </literallayout>
 
       <para>      
-        Si hay mas de una sección que tiene una página manual con un 
-        nombre especifico, como por ejemplo <command>rmdir</command>, 
-        se puede elegir que página se quiere ver, agregando el número 
-        de sección de la página manual antes del nombre de la página. 
+        Si hay mas de una sección que tiene una página manual con un
+        nombre especifico, como por ejemplo <command>rmdir</command>,
+        se puede elegir que página se quiere ver, agregando el número
+        de sección de la página manual antes del nombre de la página.
         Por ejemplo:
       </para>
 
@@ -105,13 +107,14 @@ rmdir                (2)  - delete a directory
       </screen>
 
       <para>
-        Si quisiera imprimir una página manual a una impresora instalada, 
-        puede enlazar la salida de <command>man</command> a el comando 
-        <command>lpr</command>. Cuando la opción <parameter
-        class="command">-t</parameter> del el comando <command>man</command> 
-        es usada, <command>man</command> escribirá la página manual en 
-        formato Postscript, en lugar de ASCII. Por ejemplo, puede usar el 
-        siguiente comando para imprimir la página manual de <command>cat</command>:      
+        Si quisiera imprimir una página manual a una impresora
+        instalada, puede enlazar la salida de <command>man</command> a
+        el comando <command>lpr</command>. Cuando la opción <parameter
+        class="command">-t</parameter> del el comando
+        <command>man</command> es usada, <command>man</command>
+        escribirá la página manual en formato Postscript, en lugar de
+        ASCII. Por ejemplo, puede usar el siguiente comando para
+        imprimir la página manual de <command>cat</command>:
       </para>
 
       <screen>
@@ -124,52 +127,54 @@ $ <userinput>man -t cat | lpr</userinput>
     <title>En Internet</title>
 
     <para>
-      Existen en Internet muchos sitios web y foros relacionados a 
-      GNU/Linux y Slackware Linux. Pero muchos sitios suelen desaparecer 
-	  tan rápido como aparecieron, y la información de muchos sitios 
-	  web se fragmenta. Los siguientes recursos están activos desde 
-	  hace mucho tiempo, y proveen buenos contenidos.
+      Existen en Internet muchos sitios web y foros relacionados a
+      GNU/Linux y Slackware Linux. Pero muchos sitios suelen
+      desaparecer tan rápido como aparecieron, y la información de
+      muchos sitios web se fragmenta. Los siguientes recursos están
+      activos desde hace mucho tiempo, y proveen buenos contenidos.
     </para>
 
     <sect2 xml:id="chap-help-internet-slacksite">
       <title>El sitio web de Slackware Linux</title>
 
       <para>
-      	El sitio web de Slackware Linux puede estar desactualizado 
+      	El sitio web de Slackware Linux puede estar desactualizado
       	algunas veces, pero provee muchos recursos útiles:
       </para>
 
       <itemizedlist>
 	<listitem>
 	  <para>
-	        Una página de noticias anuncia los nuevos lanzamientos y 
-	        lista otras noticias importantes que son relevantes para 
-	        Slackware Linux.
+	    Una página de noticias anuncia los nuevos lanzamientos y
+	    lista otras noticias importantes que son relevantes para
+	    Slackware Linux.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	  		Un vistazo de los cambios a la distribución se provee en un 
-	  		formato estructurado llamado <emphasis>ChangeLog</emphasis>. 
-	  		Los ChangeLos son proveídos para la versión actual en 
-	  		desarrollo, asi también como el último lanzamiento estable.
+	    Un vistazo de los cambios a la distribución se provee en
+	    un formato estructurado llamado
+	    <emphasis>ChangeLog</emphasis>.  Los ChangeLogs son
+	    proveídos para la versión actual en desarrollo, asi
+	    también como el último lanzamiento estable.
           </para>
         </listitem>
         <listitem>
           <para>
-          	Existen dos listas de correo a las que puede suscribirse. 
-          	La lista <emphasis>slackware-announce</emphasis> es usada
-          	para anunciar nuevos lanzamientos de Slackware Linux, y 
-          	las actualizaciones de seguridad son anunciadas en la lista 
-          	<emphasis>slackware-security</emphasis>.
+	    Existen dos listas de correo a las que puede suscribirse.
+	    La lista <emphasis>slackware-announce</emphasis> es usada
+	    para anunciar nuevos lanzamientos de Slackware Linux, y
+	    las actualizaciones de seguridad son anunciadas en la
+	    lista <emphasis>slackware-security</emphasis>.
           </para>
         </listitem>
         <listitem>
           <para>
-          	Una lista de mirrors de donde puede descargar Slackware 
-          	Linux. Los mirrors se indexan por país. Información 
-          	adicional como los protocolos de descarga de los mirrors 
-          	soportan, y la velocidad de los mismos es también incluida.
+	    Una lista de mirrors de donde puede descargar Slackware
+	    Linux. Los mirrors se indexan por país. Información
+	    adicional como los protocolos de descarga de los mirrors
+	    soportan, y la velocidad de los mismos es también
+	    incluida.
           </para>
         </listitem>
         <listitem>
@@ -190,9 +195,10 @@ $ <userinput>man -t cat | lpr</userinput>
       <title>LinuxQuestions</title>
 
       <para>
-      	LinuxQuestions es un foro GNU/Linux inmenso, con muchos miembros
-      	colaborativos. Lo que es particularmente interesante es el sub-foro
-      	de Slackware Linux. El foro LinuxQuestions esta disponible en:
+      	LinuxQuestions es un foro GNU/Linux inmenso, con muchos
+      	miembros colaborativos. Lo que es particularmente interesante
+      	es el sub-foro de Slackware Linux. El foro LinuxQuestions esta
+      	disponible en:
 	<link xl:href="http://www.linuxquestions.org/" />
       </para>
     </sect2>
@@ -201,12 +207,12 @@ $ <userinput>man -t cat | lpr</userinput>
       <title>alt.os.linux.slackware</title>
 
       <para>
-      	<emphasis>alt.os.linux.slackware</emphasis> es un grupo de 
-      	noticias de Slackware Linux. Puede leer las noticias con un 
-      	lector de noticias, como tin o slrn, a través del servidor 
-      	de grupo de noticias de su proveedor de Internet. En este grupo
-      	de noticias se espera que lea toda la información necesaria 
-      	antes de publicar preguntas. Si no hace esto, la chance de ser 
+      	<emphasis>alt.os.linux.slackware</emphasis> es un grupo de
+      	noticias de Slackware Linux. Puede leer las noticias con un
+      	lector de noticias, como tin o slrn, a través del servidor de
+      	grupo de noticias de su proveedor de Internet. En este grupo
+      	de noticias se espera que lea toda la información necesaria
+      	antes de publicar preguntas. Si no hace esto, la chance de ser
       	<quote>flamed</quote> (quemado) es grande.
       </para>
     </sect2>
