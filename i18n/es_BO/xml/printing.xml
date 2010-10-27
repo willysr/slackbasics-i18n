@@ -11,20 +11,20 @@
     <indexterm><primary>cups</primary><secondary>installation</secondary></indexterm>
 
     <para>
-	  GNU/Linux soporta una gran cantidad de impresoras USB,
-	  paralelas y de red. Slackware Linux provee dos sistemas de
-	  impresión, <acronym>CUPS</acronym> (Common UNIX Printing
-	  System) y <acronym>LPRNG</acronym> (LPR Next
-	  Generation). Este capítulo cubre el sistema CUPS.
+      GNU/Linux soporta una gran cantidad de impresoras USB, paralelas
+      y de red. Slackware Linux provee dos sistemas de impresión,
+      <acronym>CUPS</acronym> (Common UNIX Printing System) y
+      <acronym>LPRNG</acronym> (LPR Next Generation). Este capítulo
+      cubre el sistema CUPS.
     </para>
 
     <para>
-	  Independientemente de que sistema de impresión vaya a usar,
-	  es una buena idea instalar algunas colecciones de filtro de
-	  impresora. Estos se encuentran en el directorio de paquetes
-	  <quote>ap</quote>. Si quiere tener soporte para la mayoría
-	  de las impresoras, asegúrese de que los siguientes paquetes
-	  esten instalados:
+      Independientemente de que sistema de impresión vaya a usar, es
+      recomendable instalar algunas colecciones de filtro de
+      impresora. Estos se encuentran en el conjunto de paquetes
+      <quote>ap</quote>. Si quiere tener soporte para la mayoría de
+      las impresoras, asegúrese de que los siguientes paquetes esten
+      instalados:
     </para>
 
     <screen>
@@ -38,11 +38,11 @@ ifhp
     </screen>
 
     <para>
-	  Ambos sistemas tiene sus propias ventajas y desventajas. Si
-	  no tiene mucha experiencia configurando impresoras bajo
-	  GNU/Linux, es una buena idea usar CUPS, ya que CUPS provee
-	  una confortable interfaz web que puede ser accedida a través
-	  de un navegador web.
+      Ambos sistemas tiene sus propias ventajas y desventajas. Si no
+      tiene mucha experiencia configurando impresoras bajo GNU/Linux,
+      es recomendable usar CUPS, ya que CUPS provee una confortable
+      interfaz web que puede ser accedida a través de un navegador
+      web.
     </para> 
 
   </sect1>
@@ -53,12 +53,12 @@ ifhp
     <indexterm><primary>cups</primary><secondary>starting</secondary></indexterm>
 
     <para>
-	  Para poder utilizar CUPS, el paquete <quote>cups</quote> de
-	  el conjunto de paquetes <quote>a</quote> debe ser
-	  instalado. Despues de la instalación, CUPS puede ser
-	  iniciado automáticamente desde el arranque del sistema
-	  haciendo el archivo <filename>/etc/rc.d/rc.cups</filename>
-	  ejecutable. Esto se realiza ejecutando el siguiente comando:
+      Para poder utilizar CUPS, el paquete <quote>cups</quote> de el
+      conjunto de paquetes <quote>a</quote> debe ser
+      instalado. Despues de la instalación, CUPS puede ser iniciado
+      automáticamente desde el arranque del sistema haciendo el
+      archivo <filename>/etc/rc.d/rc.cups</filename> ejecutable. Esto
+      se realiza ejecutando el siguiente comando:
     </para>
 
     <screen>
@@ -66,9 +66,9 @@ ifhp
     </screen>
 
     <para>
-	  Después de reiniciar el sistema, CUPS también sera
-	  reiniciado automáticamente.  Puede iniciar CUPS en un
-	  sistema en ejecución con el siguiente comando:
+      Después de reiniciar el sistema, CUPS también sera reiniciado
+      automáticamente.  Puede iniciar CUPS en un sistema en ejecución
+      con el siguiente comando:
     </para>
 
     <screen>
@@ -83,54 +83,55 @@ ifhp
     <indexterm><primary>cups</primary><secondary>configuration</secondary></indexterm>
 
     <para>
-	  CUPS puede ser configurado a través de una interfaz web. La
-	  interfaz de configuración puede ser accedida con un
-	  navegador web en la siguiente URL: <ulink
-	  url="http://localhost:631/">http://localhost:631/</ulink>.
-	  Algunas partes de la interfaz web requieren
-	  autenticación. Si una ventana de autenticación es mostrada,
-	  puede ingresar <quote>root</quote> como nombre de usuario y
-	  su correspondiente contraseña.
+      CUPS puede ser configurado a través de una interfaz web. La
+      interfaz de configuración puede ser accedida con un navegador
+      web en la siguiente URL: <ulink
+      url="http://localhost:631/">http://localhost:631/</ulink>.
+      Algunas partes de la interfaz web requieren autenticación. Si
+      una ventana de autenticación es mostrada, puede ingresar
+      <quote>root</quote> como nombre de usuario y su correspondiente
+      contraseña.
     </para>
 
     <para>
-	  Una impresora puede ser agregada a la configuración CUPS a
-	  través del menu <quote>Administrate</quote>, y luego
-	  seleccionando el boton <quote>Add Printer</quote>. La
-	  interfaz web preguntará por tres opciones:
+      Una impresora puede ser agregada a la configuración CUPS a
+      través del menu <quote>Administrate</quote>, y luego
+      seleccionando el boton <quote>Add Printer</quote>. La interfaz
+      web preguntará por tres opciones:
     </para>
 
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis>Name</emphasis> - the name of the printer. Use a simple
-          name, for example <quote>epson</quote>.
+          <emphasis>Name</emphasis> - nombre de la impresora. Use un
+          nombre simple, por ejemplo <quote>epson</quote>.
         </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis>Location</emphasis> - the physical location of the printer.
-          This setting is not crucial, but handy for larger organizations.
+          <emphasis>Location</emphasis> - la ubicación física de la
+          impresora. Esta configuración no es crucial, pero útil para
+          organizaciones grandes.
         </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis>Description</emphasis> - a description of the printer,
-          for example <quote>Epson Stylus Color C42UX</quote>.
+          <emphasis>Description</emphasis> - una descripción de la
+          impresora, por ejemplo <quote>Epson Stylus Color
+          C42UX</quote>.
         </para>
       </listitem>
     </itemizedlist> 
 
     <para>
-	  Puede proceder presionando en el boton
-	  <quote>Continue</quote>. En la siguiente página puede
-	  configurar la conexion de la impresora. Si tiene una
-	  impresora USB encendida, la interfaz web mostrará el nombre
-	  de la impresora junto al puerto USB usado. Después de
-	  configurar el puerto de la impresora puede seleccionar su
-	  marca y modelo. Después de eso, la configuración esté
-	  finalizada y la impresora será agregada a la configuración
-	  CUPS.
+      Puede proceder presionando en el boton
+      <quote>Continue</quote>. En la siguiente página puede configurar
+      la conexion de la impresora. Si tiene una impresora USB
+      encendida, la interfaz web mostrará el nombre de la impresora
+      junto al puerto USB usado. Después de configurar el puerto de la
+      impresora puede seleccionar su marca y modelo. Después de eso,
+      la configuración esté finalizada y la impresora será agregada a
+      la configuración CUPS.
     </para>
 
     <para>	
@@ -164,7 +165,7 @@ ifhp
       de configuración del demonio CUPS,
       <filename>/etc/cups/cupsd.conf</filename>, que tiene una
       sintaxis comparable al archivo de configuración de Apache.  El
-      control de acceso es configurado a través de las seccioens
+      control de acceso es configurado a través de las secciones
       <emphasis>Location</emphasis>. Por ejemplo, la sección global
       (directorio raíz de IPP) por defecto se ve así:
     </para>
@@ -182,7 +183,7 @@ Allow From 127.0.0.1
       después las sentencias de autorización. En la configuración por
       defecto el acceso es denegado para todos los hosts, a excepción
       de <emphasis>127.0.0.1</emphasis>,
-      <emphasis>localhost</emphasis>.  Suponga que quisiera autorizar
+      <emphasis>localhost</emphasis>. Suponga que quisiera autorizar
       a hosts de la red local, que utiliza el espacio de direcciones
       <emphasis>192.168.1.0/24</emphasis> para utilizar las impresoras
       en el sistema en el cual está configurando CUPS. En este caso
@@ -201,7 +202,7 @@ Allow From 127.0.0.1
     <para>
       Puede refinar otras localizaciones en el espacio de direcciones
       agregando secciones adicionales. Las preferencias para
-      sub-directorios sobre escriben las preferencias globales. Por
+      sub-directorios sobreescriben las preferencias globales. Por
       ejemplo, puede restringir acceso a la impresora
       <emphasis>epson</emphasis> a hosts con direcciones IP
       <emphasis>127.0.0.1</emphasis> y
@@ -246,7 +247,7 @@ Allow From 192.168.1.203
     <note>
       <para>
         Algunas impresoras avanzadas pueden interpretar directamente
-        PostScript. El proceso re rasterización no es necesario para
+        PostScript. El proceso re-rasterización no es necesario para
         estas impresoras.
       </para>
     </note>
