@@ -6,12 +6,12 @@ lines   file                   trad    1st-rev  2nd-rev
    131 chap-x11.xml             OK       OK      -   
    143 slackware-basics.xml     OK       OK      -    
    149 inetd.xml                OK       OK      -
-   156 apache.xml               OK       OK       -
-   181 security.xml             OK       OK       -
+   156 apache.xml               OK       OK      -
+   181 security.xml             OK       OK      -
    216 chap-help.xml            OK       OK      -
-   258 sendmail.xml             OK       -       -
-   265 chap-intro.xml           OK       -       -
-   310 printing.xml             OK       -       -
+   258 sendmail.xml             OK       OK      -
+   265 chap-intro.xml           OK       OK      -
+   310 printing.xml             OK       OK      -
    338 mutt.xml                 OK       -       -
    341 miscadmin.xml            OK       -       -
    377 latex.xml                OK       -       -
