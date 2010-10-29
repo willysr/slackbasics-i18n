@@ -157,8 +157,8 @@
 
     <para>
       Si esta usando un archivo de configuración para otra versión del
-      kernel diferente a la que esta compilando, sucede que ambas
-      versiones del kernel no tienen el mismo conjunto de
+      kernel diferente a la que esta compilando debe ser consciente de
+      que ambas versiones del kernel no tienen el mismo conjunto de
       opciones. Usualmente nuevas opciones son agregadas (e.g. por que
       nuevos controladores son agregados) y algunas veces se remueven
       componentes del kernel. Puede configurar nuevas opciones (y
@@ -217,7 +217,7 @@ If you have an IBM ThinkPad laptop, say Y or M here.
       para el kernel. El primero es <parameter
       class="command">config</parameter>, que pregunta sobre qué
       quiere hacer para cada opción del kernel. Esto toma mucho
-      tiempo.  Entonces, normalmente esta no es una buena forma de
+      tiempo. Entonces, normalmente esta no es una buena forma de
       configurar del kernel. Una solución mas amigable es el front-end
       <parameter class="command">menuconfig</parameter>, que utiliza
       un sistema de menús que puede usar para configurar el
@@ -314,7 +314,7 @@ If you have an IBM ThinkPad laptop, say Y or M here.
       
       <para>
 	El siguiende paso es instalar el kernel y los módulos del
-	kernel.  Empezaremos instalando los módulos del kernel, porque
+	kernel. Empezaremos instalando los módulos del kernel, porque
 	esto puede realizarse con un solo comando dentro del árbol
 	fuente del kernel:
       </para>
@@ -327,7 +327,7 @@ If you have an IBM ThinkPad laptop, say Y or M here.
 	Esto instalará los módulos en
 	<filename>/lib/modules/&lt;kernelversion&gt;</filename>. Si
 	está reemplazando un kernel con exactamente el mismo número de
-	versión , es aconsejable remover los módulos antiguos antes de
+	versión, es aconsejable remover los módulos antiguos antes de
 	instalar los nuevos. E.g.:
       </para>
 	
@@ -339,7 +339,7 @@ If you have an IBM ThinkPad laptop, say Y or M here.
 	Puede <quote>instalar</quote> el kernel copiándolo a el
 	directorio <filename>/boot</filename>. Puede asignarle el
 	nombre que quiera, pero es aconsejable usar una convención de
-	nombrado.  E.g.  <filename>vmlinuz-version</filename>. Por
+	nombrado. E.g.  <filename>vmlinuz-version</filename>. Por
 	ejemplo, si lo nombra
 	<filename>vmlinuz-2.6.21.5-smp-ddk</filename>, puede copiarlo
 	desde el árbol fuente del kernel con:
@@ -368,7 +368,7 @@ If you have an IBM ThinkPad laptop, say Y or M here.
 	ejecutar el comand <command>lilo</command>, que escribirá la
 	configuración de LILO al cargador de arranque. La
 	configuración de LILO ya tiene una entrada para el kernel que
-	esta ejecutando.  Es aconsejable mantener esta entrada, como
+	esta ejecutando. Es aconsejable mantener esta entrada, como
 	una opción de retroceso si su nuevo kernel no funciona. Si se
 	desplaza al final del archivo
 	<filename>/etc/lilo.conf</filename> verá esta entrada, que se

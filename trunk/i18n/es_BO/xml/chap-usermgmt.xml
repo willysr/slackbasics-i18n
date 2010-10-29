@@ -20,7 +20,7 @@
       sistema. La más importante de estas es la cuenta
       <emphasis>root</emphasis>. El usuario <emphasis>root</emphasis>
       es el administrador del sistema. Es aconsejable evitar loguearse
-      como roo, porque implica grandes riesgos de seguridad. Usted
+      como root, porque implica grandes riesgos de seguridad. Usted
       puede loguearse como usuario normal y realizar tareas
       administrativas utilizando los comandos <command>su</command> y
       <command>sudo</command>.
@@ -31,7 +31,7 @@
       <filename>/etc/passwd</filename>. Puede dar un vistazo a este
       archivo para darse una idea de qué cuentas de usuario son
       obligatorias. Como usted probablemente notará, no hay
-      contraseñas en este archivo. Las contraseñas se aloja en un
+      contraseñas en este archivo. Las contraseñas se alojan en un
       archivo separado <filename>/etc/shadow</filename> como una
       cadena encriptada. La información sobre grupos es almacenada en
       <filename>/etc/group</filename>. En general no es aconsejable
@@ -105,7 +105,7 @@
       <para>
 	Por defecto el comando <command>useradd</command> solamente
 	agrega usuarios, no asigna una contraseña para el usuario
-	agregado.  Las contraseñas pueden asignarse usando el comando
+	agregado. Las contraseñas pueden asignarse usando el comando
 	<command>passwd</command>.
       </para>
     </sect2>
@@ -134,7 +134,7 @@ passwd: password updated successfully
       <para>
 	El usuario <emphasis>root</emphasis> puede asignar contraseñas
 	para usuarios especificando el nombre de usuario como
-	parámetro.  El comando <command>passwd</command> solamente
+	parámetro. El comando <command>passwd</command> solamente
 	preguntará por la nueva contraseña. Por ejemplo:
       </para>
 
@@ -343,7 +343,7 @@ root:ALL EXCEPT GROUP wheel:DENY
 	Disk quota es un mecanismo que permite al administrador del
 	sistema restringir el número de bloques de disco e inodos que
 	un usuario o grupo en particular puede usar. No todos los
-	sistemas de archivos soportados por Linus soportan quota, los
+	sistemas de archivos soportados por Linux soportan quota, los
 	sistemas ampliamente usados que soportan quota son ext2, ext3
 	y XFS. Quota es habilitado y administrado por cada sistema de
 	archivos.

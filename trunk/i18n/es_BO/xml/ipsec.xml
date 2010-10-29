@@ -37,9 +37,10 @@
       </listitem>
       <listitem>
         <para>
-          <acronym>IPcomp</acronym> (IP payload compression) provides
-	  compression before a packet is encrypted. This is useful, because
-	  encrypted data generally compresses worse than unencrypted data.
+          <acronym>IPcomp</acronym> (IP payload compression) provee
+          compresión antes de que un paquete sea encriptado. Esto es
+          útil, porque la información encriptada se comprime peor que
+          la información sin encriptar.
         </para>
       </listitem>
       <listitem>
@@ -66,7 +67,7 @@
       También existen dos métodos principales de autenticación. Puede
       usar llaves manuales o un demonio Internet Key Exchange (IKE),
       como racoon, que automáticamente intercambia llaves de forma
-      segura entre dos hosts.  En ambos casos se necesita configurar
+      segura entre dos hosts. En ambos casos se necesita configurar
       políticas de seguridad en la entradas de Security Association
       Database (SAD), que especifica qué algoritmo de encriptado y
       llave debería ser usado para asegurar la comunicación con otro
@@ -84,7 +85,7 @@
       IPsec. Entonces, asegúrese de tener un kernel 2.6.x. El kernel
       2.6 esta disponible en Slackware Linux 10.0, 10.1 y 10.2 en del
       directorio <filename>testing</filename> del conjunto de CDs, o
-      en cualquier mirror oficial de Slackware Linux.  El kernel 2.6
+      en cualquier mirror oficial de Slackware Linux. El kernel 2.6
       es el kernel por defecto a partir de Slackware Linux 12.0. El
       kernel 2.6 de Slackware Linux tiene soporte de AH, ESP e IPcomp
       para los protocoles IPv4 e IPv6. Si usted está compilando un
@@ -199,7 +200,7 @@ CONFIG_INET_IPCOMP=m
 	Usaremos un ejemplo como guía para configurar una conexión
 	encriptada entre dos hosts. Los hosts tienen las direcciones
 	IP <emphasis>192.168.1.1</emphasis> y
-	<emphasis>192.168.1.169</emphasis>.  El modo de operación
+	<emphasis>192.168.1.169</emphasis>. El modo de operación
 	<quote>transport mode</quote> será usado con las
 	transformaciones AH y ESP con llaves manuales.
       </para>
@@ -299,7 +300,7 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
 	El mismo <filename>/etc/setkey.conf</filename> puede ser
 	creado en el host 192.168.1.9, con las opciones <parameter
 	class="command">-P in</parameter> y <parameter
-	class="command">-P out</parameter> invertids. Entonces,
+	class="command">-P out</parameter> invertidas. Entonces,
 	<filename>/etc/setkey.conf</filename> se vería así:
       </para>
 
@@ -392,7 +393,7 @@ tcpdump: listening on eth0
 	    asociación de seguridad correspondiente a la política, la
 	    conexión puede realizarse y será autenticada, encriptada
 	    y/o comprimida de acuerdo a la asociación de seguridad. Si
-	    no existen asociación de seguridad alguna, el kernel
+	    no existe asociación de seguridad alguna, el kernel
 	    pedirá a un demonio IKE instalar las asociaciones de
 	    seguridad necesarias.
 	  </para>
@@ -462,7 +463,7 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       <para>
         Probablemente habrá notado que las políticas AH no estan
         presentes en este archivo. En la mayoría de las situaciones
-        esto no es problema, ESP puede proveer autenticación. Pero
+        esto no es un problema, ESP puede proveer autenticación. Pero
         debería estar consciente de que la autenticación es mas
         limitada; no protege la información fuera de las cabeceras
         ESP. Pero es mas eficiente que el encapsulado de paquetes ESP
@@ -470,7 +471,7 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </para>
 
       <para>
-	on las políticas de seguridad configuradas, ahora puede
+	Con las políticas de seguridad configuradas, ahora puede
 	configurar <command>racoon</command>. La información
 	específica de la conexión, como el método de autenticación, es
 	especificada durante la primera fase de configuración. Podemos
@@ -508,7 +509,7 @@ sainfo anonymous {
 	usadas para todos los hosts que no tienen una configuración
 	específica. El parámetro <parameter>pfs_group</parameter>
 	especifica que grupo de exponenciales Diffie-Hellman debería
-	ser usado.  Los diferentes grupos proveen diferentes
+	ser usado. Los diferentes grupos proveen diferentes
 	longitudes de números primos base que son usados para el
 	proceso de autenticación. El grupo 2 provee una longitud de
 	1024 bits, si quisiera usar una longitud mayor para
@@ -559,7 +560,7 @@ remote 192.168.1.169
 	cual envía la dirección IP como identificador. El bloque
 	<parameter>proposal</parameter> especifica parámetros que
 	serán propuestos al host remoto durante la fase de
-	autenticación.  <parameter>encryption_algorithm</parameter> y
+	autenticación. <parameter>encryption_algorithm</parameter> y
 	<parameter>dh_group</parameter> están explicados arriba. La
 	opción <parameter>hash_algorithm</parameter> es obligatoria y
 	configura el algoritmo hash que será usado. Puede ser
@@ -573,7 +574,7 @@ remote 192.168.1.169
       <para>
 	Con racoon configurado, queda una cosa por hacer, la llave
 	pre-compartida deber ser agregada a
-	<filename>/etc/racoon/psk.txt</filename>.  La sintaxis es muy
+	<filename>/etc/racoon/psk.txt</filename>. La sintaxis es muy
 	simple, cada línea contiene una dirección IP y una
 	llave. Estos parámetros están separados con una
 	tabulación. Por ejemplo:
