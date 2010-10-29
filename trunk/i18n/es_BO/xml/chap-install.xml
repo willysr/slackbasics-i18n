@@ -6,7 +6,7 @@
     <title>Boteando el CD-ROM de instalación</title>
 
     <para>
-      El método mas sencillo para botear el sistema es usando el
+      El método mas sencillo para arrancar el sistema es usando el
       CD-ROM de instalación. El CD-ROM de instalación de Slackware
       Linux es un CD boteable, esto quiere decir que la BIOS puede
       iniciar desde el CD, asi como puede iniciar desde discos
@@ -29,7 +29,7 @@
 
     <para>
       Cuando el CD-ROM es arrancado, aparecerá una pantalla de
-      pre-arranque.  Normalmente puede presionar &lt;ENTER&gt; para
+      pre-arranque. Normalmente puede presionar &lt;ENTER&gt; para
       proceder a cargar el kernel Linux por defecto
       (<filename>hugesmp.s</filename>). Este kernel requiere la menos
       un CPU Pentium Pro. Puede arrancar un kernel alternativo
@@ -104,7 +104,7 @@
       partición Linux, la creación de una partición swap es
       recomendable. Para ser capaz de crear una partición, debe haber
       espacio sin particionar en el disco. Hay algunos programas que
-      puede redimensionar particiones.  Por ejemplo, FIPS puede
+      puede redimensionar particiones. Por ejemplo, FIPS puede
       redimensionar particiones FAT. Programas comerciales como
       Partition Magic también pueden redimensionar otros tipos de
       particiones.
@@ -149,7 +149,7 @@
       particiones existentes, asi como la cantidad de espacio
       libre. Se puede navegar a través de la lista de particiones con
       las teclas direccionales <quote>arriba</quote> y
-      <quote>abajo</quote>.  Al final de la pantalla se muestran
+      <quote>abajo</quote>. Al final de la pantalla se muestran
       algunos comandos, los que pueden son navegables con las teclas
       direccionales <quote>izquierda</quote> y
       <quote>derecha</quote>. Un comando puede ser ejecutado con la
@@ -178,7 +178,7 @@
       partición swap depende de sus propias necesidades. La partición
       swap es usada para almacenar programas si la memoria
       principal(RAM) esta llena. Si tiene un disco duro de tamaño
-      razonablem es recomendable crear una partición swap de 256MB o
+      razonable es recomendable crear una partición swap de 256MB o
       512MB, que debería ser suficiente para uso normal. Despues de
       crear la partición, el tipo de partición puede ser cambiado a
       <quote>Linux Swap</quote> seleccionando el comando
@@ -228,7 +228,7 @@
 
     <para>
       La primera parte de la instalación es llamada
-      <quote>ADDSWAP</quote>.  La herramienta <command>setup</command>
+      <quote>ADDSWAP</quote>. La herramienta <command>setup</command>
       buscará la partición con el tipo <quote>Linux Swap</quote> y le
       preguntará si quiere formatear y activar la partición swap (véa
       la figura <xref
@@ -292,7 +292,7 @@
       operaciones del sistema de archivos son registradas. Cuando el
       sistema falla, puede ser reparado rápidamente, porque el kernel
       usa el journal para ver que operaciones de disco fueron
-      realizadas.  Ext3 es lo mismo que Ext2, pero agrega
+      realizadas. Ext3 es lo mismo que Ext2, pero agrega
       journaling. Reiserfs utiliza árboles balanceados, por lo cual
       realiza las operaciones de archivos mas rápido que Ext2 o Ext3,
       especialmente cuando se está trabajando con archivos
@@ -344,7 +344,7 @@
       (<quote>Auto</quote>) o si quiere seleccionar el dispositivo de
       CD-ROM por su cuenta (<quote>Manual</quote>). Si selecciona
       <quote>Manual</quote> la herramienta de instalación mostrará una
-      lista de dispositivos.  Seleccione el dispositivo que contiene
+      lista de dispositivos. Seleccione el dispositivo que contiene
       el CD de Slackware Linux.
     </para> 
 
@@ -427,7 +427,7 @@
     </figure>
 
     <para>
-      El siguiente dialogo puede ser usado para crear un enlace
+      El siguiente diálogo puede ser usado para crear un enlace
       <filename>/dev/modem</filename> que apunte a su dispositivo
       modem. (<xref linkend="chap-install-installing-modem" />). Si no
       tiene un modem puede seleccionar <emphasis>no modem</emphasis>.
@@ -484,7 +484,7 @@
       un framebuffer o no (<xref
       linkend="chap-install-installing-framebuffer" />). El uso de un
       framebuffer le permite usar la consola en varias resoluciones,
-      con mas dimensiones de la usual de 80x25 caracteres.  Algunas
+      con mas dimensiones de la usual de 80x25 caracteres. Algunas
       personas que usan la consola extensivamente prefieren usar un
       framebuffer, el cual les permite tener mas texto en la
       pantalla. Si no quiere una consola con framebuffer, o si no esta
@@ -594,7 +594,7 @@
 
     <para>
       Ahora se le pedirá configurar el nombre de host (<xref
-      linkend="chap-install-installing-hostname" />). Por favor note
+      linkend="chap-install-installing-hostname" />). Por favor nóte
       que este no es el nombre completdo de dominio (FQDN, fully
       qualified domain name), es solamente la parte que representa el
       host (normalmente los caracteres antes del primer punto en una
@@ -628,7 +628,7 @@
     <para>
       El resto de los pasos de configuración de red dependen de si los
       nodos en la red estan configurados para usar una dirección IP
-      estática o dinámica.  Algunas redes tienen un servidor DHCP que
+      estática o dinámica. Algunas redes tienen un servidor DHCP que
       asigna automáticamente una dirección IP a los hosts en la
       red. Si este es el caso para su máquina, seleccione
       <emphasis>DHCP</emphasis> durante este paso en la instalación

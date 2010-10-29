@@ -8,36 +8,38 @@
     <title>Introducción</title>
 
     <para>
-      En este capítulo veremos el ambiente de trabajo tradicional
-      para entornos UNIX: la consola. La consola es un intérprete 
-      que puede ser usado intera y no interactivamente. Cuando la
-      consola es usada de forma no interactiva, trabaja como un simple 
+      En este capítulo veremos el ambiente de trabajo tradicional para
+      entornos UNIX: la consola. La consola es un intérprete que puede
+      ser usado interactivamente y no interactivamente. Cuando la
+      consola es usada de forma no interactiva, trabaja como un simple
       pero potente lenguaje script.
     </para>
 
     <para>
-      El procedimiento para iniciar la consola depende del modo de inicio
-      de sesión, sea en modo texto o gráfico. Si esta iniciando sesión
-      en modo texto la consola es inmediatamente iniciada despues de 
-      ingresar su contraseña (correcta). Si utiliza un administrador 
-      gráfico de sesiones como KDM, inicie sesión de forma normal, y 
-      busque en su gestor de ventanas o el menú del entorno de escritorio
-      por una entrada llamada <quote>XTerm</quote>, <quote>Terminal</quote> 
-      o <quote>Konsole</quote>. XTerm es un emulador de terminal, despues
-      de que el emulador de terminal es iniciado la consola se inicia.
+      El procedimiento para iniciar la consola depende del modo de
+      inicio de sesión, sea en modo texto o gráfico. Si esta iniciando
+      sesión en modo texto la consola es inmediatamente iniciada
+      despues de ingresar su contraseña (correcta). Si utiliza un
+      administrador gráfico de sesiones como KDM, inicie sesión de
+      forma normal, y busque en su gestor de ventanas o el menú del
+      entorno de escritorio por una entrada llamada
+      <quote>XTerm</quote>, <quote>Terminal</quote> o
+      <quote>Konsole</quote>. XTerm es un emulador de terminal,
+      despues de que el emulador de terminal es iniciado la consola se
+      inicia.
     </para>
 		
     <para>
       Antes de ir mas lejos, tenemos que advertir que Slackware Linux
-      provee mas de una consola. Existen dos consolas que ganaron 
+      provee mas de una consola. Existen dos consolas que ganaron
       popularidad a través del tiempo, la consola Bourne y la consola
-      C. En este capítulo describiremos consolas Bourne que cumplan 
-      los estandares IEEE 1003.1. Bash (Bourne Again Shell) y Ksh (Korn Shell)
-      cumplen con estos estandares. Entonces, es una buena idea utilizar
-      una de estas consolas. Usted puede ver facilmente cual consola 
-      esta siendo ejecutada en el sistema, a traves de la ejecución 
-      del comando <command>echo $SHELL</command>. Esto es lo que una 
-      consola Bash reportaría:
+      C. En este capítulo describiremos consolas Bourne que cumplan
+      los estandares IEEE 1003.1. Bash (Bourne Again Shell) y Ksh
+      (Korn Shell) cumplen con estos estandares. Entonces, es una
+      buena idea utilizar una de estas consolas. Usted puede ver
+      fácilmente cual consola esta siendo ejecutada en el sistema, a
+      través de la ejecución del comando <command>echo
+      $SHELL</command>. Esto es lo que una consola Bash reportaría:
     </para>
 
     <screen>
@@ -60,11 +62,12 @@ $ <userinput>which ksh</userinput>
     </screen>
 
     <para>
-      En este sistema Slackware, la ruta completa a la consola bash es 
-      <filename>/bin/bash</filename>, y para la consola ksh <filename>/bin/ksh</filename>. 
-      Con esta información, y el comando <command>chsh</command> puede 
-      cambiar la consola por defecto. El siguiente ejemplo asignará 
-      a bash como la consola por defecto:
+      En este sistema Slackware, la ruta completa a la consola bash es
+      <filename>/bin/bash</filename>, y para la consola ksh
+      <filename>/bin/ksh</filename>.  Con esta información, y el
+      comando <command>chsh</command> puede cambiar la consola por
+      defecto. El siguiente ejemplo asignará a bash como la consola
+      por defecto:
     </para>
 
     <screen>
@@ -75,10 +78,10 @@ Shell changed.
     </screen>
 
     <para>
-      La nueva consola será activada despues de cerrar la sesión 
-      de la consola actual (con el comando <command>logout</command> 
-      o <command>exit</command>), o abriendo una nueva ventana
-      X terminal si esta ejecutando X11.
+      La nueva consola será activada despues de cerrar la sesión de la
+      consola actual (con el comando <command>logout</command> o
+      <command>exit</command>), o abriendo una nueva ventana X
+      terminal si esta ejecutando X11.
     </para>
   </sect1>
 
@@ -86,33 +89,36 @@ Shell changed.
     <title>Ejecutando comandos</title>
 
     <para>
-      Una consola interactiva es utilizada para iniciar programas 
-      ejecutando comandos. Existen dos tipos de comandos que una 
+      Una consola interactiva es utilizada para iniciar programas
+      ejecutando comandos. Existen dos tipos de comandos que una
       consola puede iniciar:
     </para>
 
     <itemizedlist>
       <listitem>
 	<para>
-	  <emphasis>Comandos built-in:</emphasis> los comnandos built-in 
-	  estan integrados en la consola. Comandos built-in comúnmente
-	  usados son: <command>cd</command>, <command>fg</command>,
-	  <command>bg</command>, and <command>jobs</command>.
+	  <emphasis>Comandos built-in:</emphasis> los comnandos
+	  built-in estan integrados en la consola. Comandos built-in
+	  comúnmente usados son: <command>cd</command>,
+	  <command>fg</command>, <command>bg</command>, y
+	  <command>jobs</command>.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  <emphasis>Comandos externos:</emphasis> los comandos externos 
-	  son programas que no son parte del shell, y estan almacenados 
-	  de forma separada en el sistema de archivos. Comandos externos 
-	  comúnmente usados son:<command>ls</command>, <command>cat</command>,
-	  <command>rm</command>, and <command>mkdir</command>.
+	  <emphasis>Comandos externos:</emphasis> los comandos
+	  externos son programas que no son parte de la consola, y
+	  estan almacenados de forma separada en el sistema de
+	  archivos. Comandos externos comúnmente usados
+	  son:<command>ls</command>, <command>cat</command>,
+	  <command>rm</command>, y <command>mkdir</command>.
 	</para>
       </listitem>
     </itemizedlist>
 
     <para>
-      Todos los comandos del consola se ejecutan con la misma sintaxis:
+      Todos los comandos del consola se ejecutan con la misma
+      sintaxis:
     </para>
 		
     <screen>
@@ -120,20 +126,21 @@ Shell changed.
     </screen>
 
     <para>
-      El número de argumentos es arbitrario, y siempre son pasados 
-      al comando. El comando puede decidir que hacer con estos 
+      El número de argumentos es arbitrario, y siempre son pasados al
+      comando. El comando puede decidir que hacer con estos
       argumentos.
     </para>
 
     <para>
-      Todos los comandos built-in pueden ser ejecutados siempre, ya que 
-      son parte de la consola. Los comandos externos pueden ser ejecutados 
-      por su nombre cuando el programa esta en la ruta de busqueda de la 
-      consola. De lo contrario, se debe especificar la ruta al programa. 
-      La ruta de busqueda de la consola se almacena en una variable llamada  
-      <emphasis>PATH</emphasis>. Una variable es una pieza nombrada de 
-      memoria, de la cual el contenido puede ser cambiado. Podemos ver el 
-      contenido de la variable PATH de la siguiente forma:
+      Todos los comandos built-in pueden ser ejecutados siempre, ya
+      que son parte de la consola. Los comandos externos pueden ser
+      ejecutados por su nombre cuando el programa esta en la ruta de
+      busqueda de la consola. De lo contrario, se debe especificar la
+      ruta al programa.  La ruta de busqueda de la consola se almacena
+      en una variable llamada <emphasis>PATH</emphasis>. Una variable
+      es una pieza nombrada de memoria, de la cual el contenido puede
+      ser cambiado. Podemos ver el contenido de la variable PATH de la
+      siguiente forma:
     </para>
 
     <screen>
@@ -157,7 +164,7 @@ $ <userinput>which sysstat</userinput>
     </screen>
 
     <para>
-      Si un programa no esta en la ruta, todavía puede ejecutarlo 
+      Si un programa no esta en la ruta, todavía puede ejecutarlo
       ingresando su ruta absoluta o relativa.
     </para>
   </sect1>
@@ -166,20 +173,21 @@ $ <userinput>which sysstat</userinput>
     <title>Navegando</title>
 
     <para>
-      Es a veces necesario saltar a través de varias partes de una linea, 
-      y alterarla, cuando esta editando comandos extensos. Ambas consolas 
-      <command>bash</command> y <command>ksh</command> tienen atajos 
-      de teclado para realizar tareas comunes. Existen dos modos consola, 
-      en donde los atajos difieren. Estos modos corresponden en su 
-      comportamiento con dos editores populares para UNIX. Estos editores 
-      son <command>vi</command> y <command>emacs</command>. En este libro 
-      solamente cubriremos los atajos EMACS-like. Puede revisar en que 
-      modo se ejecuta una consola imprimiendo la variable 
-      <emphasis>SHELLOPTS</emphasis>. En el primer ejemplo la consola es 
-      usada en modo <emphasis>emacs</emphasis>, en el segundo ejemplo el 
-      modo <emphasis>vi</emphasis> es usado. Identifique el modo buscando 
-      las cadenas <emphasis>emacs</emphasis> o <emphasis>vi</emphasis> 
-      en el contenido de la variable.
+      Es a veces necesario saltar a través de varias partes de una
+      línea, y alterarla, cuando esta editando comandos
+      extensos. Ambas consolas <command>bash</command> y
+      <command>ksh</command> tienen atajos de teclado para realizar
+      tareas comunes. Existen dos modos consola, en donde los atajos
+      difieren. Estos modos corresponden en su comportamiento con dos
+      editores populares para UNIX. Estos editores son
+      <command>vi</command> y <command>emacs</command>. En este libro
+      solamente cubriremos los atajos EMACS-like. Puede revisar en que
+      modo se ejecuta una consola imprimiendo la variable
+      <emphasis>SHELLOPTS</emphasis>. En el primer ejemplo la consola
+      es usada en modo <emphasis>emacs</emphasis>, en el segundo
+      ejemplo el modo <emphasis>vi</emphasis> es usado. Identifique el
+      modo buscando las cadenas <emphasis>emacs</emphasis> o
+      <emphasis>vi</emphasis> en el contenido de la variable.
     </para>
 
     <screen>
@@ -193,9 +201,10 @@ braceexpand:hashall:histexpand:history:interactive-comments:monitor:vi
     </screen>
 
     <para>
-      Si su consola esta actualmente usando el modo <emphasis>vi</emphasis>, 
-      puede cambiarla a modo <emphasis>emacs</emphasis> asignado la 
-      opcion <emphasis>emacs</emphasis>:
+      Si su consola esta actualmente usando el modo
+      <emphasis>vi</emphasis>, puede cambiarla a modo
+      <emphasis>emacs</emphasis> asignado la opción
+      <emphasis>emacs</emphasis>:
     </para>
 
     <screen>
@@ -203,23 +212,24 @@ $ <userinput>set -o emacs</userinput>
     </screen>
 
     <para>
-      Con el modo <emphasis>emacs</emphasis> activado, puede empezar 
-      a utilizar los atajos de teclado. Tomaremos en cuenta tres 
-      tipos de atajos: atajos de edicion de caracteres, atajos de 
-      edicion de palabras y atajos de edicion de linea. Luego en 
-      este capitulo, daremos un vistazo a algunos atajos que son 
-      usados para obtener entradas del historial de comandos.
+      Con el modo <emphasis>emacs</emphasis> activado, puede empezar a
+      utilizar los atajos de teclado. Tomaremos en cuenta tres tipos
+      de atajos: atajos de edicion de caracteres, atajos de edicion de
+      palabras y atajos de edicion de línea. Luego en este capitulo,
+      daremos un vistazo a algunos atajos que son usados para obtener
+      entradas del historial de comandos.
     </para>
 
     <sect2 xml:id="chap-shell-moving-char">
       <title>Editando caracteres</title>
 
       <para>
-      El primer grupo de atajos tiene caracteres como su unidad lógica, 
-      esto quiere decir que permiten operaciones de edicion sobre caracteres
-      de linea de comando. <xref linkend="chap-shell-moving-char-shortcuts-move" /> 
-      provee una introducción de los atajos que son usados para desplazarse 
-      a través de una linea por caracter.
+	El primer grupo de atajos tiene caracteres como su unidad
+	lógica, esto quiere decir que permiten operaciones de edicion
+	sobre caracteres de línea de comando. <xref
+	linkend="chap-shell-moving-char-shortcuts-move" /> provee una
+	introducción de los atajos que son usados para desplazarse a
+	través de una línea por caracter.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-move">
@@ -245,8 +255,8 @@ $ <userinput>set -o emacs</userinput>
       </table>
 
       <para>
-    Estos atajos son sencillos, y no hacen nada inesperado. Suponga 
-    que ha tipeado la siguiente linea:
+	Estos atajos son sencillos, y no hacen nada
+	inesperado. Suponga que ha tipeado la siguiente línea:
       </para>
 
       <screen>
@@ -254,8 +264,9 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-    El cursor estará al final. Ahora usted puede moverse al inicio 
-    de la linea mantieniendo <emphasis>Ctrl-b</emphasis> presionado:
+	El cursor estará al final. Ahora usted puede moverse al inicio
+	de la línea mantieniendo <emphasis>Ctrl-b</emphasis>
+	presionado:
       </para>
 
       <screen>
@@ -263,10 +274,10 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-    De la misma forma, puede puede volver al final de la linea manteniendo  
-    <emphasis>Ctrl-f</emphasis> presionado. Existe un error en esta linea, 
-    porque hay un guion erróneo. Para remover este guion, puede utilizar el 
-    atajo de borrado de caracter.
+	De la misma forma, puede puede volver al final de la línea
+	manteniendo <emphasis>Ctrl-f</emphasis> presionado. Existe un
+	error en esta línea, porque hay un guión erróneo. Para remover
+	este guion, puede utilizar el atajo de borrado de caracter.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-delete">
@@ -275,7 +286,7 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Teclas</entry><entry>Descripcion</entry>
+	      <entry>Teclas</entry><entry>Descripción</entry>
 	    </row>
 	  </thead>
 	  <tbody>
@@ -294,8 +305,8 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
       </table>
 
       <para>
-    Puede eliminar el guion de dos formas. La primera es mover el  
-    cursor hasta el guion:
+	Puede eliminar el guion de dos formas. La primera es mover el
+	cursor hasta el guión:
       </para>
 
       <screen>
@@ -303,8 +314,8 @@ find ~/music <emphasis role="cursor">-</emphasis> -name '*.ogg' -print
       </screen>
 
       <para>
-    y presionar <emphasis>Ctrl-d</emphasis> dos veces. Esto eliminará 
-    el guion y el espacio que le sigue:
+	y presionar <emphasis>Ctrl-d</emphasis> dos veces. Esto
+	eliminará el guión y el espacio que le sigue:
       </para>
 
       <screen>
@@ -312,8 +323,8 @@ find ~/music <emphasis role="cursor">-</emphasis>name '*.ogg' -print
       </screen>
 
       <para>
-    Observando el fragmento original, la otra opción es posicionar 
-    el cursor en el espacio siguiente al guion: 
+	Observando el fragmento original, la otra opción es posicionar
+	el cursor en el espacio siguiente al guión:
       </para>
 
       <screen>
@@ -321,9 +332,10 @@ find ~/music -<emphasis role="cursor">&#32;</emphasis> -name '*.ogg' -print
       </screen>
 
       <para>
-    y presionar <emphasis>Ctrl-h</emphasis> dos veces para eliminar los 
-    dos caracteres previos, el guion y el espacio anterior al guion. El 
-    resultado será el mismo, excepto que el cursor se posicionará en: 
+	y presionar <emphasis>Ctrl-h</emphasis> dos veces para
+	eliminar los dos caracteres previos, el guión y el espacio
+	anterior al guión. El resultado será el mismo, excepto que el
+	cursor se posicionará en:
       </para>
 
       <screen>
@@ -331,11 +343,12 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
       </screen>
 
       <para>
-      Una de las mejores características de la mayoría de las consolas 
-      modernas es que se pueden intercambiar caracteres. Esto es útil si 
-      se produce un error de tipeo en el cual dos caracteres son 
-      intercambiados. <xref linkend="chap-shell-moving-char-shortcuts-swap" />  
-      lista los atajos para intercambiar caracteres.
+	Una de las mejores características de la mayoría de las
+	consolas modernas es que se pueden intercambiar
+	caracteres. Esto es útil si se produce un error de tipeo en el
+	cual dos caracteres son intercambiados. <xref
+	linkend="chap-shell-moving-char-shortcuts-swap" /> lista los
+	atajos para intercambiar caracteres.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-swap">
@@ -344,14 +357,14 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Teclas</entry><entry>Descripcion</entry>
+	      <entry>Teclas</entry><entry>Descripción</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-t</entry>
-	      <entry> Intercambia los caracteres sobre el cual 
-	      esta el cursor, y el caracter previo. Esto es útil para 
+	      <entry> Intercambia los caracteres sobre el cual esta el
+	      cursor, y el caracter previo. Esto es útil para
 	      correciones de tipeo rápidas.</entry>
 	    </row>
 	  </tbody>
@@ -359,7 +372,7 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
       </table>
 
       <para>
-      Suponga que usted ha tipeado el siguiente comando:
+	Suponga que usted ha tipeado el siguiente comando:
       </para>
 
       <screen>
@@ -367,11 +380,12 @@ cat myreport.ttx
       </screen>
 
       <para>
-    La extensión contiene un error de tipeo si intentaba ejecutar  
-    <command>cat</command> <filename>myreport.txt</filename>. Puede
-    ser corregido con el atajo de intercambio de caracteres. Primero 
-    desplácese hacia el segundo caracter del par de caracteres que  
-    están tipeados en orden incorrecto:
+	La extensión contiene un error de tipeo si intentaba ejecutar
+	<command>cat</command>
+	<filename>myreport.txt</filename>. Puede ser corregido con el
+	atajo de intercambio de caracteres. Primero desplácese hacia
+	el segundo caracter del par de caracteres que están tipeados
+	en orden incorrecto:
       </para>
 
       <screen>
@@ -379,9 +393,9 @@ cat myreport.tt<emphasis role="cursor">x</emphasis>
       </screen>
 
       <para>
-    Puede entonces presionar <emphasis>Ctrl-t</emphasis>. Los caracteres 
-    serán intercambiados, y el cursor se ubicará detrás de los caracteres 
-    intercambiados:
+	Puede entonces presionar <emphasis>Ctrl-t</emphasis>. Los
+	caracteres serán intercambiados, y el cursor se ubicará detrás
+	de los caracteres intercambiados:
       </para>
 
       <screen>
@@ -393,23 +407,24 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
       <title>Editando palabras</title>
 
       <para>
-    Con frecuencia es tedioso moverse a nivel de caracteres. Afortunadamente 
-    las consolas Korn y Bash pueden moverse a traves de lineas a 
-    nivel de palabras. Las palabras son secuencias de caracteres 
-    separadas por un caracter especial, como un espacio.  
-    <xref linkend="chap-shell-moving-word-shortcuts-move" /> resume los  
-    atajos que pueden ser utilizados para navegar a través de una 
-    linea por palabra.
+	Con frecuencia es tedioso moverse a nivel de
+	caracteres. Afortunadamente las consolas Korn y Bash pueden
+	moverse a traves de líneas a nivel de palabras. Las palabras
+	son secuencias de caracteres separadas por un caracter
+	especial, como un espacio.  <xref
+	linkend="chap-shell-moving-word-shortcuts-move" /> resume los
+	atajos que pueden ser utilizados para navegar a través de una
+	línea por palabra.
       </para>
 
       <table xml:id="chap-shell-moving-word-shortcuts-move">
-	<title>Moviendose por palabra</title>
+	<title>Moviendose a través de palabras</title>
 
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Teclas</entry>
-	      <entry>Descripcion</entry>
+	      <entry>Descripción</entry>
 	    </row>
 	  </thead>
 	  <tbody>
@@ -431,13 +446,13 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
       </table>
 
       <para>
-    Como puede ver las letras de estos atajos son iguales a 
-    aquellas utilizadas para caracteres. La lógica de movimiento  
-    es un poco curiosa. Moverse hacia adelante coloca el cursor 
-    al final de la palabra actual, no en el primer caracter de 
-    la siguiente palabra como usted debe haber predicho. Veamos un 
-    ejemplo. En el inicio, el cursor esta en el primer caracter de 
-    la linea.
+	Como puede ver las letras de estos atajos son iguales a
+	aquellas utilizadas para caracteres. La lógica de movimiento
+	es un poco curiosa. Moverse hacia adelante coloca el cursor al
+	final de la palabra actual, no en el primer caracter de la
+	siguiente palabra como usted debe haber predicho. Veamos un
+	ejemplo. En el inicio, el cursor esta en el primer caracter de
+	la línea.
       </para>
 
       <screen>
@@ -445,9 +460,9 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-    Presionando <emphasis>Esc f</emphasis> moverá el cursor 
-    detrás de el último caracter de la primera palabra, que es  
-    en este case <emphasis>find</emphasis>:
+	Presionando <emphasis>Esc f</emphasis> moverá el cursor detrás
+	de el último caracter de la primera palabra, que es en este
+	caso <emphasis>find</emphasis>:
       </para>
 
       <screen>
@@ -464,12 +479,12 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
       </screen>
 
       <para>
-    El movimiento hacia atrás coloca el cursor en el primer caracter 
-    de la palabra actual, o en el primer caracter de la palabra 
-    previa si el cursor esta actualmente en el primer caracter de 
-    una palabra. Entonces, moverse hacia atrás una palabra en el 
-    ejemplo previo colocará el cursor en la primera letra de 
-    <quote>music</quote>:
+	El movimiento hacia atrás coloca el cursor en el primer
+	caracter de la palabra actual, o en el primer caracter de la
+	palabra previa si el cursor esta actualmente en el primer
+	caracter de una palabra. Entonces, moverse hacia atrás una
+	palabra en el ejemplo previo colocará el cursor en la primera
+	letra de <quote>music</quote>:
       </para>
 
       <screen>
@@ -477,10 +492,11 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
       </screen>
 
       <para>
-        El borrado de palabras funciona igual al movimiento entre palabras, 
-	pero los caracteres intermedios son eliminados. <xref
-	linkend="chap-shell-moving-word-shortcuts-delete" /> enlista 
-	los atajos usados para borrar palabras.
+        El borrado de palabras funciona igual al movimiento entre
+        palabras, pero los caracteres intermedios son
+        eliminados. <xref
+        linkend="chap-shell-moving-word-shortcuts-delete" /> enlista
+        los atajos usados para borrar palabras.
       </para>
 
       <table  xml:id="chap-shell-moving-word-shortcuts-delete">
@@ -515,7 +531,7 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
       </table>
 
       <para>
-	Finalmente, existen atajos útiles para manipular palabras. 
+	Finalmente, existen atajos útiles para manipular palabras.
 	Estos atajos estan listados en <xref
 	linkend="chap-shell-moving-word-shortcuts-modify" />.
       </para>
@@ -562,9 +578,9 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
       </table>
 
       <para>
-	En el intercambio de palabras, si las palabras usadas son normales, 
-	el comportamiento es predecible. Por ejemplo, si se tiene la 
-	siguiente linea con el cursor en <quote>two</quote>
+	En el intercambio de palabras, si las palabras usadas son
+	normales, el comportamiento es predecible. Por ejemplo, si se
+	tiene la siguiente línea con el cursor en <quote>two</quote>
       </para>
 
       <screen>
@@ -581,11 +597,12 @@ two one three
       </screen>
 
       <para>
-	Pero si hay caracteres no comunes en palabras, la consola intercambiará 
-	la palabra con la palabra previa preservando el orden de los caracteres 
-	especiales. Esto es muy útil para la edicion de argumentos de comandos. 
-	Suponga que comete un error, mezclando la extension de archivos que 
-	desea buscar, y el parámetro <emphasis>print</emphasis>:
+	Pero si hay caracteres no comunes en palabras, la consola
+	intercambiará la palabra con la palabra previa preservando el
+	orden de los caracteres especiales. Esto es muy útil para la
+	edicion de argumentos de comandos. Suponga que comete un
+	error, mezclando la extension de archivos que desea buscar, y
+	el parámetro <emphasis>print</emphasis>:
       </para>
 
       <screen>
@@ -593,8 +610,8 @@ find ~/music -name '*.print' -ogg
       </screen>
 
       <para>
-	Puede arreglar esto colocando el cursor en la segunda palabra 
-	errónea, en este caso <quote>ogg</quote>, e intercambiando las 
+	Puede arreglar esto colocando el cursor en la segunda palabra
+	errónea, en este caso <quote>ogg</quote>, e intercambiando las
 	dos palabras. Esto le dará el resultado esperado:
       </para>
 
@@ -603,51 +620,52 @@ find ~/music -name '*.ogg' -print
       </screen>
 
       <para>
-	Finalmente, existen atajos que cambian la capitalizacion de 
-	las palabras. El atajo Alt-u convierte todos los caracteres 
-	a mayúscula, iniciando en la posicion actual del cursor hasta 
-	el final de la palabra. Entonces, si tenemos un nombre en 
-	minúscula <quote>alice</quote>, capitalizando el nombre con 
-	el cursor en <quote>i</quote> retorna <quote>alICE</quote>. Alt-l 
-	tiene el mismo comportamiento, pero cambia las letras a minúscula. 
-	Entonces, usando Alt-l en <quote>alICE</quote> con el cursor en 
-	<quote>I</quote> cambiará la cadena a <quote>alice</quote>. Alt-c 
-	cambia solamente el caracter sobre el cual el cursor esta, o el 
-	caracter de la siguiente palabra que es encontrada, a mayúscula. 
-	Por ejemplo, presionand Alt-c con el cursor sobre <quote>a</quote> 
-	en <quote>alice</quote> producirá <quote>Alice</quote>.
+	Finalmente, existen atajos que cambian la capitalizacion de
+	las palabras. El atajo Alt-u convierte todos los caracteres a
+	mayúscula, iniciando en la posicion actual del cursor hasta el
+	final de la palabra. Entonces, si tenemos un nombre en
+	minúscula <quote>alice</quote>, capitalizando el nombre con el
+	cursor en <quote>i</quote> retorna <quote>alICE</quote>. Alt-l
+	tiene el mismo comportamiento, pero cambia las letras a
+	minúscula.  Entonces, usando Alt-l en <quote>alICE</quote> con
+	el cursor en <quote>I</quote> cambiará la cadena a
+	<quote>alice</quote>. Alt-c cambia solamente el caracter sobre
+	el cual el cursor esta, o el caracter de la siguiente palabra
+	que es encontrada, a mayúscula. Por ejemplo, presionand Alt-c
+	con el cursor sobre <quote>a</quote> en <quote>alice</quote>
+	producirá <quote>Alice</quote>.
       </para>
     </sect2>
 
     <sect2 xml:id="chap-shell-moving-line">
-      <title>Edición de lineas</title>
+      <title>Edición de líneas</title>
 
       <para>
-    El nivel más alto que podemos editar es la linea misma.	
+	El nivel más alto que podemos editar es la línea misma.
 	<xref linkend="chap-shell-moving-line-shortcuts-move" />
 	enlista los dos atajos de movimiento.
       </para>
 
       <table xml:id="chap-shell-moving-line-shortcuts-move">
-	<title>Moviéndose a través de lineas</title>
+	<title>Moviéndose a través de líneas</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Teclas</entry>
-	      <entry>Descripcion</entry>
+	      <entry>Descripción</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-a</entry>
 	      <entry>
-	    Moverse al inicio de la linea actual.
+		Moverse al inicio de la línea actual.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-e</entry>
 	      <entry>
-	    Moverse al final de la linea actual.
+		Moverse al final de la línea actual.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -655,7 +673,8 @@ find ~/music -name '*.ogg' -print
       </table>
 
       <para>
-    Suponga que el cursor esta en algún lugar en medio de la linea:
+	Suponga que el cursor esta en algún lugar en medio de la
+	línea:
       </para>
 
       <screen>
@@ -663,7 +682,8 @@ find ~/music -name<emphasis role="cursor">&#32;</emphasis>'*.ogg' -print
       </screen>
 
       <para>
-    Presionando Ctrl-e una vez moverá el cursor al final de la linea:
+	Presionando Ctrl-e una vez moverá el cursor al final de la
+	línea:
       </para>
 
       <screen>
@@ -671,7 +691,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-    Presionando Ctrl-a moverá el cursor al inicio de la linea:
+	Presionando Ctrl-a moverá el cursor al inicio de la línea:
       </para>
 
       <screen>
@@ -679,38 +699,39 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
       </screen>
 
       <para>
-    Tambien puede eliminar caracteres al nivel de linea. Los atajos  
-    estan listados en <xref
-	linkend="chap-shell-moving-line-shortcuts-delete" />. Estos 
-	atajos trabajan como un movimiento, pero elimina todos los  
-	caracteres que se encuentran. Ctrl-k eliminará el caracter 
-	sobre el cual el cursor se encuentra, pero Ctrl-x Retroceso no 
-	lo hará. Moviéndose al inicio de la linea con Ctrl-a, combinado 
-	con Ctrl-k, es un tip rápido para eliminar una linea completa.
+	Tambien puede eliminar caracteres al nivel de línea. Los
+	atajos estan listados en <xref
+	linkend="chap-shell-moving-line-shortcuts-delete" />. Estos
+	atajos trabajan como un movimiento, pero elimina todos los
+	caracteres que se encuentran. Ctrl-k eliminará el caracter
+	sobre el cual el cursor se encuentra, pero Ctrl-x Retroceso no
+	lo hará. Moviéndose al inicio de la línea con Ctrl-a,
+	combinado con Ctrl-k, es un tip rápido para eliminar una línea
+	completa.
       </para>
 
       <table xml:id="chap-shell-moving-line-shortcuts-delete">
-	<title>Eliminando lineas</title>
+	<title>Eliminando líneas</title>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Teclas</entry>
-	      <entry>Descripcion</entry>
+	      <entry>Descripción</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-k</entry>
 	      <entry>
-	    Borra todos los caracteres en la linea, iniciando en 
-	    la posicion del cursor.
+		Borra todos los caracteres en la línea, iniciando en
+		la posicion del cursor.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-x Backspace</entry>
 	      <entry>
-	    Borra todos los caracteres en la linea hasta la posicion 
-	    actual del cursor.
+		Borra todos los caracteres en la línea hasta la
+		posicion actual del cursor.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -742,49 +763,51 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
     <title>Autocompletado</title>
 
     <para>
-      El Autocompletado es una de las funcionalidades mas útiles  
-      de las consolas UNIX-like. Suponga que tiene un directorio con 
-      dos archivos nombrados <filename>websites</filename> y 
-      <filename>recipe</filename>. Y suponga que quiere 
-      <command>cat</command> el archivo <filename>websites</filename> 
-      (<command>cat</command> muestra el contenido de un archivo), 
-      especificando <filename>websites</filename> como parámetro 
-      para cat. Normalmente tendria que escribir <quote>cat websites</quote>, 
-      y ejecutar el comando. Intente escribiendo <quote>cat w</quote>, y 
-      presione la tecla &lt;Tab&gt;. Bash expandirá automáticamente  
-      lo que usted escribió a <quote>cat websites</quote>.
+      El Autocompletado es una de las funcionalidades mas útiles de
+      las consolas UNIX-like. Suponga que tiene un directorio con dos
+      archivos nombrados <filename>websites</filename> y
+      <filename>recipe</filename>. Y suponga que quiere
+      <command>cat</command> el archivo <filename>websites</filename>
+      (<command>cat</command> muestra el contenido de un archivo),
+      especificando <filename>websites</filename> como parámetro para
+      cat. Normalmente tendría que escribir <quote>cat
+      websites</quote>, y ejecutar el comando. Intente escribiendo
+      <quote>cat w</quote>, y presione la tecla &lt;Tab&gt;. Bash
+      expandirá automáticamente lo que usted escribió a <quote>cat
+      websites</quote>.
     </para>
 
     <para>
-      Pero que sucede si tiene archivos que inician con la misma letra? 
-      Suponga que tiene los archivos <filename>recipe1.txt</filename> y 
-      <filename>recipe2.txt</filename>. Teclee <quote>cat r</quote> y 
-      presione &lt;Tab&gt;, Bash completará el nombre del archivo  
-      tanto como pueda. Lo dejaría con <quote>cat recipe</quote>. 
-      Intente presionando &lt;Tab&gt; de nuevo, y Bash mostrará una  
-      lista de nombres de archivo que comienzan con <quote>recipe</quote>, 
-      en este caso ambos archivos 'recipe'. En este punto debe ayudar 
-      a Bash tecleando el siguiente caracter del archivo que necesita. 
-      Suponga que quiere ejecutar <command>cat</command>
-      <filename>recipe2.txt</filename>, puede presionar la tecla &lt;2&gt;. 
-      Despues de eso no hay problemas completando el nombre del archivo, y 
-      presionando &lt;Tab&gt; completa el comando <quote>cat
-      recipe2.txt</quote>.
+      Pero que sucede si tiene archivos que inician con la misma
+      letra?  Suponga que tiene los archivos
+      <filename>recipe1.txt</filename> y
+      <filename>recipe2.txt</filename>. Teclee <quote>cat r</quote> y
+      presione &lt;Tab&gt;, Bash completará el nombre del archivo
+      tanto como pueda. Lo dejaría con <quote>cat recipe</quote>.
+      Intente presionando &lt;Tab&gt; de nuevo, y Bash mostrará una
+      lista de nombres de archivo que comienzan con
+      <quote>recipe</quote>, en este caso ambos archivos 'recipe'. En
+      este punto debe ayudar a Bash tecleando el siguiente caracter
+      del archivo que necesita. Suponga que quiere ejecutar
+      <command>cat</command> <filename>recipe2.txt</filename>, puede
+      presionar la tecla &lt;2&gt;.  Despues de eso no hay problemas
+      completando el nombre del archivo, y presionando &lt;Tab&gt;
+      completa el comando <quote>cat recipe2.txt</quote>.
     </para>
 
     <para>
-      Vale la pena señalar que el autocompletado también funciona 
-      con comandos. La mayoría de los comandos GNU/Linux son bastante  
+      Vale la pena señalar que el autocompletado también funciona con
+      comandos. La mayoría de los comandos GNU/Linux son bastante
       cortos, entonces no será de mucho uso la mayor parte del tiempo.
     </para>
 
     <para>
-      Es una buena idea practicar un poco con el autocompletado, puede 
-      ahorrar muchos golpes de teclado si se maneja bien. Usted puede 
-      crear algunos archivos vacios para practicar utilizando el comando 
-      <command>touch</command>. Por ejemplo, para crear un archivo 
-      con el nombre <filename>recipe3.txt</filename>, ejecute <command>touch
-      recipe3.txt</command>.
+      Es una buena idea practicar un poco con el autocompletado, puede
+      ahorrar muchos golpes de teclado si se maneja bien. Usted puede
+      crear algunos archivos vacios para practicar utilizando el
+      comando <command>touch</command>. Por ejemplo, para crear un
+      archivo con el nombre <filename>recipe3.txt</filename>, ejecute
+      <command>touch recipe3.txt</command>.
     </para>
   </sect1>
 
@@ -792,11 +815,12 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
     <title>Comodines</title>
 
     <para>
-      La mayoria de las consolas, incluyendo Bash y ksh, soportan  
-      caracteres comodin. Los comodines son caracteres especiales que  
-      pueden ser utilizados para igualar patrones. La tabla siguiente 
-      describe algunos comodines comunmente usados. Veremos varios 
-      ejemplos para dar una idea general de como trabajan los comodines.
+      La mayoria de las consolas, incluyendo Bash y ksh, soportan
+      caracteres comodin. Los comodines son caracteres especiales que
+      pueden ser utilizados para igualar patrones. La tabla siguiente
+      describe algunos comodines comunmente usados. Veremos varios
+      ejemplos para dar una idea general de como trabajan los
+      comodines.
     </para>
 
     <table xml:id="chap-shell-wildcards-thewildcards">
@@ -829,17 +853,18 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
       <title>Igualando una cadena de caracteres</title>
 
       <para>
-    Como puede ver en la tabla anterior el caracter <quote>*</quote> 
-    iguala una cadena de caracteres. Por ejemplo, <emphasis>*.html</emphasis> 
-    iguala todo lo que termine con <emphasis>.html</emphasis>, 
-    <emphasis>d*.html</emphasis> iguala todo lo que comienza con 
-    <emphasis>d</emphasis> y termina con <emphasis>.html</emphasis>.
+	Como puede ver en la tabla anterior el caracter
+	<quote>*</quote> iguala una cadena de caracteres. Por ejemplo,
+	<emphasis>*.html</emphasis> iguala todo lo que termine con
+	<emphasis>.html</emphasis>, <emphasis>d*.html</emphasis>
+	iguala todo lo que comienza con <emphasis>d</emphasis> y
+	termina con <emphasis>.html</emphasis>.
       </para>
 
       <para>
-    Suponga que quiere listar todos los archivos en el directorio 
-    actual con la extension <emphasis>.html</emphasis>, el siguiente 
-    comando hará el trabajo:
+	Suponga que quiere listar todos los archivos en el directorio
+	actual con la extensión <emphasis>.html</emphasis>, el
+	siguiente comando hará el trabajo:
       </para>
 
       <screen>
@@ -851,8 +876,8 @@ help.html        slackware-basics.html shell.html
       </screen>
 
       <para>
-    De la misma forma podríamos eliminar todos los archivos que comiencen 
-    con <emphasis>in</emphasis>:
+	De la misma forma podríamos eliminar todos los archivos que
+	comiencen con <emphasis>in</emphasis>:
       </para>
 
       <screen>
@@ -864,13 +889,13 @@ $ <userinput>rm in*</userinput>
       <title>Igualando caracteres individuales</title>
 
       <para>
-    El comodin <quote>?</quote> funciona como el comodin <quote>*</quote>, 
-    pero iguala caracteres individuales. Suponga que tenemos tres  
-    archivos <filename>file1.txt</filename>,
+	El comodin <quote>?</quote> funciona como el comodin
+	<quote>*</quote>, pero iguala caracteres individuales. Suponga
+	que tenemos tres archivos <filename>file1.txt</filename>,
 	<filename>file2.txt</filename> y
-	<filename>file3.txt</filename>. La cadena 
-	<emphasis>file?.txt</emphasis> iguala con los tres archivos, 
-	pero no iguala con <filename>file10.txt</filename> 
+	<filename>file3.txt</filename>. La cadena
+	<emphasis>file?.txt</emphasis> iguala con los tres archivos,
+	pero no iguala con <filename>file10.txt</filename>
 	(<quote>10</quote> son dos caracteres).
       </para>
     </sect2>
@@ -879,11 +904,11 @@ $ <userinput>rm in*</userinput>
       <title>Igualando caracteres desde un conjunto</title>
 
       <para>
-    El comodin <quote>[]</quote> iguala cada caracter entre los  
-    corchetes. Suponga que tenemos los archivos del ejemplo previo, 
-    <filename>file1.txt</filename>,
+	El comodin <quote>[]</quote> iguala cada caracter entre los
+	corchetes. Suponga que tenemos los archivos del ejemplo
+	previo, <filename>file1.txt</filename>,
 	<filename>file2.txt</filename> y
-	<filename>file3.txt</filename>. La cadena 
+	<filename>file3.txt</filename>. La cadena
 	<emphasis>file[23].txt</emphasis> iguala con
 	<filename>file2.txt</filename> y
 	<filename>file3.txt</filename>, pero no con
@@ -896,20 +921,22 @@ $ <userinput>rm in*</userinput>
     <title>Redirecciones y conductos</title>
 
     <para>
-      Una de las características principales de las consolas UNIX-like  
-      son redirecciones y conductos. Antes de que veamos ambas tecnicas 
-      debemos ver cómo funcionan la mayoría de los comandos UNIX-like. 
-      Cuando un comando no esta obteniendo datos desde un archivo, abrirá  
-      un pseudo-archivo llamado <emphasis>stdin</emphasis>, y esperará 
-      a datos que aparezcan en el. El mismo principio puede ser aplicado 
-      para la salida de comandos, cuando no hay una razon explícita para  
-      salvar la salida a un archivo, el pseudo-archivo <emphasis>stdout</emphasis> 
-      será abierto para los datos de salida. Este principio se muestra 
-      esquemáticamente en <xref linkend="fig-shell-inout" />
+      Una de las características principales de las consolas UNIX-like
+      son redirecciones y conductos. Antes de que veamos ambas
+      tecnicas debemos ver cómo funcionan la mayoría de los comandos
+      UNIX-like. Cuando un comando no esta obteniendo datos desde un
+      archivo, abrirá un pseudo-archivo llamado
+      <emphasis>stdin</emphasis>, y esperará a datos que aparezcan en
+      el. El mismo principio puede ser aplicado para la salida de
+      comandos, cuando no hay una razon explícita para salvar la
+      salida a un archivo, el pseudo-archivo
+      <emphasis>stdout</emphasis> será abierto para los datos de
+      salida. Este principio se muestra esquemáticamente en <xref
+      linkend="fig-shell-inout" />
     </para>
 
     <figure xml:id="fig-shell-inout">
-      <title>Entrada y salida estandar</title>
+      <title>Entrada y salida estándar</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/shell-inout.png" format="PNG"/>
@@ -918,13 +945,15 @@ $ <userinput>rm in*</userinput>
     </figure>
 
     <para>
-      Puede ver <emphasis>stdin</emphasis> y <emphasis>stdout</emphasis> en 
-      acción con el comando <command>cat</command>. Si cat es iniciado 
-      sin parámetros, esperará por datos de entrada en <emphasis>stdin</emphasis> 
-      y retornará la misma información en <emphasis>stdout</emphasis>. Si 
-      la redirección no es usada, la entrada de teclado será usada para 
-      <emphasis>stdin</emphasis>, y la salida de <emphasis>stdout</emphasis> 
-      será impresa en la terminal:
+      Puede ver <emphasis>stdin</emphasis> y
+      <emphasis>stdout</emphasis> en acción con el comando
+      <command>cat</command>. Si cat es iniciado sin parámetros,
+      esperará por datos de entrada en <emphasis>stdin</emphasis> y
+      retornará la misma información en
+      <emphasis>stdout</emphasis>. Si la redirección no es usada, la
+      entrada de teclado será usada para <emphasis>stdin</emphasis>, y
+      la salida de <emphasis>stdout</emphasis> será impresa en la
+      terminal:
     </para>
 
     <screen>
@@ -934,22 +963,22 @@ Hello world!
     </screen>
 
     <para>
-      Como puede ver 'cat' imprimirá los datos a 
-      <emphasis>stdout</emphasis> despues de haber ingresado  
-      los datos a <emphasis>stdin</emphasis> usando el teclado.
+      Como puede ver 'cat' imprimirá los datos a
+      <emphasis>stdout</emphasis> despues de haber ingresado los datos
+      a <emphasis>stdin</emphasis> usando el teclado.
     </para>
 
     <sect2 xml:id="chap-shell-inout-redir">
       <title>Redirección</title>
 
       <para>
-    La consola le permite usar <emphasis>stdin</emphasis> y 
-    <emphasis>stdout</emphasis> utilizando <quote>&lt;</quote> 
-    y <quote>&gt;</quote>. Los datos se redireccionan en el sentido 
-    de los caracteres ('&lt;' izquierda, '&gt;' derecha). En el 
-    siguiente ejemplo redirigiremos el resumen md5 calculado 
-    para un conjunto de archivos hacia un archivo llamado 
-    <filename>md5sums</filename>:
+	La consola le permite usar <emphasis>stdin</emphasis> y
+	<emphasis>stdout</emphasis> utilizando <quote>&lt;</quote> y
+	<quote>&gt;</quote>. Los datos se redireccionan en el sentido
+	de los caracteres ('&lt;' izquierda, '&gt;' derecha). En el
+	siguiente ejemplo redirigiremos el resumen md5 calculado para
+	un conjunto de archivos hacia un archivo llamado
+	<filename>md5sums</filename>:
       </para>
 
       <screen>
@@ -961,10 +990,10 @@ $ <userinput>cat md5sums</userinput>
       </screen>
 
       <para>
-    Como podemos ver en la salida de <command>cat</command>, la 
-    salida de <command>md5sum *</command> fué redirigida a el 
-    archivo <filename>md5sums</filename>. Tambien podemos 
-    usar la redirección para proveer datos de entrada a un comando:
+	Como podemos ver en la salida de <command>cat</command>, la
+	salida de <command>md5sum *</command> fué redirigida a el
+	archivo <filename>md5sums</filename>. Tambien podemos usar la
+	redirección para proveer datos de entrada a un comando:
       </para>
 
       <screen>
@@ -973,8 +1002,8 @@ $ <userinput>md5sum &lt; test1</userinput>
       </screen>
 
       <para>
-    Esto toma el contenido de <filename>test1</filename> como 
-    entrada para <command>md5sum</command>.
+	Esto toma el contenido de <filename>test1</filename> como
+	entrada para <command>md5sum</command>.
       </para>
     </sect2>
 
@@ -982,12 +1011,12 @@ $ <userinput>md5sum &lt; test1</userinput>
       <title>Conductos</title>
 
       <para>
-    Tambien puede conectar la entrada y salida de comandos 
-    usando los denominadas <emphasis>conductos</emphasis>. Un  
-    conducto entre comandos puede hacerse con el caracter <quote>|</quote>. 
-    Dos o mas comandos combinados se denominan una 
-    <emphasis>tubería</emphasis>. <xref
-	linkend="fig-shell-pipeline" /> da un vistazo esquemático a  
+	Tambien puede conectar la entrada y salida de comandos usando
+	los denominadas <emphasis>conductos</emphasis>. Un conducto
+	entre comandos puede hacerse con el caracter <quote>|</quote>.
+	Dos o mas comandos combinados se denominan una
+	<emphasis>tubería</emphasis>. <xref
+	linkend="fig-shell-pipeline" /> da un vistazo esquemático a
 	una tubería compuesta por dos comandos.
       </para>
 
@@ -1001,10 +1030,11 @@ $ <userinput>md5sum &lt; test1</userinput>
       </figure>
 
       <para>
-    La <quote>sintaxis</quote> de una tubería es: <command>comando1
-	| comando2 ... | comandon</command>. Si usted conoce como trabajan
-	la mayoría de los comandos UNIX-like puede ahora dejar que estos 
-	comandos trabajen en conjunto. Veamos un ejemplo rápido:
+	La <quote>sintaxis</quote> de una tubería es:
+	<command>comando1 | comando2 ... | comandon</command>. Si
+	usted conoce como trabajan la mayoría de los comandos
+	UNIX-like puede ahora dejar que estos comandos trabajen en
+	conjunto. Veamos un ejemplo rápido:
       </para>
 
       <screen>
@@ -1013,24 +1043,26 @@ $ <userinput>cat /usr/share/dict/american-english | grep "aba" | wc -l</userinpu
       </screen>
 
       <para>
-    El primer comando, <command>cat</command>, lee el archivo  
-    diccionario <filename>/usr/share/dict/american-english</filename>. 
-    La salida de el comando <command>cat</command> es conducida a  
-    <command>grep</command>, que imprime todos los archivos 
-    conteniendo la frase <quote>aba</quote>. A su vez, la salida 
-    de <quote>grep</quote> es conducida a <command>wc -l</command>, 
-    que cuenta el número de lineas que recibe desde 
-    <emphasis>stdin</emphasis>. Finalmente, cuando el flujo se 
-    completa <command>wc</command> imprime el número de lineas 
-    que contó. Entonces, se combinarion tres comandos para 
-    contar el número de lineas conteniendo la frase <quote>aba</quote>  
-    en este diccionario en particular.
+	El primer comando, <command>cat</command>, lee el archivo
+	diccionario
+	<filename>/usr/share/dict/american-english</filename>. La
+	salida de el comando <command>cat</command> es conducida a
+	<command>grep</command>, que imprime todos los archivos
+	conteniendo la frase <quote>aba</quote>. A su vez, la salida
+	de <quote>grep</quote> es conducida a <command>wc
+	-l</command>, que cuenta el número de líneas que recibe desde
+	<emphasis>stdin</emphasis>. Finalmente, cuando el flujo se
+	completa <command>wc</command> imprime el número de líneas que
+	contó. Entonces, se combinarion tres comandos para contar el
+	número de líneas conteniendo la frase <quote>aba</quote> en
+	este diccionario en particular.
       </para>
 
       <para>
-    Existen cientos de pequeñas utilidades que manejan tareas  
-    específicas. Como puede imaginar, estos comandos juntos proveen 
-    una poderosa caja de herramientas al combinarse utilizando conductos.
+	Existen cientos de pequeñas utilidades que manejan tareas
+	específicas. Como puede imaginar, estos comandos juntos
+	proveen una poderosa caja de herramientas al combinarse
+	utilizando conductos.
       </para>
     </sect2>
   </sect1>

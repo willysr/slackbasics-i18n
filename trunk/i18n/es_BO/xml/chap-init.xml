@@ -16,19 +16,19 @@
 
     <para>
       Podría decirse que la pieza más importante de un sistema
-      operativo es el kernel, El kernel administra los recursos de
+      operativo es el kernel. El kernel administra los recursos de
       hardware y los procesos de software. El kernel es iniciado por
-      algun pequó intermediario entre el sistema
+      un pequeño intermediario entre el sistema
       <acronym>BIOS</acronym> (Basic Input/Output System) y el kernel,
-      llamado cargador de arranque. El bootloader maneja las
-      complicaciones de cargar un kernel específico (o menos
+      llamado cargador de arranque o bootloader. El bootloader maneja
+      las complicaciones de cargar un kernel específico (o uno menos
       específico).
     </para>
 
     <para>
       La mayoría de los cargadores de arranque trabajan en dos
       etapas. La primera etapa carga la segunda etapa, la cual hace el
-      trabajo verdadero.  El cargador de arranque es dividido en dos
+      trabajo verdadero. El cargador de arranque es dividido en dos
       etapas en máquinas x86, porque el BIOS solamente carga un sector
       (el llamado sector de arranque) de 512 bytes.
     </para>
@@ -36,7 +36,7 @@
     <para>
       Slackware Linux usa el cargador de arranque
       <acronym>LILO</acronym> (LInux LOader). Este cargador de
-      arranque esta en desarrollo desde 1992 y esta especificamente
+      arranque esta en desarrollo desde 1992 y esta específicamente
       escrito para cargar el kernel Linux. Últimamente LILO ha sido
       reemplazado por <acronym>GRUB</acronym> (GRand Unified
       Bootloader) en la mayoría de las distribuciones GNU/Linux. GRUB
@@ -77,7 +77,7 @@ vga = normal <co xml:id="liloconf-global-4" />
 	  <para>
 	    La opción <emphasis>boot</emphasis> especifica dónde
 	    debería ser instalado el cargado de arranque. Si usted
-	    quiere uar LILO como el principal cargador de arranque
+	    quiere usar LILO como el principal cargador de arranque
 	    para el arranque de Linux y/o otros sistemas operativos,
 	    es recomendable instalar LILO en el <acronym>MBR</acronym>
 	    (Master Boot Record) que usted usa para iniciar el
@@ -213,7 +213,7 @@ Added Slack
 
     <para>
       El archivo <filename>/etc/inittab</filename> está muy bien
-      documentado.  Especifica qué scripts deberían ser ejecutados por
+      documentado. Especifica qué scripts deberían ser ejecutados por
       el sistema para diferentes niveles de ejecución. Un nivel de
       ejecución es un estado en el que el sistema se está
       ejecutando. Por ejemplo, el nivel de ejecución 1 es el modo de
@@ -280,7 +280,7 @@ c1:1235:respawn:/sbin/agetty 38400 tty1 linux
       útil cuando tiene una o mas terminales conectadas a una
       máquina. Puede agregar algo como la siguiente línea para iniciar
       una instancia <command>agetty</command> que escuche el
-      puertoCOM1:
+      puerto COM1:
     </para>
 
     <screen>
@@ -297,7 +297,7 @@ s1:12345:respawn:/sbin/agetty -L ttyS0 9600 vt100
       inicia algunos scripts que manejan diferentes niveles de
       ejecución. Estos scripts realizan trabajos y cambian
       configuraciones que son necesarias para un nivel de ejecución
-      particular, pero también pueden iniciar otros scripts. Veamos un
+      particular, pero también pueden iniciar otros scripts. Veámos un
       ejemplo desde <filename>/etc/rc.d/rc.M</filename>, el script que
       <command>init</command> ejecuta cuando el sistema cambia al
       nivel de ejecución multi-usuario:
@@ -357,7 +357,7 @@ fi
 
     <para>
       Si el script no es ejecutable, debe decirle a la consola de que
-      quiere ejecutar el archivo con <command>sh</command>.  Por
+      quiere ejecutar el archivo con <command>sh</command>. Por
       ejemplo:
     </para>
 
@@ -395,7 +395,7 @@ fi
     <para>
       El subsistema udev es inicializado en
       <filename>/etc/rc.d/rc.S</filename> ejecutando el comando
-      <command>/etc/rc.d/rc.udev start</command>.  Como con la mayoría
+      <command>/etc/rc.d/rc.udev start</command>. Como con la mayoría
       de las funcionalidades, puede habilitar o deshabilitar udev
       cambiando la bandera de ejecución del script
       <filename>/etc/rc.d/rc.udev</filename> (véa <xref
@@ -410,7 +410,7 @@ fi
       <filename>/etc/modprobe.d/blacklist</filename>. Por ejemplo, si
       quisiera prevenir la carga del módulo
       <emphasis>8139cp</emphasis>, puede agregar la siguiente línea
-      (actualmetne, este módulo ya es parte de la lista negra en
+      (actualmente, este módulo ya es parte de la lista negra en
       Slackware Linux):
     </para>
 
@@ -440,7 +440,7 @@ blacklist 8139cp
       <para>
 	Los controladores para dispositivos que requieren firmware
 	tienen una tabla que lista los archivos firmware que
-	necesitan.  Para cada archivo firmware que el controlador
+	necesitan. Para cada archivo firmware que el controlador
 	necesita lanzará un evento de adición de firmware. Si udev
 	maneja los eventos de hotplugging, tratará de manejar ese
 	evento. Las reglas udev contienen una entrada para los eventos
@@ -486,8 +486,8 @@ ipw2100: eth1: ipw2100_get_firmware failed: -2
 
       <para>
 	En este caso usted deberá encontrar el firmware para su
-	dispositivo. Puede ser usualmente hallado buscando en la web
-	por el chipset o controlador del dispositivo (en este case
+	dispositivo. Puede ser usualmente encontrado buscando en la
+	web por el chipset o controlador del dispositivo (en este case
 	<emphasis>ipw2100</emphasis>) y el término literal
 	<quote>firmware</quote>. El archivo firmware algunas veces
 	contiene un archivo con instrucciones de

@@ -21,10 +21,10 @@ lines   file                   trad    1st-rev  2nd-rev
    527 netconfig.xml            OK       OK      -
    630 ipsec.xml                OK       OK      -
    652 chap-pkgmgmt.xml         OK      OK      -
-   703 chap-init.xml            OK       -       -
-   758 custom-installation.xml  OK       -       -
-   780 chap-procmgmt.xml        OK       -       -
-   868 chap-install.xml         OK       -       -
-  1044 chap-shell.xml           OK       -       -
+   703 chap-init.xml            OK       OK      -
+   758 custom-installation.xml  OK       OK      -
+   780 chap-procmgmt.xml        OK       OK      -
+   868 chap-install.xml         OK       OK      -
+  1044 chap-shell.xml           OK       OK      -
   1924 chap-textproc.xml        OK       -       -
   3475 chap-filesystem.xml      OK       -       -
