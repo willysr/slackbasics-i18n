@@ -18,14 +18,14 @@
 	memoria protegida, denominada <emphasis>process address
 	space</emphasis> (espacio de direccionamiento del
 	programa). Este espacio de direccionamiento consiste en dos
-	áreas: el <emphasis>text area</emphasis> el <emphasis>data
+	áreas: el <emphasis>text area</emphasis> y el <emphasis>data
 	area</emphasis>. El text area contiene el código del programa
 	actual y le dice al sistema qué hacer. El data area almacena
 	datos constantes y de ejecución de un proceso. Debido a que
 	existen muchos procesos en un sistema y solamente uno o pocos
 	procesadores, el kernel del sistema operativo el tiempo del
 	procesador entre procesos. Este proceso es llamado
-	<emphasis>time-sharing</emphasis>.
+	<emphasis>time-sharing</emphasis> (distribución de tiempo).
       </para>
 
       <table xml:id="chap-procmgmt-theory-proc-struct">
@@ -76,14 +76,14 @@
       <para>
 	<xref linkend="chap-procmgmt-theory-proc-struct" /> lista los
 	campos de información mas importantes que el kernel almacena
-	sobre un proceso.  Cada proceso puede ser identificado
+	sobre un proceso. Cada proceso puede ser identificado
 	únicamente por su <emphasis>PID</emphasis> (identificador de
 	proceso), el cual es un número sin signo. Como veremos mas
 	adelante, un usuario puede fácilmente obtener el PID de un
 	proceso. Cada proceso es asociado con un
 	<emphasis>UID</emphasis> (ID de usuario) y
 	<emphasis>GID</emphasis> (ID de grupo) en el sistema. Cada
-	proceso tiene un <emphasis>UID real</emphasis>, el cual es le
+	proceso tiene un <emphasis>UID real</emphasis>, el cual es el
 	UID con el cual el proceso fué iniciado y el <emphasis>UID
 	efectivo</emphasis> es el UID con el cual el proceso
 	opera. Normalmente, el UID efectivo es igual al UID real, pero
@@ -100,7 +100,7 @@
       <para>
 	Muchos procesos abren archivos, el medio usado para operar un
 	archivo es denominado <emphasis>file descriptor (descriptor de
-	archivo)</emphasis>.  El kernel administra una lista de
+	archivo)</emphasis>. El kernel administra una lista de
 	descriptores de archivos abiertos para cada proceso. El campo
 	<emphasis>fd</emphasis> contiene un puntero a la lista de
 	archivos abierto. El campo <emphasis>vmspace</emphasis> apunta
@@ -122,7 +122,7 @@
       </figure>
 
       <para>
-	No todo proceso requiere tiempo del CPU en un momento
+	Ahora, no todo proceso requiere tiempo del CPU en un momento
 	dado. Por ejemplo, algunos procesos pueden estar esperando la
 	finalización o la interrupción de alguna operación
 	<emphasis>I/O</emphasis> (Input/Output). Sin tomar en cuenta
@@ -152,7 +152,7 @@
 	ejecutante y da al nuevo proceso, llamado proceso hijo, un PID
 	diferente.  El proceso hijo continuará su ejecución en el
 	mismo punto que el padre, pero tendrá un diferente valor de
-	retorno desde la llamada del sisteam
+	retorno desde la llamada del sistema
 	<emphasis>fork()</emphasis>. Basado en este valor de retorno
 	el código del padre y el hijo pueden decidir cómo continuar su
 	ejecución. El siguiente fragmento de código C muestra una
@@ -181,7 +181,7 @@ int main() {
 	en la variable
 	<emphasis>pid</emphasis>. <emphasis>fork()</emphasis> retorna
 	el valor <emphasis>0</emphasis> al hijo y el PID del hijo al
-	padre.  Ya que este es el caso, podemos usar una simple
+	padre. Ya que este es el caso, podemos usar una simple
 	estructura condicional para verificar el valor de la variable
 	<emphasis>pid</emphasis> e imprimir un mensaje apropiado.
       </para>
@@ -189,7 +189,7 @@ int main() {
       <para>
 	Puede estar preguntándose cómo es posible iniciar programas
 	nuevos, ya que <emphasis>fork()</emphasis> duplica un proceso
-	existente. Esa es una pregunta, ya que solamente con
+	existente. Esa es una buena pregunta, ya que solamente con
 	<emphasis>fork()</emphasis> no es posible iniciar nuevos
 	programas. Los kernels UNIX también proveen un conjunto de
 	llamadas del sistema, empezando con <emphasis>exec</emphasis>,
@@ -200,7 +200,7 @@ int main() {
 	de almacenamiento. Entonces, la familia de llamadas del
 	sistema <emphasis>exec</emphasis> dan a un proceso en
 	ejecución las facilidades de reemplazar su contenido con un
-	programa almacenado en algún medio.  En sí mismo, esto no es
+	programa almacenado en algún medio. En sí mismo, esto no es
 	extremadamente útil, porque cada vez que una llamada
 	<emphasis>exec</emphasis> es realizada, el código ejecutante
 	original (o programa) es removido del proceso. Esto puede
@@ -277,7 +277,7 @@ int main() {
 	algo de paralelismo<footnote><para>Por ejemplo, un servidor
 	web podría bifurcar múltiples procesos hijos para manejar
 	peticiones</para></footnote>, esto puede ser muy caro para
-	algunos propósitos. Copiar el proceso completo toma algun
+	algunos propósitos. Copiar el proceso completo toma algún
 	tiempo y existe un costo si los procesos quieren compartir
 	data. Esto se resuelve ofreciendo una alternativa más ligera,
 	nominalmente permitiendo más de un hilo por ejecución. Cada
@@ -304,15 +304,15 @@ int main() {
       <title>Listando procesos en ejecución</title>
 
       <para>
-	Los sistema UNIX proveen el comando <command>ps</command> para
-	mostrar una lista de procesos en
+	Los sistemas UNIX proveen el comando <command>ps</command>
+	para mostrar una lista de procesos en
 	ejecución. Desafortunadamente, este comando es un ejemplo del
-	sufrimiento de la falta de estandarización.  Las variantes BSD
+	sufrimiento de la falta de estandarización. Las variantes BSD
 	y System V de <command>ps</command> tienen su propio conjunto
 	de opciones. Afortunadamente, GNU/Linux implementa ambos
 	parámetros System V y BSD, asi como algunas otras opciones
-	largas (GNU-style).  Las opciones precedidas de un guión son
-	interpretadas como opciones System V y las opciones son un
+	extendidas (GNU-style). Las opciones precedidas de un guión
+	son interpretadas como opciones System V y las opciones son un
 	guión como opciones BSD. Describiremos las opciones System
 	V-style en esta sección.
       </para>
@@ -336,7 +336,7 @@ $ <userinput>ps</userinput>
 	salida. Como puede ver, dos procesos son listados: la consola
 	que fué usada para llamar a <command>ps</command>
 	(<emphasis>bash</emphasis>) y el mismo comando
-	<command>ps</command>.  En este caso hay cuatro campos de
+	<command>ps</command>. En este caso hay cuatro campos de
 	información.  <emphasis>PID</emphasis> es el ID del proceso,
 	<emphasis>TTY</emphasis> la terminal controladora,
 	<emphasis>TIME</emphasis> la cantidad de tiempo de CPU que el
@@ -446,7 +446,7 @@ $ <userinput>ps -t tty2</userinput>
 	Las señales son crudas, pero son una forma efectiva de
 	comunicación inter-proceso (IPC). Una señal es básicamente un
 	número con un significado especial que es entregado a un
-	proceso.  Para todas las señales existen controladores por
+	proceso. Para todas las señales existen controladores por
 	defecto. Los procesos pueden instalar sus propios
 	controladores de señal, o escoger ignorar señales. Algunas
 	señales (normalmente SIGKILL y SIGSTOP) no pueden ser
@@ -484,7 +484,7 @@ $ <userinput>ps -t tty2</userinput>
 	señal a un proceso. Por defecto <command>kill</command> envía
 	la señal <emphasis>SIGTERM</emphasis>. Para enviar esta señal,
 	debe usar el ID del proceso al que quisiera enviar esta señal
-	como parámetro.  Por ejemplo:
+	como parámetro. Por ejemplo:
       </para>
 
       <screen>
@@ -522,7 +522,7 @@ $ <userinput>kill -SIGKILL 15631</userinput>
 	'amabilidad' a un proceso. Prácticamente, esto significa que
 	será capaz de influenciar la prioridad de planificación de un
 	proceso. Procesos más amables obtienen una prioridad de
-	planificación baja.  La amabilidad normal de un proceso es
+	planificación baja. La amabilidad normal de un proceso es
 	<emphasis>0</emphasis> y puede ser cambiando ejecutando un
 	programa con el comando <command>nice</command>. La opción
 	<emphasis>-n [amabilidad]</emphasis> puede ser usada para
@@ -667,7 +667,7 @@ $ <userinput>sleep 3600</userinput>
 	El grupo de proceso, al cual nos referiremos como el trabajo
 	que ha sido detenido, significando esto que
 	<command>sleep</command> ha acabado de contar - su ejecución
-	esta completamente detenida.  Puede obtener una lista de
+	esta completamente detenida. Puede obtener una lista de
 	trabajos con el comando <command>jobs</command>:
       </para>
 

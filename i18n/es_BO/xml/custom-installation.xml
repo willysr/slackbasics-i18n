@@ -2,7 +2,7 @@
   <title>Instalación personalizada</title>
 
   <para>
-    Algunas veces usted podría querer realizar una instalación
+    Algunas veces usted podría requerir realizar una instalación
     personalizada de Slackware Linux, por ejemplo, para tener un mejor
     entendimiento de como funciona un sistema GNU/Linux, o como
     preparar un script de instalación automática. Este capítulo
@@ -61,8 +61,8 @@ EOF</command>
     <para>
       Después de crear al menos una partición swap y una partición
       Linux, puede inicializar el sistema de archivos y el espacio
-      swap y hacer us o de este almacenamiento. En sistemas que son
-      cortos en memoria, usted debería inicializarlos y usar swap
+      swap y hacer uso de este almacenamiento. En sistemas de bajos
+      recursos, usted debería inicializarlos y usar swap
       primero. Usaremos la disposición de particiones usada en el
       ejemplo de particionado anterior en los siguientes
       ejemplos. Para configurar y usar swap, ejecute:
@@ -74,7 +74,7 @@ EOF</command>
     </screen>
 
     <para>
-      El significado de estos comando es bastante obvio.
+      El significado de estos comandos es bastante obvio.
       <command>mkswap</command> inicializa el espacio swap, y
       <command>swapon</command> lo pone en uso. Tendrá que ejecutar
       <command>mkswap</command> una vez, pero
@@ -114,7 +114,7 @@ EOF</command>
     <para>
       Si ha creado particiones separadas para ciertos directorios en
       el sistema de archivos root, e.g. <filename>/home</filename>,
-      también puede inicializarlos y montarlos en este putno. Por
+      también puede inicializarlos y montarlos en este punto. Por
       ejemplo:
     </para>
 
@@ -135,7 +135,7 @@ EOF</command>
     </screen>
 
     <para>
-      Para usar NFS como el medio de instalación requiere algunos
+      Para usar NFS como medio de instalación se requieren algunos
       pasos mas.  Primeramente, tendrá que cargar el disco de
       red. Puede hacer esto ejecutando el comando
       <command>network</command> e insertando un disco de red. También
@@ -165,12 +165,12 @@ EOF</command>
     </screen>
 
     <para>
-      Si el portmapper se inicia correctamente, puede montar el
-      volumen NFS. Pero, primero asegúrese que haya desmontado
+      Si portmapper se inicia correctamente, puede montar el
+      volumen NFS. Pero primero asegúrese que haya desmontado
       cualquier sistema de archivos que haya montado previamente en
       <filename>/var/log/mount</filename>. Si no hay otros sistemas de
       archivos montados en <filename>/var/log/mount</filename>, puede
-      proceder con el montaje del volumen NFS. Suponga, que quiere
+      proceder con el montaje del volumen NFS. Suponga que quiere
       montar
       <emphasis>192.168.2.1:/home/pub/slackware-current</emphasis>,
       debería usar el siguiente comando:
@@ -271,7 +271,7 @@ EOF</command>
 	cubierta en <xref linkend="chap-init-lilo" />. Para esta
 	sección solamente mostraremos un configuración LILO de
 	ejemplo, que puede ser usada con la disposición descrita en
-	este capítulo.  El primer paso es crear el archivo
+	este capítulo. El primer paso es crear el archivo
 	<filename>/etc/lilo.conf</filename>:
       </para>
 
@@ -422,7 +422,7 @@ EOF</command>
       <para>
 	GNU/Linux usa una cache para la carga dinámica de
 	librerias. Además que muchos programas se basan en números
-	genéricos de lbirerías
+	genéricos de librerías
 	(e.g. <filename>/usr/lib/libgtk-x11-2.0.so</filename>, en vez
 	de
 	<filename>/usr/lib/libgtk-x11-2.0.so.0.600.8</filename>). El
@@ -456,8 +456,8 @@ EOF</command>
       <para>
 	Ahora que la cache de librerías dinámicas y los enlaces están
 	configurados, puede ejecutar comandos instalados en el
-	sistema.  Haremos uso de esto para asignar la contraseña
-	<emphasis>root</emphasis>.  El comando
+	sistema. Haremos uso de esto para asignar la contraseña
+	<emphasis>root</emphasis>. El comando
 	<command>passwd</command> puede ser usado para asignar la
 	contraseña para un usuario existente (el usuario
 	<emphasis>root</emphasis> es parte del archivo inicial
@@ -476,14 +476,14 @@ EOF</command>
 
       <para>
 	En los sistemas UNIX-like es importante configurar la zona
-	horaria correctament, porque es usada por varias partes del
+	horaria correctamente, porque es usada por varias partes del
 	sistema. Por ejemplo, la zona horaria es usada por NTP para
 	sincronizar la hora del sistema correctamente, o por
 	diferentes programas de red para computar la diferencia de
 	tiempo entre un cliente y un servidor. En Slackware Linux la
 	zona horaria puede ser configurada enlazando
 	<filename>/etc/localtime</filename> a un archivo de zona
-	horaria.  Puede encontrar la zona horaria para su región
+	horaria. Puede encontrar la zona horaria para su región
 	navegando el directorio
 	<filename>/mnt/usr/share/zoneinfo</filename>. La mayoría de
 	las zonas horarias pueden ser encontradas en los
@@ -540,7 +540,7 @@ EOF</command>
     <para>
       Es fácil combinar los pasos de una instalación personalizada en
       un script, el cual ejecuta los pasos personalizados
-      automáticamente.  Esto es ideal para hacer que un servidor por
+      automáticamente. Esto es ideal para hacer que un servidor por
       defecto instale o administre clientes Linux masivos. Esta
       sección contiene un script de ejemplo que fué escrito por
       William Park. Es fácil agregar un script de instalación al medio
