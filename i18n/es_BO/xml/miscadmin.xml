@@ -32,8 +32,7 @@
       remover, o modificar un archivo crontab individual. Este archivo
       crontab especifica comandos o scripts a ser ejecutados en
       intervalos de tiempo especificados. Líneas vacías o que empiezan
-      con numeral (<quote><literal>#</literal></quote>) son
-      ignoradas.
+      con numeral (<quote><literal>#</literal></quote>) son ignoradas.
     </para>
 
     <para>
@@ -160,18 +159,18 @@
     <indexterm><primary>DMA</primary><secondary>switching on</secondary></indexterm>
 
     <para>
-	  Muchos discos modernos ofrecen varias características para
-	  incrementar el rendimiento y mejorar la integridad de disco.
-	  Muchas de estas características pueden ser personalizadas
-	  con el comando <command>hdparm</command>. Sea cuidadoso
-	  cambiando configuraciones de disco con esta utilidad, porque
-	  algunos cambios pueden dañar la información en su disco.
+      Muchos discos modernos ofrecen varias características para
+      incrementar el rendimiento y mejorar la integridad de disco.
+      Muchas de estas características pueden ser personalizadas con el
+      comando <command>hdparm</command>. Sea cuidadoso cambiando
+      configuraciones de disco con esta utilidad, porque algunos
+      cambios pueden dañar la información en su disco.
     </para>
 
     <para>
-	  Puede obtener un resumen de las configuraciones activas para
-	  un disco proveyendo el nodo dispositivo del disco como
-	  parámetro para <command>hdparm</command>:
+      Puede obtener un resumen de las configuraciones activas para un
+      disco proveyendo el nodo dispositivo del disco como parámetro
+      para <command>hdparm</command>:
     </para>
 
     <screen>
@@ -189,12 +188,12 @@
     </screen>
 
     <para>
-	  Una causa común para mal rendimiento de disco es que DMA no
-	  fue automáticamente usada por el kernel para un disco. DMA
-	  acelerará el rendimiento I/O y disminuirá el uso de CPU al
-	  hacer posible que el disco transfiera información del mismo
-	  a la memoria del sistema. Si DMA esta desactivado, el
-	  resumen de las configuraciones mostraría esta línea:
+      Una causa común para mal rendimiento de disco es que DMA no fue
+      automáticamente usada por el kernel para un disco. DMA acelerará
+      el rendimiento I/O y disminuirá el uso de CPU al hacer posible
+      que el disco transfiera información del mismo a la memoria del
+      sistema. Si DMA esta desactivado, el resumen de las
+      configuraciones mostraría esta línea:
     </para>
 
     <screen>
@@ -202,9 +201,9 @@ using_dma    =  0 (off)
     </screen>
 
     <para>
-	  Puede fácilmente activar DMA para este disco con el
-	  parámetro <parameter class="command">-d</parameter> de
-	  <command>hdparm</command>:
+      Puede fácilmente activar DMA para este disco con el parámetro
+      <parameter class="command">-d</parameter> de
+      <command>hdparm</command>:
     </para>
 
     <screen>
@@ -216,14 +215,14 @@ using_dma    =  0 (off)
     </screen>
 
     <para>
-	  Puede hacer esto durante cada inicio del sistema agregando
-	  el comando hdparm a <filename>/etc/rc.d/rc.local</filename>.
+      Puede hacer esto durante cada inicio del sistema agregando el
+      comando hdparm a <filename>/etc/rc.d/rc.local</filename>.
     </para>
 
     <para>
-	  El parámetro <parameter class="command">-i</parameter> de
-	  <command>hdparm</command> es también muy útil, porque provee
-	  información detallada acerca del disco:
+      El parámetro <parameter class="command">-i</parameter> de
+      <command>hdparm</command> es también muy útil, porque provee
+      información detallada acerca del disco:
     </para>
 
     <screen>
@@ -250,24 +249,23 @@ using_dma    =  0 (off)
     <title>Monitoreando el uso de memoria</title>
 
     <para>
-	  En algunas situaciones es útil diagnosticar información
-	  sobre cómo es usada la memoria. Por ejemplo, en un servidor
-	  que este rindiendo mal usted querria verificar si la escasez
-	  de RAM esta causando el uso de la memoria de intercambio, o
-	  tal vez esta iniciando un servicio de red y quiere hallar
-	  los parámetros óptimos de caching. Slackware Linux provee
-	  algunas herramientas que le ayudan a analizae cómo la
-	  memoria es usada.
+      En algunas situaciones es útil diagnosticar información sobre
+      cómo es usada la memoria. Por ejemplo, en un servidor que este
+      rindiendo mal usted querria verificar si la escasez de RAM esta
+      causando el uso de la memoria de intercambio, o tal vez esta
+      iniciando un servicio de red y quiere hallar los parámetros
+      óptimos de caching. Slackware Linux provee algunas herramientas
+      que le ayudan a analizar cómo la memoria es usada.
     </para>
 
     <sect2 id="sysadmin-misc-memory-vmstat">
       <title>vmstat</title>
 
       <para>
-	    <command>vmstat</command> es un comando que puede proveer
-	    estadísticas sobre varias partes de la memoria virtual del
-	    sistema.  Sin parámetros extra <command>vmstat</command>
-	    provee un resumen de algunas estadísticas relevantes:
+	<command>vmstat</command> es un comando que puede proveer
+	estadísticas sobre varias partes de la memoria virtual del
+	sistema.  Sin parámetros extra <command>vmstat</command>
+	provee un resumen de algunas estadísticas relevantes:
       </para>
 
       <screen>
@@ -278,9 +276,9 @@ procs -----------memory---------- ---swap-- -----io---- --system-- ----cpu----
       </screen>
 
       <para>
-	    Ya que solamente estamos viendo el uso de memoria en esta
-	    sección, solamente veremos a los cmapos
-	    <emphasis>memory</emphasis> y <emphasis>swap</emphasis>.
+	Ya que solamente estamos viendo el uso de memoria en esta
+	sección, solamente veremos a los campos
+	<emphasis>memory</emphasis> y <emphasis>swap</emphasis>.
       </para>
 
       <itemizedlist>
@@ -323,13 +321,13 @@ procs -----------memory---------- ---swap-- -----io---- --system-- ----cpu----
       </itemizedlist>
 
       <para>
-	    Es a veces útil ver cómo el uso de memoria cambia durante
-	    el tiempo.  Puede agregar un intérvalo como parámetro a
-	    <command>vmstat</command> para ejecutar
-	    <command>vmstat</command> continuamente, imprimiendo las
-	    estadísticas actuales. Este intérvalo esta en
-	    segundos. Entonces, si quiere obtener estadísticas
-	    actualizadas cada segundo, puede ejecutar:
+	A veces es útil ver cómo el uso de memoria cambia durante el
+	tiempo. Puede agregar un intérvalo como parámetro a
+	<command>vmstat</command> para ejecutar
+	<command>vmstat</command> continuamente, imprimiendo las
+	estadísticas actuales. Este intérvalo esta en
+	segundos. Entonces, si quiere obtener estadísticas
+	actualizadas cada segundo, puede ejecutar:
       </para>
 
       <screen>
@@ -343,12 +341,12 @@ procs -----------memory---------- ---swap-- -----io---- --system-- ----cpu----
       </screen>
 
       <para>
-	    Adicionalmente, puede decirle a <command>vmstat</command>,
-	    cuantas veces debería devolver estas estadísticas (en vez
-	    de hacerla infinitamente).  Por ejemplo, si quisiera
-	    imprimir estas estadísticas cada dos segundos y cinco
-	    veces en total, usted podría ejecutar
-	    <command>vmstat</command> de la siguiente manera:
+	Adicionalmente, puede decirle a <command>vmstat</command>,
+	cuantas veces debería devolver estas estadísticas (en vez de
+	hacerla infinitamente). Por ejemplo, si quisiera imprimir
+	estas estadísticas cada dos segundos y cinco veces en total,
+	usted podría ejecutar <command>vmstat</command> de la
+	siguiente manera:
       </para>
 
       <screen>
