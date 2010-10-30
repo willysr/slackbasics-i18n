@@ -34,7 +34,8 @@
     <itemizedlist>
       <listitem>
         <para>
-	  Los documentos formateados por LaTex se ven muy profesionales.
+	  Los documentos formateados por LaTex se ven muy
+	  profesionales.
         </para>
       </listitem>
       <listitem>
@@ -61,9 +62,9 @@
     </itemizedlist>
 
     <para>
-      LaTex es muy extenso, por lo que este capítulo solamente tocará 
-      la superficie de LaTex. Pero debería ser suficiente para que usted
-      sea capaz de elaborar documentos simples.      
+      LaTex es muy extenso, por lo que este capítulo solamente tocará
+      la superficie de LaTex. Pero debería ser suficiente para que
+      usted sea capaz de elaborar documentos simples.
     </para>
   </sect1>
 
@@ -122,8 +123,8 @@ This is a basic document. <co id="latex-struct-5" />
           <para>
 	    Después de documentclass, usted puede agregar
 	    meta-información al documento, como su título. En este
-	    caso el título es <emphasis>Historia de los cifrados
-	    simétricos</emphasis>.
+	    caso el título es <emphasis>The history of symmetric
+	    ciphers</emphasis>.
           </para>
         </callout>
         <callout arearefs="latex-struct-3">
@@ -154,7 +155,7 @@ This is a basic document. <co id="latex-struct-5" />
           <para>
 	    Todos los ambientes deben ser eventualmente cerrados. El
 	    ambiente <emphasis>document</emphasis> es el último
-	    ambiente a cerra, porque denota el fin de cuerpo del
+	    ambiente a cerrar, porque denota el fin de cuerpo del
 	    texto.
           </para>
         </callout>
