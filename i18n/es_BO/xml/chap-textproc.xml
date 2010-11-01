@@ -10,12 +10,12 @@
     excelente, porque conforma el corazón de la filosofía UNIX, como
     ya fué descrito en <xref linkend="chap-intro-unix" />. La mayoría
     de los comandos UNIX son programas simples que leen datos de una
-    entrada estándar, realizan operaciones sobre los dato y envían el
+    entrada estándar, realizan operaciones sobre los datos y envían el
     resultado a la salida estándar del programa. Estos programas
-    actúan básicamente como filtro, que pueden ser conectados como una
-    tubería. Esto permite que el usuario use las herramientas UNIX en
-    formas en que sus desarrolladores nunca pensaron.  En capítulos
-    posteriores veremos como construir filtros simples por su
+    actúan básicamente como filtros, que pueden ser conectados como
+    una tubería. Esto permite que el usuario use las herramientas UNIX
+    en formas en que sus desarrolladores nunca pensaron. En capítulos
+    posteriores veremos como construir filtros simples por nuestra
     cuenta. <!-- XXX - xref -->
   </para>
 
@@ -23,7 +23,7 @@
     Este capítulo describe algunos comandos UNIX simples pero
     importantes que pueden ser usados para manipular texto. Después de
     eso, indagaremos en las expresiones regulares, un sub-lenguaje que
-    puede ser usadopara igualar patrones de texto.
+    puede ser usado para igualar patrones de texto.
   </para>
  
   <sect1 xml:id="chap-textproc-simple">
@@ -95,7 +95,7 @@ $ <userinput>echo "Hello world!" | wc</userinput>
 	usar uno de los parámetros <parameter
 	class="command">-l</parameter> (líneas), <parameter
 	class="command">-w</parameter> (palabras), o <parameter
-	class="command">-c</parameter> (bytes).  Por ejemplo,
+	class="command">-c</parameter> (bytes). Por ejemplo,
 	agregando el parámetro <parameter
 	class="command">-l</parameter> mostrará el número de líneas en
 	un archivo:
@@ -117,8 +117,8 @@ $ <userinput>wc -lc /usr/share/dict/words</userinput>
       </screen>
 
       <para>
-	Por favor note que, sin importar el orden en que las opciones
-	fueron especificados, el orden de salida siempre será el mismo
+	Por favor nótese que, sin importar el orden en que las opciones
+	fueron especificadas, el orden de salida siempre será el mismo
 	(líneas, palabras, bytes).
       </para>
 
@@ -126,10 +126,10 @@ $ <userinput>wc -lc /usr/share/dict/words</userinput>
 	Ya que <parameter class="command">-c</parameter> imprime el
 	número de bytes, este parámetro podría no representar el
 	número de caracteres contenidos en un texto, porque el
-	conjunto de caracteres en uso puede ser mas amplio un byte.
-	Para este fin, el parámetro <parameter
+	conjunto de caracteres en uso puede ser mas amplio que un
+	byte.  Para este fin, el parámetro <parameter
 	class="command">-m</parameter> fué agregado para imprimir el
-	número de caracteres en un texto, independientemente del
+	número de caracteres en el texto, independientemente del
 	conjunto de caracteres. <parameter
 	class="command">-c</parameter> y <parameter
 	class="command">-m</parameter> son sustitutos y nunca pueden
@@ -189,7 +189,7 @@ $ <userinput>find ~ -name '*.txt' -type f | wc -l</userinput>
 	      resultado esperado. Por ejemplo, la secuencia
 	      <emphasis>a-d</emphasis> podría producir
 	      <emphasis>abcd</emphasis> para la configuración de
-	      lenguaje local POSIX,pero esto puede no ser cierto para
+	      lenguaje local POSIX, pero esto puede no ser cierto para
 	      otras configuraciones.
 	      <!-- XXX - locale footnote -->
 	    </para>
@@ -356,7 +356,7 @@ $ <userinput>echo 'abcdef' | tr 'abcdef' '@[-*4]!'</userinput>
 	  class="command">-s</parameter> es usado,
 	  <command>tr</command> recortará todos los caracteres en el
 	  segundo conjunto. Esto significa que una secuencia de
-	  caracteres repetidos será reducia a un caracter.  Recortemos
+	  caracteres repetidos será reducia a un caracter. Recortemos
 	  el caracter &quot;<emphasis>e</emphasis>&quot;:
 	</para>
 
@@ -366,8 +366,8 @@ Let's squeze this.
 	</screen>
 
 	<para>
-	  Podemos combinar esto con la substitución para mostrar un
-	  ejemplo útil de <command>tr</command> en acción.  Suponga
+	  Podemos combinar esto con la sustitución para mostrar un
+	  ejemplo útil de <command>tr</command> en acción. Suponga
 	  que quisiera marcar todas las vocales con el símbolo
 	  <emphasis>arroba</emphasis> (<emphasis>@</emphasis>), con
 	  las vocales consecutivas representadas por un signo
@@ -478,7 +478,7 @@ pear
 	archivo que tiene puntos dobles como separador de
 	campo. Fácilmente podemos intentar esto convirtiendo el
 	diccionario con el comando <command>tr</command> que vimos
-	previamnete, reemplazando todas las tabulaciones con puntos
+	previamente, reemplazando todas las tabulaciones con puntos
 	dobles:
       </para>
 
@@ -512,7 +512,7 @@ peer:pear
 
       <para>
 	Para usar un delimitador diferente a la tabulación
-	horizaontal, agregue el parámetro <parameter
+	horizontal, agregue el parámetro <parameter
 	class="command">-d delimter_char</parameter> para configurar
 	el caracter delimitador. Entonces, en este caso de nuestro
 	archivo <filename>dictionary-new</filename>, le pediremos a
@@ -540,7 +540,7 @@ pear
 	los sistemas actuales pueden proveer conjuntos de caracteres
 	cuya longitud es mayor a un byte. Entonces, si quiere estar
 	seguro de capturar caracteres completos, use el parámetro
-	<parameter class="command">-c</parameter>.  Un ejemplo
+	<parameter class="command">-c</parameter>. Un ejemplo
 	entretenido del parámetro <parameter
 	class="command">-c</parameter> en acción es encontrar los diez
 	conjuntos mas comúnes de los primeros tres caracteres de una
@@ -655,7 +655,7 @@ Apfel   Banane  Birne
 	ordenando números, por ejemplo, si tiene los números del 1 al
 	10 en líneas diferentes, la secuencia será 1, 10, 2, 3,
 	etc. Esto es causado por la interpretación de caracteres del
-	ordenamiento de diccionario.  Si quiere ordenar líneas por
+	ordenamiento de diccionario. Si quiere ordenar líneas por
 	número, use el ordenamiento numérico.
       </para>
 
@@ -772,7 +772,7 @@ $ <userinput>du -a /bin | sort -n</userinput>
 	la salida en un paginador, porque los archivos mas pequeños
 	son listados primero. Aquí es donde el parámetro <parameter
 	class="command">-r</parameter> muestra su utilidad. Revierte
-	el orden de ordenamiento.
+	el criterio de ordenamiento.
       </para>
 
       <screen>
@@ -816,7 +816,7 @@ Heinz:DE:3
       <emphasis>col2</emphasis> no es especificado, todos los campos
       hasta el final de la línea son usados. Entonces, si quiere usar
       solamente una columna, use <parameter class="command">-k
-      col1,col1</parameter>.  También puede especificar el caracter de
+      col1,col1</parameter>. También puede especificar el caracter de
       inicio de la columna agregando un periodo
       (<emphasis>.</emphasis>) y un índice de caracter. Por ejemplo,
       <parameter class="command">-k 2.3,4.2</parameter> significa la
@@ -851,7 +851,7 @@ John:US:4
 
     <para>
       Entonces, cómo podemos ordenar el archivo por el resultado?.
-      Obviamente debemos pedir a sort que use la tercer columna.  Pero
+      Obviamente debemos pedir a sort que use la tercer columna. Pero
       sort usa por defecto un ordenamiento de diccionario
       <footnote><para>(Por supuesto, eso realmente no importa en este
       caso, porque no usamos números mayores que 9 y virtualmente
@@ -883,7 +883,7 @@ Klaus:DE:5
     <para>
       Es bueno seguir esta aproximación, en vez de usar variantes de
       parámetros, porque <command>sort</command> le permite usar mas
-      de un parámetro <parameter class="command">-k</parameter>.  Y
+      de un parámetro <parameter class="command">-k</parameter>. Y
       agregando estas banderas a la especiicación de columna, le
       permitirá ordenar por diferentes columnas en formas diferentes.
       Por ejemplo, usando <command>sort</command> con los parámetros
@@ -920,7 +920,7 @@ $ <userinput>sort scores.txt | sort -c ; echo $?</userinput>
     <para>
       Finalmente, puede combinar dos archivos ordenados con el
       parámetro <parameter class="command">-m</parameter>, manteniendo
-      el order correcto.  Esto es mas rápido que concatenar y
+      el order correcto. Esto es mas rápido que concatenar y
       reordenar ambos archivos.
     </para>
 
@@ -933,7 +933,7 @@ $ <userinput>sort scores.txt | sort -c ; echo $?</userinput>
       <title>Diferencias entre archivos</title>
 
       <para>
-	Ya que flujos y archivos de texto son muy importantes en UNIX,
+	Ya que los flujos y archivos de texto son muy importantes en UNIX,
 	es a veces útil mostrar las diferencias entre dos archivos de
 	texto. Las principales utilidaes para trabajar con diferencias
 	entre archivos son <command>diff</command> y
@@ -1035,7 +1035,7 @@ $ diff hello.c hello2.c
 	<para>
 	  Las adiciones desde <filename>hello2.c</filename> son
 	  visibles en esta salida, pero el formato puede verse un poco
-	  extraño.  Actualmente, estos son comandos que pueden ser
+	  extraño. Actualmente, estos son comandos que pueden ser
 	  interpretados por el editor de línea
 	  <command>ed</command>. Veremos una salida con un formato mas
 	  cómodo después de tocar la superficie del formato de salida
@@ -1069,7 +1069,7 @@ $ diff hello.c hello2.c
 	<para>
 	  Los mismos elementos son usados para agregar el segundo
 	  bloque de texto. Qué hay de las líneas que fueron
-	  removidas?.  Fácilmente podemos ver cómo estan representadas
+	  removidas?. Fácilmente podemos ver cómo estan representadas
 	  intercambiando los dos parámetros en
 	  <command>diff</command>, mostrando las diferencias entre
 	  <filename>hello2.c</filename> y
@@ -1111,10 +1111,10 @@ $ <userinput>diff hello2.c hello.c</userinput>
 
 	<para>
 	  Esto ya es suficiente de la salida
-	  <application>ed</application>-style.  El programa GNU diff
+	  <application>ed</application>-style. El programa GNU diff
 	  incluído en Slackware Linux soporta las llamadas diffs
 	  unificadas. Las diffs unificadas son bastante leíble y
-	  proveen un contexto por defecto.  <command>diff</command>
+	  proveen un contexto por defecto. <command>diff</command>
 	  puede proveer una salida unificada con la bandera <parameter
 	  class="command">-u</parameter>:
 	</para>
@@ -1162,7 +1162,7 @@ $ diff -u hello.c hello2.c
 	    <para>
 	      Este par de números muestran la ubicación y tamaño del
 	      fragmento de texto que afecta al archivo original y al
-	      archivo modificado. Entonce, en este caso los números
+	      archivo modificado. Entonces, en este caso los números
 	      indican que el fragmento afectado en el archivo original
 	      empieza en la línea 1 y tiene una longitud de cuatro
 	      líneas. En el archivo modificado el fragmento afectado
@@ -1175,7 +1175,7 @@ $ diff -u hello.c hello2.c
 	    <para>
 	      Una línea que no es precedidad por un signo menos
 	      (<emphasis>-</emphasis>) o mas (<emphasis>+</emphasis>)
-	      no tiene cambios. Líneas sin modificaciones son
+	      no tiene cambios. Las líneas sin modificaciones son
 	      incluídas porque brindan información contextual y
 	      previene la creación de demasiados fragmentos. Si
 	      solamente existen algunas pocas líneas modificadas entre
@@ -1223,7 +1223,7 @@ $ <userinput>diff -u hello2.c hello.c</userinput>
 	</screen>
 
 	<para>
-	  Como puede ver en esta alida, la líneas que fueron removidas
+	  Como puede ver en esta salida, la líneas que fueron removidas
 	  del archivo modificado, en contraste al archivo original on
 	  precedidas por el signo menos (<emphasis>-</emphasis>).
 	</para>
@@ -1491,18 +1491,20 @@ $ <userinput>ls -l hello.c*</userinput>
   </sect1>
 
   <sect1 xml:id="chap-textproc-regexps">
-    <title>Regular expressions</title>
+    <title>Expresiones regulares</title>
 
     <sect2 xml:id="chap-textproc-regexps-intro">
       <title>Introducción</title>
 
-      <para> En un día normal, usted comunmente querrá igualar algún
-      texto con cierto patrón, en vez de cadenas específicas.  Muchas
-      utilidades UNIX implementan un lenguaje para igualar patrones de
-      texto, <emphasis>espresiones regulares (regular
-      expressions)</emphasis> (regexps). A través del tiempo las
-      expresiones regulares crecieron, ahora hay básicamente tres
-      sintaxis de expresiones regulares: </para>
+      <para> 
+          En un día normal, usted comunmente querrá igualar algún
+	  texto con cierto patrón, en vez de cadenas específicas.
+	  Muchas utilidades UNIX implementan un lenguaje para igualar
+	  patrones de texto, <emphasis>espresiones regulares (regular
+	  expressions)</emphasis> (regexps). A través del tiempo las
+	  expresiones regulares crecieron, ahora hay básicamente tres
+	  sintaxis de expresiones regulares: 
+      </para>
 
       <itemizedlist>
         <listitem>
@@ -1540,9 +1542,10 @@ $ <userinput>ls -l hello.c*</userinput>
         </listitem>
         <listitem>
           <para>
-            <emphasis role="bold">Quantification</emphasis>: a
-            quantifier specifies how many times the preceding
-            character or set of characters should be matched. </para>
+            <emphasis role="bold">Cuantificación</emphasis>: un 
+	    cuantificador especificar cuántas veces debería igualarse 
+	    el caracter precedente o un conjunto de caracteres.
+	    </para>
         </listitem>
         <listitem>
           <para>
@@ -1776,7 +1779,7 @@ $ <userinput>ls -l hello.c*</userinput>
       <para>
 	Hemos arribado a una de las mas importantes utilidades de el
 	sistema UNIX y a la primera ocasión de probar y usar
-	expresiones regulares. El comado <command>grep</command> es
+	expresiones regulares. El comando <command>grep</command> es
 	usado para buscar patrones en un archivo o flujo de texto.
 	Este patrón es una expresión regular y puede ser una expresión
 	regular básica o una expresion extendida POSIX ( cuando el
@@ -1804,7 +1807,7 @@ ababab
 	acción, que iguala una línea que consiste en la cadena
 	<emphasis>ab</emphasis> repetida dos o tres veces. Puede hacer
 	lo mismo con las expresiones regulares extendidas POSIX,
-	agregando el parámetr <parameter
+	agregando el parámetro <parameter
 	class="command">-E</parameter> (por extendido):
       </para>
 
@@ -1839,7 +1842,7 @@ $ <userinput>cut -f 3 | grep '2006'</userinput>
 
       <para>
 	Naturalmente, <command>grep</command> también puede leer
-	directamente un archivo, en vez de la entrada estándar.  Como
+	directamente un archivo, en vez de la entrada estándar. Como
 	es usual, esto se realiza agregando lo archivos a ser leídos
 	como los últimos argumentos. El siguiente ejemplo imprimirá
 	todas las líneas del archivo <filename>/etc/passwd</filename>
@@ -1900,7 +1903,7 @@ abababab
       <para>
 	Si quiere usar el patrón sin importar mayúsculas o minúsculas,
 	puede agregarel parámetro <parameter
-	class="command">-i</parameter>.  Por ejemplo:
+	class="command">-i</parameter>. Por ejemplo:
       </para>
 
       <screen>
