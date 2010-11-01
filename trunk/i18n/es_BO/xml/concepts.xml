@@ -28,7 +28,7 @@
 	segundo plano. Por ejemplo, algunos programas servicios de
 	red, mientras otros muestran un mensaje de inicio de sesión y
 	esperan hasta que el usuario inicie sesión en una terminal
-	virtual.  Los programas que se ejecutan en segundo plano son
+	virtual. Los programas que se ejecutan en segundo plano son
 	comúnmente denominados <emphasis>daemon processes</emphasis>.
         <footnote>
           <para>
@@ -50,7 +50,7 @@
 	instancia es llamada <emphasis>proceso</emphasis>. Un proceso
 	tiene su propia memoria protegida, denominada el
 	<emphasis>espacio de direccionamiento de
-	memoria</emphasis>. El espacion de direccionamiento de memoria
+	memoria</emphasis>. El espacio de direccionamiento de memoria
 	tiene dos áreas importantes: el área de
 	<emphasis>texto</emphasis> y el área de
 	<emphasis>datos</emphasis>. El área de
@@ -63,17 +63,17 @@
 	simultáneamente. En realidad un programador en el kernel
 	divide el tiempo de CPU entre los procesos, dando la sensación
 	de que los procesos se ejecutan simultáneamente.  Este proceso
-	es llamado <emphasis>time-sharing</emphasis>. En sistemas con
-	más de un CPU, más de un proceso puede ejecutarse
-	simultáneamente, pero time-sharing se utiliza todavía para
-	dividir el CPU disponible entre los procesos.
+	es llamado <emphasis>time-sharing</emphasis> (distribución de
+	tiempo). En sistemas con más de un CPU, más de un proceso
+	puede ejecutarse simultáneamente, pero el time-sharing todavía
+	se utiliza para dividir el CPU disponible entre los procesos.
       </para>
 
       <para>
 	Nuevos procesos son creados duplicando un proceso en ejecución
-	con la llamada del sistem <command>fork</command>. <xref
+	con la llamada del sistema <command>fork</command>. <xref
 	linkend="fork" /> muestra una llamada fork(bifurcar)
-	esquemáticamente.  El proceso padre ejecuta una llamada
+	esquemáticamente. El proceso padre ejecuta una llamada
 	fork(). El kernel responderá a esta llamada duplicando el
 	proceso, nombrando a uno de los procesos como
 	<emphasis>padre</emphasis> y al otro
@@ -100,7 +100,7 @@
 	denominado <emphasis>multithreading</emphasis>. Multithreading
 	significa que múltiples instancias del área de texto pueden
 	ejecutarse al mismo tiempo, compartiendo el área de
-	datos. Estas instancias, denominadas threads(hilos) pueden ser
+	datos. Estas instancias, denominadas threads (hilos) pueden ser
 	ejecutadas en paralelo en múltiples CPUs.
       </para>
     </sect2>
@@ -114,7 +114,7 @@
 
       <para>
 	Los sistemas operativos almacenan datos en sistemas de
-	archivos.  Un sistema de archivos es basicamente una
+	archivos. Un sistema de archivos es basicamente una
 	estructura tipo-árbol de directorios que contienen archivos,
 	como el sistema operativo, los programas de usuario y los
 	datos de usuario. La mayoría de los sistemas de archivos
@@ -147,8 +147,8 @@
 	<filename>bin</filename> y <filename>home</filename>. El
 	directorio <filename>home</filename> tiene otros dos
 	sub-directorios, <filename>joe</filename> y
-	<filename>jack</filename>.  El diagrama muestra la ruta
-	completa de cada directorio.  La misma notación es usada para
+	<filename>jack</filename>. El diagrama muestra la ruta
+	completa de cada directorio. La misma notación es usada para
 	archivos. Suponga que hay un archivo llamado
 	<filename>memo.txt</filename> en el directorio
 	<filename>/home/jack</filename>, la ruta completa de el
@@ -214,7 +214,7 @@
       <itemizedlist>
         <listitem>
           <para>
-            <emphasis role="bold">/bin</emphasis>: esenciales binarios
+            <emphasis role="bold">/bin</emphasis>: binarios esenciales
             de usuario que deberían estar disponibles aún en el caso
             que <filename>/usr</filename> no esté montado.
           </para>
@@ -305,7 +305,7 @@
 	<filename>/dev</filename> representa un dispositivo on un
 	pseudo-dispositivo. Un archivo de dispositivo tiene dos
 	números especiales asociados, los números de dispositivo
-	<emphasis>major</emphasis> y <emphasis>minor</emphasis>. El
+	<emphasis>mayor</emphasis> y <emphasis>menor</emphasis>. El
 	kernel sabe archivo de dispositivo es representado por estos
 	números de dispositivos. El siguiente ejemplo muestra los
 	números de dispositivo para el archivo de dispositivo
@@ -341,14 +341,14 @@ $ <command>file /dev/zero</command>
       <para>
 	El kernel Linux maneja dos tipos de dispositivos: dispositivos
 	<emphasis>character (caracter)</emphasis> y <emphasis>block
-	(bloque)</emphasis>.  Los dispositivos caracter pueden ser
+	(bloque)</emphasis>. Los dispositivos caracter pueden ser
 	leídos byte por byte, los dispositivos de bloque no. Los
 	dispositivos de bloque se leen bloque por bloque (por ejemplo
 	4096 bytes por bloque). Si un dispositivo es de caracter o de
 	bloque se determina por la naturaleza del dispositivo. Por
 	ejemplo, la mayoría de los dispositivos de almacenamiento son
 	dispositivos de bloque, y la mayoría de los dispositivos de
-	entrada son dispositivos caracter.  Los dispositivos de bloque
+	entrada son dispositivos caracter. Los dispositivos de bloque
 	tienen una ventaja distintiva, pueden ser cacheados. Esto
 	significa que los bloquen comúnmente leídos o escritos se
 	almacenan en un área especial de la memoria del sistema,
@@ -386,7 +386,7 @@ $ <command>file /dev/zero</command>
 	(<filename>/dev/hda</filename>) y el CD-ROM es el dispositivo
 	maestro en el segundo canal ATA. Las particiones del disco
 	duro se nombran basados en el disco que las contiene con un
-	número adicional.  Por ejemplo, <filename>/dev/hda1</filename>
+	número adicional. Por ejemplo, <filename>/dev/hda1</filename>
 	es la primera partición del disco representado por el
 	dispositivo de archivo <filename>/dev/hda</filename>.
       </para>
