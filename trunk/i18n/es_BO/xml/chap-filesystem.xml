@@ -524,7 +524,7 @@ $ <userinput>file -L /usr/X11R6/bin/X</userinput>
 
       <para>
 	Usted podría preguntarse por qué <command>file</command> puede
-	determinar el tipo de archivo relativamente fácilmente. La
+	determinar el tipo de archivo de forma relativamente fácil. La
 	mayoría de los archivos empiezan con un denominado
 	<emphasis>número mágico</emphasis>, este es un número único
 	que le dice al programa que lo lee que tipo de archivo es. El
@@ -992,7 +992,7 @@ $ <userinput>cp -r mytree trees</userinput>
       </screen>
 
       <para>
-	Después de ejecutar estos comando, hay dos copias del
+	Después de ejecutar estos comandos, hay dos copias del
 	directorio <filename>mytree</filename>,
 	<filename>tree_copy</filename> y
 	<filename>trees/mytree</filename>. Tratar de copiar estos
@@ -1167,7 +1167,7 @@ $ <userinput>rm -r notes</userinput>
         <manvolnum>1</manvolnum>
         </citerefentry> usa la función <citerefentry>
         <refentrytitle>unlink</refentrytitle> <manvolnum>2</manvolnum>
-        </citerefentry> , los bloques de datos no son reescritos a un
+        </citerefentry>, los bloques de datos no son reescritos a un
         estado no inicializado. La información en los bloques de datos
         solamente se sobreescribe cuando son relocalizados y usados en
         un momento futuro. Para eliminar de forma segura archivos
@@ -1286,7 +1286,7 @@ $ <userinput>chown 1000:1000 note.txt</userinput>
 	fácil con el comando <citerefentry>
         <refentrytitle>chmod</refentrytitle>
         <manvolnum>1</manvolnum>
-        </citerefentry> command. <citerefentry>
+        </citerefentry>. <citerefentry>
 	<refentrytitle>chmod</refentrytitle> <manvolnum>1</manvolnum>
 	</citerefentry> acepta representaciones numéricas y simbólicas
 	de permisos. Representar permisos de un archivo numéricamente
@@ -1355,10 +1355,10 @@ $ <userinput>chmod -R ugo+r notes</userinput>
       </screen>
 
       <para> 
-	Se debe tener cuidado extra con directorios, porque la bandera
-	<emphasis>x</emphasis> tiene un significado especial en un
-	contexto de directorio. Lo usuarios que tienen permisos de
-	ejecución en directorios pueden acceder un
+	Se debe tener cuidado extra con los directorios, porque la
+	bandera <emphasis>x</emphasis> tiene un significado especial
+	en un contexto de directorio. Lo usuarios que tienen permisos
+	de ejecución en directorios pueden acceder a un
 	directorio. Usuarios que no tienen permisos de ejecución en un
 	directorio no. Debido a su comportamiento particular, a veces
 	es mas sencillo cambiar los permisos de una estructura de
@@ -1435,7 +1435,7 @@ $ <userinput>chmod g+t /tmp</userinput>
 	un archivo y la máscara de creación de archivo. La máscara de
 	creación de archivo puede ser representada como un número
 	octal. Los permisos efectivos para crear el archivo son
-	determinados como <emphasis>mode &amp; ~mask</emphasis>. Ó, si
+	determinados como <emphasis>mode &amp; ~mask</emphasis>. Ó si
 	esta representado en una forma octal, puede sustraer los
 	dígitos de la máscara desde el mode. Por ejemplo, si un
 	archivo es creado con los permisos <emphasis>0666</emphasis>
@@ -1697,7 +1697,7 @@ other::---
 	  menos una bandera importante (<parameter
 	  class="command">-d</parameter>) tiene significados
 	  diferentes en sistemas diferentes. Uno solamente puede tener
-	  esperanza de que este comando sea estandarizado.
+	  la esperanza de que este comando sea estandarizado.
 	</para>
 
 	<table xml:id="chap-filesystem-permissions-acl-setting-flags">
@@ -1778,7 +1778,7 @@ other::---
 
 	<para>
 	  La especificación para otros usuarios y la máscara siguen
-	  este formato : <emphasis>other:r-x</emphasis>. El siguiente
+	  este formato: <emphasis>other:r-x</emphasis>. El siguiente
 	  formato ligeramente predecible también puede ser usado:
 	  <emphasis>other::r-x</emphasis>.
 	</para>
@@ -1917,7 +1917,7 @@ default:other::r-x
 	    comandos. Un archivo de entrada sigue la siguiente
 	    sintaxis para especificar entradas como parámetro para
 	    <command>setfacl</command>, pero las entradas son
-	    separadas por líneas nuevas en vez de comas.  Esto es muy
+	    separadas por líneas nuevas en vez de comas. Esto es muy
 	    útil, porque puede usar la ACL de un archivo existente
 	    como referencia:
 	  </para>
@@ -1982,7 +1982,7 @@ $ <userinput>getfacl report.txt | setfacl -b -M - report2.txt</userinput>
       <title>find</title>
 
       <para>
-	El comando <command>find</command> e sin duda la utilidad mas
+	El comando <command>find</command> es sin duda la utilidad mas
 	comprensiva para encontrar archivos en sistemas UNIX. Además
 	que trabaja en una forma simple y predecible:
 	<command>find</command> navegará a través del arbol o árboles
@@ -1991,12 +1991,12 @@ $ <userinput>getfacl report.txt | setfacl -b -M - report2.txt</userinput>
 	especificar una expresión que será evaluada para cada archivo
 	y directorio. El nombre de un archivo o directorio será
 	impreso si la expresión evalúa con resultado
-	<emphasis>true</emphasis>. El primer argumento que empieza
-	con un guión (<emphasis>-</emphasis>), un símbolo de
-	exclamación (<emphasis>!</emphasis>), o un paréntesis de
-	apertura (<emphasis>(</emphasis>), indica el inicio de la
-	expresión. La expresión puede consistir en varios operandos.
-	Para envolverlos, la sintaxis de <command>find</command> es:
+	<emphasis>true</emphasis>. El primer argumento que empieza con
+	un guión (<emphasis>-</emphasis>), un símbolo de exclamación
+	(<emphasis>!</emphasis>), o un paréntesis de apertura
+	(<emphasis>(</emphasis>), indica el inicio de la expresión. La
+	expresión puede consistir en varios operandos. Para
+	envolverlos, la sintaxis de <command>find</command> es:
 	<emphasis>find paths expression</emphasis>.
       </para>
 
@@ -2165,10 +2165,11 @@ $ <userinput>find . -name 'eco*' -type d</userinput>
 	  respectivamente. El nombre de un usuario o grupo será
 	  interpretado como el ID de usuario o ID de grupo si el
 	  nombre es decimal y no pudo ser hallado en el sistema con
-	  <citerefentry><refentrytitle>getpwnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>
-	  o
-	  <citerefentry><refentrytitle>getgrnam</refentrytitle><manvolnum>3</manvolnum></citerefentry>. Entonces,
-	  si quisiera igualar todos los objetos donde
+	  <citerefentry><refentrytitle>getpwnam</refentrytitle>
+	  <manvolnum>3</manvolnum></citerefentry> o
+	  <citerefentry><refentrytitle>getgrnam</refentrytitle>
+	  <manvolnum>3</manvolnum></citerefentry>. Entonces, si
+	  quisiera igualar todos los objetos donde
 	  <emphasis>joe</emphasis> es el dueño, puede usar
 	  <emphasis>-user joe</emphasis> como operando:
 	</para>
@@ -2243,12 +2244,12 @@ $ <userinput>find /dev -perm -0002</userinput>
 
 	<para>
 	  La notación simbólica de los parámetros
-	  <emphasis>-perm</emphasis> usan la misma notación que el
-	  comando <command>chmod</command>. Los permisos simbólicos
-	  se construyen con un mode de archivo donde todos los bits
-	  son limpiados, entonces no es necesario usar un guión para
-	  quitar permisos. Esto también previene la ambigüedad que
-	  puede generarse con el prefijo guión.  Como la sintaxis
+	  <emphasis>-perm</emphasis> usa la misma notación que el
+	  comando <command>chmod</command>. Los permisos simbólicos se
+	  construyen con un modo (mode) de archivo donde todos los
+	  bits son limpiados, entonces no es necesario usar un guión
+	  para quitar permisos. Esto también previene la ambigüedad
+	  que puede generarse con el prefijo guión. Como la sintaxis
 	  octal, prefijar los permisos con un guión igualará objetos
 	  que tengan al menos los bits de permisos asignados. El uso
 	  de nombres simbólicos es bastante predecible - los
@@ -2461,7 +2462,7 @@ $ <userinput>find . -depth</userinput>
 	<title>Operandos que ejecutan utilidades externas</title>
 
 	<para>
-	  <command>find</command> se vuelve una herramienta muy
+	  <command>find</command> se convierte en una herramienta muy
 	  poderosa cuando es combinada con utilidades externas. Esto
 	  puede hacerso con el operando
 	  <emphasis>-exec</emphasis>. Hay dos sintaxis para el
@@ -2489,13 +2490,13 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} \;</userinput>
 	 evaluado. Si se esta preguntando por qué este comando no es
 	 ejecutado para cada archivo, esa es una buena pregunta. Como
 	 muchos otros intérpretes de expresiones,
-	 <command>find</command> usa <quote>short-circuiting</quote>.
-	 Porque ningún otro operador fué especificado, el operador
-	 lógico <emphasis>and</emphasis> es automáticamente asumido
-	 entre ambos operandos. Si el primer operando evalúa a
-	 <emphasis>falso (false)</emphasis>, no tiene sentido evaluar
-	 los siguientes operandos , porque la expresión completa
-	 siempre evaluará a <emphasis>falso
+	 <command>find</command> usa <quote>corto circuitos
+	 (short-circuiting)</quote>. Porque ningún otro operador fué
+	 especificado, el operador lógico <emphasis>and</emphasis> es
+	 automáticamente asumido entre ambos operandos. Si el primer
+	 operando evalúa a <emphasis>falso (false)</emphasis>, no
+	 tiene sentido evaluar los siguientes operandos , porque la
+	 expresión completa siempre evaluará a <emphasis>falso
 	 (false)</emphasis>. Entonces, el operando
 	 <emphasis>-exec</emphasis> solamente será evaluado si el
 	 primer operando es verdadero. Otra particularidad es que el
@@ -2604,7 +2605,7 @@ $ <userinput>find . -perm 0666 -exec chmod 0644 {} +</userinput>
 	    <term>expr1 -o expr2</term>
 	    <listitem>
 	      <para>
-		Evalúa a <emphasis>verdader</emphasis> si uno o ambos
+		Evalúa a <emphasis>verdadero</emphasis> si uno o ambos
 		<emphasis>expr1</emphasis> y
 		<emphasis>expr2</emphasis> son verdaderos.
 	      </para>
@@ -2772,7 +2773,7 @@ $ <userinput>locate locate</userinput>
       <para>
 	Tarde o temprano un usuario GNU/Linux se encontrará con
 	paquetes <acronym>tar</acronym>, tar es el formato de
-	empaquetación de archivos estándar en GNU/Linux. Normalmente es
+	empaquetado de archivos estándar en GNU/Linux. Normalmente es
 	usado en combinación con <command>gzip</command> o
 	<command>bzip2</command>. Ambos comandos pueden comprimir
 	paquetes. <xref linkend="archive-extentions" /> lista
@@ -2828,7 +2829,7 @@ $ <userinput>locate locate</userinput>
       <title>Extrayendo paquetes</title>
 
       <para>
-	Ya que mucho software e información en GNU/Linux esta
+	Ya que mucho software e información en GNU/Linux es
 	empaquetada con <command>tar</command>, es importante
 	acostumbrarse a extraer paquetes tar. La primera cosa que
 	usted querrá a veces cuando recibe un paquete tar es listar su
@@ -2955,7 +2956,7 @@ test/test1
 	extrae paquetes comprimidos: agregue una <parameter
 	class="command">z</parameter> para comprimir un paquete con
 	gzip, o <parameter class="command">b</parameter> para
-	comprimirlo con bzip. Suponga que queremos crear una version
+	comprimirlo con bzip. Suponga que queremos crear una versión
 	del paquete creado previamente comprimida con
 	<command>gzip</command>. Podemos hacerlo con esto:
       </para>
@@ -3007,7 +3008,7 @@ test/test1
 
       <para>
 	Esto monta el dispositivo <filename>/dev/cdrom</filename> en
-	el punto de montaj e. El nombre de dispositivo
+	el punto de montaje. El nombre de dispositivo
 	<filename>/dev/cdrom</filename> es normalmente un enlace para
 	el nombre real del dispositivo CD-ROM (por ejemplo,
 	<filename>/dev/hdc</filename>). Como puede ver, el concepto es
@@ -3129,14 +3130,14 @@ proc             /proc            proc        defaults         0   0
 	<itemizedlist>
 	  <listitem>
 	    <para>
-	      <emphasis>noauto</emphasis>: sistemas de archivos que
-	      son listados en <filename>/etc/fstab</filename> son
+	      <emphasis>noauto</emphasis>: los sistemas de archivos
+	      que son listados en <filename>/etc/fstab</filename> son
 	      normalmente montados automáticamente. Cuando la opción
 	      <quote>noauto</quote> es especificada, el sistema de
 	      archivos no será montado durante el arranque del
 	      sistema, sino cuando el comando <command>mount</command>
 	      sea usado para montar dicho dispositivo. Cuando el
-	      sistema de archivos este siendo montando, solamente se
+	      sistema de archivos este siendo montado, solamente se
 	      debe especificar el punto de montaje o el nombre del
 	      dispositivo, por ejemplo: <command>mount
 	      /mnt/cdrom</command>
@@ -3176,10 +3177,10 @@ proc             /proc            proc        defaults         0   0
 	      archivos del sistema de archivos montado no serán
 	      permitidos. SUID es usado para ciertos binarios para
 	      proveer a usuarios normales hacer algo que requiera
-	      privilegios. Esto es seguramente una medida de
-	      seguridad, entonces esta opción debería ser usada para
-	      medios removibles, etc. Un montaje hecho por un usuario
-	      normal forzará la opción nosuid, pero un montaje del
+	      privilegios. Esto es de hecho una medida de seguridad,
+	      entonces esta opción debería ser usada para medios
+	      removibles, etc. Un montaje hecho por un usuario normal
+	      forzará la opción nosuid, pero un montaje del
 	      super-usuario no lo hará!
 	    </para>
 	  </listitem>
@@ -3230,7 +3231,7 @@ proc             /proc            proc        defaults         0   0
       <para>
 	Existen dos mecanismos de seguridad para archivos: firmar y
 	encriptar los archivos. Firmar un archivo significa que una
-	firma digital especial es generada para un archivo. Usted, u
+	firma digital especial es generada para un archivo. Usted u
 	otras personas pueden usar la firma para verificar la
 	integridad del archivo. La encriptación codifica un archivo de
 	forma que solamente puede ser leído por la persona a la que el
@@ -3280,7 +3281,7 @@ proc             /proc            proc        defaults         0   0
 	  corto tiempo. Además de mostrar que las llaves RSA de 512
 	  bits pueden ser rotas en relativamente poco tiempo usando
 	  hardware común. Puede encontrar mas información sobre estos
-	  temas en este email a la lista cypherpunks:
+	  temas en este e-mail a la lista cypherpunks:
 	  <ulink url="http://tin.le.org/vault/security/encryption/rsa1024.html" />
 	</para>
       </note>
@@ -3567,7 +3568,7 @@ gpg: Good signature from "John Doe (Work) &lt;john@doe.com&gt;"
 	<emphasis>John Doe (Work) &lt;john@doe.com&gt;</emphasis>, con
 	la llave <emphasis>8D080768</emphasis>, y que el archivo no
 	fue alterado. Suponga que el archivo fué modificado, GnuPG
-	podría alertar esto en voz alta:
+	alertaría sobre esto en voz alta:
       </para>
 
       <screen>
@@ -3604,8 +3605,8 @@ $ <userinput>gpg --encrypt -r "John Doe" secret.txt</userinput>
       <para>
 	El ID de usuario esta entre comillas para asegurarse de que el
 	ID es interpretado como un simple argumento de
-	programa. Después de que el encriptado es completado, la
-	versión encriptada del archivo estará disponible como
+	programa. Después de que el cifrado es completado, la versión
+	encriptada del archivo estará disponible como
 	<filename>secret.txt.gpg</filename>.
       </para>
 
