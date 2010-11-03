@@ -356,7 +356,7 @@ $ <userinput>echo 'abcdef' | tr 'abcdef' '@[-*4]!'</userinput>
 	  class="command">-s</parameter> es usado,
 	  <command>tr</command> recortará todos los caracteres en el
 	  segundo conjunto. Esto significa que una secuencia de
-	  caracteres repetidos será reducia a un caracter. Recortemos
+	  caracteres repetidos será reducida a un caracter. Recortemos
 	  el caracter &quot;<emphasis>e</emphasis>&quot;:
 	</para>
 
@@ -884,7 +884,7 @@ Klaus:DE:5
       Es bueno seguir esta aproximación, en vez de usar variantes de
       parámetros, porque <command>sort</command> le permite usar mas
       de un parámetro <parameter class="command">-k</parameter>. Y
-      agregando estas banderas a la especiicación de columna, le
+      agregando estas banderas a la especificación de columnas, le
       permitirá ordenar por diferentes columnas en formas diferentes.
       Por ejemplo, usando <command>sort</command> con los parámetros
       <parameter class="command">-k 3,3n -k 2,2</parameter> ordenará
@@ -935,7 +935,7 @@ $ <userinput>sort scores.txt | sort -c ; echo $?</userinput>
       <para>
 	Ya que los flujos y archivos de texto son muy importantes en UNIX,
 	es a veces útil mostrar las diferencias entre dos archivos de
-	texto. Las principales utilidaes para trabajar con diferencias
+	texto. Las principales utilidades para trabajar con diferencias
 	entre archivos son <command>diff</command> y
 	<command>patch</command>. <command>diff</command> muestra las
 	diferencias entre archivos. La salida de
@@ -1224,7 +1224,7 @@ $ <userinput>diff -u hello2.c hello.c</userinput>
 
 	<para>
 	  Como puede ver en esta salida, la líneas que fueron removidas
-	  del archivo modificado, en contraste al archivo original on
+	  del archivo modificado, en contraste al archivo original son
 	  precedidas por el signo menos (<emphasis>-</emphasis>).
 	</para>
 
@@ -1265,8 +1265,8 @@ diff -ru hello.orig/hello.c hello/hello.c
 	</screen>
 
 	<para>
-	  Debe notarse qie esto solamente comparará archivos que estan
-	  isponibles en ambos directorios. La versión GNU de diff que
+	  Debe notarse qiu esto solamente comparará archivos que estan
+	  disponibles en ambos directorios. La versión GNU de diff que
 	  es usada en Slackware Linux provee el parámetro <parameter
 	  class="command">-N</parameter>. Este parámetro trata a los
 	  archivos que existen solamente en uno de los dos directorios
@@ -1501,7 +1501,7 @@ $ <userinput>ls -l hello.c*</userinput>
 	  texto con cierto patrón, en vez de cadenas específicas.
 	  Muchas utilidades UNIX implementan un lenguaje para igualar
 	  patrones de texto, <emphasis>espresiones regulares (regular
-	  expressions)</emphasis> (regexps). A través del tiempo las
+	  expressions, regexps)</emphasis>. A través del tiempo las
 	  expresiones regulares crecieron, ahora hay básicamente tres
 	  sintaxis de expresiones regulares: 
       </para>
@@ -1756,7 +1756,7 @@ $ <userinput>ls -l hello.c*</userinput>
 	    expresiones regulares tradicionales, dejando fuera los
 	    caracteres de escape antes de la barra vertical. Entonces,
 	    <emphasis>(apple)|(pear)</emphasis> iguala
-	    <emphasis>apple</emphasis> and <emphasis>pear</emphasis>.
+	    <emphasis>apple</emphasis> y <emphasis>pear</emphasis>.
 	  </para>
 	</sect3>
       </sect2>
@@ -1782,7 +1782,7 @@ $ <userinput>ls -l hello.c*</userinput>
 	expresiones regulares. El comando <command>grep</command> es
 	usado para buscar patrones en un archivo o flujo de texto.
 	Este patrón es una expresión regular y puede ser una expresión
-	regular básica o una expresion extendida POSIX ( cuando el
+	regular básica o una expresion extendida POSIX (cuando el
 	parámetro <parameter class="command">-E</parameter> es
 	usado). Por defecto, <command>grep</command> escribirá las
 	líneas que fueron igualadas en la salida estándar. En la
