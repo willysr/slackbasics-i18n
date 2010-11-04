@@ -17,7 +17,7 @@
 <para>
   Antes de que entremos en temas específicos, es una buena idea
   resaltar las contraseñas. La autorización en ordenadores en gran
-  parte recae en contraseñas.  Esté seguro de usar buenas contraseñas
+  parte recae en contraseñas. Esté seguro de usar buenas contraseñas
   en todas las situaciones. Evite usar palabras, nombres, fechas de
   cumpleaños y contraseñas cortas. Estas contraseñas pueden ser
   fácilmente craqueadas con ataques de diccionario o ataques de fuerza
@@ -46,11 +46,11 @@
 
 <para>
   Un sistema seguro solamente debería ejecutar servicios que son
-  necesarios.  Entonces, suponga que un host esta actuando como un
+  necesarios. Entonces, suponga que un host esta actuando como un
   servidor web, no debería tener puertos abiertos para FTP o SMTP. Con
   mas puertos abiertos los riesgos de seguridad se incrementan muy
   rápido, por que hay una mayor chance de que el software sirviendo un
-  puerto tenga una vulnerabilidad, o esté mal configurado.  En las
+  puerto tenga una vulnerabilidad, o esté mal configurado. En las
   siguientes secciones le ayudaremos a rastrear y cerrar puertos
   abiertos.
 </para>
@@ -68,9 +68,9 @@
 
 <para>
   La sintaxis básica de <command>nmap</command> es: <command>nmap
-  host</command>.  El parámetro <emphasis>host</emphasis> puede ser un
-  nombre de host o una dirección IP.  Suponga que nos gustaría
-  escanear el host donde esta instalado <command>nmap</command>.  En
+  host</command>. El parámetro <emphasis>host</emphasis> puede ser un
+  nombre de host o una dirección IP. Suponga que nos gustaría
+  escanear el host donde esta instalado <command>nmap</command>. En
   este caso podemos especificar la direccion IP de
   <emphasis>localhost</emphasis>, <emphasis>127.0.0.1</emphasis>:
 </para>
@@ -102,19 +102,19 @@ Nmap run completed -- 1 IP address (1 host up) scanned in 0 seconds
 
 <para>
   Hay dos formas de ofrecer servicios TCP/IP: ejecutando aplicaciones
-  servidor como demonios (servicios) o usando el internet super
-  server, <command>inetd</command>. inetd es un demonio que monitorea
+  servidor como daemons (servicios) o usando el internet super
+  server, <command>inetd</command>. inetd es un daemon que monitorea
   un rango de puertos. Si un cliente intenta conectarse a un puerto,
   inetd maneja la conexión y redirecciona la misma al servidor de
   software que maneja ese tipo de conexión. La ventaja de esta
   solución es que agrega una capa extra de seguridad y facilita el
   registro de conexiones entrantes. La desventaja es que es mas lento
-  que utilizar demonios. Es una buena idea ejecutar demonios, por
+  que utilizar daemons. Es una buena idea ejecutar daemons, por
   ejemplo, en un servidor FTP sobrecargado.
 </para>
 
 <para>
-  Puede verificar si <command>inetd</command> esta ejecutandose en un
+  Puede verificar si <command>inetd</command> esta ejecutándose en un
   host o no con <command>ps</command>, por ejemplo:
 </para>
 
@@ -125,8 +125,8 @@ $ <command>ps ax | grep inetd</command>
 
 <para>
   En este ejemplo inetd esta ejecutandose con el PID (ID de proceso)
-  2845.  <command>inetd</command> puede ser configurado usando el
-  archivo <filename>/etc/inetd.conf</filename>. Demos un vistazo a una
+  2845. <command>inetd</command> puede ser configurado usando el
+  archivo <filename>/etc/inetd.conf</filename>. Démos un vistazo a una
   línea de ejemplo desde inetd.conf:
 </para>
 
@@ -139,9 +139,9 @@ ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
   Esta linea especifica que inetd debería aceptar conexiones FTP y
   pasarlas a <command>tcpd</command>. Esto puede parecer un poco
   extraño, porque normalmente <command>proftpd</command> maneja las
-  conexiones FTP.  Tambien puede especificar el uso de proftpd
+  conexiones FTP. También puede especificar el uso de proftpd
   directamente en <filename>inetd.conf</filename>, pero recomendable
-  entregar la conexion a <command>tcpd</command>. Este programa a su
+  entregar la conexión a <command>tcpd</command>. Este programa a su
   vez pasa la conexión a <command>proftpd</command>, como esta
   especificado. <command>tcpd</command> se utiliza para monitorear
   servicios y para proveer control de acceso basado en host.
@@ -165,8 +165,8 @@ ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
 <para>
   Si usted no necesita <command>inetd</command> en lo absoluto, es
   recomendable removerlo. Si quiere mantenerlo instalado, pero no
-  quiere que Slackware Linux lo cargue durante el proceso de boteo,
-  ejecute como root el siguiente comando:
+  quiere que Slackware Linux lo cargue durante el proceso de arranque
+  del sistema, ejecute como root el siguiente comando:
 </para>
 
 <screen>

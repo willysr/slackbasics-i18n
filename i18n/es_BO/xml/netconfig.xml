@@ -14,7 +14,7 @@
   Slackware Linux. En la mayoría de los sistemas la NIC es
   automáticamente detectada y configurada durante la instalación de
   Slackware Linux. Usted puede reconfigurar su NIC con el comando
-  <command>netconfig</command>.  <command>netconfig</command> agrega
+  <command>netconfig</command>. <command>netconfig</command> agrega
   el controlador (módulo) para la tarjeta detectada a
   <filename>/etc/rc.d/rc.netdevice</filename>.
 </para>
@@ -80,7 +80,7 @@ lo        Link encap:Local Loopback
   tienen una dirección IP, <command>ifconfig</command> no mostrará
   direcciones IP para interfaces no configuradas. Las interfaces
   pueden ser configuradas en el archivo
-  <filename>/etc/rc.d/rc.inet1.conf</filename>.  Usted puede
+  <filename>/etc/rc.d/rc.inet1.conf</filename>. Usted puede
   simplemente leer los comentarios y llenar la información
   requerida. Por ejemplo:
 </para>
@@ -117,7 +117,7 @@ DHCP_HOSTNAME[1]=""
   <command>/etc/rc.d/rc.inet1</command>. También es posible
   reconfigurar solamente una interfaz con <command>/etc/rc.d/rc.inet1
   ethX_restart</command>, donde <emphasis>ethX</emphasis> debería ser
-  reemplazaso por el nombre de la interface que quisiera reconfigurar.
+  reemplazado por el nombre de la interfaz que quisiera reconfigurar.
 </para>
 </sect1>
 
@@ -245,7 +245,7 @@ IPv6 v0.8 for NET4.0
 
 <para>
   Las interfaces pueden ser configuradas usando
-  <command>ifconfig</command>.  Pero es recomendable realizar
+  <command>ifconfig</command>. Pero es recomendable realizar
   configuraciones IPv6 usando el comando <command>ip</command>, que es
   parte del paquete <quote>iputils</quote> que puede ser encontrado en
   el directorio <filename>extra/</filename> del disco de instalación
@@ -351,7 +351,7 @@ eth1      Link encap:Ethernet  HWaddr <emphasis>00:01:F4:EC:A5:32</emphasis>
 <para>
   La dirección hexadecimal impresa después de
   <emphasis>HWaddr</emphasis> es la dirección MAC, en este caso
-  <emphasis>00:01:F4:EC:A5:32</emphasis>.  Cuando haya encontrado la
+  <emphasis>00:01:F4:EC:A5:32</emphasis>. Cuando haya encontrado la
   dirección MAC de la interfaz, puede agregar una sección para el
   dispositivo en <filename>/etc/rc.d/rc.wireless.conf</filename>. Por
   ejemplo:
@@ -374,7 +374,7 @@ eth1      Link encap:Ethernet  HWaddr <emphasis>00:01:F4:EC:A5:32</emphasis>
   <emphasis>Managed</emphasis> sobre el
   canal<emphasis>8</emphasis>. La llave usada para la encriptación WEP
   es <emphasis>1234-5678-AB</emphasis>. Existen otros muchos
-  parámetros que pueden ser configurados. Para un resument de todos
+  parámetros que pueden ser configurados. Para un resumen de todos
   los parámetros, refiérase al último ejemplo en
   <filename>rc.wireless.conf</filename>.
 </para>
@@ -555,10 +555,10 @@ nameserver 192.168.1.169
   Sea cauteloso!. Por defecto no hay filtros de paquetes activos. Esto
   significa que cualquiera puede acceder a otras redes. El tráfico
   puede ser filtrado y registrado con el filtro de paquetes del kernel
-  iptables.  Iptables puede ser administrado a través del comando
-  <command>iptables</command>.  NAT (Network Address Translation) es
+  iptables. Iptables puede ser administrado a través del comando
+  <command>iptables</command>. NAT (Network Address Translation) es
   también un subconjunto de iptables y puede ser controlado y
-  habilitado a través del comando <command>iptables</command>.  NAT
+  habilitado a través del comando <command>iptables</command>. NAT
   hace posible <quote>ocultar</quote> una red detrás de una dirección
   IP. Esto le permite usar internet en una red completa solamente con
   una dirección IP.

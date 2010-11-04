@@ -94,7 +94,7 @@ $ <userinput>startx</userinput>
       <listitem>
 	<para>
 	  BlackBox: Administrador de ventanas ligero, BlackBox no
-	  tiene dependencias a excepción de las librerias X11.
+	  tiene dependencias a excepción de las librerías X11.
 	</para>
       </listitem>
       <listitem>
@@ -107,7 +107,7 @@ $ <userinput>startx</userinput>
 	<para>
 	  Xfce: Un ligero entorno de escritorio. Este es un ambiente
 	  ideal si le gustaría tener un escritorio simple para el
-	  usuario que funciona en máquinas de pocos recursos.
+	  usuario que funciona en máquinas con pocos recursos.
 	</para>
       </listitem>
     </itemizedlist>
@@ -124,7 +124,7 @@ $ <userinput>startx</userinput>
     <para>
       En Slackware Linux el comando <command>xwmconfig</command> puede
       ser utilizado para asignar el administrador de ventanas por
-      defecto.  Este programa muestra los administradores de ventanas
+      defecto. Este programa muestra los administradores de ventanas
       instalados, de los cuales puede elegir uno. Puede asignar el
       administrador de ventanas global ejecutando
       <command>xwmconfig</command> como root(super usuario).

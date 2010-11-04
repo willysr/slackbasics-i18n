@@ -25,7 +25,7 @@
 
       <para>
 	Los archivos o directorios son mostrados como:
-	<filename>/path/to/file</filename>.  Por ejemplo:
+	<filename>/path/to/file</filename>. Por ejemplo:
 	<filename>/etc/fstab</filename>
       </para>
     </sect2>
@@ -74,7 +74,7 @@ Output
       <para>
 	Algunas secciones contienen notas extra. No es necesario saber
 	la información en las notas, pero las notas pueden proveer
-	información valiosa, o referencias a información.  Las notas
+	información valiosa, o referencias a información. Las notas
 	se muestran de esta forma:
       </para>
 

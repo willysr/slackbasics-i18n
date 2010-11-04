@@ -57,7 +57,7 @@
       
       <para>
 	Para leer un e-mail, utilice la tecla &lt;Enter&gt; después de
-	seleccionar un e-mail de la lista de e-mails.  Cuando esté
+	seleccionar un e-mail de la lista de e-mails. Cuando esté
 	leyendo un e-mail puede utilizar la tecla &lt;Page Up&gt; y
 	&lt;Page Down&gt; para navegar a través del e-mail. Todavía
 	puede utilizar las teclas de navegación para navegar a través
@@ -169,7 +169,7 @@ my_hdr From: John Doe &lt;john.doe@example.org&gt;
 	Por defecto mutt usa el MTA sendmail para entregar los correos
 	que fueron enviados. Usted puede usar otro comando para enviar
 	correos alterando la variable de configuración
-	<emphasis>sendmail</emphasis>.  El reemplazo de sendmail debe
+	<emphasis>sendmail</emphasis>. El reemplazo de sendmail debe
 	manejar la misma sintaxis de parámetros que sendmail
 	utiliza. Por ejemplo, si usted tiene instalado MSMTP para
 	entregar correos, puede configurar mutt para utilizarlo
@@ -291,7 +291,7 @@ $ <command>cat /usr/share/doc/mutt/samples/gpg.rc >> ~/.muttrc</command>
 
       <para>
 	Existen algunos parámetros prácticos que puede agregar
-	adicionalmente.  Por ejemplo, si usted quiere firmar sus
+	adicionalmente. Por ejemplo, si usted quiere firmar sus
 	e-mails por defecto, agregue la siguiente línea a su
 	configuración mutt:
       </para>
@@ -323,7 +323,7 @@ set crypt_replyencrypt = yes
 	&lt;p&gt; durante el paso final de envío de e-mail. En la
 	parte baja de la pantalla aparecerán varias opciones
 	GnuPG/PGP, a las cuales puede acceder a través las letras
-	descritas entre paréntesis.  Por ejemplo, &lt;s&gt; firma
+	descritas entre paréntesis. Por ejemplo, &lt;s&gt; firma
 	e-mails y &lt;e&gt; encripta un e-mail. Usted siempre podrá
 	deshacer cualquier opción GnuPG que haya asignado presionando
 	&lt;p&gt; y luego &lt;c&gt;.

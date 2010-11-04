@@ -251,15 +251,16 @@ Account setup complete.
     <title>Evitando el uso de root con su</title>
 
     <para>
-      Es aconsejable evitar loguearse como
+      Es aconsejable evitar iniciar sesión como
       <emphasis>root</emphasis>. Hay muchar razones para no hacer
-      esto. Teclear erróneamente un comando puede causar problemas, y
-      programas maliciosos pueden hacer mucho daño cuando se está
-      logueado como <emphasis>root</emphasis>. Aún asi, hay muchas
-      situaciones en las que requerirá acceder como root. Por ejemplo,
-      para realizar tareas de administración o para instalar nuevos
-      programas. Afortunadamente el comando <command>su</command>
-      puede darle temporalmente privilegios de usuario root.
+      esto. Podría teclear erróneamente un comando puede causar
+      problemas, y programas maliciosos pueden hacer mucho daño cuando
+      se está logueado como <emphasis>root</emphasis>. Aún asi, hay
+      muchas situaciones en las que requerirá acceder como root. Por
+      ejemplo, para realizar tareas de administración o para instalar
+      nuevos programas. Afortunadamente el comando
+      <command>su</command> puede darle temporalmente privilegios de
+      usuario root.
     </para>
 
     <para>
@@ -345,7 +346,7 @@ root:ALL EXCEPT GROUP wheel:DENY
 	un usuario o grupo en particular puede usar. No todos los
 	sistemas de archivos soportados por Linux soportan quota, los
 	sistemas ampliamente usados que soportan quota son ext2, ext3
-	y XFS. Quota es habilitado y administrado por cada sistema de
+	y XFS. Quota es habilitado y administrado para cada sistema de
 	archivos.
       </para>
     </sect2>
@@ -420,14 +421,14 @@ Disk quotas for user joe (uid 1143):
       <para>
 	En este ejemplo las quotas son activadas para un sistema de
 	archivos, el sistema de archivos en
-	<filename>/dev/hda5</filename>.  Como puede ver hay múltiples
+	<filename>/dev/hda5</filename>. Como puede ver hay múltiples
 	columnas. La columna <emphasis>blocks</emphasis> muestra
 	cuántos bloques son usados por el usuario en el sistema de
 	archivos y la columna <emphasis>inodes</emphasis> muestra el
 	número de inodos que un usuario ocupa. Además están las
 	columnas <emphasis>soft</emphasis> y <emphasis>hard</emphasis>
 	después de las ya mencionadas. Estas columnas especifican los
-	límites soft y hard en bloques e inodos.  Un usuario puede
+	límites soft y hard en bloques e inodos. Un usuario puede
 	exceder el límite soft por un periodo temporal, pero el
 	usuario nunca puede exceder el límite hard. Si el valor de un
 	límite es <emphasis>0</emphasis>, entonces no hay límite:

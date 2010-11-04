@@ -3,7 +3,7 @@
   <title>Instalando Slackware Linux</title>
 
   <sect1 xml:id="chap-install-bootcd">
-    <title>Boteando el CD-ROM de instalación</title>
+    <title>Arrancando desde el CD-ROM de instalación</title>
 
     <para>
       El método mas sencillo para arrancar el sistema es usando el
@@ -15,13 +15,13 @@
     </para>
 
     <para>
-      Si el CD no es arrancado cuando esta insertado en el lector de
+      Si el CD no es arrancado cuando está insertado en el lector de
       CD durante el inicio del sistema, probablemente la secuencia de
-      arranque no está correctamente configurada en el BIOS. Ingrese a
+      arranque no está correctamente configurada en la BIOS. Ingrese a
       la configuración del BIOS (usualmente presionando la tecla
       &lt;Del&gt; o &lt;Esc&gt; cuando la pantalla del BIOS aparece) y
       asegúrese de que el CD-ROM este al tope de la lista de secuencia
-      de arranque.  Si esta usando un CD-ROM SCSI podría necesitar
+      de arranque. Si esta usando un CD-ROM SCSI podría necesitar
       configurar la secuencia de arranque en el SCSI BIOS en vez del
       BIOS. Consulte el manual para tarjetas SCSI para más
       información.
@@ -51,7 +51,7 @@
 	  <row>
 	    <entry>huge.s</entry>
 	    <entry>
-	      Previamente habían kernels específicos para diferentes 
+	      Previamente había kernels específicos para diferentes 
 	      configuraciones de controladores de disco. Los nuevos 
 	      kernels huge incluyen soporte para todos los controladores 
 	      comúnes ATA, SATA y SCSI. Este kernel no tiene soporte SMP 
@@ -114,7 +114,7 @@
       Después de arrancar el CD-ROM de Slackware Linux e iniciar
       sesión, hay dos programas de particionado a su disposición:
       <command>fdisk</command> y
-      <command>cfdisk</command>. <command>cfdisk</command> es el mas
+      <command>cfdisk</command>. <command>cfdisk</command> es el más
       sencillo de los dos, porque es controlado por una interfaz de
       menús. Esta sección describe el programa
       <command>cfdisk</command>.
@@ -213,7 +213,7 @@
       varias opciones. Puede ver una screenshot del instalador en
       <xref linkend="chap-install-installing-setup"/>. Cada opción es
       requerida para una instalación completa de Slackware Linux, pero
-      una vez iniciada, el programa <command>setup</command> lo guiará
+      una vez iniciado, el programa <command>setup</command> lo guiará
       a través de las opciones.
     </para>
 
@@ -393,7 +393,7 @@
     <para>
       Después de haber completado la instalación, la herramienta de
       instalación permitirá configurar algunas partes del sistema. El
-      primer dialogo le preguntará desde donde quisiera instalar el
+      primer diálogo le preguntará desde donde quisiera instalar el
       kernel (véa <xref
       linkend="chap-install-installing-installkernel" />). Normalmente
       es recomendable instalar el kernel desde el CD-ROM de Slackware
@@ -443,10 +443,11 @@
     </figure>
 
     <para>
-      El siguiente paso es seleccionar si quiere usar hotplug (<xref linkend="chap-install-installing-hotplug"
-      />). Hotplug es usado para configurar automáticamente dispositivos 
-      USB, PCMCIA y PCI. Generalmente hablando, es recomendable habilitar 
-      hotplugging, pero algunos sistemas puede tener problemas con los 
+      El siguiente paso es seleccionar si quiere usar hotplug (<xref
+      linkend="chap-install-installing-hotplug" />). Hotplug es usado
+      para configurar automáticamente dispositivos USB, PCMCIA y
+      PCI. Generalmente hablando, es recomendable habilitar
+      hotplugging, pero algunos sistemas puede tener problemas con los
       scripts de hotplug.
     </para>
 
@@ -560,7 +561,7 @@
       Entonces se le preguntará si el programa <command>gpm</command> 
       debería ser cargado durante el arranque o no (<xref
       linkend="chap-install-installing-ask-load-gpm" />). 
-      <command>gpm</command> es un demonio que le permite cortar y pegar 
+      <command>gpm</command> es un daemon que le permite cortar y pegar 
       texto en la consola.
     </para>
 
@@ -741,7 +742,7 @@
 
     <para>
       Las configuraciones de red finales proveen un resumen de las
-      configuracines, dándole la oportunidad de corregirlas si tienen
+      configuraciones, dándole la oportunidad de corregirlas si tienen
       errores (<xref linkend="chap-install-installing-network-confirm"
       />).
     </para>

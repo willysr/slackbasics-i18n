@@ -136,7 +136,7 @@ EOF</command>
 
     <para>
       Para usar NFS como medio de instalación se requieren algunos
-      pasos mas.  Primeramente, tendrá que cargar el disco de
+      pasos mas. Primeramente, tendrá que cargar el disco de
       red. Puede hacer esto ejecutando el comando
       <command>network</command> e insertando un disco de red. También
       puede cargar este disco desde otro medio, por ejemplo desde una

@@ -169,7 +169,7 @@ image = /boot/vmlinuz <co xml:id="co-liloconf-kernel-1" />
 	    <emphasis>read-only</emphasis> especifica que el sistema
 	    de archivos root debería ser montado en modo de solo
 	    lectura. El sistema de archivos tiene que ser montado en
-	    estado read-only para conducir un checkeo del sistema de
+	    estado read-only para conducir un chequeo del sistema de
 	    archivos.
 	  </para>
 	</callout>
@@ -275,12 +275,12 @@ c1:1235:respawn:/sbin/agetty 38400 tty1 linux
     <para>
       Ya que <emphasis>/etc/inittab</emphasis> es el lugar correcto
       para generar instancias <command>agetty</command> para escuchar
-      por logins, usted puede también dejar escuchando un puerto
-      serial a una o mas instancias de agetty. Esto es especialmente
-      útil cuando tiene una o mas terminales conectadas a una
-      máquina. Puede agregar algo como la siguiente línea para iniciar
-      una instancia <command>agetty</command> que escuche el
-      puerto COM1:
+      por peticiones de inicio de sesión, usted puede también dejar
+      escuchando un puerto serial a una o mas instancias de
+      agetty. Esto es especialmente útil cuando tiene una o mas
+      terminales conectadas a una máquina. Puede agregar algo como la
+      siguiente línea para iniciar una instancia
+      <command>agetty</command> que escuche el puerto COM1:
     </para>
 
     <screen>
@@ -487,7 +487,7 @@ ipw2100: eth1: ipw2100_get_firmware failed: -2
       <para>
 	En este caso usted deberá encontrar el firmware para su
 	dispositivo. Puede ser usualmente encontrado buscando en la
-	web por el chipset o controlador del dispositivo (en este case
+	web por el chipset o controlador del dispositivo (en este caso
 	<emphasis>ipw2100</emphasis>) y el término literal
 	<quote>firmware</quote>. El archivo firmware algunas veces
 	contiene un archivo con instrucciones de

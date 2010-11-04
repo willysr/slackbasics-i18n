@@ -27,7 +27,7 @@
 	Slackware Linux posee pocas herramientas para administrar
 	paquetes. Las herramientas más importantes serán cubiertas en
 	este capítulo. Para aprender a usar las herramientas, debemos
-	hechar un vistazo al nombramiento de paquetes. Veámos un
+	dar un vistazo al nombramiento de paquetes. Veámos un
 	ejemplo, imagine que tenemos un paquete con el nombre
 	<filename>bash-2.05b-i386-2.tgz</filename>. En este caso el
 	nombre del paquete es bash-2.05b-i386-2. En el nombre del
@@ -57,7 +57,7 @@
 	La opción <emphasis>Setup</emphasis> provee acceso a unas
 	cuantas herramientas que pueden ayudarle a configurar su
 	sistema, por ejemplo: <command>netconfig</command>,
-	<command>pppconfig</command> and <command>xwmconfig</command>.
+	<command>pppconfig</command> y <command>xwmconfig</command>.
       </para>
     </sect2>
 
@@ -416,7 +416,7 @@ rsync://fill-in-mirror/pub/slackware/slackware-current/ \
         crearlos. Escribiendo sus propios tagfiles puede automatizar
         la instalación de paquetes, lo cual es ideal para procesos
         cliente o servidor largos (o pequeñas instalaciones si es que
-        le ofrecen más comfort que las instalaciones manuales).  La
+        le ofrecen más comfort que las instalaciones manuales). La
         forma más sencilla de crear sus propios tagfiles es empezar
         con los tagfiles que son parte de la distribución oficial de
         Slackware Linux. En las secciones siguientes vamos a ver como
@@ -431,7 +431,7 @@ rsync://fill-in-mirror/pub/slackware/slackware-current/ \
       	Los tagfiles son archivos de texto plano. Cada línea se
       	compone de un nombre de paquete y una bandera, estos elementos
       	se separan por dos puntos y un espacio. La bandera especifica
-      	que se deberia hacer con el paquete. Los campos son descritos
+      	lo que se debería hacer con el paquete. Los campos son descritos
       	en <xref
       	linkend="chap-pkgmgmt-tagfiles-creating-fields"/>. Veámos unas
       	cuantas lineas de un tagfile en el directorio <quote>a</quote>
@@ -500,7 +500,7 @@ bin: ADD
       	Slackware Linux. La distribución oficial de Slackware Linux
       	contiene un tagfile en el directorio por cada paquete de
       	discos. Puede usar estos tagfiles como un punto inicial. El
-      	corto script mostrado abajo puede ser utilizado para copiar
+      	pequeño script mostrado abajo puede ser utilizado para copiar
       	tagfiles al directorio actual, preservando la estructura del
       	disco de paquetes.
       </para>
@@ -533,7 +533,7 @@ $ <command>sh copy-tagfiles.sh /mnt/flux/slackware-current/slackware</command>
 
       <para>
         Después de esto, el directorio actual contendrá una estructura
-        de directorio como la siguiente, en la cual puede editar
+        de directorios como la siguiente, en la cual puede editar
         tagfiles individuales:
       </para>
 
@@ -562,7 +562,7 @@ e/tagfile.org
 
       <para>
         Con un script simple, es posible construir tagfiles basados en
-        los paquetes que están instalados en el sistema actual. Debo
+        los paquetes que están instalados en el sistema actual. Debo dar
         las gracias a Peter Kaagman por tener esta idea!.
       </para>
 
@@ -642,7 +642,7 @@ $ <userinput>sh build-tagfiles.sh .</userinput>
         <emphasis>SELECT PROMPTING MODE</emphasis>). Seleccione
         <emphasis>tagpath</emphasis> desde este menú. Entonces será
         consultado para ingresar la dirección del directorio con sus
-        tagfiles. La forma usual de proveer tagfiles a la installación
+        tagfiles. La forma usual de proveer tagfiles a la instalación
         de Slackware Linux es colocarlos en un floppy u otro medio, y
         montarlo antes de la instalación. E.g. puede cambiar a la
         segunda consola presionando las teclas &lt;ALT&gt; y
