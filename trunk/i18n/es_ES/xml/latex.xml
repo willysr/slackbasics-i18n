@@ -34,7 +34,8 @@
     <itemizedlist>
       <listitem>
         <para>
-	  Los documentos formateados por LaTex se ven muy profesionales.
+	  Los documentos formateados por LaTex se ven muy
+	  profesionales.
         </para>
       </listitem>
       <listitem>
@@ -61,9 +62,9 @@
     </itemizedlist>
 
     <para>
-      LaTex es muy extenso, por lo que este capítulo solamente tocará 
-      la superficie de LaTex. Pero debería ser suficiente para que usted
-      sea capaz de elaborar documentos simples.      
+      LaTex es muy extenso, por lo que este capítulo solamente tocará
+      la superficie de LaTex. Pero debería ser suficiente para que
+      usted sea capaz de elaborar documentos simples.
     </para>
   </sect1>
 
@@ -122,8 +123,8 @@ This is a basic document. <co id="latex-struct-5" />
           <para>
 	    Después de documentclass, usted puede agregar
 	    meta-información al documento, como su título. En este
-	    caso el título es <emphasis>Historia de los cifrados
-	    simétricos</emphasis>.
+	    caso el título es <emphasis>The history of symmetric
+	    ciphers</emphasis>.
           </para>
         </callout>
         <callout arearefs="latex-struct-3">
@@ -154,7 +155,7 @@ This is a basic document. <co id="latex-struct-5" />
           <para>
 	    Todos los ambientes deben ser eventualmente cerrados. El
 	    ambiente <emphasis>document</emphasis> es el último
-	    ambiente a cerra, porque denota el fin de cuerpo del
+	    ambiente a cerrar, porque denota el fin de cuerpo del
 	    texto.
           </para>
         </callout>
@@ -243,7 +244,7 @@ $ <command>dvips -o crypto.ps crypto.dvi</command>
 	El parámetro <parameter class="command">-o</parameter>
 	especifica la salida (archivo) para el archivo Postscript. Si
 	este parámetro no es especificado, la salida será canalizada a
-	traǘes de <command>lpr</command>, que programará el documento
+	través de <command>lpr</command>, que programará el documento
 	para su impresión.
       </para>
 
@@ -277,7 +278,7 @@ $ <command>ps2pdf crypto.ps</command>
 	con los comandos respectivos <emphasis>\section</emphasis>,
 	<emphasis>\subsection</emphasis> y
 	<emphasis>\subsubsection</emphasis>. El parámetro obligatorio
-	para una sección es el título de la sección. Secciones
+	para una sección es el título de la sección. Las secciones
 	normales, sub-secciones y sub-sub-secciones son
 	automáticamente numeradas y agregadas a la tabla de
 	contenidos. Al agregar un asterisco después del comando
@@ -332,7 +333,7 @@ Encryption Standard, the successor of DES.
 	fuente también. LaTeX tiene algunos comandos que pueden ser
 	usados para cambiar la apariencia de la fuente actual. Los
 	comandos de fuente más comunes son <emphasis>\emph</emphasis>
-	para textos resaltados y <emphasis>\textbf</emphasis>. Dele un
+	para textos resaltados y <emphasis>\textbf</emphasis>. Déle un
 	vistazo a <xref linkend="latex-fontstyles" /> para una lista
 	mas extensa de estilos de fuente. Textos resaltado y en
 	negrita son demostrados en este párrafo de ejemplo:
@@ -344,7 +345,7 @@ Working with font styles is easy. \emp{This text is emphasized} and
       </screen>
 
       <table id="latex-fontstyles">
-        <title>LaTeX font styles</title>
+        <title>Estilos de fuente LaTeX</title>
 
         <tgroup cols="2">
           <thead>

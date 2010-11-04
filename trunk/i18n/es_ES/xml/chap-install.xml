@@ -1,80 +1,82 @@
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
 	 xml:id="chap-install">
-  <title>Installing Slackware Linux</title>
+  <title>Instalando Slackware Linux</title>
 
   <sect1 xml:id="chap-install-bootcd">
-    <title>Booting the installation CD-ROM</title>
+    <title>Arrancando desde el CD-ROM de instalación</title>
 
     <para>
-      The easiest method for booting the installation system is by
-      using the installation CD-ROM. The Slackware Linux installation
-      CD-ROM is a bootable CD, which means that the BIOS can boot the
-      CD, just like it can boot, for example, a floppy disk. Most
-      modern systems have a BIOS which supports CD-ROM booting.
+      El método mas sencillo para arrancar el sistema es usando el
+      CD-ROM de instalación. El CD-ROM de instalación de Slackware
+      Linux es un CD boteable, esto quiere decir que la BIOS puede
+      iniciar desde el CD, asi como puede iniciar desde discos
+      floppy. La mayoría de los sistemas modernos tienen una BIOS que
+      soporta el arranque desde CD-ROM.
     </para>
 
     <para>
-      If the CD is not booted when you have the CD inserted in the
-      CD-ROM drive during the system boot, the boot sequence is
-      probably not correctly configured in the BIOS. Enter the BIOS
-      setup (usually this can be done by holding the &lt;Del&gt; or
-      &lt;Esc&gt; key when the BIOS screen appears) and make sure the
-      CD-ROM is on the top of the list in the boot sequence.  If you
-      are using a SCSI CD-ROM you may have to set the boot sequence in
-      the SCSI BIOS instead of the system BIOS. Consult the SCSI card
-      manual for more information.
+      Si el CD no es arrancado cuando está insertado en el lector de
+      CD durante el inicio del sistema, probablemente la secuencia de
+      arranque no está correctamente configurada en la BIOS. Ingrese a
+      la configuración del BIOS (usualmente presionando la tecla
+      &lt;Del&gt; o &lt;Esc&gt; cuando la pantalla del BIOS aparece) y
+      asegúrese de que el CD-ROM este al tope de la lista de secuencia
+      de arranque. Si esta usando un CD-ROM SCSI podría necesitar
+      configurar la secuencia de arranque en el SCSI BIOS en vez del
+      BIOS. Consulte el manual para tarjetas SCSI para más
+      información.
     </para> 
 
     <para>
-      When the CD-ROM is booted, a pre-boot screen will
-      appear. Normally you can just press &lt;ENTER&gt; to proceed
-      loading the default (<filename>hugesmp.s</filename>) Linux
-      kernel. This kernel requires at least a Pentium Pro CPU. You can
-      boot an alternative kernel by entering the kernel name on the
-      prompt, and pressing &lt;ENTER&gt;.  The following table lists
-      the different kernels that are available from the Slackware
-      Linux CD or DVD.
+      Cuando el CD-ROM es arrancado, aparecerá una pantalla de
+      pre-arranque. Normalmente puede presionar &lt;ENTER&gt; para
+      proceder a cargar el kernel Linux por defecto
+      (<filename>hugesmp.s</filename>). Este kernel requiere la menos
+      un CPU Pentium Pro. Puede arrancar un kernel alternativo
+      ingresando el nombre del kernel y presionando &lt;ENTER&gt;. La
+      siguiente tabla lista los diferentes kernels disponibles en CD o
+      DVD de Slackware Linux.
     </para>
 
     <table xml:id="chap-install-bootcd-installkernels">
-      <title>Installation kernels</title>
+      <title>Kernels de instalación</title>
 
       <tgroup cols="2">
 	<thead>
 	  <row>
-	    <entry>Linux</entry><entry>Description</entry>
+	    <entry>Linux</entry><entry>Descripción</entry>
 	  </row>
 	</thead>
 	<tbody>
 	  <row>
 	    <entry>huge.s</entry>
 	    <entry>
-	      Previously, there were specific kernels for different
-	      sets of disk controlers. The new huge kernels include
-	      support for all common ATA, SATA and SCSI
-	      controllers. This kernel does not have SMP support, and
-	      works on i486 and newer CPUs. If you have a Pentium Pro
-	      or newer CPU, it is recommended to use the
-	      <emphasis>hugesmp.s</emphasis> kernel, even on
-	      uniprocessor systems.
+	      Previamente había kernels específicos para diferentes 
+	      configuraciones de controladores de disco. Los nuevos 
+	      kernels huge incluyen soporte para todos los controladores 
+	      comúnes ATA, SATA y SCSI. Este kernel no tiene soporte SMP 
+	      y funciona en CPUs i486 o superiores. Si tiene un CPU 
+	      Pentium Pro o uno mas nuevo, es recomendable usar el 
+	      kernel <emphasis>hugesmp.s</emphasis>, aún en sistemas 
+	      mono-proceso.
 	    </entry>
 	  </row>
 	  <row>
 	    <entry>hugesmp.s</entry>
 	    <entry>
-	      The <emphasis>hugesmp.s</emphasis> kernel has support
-	      for common ATA, SATA, and SCSI
-	      controllers. Additionally, this kernel has SMP
-	      support. This is the recommended kernel on Pentium Pro
-	      and newer CPUs.
+	      El kernel <emphasis>hugesmp.s</emphasis> tiene soporte
+	      para controladores comúnes ATA, SATA y
+	      SCSI. Adicionalmente, este kernel tiene soporte
+	      SMP. Este es el kernel recomendado en CPUs Pentium Pro o
+	      superiores.
 	    </entry>
 	  </row>
 	  <row>
 	    <entry>speakup.s</entry>
 	    <entry>
-	      This kernel is comparable to the
-	      <emphasis>huge.s</emphasis> kernel, but also includes
-	      support for hardware speech synthesizers.
+	      Este kernel es comparable al kernel
+	      <emphasis>huge.s</emphasis>, pero también incluye
+	      soporte para hardware de sintetizadores de voz.
 	    </entry>
 	  </row>
 	</tbody>
@@ -82,58 +84,59 @@
     </table>
 
     <para>
-      After booting the installation system, you will be asked whether
-      you are using a special (national) keyboard layout or not. If
-      you have a normal US/International keyboard, which is the most
-      common, you can just press &lt;Enter&gt; at this question. After
-      that the login prompt will appear. Log on as
-      <quote>root</quote>, no password will be requested.  After
-      login, the shell is started and you can begin installing
-      Slackware Linux. The installation procedure will be explained
-      briefly in this chapter.
+      Después de arrancar la instalación del sistema, se le preguntará
+      si esta usando una distribución de teclado especial (nacional) o
+      no. Si utiliza un teclado normal US/International, el mas común,
+      puede solamente presionar &lt;Enter&gt; a esta pregunta. Después
+      de eso, aparecerá una entrada de login. Inicie sesión como
+      <quote>root</quote>, no se pedirá contraseña alguna. Después de
+      iniciar sesión, la consola se inicia y puede empezar la
+      instalación de Slackware Linux. El procedimiento de instalación
+      será brevemente explicado en este capítulo.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-install-partitioning">
-    <title>Partitioning a hard disk</title>
+    <title>Particionando el disco duro</title>
 
     <para>
-      Installing Slackware Linux requires at least one Linux
-      partition, creating a swap partition is also recommended. To be
-      able to create a partition there has to be free unpartitioned
-      space on the disk. There are some programs that can resize
-      partitions. For example, FIPS can resize FAT partitions.
-      Commercial programs like Partition Magic can also resize other
-      partition types.
+      La instalación de Slackware Linux requiere al menos una
+      partición Linux, la creación de una partición swap es
+      recomendable. Para ser capaz de crear una partición, debe haber
+      espacio sin particionar en el disco. Hay algunos programas que
+      puede redimensionar particiones. Por ejemplo, FIPS puede
+      redimensionar particiones FAT. Programas comerciales como
+      Partition Magic también pueden redimensionar otros tipos de
+      particiones.
     </para>
 
     <para>
-      After booting the Slackware Linux CD-ROM and logging on, there
-      are two partitioning programs at your disposal:
-      <command>fdisk</command> and
-      <command>cfdisk</command>. <command>cfdisk</command> is the
-      easiest of both, because it is controlled by a menu
-      interface. This section describes the <command>cfdisk</command>
-      program.
+      Después de arrancar el CD-ROM de Slackware Linux e iniciar
+      sesión, hay dos programas de particionado a su disposición:
+      <command>fdisk</command> y
+      <command>cfdisk</command>. <command>cfdisk</command> es el más
+      sencillo de los dos, porque es controlado por una interfaz de
+      menús. Esta sección describe el programa
+      <command>cfdisk</command>.
     </para>
 
     <para>
-      To partition the first harddisk you can simply execute
-      <command>cfdisk</command>. If you want to partition another disk
-      or a SCSI disk you have to specify which disk you want to
-      partition (<command>cfdisk /dev/device</command>). ATA hard
-      disks have the following device naming:
-      <filename>/dev/hdn</filename>, with <quote>n</quote> replaced by
-      a character. E.g. the <quote>primary master</quote> is named
-      <filename>/dev/hda</filename>, the <quote>secondary
-      slave</quote> is named <filename>/dev/hdd</filename>. SCSI disks
-      are named in the following way: <filename>/dev/sdn</filename>,
-      with <quote>n</quote> replaced by the device character (the
-      first SCSI disk = a, the fourth SCSI disk = d).
+      Para particionar el primer disco duro, puede simplemente
+      ejecutar <command>cfdisk</command>. Si quiere particionar otro
+      disco o disco SCSI, tiene que especificar qué disco quiere
+      particionar (<command>cfdisk /dev/device</command>). Los discos
+      duros ATA tiene el siguiente nombramiento de dispositivos:
+      <filename>/dev/hdn</filename>, con <quote>n</quote> reemplazado
+      por un caracter. E.g. <quote>primary master</quote> es nombrado
+      <filename>/dev/hda</filename>, el <quote>secondary slave</quote>
+      es nombrado <filename>/dev/hdd</filename>. Los discos SCSI son
+      nombrados de la siguiente forma: <filename>/dev/sdn</filename>,
+      con <quote>n</quote> reemplazado por el caracter de dispositivo
+      (el primer disco SCSI = a, el cuarto disco SCSI = d).
     </para>
 
     <figure xml:id="chap-install-partitioning-cfdisk">
-      <title>The cfdisk parition tool</title>
+      <title>La herramienta de particionado cfdisk</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/cfdisk.png" format="PNG" width="100%" scalefit="1"/>
@@ -142,75 +145,80 @@
     </figure>
 
     <para>
-      After starting <command>cfdisk</command>, the currently existing
-      partitions are shown, as well as the amount of free space. The
-      list of partitions can be navigated with the <quote>up</quote>
-      and <quote>down</quote> arrow keys.  At the bottom of the screen
-      some commands are displayed, which can be browsed with the
-      <quote>left</quote> and <quote>right</quote> arrow keys.  A
-      command can be executed with the &lt;Enter&gt; key.
+      Después de iniciar <command>cfdisk</command>, se muestran las
+      particiones existentes, asi como la cantidad de espacio
+      libre. Se puede navegar a través de la lista de particiones con
+      las teclas direccionales <quote>arriba</quote> y
+      <quote>abajo</quote>. Al final de la pantalla se muestran
+      algunos comandos, los que pueden son navegables con las teclas
+      direccionales <quote>izquierda</quote> y
+      <quote>derecha</quote>. Un comando puede ser ejecutado con la
+      tecla &lt;Enter&gt;.
+     </para>
+
+    <para>
+      Puede crear una partición Linux seleccionando <quote>Free
+      Space</quote> y ejecutando el comando <quote>New</quote>.
+      <command>cfdisk</command> preguntará si quiere crear una
+      partición primaria o lógica. El número de particiones primarias
+      está limitado a cuatro. Linux puede ser instalado en particiones
+      primarias o lógicas. Si quiere instalar otro sistema operativo
+      además de Slackware Linux que requieren particiones primarias,
+      es recomendable instalar Slackware Linux en una partición
+      lógica. El tipo de la nueva partición es automáticamente
+      configurado como <quote>Linux Native</quote>, entonces ya no es
+      necesario configurar el tipo de partición.
     </para>
 
     <para>
-      You can create a Linux partition by selecting <quote>Free
-      Space</quote> and executing the <quote>New</quote>
-      command. <command>cfdisk</command> will ask you whether you want
-      to create a primary or logical partition.  The number of primary
-      partitions is limited to four. Linux can be installed on both
-      primary and logical partitions. If you want to install other
-      operating systems besides Slackware Linux that require primary
-      partitions, it is a good idea to install Slackware Linux onto a
-      logical partition.  The type of the new partition is
-      automatically set to <quote>Linux Native</quote>, so it is not
-      necessary to set the partition type.
-    </para>
-
-    <para>
-      The creation of a swap partition involves the same steps as a
-      normal Linux partition, but the type of the partition has to be
-      changed to <quote>Linux Swap</quote> after the partition is
-      created. The suggested size of the swap partition depends on
-      your own needs. The swap partition is used to store programs if
-      the main (RAM) memory is full. If you have a harddisk of a
-      reasonable size, it is a good idea to make a 256MB or 512MB swap
-      partition, which should be enough for normal usage.  After
-      creating the partition, the partition type can be changed to
-      <quote>Linux Swap</quote> by selecting the <quote>Type</quote>
-      command. The <command>cfdisk</command> program will ask for the
-      type number. <quote>Linux Swap</quote> partitions have type
-      number 82.  Normally number 82 is already selected, so you can
-      go ahead by pressing the &lt;Enter&gt; key.
+      La creación de la partición swap incluye los mismos pasos usados
+      para la partición Linux normal, pero el tipo de partición debe
+      ser cambiado a <quote>Linux Swap</quote> después de que la
+      partición haya sido creada. El tamaño recomendado para la
+      partición swap depende de sus propias necesidades. La partición
+      swap es usada para almacenar programas si la memoria
+      principal(RAM) esta llena. Si tiene un disco duro de tamaño
+      razonable es recomendable crear una partición swap de 256MB o
+      512MB, que debería ser suficiente para uso normal. Despues de
+      crear la partición, el tipo de partición puede ser cambiado a
+      <quote>Linux Swap</quote> seleccionando el comando
+      <quote>Type</quote>. El programa <command>cfdisk</command>
+      preguntará por el número de tipo. Particiones <quote>Linux
+      Swap</quote> tienen el número de tipo 82. Normalmente 82 es
+      pre-seleccionado, entonces usted puede resumir todo presionando
+      la tecla &lt;Enter&gt;.
     </para> 
 
     <para>
-      If you are satisfied with the partitioning you can save the
-      changes by executing the <quote>Write</quote> command. This
-      operation has to be confirmed by entering
-      <command>yes</command>. After saving the changes you can quite
-      <command>cfdisk</command> with the <command>Quit</command>
-      command. It is a good idea to reboot the computer before
-      starting the installation, to make sure that the partitioning
-      changes are active.  Press &lt;ctrl&gt; + &lt;alt&gt; +
-      &lt;del&gt; to shut Linux down and restart the computer.
+      Si está satisfecho con el particionado, puede guardar los
+      cambios ejecutando el comando <quote>Write</quote>. Esta
+      operación tiene que ser confirmada ingresando
+      <command>yes</command>. Después de guardar los cambios puede
+      salir de <command>cfdisk</command> con el comando
+      <command>Quit</command>. Es recomendable reiniciar la
+      computadora antes de iniciar la instalación, para asegurarse de
+      que los cambios de particionado están activos. Presione
+      &lt;ctrl&gt; + &lt;alt&gt; + &lt;del&gt; para apagar Linux y
+      reiniciar la computadora.
     </para>
   </sect1>
 
   <sect1 xml:id="chap-install-installing">
-    <title>Installing Slackware Linux</title>
+    <title>Instalando Slackware Linux</title>
 
     <para>
-      The Slackware Linux installer is started by executing
-      <command>setup</command> in the installation disk shell. Setup
-      will show a menu with several choices.  You can see a screenshot
-      of the installer in <xref
-      linkend="chap-install-installing-setup"/>. Every
-      option is required for a complete Slackware Linux installation,
-      but once you start, the <command>setup</command> program will
-      guide you through the options.
+      El instalador de Slackware Linux es iniciado ejecutando
+      <command>setup</command> en la consola del disco de
+      instalación. <command>setup</command> mostrará un menu con
+      varias opciones. Puede ver una screenshot del instalador en
+      <xref linkend="chap-install-installing-setup"/>. Cada opción es
+      requerida para una instalación completa de Slackware Linux, pero
+      una vez iniciado, el programa <command>setup</command> lo guiará
+      a través de las opciones.
     </para>
 
     <figure xml:id="chap-install-installing-setup">
-      <title>The setup tool</title>
+      <title>La herramienta setup</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/setup.png" format="PNG" width="100%" scalefit="1"/>
@@ -219,17 +227,17 @@
     </figure>
 
     <para>
-      The first part of the installation is named
-      <quote>ADDSWAP</quote>. The <command>setup</command> tool will
-      look for a partition with the <quote>Linux Swap</quote> type,
-      and ask you if you want to format and activate the swap
-      partition (see figure <xref
-      linkend="chap-install-installing-addswap"/>).
-      Normally you can just answer <quote>Yes</quote>.
+      La primera parte de la instalación es llamada
+      <quote>ADDSWAP</quote>. La herramienta <command>setup</command>
+      buscará la partición con el tipo <quote>Linux Swap</quote> y le
+      preguntará si quiere formatear y activar la partición swap (véa
+      la figura <xref
+      linkend="chap-install-installing-addswap"/>). Normalmente usted
+      puede solamente responder <quote>Yes</quote>.
     </para>
 
     <figure xml:id="chap-install-installing-addswap">
-      <title>Setting up the swap partition</title>
+      <title>Configurando la partición swap</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/addswap.png" format="PNG" width="100%" scalefit="1"/>
@@ -238,15 +246,16 @@
     </figure>
 
     <para>
-      After setting up the swap space the <quote>TARGET</quote> menu
-      is launched, which you can see in <xref
-      linkend="chap-install-installing-partselect"/>. It is used to
-      initialize the Slackware Linux partitions. Setup will display
-      all partitions with the <quote>Linux Native</quote> type.
+      Después de configurar el espacio swap, el menú
+      <quote>TARGET</quote> es lanzado, el cual puede ver en <xref
+      linkend="chap-install-installing-partselect"/>. Es usado para
+      inicializar las particiones Slackware
+      Linux. <command>setup</command> mostrará todas las particiones con
+      el tipo <quote>Linux Native</quote>.
     </para>
 
     <figure xml:id="chap-install-installing-partselect">
-      <title>Selecting a partition to initialize</title>
+      <title>Seleccionando una partición a inicializar</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/partselect.png" format="PNG" width="100%" scalefit="1"/>
@@ -255,16 +264,16 @@
     </figure>
 
     <para>
-      After selecting one partition, the setup tool will ask whether
-      you want to format a partition or not, and if you want to format
-      it, whether you want to check the disk for bad sectors or not
-      (<xref
-      linkend="chap-install-installing-fscheck"/>). Checking
-      the disk can take a lot of time.
+      Después de seleccionar una partición, la herramienta
+      <command>setup</command> preguntará si quiere formatear la
+      partición o no, y en el caso de que quiera formatearla,
+      preguntará si quiere verificar sectores dañados el disco (<xref
+      linkend="chap-install-installing-fscheck"/>). La verificación
+      del disco puede tomar bastante tiempo.
     </para>
 
     <figure xml:id="chap-install-installing-fscheck">
-      <title>Formatting the partition</title>
+      <title>Formateando la partición</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/fscheck.png" format="PNG" width="100%" scalefit="1"/>
@@ -273,25 +282,26 @@
     </figure>
 
     <para>
-      After selecting to format a partition, you can specify which
-      filesystem should be used (<xref
-      linkend="chap-install-installing-filesystem"/>). Normally
-      you can choose the ext2, ext3 and reiserfs filesystems. Ext2 was
-      the standard Linux filesystem for many years, but it does not
-      support journaling. A journal is a special file or area of a
-      partition in which all filesystem operations are logged. When
-      the system crashes, the filesystem can be repaired rapidly,
-      because the kernel can use the log to see what disk operations
-      were performed. Ext3 is the same filesystem as Ext2, but adds
-      journaling. Reiserfs is a filesystem that also provides
-      journaling. Reiserfs uses balanced trees, which make many
-      filesystem operations faster than with Ext2 or Ext3, especially
-      when working with many small files. A disadvantage is that
-      Reiserfs is newer, and can be a bit more unstable.
+      Después de seleccionar el formateo de una partición, puede
+      especificar qué sistema de archivos debería ser usado (<xref
+      linkend="chap-install-installing-filesystem"/>). Normalmente
+      puede elegir sistemas de archivos ext2, ext3 y reiserfs. Ext2
+      fué el sistema de archivos estándar en Linux por muchos años,
+      pero no soporta journaling (registro o bitácora). Un journal es
+      un archivo especial o área de una partición en la cual todas las
+      operaciones del sistema de archivos son registradas. Cuando el
+      sistema falla, puede ser reparado rápidamente, porque el kernel
+      usa el journal para ver que operaciones de disco fueron
+      realizadas. Ext3 es lo mismo que Ext2, pero agrega
+      journaling. Reiserfs utiliza árboles balanceados, por lo cual
+      realiza las operaciones de archivos mas rápido que Ext2 o Ext3,
+      especialmente cuando se está trabajando con archivos
+      pequeños. Una desventaja es que Reiserfs es reciente y puede ser
+      un poco inestable.
     </para>
 
     <figure xml:id="chap-install-installing-filesystem">
-      <title>Selecting a filesystem type</title>
+      <title>Seleccionando un tipo de sistema de archivos</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/filesystem.png" format="PNG" width="100%" scalefit="1"/>
@@ -300,43 +310,46 @@
     </figure>
 
     <para>
-      The first initialized partition is automatically mounted as the
-      root (/) partition. For other partitions the mount point can be
-      selected after the initialization. You could, for example, make
-      separate partitions for <filename>/</filename>,
+      La primera partición inicializada es automáticamente montada
+      como la partición root (/). Para otras particiones el punto de
+      montaje puede ser seleccionado después de la
+      inicialización. Usted podría, por ejemplo, crear particiones
+      separadas para <filename>/</filename>,
       <filename>/var</filename>, <filename>/tmp</filename>,
-      <filename>/home</filename> and <filename>/usr</filename>. This
-      provides extra protection against crashes. Since
-      <filename>/</filename> is rarely changed after the installation
-      if you create these partitions, the chance that it will be in
-      the middle of a write operation during a crash is much smaller.
-      Besides that, it is safer to create a separate filesystem for
-      <filename>/home</filename>. If a program has a security
-      vulnerability, a user could create a hard link to the binary of
-      that program, if the <filename>/home</filename> directory is on
-      the same filesystem as the <filename>/{s}bin</filename>
-      <filename>/usr/{s}bin</filename>, or
-      <filename>/usr/local/{s}bin</filename> directories. This user
-      will then still be able to access the old, vulnerable binary
-      after the program is upgraded.
+      <filename>/home</filename> y <filename>/usr</filename>. Esto
+      provee protección extra contra fallos. Ya que
+      <filename>/</filename> es rara vez cambiado después de la
+      instalación, si usted crea esas particiones la chance de que
+      esté en el medio de una operación de escritura durante un fallo
+      es mucho más pequeña. Por otra parte, es mas seguro crear un
+      sistema de archivos separado para <filename>/home</filename>. Si
+      un programa tiene una vulnerabilidad de seguridad, un usuario
+      podría crear un enlace al binario de ese programa, si el
+      directorio <filename>/home</filename> está en el mismo sistema
+      de archivos que los directorios <filename>/{s}bin</filename>
+      <filename>/usr/{s}bin</filename> o
+      <filename>/usr/local/{s}bin</filename>. Entonces este usuario
+      será capaz de acceder al binario viejo y vulnerable después de
+      que el sistema sea actualizado.
     </para>
 
     <para>
-      The next step is to select the source medium (<xref
-      linkend="chap-install-installing-medium"/>). This
-      dialog offers several choices, like installing Slackware Linux
-      from a CD-ROM or installing Slackware Linux via NFS. Slackware
-      Linux is usually installed from CD-ROM, so this is what we are
-      going to look at. After selecting <quote>CD-ROM</quote> you will
-      be asked whether you want to let setup look for the CD-ROM
-      itself (<quote>Auto</quote>) or you want to select the CD-ROM
-      device yourself (<quote>Manual</quote>). If you select
-      <quote>Manual</quote> the setup tool will show a list of
-      devices. Select the device holding the Slackware Linux CD-ROM.
+      El siguiente paso es seleccionar el medio de origen de Slackware
+      Linux (<xref linkend="chap-install-installing-medium"/>). Este
+      diálogo ofrece varias opciones, como instalar Slackware Linux
+      desde un CD-ROM o a través de NFS. Slackware Linux es usualmente
+      instalado desde el CD-ROM, por lo tanto eso es lo que vamos a
+      describir. Después de seleccionar <quote>CD-ROM</quote> se le
+      preguntará si quiere que el programa busque por el CD-ROM
+      (<quote>Auto</quote>) o si quiere seleccionar el dispositivo de
+      CD-ROM por su cuenta (<quote>Manual</quote>). Si selecciona
+      <quote>Manual</quote> la herramienta de instalación mostrará una
+      lista de dispositivos. Seleccione el dispositivo que contiene
+      el CD de Slackware Linux.
     </para> 
 
     <figure xml:id="chap-install-installing-medium">
-      <title>Selecting the source medium</title>
+      <title>Seleccionando el medio de origen</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/medium.png" format="PNG" width="100%" scalefit="1"/>
@@ -345,15 +358,15 @@
     </figure>
 
     <para>
-      After choosing an installation source the setup tool will ask
-      you which disk sets (series) you want to install packages from
-      (<xref
-      linkend="chap-install-installing-disksets"/>). A
-      short description of each disk set is listed.
+      Después de elegir un origen de instalación, la herramienta de
+      instalación preguntará que conjuntos de paquetes quisiera
+      instalar (<xref
+      linkend="chap-install-installing-disksets"/>). Se lista una
+      corta descripción para cada conjunto de paquetes.
     </para>
 
     <figure xml:id="chap-install-installing-disksets">
-      <title>Selecting the disk sets</title>
+      <title>Seleccionando los conjuntos de paquetes</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/disksets.png" format="PNG" width="100%" scalefit="1"/>
@@ -362,34 +375,34 @@
     </figure>
 
     <para>
-      Now it is almost time to start the real installation. The next
-      screen asks how you would like to install. The most obvious
-      choices are <quote>full</quote>, <quote>menu</quote> or
-      <quote>expert</quote>.  Selecting <quote>full</quote> will
-      install all packages in the selected disk sets. This is the
-      easiest way of installing Slackware Linux.  The disadvantage of
-      this choice is that it can take quite much disk space. The
-      <quote>menu</quote> option will ask you for each disk set which
-      packages you want to install. The <quote>expert</quote> option
-      is almost equal to the <quote>menu</quote> option, but allows
-      you to deselect some very important packages from the
-      <quote>a</quote> disk set.
+      Ahora ya casi es tiempo de iniciar la instalación real. La
+      siguiente pantalla pregunta cómo le gustaría instalar. Las
+      opciones mas obvias son <quote>full</quote>, <quote>menu</quote>
+      o <quote>expert</quote>. Seleccionando <quote>full</quote>
+      instalará todos los paquetes en los conjuntos de paquetes
+      seleccionados. Esta es la forma de instalación de Slackware
+      Linux más sencilla. La desventaja de esta opción es que puede
+      ocupar bastante espacio en disco. La opción <quote>menu</quote>
+      le preguntará por los paquetes a instalar de cada uno de los
+      conjuntos de paquetes. La opción <quote>expert</quote> es
+      similar a la opción <quote>menu</quote>, pero permite desmarcar
+      algunos paquetes importantes del conjunto de paquetes
+      <quote>a</quote>.
     </para>
 
     <para>
-      After the completion of the installation the setup tool will
-      allow you to configure some parts of the system. The first
-      dialog will ask you where you would like to install the kernel
-      from (see <xref
-      linkend="chap-install-installing-installkernel"
-      />). Normally it is a good idea to install the kernel from the
-      Slackware Linux CD-ROM, this will select the kernel you
-      installed Slackware Linux with. You can confirm this, or select
-      another kernel.
+      Después de haber completado la instalación, la herramienta de
+      instalación permitirá configurar algunas partes del sistema. El
+      primer diálogo le preguntará desde donde quisiera instalar el
+      kernel (véa <xref
+      linkend="chap-install-installing-installkernel" />). Normalmente
+      es recomendable instalar el kernel desde el CD-ROM de Slackware
+      Linux, esto seleccionará el kernel con el que instaló Slackware
+      Linux. Puede confirmar esto o seleccionar otro kernel.
     </para>
 
     <figure xml:id="chap-install-installing-installkernel">
-      <title>Installing the kernel</title>
+      <title>Instalando el kernel</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/kernel.png" format="PNG" width="100%" scalefit="1"/>
@@ -398,14 +411,14 @@
     </figure>
 
     <para>
-      At this point you can choose to make a bootdisk (<xref
-      linkend="chap-install-installing-bootdisk" />).  It
-      is a good idea to make a bootdisk, you can use it to boot
-      Slackware Linux if the LILO configuration is botched.
+      En este punto puede elegir crear un disco de arranque (<xref
+      linkend="chap-install-installing-bootdisk" />). Es recomendable
+      crear un disco de arranque, puede usarlo para arrancar Slackware
+      Linux si la configuración de LILO es defectuosa.
     </para>
 
     <figure xml:id="chap-install-installing-bootdisk">
-      <title>Creating a bootdisk</title>
+      <title>Creado un disco de arranque</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/bootdisk.png" format="PNG" width="100%" scalefit="1"/>
@@ -414,16 +427,14 @@
     </figure>
 
     <para>
-      The following dialog can be used to make a link,
-      <filename>/dev/modem</filename>, that points to your modem
-      device. (<xref
-      linkend="chap-install-installing-modem" />). If you
-      do not have a modem you can select <emphasis>no
-      modem</emphasis>.
+      El siguiente diálogo puede ser usado para crear un enlace
+      <filename>/dev/modem</filename> que apunte a su dispositivo
+      modem. (<xref linkend="chap-install-installing-modem" />). Si no
+      tiene un modem puede seleccionar <emphasis>no modem</emphasis>.
     </para>
 
     <figure xml:id="chap-install-installing-modem">
-      <title>Selecting the default modem</title>
+      <title>Seleccionando el modem por defecto</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/modem.png" format="PNG" width="100%" scalefit="1"/>
@@ -432,16 +443,16 @@
     </figure>
 
     <para>
-      The next step is to select whether you would like to use hotplug
-      (<xref linkend="chap-install-installing-hotplug"
-      />).  Hotplug is used for automatically configuring pluggable
-      USB, PCMCIA and PCI devices. Generally speaking, it is a good
-      idea to enable hotplugging, but some systems may have problems
-      with the probing of the hotplug scripts.
+      El siguiente paso es seleccionar si quiere usar hotplug (<xref
+      linkend="chap-install-installing-hotplug" />). Hotplug es usado
+      para configurar automáticamente dispositivos USB, PCMCIA y
+      PCI. Generalmente hablando, es recomendable habilitar
+      hotplugging, pero algunos sistemas puede tener problemas con los
+      scripts de hotplug.
     </para>
 
     <figure xml:id="chap-install-installing-hotplug">
-      <title>Enabling hotplugging</title>
+      <title>Habilitando hotplugging</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/hotplug.png" format="PNG" width="100%" scalefit="1"/>
@@ -450,16 +461,17 @@
     </figure>
 
     <para>
-      The following steps are important, the next dialogs will assist
-      you with installing LILO, the Linux bootloader. Unless you have
-      experience in configuring LILO it is a good idea to choose to
-      use the <emphasis>simple</emphasis> option for configuration of
-      LILO, which tries to configure LILO automatically (<xref
+      Los siguientes pasos son importantes, los diálogos siguientes le
+      asistirán con la instalación de LILO, el cargador de arranque de
+      Linux. A menos de que tenga experiencia configurando LILO, es
+      recomendable seleccionar la opción <emphasis>simple</emphasis>
+      para la configuración de LILO, la cual trata de configurar LILO
+      automáticamente (<xref
       linkend="chap-install-installing-liloinstall" />).
     </para>
 
     <figure xml:id="chap-install-installing-liloinstall">
-      <title>Selecting the kind of LILO installation</title>
+      <title>Seleccionando el tipo de instalación de LILO</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/lilo.png" format="PNG" width="100%" scalefit="1"/>
@@ -468,20 +480,21 @@
     </figure>
 
     <para>
-      After selecting the <emphasis>simple</emphasis> option the LILO
-      configuration utility will asks you whether you would like to
-      use a framebuffer or not (<xref
-      linkend="chap-install-installing-framebuffer" />).
-      Using a framebuffer will allow you to use the console in several
-      resolutions, with other dimensions than the usual 80x25
-      characters. Some people who use the console extensively prefer
-      to use a framebuffer, which allows them to keep more text on the
-      screen. If you do not want a framebuffer console, or if you are
-      not sure, you can choose <emphasis>standard</emphasis> here.
+      Después de seleccionar la opción <emphasis>simple</emphasis>, la
+      utilidad de configuración de LILO le preguntará si quisiera usar
+      un framebuffer o no (<xref
+      linkend="chap-install-installing-framebuffer" />). El uso de un
+      framebuffer le permite usar la consola en varias resoluciones,
+      con mas dimensiones de la usual de 80x25 caracteres. Algunas
+      personas que usan la consola extensivamente prefieren usar un
+      framebuffer, el cual les permite tener mas texto en la
+      pantalla. Si no quiere una consola con framebuffer, o si no esta
+      seguro, puede seleccionar la opción
+      <emphasis>standard</emphasis>.
     </para>
 
     <figure xml:id="chap-install-installing-framebuffer">
-      <title>Choosing the framebuffer resolution</title>
+      <title>Seleccionando la resolución de framebuffer</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/framebuffer.png" format="PNG" width="100%" scalefit="1"/>
@@ -490,15 +503,15 @@
     </figure>
 
     <para>
-      After setting the framebuffer you can pass extra parameters to
-      the kernel (<xref
-      linkend="chap-install-installing-kernel-param"
-      />). This is normally not necessary, if you do not want to pass
-      extra parameters you can just press the &lt;Enter&gt; key.
+      Después de seleccionar el framebuffer, puede pasar parámetros
+      extra al kernel (<xref
+      linkend="chap-install-installing-kernel-param" />). Normalmente
+      esto no es necesario, si no quiere pasar parámetros extra puede
+      solamente presionar la tecla &lt;Enter&gt;.
     </para>
 
     <figure xml:id="chap-install-installing-kernel-param">
-      <title>Adding kernel parameters</title>
+      <title>Agregando parámetros del kernel</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/kernel-param.png" format="PNG" width="100%" scalefit="1"/>
@@ -507,20 +520,21 @@
     </figure>
 
     <para>
-      The last step of the LILO configuration is selecting where LILO
-      should be installed (<xref
+      El último paso de la configuración de LILO es la selección de
+      dónde LILO debería ser instalado (<xref
       linkend="chap-install-installing-lilo-dest"
-      />). <emphasis>MBR</emphasis> is the master boot record, the
-      main boot record of PCs. Use this option if you want use
-      Slackware Linux as the only OS, or if you want to use LILO to
-      boot other operating systems. The <emphasis>Root</emphasis>
-      option will install LILO in the boot record of the Slackware
-      Linux <filename>/</filename> partition. Use this option if you
-      use another bootloader.
+      />). <emphasis>MBR</emphasis> es el sector de arranque maestro,
+      el principal registro de arranque para PCs. Utilice esta opción
+      si quiere usar Slackware Linux como único sistema operativo, o
+      si quiere usar LILO para arrancar otros sistemas operativos. La
+      opción <emphasis>Root</emphasis> instalará LILO en el registro
+      de arranque de la partición de Slackware Linux
+      <filename>/</filename>. Use esta opción si quiere usar otro
+      cargador de arranque.
     </para>
 
     <figure xml:id="chap-install-installing-lilo-dest">
-      <title>Choosing where LILO should be installed</title>
+      <title>Seleccionando el destino de instalación de LILO</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/lilo-dest.png" format="PNG" width="100%" scalefit="1"/>
@@ -529,13 +543,13 @@
     </figure>
 
     <para>
-      You will now be asked to configure your mouse. Select the mouse
-      type from the dialog that appears (<xref
+      Ahora se le pedirá configurar su mouse. Seleccione el tipo de
+      mouse desde el diálogo que aparecerá (<xref
       linkend="chap-install-installing-mouse" />).
     </para>
 
     <figure xml:id="chap-install-installing-mouse">
-      <title>Configuring a mouse</title>
+      <title>Configurando un mouse</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/mouse.png" format="PNG" width="100%" scalefit="1"/>
@@ -544,15 +558,15 @@
     </figure>
 
     <para>
-      You will then be asked whether the <command>gpm</command>
-      program should be loaded at boot time or not (<xref
-      linkend="chap-install-installing-ask-load-gpm" />).
-      <command>gpm</command> is a daemon that allows you to cut and
-      paste text on the console.
+      Entonces se le preguntará si el programa <command>gpm</command> 
+      debería ser cargado durante el arranque o no (<xref
+      linkend="chap-install-installing-ask-load-gpm" />). 
+      <command>gpm</command> es un daemon que le permite cortar y pegar 
+      texto en la consola.
     </para>
 
     <figure xml:id="chap-install-installing-ask-load-gpm">
-      <title>Choosing whether GPM should be started or not</title>
+      <title>Seleccionando si GPM debería ser iniciado o no</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/ask-load-gpm.png" format="PNG" width="100%" scalefit="1"/>
@@ -561,18 +575,17 @@
     </figure>
 
     <para>
-      The next few steps will configure network connectivity. This is
-      required on almost every networked system. The Slackware Linux
-      setup will ask you if you want to set up network connectivity
-      (<xref
-      linkend="chap-install-installing-ask-configure-network"
-      />). If you answer <quote>No</quote> you can skip the next few
-      network-related steps.
+      Los pasos siguientes configuran la conectividad de red. Esto es
+      requerido en casi todo sistema con red. La instalación de
+      Slackware Linux le pedirá si quiere configurar la conectividad
+      de red (<xref
+      linkend="chap-install-installing-ask-configure-network" />). Si
+      responde <quote>No</quote> puede saltar los siguientes pasos
+      relacionados a configuración de red.
     </para>
 
     <figure xml:id="chap-install-installing-ask-configure-network">
-      <title>Choosing whether you would like to configure network
-      connectivity</title>
+      <title>Seleccionando si quiere configurar la conectividad de red</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/ask-configure-network.png" format="PNG" width="100%" scalefit="1"/>
@@ -581,15 +594,16 @@
     </figure>
 
     <para>
-      You will now be asked to set the hostname (<xref
-      linkend="chap-install-installing-hostname" />).
-      Please note that this is not the fully qualified domain name
-      (FQDN), just the part that represents the host (normally the
-      characters before the first dot in a FQDN).
+      Ahora se le pedirá configurar el nombre de host (<xref
+      linkend="chap-install-installing-hostname" />). Por favor nóte
+      que este no es el nombre completdo de dominio (FQDN, fully
+      qualified domain name), es solamente la parte que representa el
+      host (normalmente los caracteres antes del primer punto en una
+      FQDN).
     </para>
 
     <figure xml:id="chap-install-installing-hostname">
-      <title>Setting the host name</title>
+      <title>Configurando el nombre de host</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/hostname.png" format="PNG" width="100%" scalefit="1"/>
@@ -598,13 +612,13 @@
     </figure>
 
     <para>
-      After setting the host name you can set the domain name part of
-      the fully qualified domain name (FQDN) (<xref
-      linkend="chap-install-installing-domainname" />).
+      Después de configurar el nombre de host, puede configurar la
+      parte del nombre de dominio del nombre completo de dominio
+      (FQDN) (<xref linkend="chap-install-installing-domainname" />).
     </para>
 
     <figure xml:id="chap-install-installing-domainname">
-      <title>Setting the domain name</title>
+      <title>Configurando el nombre de dominio</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/domainname.png" format="PNG" width="100%" scalefit="1"/>
@@ -613,27 +627,27 @@
     </figure>
 
     <para>
-      The rest of the network configuration steps depend on whether
-      nodes in the network are configured to use a static or a dynamic
-      IP address. Some networks have a DHCP server that automatically
-      assigns an IP address to hosts in the network. If this is the
-      case for the network the machine select
-      <emphasis>DHCP</emphasis> during this step of the installation
+      El resto de los pasos de configuración de red dependen de si los
+      nodos en la red estan configurados para usar una dirección IP
+      estática o dinámica. Algunas redes tienen un servidor DHCP que
+      asigna automáticamente una dirección IP a los hosts en la
+      red. Si este es el caso para su máquina, seleccione
+      <emphasis>DHCP</emphasis> durante este paso en la instalación
       (<xref linkend="chap-install-installing-set-ipconfig-type"
-      />). When DHCP is selected you will only be asked whether a host
-      name should be sent to the server. Normally you can leave this
-      blank. If you use DHCP you can skip the rest of the network
-      configuration described below.
+      />). Cuando se selecciona DHCP solamente se le preguntará si el
+      nombre de host debería ser enviado al servidor. Normalmente
+      puede dejar esto en blanco. Si usa DHCP puede obviar el resto de
+      la configuración de red descrita a continuación.
     </para>
 
     <para>
-      If the network does not have a DHCP server you can choose the
-      <emphasis>static IP</emphasis> option, which will allow you to
-      set the IP address and related settings manually.
+      Si la red no tiene un servidor DHCP puede elegir la opción
+      <emphasis>static IP</emphasis>, la cual le permite configurar
+      manualmente la dirección IP y las configuraciones relacionadas.
     </para>
 
     <figure xml:id="chap-install-installing-set-ipconfig-type">
-      <title>Manual or automatic IP address configuration</title>
+      <title>Configuración manual o automática de la dirección IP</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/set-ipconfig-type.png" format="PNG" width="100%" scalefit="1"/>
@@ -642,13 +656,13 @@
     </figure>
 
     <para>
-      The first step of the manual configuration is to set the IP
-      address of the first interface (eth0) of the machine (<xref
+      El primer paso de la configuración manual es configurar la
+      dirección IP de la primera interfaz (eth0) de la máquina (<xref
       linkend="chap-install-installing-ipaddr" />).
     </para>
 
     <figure xml:id="chap-install-installing-ipaddr">
-      <title>Setting the IP addres</title>
+      <title>Configurando la dirección IP</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/ipaddr.png" format="PNG" width="100%" scalefit="1"/>
@@ -657,14 +671,14 @@
     </figure>
 
     <para>
-      After setting the IP address you will be asked to enter the
-      netmask.  The netmask is usually dependent on the IP address
-      class (<xref
+      Después de configurar la dirección IP se le pedirá ingresar la
+      máscara de red. La máscara de red es usualmente dependiente de
+      la clase de su dirección IP (<xref
       linkend="chap-install-installing-netmask" />).
     </para>
 
     <figure xml:id="chap-install-installing-netmask">
-      <title>Setting the netmask</title>
+      <title>Configurando la máscara de red</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/netmask.png" format="PNG" width="100%" scalefit="1"/>
@@ -673,15 +687,16 @@
     </figure>
 
     <para>
-      You will then be asked to set the address of the gateway (<xref
-      linkend="chap-install-installing-gateway" />). The
-      gateway is the machine on the network that provides access to
-      other networks by routing IP packets. If your network has no
-      gateway you can just hit the &lt;ENTER&gt; key.
+      Entonces se le pedirá configurar la dirección de la puerta de
+      enlace (<xref linkend="chap-install-installing-gateway" />). La
+      puerta de enlace es la máquina en la red que provee acceso a
+      otras redes a través de paquetes IP de ruteo. Si su red no tiene
+      una puerta de enlace puede solamente presionar la tecla
+      &lt;ENTER&gt;.
     </para>
 
     <figure xml:id="chap-install-installing-gateway">
-      <title>Setting the gateway</title>
+      <title>Configurando la puerta de enlace</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/gateway.png" format="PNG" width="100%" scalefit="1"/>
@@ -690,19 +705,19 @@
     </figure>
 
     <para>
-      The next dialog will ask you whether you want to use a
-      nameserver or not (<xref
+      El siguiente dialogo le preguntará si quiere usar un servidor 
+      de nombres o no (<xref
       linkend="chap-install-installing-ask-nameserver"
-      />). A nameserver is a server that can provide the IP address
-      for a hostname. For example, if you surf to
-      <emphasis>www.slackbasics.org</emphasis>, the nameserver will
-      <quote>convert</quote> the
-      <emphasis>www.slackbasics.org</emphasis> name to the
-      corresponding IP address.
+      />). Un servidor de nombres es un servidor que provee la 
+      dirección IP para un nombre de host. Por ejemplo, si navega 
+      en <emphasis>www.slackbasics.org</emphasis>, el servidor de 
+      nombres <quote>convertirá</quote> el nombre 
+      <emphasis>www.slackbasics.org</emphasis> a su correspondiente 
+      dirección IP.
     </para>
 
     <figure xml:id="chap-install-installing-ask-nameserver">
-      <title>Choosing whether you want to use a nameserver or not</title>
+      <title>Seleccionando el uso de un servidor de nombres</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/ask-nameserver.png" format="PNG" width="100%" scalefit="1"/>
@@ -711,13 +726,13 @@
     </figure>
 
     <para>
-      If you chose to use a nameserver, you will be given the
-      opportunity to set the IP address of the nameserver (<xref
-      linkend="chap-install-installing-nameserver" />).
+      Si selecciona usar un servidor de nombres, se le dará la
+      oportunidad de configurar la dirección IP del servidor de
+      nombres (<xref linkend="chap-install-installing-nameserver" />).
     </para>
 
     <figure xml:id="chap-install-installing-nameserver">
-      <title>Setting the nameserver(s)</title>
+      <title>Configurando el/los servidor de nombres</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/nameserver.png" format="PNG" width="100%" scalefit="1"/>
@@ -726,15 +741,14 @@
     </figure>
 
     <para>
-      The final network settings screen provides an overview of the
-      settings, giving you the opportunity to correct settings that
-      have errors (<xref
-      linkend="chap-install-installing-network-confirm"
+      Las configuraciones de red finales proveen un resumen de las
+      configuraciones, dándole la oportunidad de corregirlas si tienen
+      errores (<xref linkend="chap-install-installing-network-confirm"
       />).
     </para>
 
     <figure xml:id="chap-install-installing-network-confirm">
-      <title>Confirming the network settings</title>
+      <title>Confirmando las configuraciones de red</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/network-confirm.png" format="PNG" width="100%" scalefit="1"/>
@@ -743,14 +757,14 @@
     </figure>
 
     <para>
-      After the network configuration you can set which services
-      should be started (<xref
-      linkend="chap-install-installing-startup-services"
-      />). You can mark/unmark services with the &lt;SPACE&gt; key.
+      Después de configurar la red puede configurar qué servicios
+      deberían iniciarse con el sistema (<xref
+      linkend="chap-install-installing-startup-services" />). Puede
+      marcar/desmarcar los servicios con la tecla &lt;SPACE&gt;.
     </para>
 
     <figure xml:id="chap-install-installing-startup-services">
-      <title>Enabling/disabling startup services</title>
+      <title>Habilitando/Deshabilitando el inicio de servicios</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/startup-services.png" format="PNG" width="100%" scalefit="1"/>
@@ -761,18 +775,19 @@
     <!-- try fonts? -->
 
     <para>
-      Traditionally the system clock is set to the UTC timezone on
-      UNIX(-like) systems. If this is the case, select
-      <emphasis>Yes</emphasis> during the next step (<xref
+      Tradicionalmente en sistemas UNIX(-like) el reloj del sistema 
+      es configurado al huso horario UTC. Si este es el caso, seleccione 
+      <emphasis>Yes</emphasis> durante el siguiente paso (<xref
       linkend="chap-install-installing-ask-clock-utc"
-      />). If you also use a non-UNIX(-like) OS on the same system,
-      like Windows, it is usually a good idea to choose
-      <emphasis>No</emphasis>, because some PC operating systems do
-      not work with a separate system clock and software clock.
+      />). Si también utiliza un sistema non-UNIX(-like) en la 
+      misma máquina, como Windows, es recomendable seleccionar 
+      <emphasis>No</emphasis>, porque algunos sistemas operativos 
+      no funcionan con un reloj de sistema y de software separados.
     </para>
 
     <figure xml:id="chap-install-installing-ask-clock-utc">
-      <title>Choosing whether the clock is set to UTC</title>
+      <title>Seleccionando la asignación del huso horario UTC al reloj
+      del sistema</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/ask-clock-utc.png" format="PNG" width="100%" scalefit="1"/>
@@ -781,15 +796,16 @@
     </figure>
 
     <para>
-      You will then be given the opportunity to select the time zone
-      (<xref linkend="chap-install-installing-timezone"
-      />). This is especially important on systems that have their
-      system clock set to UTC, without selecting the correct timezone
-      the software clock will not match the local time.
+      Entonces se le dará la oportunidad de seleccionar el huso horario 
+      (<xref linkend="chap-install-installing-timezone" />). Esto
+      es especialmente importante en sistemas que tienen el huso horario
+      asignado a UTC, si no se selecciona el huso horario
+      correcto, el reloj de software no será consistente con la hora
+      local.
     </para>
 
     <figure xml:id="chap-install-installing-timezone">
-      <title>Setting the timezone</title>
+      <title>Configurando el huso horario</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/timezone.png" format="PNG" width="100%" scalefit="1"/>
@@ -798,16 +814,17 @@
     </figure>
 
     <para>
-      If you installed the X Window System you can now set the default
-      window manager (<xref
+      Si ha instalado un sistema X Window puede ahora configurar el 
+      gestor de ventanas por defecto (<xref
       linkend="chap-install-installing-defaultwm"
-      />). The most basic functionality of a window manager is to
-      provide basic window managing functionality like title bars. But
-      some options, like KDE, provide a complete desktop environment.
+      />). La funcionalidad más básica de un gestor de ventanas 
+      es proveer funcionalidades básicas de gestor de ventanas, 
+      como barras de título. Pero algunas opciones, como KDE, proveen 
+      un entorno de escritorio completo.
     </para>
 
     <figure xml:id="chap-install-installing-defaultwm">
-      <title>Choosing the default window manager</title>
+      <title>Seleccionando el gestor de ventanas por defecto</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/defaultwm.png" format="PNG" width="100%" scalefit="1"/>
@@ -816,15 +833,15 @@
     </figure>
 
     <para>
-      The final step is to set the root password (<xref
-      linkend="chap-install-installing-rootpasswd" />).
-      The setup will ask you whether you would like to set it or
-      not. There is no reason not to do this, and without a root
-      password your system is dangerously insecure.
+      El paso final es configurar la contraseña root (<xref
+      linkend="chap-install-installing-rootpasswd" />). La herramienta
+      de instalación le preguntará si quiere configurarlo o no. No hay
+      razón para no hacer esto y sin una contraseña root su sistema es
+      peligrosamente inseguro.
     </para>
 
     <figure xml:id="chap-install-installing-rootpasswd">
-      <title>Setting the root password</title>
+      <title>Configurando la contraseña root</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/rootpasswd.png" format="PNG" width="100%" scalefit="1"/>
@@ -833,13 +850,13 @@
     </figure>
 
     <para>
-      At this point you have completed the Slackware Linux
-      installation. You can now reboot the system to start your fresh
-      new Slackware Linux system. It wasn't that hard, was it? ;-)
+      En este punto ha completado la instalación de Slackware Linux.
+      Ahora puede reiniciar el sistema e iniciar su nuevo y fresco
+      sistema Slackware Linux. Eso no fue difícil, cierto? ;-)
     </para>
 
     <figure xml:id="chap-install-installing-finished">
-      <title>Finished</title>
+      <title>Completado</title>
       <mediaobject>
 	<imageobject>
 	  <imagedata fileref="../../images/finished.png" format="PNG" width="100%" scalefit="1"/>
