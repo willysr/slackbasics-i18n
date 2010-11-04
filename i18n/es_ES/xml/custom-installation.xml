@@ -1,26 +1,26 @@
 <chapter id="getstarted-custominstall"> <?dbhtml filename="custom-installation.html" ?>
-  <title>Custom installation</title>
+  <title>Instalación personalizada</title>
 
   <para>
-    Sometimes you may want to do a custom installation of Slackware Linux,
-    for example to get better understanding of how GNU/Linux systems work,
-    or to prepare an automatic installation script. This chapter outlines
-    the steps that are required to install Slackware Linux manually. A
-    sample installation script is also provided in <xref
-    linkend="getstarted-custominstall-script" />.
+    Algunas veces usted podría requerir realizar una instalación
+    personalizada de Slackware Linux, por ejemplo, para tener un mejor
+    entendimiento de como funciona un sistema GNU/Linux, o como
+    preparar un script de instalación automática. Este capítulo
+    remarca los pasos requeridos para instalar Slackware Linux
+    manualmente. Un script de instalación de ejemplo es también
+    proveído en <xref linkend="getstarted-custominstall-script" />.
   </para>
 
   <sect1 id="getstarted-custominstall-partition">
-    <title>Partitioning a hard disk</title>
+    <title>Particionando un disco duro</title>
 
     <para>
-      If you have performed a normal installation, you should not
-      have any problems partitioning a disk. You can use the
-      <command>fdisk</command> and <command>cfdisk</command>
-      commands to partition disks. If you are scripting the
-      installation of Slackware Linux it is useful to know that
-      you can pipe <command>fdisk</command> commands to
-      <command>fdisk</command>. For example:
+      Si usted ha realizado una instalación normal, no debería tener
+      problemas particionando un disco. Puede usar los comandos
+      <command>fdisk</command> y <command>cfdisk</command> para
+      particionar discos. Si usted esta escribiendo un script de
+      instalación de Slackware Linux, es útil saber que puede entubar
+      comandos <command>fdisk</command>. Por ejemplo:
     </para>
 
     <screen>
@@ -43,11 +43,11 @@ EOF</command>
     </screen>
 
     <para>
-      These commands create a primary Linux partition of 10000MB, and
-      a primary Linux swap partition of 512MB. You could store the
-      <command>fdisk</command> commands in different disk profiles,
-      and use one of the profiles based on the specific deployment
-      (e.g.  the disk size). For example:
+      Estos comando crean una partición primaria Linux de 10000MB, y
+      una partición primaria Linux swap de 512MB. Podría almacenar los
+      comandos <command>fdisk</command> en diferentes perfiles de
+      disco y usar uno de los perfiles basados en el despliegue
+      específico (e.g. el tamaño del disco). Por ejemplo:
     </para>
 
     <screen>
@@ -56,15 +56,16 @@ EOF</command>
   </sect1>
 
   <sect1 id="getstarted-custominstall-initfs">
-    <title>Initializing and mounting filesystems</title>
+    <title>Inicializando y montando sistemas de archivos</title>
 
     <para>
-      After making at least a swap and a Linux partition, you can
-      initialize the filesystem and swap space and make use of this
-      storage. On systems that are short on memory, you should initialize,
-      and use swap first. We will use the partition layout used in
-      the partitioning example listed above in the following examples.
-      To set up and use swap, execute:
+      Después de crear al menos una partición swap y una partición
+      Linux, puede inicializar el sistema de archivos y el espacio
+      swap y hacer uso de este almacenamiento. En sistemas de bajos
+      recursos, usted debería inicializarlos y usar swap
+      primero. Usaremos la disposición de particiones usada en el
+      ejemplo de particionado anterior en los siguientes
+      ejemplos. Para configurar y usar swap, ejecute:
     </para>
 
     <screen>
@@ -73,32 +74,36 @@ EOF</command>
     </screen>
 
     <para>
-      The meaning of these commands is quite obvious. <command>mkswap</command>
-      initializes the swap space, and <command>swapon</command> puts it to
-      use. You will only have to execute <command>mkswap</command> once,
-      but <command>swapon</command> has to be executed during every system
-      boot. This can be done automatically by adding an entry for the
-      swap partition to <filename>/etc/fstab</filename>, which we will
-      do during a later step. 
+      El significado de estos comandos es bastante obvio.
+      <command>mkswap</command> inicializa el espacio swap, y
+      <command>swapon</command> lo pone en uso. Tendrá que ejecutar
+      <command>mkswap</command> una vez, pero
+      <command>swapon</command> debe ser ejecutado durante cada
+      arranque del sistema. Esto puede hacerse automáticamente
+      agregando una entrada para la partición swap en
+      <filename>/etc/fstab</filename>, lo cual haremos durante un paso
+      posterior.
     </para>
 
     <para>
-      For now, it is important to initialize the target partitions. This
-      can be done with the <command>mkfs</command> command. You can
-      specify which filesystem should be used by adding the <parameter
-      class="command">-t</parameter> parameter. <command>mkfs</command>
-      will automatically invoke a <command>mkfs.filesystem</command>
-      command based on the filesystem that you have chosen. Be aware that
-      the filesystems that can be used depends on the installation
-      kernel that you have booted. If you have booted the
-      <emphasis>bare.i</emphasis> kernel, you can use the
-      <emphasis>ext2</emphasis>, <emphasis>ext3</emphasis> and
-      <emphasis>reiserfs</emphasis> filesystems.
+      Por ahora, es importante inicializar las particiones
+      destino. Esto puede hacerse con el comando
+      <command>mkfs</command>. Puede especificar qué sistema de
+      archivos debería ser usado agregando el parámetro <parameter
+      class="command">-t</parameter>. <command>mkfs</command> invocará
+      automáticamente un comando <command>mkfs.filesystem</command>
+      basado en el sistema de archivos que usted haya elegido. Tenga
+      en cuenta que los sistemas de archivos que pueden ser usados
+      dependen del kernel de instalación con el que haya arrancado. Si
+      usted ha usado el kernel <emphasis>bare.i</emphasis>, puede usar
+      los sistemas de archivos <emphasis>ext2</emphasis>,
+      <emphasis>ext3</emphasis> y <emphasis>reiserfs</emphasis>.
     </para>
 
     <para>
-      To initialize an <emphasis>ext3</emphasis> filesystem, and mount it,
-      you should execute the following commands:
+      Para inicializar un sistema de archivos
+      <emphasis>ext3</emphasis> y montarlo, debería ejecutar los
+      siguientes comandos:
     </para>
 
     <screen>
@@ -107,10 +112,10 @@ EOF</command>
     </screen>
 
     <para>
-      If you have made separate partitions for certain directories
-      in the root filesystem, e.g. <filename>/home</filename>, you
-      can also initialize them and mount them at this point. For
-      example:
+      Si ha creado particiones separadas para ciertos directorios en
+      el sistema de archivos root, e.g. <filename>/home</filename>,
+      también puede inicializarlos y montarlos en este punto. Por
+      ejemplo:
     </para>
 
     <screen>
@@ -120,9 +125,9 @@ EOF</command>
     </screen>
 
     <para>
-      Finally, you will have to mount your source medium. If you use
-      a CD-ROM, this is easy. Suppose that <filename>/dev/hdc</filename>
-      is the CD-ROM device file, you can mount the CD-ROM with:
+      Finalmente, tendrá que montar el medio de origen. Si usa un CD-ROM,
+      esto es fácil. Suponga que <filename>/dev/hdc</filename> es el
+      dispositivo de CD-ROM, puede montarlo con:
     </para>
 
     <screen>
@@ -130,19 +135,19 @@ EOF</command>
     </screen>
 
     <para>
-      Using NFS as the installation medium requires some more steps.
-      First of all, you will have to load the network disk.
-      You can do this by running the <command>network</command>
-      command and inserting a network disk. You can also load
-      this disk from another medium, for example from an USB memory stick.
-      Suppose that you have mounted a USB memory stick on /var/log/mount,
-      you can load the network disk with: <command>network
-      /var/log/mount/network.dsk</command>. After loading the network
-      disk, you will have to configure the network interface. If the
-      NFS server is on the same network, you will only have to assign
-      an IP address to the network interface. For example, to use
-      the address <emphasis>192.168.2.201</emphasis>, you could execute
-      the following command:
+      Para usar NFS como medio de instalación se requieren algunos
+      pasos mas. Primeramente, tendrá que cargar el disco de
+      red. Puede hacer esto ejecutando el comando
+      <command>network</command> e insertando un disco de red. También
+      puede cargar este disco desde otro medio, por ejemplo desde una
+      memoria USB. Suponga que ha montado una memoria USB en
+      /var/log/mount, puede cargar el disco de red con:
+      <command>network /var/log/mount/network.dsk</command>. Después
+      de cargar el disco de red, tendrá que configurar la interfaz de
+      red. Si el servidor NFS esta en la misma red, solamente tendrá
+      que asignar una dirección IP a la interfaz de red. Por ejemplo,
+      para usar la dirección <emphasis>192.168.2.201</emphasis>, puede
+      ejecutar el siguiente comando:
     </para>
 
     <screen>
@@ -150,8 +155,9 @@ EOF</command>
     </screen>
 
     <para>
-      You can then load the portmapper, which is necessary for the
-      NFS client to function correctly:
+      Entonces puede cargar el portmapper (mapeador de puertos), el
+      cual es necesario para que el cliente NFS funcione
+      correctamente:
     </para>
 
     <screen>
@@ -159,14 +165,15 @@ EOF</command>
     </screen>
 
     <para>
-      If the portmapper started correctly, you can mount the
-      NFS volume. But, first make sure that you unmount any filesystem
-      that you have previously mounted at <filename>/var/log/mount</filename>.
-      If no other filesystems are mounted at
-      <filename>/var/log/mount</filename>, you can proceed with mounting
-      the NFS volume. Suppose, that you want to mount
+      Si portmapper se inicia correctamente, puede montar el
+      volumen NFS. Pero primero asegúrese que haya desmontado
+      cualquier sistema de archivos que haya montado previamente en
+      <filename>/var/log/mount</filename>. Si no hay otros sistemas de
+      archivos montados en <filename>/var/log/mount</filename>, puede
+      proceder con el montaje del volumen NFS. Suponga que quiere
+      montar
       <emphasis>192.168.2.1:/home/pub/slackware-current</emphasis>,
-      you should issue the following command:
+      debería usar el siguiente comando:
     </para>
 
     <screen>
@@ -174,22 +181,24 @@ EOF</command>
     </screen>
 
     <para>
-      If no errors where printed when the volume was mounted, it should be
-      accessible through <filename>/var/log/mount</filename>
+      Si no hay errores impresos cuando el volumen es montado, debería
+      ser accesible a través de <filename>/var/log/mount</filename>.
     </para>
   </sect1>
 
   <sect1 id="getstarted-custominstall-packages">
-    <title>Installing packages</title>
+    <title>Instalando paquetes</title>
 
     <para>
-      Everything is now set up to start installing packages from the
-      installation medium. Since <command>installpkg</command> is
-      available from the installation system, you can use it to
-      install Slackware Linux packages. To install packages to the
-      target partition(s) mounted on <filename>/mnt</filename>, add
-      the <parameter class="command">-root</parameter> option. The
-      following command installs all packages from the source medium:
+      Ahora todo esta configurado para iniciar la instalación de
+      paquetes desde el medio de instalación. Ya que
+      <command>installpkg</command> esta disponible desde el sistema
+      de instalación, puede usarlo para instalar los paquetes de
+      Slackware Linux. Para instalar paquetes a las particiones
+      destino montadas en <filename>/mnt</filename>, agregue la opción
+      <parameter class="command">-root</parameter>. El siguiente
+      comando instala todos los paquetes desde el medio de
+      instalación:
     </para>
 
     <screen>
@@ -197,13 +206,12 @@ EOF</command>
     </screen>
 
     <para>
-      If you have created tagfiles to define which packages should be
-      installed, then you can use them now (tagfiles are described
-      in <xref linkend="chap-pkgmgmt-tagfiles" />). Suppose that you have
-      stored a tagfile for each disk set in
-      <filename>/usr/share/tagfiles/small-desktop</filename>, you
-      can install packages based on the tagfiles in the following
-      manner:
+      Si ha creado tagfiles para definir qué paquetes deberían ser
+      instalados, entonces puede usarlos ahora (los tagfiles son
+      descritos en <xref linkend="chap-pkgmgmt-tagfiles" />). Suponga
+      que tiene almacenado un tagfile para conjunto de paquetes en
+      <filename>/usr/share/tagfiles/small-desktop</filename>, puede
+      instalar paquetes basados en los tagfiles de la siguiente forma:
     </para>
 
     <screen>
@@ -216,30 +224,32 @@ done</command>
   </sect1>
 
   <sect1 id="getstarted-custominstall-config">
-    <title>Post-install configuration</title>
+    <title>Configuración post-instalación</title>
 
     <para>
-      The next sections describe the bare minimum of configuration that is
-      necessary to get a running system.
+      Las secciones siguientes describen la configuración mínima
+      necesaria para tener un sistema corriendo.
     </para>
 
     <sect2 id="getstarted-custominstall-config-fstab">
       <title>fstab</title>
 
       <para>
-        One of the necessary configuration steps is to create a <command>fstab</command>
-        file, so that the system can look up what partitions or volumes have
-        to be mounted. The format of the <filename>/etc/fstab</filename> file
-        is described in <xref linkend="basics-filesystem-mounting-fstab" />.
-        As a bare minimum you will have to add entries for the
-        <filename>/</filename> filesystem, the <filename>/proc</filename>
-        pseudo-filesystem, the <filename>devpts</filename> pseudo-filesystem,
-        and the swap partition.
+	Uno de los pasos de configuración necesarios es crear un
+	archivo <command>fstab</command>, así el sistema puede buscar
+	las particiones o volúmenes que deben ser montados. El formato
+	del archivo <filename>/etc/fstab</filename> esta descrito en
+	<xref linkend="basics-filesystem-mounting-fstab" />. Como
+	mínimo tendrá que agregar entradas para el sistema de archivos
+	<filename>/</filename>, el pseudo-sistema de archivos
+	<filename>/proc</filename>, el pseudo-sistema de archivos
+	<filename>devpts</filename> y la partición swap.
       </para>
 
       <para>
-        With the sample partitioning used earlier in this chapter, you
-        could create a <filename>/etc/fstab</filename> like this:
+	Con el particionado de ejemplo usado anteriormente en este
+	capítulo, puede crear un archivo
+	<filename>/etc/fstab</filename> como este:
       </para>
 
       <screen>
@@ -256,12 +266,13 @@ EOF</command>
       <title>LILO</title>
 
       <para>
-        To make the system bootable you will have to configure and install
-        the Linux Loader (LILO). The configuration of LILO is covered in
-        <xref linkend="chap-init-lilo" />. For this section we will
-        just show a sample LILO configuration, that can be used with
-        the partition layout described in this chapter. The first step
-        is to create the <filename>/etc/lilo.conf</filename> file:
+	Para hacer que el sistema sea arrancable, deberá configurar e
+	instalar el Linux Loader (LILO). La configuración de LILO es
+	cubierta en <xref linkend="chap-init-lilo" />. Para esta
+	sección solamente mostraremos un configuración LILO de
+	ejemplo, que puede ser usada con la disposición descrita en
+	este capítulo. El primer paso es crear el archivo
+	<filename>/etc/lilo.conf</filename>:
       </para>
 
       <screen>
@@ -277,10 +288,11 @@ EOF</command>
       </screen>
 
       <para>
-        You can then install LILO with <filename>/mnt</filename> as the
-        LILO root. With <filename>/mnt</filename> set as the root,
-        LILO will use <filename>/etc/lilo.conf</filename> from the target
-        partition:
+	Entonces puede instalar LILO con <filename>/mnt</filename>
+	como LILO root. Con <filename>/mnt</filename> configurado como
+	root, LILO usará el archivo
+	<filename>/etc/lilo.conf</filename> desde la partición
+	destino:
       </para>
 
       <screen>
@@ -289,19 +301,20 @@ EOF</command>
     </sect2>
 
     <sect2 id="getstarted-custominstall-config-network">
-      <title>Networking</title>
+      <title>Configuración de red</title>
 
       <para>
-        The configuration of networking in Slackware Linux is covered in
-        <xref linkend="sysadmin-netconfig" />. This section will cover
-        one example of a host that will use DHCP to get an IP address.
+	La configuración de red en Slackware Linux es cubierta en
+	<xref linkend="sysadmin-netconfig" />. Esta sección cubrirá un
+	ejemplo de un host que usará DHCP para obtener una dirección
+	IP.
       </para>
 
       <para>
-        The <filename>/etc/networks</filename> file contains information
-        about known Internet networks. Because we will get network
-        information via DHCP, we will just use <emphasis>127.0.0.1</emphasis>
-        as the local network.
+	El archivo <filename>/etc/networks</filename> contiene
+	información sobre las redes de Internet conocidas. Porque
+	obtendremos la información de red DHCP, nosotros usaremos
+	<emphasis>127.0.0.1</emphasis> como la red local.
       </para>
 
       <screen>
@@ -312,8 +325,8 @@ EOF</command>
       </screen>
 
       <para>
-        Although we will get a hostname via DHCP, we will still set up
-        a temporary hostname:
+	Aunque obtendremos un hostname a través de DHCP,
+	configuraremos un hostname temporal:
       </para>
 
       <screen>
@@ -323,10 +336,10 @@ EOF</command>
       </screen>
 
       <para>
-        Now that the hostname is configured, the hostname and 
-        <emphasis>localhost</emphasis> should also be made
-        resolvable, by creating a <filename>/etc/hosts</filename>
-        database:
+	Ahora que el hostname esta configurado, el hostname y
+	<emphasis>localhost</emphasis> también deberían ser
+	resolvibles, creando una base de datos
+	<filename>/etc/hosts</filename>:
       </para>
 
       <screen>
@@ -337,10 +350,11 @@ EOF</command>
       </screen>
 
       <para>
-        We do not have to create a <filename>/etc/resolv.conf</filename>,
-        since it will be created automatically by <command>dhcpcd</command>,
-        the DHCP client. So, finally, we can set up the interface
-        in <filename>/etc/rc.d/rc.inet1.conf</filename>:
+	No tenemos que crear un archivo
+	<filename>/etc/resolv.conf</filename>, ya que será
+	automáticamente creado por <command>dhcpcd</command>, el
+	cliente DHCP. Entonces, finalmente, podemos configurar la
+	interfaz en <filename>/etc/rc.d/rc.inet1.conf</filename>:
       </para>
 
       <screen>
@@ -353,10 +367,10 @@ EOF</command>
       </screen>
 
       <para>
-	You may want to make a backup of the old
-	<filename>rc.inet1.conf</filename> file first, because it
-	contains many useful comments. Or you can use
-	<command>sed</command> to change this specific option:
+	Usted podría querer hacer un respaldo del archivo
+	<filename>rc.inet1.conf</filename>, porque contiene muchos
+	comentarios útiles. O puede usar <command>sed</command> para
+	cambiar esta opción específica:
       </para>
 
       <screen>
@@ -366,14 +380,15 @@ EOF</command>
     </sect2>
 
     <sect2 id="getstarted-custominstall-config-init">
-      <title>Tuning initialization scripts</title>
+      <title>Personalizando los scripts de inicialización</title>
 
       <para>
-        Depending on the purpose of the system that is being installed,
-        it should be decided which initialization scripts should be started.
-        The number of services that are available depends on what packages
-        you have installed. You can get get a list of available scripts
-        with <command>ls</command>:
+	Dependiendo del propósito del sistema que esta siendo
+	instalado, debería decidirse qué scripts de inicialización
+	deberían ser iniciados. El número de servicios que estan
+	disponibles dependen de los paquetes que haya instalado. Puede
+	obtener una lista de los scripts disponibles con
+	<command>ls</command>:
       </para>
 
       <screen>
@@ -381,10 +396,11 @@ EOF</command>
       </screen>
 
       <para>
-        If the executable bits are set on a script, it will be started,
-        otherwise it will not. Obviously you should keep essential scripts
-        executable, including the runlevel-specific scripts. You can set
-        the executable bit on a script with:
+	Si los bits ejecutables están configurados en un script, será
+	iniciado, de otra forma no. Obviamente debería mantener
+	ejecutables los scripts esenciales, incluyendo los scripts
+	específicos del nivel de ejecución. Puede asignar el bit
+	ejecutable en un script con:
       </para>
 
       <screen>
@@ -401,15 +417,17 @@ EOF</command>
     </sect2>
 
     <sect2 id="getstarted-custominstall-config-ldconfig">
-      <title>Configuring the dynamic linker run-time bindings</title>
+      <title>Configurando en enlazador dinámico</title>
 
       <para>
-        GNU/Linux uses a cache for loading dynamic libraries. Besides that
-        many programs rely on generic version numbers of libraries
-        (e.g. <filename>/usr/lib/libgtk-x11-2.0.so</filename>, rather
-        than <filename>/usr/lib/libgtk-x11-2.0.so.0.600.8</filename>).
-        The cache and library symlinks can be updated in one
-        <command>ldconfig</command> run:
+	GNU/Linux usa una cache para la carga dinámica de
+	librerias. Además que muchos programas se basan en números
+	genéricos de librerías
+	(e.g. <filename>/usr/lib/libgtk-x11-2.0.so</filename>, en vez
+	de
+	<filename>/usr/lib/libgtk-x11-2.0.so.0.600.8</filename>). El
+	cache y los enlaces de librería pueden ser actualizados en una
+	ejecución de <command>ldconfig</command>:
       </para>
 
       <screen>
@@ -417,32 +435,35 @@ EOF</command>
       </screen>
 
       <para>
-        You may not know the <command>chroot</command> command; it is
-        a command that executes a command with a different root than
-        the active root. In this example the root directory is changed
-        to <filename>/mnt</filename>, and from there <command>chroot</command>
-        runs <command>/sbin/ldconfig</command> binary. After the command has
-        finished the system will return to the shell, which uses the original
-        root. To use <command>chroot</command> with other commands this
-        <command>ldconfig</command> command has to be executed once first,
-        because without initializing the dynamic linker run-time bindings
-        most commands will not execute, due to unresolvable library
-        dependencies.
+	Usted podría no conocer el comando <command>chroot</command>;
+	es un comando que ejecuta un comando con un root diferente al
+	root activo. En este ejemplo, el directorio root es cambiado a
+	<filename>/mnt</filename>, y desde ahí
+	<command>chroot</command> ejecuta el binario
+	<command>/sbin/ldconfig</command>. Después de que el comando
+	hay finalizado, el sistema retornará a la consola, la cual usa
+	el root original. Para usar <command>chroot</command> con
+	otros comandos debe ejecutar primero
+	<command>ldconfig</command> una vez, porque sin inicializar el
+	enlazador dinámico la mayoría de los comandos no serán
+	ejecutados, debido a dependencias de librerías sin resolver.
       </para>
     </sect2>
 
     <sect2 id="getstarted-custominstall-config-rootpasswd">
-      <title>Setting the root password</title>
+      <title>Asignando la contraseña root</title>
 
       <para>
-        Now that the dynamic library cache and links are set up, you
-        can execute commands on the installed system. We will make use
-        of this to set the <emphasis>root</emphasis> password.  The
-        <command>passwd</command> command can be used to set the
-        password for an existing user (the <emphasis>root</emphasis>
-        user is part of the initial <filename>/etc/passwd</filename>
-        file). We will use the <command>chroot</command> command again
-        to execute the command on the target partition:
+	Ahora que la cache de librerías dinámicas y los enlaces están
+	configurados, puede ejecutar comandos instalados en el
+	sistema. Haremos uso de esto para asignar la contraseña
+	<emphasis>root</emphasis>. El comando
+	<command>passwd</command> puede ser usado para asignar la
+	contraseña para un usuario existente (el usuario
+	<emphasis>root</emphasis> es parte del archivo inicial
+	<filename>/etc/passwd</filename>). Usaremos el comando
+	<command>chroot</command> de nuevo para ejecutar el comando en
+	la partición destino:
       </para>
 
       <screen>
@@ -451,21 +472,24 @@ EOF</command>
     </sect2>
 
     <sect2 id="getstarted-custominstall-config-timezone">
-      <title>Setting the timezone</title>
+      <title>Configurando la zona horaria</title>
 
       <para>
-        On UNIX-like systems it is important to set the timezone correctly,
-        because it is used by various parts of the system. For instance,
-        the timezone is used by NTP to synchronize the system time correctly,
-        or by different networking programs to compute the time difference
-        between a client and a server. On Slackware Linux the timezone can be
-        set by linking <filename>/etc/localtime</filename> to a timezone file.
-        You can find the timezone for your region by browsing the
-        <filename>/mnt/usr/share/zoneinfo</filename> directory.
-        Most timezones can be found in the subdirectories of their
-        respective regions. For example to use
-        <emphasis>Europe/Amsterdam</emphasis> as the timezone, you can
-        execute the following commands:
+	En los sistemas UNIX-like es importante configurar la zona
+	horaria correctamente, porque es usada por varias partes del
+	sistema. Por ejemplo, la zona horaria es usada por NTP para
+	sincronizar la hora del sistema correctamente, o por
+	diferentes programas de red para computar la diferencia de
+	tiempo entre un cliente y un servidor. En Slackware Linux la
+	zona horaria puede ser configurada enlazando
+	<filename>/etc/localtime</filename> a un archivo de zona
+	horaria. Puede encontrar la zona horaria para su región
+	navegando el directorio
+	<filename>/mnt/usr/share/zoneinfo</filename>. La mayoría de
+	las zonas horarias pueden ser encontradas en los
+	sub-directorios de sus respectivas regiones. Por ejemplo, para
+	usar <emphasis>Europe/Amsterdam</emphasis> como zona horaria,
+	puede ejecutar los siguientes comandos:
       </para>
 
       <screen>
@@ -475,18 +499,19 @@ EOF</command>
       </screen>
 
       <para>
-        After setting the time zone, programs still do not know whether
-        the hardware clock is set to the local time, or to the Coordinated
-        Universal Time (UTC) standard. If you use another operating system
-        on the same machine that does not use UTC it is best to set the
-        hardware clock to the local time. On UNIX-like systems it is a
-        custom to set the system time to UTC. You can set what time the
-        system clock uses, by creating the file
-        <filename>/etc/hardwareclock</filename>, and putting the word
-        <emphasis>localtime</emphasis> in it if your clock is set to the
-        local time, or <emphasis>UTC</emphasis> when it is set to UTC.
-        For example, to use UTC, you can create
-        <filename>/etc/hardwareclock</filename> in the following manner:
+	Después de configurar la zona horaria, los programas aún no
+	saben si el reloj de hardware está configurado a la hora
+	local, o al estándar Coordinated Universal Time (UTC). SI usa
+	otro sistema operativo en la misma máquina que no usa UTC, es
+	mejor configurar el reloj de hardware a la hora local. En los
+	sistemas UNIX-like es una costumbre configurar el sistema a
+	UTC. Puede configurar qué tiempo usa el reloj del sistema
+	creando el archivo <filename>/etc/hardwareclock</filename>, y
+	colocando la palabra <emphasis>localtime</emphasis> en él si
+	su reloj está configurado a la hora local, o
+	<emphasis>UTC</emphasis> cuando está configurado a UTC. Por
+	ejemplo, para usar UTC, puede crear
+	<filename>/etc/hardwareclock</filename> de la siguiente forma:
       </para>
 
       <screen>
@@ -495,12 +520,12 @@ EOF</command>
     </sect2>
 
     <sect2 id="getstarted-custominstall-fonts">
-      <title>Creating the X11 font cache</title>
+      <title>Creando la caché de fuente X11</title>
 
       <para>
-        If you are going to use X11, you will have to initialize the
-        font cache for TrueType and Type1 fonts. This can be done
-        with the <command>fc-cache</command> command:
+	Si va a usar X11, tendrá que inicializar la cache de fuente
+	para fuentes TrueType y Type1. Esto puede hacerse con el
+	comando <command>fc-cache</command>:
       </para>
 
       <screen>
@@ -510,23 +535,26 @@ EOF</command>
   </sect1>
 
   <sect1 id="getstarted-custominstall-script">
-    <title>Automated installation script</title>
+    <title>Script de instalación automatizada</title>
 
     <para>
-      It is easy to combine the steps of a custom installation into
-      one script, which performs the custom steps automatically. This is ideal
-      for making default server installs or conducting mass roll-outs of
-      Linux clients. This sections contains a sample script that was
-      written by William Park. It is easy to add an installation script
-      to the Slackware Linux medium, especially if you use an installation
-      CD-ROM or boot the installation system from an USB flash drive.
+      Es fácil combinar los pasos de una instalación personalizada en
+      un script, el cual ejecuta los pasos personalizados
+      automáticamente. Esto es ideal para hacer que un servidor por
+      defecto instale o administre clientes Linux masivos. Esta
+      sección contiene un script de ejemplo que fué escrito por
+      William Park. Es fácil agregar un script de instalación al medio
+      de Slackware Linux, especialmente si usted usa un CD-ROM de
+      instalación o arranca el sistema de instalación desde una
+      memoria USB.
     </para>
 
     <para>
-      The installation system is stored in one compressed image file,
-      that is available on the distribution medium as
-      <filename>isolinux/initrd.img</filename>. You can make a copy
-      of this image to your hard disk, and decompress it with
+      El sistema de instalación esta almacenado en un archivo de
+      imagen comprimida, que esta disponible en el medio de
+      distribución como
+      <filename>isolinux/initrd.img</filename>. Puede crear una copia
+      de esta imagen en su disco duro, y descomprimirlo con
       <command>gunzip</command>:
     </para>
 
@@ -536,8 +564,8 @@ EOF</command>
     </screen>
 
     <para>
-      After decompressing the image, you can mount the file as
-      a disk, using the loopback device:
+      Después de descomprimir la imagen, puede montar el archivo como
+      un disco, usando el dispositivo loopback:
     </para>
 
     <screen>
@@ -545,10 +573,10 @@ EOF</command>
     </screen>
 
     <para>
-      You can now add a script to the initrd file by adding it to
-      the directory structure that is available under the mount point.
-      After making the necessary changes, you can unmount the
-      filesystem and compress it:
+      Ahora puede agregar un script al archivo initrd agregándolo a la
+      estructura de directorio disponible bajo el punto de montaje.
+      Después de hacer los cambios necesarios, puede desmontar el
+      sistema de archivos y comprimirlo:
     </para>
 
     <screen>
@@ -558,8 +586,9 @@ EOF</command>
     </screen>
 
     <para>
-      You can then put the new <filename>initrd.img</filename> file on
-      the installation medium, and test the script.
+      Entonces puede colocar el nuevo archivo
+      <filename>initrd.img</filename> en el medio de instalación, y
+      probar el script.
     </para>
 
     <programlisting>

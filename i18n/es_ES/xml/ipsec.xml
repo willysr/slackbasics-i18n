@@ -4,88 +4,93 @@
   <title>IPsec</title>
 
   <sect1>
-    <title>Theory</title>
+    <title>Teoria</title>
 
     <para>
-      <acronym>IPsec</acronym> is a standard for securing IP communication
-      through authentication, and encryption. Besides that it can compress
-      packets, reducing traffic.  The following protocols are part of the
-      IPsec standard:
+      <acronym>IPsec</acronym> es un estándar para asegurar la
+      comunicación IP a través de autenticación y encripción. Además
+      puede comprimir paquetes, reduciendo el tráfico. Los siguientes
+      protocoles son parte del estándar IPsec:
     </para>
 
     <itemizedlist>
       <listitem>
         <para>
-          <acronym>AH</acronym> (Authentication Header) provides authenticity
-          guarantee for transported packets. This is done by checksumming the
-          packages using a cryptographic algorithm. If the checksum is found to
-          be correct by the receiver, the receiver can be assured that the 
-	  packet is not modified, and that the packet really originated from 
-	  the reported sender (provided that the keys are only known by the 
-	  sender and receiver). 
+	  <acronym>AH</acronym> (Authentication Header) provee
+	  garantía de autenticidad para los paquetes
+	  transportados. Esto se hace realizando sumas de verificación
+	  (checksum) a los paquetes usando un algoritmo
+	  criptográfico. Si la suma de verificación es correcta, el
+	  receptor puede asegurar que el paquete no fue modificado y
+	  que el paquete recibido es el mismo originado desde el
+	  emisor (ya que las llaves son solamente conocidas por el
+	  emisor y el receptor).
         </para>
       </listitem>
       <listitem>
         <para>
-          <acronym>ESP</acronym> (Encapsulating Security Payload) is used to
-          encrypt packets. This makes the data of the packet confident, and
-	  only readable by the host with the right decryption key.
+	  <acronym>ESP</acronym> (Encapsulating Security Payload) es
+	  usado para encriptar paquetes. Esto hace confidencial el
+	  contenido del paquete, además de ser solamente leíble desde
+	  el host con la llave de desencripción correcta.
         </para>
       </listitem>
       <listitem>
         <para>
-          <acronym>IPcomp</acronym> (IP payload compression) provides
-	  compression before a packet is encrypted. This is useful, because
-	  encrypted data generally compresses worse than unencrypted data.
+          <acronym>IPcomp</acronym> (IP payload compression) provee
+          compresión antes de que un paquete sea encriptado. Esto es
+          útil, porque la información encriptada se comprime peor que
+          la información sin encriptar.
         </para>
       </listitem>
       <listitem>
         <para>
-          <acronym>IKE</acronym> (Internet Key Exchange) provides the means to
-          negotiate keys in secrecy. Please note that IKE is optional, keys can
-          be configured manually.
+	  <acronym>IKE</acronym> (Internet Key Exchange) provee los
+	  medios para negociar llaves en secreto. Por favor note que
+	  IKE es opcional, las llaves pueden ser configuradas
+	  manualmente.
         </para>
       </listitem>
     </itemizedlist>
 
     <para>
-      There are actually two modes of operation: <emphasis>transport
-      mode</emphasis> is used to encrypt normal connections between two 
-      hosts, <emphasis>tunnel mode</emphasis> encapsulates the original
-      package in a new header. In this chapter we are going to look at the 
-      transport mode, because the primary goal of this chapter is to show 
-      how to set up a secure connection between two hosts.
+      Actualmente existen dos modos de operación: <emphasis>transport
+      mode</emphasis> es usado para encriptar conexiones normales
+      entre dos hosts, <emphasis>tunnel mode</emphasis> encapsula el
+      paquete original en una nueva cabecera. En este capítulo vamos a
+      ver el transport mode, porque el objetivo primario de este
+      capítulo es mostrar cómo configurar una conexión segura entre
+      dos hosts.
     </para>
 
     <para>
-      There are also two major methods of authentication. You can use manual
-      keys, or an Internet Key Exchange (IKE) daemon, like racoon, that 
-      automatically exchanges keys securely between two hosts. In both cases
-      you need to set up a policy in the Security Policy Database (SPD). This
-      database is used by the kernel to decide what kind of security policy
-      is needed to communicate with another host. If you use manual keying you
-      also have to set up Security Association Database (SAD) entries, which
-      specifies what encryption algorithmn and key should be used for secure
-      communication with another host. If you use an IKE daemon the security
-      associations are automatically established.
+      También existen dos métodos principales de autenticación. Puede
+      usar llaves manuales o un daemon Internet Key Exchange (IKE),
+      como racoon, que automáticamente intercambia llaves de forma
+      segura entre dos hosts. En ambos casos se necesita configurar
+      políticas de seguridad en la entradas de Security Association
+      Database (SAD), que especifica qué algoritmo de encriptado y
+      llave debería ser usado para asegurar la comunicación con otro
+      host. Si usted usa un daemon IKE, las asociaciones de seguridad
+      son automáticamente establecidas.
     </para>
   </sect1>
 
   <sect1>
-    <title>Linux configuration</title>
+    <title>Configuración en Linux</title>
 
     <para>
-      Native IPsec support is only available in Linux 2.6.x kernels.
-      Earlier kernels have no native IPsec support. So, make sure that
-      you have a 2.6.x kernel. The 2.6 kernel is available in
-      Slackware Linux 10.0, 10.1, and 10.2 from the
-      <filename>testing</filename> directory on CD2 of the Slackware
-      Linux CD sets, or any of the official Slackware Linux mirrors.
-      The 2.6 kernel is the default kernel since Slackware Linux 12.0.
-      The default Slackware Linux 2.6 kernel has support for AH, ESP
-      and IPcomp in for both IPv4 and IPv6. If you are compiling a
-      custom kernel enable use at least the following options in your
-      kernel configuration:
+      El soporte nativo de IPsec solamente está disponible en kernels
+      Linux 2.6.x. Kernels anteriores no tienen soporte
+      IPsec. Entonces, asegúrese de tener un kernel 2.6.x. El kernel
+      2.6 esta disponible en Slackware Linux 10.0, 10.1 y 10.2 en del
+      directorio <filename>testing</filename> del conjunto de CDs, o
+      en cualquier mirror oficial de Slackware Linux. El kernel 2.6
+      es el kernel por defecto a partir de Slackware Linux 12.0. El
+      kernel 2.6 de Slackware Linux tiene soporte de AH, ESP e IPcomp
+      para los protocoles IPv4 e IPv6. Si usted está compilando un
+      kernel personalizado, habilite al menos las siguientes opciones
+      en su configuración del kernel:
     </para>
 
     <screen>
@@ -95,7 +100,8 @@ CONFIG_INET_IPCOMP=y
     </screen>
 
     <para>
-      Or you can compile support for IPsec protocols as a module:
+      También puede compilar el soporte para protocoles IPsec como
+      módulo:
     </para>
 
     <screen>
@@ -106,37 +112,37 @@ CONFIG_INET_IPCOMP=m
 
 
     <para>
-      In this chapter we are only going to use AH and ESP transformations, but
-      it is not a bad idea to enable IPComp transformation for further 
-      configuration of IPsec. Besides support for the IPsec protocols, you
-      have to compile kernel support for the encryption and hashing algorithms
-      that will be used by AH or ESP. Linux or module support for these
-      algorithms can be enabled by twiddling the various
-      <emphasis>CONFIG_CRYPTO</emphasis> options. It does not hurt to
-      compile all ciphers and hash algorithms as a module. 
+      En este capítulo solamente vamos a usar transformaciones AH y
+      ESP, pero no es una mala idea habilitar la transformación IPcomp
+      para configuraciones posteriores de IPsec. Además del soporte
+      para protocolos IPsec, tiene que compilar el soporte del kernel
+      para algoritmos de encriptado y hashing que serán usados por AH
+      y ESP. El soporte o módulo Linux para estos algoritmos puede
+      habilitarse alterando las opciones
+      <emphasis>CONFIG_CRYPTO</emphasis>. No cuesta nada compilar
+      todos los algoritmos de cifrado y hashing como un módulo.
     </para>
 
     <para>
-      When you choose to compile IPsec support as a module, make sure
-      that the required modules are loaded. For example, if you are going
-      to use ESP for IPv4 connections, load the <emphasis>esp4</emphasis>
-      module.
+      Cuando usted elige compilar el soporte IPsec como un módulo, debe 
+      asegurarse que los módulos requeridos sean cargados. Por ejemplo, 
+      si usted va a usar ESP para conexiones IPv4, cargue el módulo 
+      <emphasis>esp4</emphasis>.
     </para>
 
     <para>
-      Compile the kernel as usual and boot it.
+      Compile el kernel de forma normal y reinicie.
     </para>
   </sect1>
 
   <sect1>
-    <title>Installing IPsec-Tools</title>
-
+    <title>Instalando las IPsec-tools</title>    
     <para>
-      The next step is to install the
-      <ulink url="http://ipsec-tools.sourceforge.net">IPsec-Tools</ulink>.
-      These tools are ports of
-      the <ulink url="http://www.kame.net">KAME</ulink> IPsec utilities.
-      Download the latest sources and unpack, configure and install them:
+      El siguiente paso es instalar las herramientas <ulink
+      url="http://ipsec-tools.sourceforge.net">IPsec-Tools</ulink>.
+      Estas herramientas son adaptaciones de las utilidades IPsec
+      <ulink url="http://www.kame.net">KAME</ulink>. Descargue las
+      últimas fuentes y desempáquelas, luego configure e instálelas:
     </para>
 
     <screen>
@@ -156,57 +162,59 @@ CONFIG_INET_IPCOMP=m
     </screen>
 
       <para>
-        Replace <emphasis>x.y.z</emphasis> with the version of the
-	downloaded sources. The most notable flags that we specify
-	during the configuration of the sources are:
+	Reemplace <emphasis>x.y.z</emphasis> con la versión de las
+	fuentes descargadas. Los parámetros mas notables que se
+	especifican durante la configuración de las fuentes son:
       </para>
 
       <itemizedlist>
         <listitem>
 	  <para>
-	    <emphasis>--enable-dpd</emphasis>: enables
-	    dead peer detection (DPD). DPD is a method for detecting
-	    wether any of the hosts for which security associations
-	    are set up is unreachable. When this is the case the
-	    security associations to that host can be removed.
+	    <emphasis>--enable-dpd</emphasis>: habilita el dead peer
+	    detection (DPD). DPD es un método para detectar si alguno
+	    de los hosts incluídos en las asociaciones de seguridad es
+	    inaccesible. Cuando este es el caso, las asociaciones de
+	    seguridad para ese host pueden ser eliminadas.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    <emphasis>--enable-natt</emphasis>: enables NAT traversal
-	    (NAT-T). Since NAT alters the IP headers, this causes
-	    problems for guaranteeing authenticity of a packet. NAT-T
-	    is a method that helps overcoming this problem. Configuring
-	    NAT-T is beyond the scope of this article.
+	    <emphasis>--enable-natt</emphasis>: habilita NAT traversal
+	    (NAT-T). Ya que NAT altera las cabeceras IP, esto causa
+	    problemas para la garantía de autenticidad de un paquete.
+	    NAT-T es un método que ayuda a superar este problema. La
+	    configuración de NAT-T esta mas allá del alcance de este
+	    artículo.
 	  </para>
 	</listitem>
       </itemizedlist>
   </sect1>
 
   <sect1>
-    <title>Setting up IPsec with manual keying</title>
+    <title>Configurando IPsec con llaves manuales</title>
 
     <sect2>
-      <title>Introduction</title>
+      <title>Introducción</title>
 
       <para>
-        We will use an example as the guideline for setting up an encrypted
-        connection between two hosts. The hosts have the IP addresses 
-        <emphasis>192.168.1.1</emphasis> and <emphasis>192.168.1.169</emphasis>.
-        The <quote>transport mode</quote> of operation will be used with
-        AH and ESP transformations and manual keys.
+	Usaremos un ejemplo como guía para configurar una conexión
+	encriptada entre dos hosts. Los hosts tienen las direcciones
+	IP <emphasis>192.168.1.1</emphasis> y
+	<emphasis>192.168.1.169</emphasis>. El modo de operación
+	<quote>transport mode</quote> será usado con las
+	transformaciones AH y ESP con llaves manuales.
       </para>
       
     </sect2>
 
     <sect2>
-      <title>Writing the configuration file</title>
+      <title>Escribiendo el archivo de configuración</title>
 
       <para>
-        The first step is to write a configuration file we will name
-        <filename>/etc/setkey.conf</filename>. On the first host
-        (192.168.1.1) the following <filename>/etc/setkey.conf</filename>
-        configuration will be used:
+	El primer paso es escribir un archivo de configuración que
+	nombraremos <filename>/etc/setkey.conf</filename>. En el
+	primer host (192.168.1.1) la siguiente configuración
+	<filename>/etc/setkey.conf</filename> será usada:
       </para>
 
       <screen>
@@ -236,22 +244,26 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </screen>
 
       <para>
-        The first line (a line ends with a <quote>;</quote>) adds a key
-        for the header checksumming for packets coming from 192.168.1.1 
-        going to 192.168.1.169. The second line does the same for packets
-        coming from 192.168.1.169 to 192.168.1.1. The third and the fourth line
-        define the keys for the data encryption the same way as the
-        first two lines. Finally the <quote>spadd</quote> lines define
-        two policies, namely packets going out from 192.168.1.1 to 192.168.1.169
-        should be (require) encoded (esp) and <quote>signed</quote> with
-        the authorization header. The second policy is for incoming packets
-        and it is the same as outgoing packages.
+	La primera línea (la línea que termina en <quote>;</quote>)
+	agrega una llave para la suma de verificación de la cabecera
+	para paquetes emitidos desde 192.168.1.1 hacia
+	192.168.1.169. La segunda línea hace lo mismo para paquetes
+	emitidos desde 192.168.1.169 hacia 192.168.1.1. La líneas
+	tercera y cuarta definen las llaves para la encriptación de
+	datos de la misma forma en que las dos primeras líneas lo
+	hacen. Finalmente las líneas <quote>spadd</quote> definen dos
+	políticas, los paquetes emitidos desde 192.168.1.1 hacia
+	192.168.1.169 deberían (requerir) ser codificados (esp) y
+	<quote>firmados</quote> con la cabecera de autorización. La
+	segunda política es para paquetes entrantes y es la misma que
+	para paquetes salientes.
       </para>
 
       <para>
-        Please be aware that you should not use these keys, but your own
-        secretly kept unique keys. You can generate keys using the
-        <filename>/dev/random</filename> device:
+	Por favor sea consciente de que no debería usar estas llaves,
+	sino sus propias llaves únicas secretamente alojadas. Puede
+	generar estas llaves usando el dispositivo
+	<filename>/dev/random</filename>:
       </para>
 
       <screen>
@@ -259,12 +271,13 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </screen>
 
       <para>
-        This command uses dd to output 16 bytes from 
-        <filename>/dev/random</filename>. Don't forget to add <quote>0x</quote>
-        at the beginning of the line in the configuration files. You can use 
-        the 16 byte (128 bits) for the hmac-md5 algorithm that is used for AH.
-        The 3des-cbc algorithm that is used for ESP in the example should be fed 
-        with a 24 byte (192 bits) key. These keys can be generated with:
+	Este comando usa dd para generar 16 bytes desde
+	<filename>/dev/random</filename>. No olvide agregar
+	<quote>0x</quote> al inicio de la línea en los archivos de
+	configuración. Puede usar los 16 bytes (128 bits) para el
+	algoritmo hmac-md5 que es usado para AH. El algoritmo 3des-cbc
+	que es usado para ESP en el ejemplo debería usar una llave de
+	24 bytes (192 bits). Estas llaves pueden ser generadas con:
       </para>
 
       <screen>
@@ -272,9 +285,11 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </screen>  
 
       <para>
-        Make sure that the <filename>/etc/setkey.conf</filename> file can only
-        be read by the root user. If normal users can read the keys IPsec
-        provides no security at all. You can do this with:
+	Asegúrese de que el archivo
+	<filename>/etc/setkey.conf</filename> solamente puede ser
+	leído por el usuario root. Si usuarios normales pueden leer
+	las llaves provistas por IPsec, no habría seguridad en
+	absoluto. Puede restringir el acceso a este archivo con:
       </para>
 
       <screen>
@@ -282,10 +297,11 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </screen>
 
       <para>
-        The same <filename>/etc/setkey.conf</filename> can be created on the
-        192.168.1.169 host, with inverted <parameter class="command">-P 
-        in</parameter> and <parameter class="command">-P out</parameter> options. So, 
-        the <filename>/etc/setkey.conf</filename> will look like this:
+	El mismo <filename>/etc/setkey.conf</filename> puede ser
+	creado en el host 192.168.1.9, con las opciones <parameter
+	class="command">-P in</parameter> y <parameter
+	class="command">-P out</parameter> invertidas. Entonces,
+	<filename>/etc/setkey.conf</filename> se vería así:
       </para>
 
       <screen>
@@ -316,11 +332,11 @@ spdadd 192.168.1.169 192.168.1.1 any -P out ipsec
     </sect2>
 
     <sect2>
-      <title>Activating the IPsec configuration</title>
+      <title>Activando la configuración IPsec</title>
 
       <para>
-        The IPsec configuration can be activated with the 
-	<command>setkey</command> command:
+	La configuración IPsec puede ser activada con el comando
+	<command>setkey</command>:
       </para>
 
       <screen>
@@ -328,8 +344,9 @@ spdadd 192.168.1.169 192.168.1.1 any -P out ipsec
       </screen>
 
       <para>
-        If you want to enable IPsec permanently you can add the following line
-        to <filename>/etc/rc.d/rc.local</filename> on both hosts:
+	Si quisiera habilitar IPsec permanentemente, puede agregar la
+	siguiente línea a <filename>/etc/rc.d/rc.local</filename> en
+	ambos hosts:
       </para>
 
       <screen>
@@ -337,10 +354,11 @@ spdadd 192.168.1.169 192.168.1.1 any -P out ipsec
       </screen>
 
       <para>
-        After configuring IPsec you can test the connection by running
-        <command>tcpdump</command> and simultaneously pinging the other
-        host. You can see if AH and ESP are actually used in the 
-        <command>tcpdump</command> output:
+	Después de configurar IPsec, puede probar la conexión
+	ejecutando <command>tcpdump</command> y simultáneamente
+	<command>ping</command> hacia el otro host. Puede ver si AH y
+	ESP estan actualmente siendo usados a través de la salida de
+	<command>tcpdump</command>:
       </para>
 
       <screen>
@@ -355,73 +373,77 @@ tcpdump: listening on eth0
   </sect1>
   
   <sect1>
-    <title>Setting up IPsec with automatic key exchanging</title>
+    <title>Configuración IPsec con intercambio automático de llaves</title>
 
     <sect2>
-      <title>Introduction</title>
+      <title>Introducción</title>
     
       <para>
-        The subject of automatical key exchange is already touched shortly
-	in the introduction of this chapter. Put simply, IPsec with IKE
-	works in the following steps.
+	El tema de intercambio automático de llaves (IKE) ya fue
+	mencionado en la introducción de este capítulo. Simplificando,
+	IPsec con IKE funciona con los siguientes pasos.
       </para>
       
       <orderedlist>
         <listitem>
 	  <para>
-	    Some process on the host wants to connect to another host. The
-	    kernel checks whether there is a security policy set up for
-	    the other host. If there already is a security association
-	    corresponding with the policy the connection can be made,
-	    and will be authenticated, encrypted and/or compressed as defined
-	    in the security association. If there is no security association,
-	    the kernel will request a user-land IKE daemon to set up the
-	    necessary security association(s).
+	    Algún proceso en el host quiere conectarse a otro host. El
+	    kernel verifica si existe alguna política de seguridad
+	    habilitada para el host remoto. Si ya existe una
+	    asociación de seguridad correspondiente a la política, la
+	    conexión puede realizarse y será autenticada, encriptada
+	    y/o comprimida de acuerdo a la asociación de seguridad. Si
+	    no existe asociación de seguridad alguna, el kernel
+	    pedirá a un daemon IKE instalar las asociaciones de
+	    seguridad necesarias.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    During the first phase of the key exchange the IKE daemon
-	    will try to verify the authenticity of the other host. This
-	    is usually done with a preshared key or certificate. If
-	    the authentication is successful a secure channel is set up
-	    between the two hosts, usually called a IKE security
-	    association, to continue the key exchange.
+	    Durante la primera fase del intercambio de llaves, el
+	    daemon IKE tratará de verificar la autenticidad del host
+	    remoto. Esto se hace usualmente con una llave o
+	    certificado previamente compartido. Si la autenticación es
+	    exitosa, se instala un canal seguro entre ambos hosts,
+	    usualmente llamada una asociación se seguridad IKE, para
+	    continuar el intercambio de llaves.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    During the second phase of the key exchange the security
-	    associations for communication with the other host are set
-	    up. This involves choosing the encryption algorithm to be
-	    used, and generating keys that are used for encryption
-	    of the communication.
+	    Durante la segunda fase del intercambio de llaves, las
+	    asociaciones de seguridad para la comunicación con el host
+	    remoto se instalan. Esto incluye la selección del
+	    algoritmo de encriptado y la generación de las llaves
+	    usadas para la encripción de la comunicación.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
-	    At this point the first step is repeated again, but since
-	    there are now security associations the communication can
-	    proceed.
+	    En este punto el primer paso se repite de nuevo, pero ya
+	    que ahora existen asociaciones de seguridad la
+	    comunicación puede proceder.
 	  </para>
 	</listitem>
       </orderedlist>
       
       <para>
-        The <command>racoon</command> IKE daemon is included with the KAME IPsec tools,
-	the sections that follow explain how to set up racoon.
+	El daemon IKE <command>racoon</command> está incluído con las
+	herramientas KAME IPsec, las secciones a seguir explican el
+	uso de racoon.
       </para>
     </sect2>
     
     <sect2>
-      <title>Using racoon with a preshared key</title>
+      <title>Usando racoon con una llave pre-compartida</title>
       
       <para>
-        As usual the first step to set up IPsec is to define security
-	policies. In contrast to the manual keying example you should
-	not set up security associations, because racoon will make them
-	for you. We will use the same host IPs as in the example above.
-	The security policy rules look like this:
+	Como es usual, el primer paso para configurar IPsec es definir
+	políticas de seguridad. En contraste al ejemplo de llaves
+	manuales no debería configurar asociaciones de seguridad,
+	porque racoon lo hará por usted. Usaremos los mismos hosts
+	(con las mismas IPs) del ejemplo anterior. Las reglas de la
+	política de seguridad se ven así:
       </para>
 
       <screen>
@@ -439,25 +461,29 @@ spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
       </screen>
 
       <para>
-        Cautious souls have probably noticed that AH policies are missing
-        in this example. In most situations this is no problem, ESP can
-        provide authentication. But you should be aware that the authentication
-        is more narrow; it does not protect information outside the ESP
-        headers. But it is more efficient than encapsulating ESP packets
-        in AH.
+        Probablemente habrá notado que las políticas AH no estan
+        presentes en este archivo. En la mayoría de las situaciones
+        esto no es un problema, ESP puede proveer autenticación. Pero
+        debería estar consciente de que la autenticación es mas
+        limitada; no protege la información fuera de las cabeceras
+        ESP. Pero es mas eficiente que el encapsulado de paquetes ESP
+        en AH.
       </para>
 
       <para>
-        With the security policies set up you can configure <command>racoon</command>.
-        Since the connection-specific information, like the authentication
-        method is specified in the phase one configuration. We can use a
-        general phase two configuration. It is also possible to make specific
-        phase two settings for certain hosts. But generally speaking a
-        general configuration will often suffice in simple setups. We
-        will also add paths for the preshared key file, and certification
-        directory. This is an example of 
-        <filename>/etc/racoon.conf</filename> with the paths
-        and a general phase two policy set up:
+	Con las políticas de seguridad configuradas, ahora puede
+	configurar <command>racoon</command>. La información
+	específica de la conexión, como el método de autenticación, es
+	especificada durante la primera fase de configuración. Podemos
+	usar una segunda fase general de configuración. También es
+	posible realizar configuraciones específicas para ciertos
+	hosts en la segunda fase. Pero generalmente hablando una
+	configuración general es suficiente en configuraciones
+	simples. También agregaremos ubicaciones para la llave
+	pre-compartida y un directorio de certificación. Este es un
+	ejemplo de <filename>/etc/racoon.conf</filename> con las
+	ubicaciones y una fase dos general para la configuración de
+	políticas:
       </para>
 
       <screen>
@@ -475,30 +501,35 @@ sainfo anonymous {
       </screen>
 
       <para>
-        The <parameter>sainfo</parameter> identifier is used to make a
-        block that specifies the settings for security associations. Instead
-        of setting this for a specific host, the <parameter>anonymous</parameter>
-        parameter is used to specify that these settings should be used
-        for all hosts that do not have a specific configuration. The
-        <parameter>pfs_group</parameter> specifies which group of
-        Diffie-Hellman exponentiations should be used. The different
-        groups provide different lengths of base prime numbers that are
-        used for the authentication process. Group 2 provides a 1024 bit
-        length if you would like to use a greater length, for increased
-        security, you can use another group (like 14 for a 2048 bit
-        length). The <parameter>encryption_algorithm</parameter> specifies
-        which encryption algorithms this host is willing to use for
-        ESP encryption. The <parameter>authentication_algorithm</parameter>
-        specifies the algorithm to be used for ESP Authentication or
-        AH. Finally, the <parameter>compression_algorithm</parameter>
-        is used to specify which compression algorithm should be used
-        when IPcomp is specified in an association.
+	El identificador <parameter>sainfo</parameter> es usado para
+	crear un bloque que especifica las configuraciones para las
+	asociaciones de seguridad. En vez de asignarlo para un host
+	específico, el parámetro <parameter>anonymous</parameter> es
+	usado para especificar que estas configuraciones deberían ser
+	usadas para todos los hosts que no tienen una configuración
+	específica. El parámetro <parameter>pfs_group</parameter>
+	especifica qué grupo de exponenciales Diffie-Hellman deberían
+	ser usado. Los diferentes grupos proveen diferentes longitudes
+	de números primos base que son usados para el proceso de
+	autenticación. El grupo 2 provee una longitud de 1024 bits, si
+	quisiera usar una longitud mayor para incrementar la
+	seguridad, puede usar otro grupo (como el 14 para una longitud
+	de 2048 bits). El parámetro
+	<parameter>encryption_algorithm</parameter> especifica qué
+	algoritmo de encriptado será usado por este host para la
+	encripción ESP. El parámetro
+	<parameter>authentication_algorithm</parameter> especifica el
+	algoritmo a ser usado para la autenticación ESP o
+	AH. Finalmente, el parámetro
+	<parameter>compression_algorithm</parameter> es usado para
+	especificar qué algoritmo de compresión debería ser usado
+	cuando IPcomp es especificado en una asociación.
       </para>
 
       <para>
-        The next step is to add a phase one configuration for the key
-        exchange with the other host to the <filename>racoon.conf</filename> configuration file.
-        For example:
+	El siguiente paso es agregar una configuración fase uno para
+	el intercambio de llaves con el host remoto al archivo de
+	configuración <filename>racoon.conf</filename>. Por ejemplo:
       </para>
 
       <screen>
@@ -516,34 +547,37 @@ remote 192.168.1.169
       </screen>
 
       <para>
-        The <parameter>remote</parameter> block specifies a phase one
-        configuration. The <parameter>exchange_mode</parameter> is
-        used to configure what exchange mode should be used for
-        phase. You can specify more than one exchange mode, but the
-        first method is used if this host is the initiator of the
-        key exchange. The <parameter>my_identifier</parameter> option
-        specifies what identifier should be sent to the remote host.
-        If this option ommitted <parameter>address</parameter> is used,
-        which sends the IP address as the identifier. The 
-        <parameter>proposal</parameter> block specifies parameter that
-        will be proposed to the other host during phase one authentication.
-        The <parameter>encryption_algorithm</parameter>, and
-        <parameter>dh_group</parameter> are explained above. The
-        <parameter>hash_algorithm</parameter> option is mandatory, and
-        configures the hash algorithm that should be used. This
-        can be <parameter>md5</parameter>, or <parameter>sha1</parameter>.
-        The <parameter>authentication_method</parameter> is crucial for
-        this configuration, as this parameter is used to specify that
-        a preshared key should be used, with 
-        <parameter>pre_shared_key</parameter>.
+	El bloque <parameter>remote</parameter> especifica una
+	configuración de fase
+	uno. <parameter>exchange_mode</parameter> es usado para
+	configurar qué modo de intercambio debería ser usado por fase.
+	Puede especificar mas de un modo de intercambio, pero el
+	primer método es usado si este host es el iniciador del
+	intercambio de llaves. La opción
+	<parameter>my_identifier</parameter> especifica qué
+	identificador debería ser enviado al host remoto. Si esta
+	opción es omitida, <parameter>address</parameter> es usado, el
+	cual envía la dirección IP como identificador. El bloque
+	<parameter>proposal</parameter> especifica parámetros que
+	serán propuestos al host remoto durante la fase de
+	autenticación. <parameter>encryption_algorithm</parameter> y
+	<parameter>dh_group</parameter> están explicados arriba. La
+	opción <parameter>hash_algorithm</parameter> es obligatoria y
+	configura el algoritmo hash que será usado. Puede ser
+	<parameter>md5</parameter>o <parameter>sha1</parameter>.
+	<parameter>authentication_method</parameter> es crucial para
+	esta configuración, ya que es usado para especificar que una
+	llave pre-compartida debería ser usada con
+	<parameter>pre_shared_key</parameter>.
       </para>
 
       <para>
-        With racoon set up there is one thing left to do, the preshared
-        key has to be added to <filename>/etc/racoon/psk.txt</filename>.
-        The syntax is very simple, each line contains a host IP address
-        and a key. These parameters are separated with a tab.
-        For example:
+	Con racoon configurado, queda una cosa por hacer, la llave
+	pre-compartida deber ser agregada a
+	<filename>/etc/racoon/psk.txt</filename>. La sintaxis es muy
+	simple, cada línea contiene una dirección IP y una
+	llave. Estos parámetros están separados con una
+	tabulación. Por ejemplo:
       </para>
 
       <screen>
@@ -552,15 +586,15 @@ remote 192.168.1.169
     </sect2>
 
     <sect2>
-      <title>Activating the IPsec configuration</title>
+      <title>Activando la configuración IPsec</title>
 
       <para>
-        At this point the configuration of the security policies and racoon
-        is complete, and you can start to test the configuration. It is a
-        good idea to start <command>racoon</command> with the
-        <parameter class="command">-F</parameter> parameter. This will run
-        <command>racoon</command> in the foreground, making it easier to catch error
-        messages. To wrap it up:
+	En este punto, la configuración de las políticas de seguridad y 
+	racoon está completa y puede empezar a probar la configuración. Es 
+	recomendable iniciar <command>racoon</command> con el parámetro
+        <parameter class="command">-F</parameter>. Esto ejecutará 
+	<command>racoon</command> en segundo plano, facilitando la 
+	captura de mensajes de error:
       </para>
 
       <screen>
@@ -569,10 +603,12 @@ remote 192.168.1.169
       </screen>
 
       <para>
-        Now that you have added the security policies to the security policy
-        database, and started <command>racoon</command>, you can test your IPsec configuration.
-        For instance, you could ping the other host to start with. The
-        first time you ping the other host, this will fail:
+	Ahora que ha agregado las políticas de seguridad a la base de datos 
+	de políticas y ha iniciado <command>racoon</command>, puede probar 
+	su configuración IPsec. 
+
+	Por ejemplo, podría realizar un ping al host remoto para empezar. 
+	La primera vez que contacte al otro host, esto fallará:
       </para>
 
       <screen>
@@ -581,13 +617,14 @@ connect: Resource temporarily unavailable
       </screen>
 
       <para>
-        The reason for this is that the security associations still
-        have to be set up. But the ICMP packet will trigger the key exchange.
-        ping will trigger the key exchange. You can see whether the exchange
-        was succesful or not by looking at the <command>racoon</command> log messages in
-        <filename>/var/log/messages</filename>, or the output on the terminal
-        if you started <command>racoon</command> in the foreground. A succesful key
-	exhange looks like this:
+	La razón para esto es que las asociaciones de seguridad tienen
+	que ser instaladas. Pero el paquete ICMP activará el
+	intercambio de llaves. Puede verificar si el intercambio fué
+	exitoso o no revisando los mensajes de log de
+	<command>racoon</command> en
+	<filename>/var/log/messages</filename>, o la salida en la
+	terminal si es que inició <command>racoon</command> en
+	segundo plano. Un intercambio exitoso de llaves se ve así:
       </para>
 
       <screen>
@@ -603,16 +640,18 @@ connect: Resource temporarily unavailable
       </screen>
 
       <para>
-        After the key exchange, you
-        can verify that IPsec is set up correctly by analyzing the packets
-        that go in and out with <command>tcpdump</command>. <command>tcpdump</command> is
-        available in the <emphasis>n</emphasis> disk set. Suppose that
-        the outgoing connection to the other host goes through the
-        <emphasis>eth0</emphasis> interface, you can analyze the packets
-        that go though the <emphasis>eth0</emphasis> interface with
-        <command>tcpdump -i eth0</command>. If the outgoing packets are
-        encrypted with ESP, you can see this in the <command>tcpdump</command>
-        output. For example:
+	Después del intercambio de llaves, puede verificar que IPsec
+	está correctamente configurado analizando los paquetes que
+	salen e ingresan con
+	<command>tcpdump</command>. <command>tcpdump</command> esta
+	disponible en el conjunto de paquetes <emphasis>n</emphasis>.
+	Suponga que la conexión saliente al host remoto pasa a través
+	de la interfaz <emphasis>eth0</emphasis>, puede analizar los
+	paquetes que pasan a través de la
+	interfaz<emphasis>eth0</emphasis> con <command>tcpdump -i
+	eth0</command>. Si los paquetes salientes estan encriptados
+	con ESP, puede verlo en la salida de
+	<command>tcpdump</command>. Por ejemplo:
       </para>
 
       <screen>

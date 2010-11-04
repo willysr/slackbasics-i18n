@@ -7,47 +7,52 @@
 <title>Introducción</title>
 
 <para>
-Con el creciente uso de Internet y redes inalámbricas la seguridad se 
-esta volviendo más importante cada dia. Es imposible cubrir este tema en 
-un simple capítulo de introducción a GNU/Linux. Este capítulo cubre 
-algunas técnicas básicas de seguridad que proveen un buen inicio para la  
-seguridad en escritorio y servidores.
+  Con el creciente uso de Internet y redes inalámbricas la seguridad
+  se esta volviendo más importante cada día. Es imposible cubrir este
+  tema en un simple capítulo de introducción a GNU/Linux. POr lo que este
+  capítulo se limita a cubrir algunas técnicas básicas de seguridad que proveen un
+  buen inicio para la seguridad en escritorio y servidores.
 </para>
 
 <para>
-Antes de que entremos en temas específicos, es una buena idea resaltar las 
-contraseñas. La autorización en ordenadores en gran parte recae en contraseñas. 
-Esté seguro de usar buenas contraseñas en todas las situaciones. Evite usar  
-palabras, nombres, cumpleaños y contraseñas cortas. Estas contraseñas pueden  
-ser fácilmente craqueadas con ataques de diccionario o ataques de fuerza bruta 
-contra hosts o resúmenes hash de contraseñas. Utilice contraseñas largas, 
-preferentemente con ocho caracteres o más, compuestas de letras aleatorias
-(incluyendo manyúsculas y minúsculas) y números.
+  Antes de que entremos en temas específicos, es una buena idea
+  resaltar las contraseñas. La autorización en ordenadores en gran
+  parte recae en contraseñas. Esté seguro de usar buenas contraseñas
+  en todas las situaciones. Evite usar palabras, nombres, fechas de
+  cumpleaños y contraseñas cortas. Estas contraseñas pueden ser
+  fácilmente craqueadas con ataques de diccionario o ataques de fuerza
+  bruta contra hosts o resúmenes hash de contraseñas. Utilice
+  contraseñas largas, preferentemente con ocho caracteres o más,
+  compuestas de letras aleatorias (incluyendo manyúsculas y
+  minúsculas) y números.
 </para>
 </sect1>
 
 <sect1>
-<title>Denegando servicios</title>
+<title>Cerrando servicios</title>
 
 <sect2>
 <title>Introducción</title>
 
 <para>
-Muchas distribuciones GNU/Linux ejecutan servicios que se abren a una red 
-local o a Internet. Otros hosts pueden conectarse a estos servicios a través 
-de puertos específicos. Por ejemplo, el puerto 80 es usado para tráfico WWW. 
-El archivod <filename>/etc/services</filename> contiene una tabla con todos 
-los servicios comúnmente usados, y los números de puertos que son usados por 
-estos servicios.
+  Muchas distribuciones GNU/Linux ejecutan servicios que se abren a
+  una red local o a Internet. Otros hosts pueden conectarse a estos
+  servicios a través de puertos específicos. Por ejemplo, el puerto 80
+  es usado para tráfico WWW.  El archivo
+  <filename>/etc/services</filename> contiene una tabla con todos los
+  servicios comúnmente usados, y los números de puertos que son usados
+  por estos servicios.
 </para>
 
 <para>
-Un sistema seguro solamente debería ejecutar servicios que son necesarios. 
-Entonces, suponga que un host esta actuando como un servidor web, no debería 
-tener puertos abiertos para FTP o SMTP. Con mas puertos abiertos los riesgos 
-de seguridad se incrementan muy rápido, por que hay una mayor chance de que 
-el software sirviendo un puerto tenga una vulnerabilidad, o esté mal configurado. 
-En las siguientes secciones le ayudaremos a rastrear y cerrar puertos abiertos.
+  Un sistema seguro solamente debería ejecutar servicios que son
+  necesarios. Entonces, suponga que un host esta actuando como un
+  servidor web, no debería tener puertos abiertos para FTP o SMTP. Con
+  mas puertos abiertos los riesgos de seguridad se incrementan mucho,
+  por que hay una mayor posibilidad de que el software que usa un
+  puerto tenga una vulnerabilidad, o esté mal configurado. En los
+  siguientes apartados le ayudaremos a rastrear y cerrar puertos
+  abiertos.
 </para>
 </sect2>
 
@@ -55,18 +60,19 @@ En las siguientes secciones le ayudaremos a rastrear y cerrar puertos abiertos.
 <title>Encontrando puertos abiertos</title>
 
 <para>
-Los puertos abiertos pueden ser encontrados con un escaner de puertos, 
-probablemente el escaner de puertos más famoso para GNU/Linux es 
-<command>nmap</command>. <command>nmap</command> esta disponible desde 
-el conjunto de paquetes <quote>n</quote>. 
+  Los puertos abiertos pueden ser encontrados con un escáner de
+  puertos, probablemente el escáner de puertos más famoso para
+  GNU/Linux es <command>nmap</command>. <command>nmap</command> esta
+  disponible desde el conjunto de paquetes <quote>n</quote>.
 </para>
 
 <para>
-La sintaxis básica de <command>nmap</command> es: <command>nmap host</command>. 
-El parámetro <emphasis>host</emphasis> puede ser un hostnmae o una direccion IP. 
-Suponga que nos gustaría escanear el host donde esta instalado <command>nmap</command>. 
-En este caso podemos especificar la direccion IP de <emphasis>localhost</emphasis>,  
- <emphasis>127.0.0.1</emphasis>:
+  La sintaxis básica de <command>nmap</command> es: <command>nmap
+  host</command>. El parámetro <emphasis>host</emphasis> puede ser un
+  nombre de host o una dirección IP. Suponga que nos gustaría
+  escanear el host donde esta instalado <command>nmap</command>. En
+  este caso podemos especificar la direccion IP de
+  <emphasis>localhost</emphasis>, <emphasis>127.0.0.1</emphasis>:
 </para>
 
 <screen>
@@ -86,8 +92,8 @@ Nmap run completed -- 1 IP address (1 host up) scanned in 0 seconds
 </screen>
 
 <para>
-En este ejemplo, puede ver que el host tiene cinco puertos abiertos 
-que estan siendo atendidos: ftp, ssh, telnet, http y X11.
+  En este ejemplo, puede ver que el host tiene cinco puertos abiertos
+  que estan siendo utilizados: ftp, ssh, telnet, http y X11.
 </para>
 </sect2>
 
@@ -95,21 +101,21 @@ que estan siendo atendidos: ftp, ssh, telnet, http y X11.
 <title>inetd</title>
 
 <para>
-Hay dos formas de ofrecer servicios TCP/IP: ejecutando aplicaciones  
-servidor como demonios (servicios) o usando el internet super server,  
-<command>inetd</command>. inetd es un demonio que monitorea un 
-rango de puertos. Si un cliente intenta conectarse a un puerto, 
-inetd maneja la conexion y redirecciona la misma al servidor de  
-software que maneja ese tipo de conexion. La ventaja de esta 
-solucion es que agrega una capa extra de seguridad y facilita  
-el registro de conexiones entrantes. La desventaja es que es mas  
-lento que utilizar demonios. Es una buena idea ejecutar demonios, 
-por ejemplo, en un servidor FTP sobrecargado.
+  Hay dos formas de ofrecer servicios TCP/IP: ejecutando aplicaciones
+  servidor como demonios (daemons) o usando el internet super
+  server, <command>inetd</command>. inetd es un demonio que monitorea
+  un rango de puertos. Si un cliente intenta conectarse a un puerto,
+  inetd maneja la conexión y redirecciona la misma al servidor de
+  software que maneja ese tipo de conexión. La ventaja de esta
+  solución es que agrega una capa extra de seguridad y facilita el
+  registro de conexiones entrantes. La desventaja es que es mas lento
+  que utilizar demonios. Es una buena idea ejecutar demonios, por
+  ejemplo, en un servidor FTP sobrecargado.
 </para>
 
 <para>
-Puede verificar si <command>inetd</command> esta ejecutandose en un 
-host o no con <command>ps</command>, por ejemplo:
+  Puede verificar si <command>inetd</command> esta ejecutándose en un
+  host o no con <command>ps</command>, por ejemplo:
 </para>
 
 <screen>
@@ -118,10 +124,10 @@ $ <command>ps ax | grep inetd</command>
 </screen>
 
 <para>
-En este ejemplo inetd esta ejecutandose con el PID (ID de proceso) 2845.  
-<command>inetd</command> puede ser configurado usando el archivo  
-<filename>/etc/inetd.conf</filename>. Demos un vistazo a una 
-linea de ejemplo desde inetd.conf:
+  En este ejemplo inetd esta ejecutandose con el PID (ID de proceso)
+  2845. <command>inetd</command> puede ser configurado usando el
+  archivo <filename>/etc/inetd.conf</filename>. Demos un vistazo a una
+  línea de ejemplo desde inetd.conf:
 </para>
 
 <screen>
@@ -130,24 +136,24 @@ ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
 </screen>
 
 <para>
-Esta linea especifica que inetd debería aceptar conexiones FTP y pasarlas 
-a <command>tcpd</command>. Esto puede parecer un poco extraño, porque 
-normalmente <command>proftpd</command> maneja las conexiones FTP. 
-Tambien puede especificar el uso de proftpd directamente en 
-<filename>inetd.conf</filename>, pero es una buena idea entregar la 
-conexion a <command>tcpd</command>. Este programa a su vez pasa la conexion 
-a <command>proftpd</command>, como esta especificado. <command>tcpd</command> 
-se utiliza para monitorear servicios y para proveer control de acceso 
-basado en host. 
+  Esta línea especifica que inetd debería aceptar conexiones FTP y
+  pasarlas a <command>tcpd</command>. Esto puede parecer un poco
+  extraño, porque normalmente <command>proftpd</command> maneja las
+  conexiones FTP. También puede especificar el uso de proftpd
+  directamente en <filename>inetd.conf</filename>, pero es recomendable
+  entregar la conexión a <command>tcpd</command>. Este programa a su
+  vez pasa la conexión a <command>proftpd</command>, como está
+  especificado. <command>tcpd</command> se utiliza para monitorear
+  servicios y para proveer control de acceso basado en host.
 </para>
 
 <para>
-Los servicios pueden ser deshabilitados agregando el caracter de comentario (#) 
-al inicio de la linea. Es una buena idea deshabilitar todos los servicios y 
-habilitar los servicios que requiera, uno a la vez. Desdués de cambiar 
-<filename>/etc/inetd.conf</filename>, <command>inetd</command> necesita ser 
-reiniciado para activar los cambios. Esto se puede hacer enviando la señal 
-HUP al proceso inetd:
+  Los servicios pueden ser deshabilitados agregando el caracter de
+  comentario (#) al inicio de la línea. Es una buena idea deshabilitar
+  todos los servicios y habilitar los servicios que requiera, uno a la
+  vez. Después de cambiar <filename>/etc/inetd.conf</filename>,
+  <command>inetd</command> necesita ser reiniciado para activar los
+  cambios. Esto se puede hacer enviando la señal HUP al proceso inetd:
 </para>
 
 <screen>
@@ -157,10 +163,10 @@ HUP al proceso inetd:
 </screen>
 
 <para>
-Si usted no necesita <command>inetd</command> en lo absoluto, es una 
-buena idea removerlo. Si quiere mantenerlo instalado, pero no quiere que 
-Slackware Linux lo cargue durante el proceso de boteo, ejecute como root 
-los siguientes comandos:
+  Si usted no necesita <command>inetd</command> en absoluto, es
+  recomendable quitarlo. Si quiere mantenerlo instalado, pero no
+  quiere que Slackware Linux lo cargue durante el proceso de arranque
+  del sistema, ejecute como root el siguiente comando:
 </para>
 
 <screen>

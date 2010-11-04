@@ -1,7 +1,7 @@
 <!-- $Id: printing.xml 283 2007-09-18 20:14:31Z danieldk $ -->
 
 <chapter id="printing"> <?dbhtml filename="printer.html"?>
-  <title>Configuraci�n de impresora</title>
+  <title>Configuración de impresoras</title>
 
   <indexterm><primary>printing</primary></indexterm>
 
@@ -11,19 +11,20 @@
     <indexterm><primary>cups</primary><secondary>installation</secondary></indexterm>
 
     <para>
-	  GNU/Linux soporta una gran cantidad de impresoras USB, paralelas y 
-	  de red. Slackware Linux provee dos sistemas de impresi�n, 
-	  <acronym>CUPS</acronym> (Common UNIX Printing System) y
-      <acronym>LPRNG</acronym> (LPR Next Generation). Este cap�tulo cubre 
-	  el sistema CUPS.
+      GNU/Linux soporta una gran cantidad de impresoras USB, paralelas
+      y de red. Slackware Linux provee dos sistemas de impresión,
+      <acronym>CUPS</acronym> (Common UNIX Printing System) y
+      <acronym>LPRNG</acronym> (LPR Next Generation). Este capítulo
+      cubre el sistema CUPS.
     </para>
 
     <para>
-	  Independientemente de que sistema de impresi�n vaya a usar, es una 
-	  buena idea instalar algunas colecciones de filtro de impresora. Estos 
-	  se encuentran en el directorio de paquetes <quote>ap</quote>. Si quiere 
-	  tener soporte para la mayor�a de las impresoras, aseg�rese de que los 
-	  siguientes paquetes esten instalados:
+      Independientemente de que sistema de impresión vaya a usar, es
+      recomendable instalar algunas colecciones de filtro de
+      impresora. Estos se encuentran en el conjunto de paquetes
+      <quote>ap</quote>. Si quiere tener soporte para la mayoría de
+      las impresoras, asegúrese de que los siguientes paquetes esten
+      instalados:
     </para>
 
     <screen>
@@ -37,10 +38,11 @@ ifhp
     </screen>
 
     <para>
-	  Ambos sistemas tiene sus propias ventajas y desventajas. Si no tiene mucha 
-	  experiencia configurando impresoras bajo GNU/Linux, es una buena idea usar 
-	  CUPS, ya que CUPS provee una confortable interfaz web que puede ser accedida 
-	  a trav�s de un navegador web.
+      Ambos sistemas tiene sus propias ventajas y desventajas. Si no
+      tiene mucha experiencia configurando impresoras bajo GNU/Linux,
+      es recomendable usar CUPS, ya que CUPS provee una confortable
+      interfaz web que puede ser accedida a través de un navegador
+      web.
     </para> 
 
   </sect1>
@@ -51,11 +53,12 @@ ifhp
     <indexterm><primary>cups</primary><secondary>starting</secondary></indexterm>
 
     <para>
-	  Para poder utilizar CUPS, el paquete <quote>cups</quote> de el 
-	  conjunto de paquetes <quote>a</quote> debe ser instalado. Despues 
-	  de la instalaci�n, CUPS puede ser iniciado autom�ticamente desde 
-	  el arranque del sistema haciendo el archivo <filename>/etc/rc.d/rc.cups</filename> 
-	  ejecutable. Esto se realiza ejecutando el siguiente comando: 
+      Para poder utilizar CUPS, el paquete <quote>cups</quote> de el
+      conjunto de paquetes <quote>a</quote> debe ser
+      instalado. Despues de la instalación, CUPS puede ser iniciado
+      automáticamente desde el arranque del sistema haciendo el
+      archivo <filename>/etc/rc.d/rc.cups</filename> ejecutable. Esto
+      se realiza ejecutando el siguiente comando:
     </para>
 
     <screen>
@@ -63,8 +66,9 @@ ifhp
     </screen>
 
     <para>
-	  Despu�s de reiniciar el sistema, CUPS tambi�n sera reiniciado autom�ticamente. 
-	  Puede iniciar CUPS en un sistema en ejecuci�n con el siguiente comando:
+      Después de reiniciar el sistema, CUPS también será reiniciado
+      automáticamente. Puede iniciar CUPS en un sistema en ejecución
+      con el siguiente comando:
     </para>
 
     <screen>
@@ -74,63 +78,69 @@ ifhp
   </sect1>
 
   <sect1 id="printing-configuration">
-    <title>Configuraci�n</title>
+    <title>Configuración</title>
 
     <indexterm><primary>cups</primary><secondary>configuration</secondary></indexterm>
 
     <para>
-	  CUPS puede ser configurado a trav�s de una interfaz web. La interfaz de 
-	  configuraci�n puede ser accedida con un navegador web en la siguiente 
-	  URL: <ulink url="http://localhost:631/">http://localhost:631/</ulink>. 
-	  Algunas partes de la interfaz web requieren autenticaci�n. Si una ventana 
-	  de autenticaci�n es mostrada, puede ingresar <quote>root</quote> como 
-	  nombre de usuario y su correspondiente contrase�a.
+      CUPS puede ser configurado a través de una interfaz web. La
+      interfaz de configuración puede ser accedida con un navegador
+      web en la siguiente URL: <ulink
+      url="http://localhost:631/">http://localhost:631/</ulink>.
+      Algunas partes de la interfaz web requieren autenticación. Si
+      una ventana de autenticación es mostrada, puede ingresar
+      <quote>root</quote> como nombre de usuario y su correspondiente
+      contraseña.
     </para>
 
     <para>
-	  Una impresora puede ser agregada a la configuraci�n CUPS a trav�s del 
-	  menu <quote>Administrate</quote>, y luego seleccionando el boton <quote>Add
-      Printer</quote>. La interfaz web preguntar� por tres opciones:
+      Una impresora puede ser agregada a la configuración CUPS a
+      través del menu <quote>Administrate</quote>, y luego
+      seleccionando el boton <quote>Add Printer</quote>. La interfaz
+      web preguntará por tres opciones:
     </para>
 
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis>Name</emphasis> - the name of the printer. Use a simple
-          name, for example <quote>epson</quote>.
+          <emphasis>Name</emphasis> - nombre de la impresora. Use un
+          nombre simple, por ejemplo <quote>epson</quote>.
         </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis>Location</emphasis> - the physical location of the printer.
-          This setting is not crucial, but handy for larger organizations.
+          <emphasis>Location</emphasis> - la ubicación física de la
+          impresora. Esta configuración no es crucial, pero útil para
+          organizaciones grandes.
         </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis>Description</emphasis> - a description of the printer,
-          for example <quote>Epson Stylus Color C42UX</quote>.
+          <emphasis>Description</emphasis> - una descripción de la
+          impresora, por ejemplo <quote>Epson Stylus Color
+          C42UX</quote>.
         </para>
       </listitem>
     </itemizedlist> 
 
     <para>
-	  Puede proceder presionando en el boton <quote>Continue</quote>. En 
-	  la siguiente p�gina puede configurar la conexion de la impresora. Si 
-	  tiene una impresora USB encendida, la interfaz web mostrar� el nombre 
-	  de la impresora junto al puerto USB usado. Despu�s de configurar el 
-	  puerto de la impresora puede seleccionar su marca y modelo. Despu�s 
-	  de eso, la configuraci�n est� finalizada y la impresora ser� agregada 
-	  a la configuraci�n CUPS.
+      Puede proceder presionando en el boton
+      <quote>Continue</quote>. En la siguiente página puede configurar
+      la conexión de la impresora. Si tiene una impresora USB
+      encendida, la interfaz web mostrará el nombre de la impresora
+      junto al puerto USB usado. Después de configurar el puerto de la
+      impresora puede seleccionar su marca y modelo. Después de eso,
+      la configuración esté finalizada y la impresora será agregada a
+      la configuración CUPS.
     </para>
 
     <para>	
-      Un resumen de las impresoras configuradas puede ser encontrado 
-      en la página <quote>Printers (Impresoras)</quote>. En esta pagina 
-      también puede realizar algunas operaciones de impresora. Por 
-      ejemplo, <quote>Print Test Page (Imprimir página de prueba)</quote> 
-      puede ser utilizado para verificar la configuración de la impresora 
-      imprimiendo una página de prueba.
+      Puede encontrar un resumen de las impresoras configuradas en la
+      página <quote>Printers (Impresoras)</quote>. En esta página
+      también puede realizar algunas operaciones de impresora. Por
+      ejemplo, <quote>Print Test Page (Imprimir página de
+      prueba)</quote> puede ser utilizado para verificar la
+      configuración de la impresora imprimiendo una página de prueba.
     </para>
 
   </sect1>
@@ -141,20 +151,22 @@ ifhp
     <indexterm><primary>cups</primary><secondary>access control</secondary></indexterm>
     
     <para>
-      El sistema de impresión CUPS provee una interfaz de configuración web y 
-      acceso remoto a través del Protocolo de Impresión de Internet (<acronym>IPP</acronym>, 
-      Internet Printing Protocol). Los ficheros de configuración de CUPS le 
-      permiten configurar un refinado control de acceso a las impresoras. 
-      Por defecto, el acceso a las impresoras está limitado a <emphasis>localhost</emphasis>
-      (<emphasis>127.0.0.1</emphasis>).
+      El sistema de impresión CUPS provee una interfaz de
+      configuración web y acceso remoto a través del Protocolo de
+      Impresión de Internet (<acronym>IPP</acronym>, Internet Printing
+      Protocol). Los ficheros de configuración de CUPS le permiten
+      configurar un refinado control de acceso a las impresoras. Por
+      defecto, el acceso a las impresoras está limitado a
+      <emphasis>localhost</emphasis> (<emphasis>127.0.0.1</emphasis>).
     </para>
     
     <para>
-      Usted puede refinar el control de acceso en el archivo central de 
-      configuración del demonio CUPS, <filename>/etc/cups/cupsd.conf</filename>, 
-      que tiene una sintaxis comparable al archivo de configuración de Apache. 
-      El control de acceso es configurado a través de las seccioens 
-      <emphasis>Location</emphasis>. Por ejemplo, la sección global 
+      Usted puede refinar el control de acceso en el archivo central
+      de configuración del daemon CUPS,
+      <filename>/etc/cups/cupsd.conf</filename>, que tiene una
+      sintaxis comparable al archivo de configuración de Apache. El
+      control de acceso es configurado a través de las secciones
+      <emphasis>Location</emphasis>. Por ejemplo, la sección global
       (directorio raíz de IPP) por defecto se ve así:
     </para>
     
@@ -167,14 +179,15 @@ Allow From 127.0.0.1
     </screen>
 
     <para>
-      Como puede ver las sentencias de negación se manejan primero, y 
-      después las sentencias de autorización. En la configuración por 
-      defecto el acceso es denegado para todos los hosts, a excepción de 
-      <emphasis>127.0.0.1</emphasis>, <emphasis>localhost</emphasis>. 
-      Suponga que quisiera autorizar a hosts de la red local, que utiliza 
-      el espacio de direcciones <emphasis>192.168.1.0/24</emphasis> para 
-      utilizar las impresoras en el sistema en el cual está configurando 
-      CUPS. En este caso podría agregar la línea que está resaltada:
+      Como puede ver las sentencias de negación se manejan primero, y
+      después las sentencias de autorización. En la configuración por
+      defecto el acceso es denegado para todos los hosts, a excepción
+      de <emphasis>127.0.0.1</emphasis>,
+      <emphasis>localhost</emphasis>. Suponga que quisiera autorizar
+      a hosts de la red local, que utiliza el espacio de direcciones
+      <emphasis>192.168.1.0/24</emphasis> para utilizar las impresoras
+      en el sistema en el cual está configurando CUPS. En este caso
+      podría agregar la línea que está resaltada:
     </para>
 
     <screen>
@@ -187,12 +200,14 @@ Allow From 127.0.0.1
     </screen>
 
     <para>
-      Puede refinar otras localizaciones en el espacio de direcciones 
-      agregando secciones adicionales. Las preferencias para sub-directorios 
-      sobre escriben las preferencias globales. Por ejemplo, puede restringir 
-      acceso a la impresora <emphasis>epson</emphasis> a hosts con direcciones 
-      IP <emphasis>127.0.0.1</emphasis> y <emphasis>192.168.1.203</emphasis> 
-      agregando la siguiente sección:
+      Puede refinar otras localizaciones en el espacio de direcciones
+      agregando secciones adicionales. Las preferencias para
+      sub-directorios sobreescriben las preferencias globales. Por
+      ejemplo, puede restringir acceso a la impresora
+      <emphasis>epson</emphasis> a hosts con direcciones IP
+      <emphasis>127.0.0.1</emphasis> y
+      <emphasis>192.168.1.203</emphasis> agregando la siguiente
+      sección:
     </para>
 
     <screen>
@@ -211,39 +226,40 @@ Allow From 192.168.1.203
     <indexterm><primary>Ghostscript</primary><secondary>paper size</secondary></indexterm>
 
     <para>
-      GhostScript es un interprete PostScript y Portable 
-      Document Format (<acronym>PDF</acronym>). Ambos, PostScript 
-      y PDF son lenguajes que describen datos que pueden ser 
-      impresos. GhostScript es usado para convertir PostScript y 
-      PDF a formatos raster que pueden ser impresos o visualizados 
-      en la pantalla. La mayoría de los programas UNIX generan 
-      PostScript, la cola de impresión de CUPS utiliza GhostScript 
-      para convertir el PostScript generado a un formato rasterizado 
-      que una impresora en particular entiende.
+      GhostScript es un intérprete PostScript y Portable Document
+      Format (<acronym>PDF</acronym>). Ambos, PostScript y PDF son
+      lenguajes que describen datos que pueden ser
+      impresos. GhostScript es usado para convertir PostScript y PDF a
+      formatos raster que pueden ser impresos o visualizados en la
+      pantalla. La mayoría de los programas UNIX generan PostScript,
+      la cola de impresión de CUPS utiliza GhostScript para convertir
+      el PostScript generado a un formato rasterizado que una
+      impresora en particular entiende.
     </para>
 
     <para>
-      Existen algunas preferencias de configuración de GhostScript 
+      Existen algunas preferencias de configuración de GhostScript
       que, en algunas situaciones, sería mejor cambiar. Esta sección
-      describe como puede cambiar el tamaño de papel por defecto 
-      que GhostScript utiliza.
+      describe como puede cambiar el tamaño de papel por defecto que
+      GhostScript utiliza.
     </para>
 
     <note>
       <para>
-        Algunas impresoras avanzadas pueden interpretar directamente 
-        PostScript. El proceso re rasterización no es necesario para 
+        Algunas impresoras avanzadas pueden interpretar directamente
+        PostScript. El proceso re-rasterización no es necesario para
         estas impresoras.
       </para>
     </note>
 
     <para>
-      Por defecto, GhostScript utiliza el papel carta norteamericano 
-      ( US letter) como tamaño de papel. El tamaño de papel se 
-      configura en <filename>/usr/share/ghostscript/x.xx/lib/gs_init.ps</filename>, 
-      en donde <emphasis>x.xx</emphasis> debería ser reemplazado por 
-      el número de versión de GhostScript. No muy lejos del inicio 
-      del archivo hay dos lineas comentadas con un símbolo de porcentaje 
+      Por defecto, GhostScript utiliza el papel carta norteamericano (
+      US letter) como tamaño de papel. El tamaño de papel se configura
+      en
+      <filename>/usr/share/ghostscript/x.xx/lib/gs_init.ps</filename>,
+      en donde <emphasis>x.xx</emphasis> debería ser reemplazado por
+      el número de versión de GhostScript. No muy lejos del inicio del
+      archivo hay dos lineas comentadas con un símbolo de porcentaje
       (%), que se ven como esto:
     </para>
 
@@ -253,10 +269,10 @@ Allow From 192.168.1.203
     </screen>
 
     <para>
-      Puede cambiar la configuración de GhostScript para usar A4 como 
-      el tamaño de página por defecto removiendo el símbolo de porcentaje 
-      y el espacio que se encuentran al inicio de la segunda linea, 
-      quedando así:
+      Puede cambiar la configuración de GhostScript para usar A4 como
+      el tamaño de página por defecto removiendo el símbolo de
+      porcentaje y el espacio que se encuentran al inicio de la
+      segunda línea, quedando así:
     </para>
 
     <screen>
@@ -265,11 +281,10 @@ Allow From 192.168.1.203
     </screen>
 
     <para>
-      También es posible utilizar otro tamaño de papel mas que 
-      Carta o A4 reemplazando <emphasis>a4</emphasis> en el 
-      ejemplo anterior con el tamaño de papel que quiera usar. 
-      Por ejemplo, podría asignar el tamaño de papel por defecto 
-      a US Legal con:
+      También es posible utilizar otro tamaño de papel mas que Carta o
+      A4 reemplazando <emphasis>a4</emphasis> en el ejemplo anterior
+      con el tamaño de papel que quiera usar. Por ejemplo, podría
+      asignar el tamaño de papel por defecto a US Legal con:
     </para>
 
     <screen>
@@ -278,18 +293,18 @@ Allow From 192.168.1.203
     </screen>
 
     <para>
-      Es también posible asignar el tamaño de papel por invocación 
-      de GhostScript utilizando el parámetro 
-      <parameter class="command">-sPAPERSIZE=size</parameter> en el 
-      comando <command>gs</command>. Por ejemplo, podría agregar el 
-      parámetro <emphasis>-sPAPERSIZE=a4</emphasis> cuando inicie 
-      <command>gs</command> para usar A4 como tamaño de papel para 
-      una invocación de GhostScript.
+      Es también posible asignar el tamaño de papel por invocación de
+      GhostScript utilizando el parámetro <parameter
+      class="command">-sPAPERSIZE=size</parameter> en el comando
+      <command>gs</command>. Por ejemplo, podría agregar el parámetro
+      <emphasis>-sPAPERSIZE=a4</emphasis> cuando inicie
+      <command>gs</command> para usar A4 como tamaño de papel para una
+      invocación de GhostScript.
     </para>
 
     <para>
       Un resumen de tamaños de papel soportados puede ser encontrado
-      en <filename>gs_statd.ps</filename>, ubicado en el mismo 
+      en <filename>gs_statd.ps</filename>, ubicado en el mismo
       directorio que <filename>gs_init.ps</filename>.
     </para>
   </sect1>
