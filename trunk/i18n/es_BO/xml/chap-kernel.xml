@@ -128,7 +128,7 @@
       Linux a las fuentes del kernel. Los archivos de configuración
       del kernel de Slackware Linux se almacenan en el medio de
       distribución como
-      <filename>kernels/&lt;kernelname&gt;/config</filename>.  Suponga
+      <filename>kernels/&lt;kernelname&gt;/config</filename>. Suponga
       que quiere usar la configuración del kernel
       <filename>hugesmp.s</filename> (el cual es el kernel por
       defecto) como punto de partida y tiene montado el CD-ROM de
@@ -365,7 +365,7 @@ If you have an IBM ThinkPad laptop, say Y or M here.
 	LILO funciona en dos pasos; el primer paso es alterar la
 	configuración de LILO en
 	<filename>/etc/lilo.conf</filename>. El segundo paso es
-	ejecutar el comand <command>lilo</command>, que escribirá la
+	ejecutar el comando <command>lilo</command>, que escribirá la
 	configuración de LILO al cargador de arranque. La
 	configuración de LILO ya tiene una entrada para el kernel que
 	esta ejecutando. Es aconsejable mantener esta entrada, como
@@ -385,7 +385,7 @@ image = /boot/vmlinuz
       </screen>
       
       <para>
-	La forma mas sencilla de agregar el nuevo kernel es duplicar
+	La forma más sencilla de agregar el nuevo kernel es duplicar
 	la entrada existente y luego editar la primera entrada,
 	cambiando las opciones <parameter>image</parameter> y
 	<parameter>label</parameter>. Después de cambiar según el
@@ -441,7 +441,7 @@ prompt
 	<para>
 	  a <filename>lilo.conf</filename>. De otra forma LILO
 	  iniciará la entrada por defecto que está configurada con
-	  <emphasis>default=&lt;name&gt;</emphasis>, ó la primera
+	  <emphasis>default=&lt;name&gt;</emphasis>, o la primera
 	  entrada cuando no hay un kernel por defecto
 	  configurado. Puede acceder a este menú con entradas en
 	  cualquier momento presionando la tecla &lt;Shift&gt; cuando

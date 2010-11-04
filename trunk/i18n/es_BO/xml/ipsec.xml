@@ -65,13 +65,13 @@
 
     <para>
       También existen dos métodos principales de autenticación. Puede
-      usar llaves manuales o un demonio Internet Key Exchange (IKE),
+      usar llaves manuales o un daemon Internet Key Exchange (IKE),
       como racoon, que automáticamente intercambia llaves de forma
       segura entre dos hosts. En ambos casos se necesita configurar
       políticas de seguridad en la entradas de Security Association
       Database (SAD), que especifica qué algoritmo de encriptado y
       llave debería ser usado para asegurar la comunicación con otro
-      host. Si usted usa un demonio IKE, las asociaciones de seguridad
+      host. Si usted usa un daemon IKE, las asociaciones de seguridad
       son automáticamente establecidas.
     </para>
   </sect1>
@@ -170,7 +170,7 @@ CONFIG_INET_IPCOMP=m
       <itemizedlist>
         <listitem>
 	  <para>
-	    <emphasis>--enable-dpd</emphasis>: habilita dead peer
+	    <emphasis>--enable-dpd</emphasis>: habilita el dead peer
 	    detection (DPD). DPD es un método para detectar si alguno
 	    de los hosts incluídos en las asociaciones de seguridad es
 	    inaccesible. Cuando este es el caso, las asociaciones de
@@ -394,14 +394,14 @@ tcpdump: listening on eth0
 	    conexión puede realizarse y será autenticada, encriptada
 	    y/o comprimida de acuerdo a la asociación de seguridad. Si
 	    no existe asociación de seguridad alguna, el kernel
-	    pedirá a un demonio IKE instalar las asociaciones de
+	    pedirá a un daemon IKE instalar las asociaciones de
 	    seguridad necesarias.
 	  </para>
 	</listitem>
 	<listitem>
 	  <para>
 	    Durante la primera fase del intercambio de llaves, el
-	    demonio IKE tratará de verificar la autenticidad del host
+	    daemon IKE tratará de verificar la autenticidad del host
 	    remoto. Esto se hace usualmente con una llave o
 	    certificado previamente compartido. Si la autenticación es
 	    exitosa, se instala un canal seguro entre ambos hosts,
@@ -428,7 +428,7 @@ tcpdump: listening on eth0
       </orderedlist>
       
       <para>
-	El demonio IKE <command>racoon</command> está incluido con las
+	El daemon IKE <command>racoon</command> está incluído con las
 	herramientas KAME IPsec, las secciones a seguir explican el
 	uso de racoon.
       </para>
@@ -502,19 +502,19 @@ sainfo anonymous {
 
       <para>
 	El identificador <parameter>sainfo</parameter> es usado para
-	crear un bloque que especifica las configuracinoes para las
+	crear un bloque que especifica las configuraciones para las
 	asociaciones de seguridad. En vez de asignarlo para un host
 	específico, el parámetro <parameter>anonymous</parameter> es
 	usado para especificar que estas configuraciones deberían ser
 	usadas para todos los hosts que no tienen una configuración
 	específica. El parámetro <parameter>pfs_group</parameter>
-	especifica que grupo de exponenciales Diffie-Hellman debería
-	ser usado. Los diferentes grupos proveen diferentes
-	longitudes de números primos base que son usados para el
-	proceso de autenticación. El grupo 2 provee una longitud de
-	1024 bits, si quisiera usar una longitud mayor para
-	incrementar la seguridad, puede usar otro grupo (como el 14
-	para una longitud de 2048 bits). El parámetro
+	especifica qué grupo de exponenciales Diffie-Hellman deberían
+	ser usado. Los diferentes grupos proveen diferentes longitudes
+	de números primos base que son usados para el proceso de
+	autenticación. El grupo 2 provee una longitud de 1024 bits, si
+	quisiera usar una longitud mayor para incrementar la
+	seguridad, puede usar otro grupo (como el 14 para una longitud
+	de 2048 bits). El parámetro
 	<parameter>encryption_algorithm</parameter> especifica qué
 	algoritmo de encriptado será usado por este host para la
 	encripción ESP. El parámetro
@@ -623,7 +623,7 @@ connect: Resource temporarily unavailable
 	exitoso o no revisando los mensajes de log de
 	<command>racoon</command> en
 	<filename>/var/log/messages</filename>, o la salida en la
-	terminal si es que inición <command>racoon</command> en
+	terminal si es que inició <command>racoon</command> en
 	segundo plano. Un intercambio exitoso de llaves se ve así:
       </para>
 

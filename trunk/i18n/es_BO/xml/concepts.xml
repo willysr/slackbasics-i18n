@@ -33,7 +33,7 @@
         <footnote>
           <para>
             La palabra <emphasis>daemon</emphasis> no debería ser 
-	    confundida con la palabra <emphasis>demon</emphasis>, 
+	    confundida con la palabra <emphasis>demon (demonio)</emphasis>, 
 	    la palabra <emphasis>daemon</emphasis> se refiere a 
 	    seres sobrenaturales de la mitología griega.
           </para>
@@ -60,13 +60,14 @@
 	y datos de ejecución. El sistema operativo entrega a cada
 	proceso un tiempo de ejecución. En sistemas de un solo
 	procesador los procesos en realidad no se ejecutan
-	simultáneamente. En realidad un programador en el kernel
-	divide el tiempo de CPU entre los procesos, dando la sensación
-	de que los procesos se ejecutan simultáneamente.  Este proceso
-	es llamado <emphasis>time-sharing</emphasis> (distribución de
-	tiempo). En sistemas con más de un CPU, más de un proceso
-	puede ejecutarse simultáneamente, pero el time-sharing todavía
-	se utiliza para dividir el CPU disponible entre los procesos.
+	simultáneamente. En realidad un administrador de tiempo en el
+	kernel divide el tiempo de CPU entre los procesos, dando la
+	sensación de que los procesos se ejecutan simultáneamente.
+	Este proceso es llamado <emphasis>time-sharing</emphasis>
+	(distribución de tiempo). En sistemas con más de un CPU, más
+	de un proceso puede ejecutarse simultáneamente, pero el
+	time-sharing todavía se utiliza para dividir el CPU disponible
+	entre los procesos.
       </para>
 
       <para>
@@ -114,7 +115,7 @@
 
       <para>
 	Los sistemas operativos almacenan datos en sistemas de
-	archivos. Un sistema de archivos es basicamente una
+	archivos. Un sistema de archivos es básicamente una
 	estructura tipo-árbol de directorios que contienen archivos,
 	como el sistema operativo, los programas de usuario y los
 	datos de usuario. La mayoría de los sistemas de archivos

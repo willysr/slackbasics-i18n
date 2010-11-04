@@ -9,7 +9,7 @@
 <para>
   Apache es el servidor web más popular desde Abril de 1996. Fué
   originalmente basado en NCSA httpd, y ha crecido como un completo
-  servidor HTTP.  Slackware Linux actualmente utiliza la rama 1.3.x de
+  servidor HTTP. Slackware Linux actualmente utiliza la rama 1.3.x de
   Apache; este capítulo está dirigido a esta versión.
 </para>
 
@@ -21,7 +21,7 @@
 <para>
   Apache puede ser instalado agregando el paquete
   <filename>apache</filename> de el directorio <quote>n</quote> en el
-  disco de instalación.  Si también quiere utilizar PHP, los paquetes
+  disco de instalación. Si también quiere utilizar PHP, los paquetes
   <filename>php</filename> (directorio <quote>n</quote>) y
   <filename>mysql</filename> (directorio <quote>ap</quote>) son
   requeridos. MySQL es requerido, por que el paquete precompilado de
@@ -99,7 +99,7 @@ UserDir public_html
   para <quote>www.example.org</quote>, con el documento raíz en
   <filename>/var/www/htdocs-www</filename>, y
   <quote>forum.example.org</quote>, con el documento raíz en
-  <filename>/var/www/htdocs-forum</filename>.  Primeramente debemos
+  <filename>/var/www/htdocs-forum</filename>. Primeramente debemos
   especificar que direcciones IP serán escuchadas por Apache. En algún
   lugar en el archivo de configuración
   <filename>/etc/apache/httpd.conf</filename> usted encontrará la

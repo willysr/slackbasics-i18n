@@ -10,16 +10,16 @@
     <para>
       En este capítulo veremos el ambiente de trabajo tradicional para
       entornos UNIX: la consola. La consola es un intérprete que puede
-      ser usado interactivamente y no interactivamente. Cuando la
-      consola es usada de forma no interactiva, trabaja como un simple
-      pero potente lenguaje script.
+      ser usada interactiva y no interactivamente. Cuando la consola
+      es usada de forma no interactiva, trabaja como un simple pero
+      potente lenguaje script.
     </para>
 
     <para>
       El procedimiento para iniciar la consola depende del modo de
       inicio de sesión, sea en modo texto o gráfico. Si esta iniciando
       sesión en modo texto la consola es inmediatamente iniciada
-      despues de ingresar su contraseña (correcta). Si utiliza un
+      despues de ingresar su contraseña (la correcta). Si utiliza un
       administrador gráfico de sesiones como KDM, inicie sesión de
       forma normal, y busque en su gestor de ventanas o el menú del
       entorno de escritorio por una entrada llamada
@@ -37,7 +37,7 @@
       los estandares IEEE 1003.1. Bash (Bourne Again Shell) y Ksh
       (Korn Shell) cumplen con estos estandares. Entonces, es una
       buena idea utilizar una de estas consolas. Usted puede ver
-      fácilmente cual consola esta siendo ejecutada en el sistema, a
+      fácilmente cuál consola esta siendo ejecutada en el sistema, a
       través de la ejecución del comando <command>echo
       $SHELL</command>. Esto es lo que una consola Bash reportaría:
     </para>
@@ -48,10 +48,10 @@ $ <userinput>echo $SHELL</userinput>
     </screen>
 		
     <para>
-      Si esta utilizando una consola diferente, puede cambiar su consola
-      por defecto. Antes asignar una consola diferente, debe establecer la
-      ruta completa de la misma. Puede hacer esto con el comando <command>which</command>. 
-      Por ejemplo: 
+      Si esta utilizando una consola diferente, puede cambiar su
+      consola por defecto. Antes asignar una consola diferente, debe
+      establecer la ruta completa de la misma. Puede hacer esto con el
+      comando <command>which</command>. Por ejemplo:
     </para>
 
     <screen>
@@ -62,9 +62,9 @@ $ <userinput>which ksh</userinput>
     </screen>
 
     <para>
-      En este sistema Slackware, la ruta completa a la consola bash es
-      <filename>/bin/bash</filename>, y para la consola ksh
-      <filename>/bin/ksh</filename>.  Con esta información, y el
+      En este sistema Slackware, la ruta completa para la consola bash
+      es <filename>/bin/bash</filename>, y para la consola ksh
+      <filename>/bin/ksh</filename>. Con esta información y con el
       comando <command>chsh</command> puede cambiar la consola por
       defecto. El siguiente ejemplo asignará a bash como la consola
       por defecto:
@@ -109,8 +109,8 @@ Shell changed.
 	  <emphasis>Comandos externos:</emphasis> los comandos
 	  externos son programas que no son parte de la consola, y
 	  estan almacenados de forma separada en el sistema de
-	  archivos. Comandos externos comúnmente usados
-	  son:<command>ls</command>, <command>cat</command>,
+	  archivos. Los comandos externos comúnmente usados
+	  son: <command>ls</command>, <command>cat</command>,
 	  <command>rm</command>, y <command>mkdir</command>.
 	</para>
       </listitem>
@@ -136,7 +136,7 @@ Shell changed.
       que son parte de la consola. Los comandos externos pueden ser
       ejecutados por su nombre cuando el programa esta en la ruta de
       busqueda de la consola. De lo contrario, se debe especificar la
-      ruta al programa.  La ruta de busqueda de la consola se almacena
+      ruta al programa. La ruta de busqueda de la consola se almacena
       en una variable llamada <emphasis>PATH</emphasis>. Una variable
       es una pieza nombrada de memoria, de la cual el contenido puede
       ser cambiado. Podemos ver el contenido de la variable PATH de la
@@ -173,11 +173,11 @@ $ <userinput>which sysstat</userinput>
     <title>Navegando</title>
 
     <para>
-      Es a veces necesario saltar a través de varias partes de una
+      A veces es necesario saltar a través de varias partes de una
       línea, y alterarla, cuando esta editando comandos
       extensos. Ambas consolas <command>bash</command> y
       <command>ksh</command> tienen atajos de teclado para realizar
-      tareas comunes. Existen dos modos consola, en donde los atajos
+      tareas comunes. Existen dos modos de consola en donde los atajos
       difieren. Estos modos corresponden en su comportamiento con dos
       editores populares para UNIX. Estos editores son
       <command>vi</command> y <command>emacs</command>. En este libro
@@ -214,8 +214,8 @@ $ <userinput>set -o emacs</userinput>
     <para>
       Con el modo <emphasis>emacs</emphasis> activado, puede empezar a
       utilizar los atajos de teclado. Tomaremos en cuenta tres tipos
-      de atajos: atajos de edicion de caracteres, atajos de edicion de
-      palabras y atajos de edicion de línea. Luego en este capitulo,
+      de atajos: atajos de edición de caracteres, atajos de edición de
+      palabras y atajos de edición de línea. Luego en este capítulo,
       daremos un vistazo a algunos atajos que son usados para obtener
       entradas del historial de comandos.
     </para>
@@ -225,7 +225,7 @@ $ <userinput>set -o emacs</userinput>
 
       <para>
 	El primer grupo de atajos tiene caracteres como su unidad
-	lógica, esto quiere decir que permiten operaciones de edicion
+	lógica, esto quiere decir que permiten operaciones de edición
 	sobre caracteres de línea de comando. <xref
 	linkend="chap-shell-moving-char-shortcuts-move" /> provee una
 	introducción de los atajos que son usados para desplazarse a
@@ -238,13 +238,13 @@ $ <userinput>set -o emacs</userinput>
 	<tgroup cols="1" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
-	      <entry>Teclas</entry><entry>Descripcion</entry>
+	      <entry>Teclas</entry><entry>Descripción</entry>
 	    </row>
 	  </thead>
 	  <tbody>
 	    <row>
 	      <entry>Ctrl-b</entry>
-	      <entry>Desplaza un caracter hacia atras.</entry>
+	      <entry>Desplaza un caracter hacia atrás.</entry>
 	    </row>
 	    <row>
 	      <entry>Ctrl-f</entry>
@@ -277,7 +277,7 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
 	De la misma forma, puede puede volver al final de la línea
 	manteniendo <emphasis>Ctrl-f</emphasis> presionado. Existe un
 	error en esta línea, porque hay un guión erróneo. Para remover
-	este guion, puede utilizar el atajo de borrado de caracter.
+	este guión, puede utilizar el atajo de borrado de caracter.
       </para>
 
       <table xml:id="chap-shell-moving-char-shortcuts-delete">
@@ -411,7 +411,7 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
 	caracteres. Afortunadamente las consolas Korn y Bash pueden
 	moverse a traves de líneas a nivel de palabras. Las palabras
 	son secuencias de caracteres separadas por un caracter
-	especial, como un espacio.  <xref
+	especial, como un espacio. <xref
 	linkend="chap-shell-moving-word-shortcuts-move" /> resume los
 	atajos que pueden ser utilizados para navegar a través de una
 	línea por palabra.
@@ -438,7 +438,7 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
 	      <entry>Esc f</entry>
 	      <entry>
 	    Moverse hacia adelante al último caracter de la palabra actual 
-	    o la siguiente.
+	    o de la siguiente.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -450,8 +450,8 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
 	aquellas utilizadas para caracteres. La lógica de movimiento
 	es un poco curiosa. Moverse hacia adelante coloca el cursor al
 	final de la palabra actual, no en el primer caracter de la
-	siguiente palabra como usted debe haber predicho. Veamos un
-	ejemplo. En el inicio, el cursor esta en el primer caracter de
+	siguiente palabra como usted debe haber predicho. Veámos un
+	ejemplo. Al inicio, el cursor esta en el primer caracter de
 	la línea.
       </para>
 
@@ -505,7 +505,7 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 	  <thead>
 	    <row>
 	      <entry>Teclas</entry>
-	      <entry>Descripcion</entry>
+	      <entry>Descripción</entry>
 	    </row>
 	  </thead>
 	  <tbody>
@@ -542,7 +542,7 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 	  <thead>
 	    <row>
 	      <entry>Teclas</entry>
-	      <entry>Descripcion</entry>
+	      <entry>Descripción</entry>
 	    </row>
 	  </thead>
 	  <tbody>
@@ -600,8 +600,8 @@ two one three
 	Pero si hay caracteres no comunes en palabras, la consola
 	intercambiará la palabra con la palabra previa preservando el
 	orden de los caracteres especiales. Esto es muy útil para la
-	edicion de argumentos de comandos. Suponga que comete un
-	error, mezclando la extension de archivos que desea buscar, y
+	edición de argumentos de comandos. Suponga que comete un
+	error, mezclando la extensión de archivos que desea buscar, y
 	el parámetro <emphasis>print</emphasis>:
       </para>
 
@@ -620,20 +620,20 @@ find ~/music -name '*.ogg' -print
       </screen>
 
       <para>
-	Finalmente, existen atajos que cambian la capitalizacion de
+	Finalmente, existen atajos que cambian la capitalización de
 	las palabras. El atajo Alt-u convierte todos los caracteres a
 	mayúscula, iniciando en la posicion actual del cursor hasta el
 	final de la palabra. Entonces, si tenemos un nombre en
 	minúscula <quote>alice</quote>, capitalizando el nombre con el
 	cursor en <quote>i</quote> retorna <quote>alICE</quote>. Alt-l
 	tiene el mismo comportamiento, pero cambia las letras a
-	minúscula.  Entonces, usando Alt-l en <quote>alICE</quote> con
+	minúscula. Entonces, usando Alt-l en <quote>alICE</quote> con
 	el cursor en <quote>I</quote> cambiará la cadena a
 	<quote>alice</quote>. Alt-c cambia solamente el caracter sobre
-	el cual el cursor esta, o el caracter de la siguiente palabra
-	que es encontrada, a mayúscula. Por ejemplo, presionand Alt-c
-	con el cursor sobre <quote>a</quote> en <quote>alice</quote>
-	producirá <quote>Alice</quote>.
+	el cual el cursor se encuentra, o el caracter de la siguiente
+	palabra que es encontrada, a mayúscula. Por ejemplo,
+	presionando Alt-c con el cursor sobre <quote>a</quote> en
+	<quote>alice</quote> producirá <quote>Alice</quote>.
       </para>
     </sect2>
 
@@ -744,17 +744,17 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
     <title>Historial de Comandos</title>
 
     <para>
-      A veces se deben ejecutar comandos que se ejecutaron antes. 
-      Afortunadamente, usted no tiene que escribirlos de nuevo. 
-      Puede navegar a traves del historial de comandos ejecutados 
-      con las teclas arriba y abajo. Además es tambien posible 
-      buscar un comando. Presione Ctrl-r y comience a escribir el 
-      comando que quiere ejecutar. Se dará cuenta de que Bash 
-      mostrará el primer resultado similar que encuentre. Si el 
-      resultado no era lo que estaba buscando puede continuer 
-      escribiendo el comando (hasta que es único y una similitud aparece), 
-      o presione Ctrl-r una vez mas para obtener la siguiente similitud. 
-      Cuando haya encontrado el comando que estaba buscando, puede ejecutarlo 
+      A veces se deben ejecutar comandos que se ejecutaron antes.
+      Afortunadamente, usted no tiene que escribirlos de nuevo.  Puede
+      navegar a traves del historial de comandos ejecutados con las
+      teclas direccionales arriba y abajo. Además también es posible
+      buscar un comando. Presione Ctrl-r y comience a escribir el
+      comando que quiere ejecutar. Se dará cuenta de que Bash mostrará
+      el primer resultado similar que encuentre. Si el resultado no
+      era el que estaba buscando puede continuer escribiendo el
+      comando (hasta que es único y una similitud aparece), o presione
+      Ctrl-r una vez mas para obtener la siguiente similitud. Cuando
+      haya encontrado el comando que estaba buscando, puede ejecutarlo
       presionando &lt;Enter&gt;.
     </para>
   </sect1>
@@ -766,10 +766,11 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
       El Autocompletado es una de las funcionalidades mas útiles de
       las consolas UNIX-like. Suponga que tiene un directorio con dos
       archivos nombrados <filename>websites</filename> y
-      <filename>recipe</filename>. Y suponga que quiere
-      <command>cat</command> el archivo <filename>websites</filename>
-      (<command>cat</command> muestra el contenido de un archivo),
-      especificando <filename>websites</filename> como parámetro para
+      <filename>recipe</filename>. Y suponga que quiere ejecutar
+      <command>cat</command> sobre el archivo
+      <filename>websites</filename> (<command>cat</command> muestra el
+      contenido de un archivo), especificando
+      <filename>websites</filename> como parámetro para
       cat. Normalmente tendría que escribir <quote>cat
       websites</quote>, y ejecutar el comando. Intente escribiendo
       <quote>cat w</quote>, y presione la tecla &lt;Tab&gt;. Bash
@@ -779,7 +780,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
 
     <para>
       Pero que sucede si tiene archivos que inician con la misma
-      letra?  Suponga que tiene los archivos
+      letra?. Suponga que tiene los archivos
       <filename>recipe1.txt</filename> y
       <filename>recipe2.txt</filename>. Teclee <quote>cat r</quote> y
       presione &lt;Tab&gt;, Bash completará el nombre del archivo
@@ -815,7 +816,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
     <title>Comodines</title>
 
     <para>
-      La mayoria de las consolas, incluyendo Bash y ksh, soportan
+      La mayoría de las consolas, incluyendo Bash y ksh, soportan
       caracteres comodin. Los comodines son caracteres especiales que
       pueden ser utilizados para igualar patrones. La tabla siguiente
       describe algunos comodines comunmente usados. Veremos varios
@@ -1012,7 +1013,7 @@ $ <userinput>md5sum &lt; test1</userinput>
 
       <para>
 	Tambien puede conectar la entrada y salida de comandos usando
-	los denominadas <emphasis>conductos</emphasis>. Un conducto
+	los denominados <emphasis>conductos</emphasis>. Un conducto
 	entre comandos puede hacerse con el caracter <quote>|</quote>.
 	Dos o mas comandos combinados se denominan una
 	<emphasis>tubería</emphasis>. <xref

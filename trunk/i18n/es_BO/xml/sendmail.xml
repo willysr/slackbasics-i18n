@@ -14,7 +14,7 @@
     <para>
       Sendmail es el Agente de Transferencia de Correo(Mail Transfer
       Agent, <acronym>MTA</acronym>) por defecto utilizado en
-      Slackware Linux.  Sendmail fué escrito originalmente por Eric
+      Slackware Linux. Sendmail fué escrito originalmente por Eric
       Allman, quien aún mantiene sendmail. El rol primario del MTA
       sendmail es entregar mensajes, ya sea local o remotamente. La
       entrega es usualmente realizada a través del protocolo
@@ -33,7 +33,7 @@
       Sendmail esta disponible como el paquete
       <emphasis>sendmail</emphasis> en el conjunto de paquetes
       <quote>n</quote>. Si quiere generar sus propios archivos de
-      configuración de senmail, se requiere del paquete
+      configuración de sendmail, se requiere del paquete
       <emphasis>sendmail-cf</emphasis>. Para mas información sobre
       como instalar paquetes en Slackware Linux, refiérase a <xref
       linkend="chap-pkgmgmt" />.
@@ -42,7 +42,7 @@
     <para>
       Puede dejar a Slackware Linux iniciar sendmail durante el
       arranque del sistema haciendo ejecutable el archivo
-      <filename>/etc/rc.d/rc.sendmail</filename>.  Para realizar esto
+      <filename>/etc/rc.d/rc.sendmail</filename>. Para realizar esto
       ejecute:
     </para>
 
@@ -81,7 +81,7 @@
       Algunas definiciones pueden ser fácilmente cambiadas en el
       archivo <filename>/etc/mail/sendmail.cf</filename>, pero para
       otros cambios es mejor crear su propio archivo
-      <filename>.mc</filename>.  Los ejemplos en este capítulo estarán
+      <filename>.mc</filename>. Los ejemplos en este capítulo estarán
       orientados en la creación de un archivo mc personalizado.
     </para>
 
@@ -95,7 +95,7 @@
       	En esta sección veremos como puede empezar con un archivo mc
       	inicial, y como compilarlo a un archivo cf. Hay muchos
       	archivos mc de ejemplo interesantes disponibles en
-      	<filename>/usr/share/sendmail/cf/cf</filename>.  Los más
+      	<filename>/usr/share/sendmail/cf/cf</filename>. Los más
       	interesantes son <filename>sendmail-slackware.mc</filename>
       	(que es usado para la generar el
       	<filename>sendmail.cf</filename> por defecto para Slackware
@@ -168,7 +168,7 @@ define(`SMART_HOST',`stmp2.example.org')
         Por defecto, sendmail aceptará correos destinados para
         localhost, y el nombre actual de host del sistema. Usted puede
         aceptar correos para otros hosts o dominios simplemente
-        agregándolos en su configuración.  Para esto, el primer paso
+        agregándolos en su configuración. Para esto, el primer paso
         es asegurarse de que la siguiente línea este agregada en su
         configuración mc:
       </para>
@@ -211,7 +211,7 @@ FEATURE(`virtusertable',`hash -o /etc/mail/virtusertable.db')dnl
 
       <para>
         Ahora los mapeos serán leídos desde
-        <filename>/etc/mail/virtusertable.db</filename>.  Esta es una
+        <filename>/etc/mail/virtusertable.db</filename>. Esta es una
         base de datos binaria que no debería ser editada directamente.
         Puede editar <filename>/etc/mail/virtusertable</filename> en
         su cuenta, y generar
@@ -223,7 +223,7 @@ FEATURE(`virtusertable',`hash -o /etc/mail/virtusertable.db')dnl
         El archivo <filename>/etc/mail/virtusertable</filename> es un
         archivo simple de texto plano. Contiene un mapeo por línea,
         con una dirección e-mail y un nombre de usuario separados por
-        una tabulación.  Por ejemplo:
+        una tabulación. Por ejemplo:
       </para>
 
       <screen>
@@ -235,7 +235,7 @@ john.doe@mail.example.org        john
         En este ejemplo ambos e-mails para
         <emphasis>john.doe@example.org</emphasis> y
         <emphasis>john.doe@mail.example.org</emphasis> serán
-        entregados a la cuenta <emphasis>john</emphasis>.  También es
+        entregados a la cuenta <emphasis>john</emphasis>. También es
         posible entregar algunos e-mails destinados para un dominio
         alojado en el servidor, a otra dirección e-mail, especificando
         la dirección e-mail destino en la secunda columna. Por

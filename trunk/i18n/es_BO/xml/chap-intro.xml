@@ -32,7 +32,7 @@
       En 1984, Richard Stallman inició un proyecto ambicioso con el
       objetivo de escribir un sistema operativo UNIX-like libre. El
       nombre de este sistema es <acronym>GNU</acronym>, que es un
-      acrónimo de <quote>GNU's Not UNIX (GNU no es UNIX)</quote>.  A
+      acrónimo de <quote>GNU's Not UNIX (GNU no es UNIX)</quote>. A
       mediados de 1990, la mayoría de los componentes del sistema
       operativo GNU fueron escritos, a excepción del kernel. Dos años
       antes, en 1988, se decidió que el proyecto GNU usaría el
@@ -89,7 +89,7 @@
       posee un administrador de paquetes complejo como RPM o dpkg. Los
       paquetes son archivos tgz (tar/gzip) normales, que usualmente
       contienen scripts de instalación y un archivo de descripción del
-      paquete.  Para usuarios novatos tgz es mucho mas poderoso que
+      paquete. Para usuarios novatos, tgz es mucho mas poderoso que
       RPM, y además evita problemas de dependencia. Otra
       característica bastante conocida de Slackware Linux son sus
       scripts de inicio. A diferencia de la mayoría de las
@@ -165,7 +165,7 @@
       en las ventajas económicas y técnicas del hecho de compartir
       código fuente, mientras que el movimiento de software libre se
       enfoca en el lado ético de proveer fuentes y binarios
-      libremente.  Como el sitio de GNU indica: <quote>El software
+      libremente. Como el sitio de GNU indica: <quote>El software
       libre es una cuestión de libertad, no de precio. Para entender
       el concepto, usted debe pensar en "libertad de expresión", y no
       en "cerveza gratis".

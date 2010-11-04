@@ -66,8 +66,8 @@ ifhp
     </screen>
 
     <para>
-      Después de reiniciar el sistema, CUPS también sera reiniciado
-      automáticamente.  Puede iniciar CUPS en un sistema en ejecución
+      Después de reiniciar el sistema, CUPS también será reiniciado
+      automáticamente. Puede iniciar CUPS en un sistema en ejecución
       con el siguiente comando:
     </para>
 
@@ -126,7 +126,7 @@ ifhp
     <para>
       Puede proceder presionando en el boton
       <quote>Continue</quote>. En la siguiente página puede configurar
-      la conexion de la impresora. Si tiene una impresora USB
+      la conexión de la impresora. Si tiene una impresora USB
       encendida, la interfaz web mostrará el nombre de la impresora
       junto al puerto USB usado. Después de configurar el puerto de la
       impresora puede seleccionar su marca y modelo. Después de eso,
@@ -135,11 +135,11 @@ ifhp
     </para>
 
     <para>	
-      Un resumen de las impresoras configuradas puede ser encontrado
-      en la página <quote>Printers (Impresoras)</quote>. En esta
-      pagina también puede realizar algunas operaciones de
-      impresora. Por ejemplo, <quote>Print Test Page (Imprimir página
-      de prueba)</quote> puede ser utilizado para verificar la
+      Puede encontrar un resumen de las impresoras configuradas en la
+      página <quote>Printers (Impresoras)</quote>. En esta página
+      también puede realizar algunas operaciones de impresora. Por
+      ejemplo, <quote>Print Test Page (Imprimir página de
+      prueba)</quote> puede ser utilizado para verificar la
       configuración de la impresora imprimiendo una página de prueba.
     </para>
 
@@ -155,16 +155,16 @@ ifhp
       configuración web y acceso remoto a través del Protocolo de
       Impresión de Internet (<acronym>IPP</acronym>, Internet Printing
       Protocol). Los ficheros de configuración de CUPS le permiten
-      configurar un refinado control de acceso a las impresoras.  Por
+      configurar un refinado control de acceso a las impresoras. Por
       defecto, el acceso a las impresoras está limitado a
       <emphasis>localhost</emphasis> (<emphasis>127.0.0.1</emphasis>).
     </para>
     
     <para>
       Usted puede refinar el control de acceso en el archivo central
-      de configuración del demonio CUPS,
+      de configuración del daemon CUPS,
       <filename>/etc/cups/cupsd.conf</filename>, que tiene una
-      sintaxis comparable al archivo de configuración de Apache.  El
+      sintaxis comparable al archivo de configuración de Apache. El
       control de acceso es configurado a través de las secciones
       <emphasis>Location</emphasis>. Por ejemplo, la sección global
       (directorio raíz de IPP) por defecto se ve así:
@@ -226,7 +226,7 @@ Allow From 192.168.1.203
     <indexterm><primary>Ghostscript</primary><secondary>paper size</secondary></indexterm>
 
     <para>
-      GhostScript es un interprete PostScript y Portable Document
+      GhostScript es un intérprete PostScript y Portable Document
       Format (<acronym>PDF</acronym>). Ambos, PostScript y PDF son
       lenguajes que describen datos que pueden ser
       impresos. GhostScript es usado para convertir PostScript y PDF a
@@ -272,7 +272,7 @@ Allow From 192.168.1.203
       Puede cambiar la configuración de GhostScript para usar A4 como
       el tamaño de página por defecto removiendo el símbolo de
       porcentaje y el espacio que se encuentran al inicio de la
-      segunda linea, quedando así:
+      segunda línea, quedando así:
     </para>
 
     <screen>
@@ -283,7 +283,7 @@ Allow From 192.168.1.203
     <para>
       También es posible utilizar otro tamaño de papel mas que Carta o
       A4 reemplazando <emphasis>a4</emphasis> en el ejemplo anterior
-      con el tamaño de papel que quiera usar.  Por ejemplo, podría
+      con el tamaño de papel que quiera usar. Por ejemplo, podría
       asignar el tamaño de papel por defecto a US Legal con:
     </para>
 

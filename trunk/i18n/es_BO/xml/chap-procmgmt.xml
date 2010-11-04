@@ -150,7 +150,7 @@
 	<emphasis>fork()</emphasis>. Esta llamada del sistema copia el
 	espacio de dirección del proceso, procesa la información en el
 	ejecutante y da al nuevo proceso, llamado proceso hijo, un PID
-	diferente.  El proceso hijo continuará su ejecución en el
+	diferente. El proceso hijo continuará su ejecución en el
 	mismo punto que el padre, pero tendrá un diferente valor de
 	retorno desde la llamada del sistema
 	<emphasis>fork()</emphasis>. Basado en este valor de retorno
@@ -340,7 +340,7 @@ $ <userinput>ps</userinput>
 	información.  <emphasis>PID</emphasis> es el ID del proceso,
 	<emphasis>TTY</emphasis> la terminal controladora,
 	<emphasis>TIME</emphasis> la cantidad de tiempo de CPU que el
-	proceso ha uado y <command>CMD</command> el comando o programa
+	proceso ha usado y <command>CMD</command> el comando o programa
 	base del cual una copia se está ejecutando. Los campos
 	mostrados por defecto pueden variar un poco entre sistemas,
 	pero usualmente al menos estos campos son mostrados con tal
@@ -462,19 +462,19 @@ $ <userinput>ps -t tty2</userinput>
 
       <itemizedlist>
 	<listitem>
-	  <para><emphasis>SIGKILL (9):</emphasis> muerte forzada de un
+	  <para><emphasis>SIGKILL (9):</emphasis> finalización forzada de un
 	  proceso.</para>
 	</listitem>
 	<listitem>
 	  <para><emphasis>SIGTERM (15):</emphasis> pide la
-	  finalización de un proceso.  Ya que esta es una petición, un
+	  finalización de un proceso. Ya que esta es una petición, un
 	  programa podría ignorarla, en contraste a
 	  <emphasis>SIGKILL</emphasis>.</para>
 	</listitem>
 	<listitem>
 	  <para><emphasis>SIGHUP (1):</emphasis> Tradicionalmente,
 	  esto señala un cuelgue de terminal. Pero hoy en día algunos
-	  demonios (e.g. <emphasis>inetd</emphasis>) releen su
+	  daemons (e.g. <emphasis>inetd</emphasis>) releen su
 	  configuración cuando esta señal es enviada.</para>
 	</listitem>
       </itemizedlist>
@@ -580,22 +580,23 @@ $ <command>renice 14 -p 3108</command>
     <para>
       A veces es útil agrupar procesos para permitir operaciones en un
       conjunto de procesos, como por ejemplo para distribuir una señal
-      a todos los procesos en un grupo en vez de a un solo proceso. No
-      muy sorprendente, estos conjuntos de procesos son llamados
-      <emphasis>grupos de programas</emphasis> en UNIX. Después de una
-      bifurcación, un proceso hijo es automáticamente miembro del
-      grupo de procesos del padre. Sin embargo, nuevos grupos de
-      procesos pueden ser creados haciendo que un proceso sea un líder
-      de grupo de procesos y agregando otros procesos al grupo. El ID
-      del grupo de procesos es el PID del líder del grupo de procesos.
+      a todos los procesos en un grupo en vez de a un solo
+      proceso. Sin mucha sorpresa, estos conjuntos de procesos son
+      llamados <emphasis>grupos de programas</emphasis> en
+      UNIX. Después de una bifurcación, un proceso hijo es
+      automáticamente miembro del grupo de procesos del padre. Sin
+      embargo, nuevos grupos de procesos pueden ser creados haciendo
+      que un proceso sea un líder de grupo de procesos y agregando
+      otros procesos al grupo. El ID del grupo de procesos es el PID
+      del líder del grupo de procesos.
     </para>
 
     <para>
       Virtualmente todas las consolas UNIX modernas dan su propio
       grupo de procesos a los procesos creados a través de la
-      invocación de un comando. Todos los procesos en una pipeline on
+      invocación de un comando. Todos los procesos en una tubería on
       normalmente agregados a un grupo de procesos. En los siguientes
-      comandos que crean una pipeline
+      comandos que crean una tubería
     </para>
 
     <screen>
@@ -614,21 +615,21 @@ cat | tr -s ' ' | egrep 'foob.r'
       </listitem>
       <listitem>
 	<para>
-	  El primer proceso en la pipeline es colocado en un grupo de
+	  El primer proceso en la tubería es colocado en un grupo de
 	  proceso con su propio PID como el ID del grupo, haciéndolo
-	  el proceso líder. Los otros proceso en la pipeline son
+	  el proceso líder. Los otros proceso en la tubería son
 	  agregados al grupo de proceso.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  Los descriptores de archivo de los procesos en la pipeline
-	  son reconfigurados para formar una pipeline.
+	  Los descriptores de archivo de los procesos en la tubería
+	  son reconfigurados para formar la tubería.
 	</para>
       </listitem>
       <listitem>
 	<para>
-	  Los programas en la pipeline son ejecutados.
+	  Los programas en la tubería son ejecutados.
 	</para>
       </listitem>
     </orderedlist>
@@ -799,7 +800,7 @@ $ <command>bg %1</command>
       <para>
 	También puede ejecutar y colocar un trabajo directamente en
 	segundo plano cuando es iniciado, agregando el signo &amp; al
-	comando o a una pipeline. Por ejemplo:
+	comando o a una tubería. Por ejemplo:
       </para>
 
       <screen>

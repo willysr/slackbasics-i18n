@@ -8,17 +8,17 @@
 
 <para>
   Existen dos formas de ofrecer servicios TCP/IP: ejecutando un
-  servidor de aplicaciones auto-suficiente como demonio o usando el
+  servidor de aplicaciones auto-suficiente como daemon o usando el
   Internet super server,
-  <command>inetd</command>. <command>inetd</command> es un demonio que
+  <command>inetd</command>. <command>inetd</command> es un daemon que
   monitorea un rango de puertos. Si un cliente intenta conectarse a un
   puerto <command>inetd</command> maneja la conexión y delega la misma
   a el software servidor que maneja ese tipo de conexión. La ventaja
   de esta alternativa es que agrega una capa extra de seguridad y
   facilita el registro de historial de conexiones entrantes. La
-  desventaja es que es algo mas lento que utilizar un demonio
-  auto-suficente.  Es recomendable ejecutar una demonio
-  auto-suficiente, por ejemplo, en un servidor FTP sobrecargado.
+  desventaja es que es algo mas lento que utilizar un daemon
+  auto-suficente. Es recomendable ejecutar un daemon auto-suficiente,
+  por ejemplo, en un servidor FTP sobrecargado.
 </para>
 
 </sect1>
@@ -41,10 +41,10 @@ ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
   Esta linea especifica que el <command>inetd</command> debería
   aceptar conexiones FTP y pasarlas a <command>tcpd</command>. Esto
   puede parecer un poco extraño, por que normalmente
-  <command>proftpd</command> maneja las conexiones FTP. Tambien puede
+  <command>proftpd</command> maneja las conexiones FTP. También puede
   especificar el uso de <command>proftpd</command> directamente en
   <filename>inetd.conf</filename>, pero Slackware Linux normalmente
-  pasa la conexión a <command>tcpd</command>.  Este programa a su vez
+  pasa la conexión a <command>tcpd</command>. Este programa a su vez
   pasa la conexión a <command>proftpd</command>, como fué
   especificado. <command>tcpd</command> es usado para monitorear
   servicios y para proveer control basado en host.
@@ -54,7 +54,7 @@ ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
   Los servicios pueden ser deshabilitados agregando el caracter de
   comentario (#) al inicio de la linea. Es recomendable deshabilitar
   todos los servicios y despues habilitar los servicios que requiera
-  uno a la vez.  Despues de cambiar
+  uno a la vez. Después de cambiar
   <filename>/etc/inetd.conf</filename>, <command>inetd</command>
   necesita ser reiniciado para activar los cambios. Esto puede
   realizarse enviando una señal HUP al proceso inetd:
@@ -95,7 +95,7 @@ ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
 
 <para>
   En este ejemplo las conexiones ftp pasan a través
-  <command>tcpd</command>.  <command>tcpd</command> registra la
+  <command>tcpd</command>. <command>tcpd</command> registra la
   conexión a través de syslog y permite chequeos adicionales. Una de
   las características mas usadas de <command>tcpd</command> es el
   control de acceso basado en host. Los hosts que deberían ser negados
@@ -117,7 +117,7 @@ service: hosts
 <para>
   Suponga que quiere bloquear el acceso a todos los servicios
   administrados a través de <command>tcpd</command>, a excepción del
-  host <quote>trusted.example.org</quote>.  Para hacer esto, los
+  host <quote>trusted.example.org</quote>. Para hacer esto, los
   siguientes archivos <filename>hosts.deny</filename> y
   <filename>hosts.allow</filename> deberían ser creados.
 </para>
