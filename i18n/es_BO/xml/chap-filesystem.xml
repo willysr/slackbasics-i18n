@@ -27,7 +27,7 @@
 	El sistema de archivos consiste en dos tipos de elementos:
 	datos y metadatos. Los metadatos los bloques de datos que
 	están en el disco. La mayoría de los sistemas de ficheros
-	utilizan nodos de información (inodes, de sus palabras en
+	utilizan nodos de información (inodos, de sus palabras en
 	inglés) para almacenar metadatos. Y generalmente almacenan los
 	siguientes datos en sus inodos:
       </para>
@@ -72,7 +72,7 @@
             </row>
             <row>
               <entry>i_block</entry>
-              <entry>Punteros a los bloques de datos.</entry>
+              <entry>Punteros a bloques de datos.</entry>
             </row>
           </tbody>
         </tgroup>
@@ -87,7 +87,7 @@
 	<emphasis>i_block</emphasis>: cada inodo tiene punteros hacia
 	los bloques de datos sobre los cuales el inode provee
 	información. Juntos, el inodo y los bloques de datos son el
-	archivo en el sistema de archivos.
+	archivo actual en el sistema de archivos.
       </para>
 
       <para>
@@ -132,7 +132,7 @@
           <para>
 	    El sistema lee el inodo del directorio
 	    <filename>daniel</filename>, verifica si el usuario tiene
-	    acceso a este inodo y lee el bloque de datos para hallar
+	    acceso a este inodo y lee el bloque de datos para encontrar
 	    el número de inodo del archivo
 	    <filename>note.txt</filename>.
 	  </para>
@@ -268,7 +268,7 @@ other::---
 	refinado a través de Frameworks Obligatorios de Control de
 	Acceso (Mandatory Access Control Frameworks, MAC) como SELinux
 	y AppArmor. Pero estos frameworks de control de acceso estan
-	mas alla del alcance de este libro.
+	mas allá del alcance de este libro.
       </para>
     </sect2>
 
@@ -278,11 +278,11 @@ other::---
       <para>
 	Una entrada de directorio que apunta a un inodo es denominada
 	<emphasis>enlace duro</emphasis>. La mayoría de los archivos
-	son enlazados solamente una vez, pero nada le detiene de
-	enlazar un archivo dos veces. Esto incrementará el campo
+	son enlazados solamente una vez, pero nada le prohibe enlazar
+	un archivo dos veces. Esto incrementará el campo
 	<emphasis>links_count (contador de enlaces)</emphasis> del
-	inodo. Esta es una buena forma para el sistema de archivos de
-	ver cuáles inodos y bloques de datos estan libres para su
+	inodo. Esta es una buena forma para que el sistema de archivos
+	véa cuáles inodos y bloques de datos estan libres para su
 	uso. Si link_count tiene el valor cero, el inodo ya no es
 	referenciado y puede ser reclamado.
       </para>
@@ -309,7 +309,7 @@ other::---
 	crear enlaces duros a directorios. Permitiendo la creación de
 	enlaces duros a directorios podría producir ciclos de
 	directorios, encaminando a potenciales deadlocks e
-	incosistencias en el sistema de archivos. En adición a eso, la
+	inconsistencias en el sistema de archivos. En adición a eso, la
 	mayoría de las implementaciones de <command>rm</command> y
 	<command>rmdir</command> no saben como tratar con tales
 	enlaces duros de directorio extras.
@@ -322,7 +322,7 @@ other::---
 	usado, el sistema operativo seguirá la ruta a ese enlace. Los
 	enlaces simbólicos también pueden referirse a un archivo que
 	no existe, ya que solamente contiene un nombre. Tales enlaces
-	son llamados enlaces colgados.
+	son llamados enlaces huérfanos o colgados.
       </para>
 
       <figure xml:id="chap-filesystems-introduction-links-symlink">
@@ -345,11 +345,11 @@ other::---
 	  seguridad de los enlaces duros. Si el directorio
 	  <filename>/home</filename> esta en el mismo sistema de
 	  archivos que los binarios del sistema, un usuario será capaz
-	  de crear enlaces duros a binarios. En el caso de que un
-	  programa vulnerable es actualizado, el enlace en el
-	  directorio home del usuario seguirá enlazando al viejo
-	  binario del programa, dando efectivamente al usuario acceso
-	  a un binario vulnerable.
+	  de crear enlaces duros hacia archivos binarios. En el caso
+	  de que un programa vulnerable es actualizado, el enlace en
+	  el directorio home del usuario seguirá enlazando al viejo
+	  binario del programa, dando al usuario acceso efectivo a un
+	  binario vulnerable.
 	</para>
 
         <para>
@@ -475,8 +475,8 @@ $ <userinput>ls -i dns*</userinput>
 
       <para>
 	Algunas veces necesitará algo de ayuda para determinar el tipo
-	de un archivo. Aquí es donde la utilidad
-	<command>file</command> se vuelve útil. Suponga que he
+	de un archivo. Aquí es donde la herramienta
+	<command>file</command> se vuelve útil. Suponga que ha
 	encontrado un archivo nombrado
 	<filename>HelloWorld.class</filename> en algún lugar de mi
 	disco. Se podría suponer que es un archivo que contiene
@@ -557,7 +557,7 @@ $ <userinput>file -L /usr/X11R6/bin/X</userinput>
 
       <para>
 	Veremos verificación de integridad de archivos avanzada mas
-	tarde, <!-- XXX xref --> mientras tanto tendremos un corto
+	tarde, <!-- XXX xref --> mientras tanto daremos un corto
 	vistazo a la utilidad <command>cksum</command>.
 	<command>cksum</command> puede calcular la verificación de
 	redundancia cíclica (cyclic redundancy check,CRC) para un
@@ -593,8 +593,8 @@ $ <userinput>cksum myfile</userinput>
 	emulador de terminal basado en caracteres. La forma mas
 	primitiva de ver el contenido de un archivo es usando
 	<command>cat</command>. <command>cat</command> lee archivos
-	que fueron especificados como parámetro línea por línea, y
-	escribirá las líneas a la salida estándar. Entonces, puede
+	que fueron especificados como parámetros línea por línea, y
+	escribe las líneas a la salida estándar. Entonces, puede
 	escribir el contenido del archivo
 	<filename>note.txt</filename> a la terminal con <command>cat
 	note.txt</command>. Mientras algunos sistemas y la mayoría de
@@ -716,8 +716,8 @@ $ <userinput>less note.txt</userinput>
 	provee información acerca del tamaño de un archivo. Mientras
 	esto usualmente provee información suficiente sobre el tamaño
 	de los archivos, usted podría querer reunir información sobre
-	las colecciones de archivos y directorios. Aquí es donde el
-	comando <command>du</command> entra. Por defecto,
+	las colecciones de archivos y directorios. Aquí es donde entra
+	el comando <command>du</command>. Por defecto,
 	<command>du</command> imprime el tamaño de archivos por
 	directorio. Por ejemplo:
       </para>
