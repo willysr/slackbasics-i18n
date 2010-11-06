@@ -235,7 +235,7 @@ $ <userinput>set -o emacs</userinput>
       <table xml:id="chap-shell-moving-char-shortcuts-move">
 	<title>Desplazándose por caracter</title>
 
-	<tgroup cols="1" colsep="1" rowsep="1">
+	<tgroup cols="2" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Teclas</entry><entry>Descripción</entry>
@@ -283,7 +283,7 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
       <table xml:id="chap-shell-moving-char-shortcuts-delete">
 	<title>Borrando caracteres</title>
 
-	<tgroup cols="1" colsep="1" rowsep="1">
+	<tgroup cols="2" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Teclas</entry><entry>Descripción</entry>
@@ -354,7 +354,7 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
       <table xml:id="chap-shell-moving-char-shortcuts-swap">
 	<title>Intercambiando caracteres</title>
 
-	<tgroup cols="1" colsep="1" rowsep="1">
+	<tgroup cols="2" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Teclas</entry><entry>Descripción</entry>
@@ -420,7 +420,7 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
       <table xml:id="chap-shell-moving-word-shortcuts-move">
 	<title>Moviendose a través de palabras</title>
 
-	<tgroup cols="1" colsep="1" rowsep="1">
+	<tgroup cols="2" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Teclas</entry>
@@ -501,7 +501,7 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 
       <table  xml:id="chap-shell-moving-word-shortcuts-delete">
 	<title>Borrando palabras</title>
-	<tgroup cols="1" colsep="1" rowsep="1">
+	<tgroup cols="2" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Teclas</entry>
@@ -538,7 +538,7 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 
       <table  xml:id="chap-shell-moving-word-shortcuts-modify">
 	<title>Modificando palabras</title>
-	<tgroup cols="1" colsep="1" rowsep="1">
+	<tgroup cols="2" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Teclas</entry>
@@ -648,7 +648,7 @@ find ~/music -name '*.ogg' -print
 
       <table xml:id="chap-shell-moving-line-shortcuts-move">
 	<title>Moviéndose a través de líneas</title>
-	<tgroup cols="1" colsep="1" rowsep="1">
+	<tgroup cols="2" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Teclas</entry>
@@ -712,7 +712,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
 
       <table xml:id="chap-shell-moving-line-shortcuts-delete">
 	<title>Eliminando líneas</title>
-	<tgroup cols="1" colsep="1" rowsep="1">
+	<tgroup cols="2" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Teclas</entry>
