@@ -243,7 +243,7 @@ find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
       <table xml:id="chap-shell-moving-char-shortcuts-delete">
 	<title>Menghapus karakter</title>
 
-	<tgroup cols="1" colsep="1" rowsep="1">
+	<tgroup cols="2" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Kunci</entry><entry>Deskripsi</entry>
@@ -308,7 +308,7 @@ find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
       <table xml:id="chap-shell-moving-char-shortcuts-swap">
 	<title>Menukar karakter</title>
 
-	<tgroup cols="1" colsep="1" rowsep="1">
+	<tgroup cols="2" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Kunci</entry><entry>Deskripsi</entry>
@@ -366,7 +366,7 @@ cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
       <table xml:id="chap-shell-moving-word-shortcuts-move">
 	<title>Berpindah per kata</title>
 
-	<tgroup cols="1" colsep="1" rowsep="1">
+	<tgroup cols="2" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Kunci</entry>
@@ -439,7 +439,7 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 
       <table  xml:id="chap-shell-moving-word-shortcuts-delete">
 	<title>Menghapus kata</title>
-	<tgroup cols="1" colsep="1" rowsep="1">
+	<tgroup cols="2" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Kunci</entry>
@@ -474,7 +474,7 @@ find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
 
       <table  xml:id="chap-shell-moving-word-shortcuts-modify">
 	<title>Memodifikasi kata</title>
-	<tgroup cols="1" colsep="1" rowsep="1">
+	<tgroup cols="2" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Kunci</entry>
@@ -571,7 +571,7 @@ find ~/music -name '*.ogg' -print
 
       <table xml:id="chap-shell-moving-line-shortcuts-move">
 	<title>Berpindah per baris</title>
-	<tgroup cols="1" colsep="1" rowsep="1">
+	<tgroup cols="2" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Kunci</entry>
@@ -629,7 +629,7 @@ find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
 
       <table xml:id="chap-shell-moving-line-shortcuts-delete">
 	<title>Menghapus baris</title>
-	<tgroup cols="1" colsep="1" rowsep="1">
+	<tgroup cols="2" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Kunci</entry>
