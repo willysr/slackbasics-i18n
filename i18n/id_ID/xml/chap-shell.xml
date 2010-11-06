@@ -198,7 +198,7 @@ $ <userinput>set -o emacs</userinput>
       <table xml:id="chap-shell-moving-char-shortcuts-move">
 	<title>Berpindah per karakter</title>
 
-	<tgroup cols="1" colsep="1" rowsep="1">
+	<tgroup cols="2" colsep="1" rowsep="1">
 	  <thead>
 	    <row>
 	      <entry>Kunci</entry><entry>Deskripsi</entry>
