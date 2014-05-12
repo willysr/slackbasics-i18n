@@ -1,0 +1,620 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 14. Gestió d'usuaris</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="sysadmin.html" title="Part V. Administració del sistema">
+<link rel="prev" href="sysadmin.html" title="Part V. Administració del sistema">
+<link rel="next" href="printer.html" title="Chapter 15. Configuració de impressores">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 14. Gestió d'usuaris </th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="sysadmin.html">Prev</a> </td>
+<th width="60%" align="center">Part V. Administració del sistema</th>
+<td width="20%" align="right"> <a accesskey="n" href="printer.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div lang="en" class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="chap-usermgmt"></a>Chapter 14. Gestió d'usuaris </h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="chap-usermgmt.html#chap-usermgmt-intro">14.1. Introducció</a></span></dt>
+<dt><span class="sect1"><a href="chap-usermgmt.html#chap-usermgmt-user">14.2. Afegint i suprimint usuaris</a></span></dt>
+<dt><span class="sect1"><a href="chap-usermgmt.html#chap-usermgmt-su">14.3. Evitant l'ús de root mitjançant su </a></span></dt>
+<dt><span class="sect1"><a href="chap-usermgmt.html#chap-usermgmt-quota">14.4. Cuota de disc</a></span></dt>
+</dl>
+</div>
+  
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-usermgmt-intro"></a>14.1. Introducció</h2></div></div></div>
+    
+
+    <p>
+      GNU/Linux és un sistema opertiu multi-usuari. Açò significa que
+      múltiples usuaris poden utilitzar el sistema, i ho poden fer
+      simultàniament. Els conceptes relatius a gestió d'usuaris del 
+      GNU/Linux són bastant senzills. Primer que res, hi ha diversos
+      comptes d'usuari en cada sistema. Inclús en un sistema d'un
+      únic usuari hi múltiples comptes d'usuari perque GNU/Linux
+      utilitza comptes especials per a algunes tasques. El usuaris
+      poden pertanyer a grups. Els grups s'utilitzen per a augmentar
+      la granularitat dels permisos, per exemple, pots fer un fitxer
+      llegible per a cert grup. Hi ha uns quants usuaris i grups
+      reservats a cada sistema, el més important dels quals és 
+      <span class="emphasis"><em>root</em></span>. L'usuari <span class="emphasis"><em>root</em></span>
+      és l'administrador del sistema. Es recomanable evitar 
+      iniciar sessió, perque incrementa enormement els riscos de
+      seguretat, en el seu lloc pots iniciar sessió com un usuari
+      normal i realitzar les tasques d'administració del sistema
+      utilitzant les ordres <span class="command"><strong>su</strong></span> i
+      <span class="command"><strong>sudo</strong></span>.
+
+      
+    </p>
+
+    <p>
+      Els comptes d'usuari disponibles estàn especificats al fitxer
+      <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/passwd</code></html:span>. Pots fer una ullada a este
+      fitxer per a fer-te una idea de quins comptes d'usuari són
+      obligatoris. Potser ja t'has adonat de que no hi ha
+      contrasenyes en este fitxer. Les contrasenyes es mantenen
+      a un fitxer separat, <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/shadow</code></html:span>, com
+      cadenes xifrades. La informació relativa als grups s'emmagatzema
+      al fitxer <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/group</code></html:span>. Per norma general
+      no és bona idea modificar aquests fitxers directament, hi ha
+      algunes eines excel·lents que poden ajudar-te amb
+      l'administració de usuaris i groups. Aquest capítol en descriurà
+      algunes.
+
+      
+    </p>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-usermgmt-user"></a>14.2. Afegint i suprimint usuaris</h2></div></div></div>
+    
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-usermgmt-user-add"></a>14.2.1. useradd</h3></div></div></div>
+      
+
+      <p>
+	<span class="command"><strong>useradd</strong></span> s'utilitza per a afegir comptes d'usuari
+	al sistema. Executant <span class="command"><strong>useradd</strong></span> amb un nom d'usuari
+	com a paràmetre crearà l'usuari en el sistema. Per exemple:
+	
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>useradd jaume</code></strong>
+      </pre>
+
+      <p>
+	Crea el compte d'usuari <span class="emphasis"><em>jaume</em></span>, Per favor
+	tin en compte que açò no crea un directori llar per a l'usuari.
+	Afegeix el paràmetre <em class="parameter"><code>-m</code></em>
+	per a crear-lo. Per exemple:
+
+	
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>useradd -m jaume</code></strong>
+      </pre>
+
+      <p>
+	Açò afegiria l'usuari <span class="emphasis"><em>jaume</em></span> al sistema, i
+	crearia el directori llar <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/home/jaume</code></html:span> per
+	a este usuari. Normalment, l'usuari és fet membre del grup
+	<span class="emphasis"><em>users</em></span>. Suposem que ens agradaria fer que
+	<span class="emphasis"><em>crew</em></span> fora el grup primari de l'usuari
+	<span class="emphasis"><em>jaume</em></span>. Açò es pot fer utilitzant el
+	paràmetre <em class="parameter"><code>-g</code></em>. Per
+	exemple:
+
+	
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>useradd -g crew -m jordi</code></strong>
+      </pre>
+
+      <p>
+	Tmbé és possible afegir a este usuari a grups secundaris
+	durant la creació del compte amb el paràmetre 
+	<span class="emphasis"><em>-G</em></span>. Els noms de grup es poden separar
+	amb una coma. La ordre següent crearia l'usuari
+	<span class="emphasis"><em>bob</em></span>, que és un membre del grups
+	<span class="emphasis"><em>crew</em></span> i dels grups seundaris
+	<span class="emphasis"><em>www-admins</em></span> i <span class="emphasis"><em>ftp-admins</em></span>:
+
+	
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>useradd -g crew -G www-admins,ftp-admins -m jaume</code></strong>
+      </pre>
+
+      <p>
+	Per defecte, <span class="command"><strong>useradd</strong></span> només afegeix usuaris,
+	no defineix un password per a l'usuari afegit, aquesta tasca
+	es fa mitjançant la ordre <span class="command"><strong>passwd</strong></span>.
+
+	
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-usermgmt-user-passwd"></a>14.2.2. passwd</h3></div></div></div>
+      
+
+      <p>
+	Com hauràs endevinat, la ordre <span class="command"><strong>passwd</strong></span> s'utilitza
+	per a definir la contrasenya per a un usuari. Executant esta ordre
+	amb un usuari com a paràmetre canviarà la contrasenya d'este usuari.
+	La ordre <span class="command"><strong>passwd</strong></span> demanarà la contrasenya antiga
+	una vegada i dos la nova:
+	
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>passwd</code></strong>
+Old password: 
+Enter the new password (minimum of 5, maximum of 127 characters)
+Please use a combination of upper and lower case letters and numbers.
+New password: 
+Re-enter new password: 
+Password changed.
+      </pre>
+
+      <p>
+	L'usuari <span class="emphasis"><em>root</em></span> pot definir contrasenyes per a
+	usuaris especificant el nom d'usuari com a paràmetre. En este cas,
+	la ordre <span class="command"><strong>passwd</strong></span> només demanarà la contrasenya nova.
+	Per exemple:
+	
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>passwd jaume</code></strong>
+Enter new UNIX password: 
+Retype new UNIX password: 
+passwd: password updated successfully
+      </pre>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-usermgmt-user-adduser"></a>14.2.3. adduser</h3></div></div></div>
+      
+
+      <p>
+	La ordre <span class="command"><strong>adduser</strong></span> combina les ordres
+	<span class="command"><strong>useradd</strong></span> i <span class="command"><strong>passwd</strong></span> en un
+	script interactiu. Et demanarà que introduisques la informació
+	relativa al compte a crear i després d'això, crearà un compte
+	basat en la informació proporcionada. A continuació es mostra
+	un exemple de sessió. 
+
+	
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>adduser</code></strong>
+
+Login name for new user []: <strong class="userinput"><code>jhon</code></strong>
+
+User ID ('UID') [ defaults to next available ]: <strong class="userinput"><code>&lt;Enter&gt;</code></strong>
+
+Initial group [ users ]: <strong class="userinput"><code>&lt;Enter&gt;</code></strong>
+
+Additional groups (comma separated) []: <strong class="userinput"><code>staff</code></strong>
+
+Home directory [ /home/jhon ] <strong class="userinput"><code>&lt;Enter&gt;</code></strong>
+
+Shell [ /bin/bash ] <strong class="userinput"><code>&lt;Enter&gt;</code></strong>
+
+Expiry date (YYYY-MM-DD) []: <strong class="userinput"><code>&lt;Enter&gt;</code></strong>
+
+New account will be created as follows:
+
+---------------------------------------
+Login name.......:  jhon
+UID..............:  [ Next available ]
+Initial group....:  users
+Additional groups:  [ None ]
+Home directory...:  /home/jhon
+Shell............:  /bin/bash
+Expiry date......:  [ Never ]
+
+This is it... if you want to bail out, hit Control-C.  Otherwise, press
+ENTER to go ahead and make the account.
+<strong class="userinput"><code>&lt;Enter&gt;</code></strong>
+
+Creating new account...
+
+
+Changing the user information for jhon
+Enter the new value, or press ENTER for the default
+        Full Name []: <strong class="userinput"><code>John Doe</code></strong>
+        Room Number []: <strong class="userinput"><code>&lt;Enter&gt;</code></strong>
+        Work Phone []: <strong class="userinput"><code>&lt;Enter&gt;</code></strong>
+        Home Phone []: <strong class="userinput"><code>&lt;Enter&gt;</code></strong>
+        Other []: <strong class="userinput"><code>&lt;Enter&gt;</code></strong>
+Changing password for john
+Enter the new password (minimum of 5, maximum of 127 characters)
+Please use a combination of upper and lower case letters and numbers.
+New password: <strong class="userinput"><code>password</code></strong>
+Re-enter new password: <strong class="userinput"><code>password</code></strong>
+
+
+Account setup complete.
+      </pre>
+
+      <p>
+	Pots utilitzar els valos per defecte, o deixar alguns camps buits,
+	donant-li un colpet a la tecla &lt;Enter&gt;
+	
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-usermgmt-user-userdel"></a>14.2.4. userdel</h3></div></div></div>
+      
+
+      <p>
+	De vegades és necessari eliminar un compte d'usuari del sistema.
+	GNU/Linux ofereix la eina <span class="command"><strong>userdel</strong></span> per a fer açò.
+	Senzillament especifica el nom d'usuari com a paràmetre per a 
+	eliminar a eixe usuari del sistema. Per exemple, la següent ordre
+	eliminarà el compte d'usuari <span class="emphasis"><em>jaume</em></span> del sistema:
+	
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>userdel jaume</code></strong>
+      </pre>
+
+      <p>
+	Açò només elimina el compte d'usuari, no la carpeta llar de l'usuari
+	ni el seu correu. Senzillament, afegeix el paràmetre  
+	<em class="parameter"><code>-r</code></em> per a eliminar també
+	la carpeta llar de l'usuari i el seu correu. Per exemple:
+	
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>userdel -r jaume</code></strong>
+      </pre>
+    </div>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-usermgmt-su"></a>14.3. Evitant l'ús de root mitjançant su </h2></div></div></div>
+    
+
+    <p>
+      Evitar inicar sessió com a <span class="emphasis"><em>root</em></span> és una bona idea.
+      Hi ha moltes raons per a no fer-ho, teclejar una ordre equivocada podria
+      provocar que passaren coses dolentes i programes maliciosos poden fer molt
+      de mal quan has iniciat sessió com a <span class="emphasis"><em>root</em></span>. Així i
+      tot hi ha moltes situacions en què necessites tindre accés de root. Per
+      exemple per a administrar el sistema o per a instal·lar programai nou.
+      Afortunadament la ordre <span class="command"><strong>su</strong></span> pot donar-te temporalment
+      privilegis de root.
+      
+      
+    </p>
+
+    <p>
+      Utilitzar <span class="command"><strong>su</strong></span> és molt senzill, només executant
+      <span class="command"><strong>su</strong></span> se't demanarà la contrassenya del root, una vegada
+      ben introduïda, s'iniciarà un shell amb privilegis de root:
+
+      
+    </p>
+
+    <pre class="screen">
+$ <strong class="userinput"><code>whoami</code></strong>
+jaume
+$ <strong class="userinput"><code>su</code></strong>
+Password: 
+# <strong class="userinput"><code>whoami</code></strong>
+root
+# <strong class="userinput"><code>exit</code></strong>
+exit
+$ <strong class="userinput"><code>whoami</code></strong>
+jaume
+    </pre>
+
+    <p>
+      En aquest exemple, l'usuari <span class="emphasis"><em>bob</em></span> ha iniciat 
+      sessió, la eixida de la ordre <span class="command"><strong>whoami</strong></span> així ho 
+      reflecteix. L'usuari executa su i introdueix la contrasenya del
+      root, aleshores <span class="command"><strong>su</strong></span> llança un shell amb
+      privilegis de root, així ho confirma la eixida de la ordre 
+      <span class="command"><strong>whoami</strong></span>. Despŕes d'eixir del shell de root,
+      el retorna el control al shell en execució originalment amb els
+      privilegis de l'usuari <span class="emphasis"><em>bob</em></span>.
+
+      
+    </p>
+
+    <p>
+      També és possible executar només una ordre com a l'usuari
+      <span class="emphasis"><em>root</em></span> mitjançant el paràmetre 
+      <em class="parameter"><code>-c</code></em>- El següent exemple
+      executarà el <span class="command"><strong>lilo</strong></span>:
+      
+    </p>
+
+    <pre class="screen">
+$ <strong class="userinput"><code>su -c lilo</code></strong>
+    </pre>
+
+    <p>
+      Si volguéres passar-li paràmteres a la ordre que t'agradaria executar,
+      utilitza cometes (p. ex. <span class="command"><strong>su -c "ls -l /"</strong></span>).
+      Sense cometes la ordre <span class="command"><strong>su</strong></span> no pot determinar si els
+      paràmetres s'ha d'utilitzar per la ordre especificada o pel mateix
+      <span class="command"><strong>su</strong></span>.
+
+      
+    </p>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-usermgmt-su-restrict"></a>14.3.1. Restingint l'accés de su </h3></div></div></div>
+      
+
+      <p>
+	Pots afinar l'accés a <span class="command"><strong>su</strong></span> amb 
+	<span class="emphasis"><em>suauth</em></span>. És una bon hàbit de seguretat només
+	permetre als usuaris d'un grup especial utilitzar <span class="command"><strong>su</strong></span>
+	per a fer-se passar per <span class="emphasis"><em>root</em></span>. Per exemple,
+	pots restringir l'ús de	<span class="command"><strong>su</strong></span> per a fer-se passar per
+	root als membres del grup <span class="emphasis"><em>wheel</em></span>, a l'estil BSD,
+	afegint la següent línia a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/suauth</code></html:span>:
+
+	
+      </p>
+
+      <pre class="screen">
+root:ALL EXCEPT GROUP wheel:DENY
+      </pre>
+    </div>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-usermgmt-quota"></a>14.4. Cuota de disc</h2></div></div></div>
+    
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-usermgmt-quota-intro"></a>14.4.1. Introducció</h3></div></div></div>
+      
+
+      <p>
+	La cuota de disc és un mecanisme que permet a l'administrador
+	restingir el nombre de blocs de disc i inodes que un usuari
+	i grup particulars poden utilitzar. No tots els sistemes de
+	fitxers suportats pel Linux ofereixen suport per a cutoes de
+	????disc. Alguns sistemes amplament utilitzats que suporten cuotes
+	de disc só ext2, ext3 i XFS. Les cuotes s'activen i es gestionen
+	per a cada sistema de fitxers.????
+	
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-usermgmt-config"></a>14.4.2. Habilitant cuotes </h3></div></div></div>
+      
+
+      <p>
+	Les cuotes es poden habilitar per sistemes de fitxers a 
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/fstab</code></html:span>, mitjançant les opcions
+	de sistema de fitxers <em class="parameter"><code>usrquota</code></em> i
+	<em class="parameter"><code>grpquota</code></em>. Per exemple, suposa que
+	tenim la següent entrada per a la partició 
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/home</code></html:span> a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/fstab</code></html:span>:
+
+	
+      </p>
+
+      <pre class="screen">
+/dev/hda8        /home            xfs         defaults         1   2
+      </pre>
+
+      <p>
+	Ara podem habilitar la cuota afegint le opció
+	de sistema de fitxers <em class="parameter"><code>usrquota</code></em>:
+
+	
+      </p>
+
+      <pre class="screen">
+/dev/hda8        /home            xfs         defaults<span class="bold"><strong>,usrquota</strong></span> 1   2
+      </pre>
+
+      <p>
+	En aquest punt podem reiniciar la màquina, per a permetre
+	als guions d'inicialització de Slackware Linux habilitar les
+	cuotes. També es pot habilitar les cuotes sense reiniciar la
+	máquina, remuntant la partició, i executant la ordre
+	<span class="command"><strong>quotaon</strong></span>:
+
+	
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>mount -o remount /home</code></strong>
+# <strong class="userinput"><code>quotaon -avug</code></strong>
+      </pre>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-usermgmt-quota-edit"></a>14.4.3. Editant cuotes </h3></div></div></div>
+      
+
+      <p>
+	Les cuotes de grup i de usuari es poden editar amb
+	la utilitat <span class="quote">“<span class="quote">edquota</span>”</span>. Este programar
+	permet editar cuotes interactivament amb l'editor
+	vi. La sintaxi més bàsica d'aquesta ordre és
+	<span class="command"><strong>edquota username</strong></span>. Per exemple:
+
+	
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>edquota joe</code></strong>
+      </pre>
+
+      <p>
+	Açò llançarà l'editor <span class="command"><strong>vi</strong></span> amb la
+	informació de la cuota per a l'usuari <span class="emphasis"><em>joe</em></span>.
+	S'asemblarà a açò:
+	
+	
+      </p>
+
+      <pre class="screen">
+Disk quotas for user joe (uid 1143):
+  Filesystem                   blocks       soft       hard     inodes     soft    hard
+  /dev/hda5                      2136          0          0         64        0       0
+      </pre>
+
+      <p>
+	En este exemple, les cuotes estàn habilitades per a un sistema
+	de fitxers només, el que resideix a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/hda5</code></html:span>.
+	Com es pot vore, hi ha vàries columnes. La columna <span class="emphasis"><em>blocks
+	</em></span> mostra quants blocs utilitza l'usuari al sistema
+	de fitxers, i la columna <span class="emphasis"><em>inodes</em></span> el nombre
+	d'inodes ocupats per l'usuari. A més d'això, hi ha les columnes
+	<span class="emphasis"><em>soft</em></span>(tou) and <span class="emphasis"><em>hard</em></span>(dur) 
+	després de <span class="emphasis"><em>blocks</em></span> i
+	<span class="emphasis"><em>inodes</em></span>. Aquestes columnes especifiquen el
+	límit tou i el dur a blocs i inodes. Un usuari pot excedir el
+	límit tou durant un període de gràcia, però l'usuari no podrà
+	mai excedir el límit dur. Si el valor d'un límit és 
+	<span class="emphasis"><em>0</em></span>, això és que no n'hi ha.
+	
+
+	
+      </p>
+
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top">
+	<p>
+	  El terme <span class="quote">“<span class="quote">blocs</span>”</span> podria ser una miquet confús en
+	  este context. En els paràmetres de cuota un bloc és 1KB, no
+	  el tamany de bloc del sistema de fitxers.
+
+          
+        </p>
+      </td></tr>
+</table></div>
+
+      <p>
+	Vejam un exemple senzill. Suposem que ens agradaria posar el 
+	límit tou per a l'usuari <span class="emphasis"><em>joe</em></span> a 
+	<span class="emphasis"><em>250000</em></span>, i límit dur a
+	<span class="emphasis"><em>300000</em></span>. Nosaltre podríem canviar les
+	cuotes llistades més amunt a:
+
+	
+      </p>
+
+      <pre class="screen">
+Disk quotas for user joe (uid 1143):
+  Filesystem                   blocks       soft       hard     inodes     soft    hard
+  /dev/hda5                      2136     <span class="bold"><strong>250000</strong></span>     <span class="bold"><strong>300000</strong></span>         64        0       0
+      </pre>
+
+      <p>
+	Els nous paràmetres de la cuota d'este usuari estarán actius
+	després d'alár el fitxer, i llevar el <span class="command"><strong>vi</strong></span>.
+        
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-usermgmt-quota-repquota"></a>14.4.4. Obtenint informació relativa a la cuota </h3></div></div></div>
+      
+
+      <p> 
+	Sol ser útil obtindre estadístiques relatives a l'ús actual 
+	de la cuota. La ordre <span class="command"><strong>repquota</strong></span> es pot
+	utilitzar per a obtindre informació de quines cuotes estan
+	fixades per a cada usuari, i quina quantitat d'aquestes està
+	en ús. Es poden veurer els paràmetres de cuota per a una
+	partició especificada passant-li el nom de la partició com a
+	paràmetre i el paràmetre <em class="parameter"><code>-a</code></em>
+	mostrarà la informació de cuota de totes les particions amb
+	la cuota habilitada. Suposa que t'agradaria veurer la informació 
+	de cuota per a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/hda5</code></html:span>, pots utilitzar
+	la ordre següent:
+
+	
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>repquota /dev/hda5</code></strong>
+*** Report for user quotas on device /dev/hda5
+Block grace time: 7days; Inode grace time: 7days
+                        Block limits                File limits
+User            used    soft    hard  grace    used  soft  hard  grace
+----------------------------------------------------------------------
+root      --       0       0       0              3     0     0       
+[..]
+joe       --    2136  250000  300000             64     0     0       
+[..]
+      </pre>
+    </div>
+  </div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="sysadmin.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="sysadmin.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="printer.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Part V. Administració del sistema </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 15. Configuració de impressores </td>
+</tr>
+</table>
+</div>
+</body>
+</html>

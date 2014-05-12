@@ -1,0 +1,2035 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 9. Text processing</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="basics.html" title="Part II. Conceptes fonamentals de Slackware Linux">
+<link rel="prev" href="chap-filesystem.html" title="Chapter 8. Files and directories">
+<link rel="next" href="chap-procmgmt.html" title="Chapter 10. Process management">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 9. Text processing</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="chap-filesystem.html">Prev</a> </td>
+<th width="60%" align="center">Part II. Conceptes fonamentals de Slackware Linux</th>
+<td width="20%" align="right"> <a accesskey="n" href="chap-procmgmt.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div lang="en" class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="chap-textproc"></a>Chapter 9. Text processing</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="chap-textproc.html#chap-textproc-simple">9.1. Simple text manipulation</a></span></dt>
+<dt><span class="sect1"><a href="chap-textproc.html#chap-textproc-regexps">9.2. Regular expressions</a></span></dt>
+<dt><span class="sect1"><a href="chap-textproc.html#chap-textproc-grep">9.3. grep</a></span></dt>
+</dl>
+</div>
+  
+
+  <p>
+    Text manipulation is one of the things that UNIX excels at,
+    because it forms the heart of the UNIX philosophy, as described in
+    <a class="xref" href="chap-intro.html#chap-intro-unix" title="2.4. La filosofia UNIX">Section 2.4, “La filosofia UNIX”</a>. Most UNIX commands
+    are simple programs that read data from the standard input,
+    performs some operation on the data, and sends the result to the
+    program's standard output. These programs basically act as an
+    filters, that can be connected as a pipeline. This allows the user
+    to put the UNIX tools to uses that the writers never
+    envisioned. In later chapters we will see how you can build simple
+    filters yourself. 
+  </p>
+
+  <p>
+    This chapter describes some simple, but important, UNIX commands
+    that can be used to manipulate text. After that, we will dive into
+    regular expressions, a sublanguage that can be used to match text
+    patterns.
+  </p>
+ 
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-textproc-simple"></a>9.1. Simple text manipulation</h2></div></div></div>
+    
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-textproc-simple-cat"></a>9.1.1. Repeating what is said</h3></div></div></div>
+      
+
+      <p>
+	The most simple text filter is the <span class="command"><strong>cat</strong></span>, it
+	does nothing else than sending the data from stdin to stdout:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>echo "hello world" | cat</code></strong>
+hello world
+      </pre>
+
+      <p>
+	Another useful feature is that you can let it send the contents
+	of a file to the standard output:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>cat file.txt</code></strong>
+Hello, this is the content of file.txt
+      </pre>
+
+      <p>
+	<span class="command"><strong>cat</strong></span> really lives up to its name when
+	multiple files are added as arguments. This will concatenate
+	the files, in the sense that it will send the contents of all
+	files to the standard output, in the same order as they were
+	specified as an argument. The following screen snippet
+	demonstrates this:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>cat file.txt file1.txt file2.txt</code></strong>
+Hello, this is the content of file.txt
+Hello, this is the content of file1.txt
+Hello, this is the content of file2.txt
+      </pre>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-textproc-simple-wc"></a>9.1.2. Text statistics</h3></div></div></div>
+      
+
+      <p>
+	The <span class="command"><strong>wc</strong></span> command provides statistics about a
+	text file or text stream. Without any parameters, it will
+	print the number of lines, the number of words, and the number
+	of bytes respectively. A word is delimited by one white space
+	character, or a sequence of whitespace characters.
+      </p>
+
+      <p>
+	The following example shows the number of lines, words, and
+	bytes in the canonical <span class="quote">“<span class="quote">Hello world!</span>”</span> example:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>echo "Hello world!" | wc</code></strong> 
+       1       2      13
+      </pre>
+
+      <p>
+	If you would like to print just one of these components, you
+	can use one of the <em class="parameter"><code>-l</code></em>
+	(lines), <em class="parameter"><code>-w</code></em> (words), or
+	<em class="parameter"><code>-c</code></em> (bytes) parameters.
+	For instance, adding just the <em class="parameter"><code>-l</code></em> parameter will show the number
+	of lines in a file:
+      </p>
+
+      <pre class="screen">
+$ <span class="command"><strong>wc -l /usr/share/dict/words</strong></span> 
+  235882 /usr/share/dict/words
+      </pre>
+
+      <p>
+	Or, you can print additional fields by adding a parameter:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>wc -lc /usr/share/dict/words</code></strong>
+ 235882 2493082 /usr/share/dict/words
+      </pre>
+
+      <p>
+	Please note that, no matter the order in which the options
+	were specified, the output order will always be the same
+	(lines, words, bytes).
+      </p>
+
+      <p>
+	Since <em class="parameter"><code>-c</code></em> prints the
+	number bytes, this parameter may not represent the number of
+	characters that a text holds, because the character set in use
+	maybe be wider than one byte. To this end, the <em class="parameter"><code>-m</code></em> parameter has been added which
+	prints the number of characters in a text, independent of the
+	character set. <em class="parameter"><code>-c</code></em> and
+	<em class="parameter"><code>-m</code></em> are substitutes, and
+	can never be used at the same time.
+      </p>
+
+      <p>
+	The statistics that <span class="command"><strong>wc</strong></span> provides are more
+	useful than they may seem on the surface. For example, the
+	<em class="parameter"><code>-l</code></em> parameter is often
+	used as a counter for the output of a command. This is
+	convenient, because many commands seperate logical units by a
+	newline.  Suppose that you would like to count the number of
+	files in your home directory having a filename ending with
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">.txt</code></html:span>. You could do this by combining
+	<span class="command"><strong>find</strong></span> to find the relevant files and
+	<span class="command"><strong>wc</strong></span> to count the number of occurences:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>find ~ -name '*.txt' -type f | wc -l</code></strong>
+      </pre>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-textproc-simple-tr"></a>9.1.3. Manipulating characters</h3></div></div></div>
+      
+
+      <p>
+	The <span class="command"><strong>tr</strong></span> command can be used to do common
+	character operations, like swapping characters, deleting
+	characters, and squeezing character sequences. Depending on
+	the operation, one or two sets of characters should be
+	specified. Besides normal characters, there are some special
+	character sequences that can be used:
+      </p>
+
+      <div class="variablelist"><dl class="variablelist">
+<dt><span class="term">\character</span></dt>
+<dd>
+	    <p>
+	      This notation is used to specify characters that need
+	      escaping, most notably <span class="emphasis"><em>\n</em></span>
+	      (newline), <span class="emphasis"><em>\t</em></span> (horizontal tab), and
+	      <span class="emphasis"><em>\\</em></span> (backslash).
+	    </p>
+	  </dd>
+<dt><span class="term">character1-character2</span></dt>
+<dd>
+	    <p>
+	      Implicitly insert all characters from
+	      <span class="emphasis"><em>character1</em></span> to
+	      <span class="emphasis"><em>character2</em></span>. This notation should be
+	      used with care, because it does not always give the
+	      expected result. For instance, the sequence
+	      <span class="emphasis"><em>a-d</em></span> may yield
+	      <span class="emphasis"><em>abcd</em></span> for the POSIX locale (language
+	      setting), but this may not be true for other locales.
+	      
+	    </p>
+	  </dd>
+<dt><span class="term">[:class:]</span></dt>
+<dd>
+	    <p>
+	      Match a predefined class of characters. All possible
+	      classes are shown in <a class="xref" href="chap-textproc.html#chap-textproc-simple-tr-charclasses" title="Table 9.1. tr character classes">Table 9.1, “tr character classes”</a>.
+	    </p>
+	  </dd>
+<dt><span class="term">[character*]</span></dt>
+<dd>
+	    <p>
+	      Repeat <span class="emphasis"><em>character</em></span> until the second
+	      set is as long as the first set of characters. This
+	      notation can only be used in the second set.
+	    </p>
+	  </dd>
+<dt><span class="term">[character*n]</span></dt>
+<dd>
+	    <p>
+	      Repeat <span class="emphasis"><em>character</em></span>
+	      <span class="emphasis"><em>n</em></span> times.
+	    </p>
+	  </dd>
+</dl></div>
+
+      <div class="table">
+<a name="chap-textproc-simple-tr-charclasses"></a><p class="title"><b>Table 9.1. tr character classes</b></p>
+<div class="table-contents">
+	
+
+	<table summary="tr character classes" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Class</th>
+<th>Meaning</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>[:alnum:]</td>
+<td>All letters and numbers.</td>
+</tr>
+<tr>
+<td>[:alpha:]</td>
+<td>Letters.</td>
+</tr>
+<tr>
+<td>[:blank:]</td>
+<td>Horizontal whitespace (e.g. spaces and tabs).</td>
+</tr>
+<tr>
+<td>[:cntrl:]</td>
+<td>Control characters.</td>
+</tr>
+<tr>
+<td>[:digit:]</td>
+<td>All digits (0-9).</td>
+</tr>
+<tr>
+<td>[:graph:]</td>
+<td>All printable characters, except whitespace.</td>
+</tr>
+<tr>
+<td>[:lower:]</td>
+<td>Lowercase letters.</td>
+</tr>
+<tr>
+<td>[:print:]</td>
+<td>All printable characters, including horizontal
+	      whitespace, but excluding vertical whitespace.</td>
+</tr>
+<tr>
+<td>[:punct:]</td>
+<td>Punctuation characters.</td>
+</tr>
+<tr>
+<td>[:space:]</td>
+<td>All whitespace.</td>
+</tr>
+<tr>
+<td>[:upper:]</td>
+<td>Uppercase letters.</td>
+</tr>
+<tr>
+<td>[:xdigit:]</td>
+<td>Hexadecimal digits (0-9, a-f).</td>
+</tr>
+</tbody>
+</table>
+      </div>
+</div>
+<br class="table-break">
+
+      <div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="chap-textproc-simple-tr-swapping"></a>9.1.3.1. Swapping characters</h4></div></div></div>
+	
+
+	<p>
+	  The default operation of <span class="command"><strong>tr</strong></span> is to swap
+	  (translate) characters. This means that the
+	  <span class="emphasis"><em>n</em></span>-th character in the first set is
+	  replaced with the <span class="emphasis"><em>n</em></span>-th character in the
+	  second set. For example, you can replace all
+	  <span class="emphasis"><em>e</em></span>'s with <span class="emphasis"><em>i</em></span>'s and
+	  <span class="emphasis"><em>o</em></span>'s with <span class="emphasis"><em>a</em></span>'s with
+	  one <span class="command"><strong>tr</strong></span> operation:
+	</p>
+
+	<pre class="screen">
+$ <strong class="userinput"><code>echo 'Hello world!' | tr 'eo' 'ia'</code></strong>
+Hilla warld!
+	</pre>
+
+	<p>
+	  When the second set is not as large as the first set,
+	  the last character in the second set will be repeated.
+	  Though, this does not necessarily apply to other UNIX
+	  systems. So, if you want to use
+	  <span class="command"><strong>tr</strong></span> in a system-independent manner,
+	  explicitly define what character should be repeated. For
+	  instance
+	</p>
+
+	<pre class="screen">
+$ <strong class="userinput"><code>echo 'Hello world!' | tr 'eaiou' '[@*]'</code></strong>
+H@ll@ w@rld!
+	</pre>
+
+	<p>
+	  Another particularity is the use of the repetition syntax in
+	  the middle of the set. Suppose that set 1 is
+	  <span class="emphasis"><em>abcdef</em></span>, and set 2
+	  <span class="emphasis"><em>@[-*]!</em></span>. <span class="command"><strong>tr</strong></span> will replace
+	  <span class="emphasis"><em>a</em></span> with <span class="emphasis"><em>@</em></span>,
+	  <span class="emphasis"><em>b</em></span>, <span class="emphasis"><em>c</em></span>,
+	  <span class="emphasis"><em>d</em></span>, and <span class="emphasis"><em>e</em></span> with
+	  <span class="emphasis"><em>-</em></span>, and <span class="emphasis"><em>f</em></span> with
+	  <span class="emphasis"><em>!</em></span>.
+	  Though some other UNIX systems follow replace
+	  <span class="emphasis"><em>a</em></span> with
+	  <span class="emphasis"><em>@</em></span>, and the rest of the set characters
+	  with <span class="emphasis"><em>-</em></span>. So, a more correct notation
+	  would be the more explicit <span class="emphasis"><em>@[-*4]!</em></span>,
+	  which gives the same results on virtually all UNIX systems:
+	</p>
+
+	<pre class="screen">
+$ <strong class="userinput"><code>echo 'abcdef' | tr 'abcdef' '@[-*4]!'</code></strong>
+@----!
+	</pre>
+      </div>
+
+      <div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="chap-textproc-simple-tr-squeezing"></a>9.1.3.2. Squeezing character sequences</h4></div></div></div>
+	
+
+	<p>
+	  When the <em class="parameter"><code>-s</code></em> parameter
+	  is used, <span class="command"><strong>tr</strong></span> will squeeze all characters
+	  that are in the second set. This means that a sequence of the
+	  same characters will be reduced to one character. Let's
+	  squeeze the character "<span class="emphasis"><em>e</em></span>":
+	</p>
+
+	<pre class="screen">
+$ <strong class="userinput"><code>echo "Let's squeeze this." | tr -s 'e'</code></strong>
+Let's squeze this.
+	</pre>
+
+	<p>
+	  We can combine this with translation to show a useful
+	  example of <span class="command"><strong>tr</strong></span> in action. Suppose that we
+	  would like to mark all vowels with the
+	  <span class="emphasis"><em>at</em></span> sign (<span class="emphasis"><em>@</em></span>), with
+	  consecutive vowels represented by one
+	  <span class="emphasis"><em>at</em></span> sign. This can easily be done by
+	  piping two <span class="command"><strong>tr</strong></span> commands:
+	</p>
+
+	<pre class="screen">
+$ <strong class="userinput"><code>echo "eenie meenie minie moe" | tr 'aeiou' '[@*]' | tr -s '@'</code></strong>
+@n@ m@n@ m@n@ m@
+	</pre>
+      </div>
+
+      <div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="chap-textproc-simple-tr-deleting"></a>9.1.3.3. Deleting characters</h4></div></div></div>
+	
+
+	<p>
+	  Finally, <span class="command"><strong>tr</strong></span> can be used to delete
+	  characters. If the <em class="parameter"><code>-d</code></em>
+	  parameter is used, all characters from the first set are
+	  removed:
+	</p>
+
+	<pre class="screen">
+$ <strong class="userinput"><code>echo 'Hello world!' | tr -d 'lr'</code></strong>
+Heo wod!
+	</pre>
+      </div>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-textproc-cutpaste"></a>9.1.4. Cutting and pasting text columns</h3></div></div></div>
+      
+
+      <p>
+	The <span class="command"><strong>cut</strong></span> command is provided by UNIX systems
+	to <span class="quote">“<span class="quote">cut</span>”</span> one or more columns from a file or
+	stream, printing it to the standard output. It is often useful
+	to selectively pick some information from a
+	text. <span class="command"><strong>cut</strong></span> provides three approaches to
+	cutting information from files:
+      </p>
+
+      <div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem">
+	  <p>
+	    By byte.
+	  </p>
+	</li>
+<li class="listitem">
+	  <p>
+	    By character, which is not the same as cutting by byte on
+	    systems that use a character set that is wider than eight
+	    bits.
+	  </p>
+	</li>
+<li class="listitem">
+	  <p>
+	    By field, that is delimited by a character.
+	  </p>
+	</li>
+</ol></div>
+
+      <p>
+	In all three approaches, you can specify the element to choose
+	by its number starting at <span class="emphasis"><em>1</em></span>. You can
+	specify a range by using a dash (<span class="emphasis"><em>-</em></span>). So,
+	<span class="emphasis"><em>M-N</em></span> means the Mth to the Nth
+	element. Leaving M out (<span class="emphasis"><em>-N</em></span>) selects all
+	elements from the first element to the Nth element. Leaving N
+	out (<span class="emphasis"><em>M-</em></span>) selects the Mth element to the
+	last element. Multiple elements or ranges can be combined by
+	separating them by commas (<span class="emphasis"><em>,</em></span>). So, for
+	instance, <span class="emphasis"><em>1,3-</em></span> selects the first element
+	and the third to the last element.
+      </p>
+
+      <p>
+	Data can be cut by field with the <em class="parameter"><code>-f fields</code></em> parameter. By default,
+	the horizontal tab is used a separator. Let's have a look at
+	<span class="command"><strong>cut</strong></span> in action with a tiny Dutch to English
+	dictionary:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>cat dictionary</code></strong>
+appel   apple
+banaan  banana
+peer    pear
+      </pre>
+
+      <p>
+	We can get all English words by selecting the second field:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>cut -f 2 dictionary</code></strong>
+apple
+banana
+pear
+      </pre>
+
+      <p>
+	That was quite easy. Now let's do the same thing with a file
+	that has a colon as the field separator. We can easily try
+	this by converting the dictionary with the
+	<span class="command"><strong>tr</strong></span> command that we have seen earlier,
+	replacing all tabs with colons:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>tr '\t' ':' &lt; dictionary &gt; dictionary-new</code></strong>
+$ <strong class="userinput"><code>cat dictionary-new</code></strong>
+appel:apple
+banaan:banana
+peer:pear
+      </pre>
+
+      <p>
+	If we use the same command as in the previous example, we do
+	not get the correct output:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>cut -f 2 dictionary-new</code></strong>
+appel:apple
+banaan:banana
+peer:pear
+      </pre>
+
+      <p>
+	What happens here is that the delimiter could not be found.
+	If a line does not contain the delimiter that is being used,
+	the default behavior of <span class="command"><strong>cut</strong></span> is to print the
+	complete line. You can prevent this with the <em class="parameter"><code>-s</code></em> parameter.
+      </p>
+
+      <p>
+	To use a different delimiter than the horizontal tab, add the
+	<em class="parameter"><code>-d delimter_char</code></em>
+	parameter to set the delimiting character. So, in this case of
+	our <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">dictionary-new</code></html:span> file, we will ask
+	<span class="command"><strong>cut</strong></span> to use the colon as a delimiter:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>cut -d ':' -f 2 dictionary-new</code></strong>
+apple
+banana
+pear
+      </pre>
+
+      <p>
+	If a field that was specified does not exist in a line, that
+	particular field is not printed.
+      </p>
+
+      <p>
+	The <em class="parameter"><code>-b bytes</code></em> and
+	<em class="parameter"><code>-c characters</code></em>
+	respectively select bytes and characters from the text. On
+	older systems a character used to be a byte wide. But newer
+	systems can provide character sets that are wider than one
+	byte. So, if you want to be sure to grab complete characters,
+	use the <em class="parameter"><code>-c</code></em> parameter.
+	An entertaining example of seeing the <em class="parameter"><code>-c</code></em> parameter in action is to find
+	the ten most common sets of the first four characters of a
+	word. Most UNIX systems provide a list of words that are
+	separated by a new line. bsd-games package in Slackware Linux
+	contains /usr/share/dict/words with such a list.
+	We can use <span class="command"><strong>cut</strong></span> to
+	get the first four characters of the words in the word list,
+	add <em class="parameter"><code>uniq</code></em>  to count identical four character sequences, and
+	use <span class="command"><strong>sort</strong></span> to sort them reverse-numerically
+	(<span class="command"><strong>sort</strong></span> is described in <a class="xref" href="chap-textproc.html#chap-textproc-simple-sort" title="9.1.5. Sorting text">Section 9.1.5, “Sorting text”</a>). Finally, we will use
+	<span class="command"><strong>head</strong></span> to get the ten most frequent sequences:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>cut -c 1-4 /usr/share/dict/words | uniq -c | sort -nr | head</code></strong>
+    254 inte
+    206 comp
+    169 cons
+    161 cont
+    150 over
+    125 tran
+    111 comm
+    100 disc
+     99 conf
+     96 reco
+      </pre>
+
+      <p>
+	Having concluded with that nice piece of UNIX commands in
+	action, we will move on to the <span class="command"><strong>paste</strong></span>
+	command, which combines files in columns in a single text
+	stream.
+      </p>
+
+      <p>
+	Usage of <span class="command"><strong>paste</strong></span> is very simple, it will
+	combine all files given as an argument, separated by a tab.
+	With the list of English and Dutch words, we can generate
+	a tiny dictionary:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>paste dictionary-en dictionary-nl</code></strong>
+apple   appel
+banana  banaan
+pear    peer
+      </pre>
+
+      <p>
+	You can also combine more than two files:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>paste dictionary-en dictionary-nl dictionary-de</code></strong> 
+apple   appel   Apfel
+banana  banaan  Banane
+pear    peer    Birne
+      </pre>
+
+      <p>
+	If one of the files is longer, the column order is maintained,
+	and empty entries are used to fill up the entries of the
+	shorter files.
+      </p>
+
+      <p>
+	You can use another delimiter by adding the <em class="parameter"><code>-d delimiter</code></em> parameter. For
+	example, we can make a colon-separated dictionary:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>paste -d ':' dictionary-en dictionary-nl</code></strong>
+apple:appel
+banana:banaan
+pear:peer
+      </pre>
+
+      <p>
+	Normally, <span class="command"><strong>paste</strong></span> combines files as different
+	columns. You can also let <span class="command"><strong>paste</strong></span> use the
+	lines of each file as columns, and put the columns of each
+	file on a separate line. This is done with the <em class="parameter"><code>-s</code></em> parameter:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>paste -s dictionary-en dictionary-nl dictionary-de</code></strong>
+apple   banana  pear
+appel   banaan  peer
+Apfel   Banane  Birne
+      </pre>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-textproc-simple-sort"></a>9.1.5. Sorting text</h3></div></div></div>
+      
+
+      <p>
+	UNIX offers the <span class="command"><strong>sort</strong></span> command to sort
+	text. <span class="command"><strong>sort</strong></span> can also check whether a file is
+	in sorted order, and merge two sorted
+	files. <span class="command"><strong>sort</strong></span> can sort in dictionary and
+	numerical orders. The default sort order is the dictionary
+	order. This means that text lines are compared character by
+	character, sorted as specified in the current collating
+	sequence (which is specified through the LC_COLLATE
+	environment variable). This has a catch when you are sorting
+	numbers, for instance, if you have the numbers 1 to 10 on
+	different lines, the sequence will be 1, 10, 2, 3, etc.  This
+	is caused by the per-character interpretation of the
+	dictionary sort. If you want to sort lines by number, use the
+	numerical sort.
+      </p>
+
+      <p>
+	If no additional parameters are specified,
+	<span class="command"><strong>sort</strong></span> sorts the input lines in dictionary
+	order. For instance:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>cat &lt;&lt; EOF | sort</code></strong>
+orange
+apple
+banana
+EOF
+apple
+banana
+orange
+      </pre>
+
+      <p>
+	As you can see, the input is correctly ordered. Sometimes
+	there are two identical lines. You can merge identical lines
+	by adding the <em class="parameter"><code>-u</code></em>
+	parameter. The two samples listed below illustrate this.
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>cat &lt;&lt; EOF | sort</code></strong>
+orange
+apple
+banana
+banana
+EOF
+apple
+banana
+banana
+orange
+$ <strong class="userinput"><code>cat &lt;&lt; EOF | sort -u</code></strong>
+orange
+apple
+banana
+banana
+EOF
+apple
+banana
+orange
+      </pre>
+
+      <p>
+	There are some additional parameters that can be helpful to
+	modify the results a bit:
+      </p>
+
+      <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+	  <p>
+	    The <em class="parameter"><code>-f</code></em> parameter
+	    makes the sort case-insensitive.
+	  </p>
+	</li>
+<li class="listitem">
+	  <p>
+	    If <em class="parameter"><code>-d</code></em> is added,
+	    only blanks and alphanumeric characters are used to
+	    determine the order.
+	  </p>
+	</li>
+<li class="listitem">
+	  <p>
+	    The <em class="parameter"><code>-i</code></em> parameter
+	    makes <span class="command"><strong>sort</strong></span> ignore non-printable
+	    characters.
+	  </p>
+	</li>
+</ul></div>
+
+
+      <p>
+	You can sort files numerically by adding the <em class="parameter"><code>-n</code></em> parameter. This parameter stops
+	reading the input line when a non-numeric character was found.
+	The leading minus sign, decimal point, thousands separator,
+	radix character (that separates an exponential from a normal
+	number), and blanks can be used as a part of a number. These
+	characters are interpreted where applicable.
+      </p>
+
+      <p>
+	The following example shows numerical sort in action, by
+	piping the output of <span class="command"><strong>du</strong></span> to
+	<span class="command"><strong>sort</strong></span>. This works because
+	<span class="command"><strong>du</strong></span> specifies the size of each file as the
+	first field.
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>du -a /bin | sort -n</code></strong>
+0       /bin/kernelversion
+0       /bin/ksh
+0       /bin/lsmod.modutils
+0       /bin/lspci
+0       /bin/mt
+0       /bin/netcat
+[...]
+      </pre>
+
+      <p>
+	In this case, the output is probably not useful if you want to
+	read the output in a paginator, because the smallest files are
+	listed first. This is where the <em class="parameter"><code>-r</code></em> parameter becomes handy. This
+	reverses the sort order.
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>du -a /bin | sort -nr</code></strong>
+4692    /bin
+1036    /bin/ksh93
+668     /bin/bash
+416     /bin/busybox
+236     /bin/tar
+156     /bin/ip
+[...]
+      </pre>
+
+      <p>
+	The <em class="parameter"><code>-r</code></em> parameter also
+	works with dictionary sorts.
+      </p>
+
+      <p>
+	Quite often, files use a layout with multiple columns, and you
+	may want to sort a file by a different column than the first
+	column. For instance, consider the following score file named
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">score.txt</code></html:span>:
+      </p>
+
+      <pre class="programlisting">
+John:US:4
+Herman:NL:3
+Klaus:DE:5
+Heinz:DE:3
+      </pre>
+     
+    <p>
+      Suppose that we would like to sort the entries in this file by
+      the two-letter country name. <span class="command"><strong>sort</strong></span> allows us
+      to sort a file by a column with the <em class="parameter"><code>-k col1[,col2]</code></em> parameter.  Where
+      <span class="emphasis"><em>col1</em></span> up to <span class="emphasis"><em>col2</em></span> are
+      used as fields for sorting the input. If
+      <span class="emphasis"><em>col2</em></span> is not specified, all fields up till
+      the end of the line are used. So, if you want to use just one
+      column, use <em class="parameter"><code>-k col1,col1</code></em>.
+      You can also specify the starting character within a column
+      by adding a period (<span class="emphasis"><em>.</em></span>) and a character
+      index. For instance, <em class="parameter"><code>-k
+      2.3,4.2</code></em> means that the second column starting from
+      the third character, the third column, and the fourth column up
+      to (and including) the second character.
+    </p>
+
+    
+
+    <p>
+      There is yet another particularity when it comes to sorting by
+      columns: by default, <span class="command"><strong>sort</strong></span> uses a blank as the
+      column separator. If you use a different separator character,
+      you will have to use the <em class="parameter"><code>-t char</code></em>
+      parameter, that is used to specify the field separator.
+    </p>
+
+    <p>
+      With the <em class="parameter"><code>-t</code></em> and
+      <em class="parameter"><code>-k</code></em> parameters combined,
+      we can sort the scores file by country code:
+    </p>
+
+    <pre class="screen">
+$ <strong class="userinput"><code>sort -t ':' -k 2,2 scores.txt</code></strong>
+Heinz:DE:3
+Klaus:DE:5
+Herman:NL:3
+John:US:4
+    </pre>
+
+    <p>
+      So, how can we sort the file by the score? Obviously, we have to
+      ask sort to use the third column. But sort uses a dictionary
+      sort by default<a href="#ftn.idm962335076" class="footnote" name="idm962335076"><sup class="footnote">[6]</sup></a>. You could use the <em class="parameter"><code>-n</code></em>, but <span class="command"><strong>sort</strong></span> also
+      allows a more sophisticated approach. You can append the one or
+      more of the <span class="emphasis"><em>n</em></span>, <span class="emphasis"><em>r</em></span>,
+      <span class="emphasis"><em>f</em></span>, <span class="emphasis"><em>d</em></span>,
+      <span class="emphasis"><em>i</em></span>, or <span class="emphasis"><em>b</em></span> to the column
+      specifier. These letters represent the <span class="command"><strong>sort</strong></span>
+      parameters with the same name. If you add just the starting
+      column, append it to that column, otherwise, add it to the
+      ending column.
+    </p>
+
+    <p>
+      The following command sorts the file by score:
+    </p>
+
+    <pre class="screen">
+$ <strong class="userinput"><code>sort -t ':' -k 3n /home/daniel/scores.txt</code></strong>
+Heinz:DE:3
+Herman:NL:3
+John:US:4
+Klaus:DE:5
+    </pre>
+
+    <p>
+      It is good to follow this approach, rather than using the
+      parameter variants, because <span class="command"><strong>sort</strong></span> allows you
+      to use more than one <em class="parameter"><code>-k</code></em>
+      parameter. And, adding these flags to the column specification,
+      will allow you to sort by different columns in different ways.
+      For example using <span class="command"><strong>sort</strong></span> with the <em class="parameter"><code>-k 3,3n -k 2,2</code></em> parameters will sort
+      all lines numerically by the third column. If some lines have
+      identical numbers in the third column, these lines can be sorted
+      further with a dictionary sort of the second column.
+    </p>
+
+    <p>
+      If you want to check whether a file is already sorted, you can
+      use the <em class="parameter"><code>-c</code></em> parameter.  If
+      the file was in a sorted order, sort will return the value
+      <span class="emphasis"><em>0</em></span>, otherwise <span class="emphasis"><em>1</em></span>. We can
+      check this by echoing the value of the <span class="emphasis"><em>?</em></span>
+      variable, which holds the return value of the last executed
+      command.
+    </p>
+
+    <pre class="screen">
+$ <strong class="userinput"><code>sort -c scores.txt ; echo $?</code></strong>
+1
+$ <strong class="userinput"><code>sort scores.txt | sort -c ; echo $?</code></strong>
+0
+    </pre>
+
+    <p>
+      The second command shows that this actually works, by piping the
+      output of the sort of <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">scores.txt</code></html:span> to
+      <span class="command"><strong>sort</strong></span>.
+    </p>
+
+    <p>
+      Finally, you can merge two sorted files with the <em class="parameter"><code>-m</code></em> parameter, keeping the correct
+      sort order. This is faster than concatenating both files, and
+      resorting them.
+    </p>
+
+    <pre class="screen">
+# <strong class="userinput"><code>sort -m scores-sorted.txt scores-sorted2.txt</code></strong>
+    </pre>
+  </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-textproc-simple-diff"></a>9.1.6. Differences between files</h3></div></div></div>
+      
+
+      <p>
+	Since text streams, and text files are very important in UNIX,
+	it is often useful to show the differences between two text
+	files. The main utilities for working with file differences
+	are <span class="command"><strong>diff</strong></span> and
+	<span class="command"><strong>patch</strong></span>. <span class="command"><strong>diff</strong></span> shows the
+	differences between files. The output of
+	<span class="command"><strong>diff</strong></span> can be processed by
+	<span class="command"><strong>patch</strong></span> to apply the changes between two
+	files to a file. <span class="quote">“<span class="quote">diffs</span>”</span> are also form the base
+	of version/source management systems.  The following sections
+	describe <span class="command"><strong>diff</strong></span> and <span class="command"><strong>patch</strong></span>.
+	To have some material to work with, the following two C source
+	files are used to demonstrate these commands. These files are
+	named <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hello.c</code></html:span> and
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hello2.c</code></html:span> respectively.
+      </p>
+
+      <pre class="programlisting">
+
+#include &lt;stdio.h&gt;
+
+void usage(char *programName);
+
+int main(int argc, char *argv[]) {
+  if (argc == 1) {
+    usage(argv[0]);
+    return 1;
+  }
+
+  printf("Hello %s!\n", argv[1]);
+
+  return 0;
+}
+
+void usage(char *programName) {
+  printf("Usage: %s name\n", programName);
+}
+
+      </pre>
+
+      <pre class="programlisting">
+#include &lt;stdio.h&gt;
+<span class="bold"><strong>#include &lt;time.h&gt;</strong></span>
+
+void usage(char *programName);
+
+int main(int argc, char *argv[]) {
+  if (argc == 1) {
+    usage(argv[0]);
+    return 1;
+  }
+
+  printf("Hello %s!\n", argv[1]);
+
+  <span class="bold"><strong>time_t curTime = time(NULL);</strong></span>
+  <span class="bold"><strong>printf("The date is %s\n", asctime(localtime(&amp;curTime)));</strong></span>
+
+
+  return 0;
+}
+
+void usage(char *programName) {
+  printf("Usage: %s name\n", programName);
+}
+      </pre>
+
+      <div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="chap-textproc-simple-diff-diff"></a>9.1.6.1. Listing differences between files</h4></div></div></div>
+	
+
+	<p>
+	  Suppose that you received the program
+	  <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hello.c</code></html:span> from a friend, and you modified
+	  it to give the user the current date and time. You could
+	  just send your friend the updated program. But if a file
+	  grows larger, they can become uncomfortable, because the
+	  changes are harder to spot. Besides that, your friend may
+	  have also received modified program sources from other
+	  persons. This is a typical situation where
+	  <span class="command"><strong>diff</strong></span> becomes
+	  handy. <span class="command"><strong>diff</strong></span> shows the differences between
+	  two files. Its most basic syntax is <span class="command"><strong>diff file
+	  file2</strong></span>, which shows the differences between
+	  <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">file</code></html:span> and
+	  <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">file2</code></html:span>. Let's try this with the our
+	  source files:
+	</p>
+
+	<pre class="screen">
+$ diff hello.c hello2.c
+1a2 <a name="co-diff-append"></a><span><img src="../images/callouts/1.png" alt="1" border="0"></span>
+&gt; #include &lt;time.h&gt; <a name="co-diff-incoming"></a><span><img src="../images/callouts/2.png" alt="2" border="0"></span>
+12a14,17
+&gt;   time_t curTime = time(NULL);
+&gt;   printf("The date is %s\n", asctime(localtime(&amp;curTime)));
+&gt;
+	</pre>
+
+	<p>
+	  The additions from <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hello2.c</code></html:span> are visible
+	  in this output, but the format may look a bit
+	  strange. Actually, these are commands that can be
+	  interpreted by the <span class="command"><strong>ed</strong></span> line editor. We will
+	  look at a more comfortable output format after touching the
+	  surface of the default output format.
+	</p>
+
+	<p>
+	  Two different elements can be distilled from this output:
+	</p>
+
+	<div class="calloutlist"><table border="0" summary="Callout list">
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-diff-append"><span><img src="../images/callouts/1.png" alt="1" border="0"></span></a> </p></td>
+<td valign="top" align="left">
+	    <p>
+	      This is an <span class="application">ed</span> command that
+	      specified that text should be appended
+	      (<code class="literal">a</code>) after line <code class="literal">2</code>.
+	    </p>
+	  </td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-diff-incoming"><span><img src="../images/callouts/2.png" alt="2" border="0"></span></a> </p></td>
+<td valign="top" align="left">
+	    <p>
+	      This is the actual text to be appended after the second
+	      line. The <span class="quote">“<span class="quote"><span class="emphasis"><em>&gt;</em></span></span>”</span> sign
+	      is used to mark lines that are added.
+	    </p>
+	  </td>
+</tr>
+</table></div>
+
+	<p>
+	  The same elements are used to add the second block of text.
+	  What about lines that are removed? We can easily see how
+	  they are represented by swapping the two parameters to
+	  <span class="command"><strong>diff</strong></span>, showing the differences between
+	  <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hello2.c</code></html:span> and
+	  <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hello.c</code></html:span>:
+	</p>
+
+	<pre class="screen">
+$ <strong class="userinput"><code>diff hello2.c hello.c</code></strong>
+2d1 <a name="co-diff-delete"></a><span><img src="../images/callouts/1.png" alt="1" border="0"></span>
+&lt; #include &lt;time.h&gt; <a name="co-diff-outgoing"></a><span><img src="../images/callouts/2.png" alt="2" border="0"></span>
+14,16d12
+&lt;   time_t curTime = time(NULL);
+&lt;   printf("The date is %s\n", asctime(localtime(&amp;curTime)));
+&lt;
+	</pre>
+
+	<p>
+	  The following elements can be distinguished:
+	</p>
+
+	<div class="calloutlist"><table border="0" summary="Callout list">
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-diff-delete"><span><img src="../images/callouts/1.png" alt="1" border="0"></span></a> </p></td>
+<td valign="top" align="left">
+	    <p>
+	      This is the <span class="application">ed</span> delete command
+	      (<code class="literal">d</code>), stating that line 2 should be
+	      deleted. The second delete command uses a range (line 14
+	      to 17).
+	    </p>
+	  </td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-diff-outgoing"><span><img src="../images/callouts/2.png" alt="2" border="0"></span></a> </p></td>
+<td valign="top" align="left">
+	    <p>
+	      The text that is going to be removed is preceded by the
+	      <span class="quote">“<span class="quote">&lt;</span>”</span> sign.
+	    </p>
+	  </td>
+</tr>
+</table></div>
+
+	
+
+	<p>
+	  That's enough of the <span class="application">ed</span>-style
+	  output. The GNU diff program included in Slackware Linux
+	  supports so-called unified diffs. Unified diffs are very
+	  readable, and provide context by
+	  default. <span class="command"><strong>diff</strong></span> can provide unified output
+	  with the <em class="parameter"><code>-u</code></em> flag:
+	</p>
+
+	<pre class="screen">
+$ diff -u hello.c hello2.c
+--- hello.c     2006-11-26 20:28:55.000000000 +0100 <a name="co-udiff-origfile"></a><span><img src="../images/callouts/1.png" alt="1" border="0"></span>
++++ hello2.c    2006-11-26 21:27:52.000000000 +0100 <a name="co-udiff-newfile"></a><span><img src="../images/callouts/2.png" alt="2" border="0"></span>
+@@ -1,4 +1,5 @@ <a name="co-udiff-lines"></a><span><img src="../images/callouts/3.png" alt="3" border="0"></span>
+ #include &lt;stdio.h&gt; <a name="co-udiff-unmodified"></a><span><img src="../images/callouts/4.png" alt="4" border="0"></span>
++#include &lt;time.h&gt; <a name="co-udiff-add"></a><span><img src="../images/callouts/5.png" alt="5" border="0"></span>
+
+ void usage(char *programName);
+
+@@ -10,6 +11,9 @@
+
+   printf("Hello %s!\n", argv[1]);
+
++  time_t curTime = time(NULL);
++  printf("The date is %s\n", asctime(localtime(&amp;curTime)));
++
+   return 0;
+ }
+
+	</pre>
+
+	<p>
+	  The following elements can be found in the output
+	</p>
+
+	<div class="calloutlist"><table border="0" summary="Callout list">
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-udiff-origfile"><span><img src="../images/callouts/1.png" alt="1" border="0"></span></a> </p></td>
+<td valign="top" align="left">
+	    <p>
+	      The name of the original file, and the timestamp of the
+	      last modification time.
+	    </p>
+	  </td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-udiff-newfile"><span><img src="../images/callouts/2.png" alt="2" border="0"></span></a> </p></td>
+<td valign="top" align="left">
+	    <p>
+	      The name of the changed file, and the timestamp of the
+	      last modification time.
+	    </p>
+	  </td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-udiff-lines"><span><img src="../images/callouts/3.png" alt="3" border="0"></span></a> </p></td>
+<td valign="top" align="left">
+	    <p>
+	      This pair of numbers show the location and size of the
+	      chunk that the text below affects in the original file
+	      and the modified file. So, in this case the numbers mean
+	      that in the affected chunk in the original file starts
+	      at line 1, and is four lines long. In the modified file
+	      the affected chunk starts at line 1, and is five lines
+	      long. Different chunks in diff output are started by
+	      this header.
+	    </p>
+	  </td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-udiff-unmodified"><span><img src="../images/callouts/4.png" alt="4" border="0"></span></a> </p></td>
+<td valign="top" align="left">
+	    <p>
+	      A line that is not preceded by a minus
+	      (<span class="emphasis"><em>-</em></span>) or plus
+	      (<span class="emphasis"><em>+</em></span>) sign is unchanged. Unmodified
+	      lines are included because they give contextual
+	      information, and to avoid that too many chunks are
+	      made. If there are only a few unmodified lines between
+	      changes, <span class="command"><strong>diff</strong></span> will choose to make
+	      only one chunk, rather than two chunks.
+	    </p>
+	  </td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-udiff-add"><span><img src="../images/callouts/5.png" alt="5" border="0"></span></a> </p></td>
+<td valign="top" align="left">
+	    <p>
+	      A line that is preceded by a plus sign
+	      (<span class="emphasis"><em>+</em></span>) is an addition to the modified
+	      file, compared to the original file.
+	    </p>
+	  </td>
+</tr>
+</table></div>
+
+	<p>
+	  As with the ed-style <span class="command"><strong>diff</strong></span> format, we can
+	  see some removals by swapping the file names:
+	</p>
+
+	<pre class="screen">
+$ <strong class="userinput"><code>diff -u hello2.c hello.c</code></strong>
+
+--- hello2.c    2006-11-26 21:27:52.000000000 +0100
++++ hello.c     2006-11-26 20:28:55.000000000 +0100
+@@ -1,5 +1,4 @@
+ #include &lt;stdio.h&gt;
+-#include &lt;time.h&gt;
+
+ void usage(char *programName);
+
+@@ -11,9 +10,6 @@
+
+   printf("Hello %s!\n", argv[1]);
+
+-  time_t curTime = time(NULL);
+-  printf("The date is %s\n", asctime(localtime(&amp;curTime)));
+-
+   return 0;
+ }
+
+
+	</pre>
+
+	<p>
+	  As you can see from this output, lines that are removed from
+	  the modified file, in contrast to the original file are
+	  preceded by the minus (<span class="emphasis"><em>-</em></span>) sign.
+	</p>
+
+	<p>
+	  When you are working on larger sets of files, it's often
+	  useful to compare whole directories. For instance, if you
+	  have the original version of a program source in a directory
+	  named <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hello.orig</code></html:span>, and the modified
+	  version in a directory named <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hello</code></html:span>, you
+	  can use the <em class="parameter"><code>-r</code></em>
+	  parameter to recursively compare both directories. For
+	  instance:
+	</p>
+
+	<pre class="screen">
+$ diff -ru hello.orig hello
+diff -ru hello.orig/hello.c hello/hello.c
+
+--- hello.orig/hello.c  2006-12-04 17:37:14.000000000 +0100
++++ hello/hello.c       2006-12-04 17:37:48.000000000 +0100
+@@ -1,4 +1,5 @@
+ #include &lt;stdio.h&gt;
++#include &lt;time.h&gt;
+
+ void usage(char *programName);
+
+@@ -10,6 +11,9 @@
+
+   printf("Hello %s!\n", argv[1]);
+
++  time_t curTime = time(NULL);
++  printf("The date is %s\n", asctime(localtime(&amp;curTime)));
++
+   return 0;
+ }
+
+
+	</pre>
+
+	<p>
+	  It should be noted that this will only compare files that
+	  are available in both directories. The GNU version of diff,
+	  that is used by Slackware Linux provides the
+	  <em class="parameter"><code>-N</code></em> parameter. This
+	  parameter treats files that exist in only one of both
+	  directories as if it were an empty file. So for instance,
+	  if we have added a file named <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">Makefile</code></html:span>
+	  to the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hello</code></html:span> directory, using the
+	  <em class="parameter"><code>-N</code></em> parameter will
+	  give the following output:
+	</p>
+
+	<pre class="screen">
+$ <strong class="userinput"><code>diff -ruN hello.orig hello</code></strong>
+
+diff -ruN hello.orig/hello.c hello/hello.c
+--- hello.orig/hello.c  2006-12-04 17:37:14.000000000 +0100
++++ hello/hello.c       2006-12-04 17:37:48.000000000 +0100
+@@ -1,4 +1,5 @@
+ #include &lt;stdio.h&gt;
++#include &lt;time.h&gt;
+
+ void usage(char *programName);
+
+@@ -10,6 +11,9 @@
+
+   printf("Hello %s!\n", argv[1]);
+
++  time_t curTime = time(NULL);
++  printf("The date is %s\n", asctime(localtime(&amp;curTime)));
++
+   return 0;
+ }
+
+diff -ruN hello.orig/Makefile hello/Makefile
+--- hello.orig/Makefile 1970-01-01 01:00:00.000000000 +0100
++++ hello/Makefile      2006-12-04 17:39:44.000000000 +0100
+@@ -0,0 +1,2 @@
++hello: hello.c
++       gcc -Wall -o $@ $&lt;
+
+	</pre>
+
+	<p>
+	  As you can see the chunk indicator says that the chunk in
+	  the original file starts at line 0, and is 0 lines long.
+	</p>
+
+	<p>
+	  UNIX users often exchange the output of
+	  <span class="command"><strong>diff</strong></span>, usually called <span class="quote">“<span class="quote">diffs</span>”</span>
+	  or <span class="quote">“<span class="quote">patches</span>”</span>. The next section will show you
+	  how you can handle diffs. But you are now able to create
+	  them yourself, by redirecting the output of diff to a file.
+	  For example:
+	</p>
+
+	<pre class="screen">
+$ <strong class="userinput"><code>diff -u hello.c hello2.c &gt; hello_add_date.diff</code></strong>
+	</pre>
+
+	<p>
+	  If you have multiple diffs, you can easily combine them to
+	  one diff, by concatenating the diffs:
+	</p>
+
+	<pre class="screen">
+$ <strong class="userinput"><code>cat diff1 diff2 diff3 &gt; combined_diff</code></strong>
+	</pre>
+
+	<p>
+	  But make sure that they were created from the same directory
+	  if you want to use the <span class="command"><strong>patch</strong></span> utility that
+	  is covered in the next section.
+	</p>
+      </div>
+
+      <div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="chap-textproc-simple-diff-patch"></a>9.1.6.2. Modifying files with diff output</h4></div></div></div>
+	
+
+	<p>
+	  Suppose that somebody would send you the output of
+	  <span class="command"><strong>diff</strong></span> for a file that you have created. It
+	  would be tedious to manually incorporate all the changes
+	  that were made. Fortunately, the <span class="command"><strong>patch</strong></span>
+	  can do this for you. <span class="command"><strong>patch</strong></span> accepts diffs
+	  on the standard input, and will try to change the original
+	  file, according to the differences that are registered in
+	  the diff. So, for instance, if we have the
+	  <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hello.c</code></html:span> file, and the patch that we
+	  produced previously based on the changes between
+	  <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hello.c</code></html:span> and
+	  <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hello2.c</code></html:span>, we can patch
+	  <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hello.c</code></html:span> to become equal to its
+	  counterpart:
+	</p>
+
+	<pre class="screen">
+$ <strong class="userinput"><code>patch &lt; hello_add_date.diff</code></strong>
+patching file hello.c
+	</pre>
+
+	<p>
+	  If you have <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hello2.c</code></html:span>, you can check
+	  whether the files are identical now:
+	</p>
+
+	<pre class="screen">
+$ <strong class="userinput"><code>diff -u hello.c hello2.c</code></strong>
+	</pre>
+
+	<p>
+	  There is no output, so this is the case. One of the nice
+	  features of <span class="command"><strong>patch</strong></span> is that it can revert
+	  the changes made through a diff, by using the <em class="parameter"><code>-R</code></em> parameter:
+	</p>
+
+	<pre class="screen">
+$ <strong class="userinput"><code>patch -R &lt; hello_add_date.diff</code></strong>
+	</pre>
+
+	<p>
+	  In these examples, the original file is patched. Sometimes
+	  you may want to want to apply the patch to a file with a
+	  different name. You can do this by providing the name of
+	  a file as the last argument:
+	</p>
+
+	<pre class="screen">
+$ <strong class="userinput"><code>patch helloworld.c &lt; hello_add_date.diff</code></strong>
+patching file helloworld.c
+	</pre>
+
+	<p>
+	  You can also use <span class="command"><strong>patch</strong></span> with diffs that
+	  were generated with the <em class="parameter"><code>-r</code></em> parameter, but you have to
+	  take a bit of care. Suppose that the header of a particular
+	  file in the diff is as follows:
+	</p>
+
+	<div class="literallayout"><p><br>
+--------------------------<br>
+|diff -ruN hello.orig/hello.c hello/hello.c<br>
+|--- hello.orig/hello.c 2006-12-04 17:37:14.000000000 +0100<br>
+|+++ hello/hello.c      2006-12-04 17:37:48.000000000 +0100<br>
+--------------------------<br>
+	</p></div>
+
+	<p>
+	  If you process this diff with <span class="command"><strong>patch</strong></span>, it
+	  will attempt to change <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hello.c</code></html:span>. So, the
+	  directory that holds this file has to be the active
+	  directory. You can use the full pathname with the <em class="parameter"><code>-p n</code></em>, where
+	  <span class="emphasis"><em>n</em></span> is the number of pathname components
+	  that should be stripped. A value of <span class="emphasis"><em>0</em></span>
+	  will use the path as it is specified in the patch,
+	  <span class="emphasis"><em>1</em></span> will strip the first pathname
+	  component, etc. In this example, stripping the first
+	  component will result in patching of
+	  <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hello.c</code></html:span>. According to the Single UNIX
+	  Specification version 3 standard, the path that is preceded
+	  by <span class="emphasis"><em>---</em></span> should be used to construct the
+	  file that should be patched. The GNU version of patch does
+	  not follow the standard here. So, it is best to strip off to
+	  the point where both directory names are equal (this is
+	  usually the top directory of the tree being changed). In
+	  most cases where relative paths are used this can be done
+	  by using <span class="emphasis"><em>-p 1</em></span>. For instance:
+	</p>
+
+	
+
+	<pre class="screen">
+$ <strong class="userinput"><code>cd hello.orig</code></strong>
+$ <strong class="userinput"><code>patch -p 1 &lt; ../hello.diff</code></strong>
+	</pre>
+
+	<p>
+	  Or, you can use the <em class="parameter"><code>-d</code></em> parameter to specify in which
+	  directory the change has to be applied:
+	</p>
+
+	<pre class="screen">
+$ <strong class="userinput"><code>patch -p 1 -d hello.orig &lt; hello.diff</code></strong>
+patching file hello.c
+patching file Makefile
+	</pre>
+
+	<p>
+	  If you want to keep a backup when you are changing a file,
+	  you can use the <em class="parameter"><code>-b</code></em>
+	  parameter of <span class="command"><strong>patch</strong></span>. This will make a copy
+	  of every affected file named
+	  <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">filename.orig</code></html:span>, before actually changing
+	  the file:
+	</p>
+
+	<pre class="screen">
+$ <strong class="userinput"><code>patch -b &lt; hello_add_date.diff</code></strong>
+$ <strong class="userinput"><code>ls -l hello.c*</code></strong>
+-rw-r--r-- 1 daniel daniel 382 2006-12-04 21:41 hello.c
+-rw-r--r-- 1 daniel daniel 272 2006-12-04 21:12 hello.c.orig
+	</pre>
+
+	<p>
+	  Sometimes a file can not be patched. For instance, if it has
+	  already been patched, it has changed too much to apply the
+	  patch cleanly, or if the file does not exist at all. In this
+	  case, the chunks that could not be saved are stored in a
+	  file with the name <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">filename.rej</code></html:span>, where
+	  <span class="emphasis"><em>filename</em></span> is the file that
+	  <span class="command"><strong>patch</strong></span> tried to modify.
+	</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-textproc-regexps"></a>9.2. Regular expressions</h2></div></div></div>
+    
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-textproc-regexps-intro"></a>9.2.1. Introduction</h3></div></div></div>
+      
+
+      <p> In daily life, you will often want to manipulate some text that
+      matches to a certain pattern, rather than a literal string. Many
+      UNIX utilities implement a language for matching text patterns,
+      <span class="emphasis"><em>regular expressions</em></span> (regexps). Over time
+      the regular expression language has grown, there are now
+      basically three regular expression syntaxes: </p>
+
+      <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          <p> Traditional UNIX regular expressions. </p>
+        </li>
+<li class="listitem">
+          <p> POSIX extended regular expressions. </p>
+        </li>
+<li class="listitem">
+          <p> Perl-compatible regular expressions (PCRE). </p>
+        </li>
+</ul></div>
+
+      <p>
+	POSIX regexps are mostly a superset of traditional UNIX
+	regexps, and PCREs a superset of POSIX regexps. The syntax
+	that an application supports differs per application, but
+	almost all applications support at least POSIX
+	regexps.
+      </p>
+
+      <p>
+	Each syntactical unit in a regexp expresses one of the
+	following things:
+      </p>
+
+      <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          <p>
+            <span class="bold"><strong>A character</strong></span>: this is the
+            basis of every regular expression, a character or a set of
+            characters to be matched. For instance, the letter
+            <span class="emphasis"><em>p</em></span> or the sign
+            <span class="emphasis"><em>,</em></span>. </p>
+        </li>
+<li class="listitem">
+          <p>
+            <span class="bold"><strong>Quantification</strong></span>: a
+            quantifier specifies how many times the preceding
+            character or set of characters should be matched. </p>
+        </li>
+<li class="listitem">
+          <p>
+            <span class="bold"><strong>Alternation</strong></span>: alternation
+            is used to match <span class="quote">“<span class="quote">a or b</span>”</span> in which
+            <span class="emphasis"><em>a</em></span> and <span class="emphasis"><em>b</em></span> can be a
+            character or a regexp. </p>
+        </li>
+<li class="listitem">
+          <p>
+            <span class="bold"><strong>Grouping</strong></span>: this is used to
+            group subexpressions, so that quantification or
+            alternation can be applied to the group. </p>
+        </li>
+</ul></div>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-textproc-regexps-traditional"></a>9.2.2. Traditional UNIX regexps</h3></div></div></div>
+      
+
+      <p>
+	This section describes traditional UNIX regexps. Because of a
+	lack of standardisation, the exact syntax may differ a bit per
+	utility. Usually, the manual page of a command provides more
+	detailed information about the supported basic or traditional
+	regular expressions. It is a good idea to learn traditional
+	regexps, but to use POSIX regexps for your own
+	scripts.
+      </p>
+
+      <div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="chap-textproc-regexps-traditional-characters"></a>9.2.2.1. Matching characters</h4></div></div></div>
+        
+
+        <p>
+	  Characters are matched by themselves. If a specific
+	  character is used as a syntactic character for regexps, you
+	  can match that character by adding a backslash. For
+	  instance, <span class="emphasis"><em>\+</em></span> matches the plus
+	  character. </p>
+
+        <p>
+	  A period (<span class="emphasis"><em>.</em></span>) matches any character, for
+	  instance, the regexp <span class="emphasis"><em>b.g</em></span> matches
+	  <span class="emphasis"><em>bag</em></span>, <span class="emphasis"><em>big</em></span>, and
+	  <span class="emphasis"><em>blg</em></span>, but not
+	  <span class="emphasis"><em>bit</em></span>. </p>
+
+        <p>
+	  The period character, often provides too much freedom. You
+	  can use square brackets (<span class="emphasis"><em>[]</em></span>) to specify
+	  characters which can be matched. For instance, the regexp
+	  <span class="emphasis"><em>b[aei]g</em></span> matches
+	  <span class="emphasis"><em>bag</em></span>, <span class="emphasis"><em>beg</em></span>, and
+	  <span class="emphasis"><em>big</em></span>, but nothing else. You can also
+	  match any character but the characters in a set by using the
+	  square brackets, and using the caret
+	  (<span class="emphasis"><em>^</em></span>) as the first character. For
+	  instance, <span class="emphasis"><em>b[^aei]g</em></span> matches any three
+	  character string that starts with <span class="emphasis"><em>b</em></span> and
+	  ends with <span class="emphasis"><em>g</em></span>, with the exception of
+	  <span class="emphasis"><em>bag</em></span>, <span class="emphasis"><em>beg</em></span>, and
+	  <span class="emphasis"><em>big</em></span>. It is also possible to match a
+	  range of characters with a dash
+	  (<span class="emphasis"><em>-</em></span>). For example,
+	  <span class="emphasis"><em>a[0-9]</em></span> matches a followed by a single
+	  number character. </p>
+
+        <p>
+	  Two special characters, the caret (<span class="emphasis"><em>^</em></span>)
+	  and the dollar sign (<span class="emphasis"><em>$</em></span>), respectively
+	  match the start and end of a line. This is very handy for
+	  parsing files. For instance, you can match all lines that
+	  start with a hash (<span class="emphasis"><em>#</em></span>) with the regexp
+	  <span class="emphasis"><em>^#</em></span>. </p>
+      </div>
+
+      <div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="chap-textproc-regexps-traditional-quantification"></a>9.2.2.2. Quantification</h4></div></div></div>
+        
+
+        <p>
+	  The simplest quantification sign that traditional regular
+	  expressions support is the (Kleene) star
+	  (<span class="emphasis"><em>*</em></span>). This matches zero or arbitrary
+	  instances of the preceding character. For instance,
+	  <span class="emphasis"><em>ba*</em></span> matches <span class="emphasis"><em>b</em></span>,
+	  <span class="emphasis"><em>ba</em></span><span class="emphasis"><em>baa</em></span>, etc. You
+	  should be aware that a single character folowed by a star
+	  without any context matches every string, because
+	  <span class="emphasis"><em>c*</em></span> also matches a string that has zero
+	  <span class="emphasis"><em>c</em></span> characters. </p>
+
+        <p>
+	  More specific repetitions can be specified with
+	  backslash-escaped curly braces.
+	  <span class="emphasis"><em>\{x,y\}</em></span> matches the preceding character
+	  at least <span class="emphasis"><em>x</em></span> times, but not more than
+	  <span class="emphasis"><em>y</em></span> times. So,
+	  <span class="emphasis"><em>ba\{1,3\}</em></span> matches
+	  <span class="emphasis"><em>ba</em></span>, <span class="emphasis"><em>baa</em></span>, and
+	  <span class="emphasis"><em>baaa</em></span>. </p>
+      </div>
+
+      <div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="chap-textproc-regexps-traditional-grouping"></a>9.2.2.3. Grouping</h4></div></div></div>
+        
+
+        <p>
+	  Backslash-escaped parentheses group various characters
+	  together, so that you can apply quantification or
+	  alternation to a group of characters. For instance,
+	  <span class="emphasis"><em>\(ab\)\{1,3\}</em></span> matches
+	  <span class="emphasis"><em>ab</em></span>, <span class="emphasis"><em>abab</em></span>, and
+	  <span class="emphasis"><em>ababab</em></span>. </p>
+      </div>
+
+      <div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="chap-textproc-regexps-traditional-alternation"></a>9.2.2.4. Alternation</h4></div></div></div>
+        
+
+        <p>
+	  A backslash-escaped pipe vertical bar
+	  (<span class="emphasis"><em>\|</em></span>) allows you to match either of two
+	  expressions. This is not useful for single characters,
+	  because <span class="emphasis"><em>a\|b</em></span> is equivalent to
+	  <span class="emphasis"><em>[ab]</em></span>, but it is very useful in
+	  conjunction with grouping. Suppose that you would like an
+	  expression that matches <span class="emphasis"><em>apple</em></span> and
+	  <span class="emphasis"><em>pear</em></span>, but nothing else. This can be
+	  done easily with the vertical bar:
+	  <span class="emphasis"><em>(apple)|(pear)</em></span>. </p>
+      </div>
+    </div>
+
+      <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-textproc-regexps-posix"></a>9.2.3. POSIX extended regular expressions</h3></div></div></div>
+	
+
+	<p>
+	  POSIX regular expressions build upon traditional regular
+	  expressions, adding some other useful primitives. Another
+	  comforting difference is that grouping parenthesises,
+	  quantification accolades, and the alternation sign
+	  (<span class="emphasis"><em>|</em></span>) are not backslash-escaped.  If they
+	  are escaped, they will match the literal characters instead,
+	  thus resulting in the opposite behavior of traditional
+	  regular expressions. Most people find POSIX extended regular
+	  expressions much more comfortable, making them more widely
+	  used.
+	</p>
+
+	<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="chap-textproc-regexps-posix-characters"></a>9.2.3.1. Matching characters</h4></div></div></div>
+	  
+
+	  <p>
+	    Normal character matching has not changed compared to the
+	    traditional regular expressions described in <a class="xref" href="chap-textproc.html#chap-textproc-regexps-traditional-characters" title="9.2.2.1. Matching characters">Section 9.2.2.1, “Matching characters”</a>
+	  </p>
+	</div>
+
+	<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="chap-textproc-regexps-posix-quantification"></a>9.2.3.2. Quantification</h4></div></div></div>
+	  
+
+	  <p>
+	    Besides the Kleene star (<span class="emphasis"><em>*</em></span>), that
+	    matches the preceding character or group zero or more
+	    times, POSIX extended regular expressions add two new
+	    simple quantification primitives. The plus sign
+	    (<span class="emphasis"><em>+</em></span>) matches the preceding character
+	    or group one or more times. For example,
+	    <span class="emphasis"><em>a+</em></span>, matches <span class="emphasis"><em>a</em></span>
+	    (or any string with more consecutive
+	    <span class="emphasis"><em>a</em></span>'s), but does not match zero
+	    <span class="emphasis"><em>a</em></span>'s. The questions mark character
+	    (<span class="emphasis"><em>?</em></span>) matches the preceding character
+	    zero or one time. So, <span class="emphasis"><em>ba?d</em></span> matches
+	    <span class="emphasis"><em>bd</em></span> and <span class="emphasis"><em>bad</em></span>, but
+	    not <span class="emphasis"><em>baad</em></span> or <span class="emphasis"><em>bed</em></span>.
+	  </p>
+
+	  <p>
+	    Curly braces are used for repetition, like traditional
+	    regular expressions. Though the backslash should be
+	    omitted. To match <span class="emphasis"><em>ba</em></span> and
+	    <span class="emphasis"><em>baa</em></span>, one should use
+	    <span class="emphasis"><em>ba{1,2}</em></span> rather than
+	    <span class="emphasis"><em>ba\{1,2\}</em></span>.
+	  </p>
+	</div>
+
+	<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="chap-textproc-regexps-posix-grouping"></a>9.2.3.3. Grouping</h4></div></div></div>
+	  
+
+	  <p>
+	    Grouping is done in the same manner as traditional regular
+	    expressions, leaving out the escape-backslashes before the
+	    parenthesises. For example, <span class="emphasis"><em>(ab){1,3}</em></span>
+	    matches <span class="emphasis"><em>ab</em></span>,
+	    <span class="emphasis"><em>abab</em></span>, and
+	    <span class="emphasis"><em>ababab</em></span>.
+	  </p>
+	</div>
+
+	<div class="sect3">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="chap-textproc-regexps-posix-alternation"></a>9.2.3.4. Alternation</h4></div></div></div>
+	  
+
+	  <p>
+	    Alternation is done in the same manner as with traditional
+	    regular expressions, leaving out the escape-backslashes
+	    before the vertical bar. So,
+	    <span class="emphasis"><em>(apple)|(pear)</em></span> matches
+	    <span class="emphasis"><em>apple</em></span> and <span class="emphasis"><em>pear</em></span>.
+	  </p>
+	</div>
+      </div>
+
+      
+
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-textproc-grep"></a>9.3. grep</h2></div></div></div>
+    
+
+    
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-textproc-grep-basic"></a>9.3.1. Basic grep usage</h3></div></div></div>
+      
+
+      <p>
+	We have now arrived at one of the most important utilties of
+	the UNIX System, and the first occasion to try and use regular
+	expressions. The <span class="command"><strong>grep</strong></span> command is used to
+	search a text stream or a file for a pattern. This pattern is
+	a regular expression, and can either be a basic regular
+	expression or a POSIX extended regular expression (when the
+	<em class="parameter"><code>-E</code></em> parameter is
+	used). By default, <span class="command"><strong>grep</strong></span> will write the
+	lines that were matched to the standard output. In the most
+	basic syntax, you can specify a regular expression as an
+	argument, and <span class="command"><strong>grep</strong></span> will search matches in
+	the text from the standard input. This is a nice manner to
+	practice a bit with regular expressions.
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>grep '^\(ab\)\{2,3\}$'</code></strong>
+<strong class="userinput"><code>ab</code></strong>
+<strong class="userinput"><code>abab</code></strong>
+abab
+<strong class="userinput"><code>ababab</code></strong>
+ababab
+<strong class="userinput"><code>abababab</code></strong>
+      </pre>
+
+      <p>
+	The example listed above shows a basic regular expression in
+	action, that matches a line solely consisting of two or three
+	times the <span class="emphasis"><em>ab</em></span> string. You can do the same
+	thing with POSIX extended regular expressions, by adding the
+	<em class="parameter"><code>-E</code></em> (for extended)
+	parameter:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>grep -E '^(ab){2,3}$'</code></strong>
+<strong class="userinput"><code>ab</code></strong>
+<strong class="userinput"><code>abab</code></strong>
+abab
+<strong class="userinput"><code>ababab</code></strong>
+ababab
+<strong class="userinput"><code>abababab</code></strong>
+      </pre>
+
+      <p>
+	Since the default behavior of <span class="command"><strong>grep</strong></span> is to
+	read from the standard input, you can add it to a pipeline to
+	get the interesting parts of the output of the preceding
+	commands in the pipeline. For instance, if you would like to
+	search for the string <span class="emphasis"><em>2006</em></span> in the third
+	column in a file, you could combine the <span class="command"><strong>cut</strong></span>
+	and <span class="command"><strong>grep</strong></span> command:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>cut -f 3 | grep '2006'</code></strong>
+      </pre>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-textproc-grep-files"></a>9.3.2. grepping files</h3></div></div></div>
+      
+
+      <p>
+	Naturally, <span class="command"><strong>grep</strong></span> can also directly read a
+	file, rather than the standard input. As usual, this is done
+	by adding the files to be read as the last arguments. The
+	following example will print all lines from the
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/passwd</code></html:span> file that start with the
+	string <span class="emphasis"><em>daniel:</em></span>.
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>grep "^daniel" /etc/passwd</code></strong>
+daniel:*:1001:1001:Daniel de Kok:/home/daniel:/bin/sh
+      </pre>
+
+      
+
+      <p>
+        With the <em class="parameter"><code>-r</code></em> option,
+	<span class="command"><strong>grep</strong></span> will recursively traverse a directory
+	structure, trying to find matches in each file that was encountered
+	during the traversal.
+	Though, it is better to combine <span class="command"><strong>grep</strong></span> with
+	<span class="command"><strong>find</strong></span> and the <span class="emphasis"><em>-exec</em></span>
+	operand in scripts that have to be portable.
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>grep -r 'somepattern' somedir</code></strong>
+      </pre>
+
+      <p>
+	is the non-portable functional equivalent of
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>find /somedir -type f -exec grep 'somepattern' {} \; -print</code></strong>
+      </pre>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-textproc-grep-pattern"></a>9.3.3. Pattern behavior</h3></div></div></div>
+      
+
+      <p>
+	<span class="command"><strong>grep</strong></span> can also print all lines that do not
+	match the pattern that was used.  This is done by adding the
+	<em class="parameter"><code>-v</code></em> parameter:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>grep -Ev '^(ab){2,3}$'</code></strong>
+<strong class="userinput"><code>ab</code></strong>
+ab
+<strong class="userinput"><code>abab</code></strong>
+<strong class="userinput"><code>ababab</code></strong>
+<strong class="userinput"><code>abababab</code></strong>
+abababab
+      </pre>
+
+      <p>
+	If you want to use the pattern in a case-insensitive manner,
+	you can add the <em class="parameter"><code>-i</code></em>
+	parameter. For example:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>grep -i "a"</code></strong>
+<strong class="userinput"><code>a</code></strong>
+a
+<strong class="userinput"><code>A</code></strong>
+A
+      </pre>
+
+      <p>
+	You can also match a string literally with the <em class="parameter"><code>-F</code></em> parameter:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>grep -F 'aa*'</code></strong>
+<strong class="userinput"><code>a</code></strong>
+<strong class="userinput"><code>aa*</code></strong>
+aa*
+      </pre>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-textproc-grep-multiplepatterns"></a>9.3.4. Using multiple patterns</h3></div></div></div>
+      
+
+      <p>
+	As we have seen, you can use the alternation character
+	(<span class="emphasis"><em>|</em></span>) to match either of two or more
+	subpatterns. If two patterns that you would like to match
+	differ a lot, it is often more comfortable to make two
+	separate patterns. <span class="command"><strong>grep</strong></span> allows you to use
+	more than one pattern by separating patterns with a newline
+	character. So, for example, if you would like to print lines
+	that match either the <span class="emphasis"><em>a</em></span> or
+	<span class="emphasis"><em>b</em></span> pattern, this can be done easily by
+	starting a new line:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>grep 'a
+b'</code></strong>
+<strong class="userinput"><code>a</code></strong>
+a
+<strong class="userinput"><code>b</code></strong>
+b
+c
+      </pre>
+
+      <p>
+	This works, because quotes are used, and the shell passes
+	quoted parameters literally. Though, it must be admitted that
+	this is not quite pretty. <span class="command"><strong>grep</strong></span> accepts one
+	or more <em class="parameter"><code>-e pattern</code></em>
+	parameters, giving the opportunity to specify more than one
+	parameter on one line. The <span class="command"><strong>grep</strong></span> invocation
+	in the previous example could be rewritten as:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>grep -e 'a' -e 'b'</code></strong>
+      </pre>
+    </div>
+  </div>
+<div class="footnotes">
+<br><hr style="width:100; text-align:left;margin-left: 0">
+<div id="ftn.idm962335076" class="footnote"><p><a href="#idm962335076" class="para"><sup class="para">[6] </sup></a>Of course, that will not really
+      matter in this case, because we don't use numbers higher than 9,
+      and virtually all character sets have numbers in a numerical
+      order.</p></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="chap-filesystem.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="basics.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="chap-procmgmt.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 8. Files and directories </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 10. Process management</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

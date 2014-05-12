@@ -1,0 +1,450 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 4. Conceptes generals</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="getstarted.html" title="Part I. Per començar ??Getting started??">
+<link rel="prev" href="chap-help.html" title="Chapter 3. Fonts d'ajuda">
+<link rel="next" href="chap-install.html" title="Chapter 5. La instal·lació de Slackware Linux">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 4. Conceptes generals</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="chap-help.html">Prev</a> </td>
+<th width="60%" align="center">Part I. Per començar ??Getting started??</th>
+<td width="20%" align="right"> <a accesskey="n" href="chap-install.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="concepts"></a>Chapter 4. Conceptes generals</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="concepts.html#concepts-multitasca">4.1. Multitasca</a></span></dt>
+<dt><span class="sect1"><a href="concepts.html#concepts-fshierarchy">4.2. Jerarquia del sistema de fitxers </a></span></dt>
+<dt><span class="sect1"><a href="concepts.html#concepts-devices">4.3. Dispositius</a></span></dt>
+</dl>
+</div>
+<p>
+    Aquest capítol ofereix una introducció a alguns conceptes generals de UNIX 
+    i de GNU/Linux. És important llegir este capítol completament si no 
+    tens gens d'experiència en UNIX o GNU/Linux ja que molts dels conceptes 
+    coberts ací s'utilitzen en este llibre i a GNU/Linux.
+    
+  </p>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="concepts-multitasca"></a>4.1. Multitasca</h2></div></div></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="concepts-multitasking-intro"></a>4.1.1. Introducció</h3></div></div></div>
+<p>
+	Tradicionalment, un dels punts forts del UNIX és la multitasca 
+	(mulititasquing). El concepte multitasca significa que múltiples 
+	programes poden	estar executant-se alhora. Potser t'estàs preguntant 
+	per què açò és important, ja que molta gent utilitza només una aplicació 
+	alhora. La multitasca és una necessitat fonamental per als sistems tipus 
+	UNIX, encara que no hages arrancat cap aplicació hi ha programes 
+	executant-se al fons. Per exemple, alguns programes proporcionen servicis 
+	de xarxa, mentre que d'altres mostren una sol·licitud de inici de sessió 
+	i esperen a que un usuari inicie sessió en un terminal (virtual). Els
+	programes que s'executen al fons solen anomenar-se processos <span class="emphasis"><em>
+	dimoni (daemon)</em></span>--&gt;
+        <a href="#ftn.idm963275972" class="footnote" name="idm963275972"><sup class="footnote">[2]</sup></a>.
+      </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="concepts-multitasking-procsthreads"></a>4.1.2. Processos i fils </h3></div></div></div>
+<p>
+	Després de que un programa es carregue des d'un mitjà 
+	d'emmagatzematge, s'inicia una instància del programa,
+	aquesta instància s'anomena <span class="emphasis"><em>procés (process)</em></span>.
+	Un procés té la seua pròpia memòria protegida, anomenada
+	<span class="emphasis"><em>espai d'adreçament de procés</em></span>. L'espai
+	d'adreçament de procés té dos àrees importants: l'àrea de
+	<span class="emphasis"><em>text</em></span> i l'àrea de <span class="emphasis"><em>dades</em></span>.
+	La primera és el codi del programa en si; s'utilitza per a
+	dir-li al sistema el que ha de fer, mentres que la segona
+	és utilitzada per a emmagatzemar dades constants i de temps
+	d'execució. El sistema operatiu li assigna a cada procés temps
+	per a executar-se. En sistemes d'un sol processador, els
+	processos no estàn corrent simultàniament, en realitat 
+	un planificador intel·ligent al núcli divideix temps de CPU
+	entre els processos, proporcionant la il·lusió de que els
+	processos corren alhora. Este procés s'anomena 
+	<span class="emphasis"><em>time-sharing</em></span> (compartició de temps).
+	A sistemes amb més d'una CPU o varis núclis de CPU, més d'un procés
+	pot executar-se simultàniament, però la compartició de temps
+	segueix utilitzant-se per a dividir el temps de CPU disponible
+	entre processos.
+	
+
+        
+      </p>
+<p>
+	Es creen nous processos duplicant un procés en marxa amb la 
+	crida al sistema <span class="command"><strong>fork</strong></span> (bifurcar). 
+	<a class="xref" href="concepts.html#fork" title="Figure 4.1. Bifurcant un procés (forking)">Figure 4.1, “Bifurcant un procés (forking)”</a> mostra una crida a fork() en acció de
+	manera esquemàtica. El procés pare emet una crida a fork(),
+	el núcli respon a esta crida duplicant el procés, i 
+	anomenant a un procés el <span class="emphasis"><em>pare</em></span> i a l'altre 
+	el <span class="emphasis"><em>fill</em></span>.
+        
+      </p>
+<div class="figure">
+<a name="fork"></a><p class="title"><b>Figure 4.1. Bifurcant un procés (forking)</b></p>
+<div class="figure-contents"><div class="mediaobject"><img src="../../images/fork.png" alt="Bifurcant un procés (forking)"></div></div>
+</div>
+<br class="figure-break"><p>
+	Les bifurcacions poden utilitzar-se per un programa per a crear dos
+	procesos que poden córrer simultàniament en màquines 
+	multiprocessador. Tanmateix, sovint no és ideal, perque tots
+	dos processos tindran el seu propi espai d'adreçament, a més, la
+	duplicació inicial de la memòria del procés pren relativament
+	molt de temps, i és difícil compartir informació entre els dos
+	processos. Aquest problema es resol amb un concepte anomenat
+	<span class="emphasis"><em>multithreading</em></span> (multi-filat). Multithreading
+	significa que vàries instàncies de la mateixa àrea de text es poden
+	córrer alhora, compartint l'àrea de dades. Aquestes instàncies,
+	anomeneades fils (threads), poden executar-se en paral·lel en 
+	múltiples CPUs.
+	
+        
+      </p>
+</div>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="concepts-fshierarchy"></a>4.2. Jerarquia del sistema de fitxers </h2></div></div></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="concepts-fshierarchy-structure"></a>4.2.1. Estructura</h3></div></div></div>
+<p>
+	El sistemes operatius emmagatzemen informació en sistemes de 
+	fitxers. Un sistema de fitxers és bàsicament una estructura
+	en forma d'arbre que sosté directoris i fitxers, com el sistema
+	operatiu, programes d'usuari i dades d'usuari. La majoria de
+	sistemes de fitxers poden, a més emmagatzemar diverses meta-dades
+	relatives a fitxers i directoris, per exemple els temps d'accés i 
+	de modificació. A GNU/Linux només hi ha una jerarquia de sistemes
+	de fitxers, açò significa que GNU/Linux no té lletres d'unitat
+	(com A:, C:, D:) per als distints sistemes de fitxers, com DOS
+	o Windows. El sistema de fitxers és vist com un arbre, amb un
+	directori arrel (que no té directori pare), branques, i fulles
+	(directoris sense subdirectoris). El directori arrel sempre
+	es denota amb una barra (<span class="quote">“<span class="quote">/</span>”</span>) i els directoris es
+	separen amb el mateix caràcter.
+
+        
+      </p>
+<div class="figure">
+<a name="filesystem-structure"></a><p class="title"><b>Figure 4.2. La estructura del sistema de fitxers </b></p>
+<div class="figure-contents"><div class="mediaobject"><img src="../../images/fs-structure.png" alt="La estructura del sistema de fitxers"></div></div>
+</div>
+<br class="figure-break"><p>
+	<a class="xref" href="concepts.html#filesystem-structure" title="Figure 4.2. La estructura del sistema de fitxers">Figure 4.2, “La estructura del sistema de fitxers ”</a> mostra la estructura d'un
+	sistema de fitxers. Pots veurer que el directori arrel 
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/</code></html:span> té dos directoris fill:
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">bin</code></html:span> i <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">home</code></html:span>. El directori
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">home</code></html:span> té dos directoris fill,
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">joe</code></html:span> i <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">jack</code></html:span>. El 
+	diagrama mostra el camí complet a cada directori. La mateixa
+	notació s'utilitza amb els fitxers. Suposem que hi ha un fitxer
+	anomenat <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">memo.txt</code></html:span> al directori
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/home/jack</code></html:span>, el camí complet al fitxer és 
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/home/jack/memo.txt</code></html:span>.
+
+        
+      </p>
+<p>
+	Cada directori té dos entrades especials, 
+	<span class="quote">“<span class="quote"><html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">.</code></html:span></span>”</span>, i
+        <span class="quote">“<span class="quote"><html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">..</code></html:span></span>”</span>. La primera fa
+	referència al propi directori i la segona al directori
+	pare. Aquestes entrades es poden utilitzar per a contruir
+	camins relatius. Si estàs treballant al directori
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">jack</code></html:span>, pots referenciar el directori
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/home/joe</code></html:span> amb 
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">../joe</code></html:span>.
+
+        
+      </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="concepts-fshierarchy-mounting"></a>4.2.2. Muntant </h3></div></div></div>
+<p>
+	Potser et preguntes com és possible accedir a altres
+	dispositius o particion més enllà de la partició de disc que
+	sosté el sistema de fitxers. Linux utilitza la mateixa 
+	aproximació que UNIX per a accedir a altres sistemes de
+	fitxers. Linux permet a l'administrador del sistema connectar
+	un dispositiu a qualsevol directori en la estructura de 
+	fitxers. Aquest procés s'anomena <span class="emphasis"><em>muntatge 
+	(mounting)</em></span>. Per exemple, es pot muntar la 
+	unitat de CD-ROM al directori <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/cdrom</code></html:span>.
+	Si el muntatge és correcte, els fitxers que hi ha al 
+	CD-ROM es poden accedir a través d'aquest directori. El
+	procés de muntatge es descriu en detall a <a class="xref" href="chap-filesystem.html#basics-filesystem-mounting" title="8.8. Mounting filesystems">Section 8.8, “Mounting filesystems”</a>.
+
+        
+      </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="concepts-fshierarchy-commondirs"></a>4.2.3. Directoris comuns </h3></div></div></div>
+<p>
+	El Filesystem Hierarchy Standard Group ha intentat crear
+	un estàndard que descriu quins directoris haurien d'estar
+	disponibles a un sistema GNU/Linux. Actualment, les
+	distribucions més importants utilitzen la Jerarquia 
+	Estàndard de Sistema de Fitxers (FHS, de l'anglés 
+	Filesystem Hierarchy Standard) com a directriu. Aquesta
+	secció descriu alguns directoris obligatoris als sistemes
+	GNU/Linux.
+
+        
+      </p>
+<p>
+	Per favor, tin en compte que GNU/Linux no té un directori
+	separat per a cada aplicació (com Windows). Per contra, els
+	fitxers s'organitzen per funció i tipus. Per exemple, els
+	binaris per a la majoria d'aplicacions d'ús comú, estàn
+	emmagatzemats a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/bin</code></html:span>, i les seues
+	llibreries a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/lib</code></html:span>. Aquest és un 
+	curt resum dels directoris més importants en un sistema 
+	Slackware Linux:
+
+        
+      </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p>
+            <span class="bold"><strong>/bin</strong></span>: 
+	    binaris essencials de l'usuari que haurien d'estar disponibles
+	    fins i tot quan <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr</code></html:span> no estiga muntat.
+	    
+          </p></li>
+<li class="listitem"><p>
+            <span class="bold"><strong>/dev</strong></span>: fitxers de dispositiu.
+	    Hi ha fitxers especials utilitzats per a accedir a determinats
+	    dispositius.
+	    
+          </p></li>
+<li class="listitem"><p>
+            <span class="bold"><strong>/etc</strong></span>: El direcotori
+	    <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc</code></html:span> conté tots els fitxers de
+	    configuració importants.
+	    
+          </p></li>
+<li class="listitem"><p>
+            <span class="bold"><strong>/home</strong></span>: conté els directoris
+	    llar per a usuaris individuals
+	    
+          </p></li>
+<li class="listitem"><p>
+            <span class="bold"><strong>/lib</strong></span>: llibreries essecials
+	    del sistema (com glibc) i els mòduls del núcli.
+	    
+          </p></li>
+<li class="listitem"><p>
+            <span class="bold"><strong>/root</strong></span>: el directori llar
+	    del usuari <span class="emphasis"><em>root</em></span>.
+	    
+          </p></li>
+<li class="listitem"><p>
+            <span class="bold"><strong>/sbin</strong></span>: binaris essencials
+	    que s'utilitzen en l'administració del sistema.
+	    
+          </p></li>
+<li class="listitem"><p>
+            <span class="bold"><strong>/tmp</strong></span>: un directori 
+	    per a fitxers temporals on tothom pot escriure. 
+	    
+          </p></li>
+<li class="listitem"><p>
+            <span class="bold"><strong>/usr/bin</strong></span>: Emmagatzema
+	    la majoria dels binaris d'usuari.
+	    
+          </p></li>
+<li class="listitem"><p>
+            <span class="bold"><strong>/usr/lib</strong></span>: llibreries que
+	    no són essencials per a llançar el sistema
+	    
+          </p></li>
+<li class="listitem"><p>
+            <span class="bold"><strong>/usr/sbin</strong></span>: binaris 
+	    per a l'administració del sistema que no són essencials.
+	    
+          </p></li>
+<li class="listitem"><p>
+            <span class="bold"><strong>/var</strong></span>: fitxers de dades
+	    variables, com bitàcores (logs).
+	    
+          </p></li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="concepts-devices"></a>4.3. Dispositius</h2></div></div></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="concepts-devices-intro"></a>4.3.1. Introducció</h3></div></div></div>
+<p>
+	A GNU/Linux virtualment tot està representat per un fitxer, incloent els
+	dispositius. Tot sistema GNU/Linux té un directori amb fitxers especials,
+	anomenat <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev</code></html:span> i cada fitxer en aquest directori 
+	representa un dispositiu o un pseudo-dispositiu. Un fitxer de dispositiu
+	té dos números associats, el <span class="emphasis"><em>major</em></span> (principal) i
+	el <span class="emphasis"><em>minor</em></span> (secundari). El ńucli sap quin dispositiu
+	és representat per un fitxer de dispositiu mitjançants estos números de
+	dispositiu. El següent exemple mostra el números de dispositiu per al
+	fitxer de dispositiu <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/zero</code></html:span>:
+
+        
+      </p>
+<pre class="screen">
+$ <span class="command"><strong>file /dev/zero</strong></span>
+/dev/zero: character special (1/5)
+      </pre>
+<p>
+	La ordre <span class="command"><strong>file</strong></span> es pot utilitzar per a determinar
+	el tipus d'un fitxer. Aquest fitxer en particular és reconegut com
+	un fitxer de dispositiu que té l'<span class="emphasis"><em>1</em></span> com el 
+	número principal de dispositiu i, el <span class="emphasis"><em>5</em></span> com el
+	número secundari de dispositiu.
+	
+        
+      </p>
+<p>
+	Si has instal·lat el paquet de les fonts del núcli, pots
+	trobar un llista completa de tots els dispositius principals
+	amb els	seus números principals i secundaris a  
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/src/linux/Documentation/devices.txt</code></html:span>.
+	Una llista actualitzada està disponible on-line a través de
+	Linux Kernel Archives
+        <a href="#ftn.idm963235532" class="footnote" name="idm963235532"><sup class="footnote">[3]</sup></a>.
+      </p>
+<p>
+	El núcli Linux maneja dos tipus de dispositius:
+	de <span class="emphasis"><em>caràcter</em></span> i de <span class="emphasis"><em>bloc</em></span>.
+	Els dispositius de caràcter es poden llegir byte a byte, els 
+	dispositius de bloc no, aquest són llegits per blocs (per exemple
+	4096 bytes cada vegada). Que un dispositiu siga de caràcter o de
+	bloc depén de la naturalesa del dispositiu. Per exemple, la majoria
+	de dispositius d'emmagatzematge són dispositius de bloc, i la majoria de
+	dispositius d'entrada ho són de caràcter. El dispositius de bloc 
+	tenen un avantatge distintiu, diguem que poden utilitzar el cau. 
+	Açò significa que els blocs que es lligen o s'escriuen amb
+	freqüència són emmagatzemats en una zona especial de la memòria del
+	sistema anomenada memòria cau (cache). La memòria és molt més
+	ràpida que la majoria del medis d'emmagatzematge, amb la qual cosa
+	es pot guanyar molt de rendiment realitzant operacions comunes de
+	lectura i escriptura a la memòria. Pressupost que, finalment, els canvis
+	han de ser escrits al medi d'emmagatzematge per a reflectir els canvis
+	fets a la memòria cau.
+	
+        
+      </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="concepts-devices-atascsi"></a>4.3.2. Dispositius ATA i SCSI</h3></div></div></div>
+<p>
+	Hi ha dos classes de dispositius de bloc que anem a analitzar en detall,
+	perque comprendre l'anomenament d'aquests dispositius és crucial per a 
+	particionar un disc dur i muntar-lo. Quasi tots els ordinadors moderns 
+	amb una	arquitectura x86 utilitzen discs i CD-ROMs ATA. Baix linux 
+	aquests	dispositius s'anomenen de la següent manera:
+        
+      </p>
+<pre class="screen">
+/dev/hda - dispositiu mestre en el primer canal ATA
+/dev/hdb - dispositiu esclau en el primer canal ATA
+/dev/hdc - dispositiu mestre en el segon canal ATA
+/dev/hdd - dispositiu esclau en el segon canal ATA
+      </pre>
+<p>
+	En la majoria d'ordinadors amb un únic disc dur, aquest és el dispositiu 
+	mestre al primer canal ATA (<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/hda</code></html:span>), i el CD-ROM
+	és el dispositiu mestre del segon canal ATA. Les particions del
+	disc dur s'anomenen com el nom del disc que les sosté més un número.
+	Per exemple, <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/hda1</code></html:span> és la primera partició 
+	del disc representat pel fitxer de dispositiu 
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/hda</code></html:span>.
+	
+        
+      </p>
+<p>
+	Els discs SCSI i els dispostius CD-ROM segueixen una altra convenció
+	de noms. SCSI no és d'ús comú en la majoria de màquines de perfil baix,
+	però les unitats USB i Serial ATA (SATA) són representades com discs
+	SCSI. La següent notació s'utilitza per a les unitats SCSI:
+
+        
+      </p>
+<pre class="screen">
+/dev/sda - Primer disc SCSI
+/dev/sdb - Segon disc SCSI
+/dev/sdc - Tercer disc SCSI
+/dev/scd0 - Primer CD-ROM
+/dev/scd1 - Segon CD-ROM
+/dev/scd2 - Tercer CD-ROM
+      </pre>
+<p>
+	Els noms de les particions es construeixen de la mateixa manera que 
+	als discs ATA, així <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/sda1</code></html:span> és la primera partició
+	en el primer disc SCSI.
+        
+      </p>
+<p>
+	Si utilitzes la implementació RAID de programari del núcli Linux,
+	els volums RAID estàn disponibles com <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/mdn</code></html:span>,
+	on la <span class="emphasis"><em>n</em></span> és el número de volum començant per 0. 
+        
+      </p>
+</div>
+</div>
+<div class="footnotes">
+<br><hr style="width:100; text-align:left;margin-left: 0">
+<div id="ftn.idm963275972" class="footnote"><p><a href="#idm963275972" class="para"><sup class="para">[2] </sup></a>
+	    Malgrat que <span class="emphasis"><em>daemon</em></span> es tradueix al valencià com 
+	    a dimoni, en anglés no són la mateixa paraula i aquesta fa referència 
+	    a uns éssers sobrenaturals de la mitologia grega, una mena d'esperits 
+	    que tenien un cert poder sobre els homes, una mena de semi-Deus.
+            
+          </p></div>
+<div id="ftn.idm963235532" class="footnote"><p><a href="#idm963235532" class="para"><sup class="para">[3] </sup></a>
+            <a class="ulink" href="ftp://ftp.kernel.org/pub/linux/docs/device-list/" target="_top">ftp://ftp.kernel.org/pub/linux/docs/device-list/</a>
+          </p></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="chap-help.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="getstarted.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="chap-install.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 3. Fonts d'ajuda  </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 5. La instal·lació de Slackware Linux </td>
+</tr>
+</table>
+</div>
+</body>
+</html>

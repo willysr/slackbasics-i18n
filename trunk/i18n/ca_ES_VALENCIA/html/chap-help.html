@@ -1,0 +1,287 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 3. Fonts d'ajuda</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="getstarted.html" title="Part I. Per començar ??Getting started??">
+<link rel="prev" href="chap-intro.html" title="Chapter 2. Introducció a Slackware Linux">
+<link rel="next" href="concepts.html" title="Chapter 4. Conceptes generals">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 3. Fonts d'ajuda </th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="chap-intro.html">Prev</a> </td>
+<th width="60%" align="center">Part I. Per començar ??Getting started??</th>
+<td width="20%" align="right"> <a accesskey="n" href="concepts.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div lang="en" class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="chap-help"></a>Chapter 3. Fonts d'ajuda </h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="chap-help.html#chap-help-system">3.1. Al teu sistema</a></span></dt>
+<dt><span class="sect1"><a href="chap-help.html#chap-help-internet">3.2. A la Internet</a></span></dt>
+</dl>
+</div>
+  
+
+  <p>
+	Hi ha un conjunt molt ric d'informació disponible sobre molts temes relacionats
+	amb el GNU/Linux. La més general és aplicable a Slackware Linux, perque
+	el programari incorporat a la distribució s'ha compilat des de codis font
+	que han patit les mínimes alteracions possibles. Aquest capítol
+	proporciona alguns enllaços a informació i documentació que es pot 
+	trobar tant a un sistema amb Slackware Linux instal·lat, com a Internet.
+  </p>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-help-system"></a>3.1. Al teu sistema</h2></div></div></div>
+    
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-help-system-howtos"></a>3.1.1. HOWTO's de Linux</h3></div></div></div>
+      
+
+      <p>
+	Els HOWTOs (COM FER) de Linux són una colecció de de documents que cobreixen
+	temes específics relacionats amb GNU/Linux. Molts HOWTOs de Linux no 
+	van lligats a una distribució específica, pel que són molt útils 
+	per als usuaris de Slackware Linux. 
+	El paquet <span class="emphasis"><em>linux-howtos</em></span> en el grup de programari
+	<span class="quote">“<span class="quote">f</span>”</span> conté la col·lecció de HOWTOs. Després d'instal·lar-lo, estaràn
+	disponibles al directori <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/doc/Linux-HOWTOs/</code></html:span>.
+	Slackware Linux conté, a més, una xicoteta col·lecció de <acronym class="acronym">FAQs</acronym>
+	relacionades amb Linux (Les FAQ són documents que respones preguntes frequents). 
+	Les FAQs de Linux es troben instal·lades al directori 
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/doc/Linux-FAQs/</code></html:span> i estàn disponibles al paquet
+	<span class="emphasis"><em>linux-faqs</em></span>, que forma part del grup <span class="quote">“<span class="quote">f</span>”</span> 
+	de programari.        
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-help-system-manpages"></a>3.1.2. Pàgines de manual</h3></div></div></div>
+      
+
+      <p>
+	La majoria de comandaments tipus UNIX estàn coberts pel sistema
+	tradicional d'ajuda de UNIX, les anomenades <span class="emphasis"><em>pàgines de manual</em></span>.
+	Es pot llegir la pàgina de manual d'un programa amb la ordre 
+	<span class="command"><strong>man</strong></span>. Al executar <span class="command"><strong>man</strong></span> amb el nom d'un
+	comandament com a argument, es mostrarà la pàgina de manual corresponent.
+	Per exemple,
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>man ls</code></strong>
+      </pre>
+
+      <p>
+	mostra la pàgina de manual del comandament <span class="command"><strong>ls</strong></span>.
+      </p>
+
+      <p>
+	Si no saps el nom exacte d'una pàgina de manual o d'un comandament,
+	pots buscar una paraula clau a les pàgines de manual. La opció 
+	<em class="parameter"><code>-k</code></em> proporciona aquesta funcionalitat:
+	
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>man -k rmdir</code></strong>
+hrmdir               (1)  - remove an empty HFS directory
+rmdir                (1)  - remove empty directories
+rmdir                (2)  - delete a directory
+      </pre>
+
+      <p>
+	La col·lecció de pàgines de manual és molt extensa, i abarca 
+	més temes a banda dels comandaments. Les següents seccions estàn 
+	disponibles.
+        
+      </p>
+
+      <div class="literallayout"><p><br>
+1   Programes executables o ordres de l'interpret <br>
+2   Crides al sistema (funcions proporcionades pel núcli) <br>
+3   Crides de funció (funcions dins de llibreries de programa) <br>
+4   Fitxers especials (trobats habitualment a /dev) <br>
+5   Formats de fitxer i convencions p.ex. /etc/passwd <br>
+6   Jocs <br>
+7   Miscel·lània (incloent paquets de macros i convencions, p.ex. man(7), groff(7)<br>
+8   Comandaments d'administració del sistema (normalment només per al root) <br>
+9   Rutines de Linux [No estàndard] <br>
+      </p></div>
+
+      <p>
+	Si més d'una secció conté una pàgina de manual amb un nom específic,
+	com per exemple <span class="command"><strong>rmdir</strong></span>, pots triar quina pàgina vols veurer
+	afegint el nombre de secció abans del nom de la pàgina de manual. Per exemple:
+        
+      </p>
+
+      <pre class="screen">
+<strong class="userinput"><code>man 2 rmdir</code></strong>
+      </pre>
+
+      <p>
+	Si volgueres imprimir una pàgina de manual en una impressora que tingueres
+	instal·lada, podries connectar la eixida de <span class="command"><strong>man</strong></span> al comandament
+	<span class="command"><strong>lpr</strong></span>. Quan s'empra la opció <em class="parameter"><code>-t
+        </code></em> del comandament <span class="command"><strong>man</strong></span>, este manará la pàgina
+	de manual en format Postscript enlloc d'ASCII a la seua eixida. Per exemple,
+	es pot emprar el següent comandament per a imprimir la pàgina de manual de
+	<span class="command"><strong>cat</strong></span>:
+        
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>man -t cat | lpr</code></strong>
+      </pre>
+    </div>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-help-internet"></a>3.2. A la Internet</h2></div></div></div>
+    
+
+    <p>
+      Hi ha molts llocs web i forums relacionats amb GNU/Linux i 
+      Slackware Linux a la Internet, però molts d'aquests sovint 
+      desapareixen tan ràpid com apareixen, a més la informació en molts
+      llocs web està fragmentada. Els següents recursos han estat 
+      actius durant molt de temps, i proporcionen bons contingunts.
+      
+    </p>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-help-internet-slacksite"></a>3.2.1. El lloc web de Slackware Linux</h3></div></div></div>
+      
+
+      <p>
+	El lloc web de Slackware Linux pot estar una miqueta desfasat de vegades,
+	però proporciona mols recursos útils.
+	    
+        
+      </p>
+
+      <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+	  <p>
+	    Una pàgina de notícies que anuncia nous alliberaments i llista
+	    altres notícies importants que són rellevants per a Slackware Linux.
+            
+	  </p>
+	</li>
+<li class="listitem">
+	  <p>
+	    Un resum dels canvis patits per la distribució es proporciona 
+	    mitjançant un format estructurat anomenat <span class="emphasis"><em>ChangeLog</em></span>.
+	    Es proporcionen ChangeLog's tant de la versió actual de desenvolupament, 
+	    com de l'últim alliberament estable.
+            
+          </p>
+        </li>
+<li class="listitem">
+          <p>
+	    Hi ha dues llistes de distribució a les que et pots subscriure.
+	    La llista <span class="emphasis"><em>slackware-announce</em></span> acostuma a 
+	    anunciar nous alliberaments de Slackware Linux, mentres que 
+	    les actualitzacions de seguretat s'anuncien a la llista
+	    <span class="emphasis"><em>slackware-security</em></span>.
+            
+          </p>
+        </li>
+<li class="listitem">
+          <p>
+	    Un llista dels espills on es pot descarregar Slackware Linux.
+	    
+            
+          </p>
+        </li>
+<li class="listitem">
+          <p>
+	    Documentació diversa, incloent una llista de 
+	    preguntes freqüents i el llibre <span class="emphasis"><em>Slackware 
+	    Linux Essentials</em></span>.
+            
+          </p>
+        </li>
+</ul></div>
+
+      <p>
+	El lloc web de Slackware Linux està disponible a:
+	
+	<a class="ulink" href="http://www.slackware.com/" target="_top">http://www.slackware.com/</a>
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-help-internet-linuxquestions"></a>3.2.2. LinuxQuestions</h3></div></div></div>
+      
+
+      <p>
+	LinuxQuestions és un enorme forum amb prous membres
+	dispostos a ajudar. És de particular interés
+	el subforum de Slackware Linux, on pots buscar assistència
+	per a resoldre els problemes que pogueres tindre amb Slackware Linux.
+	El forum LinuxQuestions està disponible a:
+        
+	<a class="ulink" href="http://www.linuxquestions.org/" target="_top">http://www.linuxquestions.org/</a>
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-help-internet-aols"></a>3.2.3. alt.os.linux.slackware</h3></div></div></div>
+      
+
+      <p>
+	<span class="emphasis"><em>alt.os.linux.slackware</em></span> és un 
+	grup de notícies de Slackware Linux. Pots llegir aquests grups  
+	amb un lector de notícies com ara tin o slrn, a través
+	del servidor de grups de notícies del teu proveïdor
+	d'accés a Internet. En aquest grup de notícies
+	s'espera que hages llegit llegit tota la documentació
+	necessària abans de publicar preguntes. Si no ho has fet
+	i ha moltes possibilitats de que sigues <span class="quote">“<span class="quote">fulminat</span>”</span>.
+        
+      </p>
+    </div>
+  </div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="chap-intro.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="getstarted.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="concepts.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 2. Introducció a Slackware Linux </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 4. Conceptes generals</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

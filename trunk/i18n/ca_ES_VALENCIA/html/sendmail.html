@@ -1,0 +1,254 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 13. Sendmail</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="email.html" title="Part IV. Correu electrònic">
+<link rel="prev" href="mutt.html" title="Chapter 12. Reading and writing e-mail with mutt">
+<link rel="next" href="sysadmin.html" title="Part V. Administració del sistema">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 13. Sendmail</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="mutt.html">Prev</a> </td>
+<th width="60%" align="center">Part IV. Correu electrònic</th>
+<td width="20%" align="right"> <a accesskey="n" href="sysadmin.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="email-sendmail"></a>Chapter 13. Sendmail</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="sendmail.html#email-sendmail-introduction">13.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="sendmail.html#email-sendmail-installation">13.2. Installation</a></span></dt>
+<dt><span class="sect1"><a href="sendmail.html#email-sendmail-configuration">13.3. Configuration</a></span></dt>
+</dl>
+</div>
+<a class="indexterm" name="idm962061012"></a><div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="email-sendmail-introduction"></a>13.1. Introduction</h2></div></div></div>
+<a class="indexterm" name="idm962060412"></a><a class="indexterm" name="idm962060204"></a><p>
+      Sendmail is the default Mail Transfer Agent (<acronym class="acronym">MTA</acronym>)
+      that Slackware Linux uses. sendmail was originally written by Eric
+      Allman, who still maintains sendmail. The primary role of the sendmail
+      MTA is delivering messages, either locally or remotely. Delivery
+      is usually done through the SMTP protocol. This means that sendmail
+      can accept e-mail from remote sites through the SMTP port, and that
+      sendmail delivers mail destined for remote sites to other SMTP
+      servers.
+    </p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="email-sendmail-installation"></a>13.2. Installation</h2></div></div></div>
+<a class="indexterm" name="idm962058756"></a><p>
+      Sendmail is available as the <span class="emphasis"><em>sendmail</em></span> package
+      in the <span class="quote">“<span class="quote">n</span>”</span> disk set. If you want to generate your own
+      sendmail configuration files, the <span class="emphasis"><em>sendmail-cf</em></span>
+      package is also required. For information about how to install
+      packages on Slackware Linux, refer to
+      <a class="xref" href="chap-pkgmgmt.html" title="Chapter 17. Gestió de paquets">Chapter 17, <i>Gestió de paquets</i></a>.
+    </p>
+<p>
+      You can let Slackware Linux start sendmail during each boot by
+      making the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.sendmail</code></html:span> executable.
+      You can do this by executing:
+    </p>
+<pre class="screen">
+# <span class="command"><strong>chmod a+x /etc/rc.d/rc.sendmail</strong></span>
+    </pre>
+<p>
+      You can also start, stop and restart sendmail by using
+      <span class="emphasis"><em>start</em></span>, <span class="emphasis"><em>stop</em></span>, and
+      <span class="emphasis"><em>restart</em></span> as a parameter to the sendmail
+      initialization script. For example, you can restart sendmail
+      in the following way:
+    </p>
+<pre class="screen">
+# <span class="command"><strong>/etc/rc.d/rc.sendmail restart</strong></span>
+    </pre>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="email-sendmail-configuration"></a>13.3. Configuration</h2></div></div></div>
+<p>
+      The most central sendmail configuration file is
+      <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/mail/sendmail.cf</code></html:span>; this is where the 
+      behavior of sendmail is configured, and where other files
+      are included. The syntax of <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/mail/sendmail.cf</code></html:span>
+      is somewhat obscure, because this file is compiled from a
+      much simpler <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">.mc</code></html:span> files that uses M4 macros
+      that are defined for sendmail.
+    </p>
+<p>
+      Some definitions can easily be changed in the
+      <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/mail/sendmail.cf</code></html:span> file, but for other
+      changes it is better to create your own <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">.mc</code></html:span>
+      file. Examples in this chapter will be focused on creating a
+      customized mc file.
+    </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="email-sendmail-configuration-mc"></a>13.3.1. Working with mc files</h3></div></div></div>
+<a class="indexterm" name="idm962052004"></a><p>
+        In this section we will look how you can start off with an
+        initial mc file, and how to compile your own .mc file to a
+        cf file. There are many interesting example mc files available
+        in <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/share/sendmail/cf/cf</code></html:span>. The most
+        interesting examples are <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">sendmail-slackware.mc</code></html:span>
+        (which is used for generating the default Slackware Linux
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">sendmail.cf</code></html:span>), and
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">sendmail-slackware-tls.mc</code></html:span> which adds
+        TLS support to the standard Slackware Linux sendmail configuration.
+        If you want to create your own sendmail configuration, it is
+        a good idea to start with a copy of the standard Slackware Linux
+        mc file. For instance, suppose that we would like to create
+        a configuration file for the server named <span class="emphasis"><em>straw</em></span>,
+        we could execute:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>cd /usr/share/sendmail/cf/cf</strong></span>
+# <span class="command"><strong>cp sendmail-slackware.mc sendmail-straw.mc</strong></span>
+      </pre>
+<p>
+        and start editing <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">sendmail-straw.mc</code></html:span>. After
+        the configuration file is modified to our tastes, M4 can be used
+        to compile a cf file:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>m4 sendmail-straw.mc &gt; sendmail-straw.cf</strong></span>
+      </pre>
+<p>
+        If we want to use this new configuration file as the default
+        configuration, we can copy it to
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/mail/sendmail.cf</code></html:span>:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>cp sendmail-straw.cf /etc/mail/sendmail.cf</strong></span>
+      </pre>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="email-sendmail-configuration-smarthost"></a>13.3.2. Using a smarthost</h3></div></div></div>
+<a class="indexterm" name="idm962046908"></a><p>
+        If you would like to use another host to deliver e-mail to
+        locations to which the sendmail server you are configuring can not
+        deliver you can set up sendmail to use a so-called <span class="quote">“<span class="quote">smart
+        host</span>”</span>. Sendmail will send the undeliverable e-mail to the
+        smart host, which is in turn supposed to handle the e-mail. You do
+        this by defining <span class="emphasis"><em>SMART_HOST</em></span> in your mc file.
+        For example, if you want to use <span class="emphasis"><em>smtp2.example.org</em></span>
+        as the smart host, you can add the following line:
+      </p>
+<pre class="screen">
+define(`SMART_HOST',`stmp2.example.org')
+      </pre>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="email-sendmail-configuration-accepthosts"></a>13.3.3. Alternative host/domain names</h3></div></div></div>
+<a class="indexterm" name="idm962044700"></a><p>
+        By default sendmail will accept mail destined for localhost, and the
+        current hostname of the system. You can simply add additional hosts
+        or domains to accept e-mail for. The first step is to make sure that 
+        the following line is added to your mc configuration:
+      </p>
+<pre class="screen">
+FEATURE(`use_cw_file')dnl
+      </pre>
+<p>
+        When this option is enabled you can add host names and domain
+        names to accept mail for to
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/mail/local-host-names</code></html:span>. This file
+        is a newline separated database of names. For example, the file
+        could look like this:
+      </p>
+<pre class="screen">
+example.org
+mail.example.org
+www.example.org
+      </pre>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="email-sendmail-configuration-mapaddr"></a>13.3.4. Virtual user table</h3></div></div></div>
+<a class="indexterm" name="idm962042468"></a><p>
+        Often you may want to map e-mail addresses to user names. This
+        is needed when the user name differs from the part before the
+        <span class="quote">“<span class="quote">@</span>”</span> part of an e-mail address. To enable this
+        functionality, make sure the following line is added to your
+        mc file:
+      </p>
+<pre class="screen">
+FEATURE(`virtusertable',`hash -o /etc/mail/virtusertable.db')dnl
+      </pre>
+<p>
+        The mappings will now be read from
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/mail/virtusertable.db</code></html:span>. This is a
+        binary database file that should not directly edit. You can
+        edit <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/mail/virtusertable</code></html:span> instead,
+        and generate <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/mail/virtusertable.db</code></html:span>
+        from that file.
+      </p>
+<p>
+        The <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/mail/virtusertable</code></html:span> file is a simple
+        plain text file. That has a mapping on each line, with an e-mail
+        address and a user name separated by a tab. For example:
+      </p>
+<pre class="screen">
+john.doe@example.org    john
+john.doe@mail.example.org        john
+      </pre>
+<p>
+        In this example both e-mail for
+        <span class="emphasis"><em>john.doe@example.org</em></span> and
+        <span class="emphasis"><em>john.doe@mail.example.org</em></span> will be
+        delivered to the <span class="emphasis"><em>john</em></span> account. It is
+        also possible to deliver some e-mail destined for a domain
+        that is hosted on the server to another e-mail address,
+        by specifying the e-mail address to deliver the e-mail to
+        in the second column. For example:
+      </p>
+<pre class="screen">
+john.doe@example.org    john.doe@example.com
+      </pre>
+<p>
+        After making the necessary changes to the
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">virtusertable</code></html:span> file you can generate the
+        database with the following command:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>makemap hash /etc/mail/virtusertable &lt; /etc/mail/virtusertable</strong></span>
+      </pre>
+</div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="mutt.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="email.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sysadmin.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 12. Reading and writing e-mail with mutt </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Part V. Administració del sistema</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

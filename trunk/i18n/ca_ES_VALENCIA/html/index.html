@@ -1,0 +1,447 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Fonaments de Slackware Linux</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="next" href="preface.html" title="Preface">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Fonaments de Slackware Linux</th></tr>
+<tr>
+<td width="20%" align="left"> </td>
+<th width="60%" align="center"> </th>
+<td width="20%" align="right"> <a accesskey="n" href="preface.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div lang="en" class="book">
+<div class="titlepage">
+<div>
+<div><h1 class="title">
+<a name="idm963380908"></a>Fonaments de Slackware Linux</h1></div>
+<div><h2 class="subtitle">Corresponents a Slackware Linux 12.0</h2></div>
+<div><div class="authorgroup">
+      <div class="author"><h3 class="author">Daniël de Kok</h3></div>
+    </div></div>
+<div><p class="copyright">Copyright © 2002-2009 Daniël de Kok</p></div>
+<div><div class="legalnotice">
+<a name="idm963374924"></a>
+      <p class="legalnotice-title"><b>LLicència</b></p>
+
+      <p>
+        Alguns drets reservats. Este llibre està disponible baix la Creative Commons
+        Attribution 3.0 License (CC-BY). Esta llicència està disponible a:
+        <a class="ulink" href="http://creativecommons.org/licenses/by/3.0/" target="_top">http://creativecommons.org/licenses/by/3.0/</a>
+      </p>
+
+      <p>
+	Linux és una marca registrada de Linus Torvalds. Slackware
+	Linux és una marca registrada de Patrick Volkerding i
+	Slackware Linux, Inc.  UNIX és una marca registrada de The
+	Open Group.
+      </p>
+    </div></div>
+<div><p class="pubdate">Thu Sep 27 10:20:04 CEST 2007</p></div>
+</div>
+<hr>
+</div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="preface"><a href="preface.html">Preface</a></span></dt>
+<dt><span class="part"><a href="getstarted.html">I. Per començar ??Getting started??</a></span></dt>
+<dd><dl>
+<dt><span class="chapter"><a href="chap-book.html">1. Quan a este llibre</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="chap-book.html#chap-book-availability">1.1. Disponibilitat</a></span></dt>
+<dt><span class="sect1"><a href="chap-book.html#chap-book-conventions">1.2. Convencions</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="chap-intro.html">2. Introducció a Slackware Linux</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="chap-intro.html#chap-intro-linux">2.1. Què és Linux?</a></span></dt>
+<dt><span class="sect1"><a href="chap-intro.html#chap-intro-gnulinux">2.2. Qu és GNU/Linux?</a></span></dt>
+<dt><span class="sect1"><a href="chap-intro.html#chap-intro-slackware">2.3. Què és Slackware Linux?</a></span></dt>
+<dt><span class="sect1"><a href="chap-intro.html#chap-intro-unix">2.4. La filosofia UNIX</a></span></dt>
+<dt><span class="sect1"><a href="chap-intro.html#free-software">2.5. Programar lliure i de font oberta</a></span></dt>
+<dt><span class="sect1"><a href="chap-intro.html#slackware-features">2.6. Característiques de Slackware Linux 12.0</a></span></dt>
+<dt><span class="sect1"><a href="chap-intro.html#chap-intro-getting">2.7. Com aconseguir Slackware Linux (Getting Slackware Linux)</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="chap-help.html">3. Fonts d'ajuda </a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="chap-help.html#chap-help-system">3.1. Al teu sistema</a></span></dt>
+<dt><span class="sect1"><a href="chap-help.html#chap-help-internet">3.2. A la Internet</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="concepts.html">4. Conceptes generals</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="concepts.html#concepts-multitasca">4.1. Multitasca</a></span></dt>
+<dt><span class="sect1"><a href="concepts.html#concepts-fshierarchy">4.2. Jerarquia del sistema de fitxers </a></span></dt>
+<dt><span class="sect1"><a href="concepts.html#concepts-devices">4.3. Dispositius</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="chap-install.html">5. La instal·lació de Slackware Linux </a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="chap-install.html#chap-install-bootcd">5.1. Llançar el CD d'instal·lació </a></span></dt>
+<dt><span class="sect1"><a href="chap-install.html#chap-install-partitioning">5.2. Particionar un disc dur </a></span></dt>
+<dt><span class="sect1"><a href="chap-install.html#chap-install-installing">5.3. Instal·lant Slackware Linux</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="custom-installation.html">6. Custom installation</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="custom-installation.html#getstarted-custominstall-partition">6.1. Partitioning a hard disk</a></span></dt>
+<dt><span class="sect1"><a href="custom-installation.html#getstarted-custominstall-initfs">6.2. Initializing and mounting filesystems</a></span></dt>
+<dt><span class="sect1"><a href="custom-installation.html#getstarted-custominstall-packages">6.3. Installing packages</a></span></dt>
+<dt><span class="sect1"><a href="custom-installation.html#getstarted-custominstall-config">6.4. Post-install configuration</a></span></dt>
+<dt><span class="sect1"><a href="custom-installation.html#getstarted-custominstall-script">6.5. Automated installation script</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="part"><a href="basics.html">II. Conceptes fonamentals de Slackware Linux</a></span></dt>
+<dd><dl>
+<dt><span class="chapter"><a href="chap-shell.html">7. El shell</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="chap-shell.html#chap-shell-intro">7.1. Introducció </a></span></dt>
+<dt><span class="sect1"><a href="chap-shell.html#chap-shell-executing">7.2. Executant ordres </a></span></dt>
+<dt><span class="sect1"><a href="chap-shell.html#chap-shell-moving">7.3. Anant amunt i avall </a></span></dt>
+<dt><span class="sect1"><a href="chap-shell.html#chap-shell-history">7.4. Historial d'ordres </a></span></dt>
+<dt><span class="sect1"><a href="chap-shell.html#chap-shell-completion">7.5. Autocompletat</a></span></dt>
+<dt><span class="sect1"><a href="chap-shell.html#chap-shell-wildcards">7.6. Comodins </a></span></dt>
+<dt><span class="sect1"><a href="chap-shell.html#chap-shell-inout">7.7. Redireccions i canonades </a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="chap-filesystem.html">8. Files and directories</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="chap-filesystem.html#chap-filesystem-introduction">8.1. Some theory</a></span></dt>
+<dt><span class="sect1"><a href="chap-filesystem.html#chap-filesystems-analyzing">8.2. Analyzing files</a></span></dt>
+<dt><span class="sect1"><a href="chap-filesystem.html#chap-filesystem-directories">8.3. Working with directories</a></span></dt>
+<dt><span class="sect1"><a href="chap-filesystem.html#chap-filesystem-managing">8.4. Managing files and directories</a></span></dt>
+<dt><span class="sect1"><a href="chap-filesystem.html#chap-filesystem-permissions">8.5. Permissions</a></span></dt>
+<dt><span class="sect1"><a href="chap-filesystem.html#chap-filesystem-finding">8.6. Finding files</a></span></dt>
+<dt><span class="sect1"><a href="chap-filesystem.html#basics-filesystem-archives">8.7. Archives</a></span></dt>
+<dt><span class="sect1"><a href="chap-filesystem.html#basics-filesystem-mounting">8.8. Mounting filesystems</a></span></dt>
+<dt><span class="sect1"><a href="chap-filesystem.html#basics-filesystem-gnupg">8.9. Encrypting and signing files</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="chap-textproc.html">9. Text processing</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="chap-textproc.html#chap-textproc-simple">9.1. Simple text manipulation</a></span></dt>
+<dt><span class="sect1"><a href="chap-textproc.html#chap-textproc-regexps">9.2. Regular expressions</a></span></dt>
+<dt><span class="sect1"><a href="chap-textproc.html#chap-textproc-grep">9.3. grep</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="chap-procmgmt.html">10. Process management</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="chap-procmgmt.html#chap-procmgmt-theory">10.1. Theory</a></span></dt>
+<dt><span class="sect1"><a href="chap-procmgmt.html#chap-procmanagement-analyzing">10.2. Analyzing running processes</a></span></dt>
+<dt><span class="sect1"><a href="chap-procmgmt.html#chap-procmanagement-managing">10.3. Managing processes</a></span></dt>
+<dt><span class="sect1"><a href="chap-procmgmt.html#chap-procmanagement-jobcontrol">10.4. Job control</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="part"><a href="editing.html">III. Editant i formatant text ??"typesetting"??</a></span></dt>
+<dd><dl>
+<dt><span class="chapter"><a href="latex.html">11. LaTeX</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="latex.html#editing-latex-introduction">11.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="latex.html#editing-latex-basic">11.2. Preparing basic LaTeX documents</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="part"><a href="email.html">IV. Correu electrònic</a></span></dt>
+<dd><dl>
+<dt><span class="chapter"><a href="mutt.html">12. Reading and writing e-mail with mutt</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="mutt.html#email-mutt-introduction">12.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="mutt.html#email-mutt-usage">12.2. Usage</a></span></dt>
+<dt><span class="sect1"><a href="mutt.html#email-mutt-basicsetup">12.3. Basic setup</a></span></dt>
+<dt><span class="sect1"><a href="mutt.html#email-mutt-imap">12.4. Using IMAP</a></span></dt>
+<dt><span class="sect1"><a href="mutt.html#email-mutt-gnupg">12.5. Signing/encrypting e-mails</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="sendmail.html">13. Sendmail</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="sendmail.html#email-sendmail-introduction">13.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="sendmail.html#email-sendmail-installation">13.2. Installation</a></span></dt>
+<dt><span class="sect1"><a href="sendmail.html#email-sendmail-configuration">13.3. Configuration</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="part"><a href="sysadmin.html">V. Administració del sistema</a></span></dt>
+<dd><dl>
+<dt><span class="chapter"><a href="chap-usermgmt.html">14. Gestió d'usuaris </a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="chap-usermgmt.html#chap-usermgmt-intro">14.1. Introducció</a></span></dt>
+<dt><span class="sect1"><a href="chap-usermgmt.html#chap-usermgmt-user">14.2. Afegint i suprimint usuaris</a></span></dt>
+<dt><span class="sect1"><a href="chap-usermgmt.html#chap-usermgmt-su">14.3. Evitant l'ús de root mitjançant su </a></span></dt>
+<dt><span class="sect1"><a href="chap-usermgmt.html#chap-usermgmt-quota">14.4. Cuota de disc</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="printer.html">15. Configuració de impressores </a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="printer.html#printing-intro">15.1. Introducció</a></span></dt>
+<dt><span class="sect1"><a href="printer.html#printing-preparations">15.2. Preparatius </a></span></dt>
+<dt><span class="sect1"><a href="printer.html#printing-configuration">15.3. Configuració</a></span></dt>
+<dt><span class="sect1"><a href="printer.html#printing-accesscontrol">15.4. Control d'accés </a></span></dt>
+<dt><span class="sect1"><a href="printer.html#printing-gspapersize">15.5. Tamany del paper Ghostscript </a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="chap-x11.html">16. X11</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="chap-x11.html#chap-x11-config">16.1. Configuració d'X</a></span></dt>
+<dt><span class="sect1"><a href="chap-x11.html#chap-x11-wm">16.2. Gestor de finestres </a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="chap-pkgmgmt.html">17. Gestió de paquets</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="chap-pkgmgmt.html#chap-pkgmgmt-pkgtools">17.1. Pkgtools</a></span></dt>
+<dt><span class="sect1"><a href="chap-pkgmgmt.html#chap-pkgmgmt-slackpkg">17.2. Slackpkg</a></span></dt>
+<dt><span class="sect1"><a href="chap-pkgmgmt.html#chap-pkgmgmt-rsync">17.3. Obtenint actualitzacions mitjançant rsync 
+    </a></span></dt>
+<dt><span class="sect1"><a href="chap-pkgmgmt.html#chap-pkgmgmt-tagfiles">17.4. Tagfiles (fitxers d'etiquetes)</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="kernel.html">18. Contruïnt un núcli</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="kernel.html#chap-kernel-intro">18.1. Introducció</a></span></dt>
+<dt><span class="sect1"><a href="kernel.html#chap-kernel-build">18.2. Configuració</a></span></dt>
+<dt><span class="sect1"><a href="kernel.html#chap-kernel-compile">18.3. La compilació</a></span></dt>
+<dt><span class="sect1"><a href="kernel.html#chap-kernel-install">18.4. Instal·lació</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="chap-init.html">19. System initialization</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="chap-init.html#chap-init-lilo">19.1. The bootloader</a></span></dt>
+<dt><span class="sect1"><a href="chap-init.html#chap-init-init">19.2. init</a></span></dt>
+<dt><span class="sect1"><a href="chap-init.html#chap-init-initscripts">19.3. Initialization scripts</a></span></dt>
+<dt><span class="sect1"><a href="chap-init.html#chap-init-udev">19.4. Hotplugging and device node management</a></span></dt>
+<dt><span class="sect1"><a href="chap-init.html#chap-init-firmware">19.5. Device firmware</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="security.html">20. Security</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="security.html#idm961694308">20.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="security.html#idm961693036">20.2. Closing services</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="miscadmin.html">21. Miscel·lània</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="miscadmin.html#sysadmin-misc-cron">21.1. Planificant tasques amb cron </a></span></dt>
+<dt><span class="sect1"><a href="miscadmin.html#sysadmin-misc-hdparm">21.2. Paràmetres de disc dur </a></span></dt>
+<dt><span class="sect1"><a href="miscadmin.html#sysadmin-memory-hdparm">21.3. Monitorejant  l'ús de la memòria </a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="part"><a href="netadmin.html">VI. Administració de xarxa</a></span></dt>
+<dd><dl>
+<dt><span class="chapter"><a href="netconfig.html">22. Networking configuration</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="netconfig.html#sysadmin-netconfig-hardware">22.1. Hardware</a></span></dt>
+<dt><span class="sect1"><a href="netconfig.html#idm961634020">22.2. Configuration of interfaces</a></span></dt>
+<dt><span class="sect1"><a href="netconfig.html#idm961628108">22.3. Configuration of interfaces (IPv6)</a></span></dt>
+<dt><span class="sect1"><a href="netconfig.html#idm961615700">22.4. Wireless interfaces</a></span></dt>
+<dt><span class="sect1"><a href="netconfig.html#idm961615636">22.5. Resolving</a></span></dt>
+<dt><span class="sect1"><a href="netconfig.html#idm961606724">22.6. IPv4 Forwarding</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="ipsec.html">23. IPsec</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="ipsec.html#idm961592788">23.1. Theory</a></span></dt>
+<dt><span class="sect1"><a href="ipsec.html#idm961587276">23.2. Linux configuration</a></span></dt>
+<dt><span class="sect1"><a href="ipsec.html#idm961583876">23.3. Installing IPsec-Tools</a></span></dt>
+<dt><span class="sect1"><a href="ipsec.html#idm961578924">23.4. Setting up IPsec with manual keying</a></span></dt>
+<dt><span class="sect1"><a href="ipsec.html#idm961565564">23.5. Setting up IPsec with automatic key exchanging</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="inetd.html">24. The Internet super server</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="inetd.html#idm961542220">24.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="inetd.html#idm961540572">24.2. Configuration</a></span></dt>
+<dt><span class="sect1"><a href="inetd.html#idm961534484">24.3. TCP wrappers</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="apache.html">25. Apache</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="apache.html#idm961527708">25.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="apache.html#idm961527092">25.2. Installation</a></span></dt>
+<dt><span class="sect1"><a href="apache.html#idm961522100">25.3. User directories</a></span></dt>
+<dt><span class="sect1"><a href="apache.html#idm961519540">25.4. Virtual hosts</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="bind.html">26. BIND</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="bind.html#idm961513500">26.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="bind.html#idm961506092">26.2. Making a caching nameserver</a></span></dt>
+</dl></dd>
+</dl></dd>
+</dl>
+</div>
+<div class="list-of-figures">
+<p><b>List of Figures</b></p>
+<dl>
+<dt>4.1. <a href="concepts.html#fork">Bifurcant un procés (forking)</a>
+</dt>
+<dt>4.2. <a href="concepts.html#filesystem-structure">La estructura del sistema de fitxers </a>
+</dt>
+<dt>5.1. <a href="chap-install.html#chap-install-partitioning-cfdisk">La eina de particionat cfdisk</a>
+</dt>
+<dt>5.2. <a href="chap-install.html#chap-install-installing-setup">La eina setup </a>
+</dt>
+<dt>5.3. <a href="chap-install.html#chap-install-installing-addswap">Preparant la partició d'intercanvi </a>
+</dt>
+<dt>5.4. <a href="chap-install.html#chap-install-installing-partselect">Seleccionant una partició a inicialitzar </a>
+</dt>
+<dt>5.5. <a href="chap-install.html#chap-install-installing-fscheck">Formatant la partició </a>
+</dt>
+<dt>5.6. <a href="chap-install.html#chap-install-installing-filesystem">Triant el tipus de sistema de fitxers </a>
+</dt>
+<dt>5.7. <a href="chap-install.html#chap-install-installing-medium">Triant el medi origen </a>
+</dt>
+<dt>5.8. <a href="chap-install.html#chap-install-installing-disksets">Triant els conjunts de discs</a>
+</dt>
+<dt>5.9. <a href="chap-install.html#chap-install-installing-installkernel">Instal·lant el núcli</a>
+</dt>
+<dt>5.10. <a href="chap-install.html#chap-install-installing-bootdisk">Creant un disc d'arranc </a>
+</dt>
+<dt>5.11. <a href="chap-install.html#chap-install-installing-modem">Seleccionant el modem per defecte </a>
+</dt>
+<dt>5.12. <a href="chap-install.html#chap-install-installing-hotplug">Habilitant l'endollat en calent</a>
+</dt>
+<dt>5.13. <a href="chap-install.html#chap-install-installing-liloinstall">Triant el tipus d'instal·lació de LILO </a>
+</dt>
+<dt>5.14. <a href="chap-install.html#chap-install-installing-framebuffer">Triant la resolució framebuffer </a>
+</dt>
+<dt>5.15. <a href="chap-install.html#chap-install-installing-kernel-param">Afegint paràmetres al núcli</a>
+</dt>
+<dt>5.16. <a href="chap-install.html#chap-install-installing-lilo-dest">Escollint on s'hauria d'instal·lar el LILO </a>
+</dt>
+<dt>5.17. <a href="chap-install.html#chap-install-installing-mouse">Configurant un ratolí </a>
+</dt>
+<dt>5.18. <a href="chap-install.html#chap-install-installing-ask-load-gpm">Escollint si GPM s'hauria d'iniciar</a>
+</dt>
+<dt>5.19. <a href="chap-install.html#chap-install-installing-ask-configure-network">Escollint si t'agradaria configurar la connectivatat de xarxa
+      </a>
+</dt>
+<dt>5.20. <a href="chap-install.html#chap-install-installing-hostname">Posant el nom de host </a>
+</dt>
+<dt>5.21. <a href="chap-install.html#chap-install-installing-domainname">Posant el nom de domini </a>
+</dt>
+<dt>5.22. <a href="chap-install.html#chap-install-installing-set-ipconfig-type">Configuració manual o automàtica de l'adreça IP
+      </a>
+</dt>
+<dt>5.23. <a href="chap-install.html#chap-install-installing-ipaddr">Posant l'adreça IP</a>
+</dt>
+<dt>5.24. <a href="chap-install.html#chap-install-installing-netmask">Posant la màscara de subxarxa</a>
+</dt>
+<dt>5.25. <a href="chap-install.html#chap-install-installing-gateway">Posant la porta d'enllaç</a>
+</dt>
+<dt>5.26. <a href="chap-install.html#chap-install-installing-ask-nameserver">Triant si vols emprar un servidor de noms o no 
+      </a>
+</dt>
+<dt>5.27. <a href="chap-install.html#chap-install-installing-nameserver">Posant el(s) servidor(s) de noms</a>
+</dt>
+<dt>5.28. <a href="chap-install.html#chap-install-installing-network-confirm">Confirmant els paràmetres de xarxa </a>
+</dt>
+<dt>5.29. <a href="chap-install.html#chap-install-installing-startup-services">Habilitant/deshabilitant serveis d'inici </a>
+</dt>
+<dt>5.30. <a href="chap-install.html#chap-install-installing-ask-clock-utc">Triant si el rellotge del sistema es posa UTC 
+      </a>
+</dt>
+<dt>5.31. <a href="chap-install.html#chap-install-installing-timezone">Posnat la zona horària </a>
+</dt>
+<dt>5.32. <a href="chap-install.html#chap-install-installing-defaultwm">Escollint el gestor de finestres per defecte 
+      </a>
+</dt>
+<dt>5.33. <a href="chap-install.html#chap-install-installing-rootpasswd">Posant la contrasenya de root</a>
+</dt>
+<dt>5.34. <a href="chap-install.html#chap-install-installing-finished">Finalitzat</a>
+</dt>
+<dt>7.1. <a href="chap-shell.html#fig-shell-inout">Entrada i eixida estàndar </a>
+</dt>
+<dt>7.2. <a href="chap-shell.html#fig-shell-pipeline">Una conducció </a>
+</dt>
+<dt>8.1. <a href="chap-filesystem.html#chap-filesystems-introduction-links-hardlink">The structure of a hard link</a>
+</dt>
+<dt>8.2. <a href="chap-filesystem.html#chap-filesystems-introduction-links-symlink">The structure of a symbolic link</a>
+</dt>
+<dt>10.1. <a href="chap-procmgmt.html#chap-procmgmt-theory-proc-procstates">Process states</a>
+</dt>
+<dt>22.1. <a href="netconfig.html#ipv6address">The anatomy of an IPv6 address</a>
+</dt>
+<dt>22.2. <a href="netconfig.html#router">Router example</a>
+</dt>
+</dl>
+</div>
+<div class="list-of-tables">
+<p><b>List of Tables</b></p>
+<dl>
+<dt>5.1. <a href="chap-install.html#chap-install-bootcd-installkernels">Núclis d'instal·lació</a>
+</dt>
+<dt>7.1. <a href="chap-shell.html#chap-shell-moving-char-shortcuts-move">Movent-se per caràcters </a>
+</dt>
+<dt>7.2. <a href="chap-shell.html#chap-shell-moving-char-shortcuts-delete">Esborrant caràcters </a>
+</dt>
+<dt>7.3. <a href="chap-shell.html#chap-shell-moving-char-shortcuts-swap">Intercanviant caràcters </a>
+</dt>
+<dt>7.4. <a href="chap-shell.html#chap-shell-moving-word-shortcuts-move">Movent-se per paraules </a>
+</dt>
+<dt>7.5. <a href="chap-shell.html#chap-shell-moving-word-shortcuts-delete">Eliminar paraules </a>
+</dt>
+<dt>7.6. <a href="chap-shell.html#chap-shell-moving-word-shortcuts-modify">Modificant paraules </a>
+</dt>
+<dt>7.7. <a href="chap-shell.html#chap-shell-moving-line-shortcuts-move">Movent-se per línies</a>
+</dt>
+<dt>7.8. <a href="chap-shell.html#chap-shell-moving-line-shortcuts-delete">Suprimint línies</a>
+</dt>
+<dt>7.9. <a href="chap-shell.html#chap-shell-wildcards-thewildcards">Comodins Bash </a>
+</dt>
+<dt>8.1. <a href="chap-filesystem.html#chap-filesystem-introduction-atoms-inodes">Common inode fields</a>
+</dt>
+<dt>8.2. <a href="chap-filesystem.html#chap-filesystem-permissions-numbers">Meaning of numbers in the mode octet</a>
+</dt>
+<dt>8.3. <a href="chap-filesystem.html#chap-filesystem-analyzing-viewing-less-keys">less command keys</a>
+</dt>
+<dt>8.4. <a href="chap-filesystem.html#chap-filesystem-permissions-acl-setting-flags">System-specific <span class="command">setfacl</span> flags</a>
+</dt>
+<dt>8.5. <a href="chap-filesystem.html#chap-filesystem-finding-find-nametype-type-params">Parameters for the '-type' operand</a>
+</dt>
+<dt>8.6. <a href="chap-filesystem.html#archive-extentions">Archive file extensions</a>
+</dt>
+<dt>9.1. <a href="chap-textproc.html#chap-textproc-simple-tr-charclasses">tr character classes</a>
+</dt>
+<dt>10.1. <a href="chap-procmgmt.html#chap-procmgmt-theory-proc-struct">The structure of a process</a>
+</dt>
+<dt>11.1. <a href="latex.html#latex-documentclasses">LaTeX document classes</a>
+</dt>
+<dt>11.2. <a href="latex.html#latex-fontstyles">LaTeX font styles</a>
+</dt>
+<dt>17.1. <a href="chap-pkgmgmt.html#chap-pkgmgmt-tagfiles-creating-fields">Capms de tagfile</a>
+</dt>
+<dt>22.1. <a href="netconfig.html#idm961623780">Important IPv6 Prefixes</a>
+</dt>
+<dt>26.1. <a href="bind.html#idm961509404">DNS records</a>
+</dt>
+</dl>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left"> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right"> <a accesskey="n" href="preface.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top"> </td>
+<td width="20%" align="center"> </td>
+<td width="40%" align="right" valign="top"> Preface</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

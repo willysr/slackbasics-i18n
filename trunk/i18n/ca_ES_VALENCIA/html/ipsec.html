@@ -1,0 +1,601 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 23. IPsec</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="netadmin.html" title="Part VI. Administració de xarxa">
+<link rel="prev" href="netconfig.html" title="Chapter 22. Networking configuration">
+<link rel="next" href="inetd.html" title="Chapter 24. The Internet super server">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 23. IPsec</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="netconfig.html">Prev</a> </td>
+<th width="60%" align="center">Part VI. Administració de xarxa</th>
+<td width="20%" align="right"> <a accesskey="n" href="inetd.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="ipsec"></a>Chapter 23. IPsec</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="ipsec.html#idm961592788">23.1. Theory</a></span></dt>
+<dt><span class="sect1"><a href="ipsec.html#idm961587276">23.2. Linux configuration</a></span></dt>
+<dt><span class="sect1"><a href="ipsec.html#idm961583876">23.3. Installing IPsec-Tools</a></span></dt>
+<dt><span class="sect1"><a href="ipsec.html#idm961578924">23.4. Setting up IPsec with manual keying</a></span></dt>
+<dt><span class="sect1"><a href="ipsec.html#idm961565564">23.5. Setting up IPsec with automatic key exchanging</a></span></dt>
+</dl>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961592788"></a>23.1. Theory</h2></div></div></div>
+<p>
+      <acronym class="acronym">IPsec</acronym> is a standard for securing IP communication
+      through authentication, and encryption. Besides that it can compress
+      packets, reducing traffic.  The following protocols are part of the
+      IPsec standard:
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p>
+          <acronym class="acronym">AH</acronym> (Authentication Header) provides authenticity
+          guarantee for transported packets. This is done by checksumming the
+          packages using a cryptographic algorithm. If the checksum is found to
+          be correct by the receiver, the receiver can be assured that the 
+	  packet is not modified, and that the packet really originated from 
+	  the reported sender (provided that the keys are only known by the 
+	  sender and receiver). 
+        </p></li>
+<li class="listitem"><p>
+          <acronym class="acronym">ESP</acronym> (Encapsulating Security Payload) is used to
+          encrypt packets. This makes the data of the packet confident, and
+	  only readable by the host with the right decryption key.
+        </p></li>
+<li class="listitem"><p>
+          <acronym class="acronym">IPcomp</acronym> (IP payload compression) provides
+	  compression before a packet is encrypted. This is useful, because
+	  encrypted data generally compresses worse than unencrypted data.
+        </p></li>
+<li class="listitem"><p>
+          <acronym class="acronym">IKE</acronym> (Internet Key Exchange) provides the means to
+          negotiate keys in secrecy. Please note that IKE is optional, keys can
+          be configured manually.
+        </p></li>
+</ul></div>
+<p>
+      There are actually two modes of operation: <span class="emphasis"><em>transport
+      mode</em></span> is used to encrypt normal connections between two 
+      hosts, <span class="emphasis"><em>tunnel mode</em></span> encapsulates the original
+      package in a new header. In this chapter we are going to look at the 
+      transport mode, because the primary goal of this chapter is to show 
+      how to set up a secure connection between two hosts.
+    </p>
+<p>
+      There are also two major methods of authentication. You can use manual
+      keys, or an Internet Key Exchange (IKE) daemon, like racoon, that 
+      automatically exchanges keys securely between two hosts. In both cases
+      you need to set up a policy in the Security Policy Database (SPD). This
+      database is used by the kernel to decide what kind of security policy
+      is needed to communicate with another host. If you use manual keying you
+      also have to set up Security Association Database (SAD) entries, which
+      specifies what encryption algorithmn and key should be used for secure
+      communication with another host. If you use an IKE daemon the security
+      associations are automatically established.
+    </p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961587276"></a>23.2. Linux configuration</h2></div></div></div>
+<p>
+      Native IPsec support is only available in Linux 2.6.x kernels.
+      Earlier kernels have no native IPsec support. So, make sure that
+      you have a 2.6.x kernel. The 2.6 kernel is available in
+      Slackware Linux 10.0, 10.1, and 10.2 from the
+      <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">testing</code></html:span> directory on CD2 of the Slackware
+      Linux CD sets, or any of the official Slackware Linux mirrors.
+      The 2.6 kernel is the default kernel since Slackware Linux 12.0.
+      The default Slackware Linux 2.6 kernel has support for AH, ESP
+      and IPcomp in for both IPv4 and IPv6. If you are compiling a
+      custom kernel enable use at least the following options in your
+      kernel configuration:
+    </p>
+<pre class="screen">
+CONFIG_INET_AH=y
+CONFIG_INET_ESP=y
+CONFIG_INET_IPCOMP=y
+    </pre>
+<p>
+      Or you can compile support for IPsec protocols as a module:
+    </p>
+<pre class="screen">
+CONFIG_INET_AH=m
+CONFIG_INET_ESP=m
+CONFIG_INET_IPCOMP=m
+    </pre>
+<p>
+      In this chapter we are only going to use AH and ESP transformations, but
+      it is not a bad idea to enable IPComp transformation for further 
+      configuration of IPsec. Besides support for the IPsec protocols, you
+      have to compile kernel support for the encryption and hashing algorithms
+      that will be used by AH or ESP. Linux or module support for these
+      algorithms can be enabled by twiddling the various
+      <span class="emphasis"><em>CONFIG_CRYPTO</em></span> options. It does not hurt to
+      compile all ciphers and hash algorithms as a module. 
+    </p>
+<p>
+      When you choose to compile IPsec support as a module, make sure
+      that the required modules are loaded. For example, if you are going
+      to use ESP for IPv4 connections, load the <span class="emphasis"><em>esp4</em></span>
+      module.
+    </p>
+<p>
+      Compile the kernel as usual and boot it.
+    </p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961583876"></a>23.3. Installing IPsec-Tools</h2></div></div></div>
+<p>
+      The next step is to install the
+      <a class="ulink" href="http://ipsec-tools.sourceforge.net" target="_top">IPsec-Tools</a>.
+      These tools are ports of
+      the <a class="ulink" href="http://www.kame.net" target="_top">KAME</a> IPsec utilities.
+      Download the latest sources and unpack, configure and install them:
+    </p>
+<pre class="screen">
+# <span class="command"><strong>tar jxf ipsec-tools-x.y.z.tar.bz2</strong></span>
+# <span class="command"><strong>cd ipsec-tools-x.y.z</strong></span>
+# <span class="command"><strong>CFLAGS="-O2 -march=i486 -mcpu=i686" \
+  ./configure --prefix=/usr \
+              --sysconfdir=/etc \
+              --localstatedir=/var \
+              --enable-hybrid \
+              --enable-natt \
+              --enable-dpd \
+              --enable-frag \
+              i486-slackware-linux</strong></span>
+# <span class="command"><strong>make</strong></span>
+# <span class="command"><strong>make install</strong></span>
+    </pre>
+<p>
+        Replace <span class="emphasis"><em>x.y.z</em></span> with the version of the
+	downloaded sources. The most notable flags that we specify
+	during the configuration of the sources are:
+      </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p>
+	    <span class="emphasis"><em>--enable-dpd</em></span>: enables
+	    dead peer detection (DPD). DPD is a method for detecting
+	    wether any of the hosts for which security associations
+	    are set up is unreachable. When this is the case the
+	    security associations to that host can be removed.
+	  </p></li>
+<li class="listitem"><p>
+	    <span class="emphasis"><em>--enable-natt</em></span>: enables NAT traversal
+	    (NAT-T). Since NAT alters the IP headers, this causes
+	    problems for guaranteeing authenticity of a packet. NAT-T
+	    is a method that helps overcoming this problem. Configuring
+	    NAT-T is beyond the scope of this article.
+	  </p></li>
+</ul></div>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961578924"></a>23.4. Setting up IPsec with manual keying</h2></div></div></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm961578692"></a>23.4.1. Introduction</h3></div></div></div>
+<p>
+        We will use an example as the guideline for setting up an encrypted
+        connection between two hosts. The hosts have the IP addresses 
+        <span class="emphasis"><em>192.168.1.1</em></span> and <span class="emphasis"><em>192.168.1.169</em></span>.
+        The <span class="quote">“<span class="quote">transport mode</span>”</span> of operation will be used with
+        AH and ESP transformations and manual keys.
+      </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm961577420"></a>23.4.2. Writing the configuration file</h3></div></div></div>
+<p>
+        The first step is to write a configuration file we will name
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/setkey.conf</code></html:span>. On the first host
+        (192.168.1.1) the following <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/setkey.conf</code></html:span>
+        configuration will be used:
+      </p>
+<pre class="screen">
+#!/usr/sbin/setkey -f
+
+# Flush the SAD and SPD
+flush;
+spdflush;
+
+add 192.168.1.1 192.168.1.169 ah 0x200 -A hmac-md5 
+0xa731649644c5dee92cbd9c2e7e188ee6;
+add 192.168.1.169 192.168.1.1 ah 0x300 -A hmac-md5 
+0x27f6d123d7077b361662fc6e451f65d8;
+
+add 192.168.1.1 192.168.1.169 esp 0x201 -E 3des-cbc 
+0x656c8523255ccc23a66c1917aa0cf30991fce83532a4b224;
+add 192.168.1.169 192.168.1.1 esp 0x301 -E 3des-cbc
+0xc966199f24d095f3990a320d749056401e82b26570320292
+
+spdadd 192.168.1.1 192.168.1.169 any -P out ipsec
+           esp/transport//require
+           ah/transport//require;
+
+spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
+           esp/transport//require
+           ah/transport//require;
+      </pre>
+<p>
+        The first line (a line ends with a <span class="quote">“<span class="quote">;</span>”</span>) adds a key
+        for the header checksumming for packets coming from 192.168.1.1 
+        going to 192.168.1.169. The second line does the same for packets
+        coming from 192.168.1.169 to 192.168.1.1. The third and the fourth line
+        define the keys for the data encryption the same way as the
+        first two lines. Finally the <span class="quote">“<span class="quote">spadd</span>”</span> lines define
+        two policies, namely packets going out from 192.168.1.1 to 192.168.1.169
+        should be (require) encoded (esp) and <span class="quote">“<span class="quote">signed</span>”</span> with
+        the authorization header. The second policy is for incoming packets
+        and it is the same as outgoing packages.
+      </p>
+<p>
+        Please be aware that you should not use these keys, but your own
+        secretly kept unique keys. You can generate keys using the
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/random</code></html:span> device:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>dd if=/dev/random count=16 bs=1 | xxd -ps</strong></span>
+      </pre>
+<p>
+        This command uses dd to output 16 bytes from 
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/random</code></html:span>. Don't forget to add <span class="quote">“<span class="quote">0x</span>”</span>
+        at the beginning of the line in the configuration files. You can use 
+        the 16 byte (128 bits) for the hmac-md5 algorithm that is used for AH.
+        The 3des-cbc algorithm that is used for ESP in the example should be fed 
+        with a 24 byte (192 bits) key. These keys can be generated with:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>dd if=/dev/random count=24 bs=1 | xxd -ps</strong></span>
+      </pre>
+<p>
+        Make sure that the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/setkey.conf</code></html:span> file can only
+        be read by the root user. If normal users can read the keys IPsec
+        provides no security at all. You can do this with:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>chmod 600 /etc/setkey.conf</strong></span>
+      </pre>
+<p>
+        The same <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/setkey.conf</code></html:span> can be created on the
+        192.168.1.169 host, with inverted <em class="parameter"><code>-P 
+        in</code></em> and <em class="parameter"><code>-P out</code></em> options. So, 
+        the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/setkey.conf</code></html:span> will look like this:
+      </p>
+<pre class="screen">
+#!/usr/sbin/setkey -f
+
+# Flush the SAD and SPD
+flush;
+spdflush;
+
+add 192.168.1.1 192.168.1.169 ah 0x200 -A hmac-md5
+0xa731649644c5dee92cbd9c2e7e188ee6;
+add 192.168.1.169 192.168.1.1 ah 0x300 -A hmac-md5
+0x27f6d123d7077b361662fc6e451f65d8;
+
+add 192.168.1.1 192.168.1.169 esp 0x201 -E 3des-cbc
+0x656c8523255ccc23a66c1917aa0cf30991fce83532a4b224;
+add 192.168.1.169 192.168.1.1 esp 0x301 -E 3des-cbc
+0xc966199f24d095f3990a320d749056401e82b26570320292
+
+spdadd 192.168.1.1 192.168.1.169 any -P in ipsec
+           esp/transport//require
+           ah/transport//require;
+
+spdadd 192.168.1.169 192.168.1.1 any -P out ipsec
+           esp/transport//require
+           ah/transport//require;
+      </pre>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm961577356"></a>23.4.3. Activating the IPsec configuration</h3></div></div></div>
+<p>
+        The IPsec configuration can be activated with the 
+	<span class="command"><strong>setkey</strong></span> command:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>setkey -f /etc/setkey.conf</strong></span>
+      </pre>
+<p>
+        If you want to enable IPsec permanently you can add the following line
+        to <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.local</code></html:span> on both hosts:
+      </p>
+<pre class="screen">
+/usr/sbin/setkey -f /etc/setkey.conf
+      </pre>
+<p>
+        After configuring IPsec you can test the connection by running
+        <span class="command"><strong>tcpdump</strong></span> and simultaneously pinging the other
+        host. You can see if AH and ESP are actually used in the 
+        <span class="command"><strong>tcpdump</strong></span> output:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>tcpdump -i eth0</strong></span>
+tcpdump: listening on eth0
+11:29:58.869988 terrapin.taickim.net &gt; 192.168.1.169: AH(spi=0x00000200,seq=0x40f): ESP(spi=0x00000201,seq=0x40f) (DF)
+11:29:58.870786 192.168.1.169 &gt; terrapin.taickim.net: AH(spi=0x00000300,seq=0x33d7): ESP(spi=0x00000301,seq=0x33d7)
+      </pre>
+</div>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961565564"></a>23.5. Setting up IPsec with automatic key exchanging</h2></div></div></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm961565316"></a>23.5.1. Introduction</h3></div></div></div>
+<p>
+        The subject of automatical key exchange is already touched shortly
+	in the introduction of this chapter. Put simply, IPsec with IKE
+	works in the following steps.
+      </p>
+<div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem"><p>
+	    Some process on the host wants to connect to another host. The
+	    kernel checks whether there is a security policy set up for
+	    the other host. If there already is a security association
+	    corresponding with the policy the connection can be made,
+	    and will be authenticated, encrypted and/or compressed as defined
+	    in the security association. If there is no security association,
+	    the kernel will request a user-land IKE daemon to set up the
+	    necessary security association(s).
+	  </p></li>
+<li class="listitem"><p>
+	    During the first phase of the key exchange the IKE daemon
+	    will try to verify the authenticity of the other host. This
+	    is usually done with a preshared key or certificate. If
+	    the authentication is successful a secure channel is set up
+	    between the two hosts, usually called a IKE security
+	    association, to continue the key exchange.
+	  </p></li>
+<li class="listitem"><p>
+	    During the second phase of the key exchange the security
+	    associations for communication with the other host are set
+	    up. This involves choosing the encryption algorithm to be
+	    used, and generating keys that are used for encryption
+	    of the communication.
+	  </p></li>
+<li class="listitem"><p>
+	    At this point the first step is repeated again, but since
+	    there are now security associations the communication can
+	    proceed.
+	  </p></li>
+</ol></div>
+<p>
+        The <span class="command"><strong>racoon</strong></span> IKE daemon is included with the KAME IPsec tools,
+	the sections that follow explain how to set up racoon.
+      </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm961562092"></a>23.5.2. Using racoon with a preshared key</h3></div></div></div>
+<p>
+        As usual the first step to set up IPsec is to define security
+	policies. In contrast to the manual keying example you should
+	not set up security associations, because racoon will make them
+	for you. We will use the same host IPs as in the example above.
+	The security policy rules look like this:
+      </p>
+<pre class="screen">
+#!/usr/sbin/setkey -f
+
+# Flush the SAD and SPD
+flush;
+spdflush;
+
+spdadd 192.168.1.1 192.168.1.169 any -P out ipsec
+	esp/transport//require;
+
+spdadd 192.168.1.169 192.168.1.1 any -P in ipsec
+	esp/transport//require;
+      </pre>
+<p>
+        Cautious souls have probably noticed that AH policies are missing
+        in this example. In most situations this is no problem, ESP can
+        provide authentication. But you should be aware that the authentication
+        is more narrow; it does not protect information outside the ESP
+        headers. But it is more efficient than encapsulating ESP packets
+        in AH.
+      </p>
+<p>
+        With the security policies set up you can configure <span class="command"><strong>racoon</strong></span>.
+        Since the connection-specific information, like the authentication
+        method is specified in the phase one configuration. We can use a
+        general phase two configuration. It is also possible to make specific
+        phase two settings for certain hosts. But generally speaking a
+        general configuration will often suffice in simple setups. We
+        will also add paths for the preshared key file, and certification
+        directory. This is an example of 
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/racoon.conf</code></html:span> with the paths
+        and a general phase two policy set up:
+      </p>
+<pre class="screen">
+path pre_shared_key "/etc/racoon/psk.txt";
+path certificate "/etc/racoon/certs";
+
+sainfo anonymous {
+{
+	pfs_group 2;
+	lifetime time 1 hour;
+	encryption_algorithm 3des, blowfish 448, rijndael;
+	authentication_algorithm hmac_sha1, hmac_md5;
+	compression_algorithm deflate;
+}
+      </pre>
+<p>
+        The <em class="parameter"><code>sainfo</code></em> identifier is used to make a
+        block that specifies the settings for security associations. Instead
+        of setting this for a specific host, the <em class="parameter"><code>anonymous</code></em>
+        parameter is used to specify that these settings should be used
+        for all hosts that do not have a specific configuration. The
+        <em class="parameter"><code>pfs_group</code></em> specifies which group of
+        Diffie-Hellman exponentiations should be used. The different
+        groups provide different lengths of base prime numbers that are
+        used for the authentication process. Group 2 provides a 1024 bit
+        length if you would like to use a greater length, for increased
+        security, you can use another group (like 14 for a 2048 bit
+        length). The <em class="parameter"><code>encryption_algorithm</code></em> specifies
+        which encryption algorithms this host is willing to use for
+        ESP encryption. The <em class="parameter"><code>authentication_algorithm</code></em>
+        specifies the algorithm to be used for ESP Authentication or
+        AH. Finally, the <em class="parameter"><code>compression_algorithm</code></em>
+        is used to specify which compression algorithm should be used
+        when IPcomp is specified in an association.
+      </p>
+<p>
+        The next step is to add a phase one configuration for the key
+        exchange with the other host to the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">racoon.conf</code></html:span> configuration file.
+        For example:
+      </p>
+<pre class="screen">
+remote 192.168.1.169 
+{
+	exchange_mode aggressive, main;
+	my_identifier address;
+	proposal {
+		encryption_algorithm 3des;
+		hash_algorithm sha1;
+		authentication_method pre_shared_key;
+		dh_group 2;
+	}
+}
+      </pre>
+<p>
+        The <em class="parameter"><code>remote</code></em> block specifies a phase one
+        configuration. The <em class="parameter"><code>exchange_mode</code></em> is
+        used to configure what exchange mode should be used for
+        phase. You can specify more than one exchange mode, but the
+        first method is used if this host is the initiator of the
+        key exchange. The <em class="parameter"><code>my_identifier</code></em> option
+        specifies what identifier should be sent to the remote host.
+        If this option ommitted <em class="parameter"><code>address</code></em> is used,
+        which sends the IP address as the identifier. The 
+        <em class="parameter"><code>proposal</code></em> block specifies parameter that
+        will be proposed to the other host during phase one authentication.
+        The <em class="parameter"><code>encryption_algorithm</code></em>, and
+        <em class="parameter"><code>dh_group</code></em> are explained above. The
+        <em class="parameter"><code>hash_algorithm</code></em> option is mandatory, and
+        configures the hash algorithm that should be used. This
+        can be <em class="parameter"><code>md5</code></em>, or <em class="parameter"><code>sha1</code></em>.
+        The <em class="parameter"><code>authentication_method</code></em> is crucial for
+        this configuration, as this parameter is used to specify that
+        a preshared key should be used, with 
+        <em class="parameter"><code>pre_shared_key</code></em>.
+      </p>
+<p>
+        With racoon set up there is one thing left to do, the preshared
+        key has to be added to <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/racoon/psk.txt</code></html:span>.
+        The syntax is very simple, each line contains a host IP address
+        and a key. These parameters are separated with a tab.
+        For example:
+      </p>
+<pre class="screen">
+192.168.1.169	somekey
+      </pre>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm961562028"></a>23.5.3. Activating the IPsec configuration</h3></div></div></div>
+<p>
+        At this point the configuration of the security policies and racoon
+        is complete, and you can start to test the configuration. It is a
+        good idea to start <span class="command"><strong>racoon</strong></span> with the
+        <em class="parameter"><code>-F</code></em> parameter. This will run
+        <span class="command"><strong>racoon</strong></span> in the foreground, making it easier to catch error
+        messages. To wrap it up:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>setkey -f /etc/setkey.conf</strong></span>
+# <span class="command"><strong>racoon -F</strong></span>
+      </pre>
+<p>
+        Now that you have added the security policies to the security policy
+        database, and started <span class="command"><strong>racoon</strong></span>, you can test your IPsec configuration.
+        For instance, you could ping the other host to start with. The
+        first time you ping the other host, this will fail:
+      </p>
+<pre class="screen">
+$ <span class="command"><strong>ping 192.168.1.169</strong></span>
+connect: Resource temporarily unavailable
+      </pre>
+<p>
+        The reason for this is that the security associations still
+        have to be set up. But the ICMP packet will trigger the key exchange.
+        ping will trigger the key exchange. You can see whether the exchange
+        was succesful or not by looking at the <span class="command"><strong>racoon</strong></span> log messages in
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/var/log/messages</code></html:span>, or the output on the terminal
+        if you started <span class="command"><strong>racoon</strong></span> in the foreground. A succesful key
+	exhange looks like this:
+      </p>
+<pre class="screen">
+ Apr  4 17:14:58 terrapin racoon: INFO: IPsec-SA request for 192.168.1.169 queued due to no phase1 found.
+ Apr  4 17:14:58 terrapin racoon: INFO: initiate new phase 1 negotiation: 192.168.1.1[500]&lt;=&gt;192.168.1.169[500] 
+ Apr  4 17:14:58 terrapin racoon: INFO: begin Aggressive mode. 
+ Apr  4 17:14:58 terrapin racoon: INFO: received Vendor ID: DPD 
+ Apr  4 17:14:58 terrapin racoon: NOTIFY: couldn't find the proper pskey, try to get one by the peer's address.
+ Apr  4 17:14:58 terrapin racoon: INFO: ISAKMP-SA established 192.168.1.1[500]-192.168.1.169[500] spi:58c4669f762abf10:60593eb9e3dd7406
+ Apr  4 17:14:59 terrapin racoon: INFO: initiate new phase 2 negotiation: 192.168.1.1[0]&lt;=&gt;192.168.1.169[0] 
+ Apr  4 17:14:59 terrapin racoon: INFO: IPsec-SA established: ESP/Transport 192.168.1.169-&gt;host1ip; spi=232781799(0xddff7e7) 
+ Apr  4 17:14:59 terrapin racoon: INFO: IPsec-SA established: ESP/Transport 192.168.1.1-&gt;192.168.1.169 spi=93933800(0x59950e8) 
+      </pre>
+<p>
+        After the key exchange, you
+        can verify that IPsec is set up correctly by analyzing the packets
+        that go in and out with <span class="command"><strong>tcpdump</strong></span>. <span class="command"><strong>tcpdump</strong></span> is
+        available in the <span class="emphasis"><em>n</em></span> disk set. Suppose that
+        the outgoing connection to the other host goes through the
+        <span class="emphasis"><em>eth0</em></span> interface, you can analyze the packets
+        that go though the <span class="emphasis"><em>eth0</em></span> interface with
+        <span class="command"><strong>tcpdump -i eth0</strong></span>. If the outgoing packets are
+        encrypted with ESP, you can see this in the <span class="command"><strong>tcpdump</strong></span>
+        output. For example:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>tcpdump -i eth0</strong></span>
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on eth0, link-type EN10MB (Ethernet), capture size 96 bytes
+17:27:50.241067 IP terrapin.taickim.net &gt; 192.168.1.169: ESP(spi=0x059950e8,seq=0x9)
+17:27:50.241221 IP 192.168.1.169 &gt; terrapin.taickim.net: ESP(spi=0x0ddff7e7,seq=0x9)
+      </pre>
+</div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="netconfig.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="netadmin.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="inetd.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 22. Networking configuration </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 24. The Internet super server</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

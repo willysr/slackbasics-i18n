@@ -1,0 +1,823 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 17. Gestió de paquets</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="sysadmin.html" title="Part V. Administració del sistema">
+<link rel="prev" href="chap-x11.html" title="Chapter 16. X11">
+<link rel="next" href="kernel.html" title="Chapter 18. Contruïnt un núcli">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 17. Gestió de paquets</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="chap-x11.html">Prev</a> </td>
+<th width="60%" align="center">Part V. Administració del sistema</th>
+<td width="20%" align="right"> <a accesskey="n" href="kernel.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="chap-pkgmgmt"></a>Chapter 17. Gestió de paquets</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="chap-pkgmgmt.html#chap-pkgmgmt-pkgtools">17.1. Pkgtools</a></span></dt>
+<dt><span class="sect1"><a href="chap-pkgmgmt.html#chap-pkgmgmt-slackpkg">17.2. Slackpkg</a></span></dt>
+<dt><span class="sect1"><a href="chap-pkgmgmt.html#chap-pkgmgmt-rsync">17.3. Obtenint actualitzacions mitjançant rsync 
+    </a></span></dt>
+<dt><span class="sect1"><a href="chap-pkgmgmt.html#chap-pkgmgmt-tagfiles">17.4. Tagfiles (fitxers d'etiquetes)</a></span></dt>
+</dl>
+</div>
+  
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-pkgmgmt-pkgtools"></a>17.1. Pkgtools</h2></div></div></div>
+    
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-pkgmgmt-pkgtools-intro"></a>17.1.1. Introducció</h3></div></div></div>
+      
+
+      <p>
+	Slackware Linux no utilitza un complicat sistema de paquets
+	com fan altres distribucions de Linux. Cada paquet té la 
+	extensió <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">.tgz</code></html:span>, i solen ser tarballs ordinàris
+	que contenen dos fitxers extra: un guió d'instal·lació i un 
+	fitxer de descripció del paquet. Degut a la senzillesa dels
+	paquets, els ferraments de control de paquets de Slackware Linux
+	no tenen manera de manejar dependències, però molts usuaris de
+	Slackware Linux prefereixen aquest enfocament, perque les 
+	dependències sovint provoquen més problemes dels que resolen.
+	
+      </p>
+
+      <p>
+	Slackware Linux té unes quantes eines per a manejar paquets.
+	Les més importants es cobriràn en aquest capítol. Per a aprendre
+	a entendre-les haurem d'analitzar els noms de paquet. 
+	Vegem-ho amb un exemple, imaginem que tenim un paquet amb el nom 
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">bash-2.05b-i386-2.tgz</code></html:span>, en el nom del paquet 
+	la informació referent al mateix està separada pel caràtcter '-' 
+	i el seu significat és el següent:
+	<span class="emphasis"><em>nomdelprograma-versió-arquitectura-revisiodelpaquet</em></span>
+	
+        
+      </p>
+
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-pkgmgmt-pkgtools-pkgtool"></a>17.1.2. pkgtool</h3></div></div></div>
+      
+
+      <p>
+	La ordre <span class="command"><strong>pkgtool</strong></span> proporciona una interfície de menús
+	per a algunes de les operacions sobre paquets. Els elements més
+	importants són <span class="emphasis"><em>Remove</em></span> (eliminar) i  
+	<span class="emphasis"><em>Setup</em></span> (instal·lar). La primera opció presenta una 
+	llista de paquets instal·lats. Es pot sel·leccionar quins paquets es volen
+	eliminar amb la barra d'espai i confirmar-ho amb la tecla de retorn.
+	A més, pots desmarcar un paquet marcat per esborrar amb la barra d'espai.
+
+	
+      </p>
+
+      <p>
+	La opció <span class="emphasis"><em>Setup</em></span> dóna acces a unes poques eines
+	que poden ajudar amb la configuració del sistema, per exemple:
+	<span class="command"><strong>netconfig</strong></span>,<span class="command"><strong>pppconfig</strong></span> i 
+	<span class="command"><strong>xwmconfig</strong></span>.
+
+	
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-pkgmgmt-pkgtools-installpkg"></a>17.1.3. installpkg</h3></div></div></div>
+      
+
+      <p>
+	El comandament <span class="command"><strong>installpkg</strong></span> s'utilitza per a 
+	instal·lar paquets. <span class="command"><strong>installpkg</strong></span> necessita el 
+	nom d'un fitxer de paquet com a paràmetre. Per exemple, si 
+	volguéssim instal·lar el paquet <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">bash-2.05b-i386-2.tgz</code></html:span>.
+	executariem:
+	
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>installpkg bash-2.05b-i386-2.tgz</code></strong>
+      </pre>
+
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-pkgmgmt-pkgtools-upgradepkg"></a>17.1.4. upgradepkg</h3></div></div></div>
+      
+
+      <p>
+	<span class="command"><strong>upgradepkg</strong></span> es pot utilitzar per a actualitzar
+	paquets. A diferència d'<span class="command"><strong>installpkg</strong></span>, només 
+	instal·la paquets dels quals hi haja una versió més antiga 
+	disponible al sistema. La sintaxi de l'orde és similar a la de
+	<span class="command"><strong>installpkg</strong></span>. Per exemple, si volguéssim actualitzar
+	paquets utilitzant paquets en un directori, executariem:
+
+        
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>upgradepkg *.tgz</code></strong>
+      </pre>
+
+      <p>
+	Com ja em dit, s'instal·laran només aquells paquets dels quals
+	hi haja una versió meś vella ja instal·lada en el sistema.
+        
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-pkgmgmt-pkgtools-removepkg"></a>17.1.5. removepkg</h3></div></div></div>
+      
+
+      <p>
+	La ordre <span class="command"><strong>removepkg</strong></span> es pot utilitzar per a
+	eliminar paquets instal·lats. Si, per exemple, volguerem
+	eliminar el paquet <span class="quote">“<span class="quote">bash</span>”</span> (el que no és gens
+	recomanable!), podríem executar:
+	
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>removepkg bash</code></strong>
+      </pre>
+
+      <p>
+	Com es pot veurer només s'especifica el nom del programa en
+	este exemple, obviament, també es pot eliminar un paquet 
+	especificant el seu nom complet:
+        
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>removepkg bash-2.05b-i386-2</code></strong>
+      </pre>
+    </div>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-pkgmgmt-slackpkg"></a>17.2. Slackpkg</h2></div></div></div>
+    
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-pkgmgmt-slackpkg-intro"></a>17.2.1. Introducció</h3></div></div></div>
+      
+
+      <p>
+	Slackpkg és una eina escrit per Robert F. Batista i Evaldo
+	Gardenali. Aquesta eina ajudar als usuaris a instal·lar i actulitzar paquets
+	de de Slackware Linux utilitzant un dels espills de la distribució.
+	Slackpkg està inclòs en el directori <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">extra/</code></html:span>
+	en el segon CD del conjunt de CD's de Slackware Linux.
+
+        
+      </p>
+
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-pkgmgmt-slackpkg-config"></a>17.2.2. Configuració</h3></div></div></div>
+      
+
+      <p>
+	Slackpkg es configura mitjançant alguns fitxers a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">
+	/etc/slackpkg</code></html:span>. La primera cosa que hi ha que
+	configurar és quin espill hauria de utilitzar slackpkg. Açò 
+	es pot fer editant el fitxer <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/slackpkg/mirrors</code></html:span>.
+	Este fitxer ja conté una llista d'espills, només hi ha que llevar
+	el comentari d'un espill proper a tú.
+               
+        
+      </p>
+
+      <pre class="screen">
+ftp://ftp.nluug.nl/pub/os/Linux/distr/slackware/slackware-12.0/
+      </pre>
+
+      <p>
+	Açò utilitzarà l'arbre Slackware Linux 12.0 de l'espill
+	ftp.nluug.nl. Assabenta't de utilitzar un arbre que es coresponga
+	amb la teua versió. Per una altra banda, si volgueres seguir la 
+	slackware-current hauries de llevar el comentari de la 
+	línea següent (en cas de que volgueres utilitzar l'espill NLUUG):
+
+        
+      </p>
+
+      <pre class="screen">
+ftp://ftp.nluug.nl/pub/os/Linux/distr/slackware/slackware-current/
+      </pre>
+
+      <p>
+	Slackpkg només acceptarà un espill, si se'n descomenten més
+	no funcionarà.
+        
+      </p>
+
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-pkgmgmt-slackpkg-gpgkey"></a>17.2.3. Importar la clau GPG de Slackware Linux</h3></div></div></div>
+      
+
+      <p>
+	Per defecte, slackpkg comprova els paquets emprant les 
+	seues signatures i la clau pública GPG de Slackware. Açò 
+	és una bona idea des del punt de vista de la seguretat, 
+	pel que probablement no vulgues canviar este comportament.
+	Per a poder verificar paquets necessitaràs importar la clau
+	GPG de <span class="emphasis"><em>security@slackware.com</em></span>. Si no
+	has utilitzat mai GPG hauaràs de crear el directori GPG
+	a la carpeta llar de l'usuari <span class="emphasis"><em>root</em></span>.
+
+	
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>mkdir ~/.gnupg</code></strong>
+      </pre>
+
+      <p>
+	El pas següent és buscar la clau pública de 
+	<span class="emphasis"><em>security@slackware.com</em></span>. Farem açò
+	demanant-li al servidor <span class="emphasis"><em>pgp.mit.edu</em></span>:
+
+        
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>gpg --keyserver pgp.mit.edu --search security@slackware.com</code></strong>
+gpg: keyring `/root/.gnupg/secring.gpg' created
+gpg: keyring `/root/.gnupg/pubring.gpg' created
+gpg: searching for "security@slackware.com" from HKP server pgp.mit.edu
+Keys 1-2 of 2 for "security@slackware.com"
+(1)     Slackware Linux Project &lt;security@slackware.com&gt;
+          1024 bit DSA key 40102233, created 2003-02-25
+(2)     Slackware Linux Project &lt;security@slackware.com&gt;
+          1024 bit DSA key 40102233, created 2003-02-25
+Enter number(s), N)ext, or Q)uit &gt; 
+      </pre>
+
+      <p>
+	Com es pot veurer tenim dues coincidències (idèntiques). Seleccionem
+	la primera introduint <span class="quote">“<span class="quote">1</span>”</span>. GnuPG importarà aquesta
+	clau en l'anell de claus de l'usuari root:
+
+        
+      </p>
+
+      <pre class="screen">
+Enter number(s), N)ext, or Q)uit &gt; <strong class="userinput"><code>1</code></strong>
+gpg: key 40102233: duplicated user ID detected - merged
+gpg: /root/.gnupg/trustdb.gpg: trustdb created
+gpg: key 40102233: public key "Slackware Linux Project &lt;security@slackware.com&gt;" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+      </pre>
+
+      <p>
+	Assabenta't de comprobar per partida doble la clau rebuda. La 
+	ID de la clau i la empremta dactilar d'esta clau en particular
+	es poden trobar a la Internet en molts llocs confiables. El ID de 
+	la clau, com s'ha mencionat adés, és<span class="emphasis"><em>40102233</em></span> i
+	es pot obtindre la empremta de la clau amb el paràmetre 
+	<em class="parameter"><code>--fingerprint</code></em>:
+	
+        
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>gpg --fingerprint security@slackware.com</code></strong>
+pub  1024D/40102233 2003-02-26 Slackware Linux Project &lt;security@slackware.com&gt;
+     Key fingerprint = EC56 49DA 401E 22AB FA67  36EF 6A44 63C0 4010 2233
+sub  1024g/4E523569 2003-02-26 [expires: 2012-12-21]
+      </pre>
+
+      <p>
+	Una vegada que hages importat i comprovat esta clau, es pot
+	començar a utilitzar slackpkg i instal·lar paquets de forma
+	segura.
+        
+      </p>
+
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-pkgmgmt-slackpkg-updatepkglist"></a>17.2.4. Actualitzar la llista de paquets.</h3></div></div></div>
+      
+
+      <p>
+	Abans d'actualitzar i instal·lar paquets has de deixar que
+	slackppg descarregue la llista de paquets de l'espill que
+	estàs utilitzant. És una bona idea fer-ho amb regularitat
+	per a mantindre la llista de paquets al dia. L'últim llistat
+	de paquets es pot recuperar amb:
+
+        
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>slackpkg update</code></strong>
+      </pre>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-pkgmgmt-slackpkg-upgrade"></a>17.2.5. Actualitzant paquets</h3></div></div></div>
+      
+
+      <p>
+        El paràmetre <em class="parameter"><code>upgrade</code></em>
+	s'utilitza per a actualitzar paquets instal·lats. Cal
+	afegir un paràmetre extra per a, de fet, dir-li a 
+	<span class="command"><strong>slackpkg</strong></span> què vols actualitzar, açò varia
+	entre una Slackware Linux stable i una slackware-current.
+	Les actualitzacions per alliberaments stable estàn al 
+	directori <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">patches</code></html:span> dels espills FTP.
+	Es pot posar al dia una instal·lació slackware-stable (
+	per exemple Slackware Linux 12.0) mitjançant:
+
+        
+      </p>
+
+
+      <pre class="screen">
+# <strong class="userinput"><code>slackpkg upgrade patches</code></strong>
+      </pre>
+
+      <p>
+	
+	En aquest cas, <span class="command"><strong>slackpkg</strong></span> utilitzarà els paquets del
+	directori <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">patches</code></html:span>, mentres que els paquets
+	actualitzats a slackware-current estàn posats als sub-directoris normals
+	de paquets <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">slackware</code></html:span>, així que podem passar-ho com 
+	a paràmetre a <span class="command"><strong>slackpkg upgrade</strong></span>:
+	
+        
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>slackpkg upgrade slackware</code></strong>
+      </pre>
+
+      <p>
+	A més, pots posar al dia paquets individuals especificant el nom
+	del paquet a actualitzar, per exemple:
+	
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>slackpkg upgrade pine</code></strong>
+      </pre>
+
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-pkgmgmt-slackpkg-install"></a>17.2.6. Instal·lant paquets</h3></div></div></div>
+      
+
+      <p>
+	El paràmetre <em class="parameter"><code>install</code></em> s'utilitza
+	per a instal·lar paquets:
+
+        
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>slackpkg install rexima</code></strong>
+      </pre>
+
+      <p>
+	S'ha de tindre en compte que ni slackpkg, ni les eines d'empaquetat 
+	de Slackware Linux comproven dependències. Si algún programa no 
+	funciona a causa de la manca de llibreries, s'hauràn d'instal·lar
+	mitjançant slackpkg.
+        
+      </p>
+    </div>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-pkgmgmt-rsync"></a>17.3. Obtenint actualitzacions mitjançant rsync 
+    </h2></div></div></div>
+    
+
+    <p>
+      Un altre popular mètode de mantindre Slackware Linux al dia és 
+      mantenint un espill local. La manera ideal de fer açò és mitjançant
+      rsync. rsync és un programa capaç de sincronitzar dos arbres de 
+      fitxers. L'avantatge és que rsync només transfereix les diferències
+      en fitxers, fent que siga molt ràpid. Després de sincronitzar amb
+      un espill, tú pots sincronitzar Slackware Linux amb 
+      <span class="command"><strong>upgradepkg</strong></span>, o fer un CD d'instal·lació nou. El
+      seguent exemple sincronitza un arbre local amb un arbre d'un 
+      espill, que està al dia.
+
+      
+    </p>
+
+    <pre class="screen">
+# <strong class="userinput"><code>rsync -av --delete \
+--exclude=slackware/kde \
+--exclude=slackware/kdei \
+--exclude=slackware/gnome \
+--exclude=bootdisks \
+--exclude=extra \
+--exclude=testing \
+--exclude=pasture \
+--exclude=rootdisks \
+--exclude=source \
+--exclude=zipslack \
+rsync://fill-in-mirror/pub/slackware/slackware-current/ \
+/usr/share/mirrors/slackware-current</code></strong>
+    </pre>
+
+    <p>
+      El paràmetre <em class="parameter"><code>-a</code></em> ???implica???  agrupa???
+      algunes altres opciones que intenten fer una còpia que siga tan
+      exacta com siga possible (en termes de manteniment d'enllaços 
+      simbòlics, permisos i propietaris). El paràmetre 
+      <em class="parameter"><code>--delete</code></em>
+      esborra els fitxers que ja no estàn disponibles a l'espill. És una
+      bona idea utilitzar este paràmetre, perque sino el teu arbre es 
+      pot inflar ràpidament amb versions antigues de paquets. Amb
+      el paràmetre <em class="parameter"><code>--exclude</code></em> es 
+      pot especificar quins fitxers o directoris s'haurien d'ignorar.
+      
+      
+    </p>
+
+    <p>
+      Després de sincronitzar l'arbre, pots utilitzar 
+      <span class="command"><strong>upgradepkg</strong></span> per a actualitzar la teua instal·lació 
+      de Slackware Linux. Per exemple:
+      
+    </p>
+
+    <pre class="screen">
+# <strong class="userinput"><code>upgradepkg /usr/share/mirrors/slackware-current/slackware/*/*.tgz</code></strong>
+    </pre>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-pkgmgmt-tagfiles"></a>17.4. Tagfiles (fitxers d'etiquetes)</h2></div></div></div>
+    
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-pkgmgmt-tagfiles-intro"></a>17.4.1. Introducció</h3></div></div></div>
+      
+
+      <p>
+	Els tagfiles (fitxers d'etiquetes) són una característica relativament 
+	desconeguda de Slackware linux. Un tagfile és un fitxer que pot ser
+	utilitzat per a indicar-li a <span class="command"><strong>upgradepkg</strong></span> quins 
+	paquets d'una col·lecció s'haurien d'instal·lar. Per exmple, 
+	l'instal·lador de Slackware Linux genera un tagfile durant els 
+	mètodes <span class="emphasis"><em>Expert</em></span> i <span class="emphasis"><em>Menu</em></span>
+	per a emmagatzemar quins paquets s'haurien d'instal·lar durant el 
+	procés d'instal·lació.
+        
+      </p>
+
+      <p>
+	L'aspecte interessant dels tagfiles és que pots crear-ne tú mateix 
+	fàcilment. Escrivint els teus propis tagfiles pots automatitzar
+	la instal·lació de paquets, el que és ideal per a grans desplegaments
+	de clients o servidors (o xicotetes instal·lacions si et resulta
+	més còmode que anar instal·lant paquest manualment). La forma més
+	senzilla de crear els teus propis tagfiles és basar-te en els 
+	que són part de la distribució oficial. A les seccions seguents anem
+	a veurer com es fa açò.
+
+        
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-pkgmgmt-tagfiles-creating"></a>17.4.2. Creant tagfiles </h3></div></div></div>
+      
+
+      <p>
+	Els tagfiles són simples fitxers de text cru. Cada línia consisteix
+	en un nom de paquet i una bandera, aquests dos elements romanen
+	separats per : i un espai. La bandera especifica que s'hauria de fer
+	amb el paquet. Els camps estàn descrits a  <a class="xref" href="chap-pkgmgmt.html#chap-pkgmgmt-tagfiles-creating-fields" title="Table 17.1. Capms de tagfile">Table 17.1, “Capms de tagfile”</a>. Vejam algunes 
+	línies del tagfile al conjunt de disc <span class="quote">“<span class="quote">a</span>”</span>:
+
+        
+      </p>
+
+      <pre class="screen">
+aaa_base: ADD
+aaa_elflibs: ADD
+acpid: REC
+apmd: REC
+bash: ADD
+bin: ADD
+      </pre>
+
+      <p>
+	S'ha de dir que a més pots afegir comentaris als tagfiles amb el
+	típic caràcter de comentari (#). Com pots veurer en la captura 
+	de pantalla de dalt hi ha banderes diferents. La taula que hi ha a
+	continuació descriu les quatre banderes.
+        
+      </p>
+
+      <div class="table">
+<a name="chap-pkgmgmt-tagfiles-creating-fields"></a><p class="title"><b>Table 17.1. Capms de tagfile</b></p>
+<div class="table-contents">
+        
+        <table summary="Capms de tagfile" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th align="left">Bandera</th>
+<th align="left">Significat</th>
+</tr></thead>
+<tbody>
+<tr>
+<td align="left">ADD</td>
+<td align="left">Un paquet marcat amb aquesta bandera s'instal·larà
+	      automàticament.
+</td>
+</tr>
+<tr>
+<td align="left">SKP</td>
+<td align="left">Un paquet marcat amb aquesta bandera es saltarà
+	      automàticament.
+</td>
+</tr>
+<tr>
+<td align="left">REC</td>
+<td align="left">Preguntar a l'usuari què vol fer, es recomanarà 
+	      instal·lar-lo.
+</td>
+</tr>
+<tr>
+<td align="left">OPT</td>
+<td align="left">Preguntar a l'usuari què vol fer, el paquet serà descrit
+	      com opcional.
+</td>
+</tr>
+</tbody>
+</table>
+      </div>
+</div>
+<br class="table-break">
+
+      <p>
+	Com pots llegir a la taula, <span class="command"><strong>installpkg</strong></span> només 
+	actuarà automàticament quan s'utilitze 
+	<span class="emphasis"><em>ADD</em></span> o <span class="emphasis"><em>SKP</em></span>.
+        
+      </p>
+
+      <p>
+	Seria una miqueta tediós escriure un tagfile per a cada conjunt
+	de disc de Slackware. La distribució Slackware Linux oficial conté 
+	un tagfile al directori corresponent de cada conjunt de disc que 
+	pots utilitzar per començar. El script curt que es llista baix es 
+	pot utilitzar per a copiar els tagfiles al directori actual, preservant
+	la estructura del conjunt de discs.
+
+        
+      </p>
+
+      <pre class="screen">
+#!/bin/sh
+
+if [ ! $# -eq 1 ] ; then
+  echo "Syntax: $0 [directory]"
+  exit
+fi
+
+for tagfile in $1/*/tagfile; do 
+  setdir=`echo ${tagfile} | egrep -o '\w+/tagfile$' | xargs dirname`
+  mkdir ${setdir}
+  cp ${tagfile} ${setdir}/tagfile.org
+  cp ${tagfile} ${setdir}
+done
+      </pre>
+
+      <p>
+	Després d'alçar el guió en un fitxer, el pots executra i 
+	especificar un directori <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">slackware/</code></html:span>
+	que proporcione conjunts de discs. Per exemple:
+        
+      </p>
+
+      <pre class="screen">
+$ <span class="command"><strong>sh copy-tagfiles.sh /mnt/flux/slackware-current/slackware</strong></span>
+      </pre>
+
+      <p>
+	Després de fer açò el dicrectori actual contindrà una estructura de
+	directoris com esta, en la que pots editar cada tagfile individualment:
+        
+      </p>
+
+      <pre class="screen">
+a/tagfile
+a/tagfile.org
+ap/tagfile
+ap/tagfile.org
+d/tagfile
+d/tagfile.org
+e/tagfile
+e/tagfile.org
+[...]
+      </pre>
+
+      <p>
+	Els fitxers que acaben amb <span class="emphasis"><em>.org</em></span> són còpies de
+	seguretat que pots utilitzar com a referència mentres edites tagiles.
+	A més d'això també s'utilitzen al guió què es descriu a la secció 
+	seguent:
+        
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-pkgmgmt-tagfiles-autogen"></a>17.4.3. Generant tagfiles automàticament 
+      </h3></div></div></div>
+      
+
+      <p>
+	Amb un senzill script, també és possible construir tagfiles
+	basats en paquets que están instal·lats en el sistema actual.
+	Li estic molt agraït a Peter Kaagman per aparéixer amb aquesta
+	enginyosa idea!
+        
+      </p>
+
+      <p>
+	Primer munta un directori tagfile del medi d'instal·lació 
+	de Slackware Linux, com s'ha descrit a la secció anterior. Quan
+	ho hajes fet, pots crear el següent script:
+
+        
+      </p>
+
+      <pre class="screen">
+#!/bin/sh
+
+if [ ! $# -eq 1 ] ; then
+  echo "Syntax: $0 [directory]"
+  exit
+fi
+
+for tforg in $1/*/tagfile.org ; do
+  tf=${tforg%.org}
+  rm -f ${tf}
+  for package in $(grep -v '^#' ${tforg} | cut -d ':' -f 1) ; do
+    if ls /var/log/packages/${package}-[0-9]* &amp;&gt; /dev/null ; then 
+      echo "${package}: ADD" &gt;&gt; ${tf}
+    else
+      echo "${package}: SKP" &gt;&gt; ${tf}
+    fi
+  done
+done
+      </pre>
+
+      <p>
+	Suposem que l'has alçat com <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">build-tagfiles.sh</code></html:span>,
+	el pots utilitzar especificant el directori que conté els tagfiles
+	com el primer argument:
+
+        
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>sh build-tagfiles.sh .</code></strong>
+      </pre>
+
+      <p>
+	El script marcarà els paquets que estan instal·lats com 
+	<span class="emphasis"><em>ADD</em></span>, i els paquets que no estàn instal·lats
+	com <span class="emphasis"><em>SKP</em></span>.
+        
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-pkgmgmt-tagfiles-using"></a>17.4.4. Utilitzant tagfiles </h3></div></div></div>
+      
+
+      <p>
+	A sistemes instal·lats pots deixar que <span class="command"><strong>installpkg</strong></span>
+	utilitze un tagfile amb el paràmetre 
+	<em class="parameter"><code>-tagfile</code></em>. Per exemple:
+
+        
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>installpkg -infobox -root /mnt-small -tagfile a/tagfile /mnt/flux/slackware-current/slackware/a/*.tgz</code></strong>
+      </pre>
+
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top">
+	<p>
+	  Has d'utilitzar la opció <em class="parameter"><code>-infobox</code></em>, sino els tagfiles no 
+	  s'utilitzaràn.
+
+	  
+	</p>
+      </td></tr>
+</table></div>
+
+      <p>
+	Presupost, els tagfiles serien inútils si no es pogureren utilitzar
+	durant la instal·lació de Slackware Linux. Açò és completament
+	possible: després de seleccionar quins conjunts de discs vols 
+	instal·lar, pots triar de quina manera vols seleccionar els 
+	paquets (el nom del diàleg és <span class="emphasis"><em>SELECT PROMPTING
+        MODE</em></span>). Selecciona <span class="emphasis"><em>tagpath</em></span> en este menú.
+	Aleshores se't demanarà	que introduisques el camí a la estructura
+	de directoris amb els tagfiles. La forma típica de proporcionar
+	els tagfiles a la instal·lació de Slackware Linux és posar-los en un
+	disquet o un altre medi i muntar-lo abans o durant la instal·lació.
+	P. ex. pots canviar a la segona consola pitjant les tecles &lt;ALT&gt; 
+	i &lt;F2&gt;, crear el punt de muntatge i muntar el disc amb els 
+	tagfiles:
+
+        
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>mkdir /mnt-tagfiles</code></strong>
+# <strong class="userinput"><code>mount /dev/fd0 /mnt/mnt-tagfiles</code></strong>
+      </pre>
+
+      <p>
+	Després de muntar el disc pots tornar a la consola virtual en 
+	la que vas inicar <span class="command"><strong>setup</strong></span> pressionant &lt;ALT&gt;
+	and &lt;F1&gt;.
+        
+      </p>
+    </div>
+  </div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="chap-x11.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="sysadmin.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="kernel.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 16. X11 </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 18. Contruïnt un núcli</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

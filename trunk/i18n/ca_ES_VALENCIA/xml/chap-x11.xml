@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
+	 xmlns:xl="http://www.w3.org/1999/xlink"
+	 xml:lang="en"
+	 xml:id="chap-x11">
+  <title>X11</title>
+
+  <sect1 xml:id="chap-x11-config">
+    <title>Configuració d'X</title>
+
+    <para>
+      La configuració d'X11 s'emmagatzema a 
+      <filename>/etc/X11/xorg.conf</filename>. La majoria de 
+      distribuciones proporcionen eines especials de configuració per
+      a X, però Slackware Linux només proporciona les eines X11 estàndard
+      (que de fet són molt fàcils d'utilitzar). En la majoria de casos X
+      es pot configurar automàticament, per de vegades és necessari editar 
+      <filename>/etc/X11/xorg.conf</filename> manualment.
+      
+      <!--The X11 configuration is stored in
+      <filename>/etc/X11/xorg.conf</filename>.  Many distributions
+      provide special configuration tools for X, but Slackware Linux
+      only provides the standard X11 tools (which are actually quite
+      easy to use). In most cases X can be configured automatically,
+      but sometimes it is necessary to edit
+      <filename>/etc/X11/xorg.conf</filename> manually.-->
+    </para>
+
+    <sect2 xml:id="chap-x11-config-automatic">
+      <title>Configuració automàtica <!--Automatic configuration--></title>
+
+      <para>
+	El servidor X11 proporciona una opción per a generar
+	automàticamnet un fitxer de configuració. X11 carregarà tots els
+	mòduls de drivers disponibles, i tractarà de detectar el maquinari,
+	i generar un fitxer de configuració. Executa la ordre següent
+	per a generar un fixer <filename>xorg.conf</filename> de 
+	configuració:
+	<!--The X11 server provides an option to automatically generate a
+	configuration file. X11 will load all available driver
+	modules, and will try to detect the hardware, and generate a
+	configuration file. Execute the following command to generate
+	a <filename>xorg.conf</filename> configuration file:-->
+      </para>
+
+      <screen>
+$ <userinput>X -configure</userinput>
+      </screen>
+
+      <para>
+	Si X no mostra cap error, la configuració generada pot ser
+	copiada al directori <filename>/etc/X11</filename>, i X pot
+	ser iniciat per a provar la configuració:
+	<!--If X does not output any errors, the generated configuration
+	can be copied to the <filename>/etc/X11</filename>
+	directory. And X can be started to test the configuration:-->
+      </para>
+
+      <screen>
+$ <userinput>cp /root/xorg.conf /etc/X11/</userinput>
+$ <userinput>startx</userinput>
+      </screen>
+    </sect2>
+
+    <sect2 xml:id="chap-x11-config-interactive">
+      <title>Configuració interactiva <!--Interactive configuration--></title>
+
+      <para>
+	X11 proporciona dos eines per a configurar X interactivament,
+	<command>xorgcfg</command> i <command>xorgconfig</command>.
+	<command>xorgcfg</command> intenta detectar la tarjeta de vídeo
+	automàticament, i inicia una eina que pot ser utilitzada per a
+	afinar la configuració. De vegades, <command>xorgcfg</command>
+	canvia a un mode de vídeo que no està suportat pel monitor.
+	En eixe cas <command>xorgcfg</command> es pot utilitzar també
+	en mode text, inciant-la amb <command>xorgcfg -textmode</command>.
+
+	<!--X11 provides two tools for configuring X interactively,
+	<command>xorgcfg</command> and <command>xorgconfig</command>.
+	<command>xorgcfg</command> tries to detect the video card
+	automatically, and starts a tool which can be used to tune the
+	configuration.  Sometimes <command>xorgcfg</command> switches
+	to a video mode which is not supported by the monitor. In that
+	case <command>xorgcfg</command> can also be used in text-mode,
+	by starting it with <command>xorgcfg -textmode</command>.-->
+      </para>
+
+      <para>
+	<command>xorgconfig</command> es diferencia de les eines 
+	descrites dalt, aquesta no detecta el maquinari i fara preguntes
+	detallades referents al teu maquinari. Si tens poca experiència
+	configurant X11 és una bona idea evitar 
+	<command>xorgconfig</command>.
+	
+	<!--<command>xorgconfig</command> differs from the tools described
+	above, it does not detect hardware and will ask detailed
+	questions about your hardware. If you only have little
+	experience configuring X11 it is a good idea to avoid
+	<command>xorgconfig</command>.-->
+      </para>
+    </sect2>
+  </sect1>
+
+  <sect1 xml:id="chap-x11-wm">
+    <title>Gestor de finestres <!--Window manager--></title>
+
+    <para>
+      El <quote>look and feel</quote> de X11 és gestionat per
+      un dels anoments gestor de finestres. Slacware Linux
+      proporciona els següents amplament-utilitzats gestors de
+      finestres.
+      <!--The <quote>look and feel</quote> of X11 is managed by a
+      so-called window manager.  Slackware Linux provides the
+      following widely-used window managers:-->
+    </para>
+
+    <itemizedlist>
+      <listitem>
+	<para>
+	  WindowMaker: Un gestor de finestres relativament lleuger,
+	  que forma part del projecte GNUStep.
+	  <!--WindowMaker: A relatively light window manager, which is
+	  part of the GNUStep project.-->
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  BlackBox: Gestor de finestres lleuger, BlackBox no té 
+	  dependències més enllà de les llibreries X11.
+	  <!--BlackBox: Light window manager, BlackBox has no dependencies
+	  except the X11 libraries.-->
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  KDE: Un entorn d'escriptori complet, incloent navegador,
+	  porgrama de correu electrònic i una suite ofimàtica (KOffice)
+	  <!--KDE: A complete desktop environment, including browser,
+	  e-mail program and an office suite (KOffice).-->
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Xfce: Un entorn d'escriptori lleuger. Aquest és un entorn 
+	  ideal si vols tindre un escriptori amigable que corre en 
+	  màquines menys capaces.
+	  <!--Xfce: A lightweight desktop environment. This is an ideal
+	  environment if you would like to have a userfriendly desktop
+	  that runs on less capable machines.-->
+	</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>
+      Si estàs acostumat a un entorn d'escriptori, utilitzar KDE o Xfce
+      és una tria lògica. Però és una bona idea provar alguns dels 
+      gestors de finestres més lleugers. Són més ràpids, i consumeixen 
+      menys memòria a pesar de que la majoria d'aplicacions KDE i Xfce
+      són perfectament usables baix altres gestors de finestres.
+      <!--If you are used to a desktop environment, using KDE or Xfce is a
+      logical choice. But it is a good idea to try some of the lighter
+      window managers. They are faster, and consume less memory,
+      besides that most KDE and Xfce applications are perfectly usable
+      under other window managers.-->
+    </para>
+
+    <para>
+      A Slackware Linux la ordre <command>xwmconfig</command> pot 
+      utilitzar-se per a definir el gestor de finestres per defecte.
+      Aquest programa mostra els gestors de finestres instal·lats, 
+      dels què en pots triar un. Pots definir el gestor de finestres
+      per defecte globalment executant <command>xwmconfig</command>
+      com a root.
+      <!--On Slackware Linux the <command>xwmconfig</command> command can
+      be used to set the default window manager. This program shows
+      the installed window managers, from which you can choose
+      one. You can set the window manager globally by executing
+      <command>xwmconfig</command> as root.-->
+    </para>
+  </sect1>
+</chapter>

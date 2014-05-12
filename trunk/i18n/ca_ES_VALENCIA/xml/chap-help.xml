@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
+         xmlns:xl="http://www.w3.org/1999/xlink"
+         xml:lang="en"
+         xml:id="chap-help">
+  <title>Fonts d'ajuda <!--Sources of help--></title>
+
+  <para>
+	Hi ha un conjunt molt ric d'informació disponible sobre molts temes relacionats
+	amb el GNU/Linux. La més general és aplicable a Slackware Linux, perque
+	el programari incorporat a la distribució s'ha compilat des de codis font
+	que han patit les mínimes alteracions possibles. Aquest capítol
+	proporciona alguns enllaços a informació i documentació que es pot 
+	trobar tant a un sistema amb Slackware Linux instal·lat, com a Internet.
+  </para>
+
+  <sect1 xml:id="chap-help-system">
+    <title>Al teu sistema</title>
+
+    <sect2 xml:id="chap-help-system-howtos">
+      <title>HOWTO's de Linux</title>
+
+      <para>
+	Els HOWTOs (COM FER) de Linux són una colecció de de documents que cobreixen
+	temes específics relacionats amb GNU/Linux. Molts HOWTOs de Linux no 
+	van lligats a una distribució específica, pel que són molt útils 
+	per als usuaris de Slackware Linux. 
+	El paquet <emphasis>linux-howtos</emphasis> en el grup de programari
+	<quote>f</quote> conté la col·lecció de HOWTOs. Després d'instal·lar-lo, estaràn
+	disponibles al directori <filename>/usr/doc/Linux-HOWTOs/</filename>.
+	Slackware Linux conté, a més, una xicoteta col·lecció de <acronym>FAQs</acronym>
+	relacionades amb Linux (Les FAQ són documents que respones preguntes frequents). 
+	Les FAQs de Linux es troben instal·lades al directori 
+	<filename>/usr/doc/Linux-FAQs/</filename> i estàn disponibles al paquet
+	<emphasis>linux-faqs</emphasis>, que forma part del grup <quote>f</quote> 
+	de programari.        
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-help-system-manpages">
+      <title>Pàgines de manual</title>
+
+      <para>
+	La majoria de comandaments tipus UNIX estàn coberts pel sistema
+	tradicional d'ajuda de UNIX, les anomenades <emphasis>pàgines de manual</emphasis>.
+	Es pot llegir la pàgina de manual d'un programa amb la ordre 
+	<command>man</command>. Al executar <command>man</command> amb el nom d'un
+	comandament com a argument, es mostrarà la pàgina de manual corresponent.
+	Per exemple,
+      </para>
+
+      <screen>
+$ <userinput>man ls</userinput>
+      </screen>
+
+      <para>
+	mostra la pàgina de manual del comandament <command>ls</command>.
+      </para>
+
+      <para>
+	Si no saps el nom exacte d'una pàgina de manual o d'un comandament,
+	pots buscar una paraula clau a les pàgines de manual. La opció 
+	<parameter class="command">-k</parameter> proporciona aquesta funcionalitat:
+	<!--If you do not know the exact name of a manual page or command,
+	you can search through the manual pages with a keyword. The
+	<parameter class="command">-k</parameter> option is provided
+	to make use of this facility:-->
+      </para>
+
+      <screen>
+$ <userinput>man -k rmdir</userinput>
+hrmdir               (1)  - remove an empty HFS directory
+rmdir                (1)  - remove empty directories
+rmdir                (2)  - delete a directory
+      </screen>
+
+      <para>
+	La col·lecció de pàgines de manual és molt extensa, i abarca 
+	més temes a banda dels comandaments. Les següents seccions estàn 
+	disponibles.
+        <!--The manual page collection is very extensive, and covers more
+        subjects than just commands. The following sections of manual
+        pages are available:-->
+      </para>
+
+      <literallayout>
+1   Programes executables o ordres de l'interpret <!--Executable programs or shell commands-->
+2   Crides al sistema (funcions proporcionades pel núcli) <!--System calls (functions provided by the kernel)-->
+3   Crides de funció (funcions dins de llibreries de programa) <!--Library calls (functions within program libraries)-->
+4   Fitxers especials (trobats habitualment a /dev) <!--Special files (usually found in /dev)-->
+5   Formats de fitxer i convencions p.ex. /etc/passwd <!--File formats and conventions eg /etc/passwd-->
+6   Jocs <!-- Games-->
+7   Miscel·lània (incloent paquets de macros i convencions, p.ex. man(7), groff(7)<!-- Miscellaneous  (including  macro  packages and conven- 
+    tions), e.g. man(7), groff(7) -->
+8   Comandaments d'administració del sistema (normalment només per al root) <!--System administration commands (usually only for root)-->
+9   Rutines de Linux [No estàndard] <!--Linux routines [Non standard]-->
+      </literallayout>
+
+      <para>
+	Si més d'una secció conté una pàgina de manual amb un nom específic,
+	com per exemple <command>rmdir</command>, pots triar quina pàgina vols veurer
+	afegint el nombre de secció abans del nom de la pàgina de manual. Per exemple:
+        <!-- If there is more than one section that has a manual page with
+        a specific name, as with for instance
+        <command>rmdir</command>, you can choose what page you want to
+        see by adding the section number of the manual page before the
+        manual page name. For example:-->
+      </para>
+
+      <screen>
+<userinput>man 2 rmdir</userinput>
+      </screen>
+
+      <para>
+	Si volgueres imprimir una pàgina de manual en una impressora que tingueres
+	instal·lada, podries connectar la eixida de <command>man</command> al comandament
+	<command>lpr</command>. Quan s'empra la opció <parameter class="command">-t
+        </parameter> del comandament <command>man</command>, este manará la pàgina
+	de manual en format Postscript enlloc d'ASCII a la seua eixida. Per exemple,
+	es pot emprar el següent comandament per a imprimir la pàgina de manual de
+	<command>cat</command>:
+        <!--If you would like to print a manual page to a printer that you
+        have set up, you can pipe the output of <command>man</command>
+        to the <command>lpr</command> command. When the <parameter
+        class="command">-t</parameter> option of the
+        <command>man</command> command is used, <command>man</command>
+        will output the manual page in Postscript format, rather than
+        ASCII. For example, you can use the following command to print
+        the <command>cat</command> manual page:-->
+      </para>
+
+      <screen>
+$ <userinput>man -t cat | lpr</userinput>
+      </screen>
+    </sect2>
+  </sect1>
+
+  <sect1 xml:id="chap-help-internet">
+    <title>A la Internet</title>
+
+    <para>
+      Hi ha molts llocs web i forums relacionats amb GNU/Linux i 
+      Slackware Linux a la Internet, però molts d'aquests sovint 
+      desapareixen tan ràpid com apareixen, a més la informació en molts
+      llocs web està fragmentada. Els següents recursos han estat 
+      actius durant molt de temps, i proporcionen bons contingunts.
+      <!--There are many websites and forums related to GNU/Linux and
+      Slackware Linux on the Internet. But many sites often disappear
+      as fast as they appeared, and the information on many web sites
+      is fragmentary. The following resources have been around for a
+      longer time, and provide good content.-->
+    </para>
+
+    <sect2 xml:id="chap-help-internet-slacksite">
+      <title>El lloc web de Slackware Linux</title>
+
+      <para>
+	El lloc web de Slackware Linux pot estar una miqueta desfasat de vegades,
+	però proporciona mols recursos útils.
+	    
+        <!-- The Slackware Linux website may be a bit outdated at times,
+        but it provides many useful resources:-->
+      </para>
+
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    Una pàgina de notícies que anuncia nous alliberaments i llista
+	    altres notícies importants que són rellevants per a Slackware Linux.
+            <!--A news page that announces new releases and lists other
+            important news that is relevant to Slackware Linux.-->
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    Un resum dels canvis patits per la distribució es proporciona 
+	    mitjançant un format estructurat anomenat <emphasis>ChangeLog</emphasis>.
+	    Es proporcionen ChangeLog's tant de la versió actual de desenvolupament, 
+	    com de l'últim alliberament estable.
+            <!--An overview of the changes to the distribution is provided
+            in a structured format called a 
+            <emphasis>ChangeLog</emphasis>. ChangeLogs are provided
+            for the current development version, as well as the latest
+            stable release.-->
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+	    Hi ha dues llistes de distribució a les que et pots subscriure.
+	    La llista <emphasis>slackware-announce</emphasis> acostuma a 
+	    anunciar nous alliberaments de Slackware Linux, mentres que 
+	    les actualitzacions de seguretat s'anuncien a la llista
+	    <emphasis>slackware-security</emphasis>.
+            <!--There are two mailing lists to which you can
+            subscribe. The <emphasis>slackware-announce</emphasis>
+            list is used to announce new Slackware Linux releases, and
+            security updates are announced on the
+            <emphasis>slackware-security</emphasis> list.-->
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+	    Un llista dels espills on es pot descarregar Slackware Linux.
+	    
+            <!-- A list of mirrors where you can download Slackware
+            Linux. The mirrors are indexed per country. Additional
+            information such as the download protocols the mirrors
+            support, and the speed of the mirrors is also included.-->
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+	    Documentació diversa, incloent una llista de 
+	    preguntes freqüents i el llibre <emphasis>Slackware 
+	    Linux Essentials</emphasis>.
+            <!--Documentation of various kinds, including a list of
+            frequently asked questions and the <emphasis>Slackware
+            Linux Essentials</emphasis> book.-->
+          </para>
+        </listitem>
+      </itemizedlist>
+
+      <para>
+	El lloc web de Slackware Linux està disponible a:
+	<!--The Slackware Linux website is available at:-->
+	<link xl:href="http://www.slackware.com/" />
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-help-internet-linuxquestions">
+      <title>LinuxQuestions</title>
+
+      <para>
+	LinuxQuestions és un enorme forum amb prous membres
+	dispostos a ajudar. És de particular interés
+	el subforum de Slackware Linux, on pots buscar assistència
+	per a resoldre els problemes que pogueres tindre amb Slackware Linux.
+	El forum LinuxQuestions està disponible a:
+        <!--LinuxQuestions is a large GNU/Linux forum with many helpful
+        members.  Particularly interesting is the Slackware Linux
+        subforum, where you can seek assistance to help you with
+        problems that you may have with Slackware Linux. The
+        LinuxQuestions forum is available at: -->
+	<link xl:href="http://www.linuxquestions.org/" />
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-help-internet-aols">
+      <title>alt.os.linux.slackware</title>
+
+      <para>
+	<emphasis>alt.os.linux.slackware</emphasis> és un 
+	grup de notícies de Slackware Linux. Pots llegir aquests grups  
+	amb un lector de notícies com ara tin o slrn, a través
+	del servidor de grups de notícies del teu proveïdor
+	d'accés a Internet. En aquest grup de notícies
+	s'espera que hages llegit llegit tota la documentació
+	necessària abans de publicar preguntes. Si no ho has fet
+	i ha moltes possibilitats de que sigues <quote>fulminat</quote>.
+        <!--<emphasis>alt.os.linux.slackware</emphasis> is a Slackware
+        Linux newsgroup. You can read newsgroups with a newsreader
+        like tin or slrn, through the newsgroup server of your
+        Internet service provider. On this newsgroup it is expected
+        that you have read all necessary documentation before posting
+        questions. If you have not done that, the chance of getting
+        <quote>flamed</quote> is large.-->
+      </para>
+    </sect2>
+  </sect1>
+</chapter>

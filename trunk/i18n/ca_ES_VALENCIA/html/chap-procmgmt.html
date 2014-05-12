@@ -1,0 +1,866 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 10. Process management</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="basics.html" title="Part II. Conceptes fonamentals de Slackware Linux">
+<link rel="prev" href="chap-textproc.html" title="Chapter 9. Text processing">
+<link rel="next" href="editing.html" title='Part III. Editant i formatant text ??"typesetting"??'>
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 10. Process management</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="chap-textproc.html">Prev</a> </td>
+<th width="60%" align="center">Part II. Conceptes fonamentals de Slackware Linux</th>
+<td width="20%" align="right"> <a accesskey="n" href="editing.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div lang="en" class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="chap-procmgmt"></a>Chapter 10. Process management</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="chap-procmgmt.html#chap-procmgmt-theory">10.1. Theory</a></span></dt>
+<dt><span class="sect1"><a href="chap-procmgmt.html#chap-procmanagement-analyzing">10.2. Analyzing running processes</a></span></dt>
+<dt><span class="sect1"><a href="chap-procmgmt.html#chap-procmanagement-managing">10.3. Managing processes</a></span></dt>
+<dt><span class="sect1"><a href="chap-procmgmt.html#chap-procmanagement-jobcontrol">10.4. Job control</a></span></dt>
+</dl>
+</div>
+
+  
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-procmgmt-theory"></a>10.1. Theory</h2></div></div></div>
+    
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-procmgmt-theory-proc"></a>10.1.1. Processes</h3></div></div></div>
+      
+
+      <p>
+	A running instance of a program is called a
+	<span class="emphasis"><em>process</em></span>. Each process has its own
+	protected memory, named the <span class="emphasis"><em>process address
+	space</em></span>. This address space consists of two areas:
+	the <span class="emphasis"><em>text area</em></span> and the <span class="emphasis"><em>data
+	area</em></span>. The text area contains the actual program
+	code, and tells the system what to do. The data area stores
+	constant and runtime data of a process. Since there are many
+	processes on a system, and only one or a few processors, the
+	operating system kernel divides processor time between
+	processes. This process is called
+	<span class="emphasis"><em>time-sharing</em></span>.
+      </p>
+
+      <div class="table">
+<a name="chap-procmgmt-theory-proc-struct"></a><p class="title"><b>Table 10.1. The structure of a process</b></p>
+<div class="table-contents">
+	
+
+	<table summary="The structure of a process" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Field</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>pid</td>
+<td>The numeric process identifier</td>
+</tr>
+<tr>
+<td>ppid</td>
+<td>The process identifier of the
+	      parent process</td>
+</tr>
+<tr>
+<td>euid</td>
+<td>The effective user ID of the
+	      process.</td>
+</tr>
+<tr>
+<td>ruid</td>
+<td>The real user ID of the process</td>
+</tr>
+<tr>
+<td>egid</td>
+<td>The group ID of the process</td>
+</tr>
+<tr>
+<td>rgid</td>
+<td>The real group ID of the
+	      process</td>
+</tr>
+<tr>
+<td>fd</td>
+<td>Pointer to the list of open file
+	      descriptors</td>
+</tr>
+<tr>
+<td>vmspace</td>
+<td>Pointer to the process
+	      address space.</td>
+</tr>
+</tbody>
+</table>
+      </div>
+</div>
+<br class="table-break">
+
+      <p>
+	<a class="xref" href="chap-procmgmt.html#chap-procmgmt-theory-proc-struct" title="Table 10.1. The structure of a process">Table 10.1, “The structure of a process”</a> lists the
+	most important fields of information that a kernel stores
+	about a process. Each process can be identified uniquely by
+	its <span class="emphasis"><em>PID</em></span> (process identifier), which is an
+	unsigned number. As we will see later, a user can easily
+	retrieve the PID of a process. Each process is associated with
+	a <span class="emphasis"><em>UID</em></span> (user ID) and
+	<span class="emphasis"><em>GID</em></span> (group ID) on the system. Each
+	process has a <span class="emphasis"><em>real UID</em></span>, which is the UID
+	as which the process was started, and the <span class="emphasis"><em>effective
+	UID</em></span>, which is the UID as which the process
+	operates. Normally, the effective UID is equal to the real
+	UID, but some programs ask the system to change its effective
+	UID. The effective UID is used for access
+	control. This means that if a user named joe starts a command,
+	say less, less can only open files that joe has read rights
+	for. In parallel, a process also has an <span class="emphasis"><em>real
+	GID</em></span> and an <span class="emphasis"><em>effective GID</em></span>.
+      </p>
+
+      <p>
+	Many processes open files, the handle used to operate on a
+	file is called a <span class="emphasis"><em>file descriptor</em></span>. The
+	kernel manages a list of open file descriptors for each
+	process. The <span class="emphasis"><em>fd</em></span> field contains a pointer
+	to the list of open files. The <span class="emphasis"><em>vmspace</em></span>
+	field points to the process address space of the process.
+      </p>
+
+      
+      <div class="figure">
+<a name="chap-procmgmt-theory-proc-procstates"></a><p class="title"><b>Figure 10.1. Process states</b></p>
+<div class="figure-contents">
+	
+
+	<div class="mediaobject"><img src="../../images/procstates.png" alt="Process states"></div>
+      </div>
+</div>
+<br class="figure-break">
+
+      <p>
+	Not every process is in need of CPU time at a given
+	moment. For instance, some processes maybe waiting for some
+	<span class="emphasis"><em>I/O</em></span> (Input/Output) operation to complete
+	or may be terminated. Not taking subtleties in account,
+	processes are normally <span class="emphasis"><em>started</em></span>,
+	<span class="emphasis"><em>running</em></span>, <span class="emphasis"><em>ready</em></span> (to
+	run), <span class="emphasis"><em>blocked</em></span> (waiting for I/O), or
+	<span class="emphasis"><em>terminated</em></span>. <a class="xref" href="chap-procmgmt.html#chap-procmgmt-theory-proc-procstates" title="Figure 10.1. Process states">Figure 10.1, “Process states”</a> shows the
+	lifecycle of a process. A process that is terminated, but for
+	which the process table entry is not reclaimed, is often
+	called a <span class="emphasis"><em>zombie process</em></span>. Zombie processes
+	are useful to let the parent process read the exit status of
+	the process, or reserve the process table entry temporarily.
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-procmgmt-theory-proc-new"></a>10.1.2. Creating new processes</h3></div></div></div>
+      
+
+      <p>
+	New processes are created with the <span class="emphasis"><em>fork()</em></span>
+	system call. This system call copies the process address space
+	and process information of the caller, and gives the new
+	process, named the child process, a different PID. The child
+	process will continue execution at the same point as the
+	parent, but will get a different return value from the
+	<span class="emphasis"><em>fork()</em></span> system call. Based on this return
+	value the code of the parent and child can decide how to
+	continue executing. The following piece of C code shows a
+	<span class="emphasis"><em>fork()</em></span> call in action:
+      </p>
+
+      <pre class="programlisting">
+#include &lt;sys/types.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+
+int main() {
+  pid_t pid = fork();
+  if (pid == 0)
+    printf("Hi, I am the child!\n");
+  else
+    printf("Hi, I am the parent, the child PID is %d!\n", pid);
+
+  return 0;
+}
+      </pre>
+
+      <p>
+.	This little program calls <span class="emphasis"><em>fork()</em></span>, storing
+	the return value of <span class="emphasis"><em>fork()</em></span> in the
+	variable
+	<span class="emphasis"><em>pid</em></span>. <span class="emphasis"><em>fork()</em></span> returns
+	the value <span class="emphasis"><em>0</em></span> to the child, and the PID of
+	the child to the parent. Since this is the case, we can use a
+	simple conditional structure to check the value of the
+	<span class="emphasis"><em>pid</em></span> variable, and print an appropriate
+	message.
+      </p>
+
+      <p>
+	You may wonder how it is possible to start new programs, since
+	the <span class="emphasis"><em>fork()</em></span> call duplicates an existing
+	process. That is a good question, since with
+	<span class="emphasis"><em>fork()</em></span> alone, it is not possible to
+	execute new programs. UNIX kernels also provide a set of
+	system calls, starting with <span class="emphasis"><em>exec</em></span>, that
+	load a new program image in the current process. We saw at the
+	start of this chapter that a process is a running program -- a
+	process was constructed in memory from the program image that
+	is stored on a storage medium. So, the
+	<span class="emphasis"><em>exec</em></span> family of system calls gives a
+	running process the facilities to replace its contents with a
+	program stored on some medium. In itself, this is not wildly
+	useful, because every time the an <span class="emphasis"><em>exec</em></span>
+	call is done, the original calling code (or program) is
+	removed from the process. This can be witnessed in the following
+	C program:
+      </p>
+
+      <pre class="programlisting">
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+
+int main() {
+  execve("/bin/ls", NULL, NULL);
+
+  /* This will never be printed, unless execve() fails. */
+  printf("Hello world!\n");
+
+  return 0;
+}
+      </pre>
+
+      <p>
+	This program executes <span class="command"><strong>ls</strong></span> with the
+	<span class="emphasis"><em>execve()</em></span> call. The message printed with
+	<span class="emphasis"><em>printf()</em></span> will never be shown, because the
+	running program image is replaced with that of
+	<span class="command"><strong>ls</strong></span>. Though, a combination of
+	<span class="emphasis"><em>fork()</em></span> and the <span class="emphasis"><em>exec</em></span>
+	functions are very powerful. A process can fork itself, and
+	let the child <span class="quote">“<span class="quote">sacrifice</span>”</span> itself to run another
+	program. The following program demonstrates this pattern:
+      </p>
+
+      <pre class="programlisting">
+#include &lt;sys/types.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+
+int main() {
+  pid_t pid = fork();
+  if (pid == 0)
+    execve("/bin/ls", NULL, NULL);
+
+  printf("Hello world!");
+
+  return 0;
+}
+      </pre>
+
+      <p>
+	This program forks itself first. The program image of the
+	child process will be replaced with <span class="command"><strong>ls</strong></span>,
+	while the parent process prints the <span class="quote">“<span class="quote">Hello world!</span>”</span>
+	message to the screen and returns.
+      </p>
+
+      <p>
+	This procedure is followed by many programs, including the
+	shell, when a command is executed from the shell prompt. In
+	fact all processes on a UNIX system are directly or indirectly
+	derrived from the <span class="emphasis"><em>init</em></span> process, which is
+	the first program that is started on a UNIX system.
+      </p>
+
+      
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-procmgmt-theory-proc-threads"></a>10.1.3. Threads</h3></div></div></div>
+      
+
+      <p>
+	Although forks are very useful to build some
+	parallelism<a href="#ftn.idm962174732" class="footnote" name="idm962174732"><sup class="footnote">[7]</sup></a>, they can be to expensive for some
+	purposes. Copying the whole process takes some time, and there
+	is cost involved if processes want to share data. This is
+	solved by offering a more lightweight alternative, namely
+	allowing more than one thread of execution. Each thread of
+	execution is executed separately, but the process data is
+	shared between the threads.
+      </p>
+
+      <p>
+	Writing good <span class="emphasis"><em>multithreaded</em></span> programs
+	requires good knowledge of data sharing and locking. Since all
+	data is shared, uncareful programming can lead to bugs like
+	race conditions.
+      </p>
+    </div>
+
+    
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-procmanagement-analyzing"></a>10.2. Analyzing running processes</h2></div></div></div>
+    
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-procmanagement-analyzing-listing"></a>10.2.1. Listing running processes</h3></div></div></div>
+      
+
+      <p>
+	UNIX systems provide the <span class="command"><strong>ps</strong></span> command to show
+	a list of running processes. Unfortunately, this command is an
+	example of the pains of the lack of standardization. The BSD
+	and System V variants of <span class="command"><strong>ps</strong></span> have their own
+	sets of options. Fortunately, GNU/Linux implements both the
+	System V and BSD-style parameters, as well as some (GNU-style)
+	long options. Options preceded by a dash are interpreted as
+	System V options and options without a dash as BSD options.
+	We will describe the System V-style options in this section.
+      </p>
+
+      <p>
+	If <span class="command"><strong>ps</strong></span> is used without any parameters, it
+	shows all processes owned by the user that invokes
+	<span class="command"><strong>ps</strong></span> and that are attached to the same
+	controlling terminal. For example:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>ps</code></strong>
+  PID TTY          TIME CMD
+ 8844 pts/5    00:00:00 bash
+ 8862 pts/5    00:00:00 ps
+      </pre>
+
+      <p>
+	A lot of useful information can be distilled from this
+	output. As you can see, two processes are listed: the shell
+	that we used to call <span class="command"><strong>ps</strong></span>
+	(<span class="emphasis"><em>bash</em></span>), and the <span class="command"><strong>ps</strong></span>
+	command itself. In this case there are four information
+	fields. <span class="emphasis"><em>PID</em></span> is the process ID of a
+	process, <span class="emphasis"><em>TTY</em></span> the controlling terminal,
+	<span class="emphasis"><em>TIME</em></span> the amount of CPU time the proces
+	has used, and <span class="command"><strong>CMD</strong></span> the command or program of
+	which a copy is running. The fields that are shown by default
+	may vary a bit per system, but usually at least these fields
+	are shown, with somewhat varying field labels.
+      </p>
+
+      <p>
+	Sometime you may want to have a broader view of processes that
+	are running. Adding the <em class="parameter"><code>-a</code></em> option shows all processes that
+	are associated with terminals. For instance:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>ps -a</code></strong>
+  PID TTY          TIME CMD
+ 7487 pts/1    00:00:00 less
+ 8556 pts/4    00:00:10 emacs-x
+11324 pts/3    00:00:00 ps
+      </pre>
+
+      <p>
+	As you can see, processes with different controlling terminals
+	are shown. Though, in contrast to the plain
+	<span class="command"><strong>ps</strong></span> output, only processes that control the
+	terminal at the moment are shown. For instance, the shell that
+	was used to call <span class="command"><strong>ps</strong></span> is not shown.
+      </p>
+
+      <p>
+	You can also print all processes that are running, including
+	processes that are not associated with a terminal, by using the
+	<em class="parameter"><code>-A</code></em> option:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>ps -A | head -n 10</code></strong>
+  PID TTY          TIME CMD
+    1 ?        00:00:01 init
+    2 ?        00:00:00 migration/0
+    3 ?        00:00:00 ksoftirqd/0
+    4 ?        00:00:00 watchdog/0
+    5 ?        00:00:00 migration/1
+    6 ?        00:00:00 ksoftirqd/1
+    7 ?        00:00:00 watchdog/1
+    8 ?        00:00:00 events/0
+    9 ?        00:00:00 events/1
+      </pre>
+
+      <p>
+	You can print all processes with a certain user ID, with the
+	<span class="emphasis"><em>-U</em></span> option. This option accepts a user
+	name as a parameter, or multiple user names that are separated
+	by a comma. The following command shows all processes that
+	have <span class="emphasis"><em>xfs</em></span> or <span class="emphasis"><em>rpc</em></span> as
+	their user ID:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>ps -U xfs,rpc</code></strong>
+  PID TTY          TIME CMD
+ 2409 ?        00:00:00 portmap
+ 2784 ?        00:00:00 xfs
+      </pre>
+
+      <p>
+	Likewise, you can also print processes with a particular group
+	ID, with the <span class="emphasis"><em>-G</em></span> option:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>ps -G messagebus,haldaemon</code></strong>
+  PID TTY          TIME CMD
+ 8233 ?        00:00:00 dbus-daemon
+11312 ?        00:00:00 hald
+11320 ?        00:00:00 hald-addon-keyb
+11323 ?        00:00:00 hald-addon-acpi
+      </pre>
+
+      <p>
+	If you would like to have a list for a physical or
+	pseudo-terminal, you can use the <em class="parameter"><code>-t</code></em> option:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>ps -t tty2</code></strong>
+  PID TTY          TIME CMD
+ 2655 tty2     00:00:00 getty
+      </pre>
+    </div>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-procmanagement-managing"></a>10.3. Managing processes</h2></div></div></div>
+    
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-procmanagement-managing-signals"></a>10.3.1. Sending signals to a process</h3></div></div></div>
+      
+
+      <p>
+	Signals are a crude, but effective form of inter-process
+	communication (IPC). A signal is basically a number that is
+	delivered to a process that has a special meaning. For all
+	signals there are default signal handlers. Processes can
+	install their own signal handlers, or choose to ignore
+	signals. Some signals (normally SIGKILL and SIGSTOP) can not
+	be ignored. All signals have convenient symbolic names.
+      </p>
+
+      <p>
+	Only a few signals are normally interesting for interactive
+	use on UNIX(-like) systems. These are (followed by their number):
+      </p>
+
+      <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+	  <p><span class="emphasis"><em>SIGKILL (9):</em></span> forcefully kill
+	  a process.</p>
+	</li>
+<li class="listitem">
+	  <p><span class="emphasis"><em>SIGTERM (15):</em></span> request a process
+	  to terminate. Since this is a request, a program could ignore
+	  it, in contrast to <span class="emphasis"><em>SIGKILL</em></span>.</p>
+	</li>
+<li class="listitem">
+	  <p><span class="emphasis"><em>SIGHUP (1):</em></span> Traditionally, this
+	  has signalled a terminal hangup. But nowadays some daemons
+	  (e.g. <span class="emphasis"><em>inetd</em></span>) reread their configuration
+	  when this signal is sent.</p>
+	</li>
+</ul></div>
+
+      <p>
+	The <span class="command"><strong>kill</strong></span> command is used to send a signal
+	to a process. By default, <span class="command"><strong>kill</strong></span> sends the
+	<span class="emphasis"><em>SIGTERM</em></span> signal. To send this signal, the
+	process ID of the process that you would like to send this
+	signal to should be added as a parameter. For instance:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>kill 15631</code></strong>
+      </pre>
+
+      <p>
+	To send another signal, you can use one of two options:
+	<span class="emphasis"><em>-signalnumber</em></span> or
+	<span class="emphasis"><em>-signalname</em></span>. So, the following commands
+	both send the <span class="emphasis"><em>SIGKILL</em></span> signal to the process
+	with process ID <span class="emphasis"><em>15631</em></span>:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>kill -9 15631</code></strong>
+      </pre>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>kill -SIGKILL 15631</code></strong>
+      </pre>
+
+      
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-procmanagement-managing-nice"></a>10.3.2. Being nice to others</h3></div></div></div>
+      
+
+      <p>
+	In an act of altruism you can be nice to other users of
+	computer resources. If you plan to run a CPU-time intensive
+	process, but do not want that to interfere with work of other
+	users on the system (or other processes), you can assign some
+	grade of 'niceness' to a process. Practically, this means that
+	you will be able to influence the scheduling priority of a
+	process. Nicer processes get a lower scheduling priority. The
+	normal niceness of a process is <span class="emphasis"><em>0</em></span>, and
+	can be changed by executing a program with the
+	<span class="command"><strong>nice</strong></span> command. The <span class="emphasis"><em>-n
+	[niceness]</em></span> option can be used to specify the
+	niceness:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>nice -n 20 cputimewaster</code></strong>
+      </pre>
+
+      <p>
+	The maximum number for niceness is
+	implementation-dependent. If a program was started with
+	<span class="command"><strong>nice</strong></span>, but no niceness was specified, the
+	niceness will be set to <span class="emphasis"><em>10</em></span>. In case you
+	were wondering: yes, you can also be rude, but this right is
+	restricted to the <span class="emphasis"><em>root</em></span> user. You can
+	boost the priority of a process by specifying a negative value
+	as the niceness.
+      </p>
+
+      <p>
+	You can also modify the niceness of a running processes with
+	the <span class="command"><strong>renice</strong></span> command. This can be done for
+	specific process IDs (<em class="parameter"><code>-p
+	PIDs</code></em>), users (<em class="parameter"><code>-u
+	user/uid</code></em>), and effective groups (<em class="parameter"><code>-g group/gid</code></em>). The new niceness
+	is specified as the first parameter.
+      </p>
+
+      <p>
+	The niceness of a process can only be increased. And, of
+	course, no user except for <span class="emphasis"><em>root</em></span> can
+	affect the niceness of processes of other users.
+      </p>
+
+      <p>
+	Lets look at an example, to set the niceness of a process with
+	PID <span class="emphasis"><em>3108</em></span> to <span class="emphasis"><em>14</em></span>, you
+	could use the following command:
+      </p>
+
+      <pre class="screen">
+$ <span class="command"><strong>renice 14 -p 3108</strong></span>
+      </pre>
+    </div>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-procmanagement-jobcontrol"></a>10.4. Job control</h2></div></div></div>
+    
+
+    <p>
+      It is often useful to group processes to allow operations on a
+      set of processes, for instance to distribute a signal to all
+      processes in a group rather than a single process. Not too
+      suprisingly, these sets of processes are called
+      <span class="emphasis"><em>program groups</em></span> in UNIX. After a fork, a
+      child process is automatically a member of the process group of
+      the parent. Though, new process groups can be created by making
+      one process a process group leader, and adding other processes
+      to the group. The process group ID is the PID of the process
+      group leader.
+    </p>
+
+    <p>
+      Virtually all modern UNIX shells give processes that are created
+      through the invocation of a command their own process group. All
+      processes in a pipeline are normally added to one process group.
+      In the following commands that create a pipeline are executed
+    </p>
+
+    <pre class="screen">
+cat | tr -s ' ' | egrep 'foob.r'
+    </pre>
+
+    <p>
+      the shell roughly performs the following steps:
+    </p>
+
+    <div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem">
+	<p>
+	  Three child processes are forked.
+	</p>
+      </li>
+<li class="listitem">
+	<p>
+	  The first process in the pipeline is put in a process group
+	  with its own PID as the process group ID, making it the
+	  process leader. The other processes in the pipeline are added
+	  to the process group.
+	</p>
+      </li>
+<li class="listitem">
+	<p>
+	  The file descriptors of the processes in the pipeline are
+	  reconfigured to form a pipeline.
+	</p>
+      </li>
+<li class="listitem">
+	<p>
+	  The programs in the pipeline are executed.
+	</p>
+      </li>
+</ol></div>
+
+    <p>
+      The shell uses process groups to implement <span class="emphasis"><em>job
+      control</em></span>. A shell can run multiple jobs in the
+      background, there can be multiple stopped job, and one job can
+      be in the foreground. A foreground job is wired to the terminal
+      for its standard input (meaning that it is the job the gets user
+      input).
+    </p>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-procmgmt-jobcontrol-stopping"></a>10.4.1. Stopping and continuing a job</h3></div></div></div>
+      
+      
+      <p>
+	A job that is in the foreground (thus, a job that potentially
+	accepts user input from the terminal) can be stopped by
+	pressing <span class="emphasis"><em>Ctrl-z</em></span> (pressing both the 'Ctrl' and
+	'z' keys simultaneously). This will stop the job,
+	and will handle control over the terminal back to the shell.
+	Let's try this with the <span class="command"><strong>sleep</strong></span> command, which
+	waits for the number of seconds provided as an argument:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>sleep 3600</code></strong>
+<strong class="userinput"><code>Ctrl-z</code></strong>
+[1]+  Stopped                 sleep 3600
+      </pre>
+
+      <p>
+	The process group, which we will refer to as a job has been
+	stopped now, meaning that the <span class="command"><strong>sleep</strong></span> has
+	stopped counting - it's execution is completely stopped. You
+	can retrieve a list of jobs with the <span class="command"><strong>jobs</strong></span>
+	command:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>jobs</code></strong>
+[1]+  Stopped                 sleep 3600
+      </pre>
+
+      <p>
+	This shows the job number (<span class="emphasis"><em>1</em></span>), its state,
+	and the command that was used to start this job. Let's run
+	another program, stop that too, and have another look at the
+	job listing.
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>cat</code></strong>
+<strong class="userinput"><code>Ctrl-z</code></strong>
+[2]+  Stopped                 cat
+$ <strong class="userinput"><code>jobs</code></strong>
+[1]-  Stopped                 sleep 3600
+[2]+  Stopped                 cat
+      </pre>
+
+      <p>
+	As expected, the second job is also stopped, and was assigned
+	job number <span class="emphasis"><em>2</em></span>. The plus sign
+	(<span class="emphasis"><em>+</em></span>) following the first job has changed
+	to a minus (<span class="emphasis"><em>-</em></span>) sign, while the second job
+	is now marked by a plus sign. The plus sign is used to
+	indicate the <span class="emphasis"><em>current job</em></span>. The
+	<span class="command"><strong>bg</strong></span> and <span class="command"><strong>fg</strong></span> commands that
+	we will look at shortly, will operate on the current job
+	if no job was specified as a parameter.
+      </p>
+     
+      
+
+      <p>
+	Usually, when you are working with jobs, you will want to move
+	jobs to the foreground again. This is done with the
+	<span class="command"><strong>fg</strong></span> command. Executing <span class="command"><strong>fg</strong></span>
+	without a parameter will put the current job in the
+	foreground.  Most shells will print the command that is moved
+	to the foreground to give an indication of what process was
+	moved to the foreground:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>fg</code></strong>
+cat
+      </pre>
+
+      <p>
+	Of course, it's not always useful to put the current job in
+	the foreground. You can put another job in the foreground by
+	adding the job number preceded by the percentage sign
+	(<span class="emphasis"><em>%</em></span>) as an argument to
+	<span class="command"><strong>fg</strong></span>:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>fg %1</code></strong>
+sleep 3600
+      </pre>
+
+      <p>
+	Switching jobs by stopping them and putting them in the
+	foreground is often very useful when the shell is used
+	interactively. For example, suppose that you are editing a
+	file with a text editor, and would like to execute some other
+	command and then continue editing. You could stop the editor
+	with <span class="emphasis"><em>Ctrl-z</em></span>, execute a command, and put
+	the editor in the foreground again with <span class="command"><strong>fg</strong></span>.
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-procmgmt-jobcontrol-background"></a>10.4.2. Background jobs</h3></div></div></div>
+      
+
+      <p>
+	Besides running in the foreground, jobs can also run in the
+	background. This means that they are running, but input from
+	the terminal is not redirected to background processes. Most
+	shells do configure background jobs to direct output to the
+	terminal of the shell where they were started.
+      </p>
+
+      <p>
+	A process that is stopped can be continued in the background
+	with the <span class="command"><strong>bg</strong></span> command:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>sleep 3600</code></strong>
+  
+[1]+  Stopped                 sleep 3600
+$ <strong class="userinput"><code>bg</code></strong>
+[1]+ sleep 3600 &amp;
+$
+      </pre>
+
+      <p>
+	You can see that the job is indeed running with
+	<span class="command"><strong>jobs</strong></span>:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>jobs</code></strong>
+[1]+  Running                 sleep 3600 &amp;
+      </pre>
+
+      <p>
+	Like <span class="command"><strong>fg</strong></span>, you can also move another job than
+	the current job to the background by specifying its job
+	number:
+      </p>
+
+      <pre class="screen">
+$ <span class="command"><strong>bg %1</strong></span>
+[1]+ sleep 3600 &amp;
+      </pre>
+
+      <p>
+	You can also put a job directly in the background when it is
+	started, by adding an trailing ampersand (&amp;) to a command
+	or pipeline. For instance:
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>sleep 3600 &amp;</code></strong>
+[1] 5078
+      </pre>
+
+      
+    </div>
+  </div>
+<div class="footnotes">
+<br><hr style="width:100; text-align:left;margin-left: 0">
+<div id="ftn.idm962174732" class="footnote"><p><a href="#idm962174732" class="para"><sup class="para">[7] </sup></a>For instance, a web server could
+	fork multiple child processes to handle
+	requests</p></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="chap-textproc.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="basics.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="editing.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 9. Text processing </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Part III. Editant i formatant text ??"typesetting"??</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 12. Reading and writing e-mail with mutt</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="email.html" title="Part IV. Correu electrònic">
+<link rel="prev" href="email.html" title="Part IV. Correu electrònic">
+<link rel="next" href="sendmail.html" title="Chapter 13. Sendmail">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 12. Reading and writing e-mail with mutt</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="email.html">Prev</a> </td>
+<th width="60%" align="center">Part IV. Correu electrònic</th>
+<td width="20%" align="right"> <a accesskey="n" href="sendmail.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="email-mutt"></a>Chapter 12. Reading and writing e-mail with mutt</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="mutt.html#email-mutt-introduction">12.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="mutt.html#email-mutt-usage">12.2. Usage</a></span></dt>
+<dt><span class="sect1"><a href="mutt.html#email-mutt-basicsetup">12.3. Basic setup</a></span></dt>
+<dt><span class="sect1"><a href="mutt.html#email-mutt-imap">12.4. Using IMAP</a></span></dt>
+<dt><span class="sect1"><a href="mutt.html#email-mutt-gnupg">12.5. Signing/encrypting e-mails</a></span></dt>
+</dl>
+</div>
+<a class="indexterm" name="idm962087044"></a><div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="email-mutt-introduction"></a>12.1. Introduction</h2></div></div></div>
+<a class="indexterm" name="idm962086428"></a><a class="indexterm" name="idm962086188"></a><p>
+      Mutt is a mail user agent (<acronym class="acronym">MUA</acronym>) that can be used
+      for reading and writing e-mail. Mutt is a text-mode installation,
+      meaning that it can be used on the console, over SSH and in an X
+      terminal. Due to its menu interface, it is very easy to read large
+      amounts of e-mail in a short time, and mutt can be configured to
+      use your favorite text editor.
+    </p>
+<p>
+      This chapter will discuss how you can customize mutt for your needs,
+      how to use it, and how PGP/GnuPG support is used.
+    </p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="email-mutt-usage"></a>12.2. Usage</h2></div></div></div>
+<p>
+      Mutt is pretty simple to use, though it may take some time to get
+      used to the keys that are used to navigate, read and write e-mails.
+      The next few sections describe some of the most important keys. Mutt
+      provides a more thorough overview of available keys after pressing
+      the &lt;h&gt; key.
+    </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="email-mutt-usage-browsing"></a>12.2.1. Browsing the list of e-mails</h3></div></div></div>
+<p>
+        After invoking the <span class="command"><strong>mutt</strong></span> command, an overview
+        of all e-mails will show up. You can browse through the list of
+        e-mails with the up and down arrow keys, or the &lt;k&gt; and
+        &lt;j&gt; keys. 
+      </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="email-mutt-usage-reading"></a>12.2.2. Reading e-mails</h3></div></div></div>
+<p>
+        To read an e-mail, use the &lt;Enter&gt; key, after selecting an
+        e-mail in the overview of e-mails.
+        When reading an e-mail you can use the &lt;Page Up&gt; and
+        &lt;Page Down&gt; to browse through an e-mail. You can still use
+        the navigational keys used to browse the list of e-mail to browse
+        to other e-mails.
+      </p>
+<p>
+        If an e-mail has any attachments, you can see them by pressing
+        the &lt;v&gt; key. You can view individual attachments by selecting
+        them and pressing the &lt;Enter&gt; key. To save an attachment to
+        a file, press the &lt;s&gt; key.
+      </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="email-mutt-usage-sending"></a>12.2.3. Sending e-mails</h3></div></div></div>
+<p>
+        You can compose a new e-mail with the &lt;m&gt; key, or reply
+        to a selected e-mail with the &lt;r&gt; key. Mutt will ask you
+        to specify the recipient (<span class="emphasis"><em>To:</em></span>), and a
+        subject (<span class="emphasis"><em>Subject:</em></span>). After entering this
+        information an editor is launched (<span class="command"><strong>vi</strong></span> is used
+        by default), which you can use to compose the e-mail. After saving
+        the e-mail, and quitting the editor, mutt will give you the
+        opportunity to make any changes to the e-mail. If you decide
+        that you want to alter the e-mail, you can restart the editor
+        with the &lt;e&gt; key. You can change the recipient or the
+        subject with respectively &lt;t&gt; or &lt;s&gt;. Finally, you
+        can send the e-mail by pressing &lt;y&gt;. If you would like to
+        cancel the e-mail, press &lt;q&gt;. Mutt will ask you whether you
+        want to postpone the e-mail. If you do so, you will be given the
+        opportunity to re-do the e-mail the next time you compose a
+        message.
+      </p>
+</div>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="email-mutt-basicsetup"></a>12.3. Basic setup</h2></div></div></div>
+<p>
+      There are a few mutt settings you often want to configure. This section
+      describes these settings. User-specific mutt customizations can be made
+      in the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">.muttrc</code></html:span> in the user's home directory. You
+      can change global mutt settings in <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/mutt/Muttrc</code></html:span>.
+    </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="email-mutt-basicsetup-headers"></a>12.3.1. Customized headers</h3></div></div></div>
+<a class="indexterm" name="idm962078260"></a><p>
+        Each e-mail has headers with various information. For example, the
+        header contains information about the path an e-mail has traversed
+        after it has been sent. The sender (<span class="emphasis"><em>From:</em></span>) and
+        recipient (<span class="emphasis"><em>To:</em></span>) e-mail addresses are also stored
+        in the headers, as well as the subject (<span class="emphasis"><em>Subject:</em></span>)
+        of an e-mail.
+      </p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+          In reality the <span class="emphasis"><em>To:</em></span> header is not used to
+          determine the destination of an e-mail during the deliverance
+          process of the e-mail. MTAs use the <span class="emphasis"><em>envelope
+          address</em></span> to determine the destination of the e-mail.
+          Though, most MUAs use the <span class="emphasis"><em>To:</em></span> address that
+          the user fills in as the envelope address.
+        </p></td></tr>
+</table></div>
+<p>
+        You can add your own headers to an e-mail with the
+        <span class="emphasis"><em>my_hdr</em></span> configuration option. This option
+        has the following syntax: <span class="emphasis"><em>my_hdr &lt;header name&gt;:
+        &lt;header contents&gt;</em></span>. For example, you can add information
+        about what OS you are running by adding the following line to your
+        mutt configuration:
+      </p>
+<pre class="screen">
+my_hdr X-Operating-System: Slackware Linux 10.2
+      </pre>
+<p>
+        You can also override some of the headers that are normally used,
+        such as the sender address that is specified in the
+        <span class="emphasis"><em>From:</em></span> header:
+      </p>
+<pre class="screen">
+my_hdr From: John Doe &lt;john.doe@example.org&gt;
+      </pre>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm962073788"></a>12.3.2. The sendmail binary</h3></div></div></div>
+<a class="indexterm" name="idm962073572"></a><p>
+        By default mutt uses the sendmail MTA to deliver e-mails that
+        were sent. You can use another command to send e-mail by altering
+        the <span class="emphasis"><em>sendmail</em></span> configuration variable. The
+        sendmail replacement must handle the same parameter syntax
+        as sendmail. For example, if you have installed MSMTP to deliver
+        e-mails, you can configure mutt to use it by adding the following
+        line to your mutt configuration:
+      </p>
+<pre class="screen">
+set sendmail="/usr/bin/msmtp"
+      </pre>
+<p>
+        When you have completely replaced sendmail with another MTA, for
+        instance Postfix, it is usually not needed to set this parameter,
+        because most MTAs provide an alternative sendmail binary file.
+      </p>
+</div>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="email-mutt-imap"></a>12.4. Using IMAP</h2></div></div></div>
+<p>
+      Normally, mutt reads e-mail from the user's local spool mailbox.
+      However, mutt also has support for using IMAP mailboxes.
+      <acronym class="acronym">IMAP</acronym> (the Internet Message Access Protocol)
+      is a protocol that is used for accessing e-mail from a remote
+      server, and is supported by many e-mail servers. Mutt uses the
+      following URL format for representing IMAP servers:
+    </p>
+<div class="literallayout"><p><br>
+imap://[user@]hostname[:port]/[mailbox]<br>
+    </p></div>
+<p>
+      Or the following format for IMAP over SSL/TLS:
+    </p>
+<div class="literallayout"><p><br>
+imaps://[user@]hostname[:port]/[mailbox]<br>
+    </p></div>
+<p>
+      You can directly use this syntax in folder-related operatings.
+      For example, if you press <span class="quote">“<span class="quote">c</span>”</span> to change from folder,
+      you can enter an IMAP URL. This is a bit tedious, so it is easier
+      to store this information in your <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">.muttrc</code></html:span> file.
+    </p>
+<p>
+      If you use only one IMAP account, you can set the INBOX folder
+      of this account as the spool mailbox, and the main IMAP account
+      as the e-mail folder. For example, adding the following lines
+      to your <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">.muttrc</code></html:span> configuration file will set
+      up mutt to log in to the <span class="emphasis"><em>imap.example.org</em></span>
+      server as the <span class="emphasis"><em>me</em></span> user.
+    </p>
+<pre class="screen">
+set folder=imap://me@imap.example.org/
+set spoolfile=imap://me@imap.example.org/INBOX
+    </pre>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="email-mutt-gnupg"></a>12.5. Signing/encrypting e-mails</h2></div></div></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="email-mutt-gnupg-introduction"></a>12.5.1. Introduction</h3></div></div></div>
+<p>
+        Mutt provides excellent support for signing or encrypting e-mails
+        with GnuPG. One might wonder why he or she should use one of these
+        techniques. While most people do not feel the need to encrypt most
+        of their e-mails, it generally is a good idea to sign your e-mails.
+        There are, for example, a lot of viruses these days that use other
+        people's e-mail addresses in the From: field of viruses. If the
+        people who you are communicating with know that you sign your e-mails,
+        they will not open fake e-mail from viruses. Besides that it looks
+        much more professional if people can check your identity, especially
+        in business transactions. For example, who would you rather trust,
+        vampire_boy93853@hotmail.com, or someone using a professional e-mail
+        address with digitally signed e-mails?
+      </p>
+<p>
+        This section describes how you can use GnuPG with mutt, for more
+        information about GnuPG read
+        <a class="xref" href="chap-filesystem.html#basics-filesystem-gnupg" title="8.9. Encrypting and signing files">Section 8.9, “Encrypting and signing files”</a>.
+      </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="email-mutt-gnupg-configuration"></a>12.5.2. Configuration</h3></div></div></div>
+<p>
+        An example configuration for using GnuPG in mutt can be found
+        in <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/share/doc/mutt/samples/gpg.rc</code></html:span>.
+        In general the contents of this file to your mutt configuration will
+        suffice. From the shell you can add the contents of this file
+        to your <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">.muttrc</code></html:span> with the following command:
+      </p>
+<pre class="screen">
+$ <span class="command"><strong>cat /usr/share/doc/mutt/samples/gpg.rc &gt;&gt; ~/.muttrc</strong></span>
+      </pre>
+<p>
+        There are some handy parameters that you can additionally set.
+        For example, if you always want to sign e-mails, add the following
+        line to your mutt configuration:
+      </p>
+<pre class="screen">
+set crypt_autosign = yes
+      </pre>
+<p>
+        Another handy option is <span class="emphasis"><em>crypt_replyencrypt</em></span>,
+        which will automatically encrypt replies to messages that were
+        encrypted. To enable this, add the following line to your mutt
+        configuration:
+      </p>
+<pre class="screen">
+set crypt_replyencrypt = yes
+      </pre>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="email-mutt-gnupg-usage"></a>12.5.3. Usage</h3></div></div></div>
+<p>
+        If you have set some of the automatic options, like
+        <span class="emphasis"><em>crypt_autosign</em></span>, GnuPG usage of mutt is mostly
+        automatic. If not, you can press the &lt;p&gt; key during the
+        final step of sending an e-mail. In the bottom of the screen
+        various GnuPG/PGP options will appear, which you can access
+        via the letters that are enclosed in parentheses. For example,
+        &lt;s&gt; signs e-mails, and &lt;e&gt; encrypts an e-mail.
+        You can always clear any GnuPG option you set by pressing
+        &lt;p&gt; and then &lt;c&gt;.
+      </p>
+</div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="email.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="email.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="sendmail.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Part IV. Correu electrònic </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 13. Sendmail</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

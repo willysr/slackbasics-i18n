@@ -1,0 +1,619 @@
+<!-- $Id: concepts.xml 333 2007-10-21 17:20:54Z danieldk $ -->
+
+<chapter id="concepts"> <?dbhtml filename="concepts.html"?>
+  <title>Conceptes generals</title>
+
+  <para>
+    Aquest capítol ofereix una introducció a alguns conceptes generals de UNIX 
+    i de GNU/Linux. És important llegir este capítol completament si no 
+    tens gens d'experiència en UNIX o GNU/Linux ja que molts dels conceptes 
+    coberts ací s'utilitzen en este llibre i a GNU/Linux.
+    <!--This chapter gives an introduction to some general UNIX and GNU/Linux 
+    concepts. It is important to read this chapter thoroughly if you do
+    not have any UNIX or GNU/Linux experience. Many concepts covered in
+    this chapter are used in this book and in GNU/Linux.-->
+  </para>
+
+  <sect1 id="concepts-multitasca">
+    <title>Multitasca</title>
+
+    <sect2 id="concepts-multitasking-intro">
+      <title>Introducció</title>
+
+      <para>
+	Tradicionalment, un dels punts forts del UNIX és la multitasca 
+	(mulititasquing). El concepte multitasca significa que múltiples 
+	programes poden	estar executant-se alhora. Potser t'estàs preguntant 
+	per què açò és important, ja que molta gent utilitza només una aplicació 
+	alhora. La multitasca és una necessitat fonamental per als sistems tipus 
+	UNIX, encara que no hages arrancat cap aplicació hi ha programes 
+	executant-se al fons. Per exemple, alguns programes proporcionen servicis 
+	de xarxa, mentre que d'altres mostren una sol·licitud de inici de sessió 
+	i esperen a que un usuari inicie sessió en un terminal (virtual). Els
+	programes que s'executen al fons solen anomenar-se processos <emphasis>
+	dimoni (daemon)</emphasis>-->
+        <!--One of UNIX's traditional strengths is multitasking. Multitasking
+        means that multiple programs can be run at the same time.
+        You may wonder why this is important, because most people use
+        only one application at a time. Multitasking is a bare necessity
+        for UNIX-like systems. Even if you have not started any applications,
+        there are programs that run in the background. For instance,
+        some programs provide network services, while others show a login
+        prompt and wait until a user logs in on a (virtual) terminal. Programs
+        that are running in the background are often called <emphasis>daemon
+        processes</emphasis>--><footnote>
+          <para>
+	    Malgrat que <emphasis>daemon</emphasis> es tradueix al valencià com 
+	    a dimoni, en anglés no són la mateixa paraula i aquesta fa referència 
+	    a uns éssers sobrenaturals de la mitologia grega, una mena d'esperits 
+	    que tenien un cert poder sobre els homes, una mena de semi-Deus.
+            <!--The word <emphasis>daemon</emphasis> should not to be confused
+	    with the word <emphasis>demon</emphasis>, the word
+            <emphasis>daemon</emphasis> refers to supernatural beings
+            in Greek mythology.-->
+          </para>
+        </footnote>.
+      </para>
+    </sect2>
+
+    <sect2 id="concepts-multitasking-procsthreads">
+      <title>Processos i fils <!--Processes and threads--></title>
+
+      <para>
+	Després de que un programa es carregue des d'un mitjà 
+	d'emmagatzematge, s'inicia una instància del programa,
+	aquesta instància s'anomena <emphasis>procés (process)</emphasis>.
+	Un procés té la seua pròpia memòria protegida, anomenada
+	<emphasis>espai d'adreçament de procés</emphasis>. L'espai
+	d'adreçament de procés té dos àrees importants: l'àrea de
+	<emphasis>text</emphasis> i l'àrea de <emphasis>dades</emphasis>.
+	La primera és el codi del programa en si; s'utilitza per a
+	dir-li al sistema el que ha de fer, mentres que la segona
+	és utilitzada per a emmagatzemar dades constants i de temps
+	d'execució. El sistema operatiu li assigna a cada procés temps
+	per a executar-se. En sistemes d'un sol processador, els
+	processos no estàn corrent simultàniament, en realitat 
+	un planificador intel·ligent al núcli divideix temps de CPU
+	entre els processos, proporcionant la il·lusió de que els
+	processos corren alhora. Este procés s'anomena 
+	<emphasis>time-sharing</emphasis> (compartició de temps).
+	A sistemes amb més d'una CPU o varis núclis de CPU, més d'un procés
+	pot executar-se simultàniament, però la compartició de temps
+	segueix utilitzant-se per a dividir el temps de CPU disponible
+	entre processos.
+	
+
+        <!--After a program is loaded from a storage medium, an instance
+        of the program is started. This instance is called a
+        <emphasis>process</emphasis>. A process has its own protected
+        memory, named the <emphasis>process address space</emphasis>.
+        The process address space has two important areas: the
+        <emphasis>text</emphasis> area and the
+        <emphasis>data</emphasis> area. The <emphasis>text</emphasis>
+        area is the actual program code; it is used to tell the system
+        what to do. The <emphasis>data</emphasis> area is used to
+        store constant and runtime data. The operating system gives
+        every process time to execute. On single processor systems
+        processes are not really running simultaneously. In reality a
+        smart scheduler in the kernel divides CPU time among
+        processes, giving the illusion that processes run
+        simultaneously. This process is called
+        <emphasis>time-sharing</emphasis>. On systems with more than
+        one CPU or CPU cores, more than one process can run
+        simultaneously, but time-sharing is still used to divide the
+        available CPU time among processes.-->
+      </para>
+
+      <para>
+	Es creen nous processos duplicant un procés en marxa amb la 
+	crida al sistema <command>fork</command> (bifurcar). 
+	<xref linkend="fork" /> mostra una crida a fork() en acció de
+	manera esquemàtica. El procés pare emet una crida a fork(),
+	el núcli respon a esta crida duplicant el procés, i 
+	anomenant a un procés el <emphasis>pare</emphasis> i a l'altre 
+	el <emphasis>fill</emphasis>.
+        <!--New processes are created by duplicating a running process
+        with the <command>fork</command> system call. <xref
+        linkend="fork" /> shows a fork() call in action
+        schematically. The parent process issues a fork() call. The
+        kernel will respond to this call by duplicating the process,
+        and naming one process the <emphasis>parent</emphasis>, and
+        the other process the <emphasis>child</emphasis>.-->
+      </para>
+
+      <figure id="fork">
+        <title>Bifurcant un procés (forking)<!--Forking of a process--></title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../../images/fork.png" format="PNG"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <para>
+	Les bifurcacions poden utilitzar-se per un programa per a crear dos
+	procesos que poden córrer simultàniament en màquines 
+	multiprocessador. Tanmateix, sovint no és ideal, perque tots
+	dos processos tindran el seu propi espai d'adreçament, a més, la
+	duplicació inicial de la memòria del procés pren relativament
+	molt de temps, i és difícil compartir informació entre els dos
+	processos. Aquest problema es resol amb un concepte anomenat
+	<emphasis>multithreading</emphasis> (multi-filat). Multithreading
+	significa que vàries instàncies de la mateixa àrea de text es poden
+	córrer alhora, compartint l'àrea de dades. Aquestes instàncies,
+	anomeneades fils (threads), poden executar-se en paral·lel en 
+	múltiples CPUs.
+	
+        <!--Forking can be used by a program to create two processes that
+        can run simultaneously on multiprocessor machines. However,
+        this is often not ideal, because both processes will have
+        their own process address space.  The initial duplication of
+        the process memory takes relatively much time, and it is
+        difficult to share data between two processes. This problem is
+        solved by a concept named
+        <emphasis>multithreading</emphasis>. Multithreading means that
+        multiple instances of the text area can run at the same time,
+        sharing the data area. These instances, named threads, can be
+        executed in parallel on multiple CPUs.-->
+      </para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="concepts-fshierarchy">
+    <title>Jerarquia del sistema de fitxers <!--Filesystem hierarchy--></title>
+
+    <sect2 id="concepts-fshierarchy-structure">
+      <title>Estructura</title>
+
+      <para>
+	El sistemes operatius emmagatzemen informació en sistemes de 
+	fitxers. Un sistema de fitxers és bàsicament una estructura
+	en forma d'arbre que sosté directoris i fitxers, com el sistema
+	operatiu, programes d'usuari i dades d'usuari. La majoria de
+	sistemes de fitxers poden, a més emmagatzemar diverses meta-dades
+	relatives a fitxers i directoris, per exemple els temps d'accés i 
+	de modificació. A GNU/Linux només hi ha una jerarquia de sistemes
+	de fitxers, açò significa que GNU/Linux no té lletres d'unitat
+	(com A:, C:, D:) per als distints sistemes de fitxers, com DOS
+	o Windows. El sistema de fitxers és vist com un arbre, amb un
+	directori arrel (que no té directori pare), branques, i fulles
+	(directoris sense subdirectoris). El directori arrel sempre
+	es denota amb una barra (<quote>/</quote>) i els directoris es
+	separen amb el mateix caràcter.
+
+        <!--Operating systems store data in filesystems. A filesystem is
+        basically a tree-like structure of directories that hold
+        files, like the operating system, user programs and user
+        data. Most filesystems can also store various metadata about
+        files and directories, for instance access and modification
+        times. In GNU/Linux there is only one filesystem hierarchy, this
+        means GNU/Linux does not have drive letters (e.g. A:, C:, D:) for
+        different filesystems, like DOS and Windows. The filesystem
+        looks like a tree, with a root directory (which has no parent
+        directory), branches, and leaves (directories with no
+        subdirectories). The root directory is alway denoted with a
+        slash (<quote>/</quote>). Directories are separated by the
+        same character.-->
+      </para>
+
+      <figure id="filesystem-structure">
+        <title>La estructura del sistema de fitxers <!--The filesystem structure--></title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../../images/fs-structure.png" format="PNG"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <para>
+	<xref linkend="filesystem-structure"/> mostra la estructura d'un
+	sistema de fitxers. Pots veurer que el directori arrel 
+	<filename>/</filename> té dos directoris fill:
+	<filename>bin</filename> i <filename>home</filename>. El directori
+        <filename>home</filename> té dos directoris fill,
+        <filename>joe</filename> i <filename>jack</filename>. El 
+	diagrama mostra el camí complet a cada directori. La mateixa
+	notació s'utilitza amb els fitxers. Suposem que hi ha un fitxer
+	anomenat <filename>memo.txt</filename> al directori
+        <filename>/home/jack</filename>, el camí complet al fitxer és 
+	<filename>/home/jack/memo.txt</filename>.
+
+        <!--<xref linkend="filesystem-structure"/> shows the structure of
+        a filesystem.  You can see that the root directory
+        <filename>/</filename> has two child directories:
+        <filename>bin</filename> and <filename>home</filename>. The
+        <filename>home</filename> directory has two child directories,
+        <filename>joe</filename> and <filename>jack</filename>. The
+        diagram shows the full pathname of each directory.  The same
+        notation is used for files. Suppose that there is a file named
+        <filename>memo.txt</filename> in the
+        <filename>/home/jack</filename> directory, the full path of
+        the file is <filename>/home/jack/memo.txt</filename>.-->
+      </para>
+
+      <para>
+	Cada directori té dos entrades especials, 
+	<quote><filename>.</filename></quote>, i
+        <quote><filename>..</filename></quote>. La primera fa
+	referència al propi directori i la segona al directori
+	pare. Aquestes entrades es poden utilitzar per a contruir
+	camins relatius. Si estàs treballant al directori
+	<filename>jack</filename>, pots referenciar el directori
+	<filename>/home/joe</filename> amb 
+	<filename>../joe</filename>.
+
+        <!--Each directory has two special entries,
+        <quote><filename>.</filename></quote>, and
+        <quote><filename>..</filename></quote>.  The first refers to
+        the directory itself, the second to the parent
+        directory. These entries can be used for making relative
+        paths. If you are working in the <filename>jack</filename>
+        directory, you can refer to the the
+        <filename>/home/joe</filename> directory with
+        <filename>../joe</filename>.-->
+      </para>
+    </sect2>
+
+    <sect2 id="concepts-fshierarchy-mounting">
+      <title>Muntant <!--Mounting--></title>
+
+      <para>
+	Potser et preguntes com és possible accedir a altres
+	dispositius o particion més enllà de la partició de disc que
+	sosté el sistema de fitxers. Linux utilitza la mateixa 
+	aproximació que UNIX per a accedir a altres sistemes de
+	fitxers. Linux permet a l'administrador del sistema connectar
+	un dispositiu a qualsevol directori en la estructura de 
+	fitxers. Aquest procés s'anomena <emphasis>muntatge 
+	(mounting)</emphasis>. Per exemple, es pot muntar la 
+	unitat de CD-ROM al directori <filename>/cdrom</filename>.
+	Si el muntatge és correcte, els fitxers que hi ha al 
+	CD-ROM es poden accedir a través d'aquest directori. El
+	procés de muntatge es descriu en detall a <xref
+        linkend="basics-filesystem-mounting"/>.
+
+        <!--You might wonder how it is possible to access other devices
+        or partitions than the hard disk partition which holds the
+        root filesystem. Linux uses the same approach as UNIX for
+        accessing other filesystems. Linux allows the system
+        administrator to connect a device to any directory in the
+        filesystem structure. This process is named
+        <emphasis>mounting</emphasis>.  For example, one could mount
+        the CD-ROM drive to the <filename>/cdrom</filename>
+        directory. If the mount is correct, the files on the CD-ROM
+        can be accessed through this directory. The mounting process
+        is described in detail in <xref
+        linkend="basics-filesystem-mounting"/>.-->
+      </para>
+    </sect2>
+
+    <sect2 id="concepts-fshierarchy-commondirs">
+      <title>Directoris comuns <!--Common directories--></title>
+
+      <para>
+	El Filesystem Hierarchy Standard Group ha intentat crear
+	un estàndard que descriu quins directoris haurien d'estar
+	disponibles a un sistema GNU/Linux. Actualment, les
+	distribucions més importants utilitzen la Jerarquia 
+	Estàndard de Sistema de Fitxers (FHS, de l'anglés 
+	Filesystem Hierarchy Standard) com a directriu. Aquesta
+	secció descriu alguns directoris obligatoris als sistemes
+	GNU/Linux.
+
+        <!--The Filesystem Hierarchy Standard Group has attempted to
+        create a standard that describes which directories should
+        be available on a GNU/Linux system. Currently, most major
+        distributions use the Filesystem Hierarchy Standard (FHS)
+        as a guideline. This section describes some mandatory
+        directories on GNU/Linux systems.-->
+      </para>
+
+      <para>
+	Per favor, tin en compte que GNU/Linux no té un directori
+	separat per a cada aplicació (com Windows). Per contra, els
+	fitxers s'organitzen per funció i tipus. Per exemple, els
+	binaris per a la majoria d'aplicacions d'ús comú, estàn
+	emmagatzemats a <filename>/usr/bin</filename>, i les seues
+	llibreries a <filename>/usr/lib</filename>. Aquest és un 
+	curt resum dels directoris més importants en un sistema 
+	Slackware Linux:
+
+        <!--Please note that GNU/Linux does not have a separate directory
+        for each application (like Windows). Instead, files are ordered by
+        function and type. For example, the binaries for most
+        common user programs are stored in
+        <filename>/usr/bin</filename>, and their libraries in
+        <filename>/usr/lib</filename>. This is a short overview of
+        the important directories on a Slackware Linux system:-->
+      </para>
+
+
+      <itemizedlist>
+        <listitem>
+          <para>
+            <emphasis role="bold">/bin</emphasis>: 
+	    binaris essencials de l'usuari que haurien d'estar disponibles
+	    fins i tot quan <filename>/usr</filename> no estiga muntat.
+	    <!--essential
+            user binaries that should still be available in case the 
+            <filename>/usr</filename> is not mounted.-->
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">/dev</emphasis>: fitxers de dispositiu.
+	    Hi ha fitxers especials utilitzats per a accedir a determinats
+	    dispositius.
+	    <!--device files.
+            These are special files used to access certain devices.-->
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">/etc</emphasis>: El direcotori
+	    <filename>/etc</filename> conté tots els fitxers de
+	    configuració importants.
+	    <!--the
+            <filename>/etc</filename> directory contains all important
+            configuration files.-->
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">/home</emphasis>: conté els directoris
+	    llar per a usuaris individuals
+	    <!--contains home
+            directories for individual users.-->
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">/lib</emphasis>: llibreries essecials
+	    del sistema (com glibc) i els mòduls del núcli.
+	    <!--essential system
+	    libraries (like glibc), and kernel modules.-->
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">/root</emphasis>: el directori llar
+	    del usuari <emphasis>root</emphasis>.
+	    <!--home directory for the 
+            <emphasis>root</emphasis> user.-->
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">/sbin</emphasis>: binaris essencials
+	    que s'utilitzen en l'administració del sistema.
+	    <!--essential binaries
+            that are used for system administration.-->
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">/tmp</emphasis>: un directori 
+	    per a fitxers temporals on tothom pot escriure. 
+	    <!--a world-writable
+            directory for temporary files.-->
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">/usr/bin</emphasis>: Emmagatzema
+	    la majoria dels binaris d'usuari.
+	    <!--stores the majority
+            of the user binaries.-->
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">/usr/lib</emphasis>: llibreries que
+	    no són essencials per a llançar el sistema
+	    <!--libraries that are
+            not essential for the system to boot.-->
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">/usr/sbin</emphasis>: binaris 
+	    per a l'administració del sistema que no són essencials.
+	    <!--nonessential
+            system administration binaries.-->
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">/var</emphasis>: fitxers de dades
+	    variables, com bitàcores (logs).
+	    <!--variable data files,
+            like logs.-->
+          </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+
+  <sect1 id="concepts-devices">
+    <title>Dispositius</title>
+
+    <sect2 id="concepts-devices-intro">
+      <title>Introducció</title>
+
+      <para>
+	A GNU/Linux virtualment tot està representat per un fitxer, incloent els
+	dispositius. Tot sistema GNU/Linux té un directori amb fitxers especials,
+	anomenat <filename>/dev</filename> i cada fitxer en aquest directori 
+	representa un dispositiu o un pseudo-dispositiu. Un fitxer de dispositiu
+	té dos números associats, el <emphasis>major</emphasis> (principal) i
+	el <emphasis>minor</emphasis> (secundari). El ńucli sap quin dispositiu
+	és representat per un fitxer de dispositiu mitjançants estos números de
+	dispositiu. El següent exemple mostra el números de dispositiu per al
+	fitxer de dispositiu <filename>/dev/zero</filename>:
+
+        <!--In GNU/Linux virtually everything is represented as a file, including
+        devices. Every GNU/Linux system has a directory with special files, named
+        <filename>/dev</filename>. Each file in the <filename>/dev</filename>
+        directory represents a device or pseudo-device. A device file
+        has two special numbers associated with it, the
+        <emphasis>major</emphasis> and the <emphasis>minor</emphasis>
+        device number. The kernel knows which device a device
+        file represents by these device numbers. The following example shows
+        the device numbers for the <filename>/dev/zero</filename> device file:-->
+      </para>
+
+      <screen>
+$ <command>file /dev/zero</command>
+/dev/zero: character special (1/5)
+      </screen>
+
+      <para>
+	La ordre <command>file</command> es pot utilitzar per a determinar
+	el tipus d'un fitxer. Aquest fitxer en particular és reconegut com
+	un fitxer de dispositiu que té l'<emphasis>1</emphasis> com el 
+	número principal de dispositiu i, el <emphasis>5</emphasis> com el
+	número secundari de dispositiu.
+	
+        <!--The <command>file</command> command can be used to determine the
+        type of a file. This particular file is recognized as a device file
+        that has <emphasis>1</emphasis> as the major device number,
+        and <emphasis>5</emphasis> as the minor device number.-->
+      </para>
+
+      <para>
+	Si has instal·lat el paquet de les fonts del núcli, pots
+	trobar un llista completa de tots els dispositius principals
+	amb els	seus números principals i secundaris a  
+	<filename>/usr/src/linux/Documentation/devices.txt</filename>.
+	Una llista actualitzada està disponible on-line a través de
+	Linux Kernel Archives
+        <!--If you have installed the kernel source package, you can find
+        a comprehensive list of all major devices with their minor and
+        major numbers in
+        <filename>/usr/src/linux/Documentation/devices.txt</filename>. An
+        up-to-date list is also available on-line through the Linux
+        Kernel Archives--><footnote>
+          <para>
+            <ulink url="ftp://ftp.kernel.org/pub/linux/docs/device-list/" />
+          </para>
+        </footnote>.
+      </para>
+
+      <para>
+	El núcli Linux maneja dos tipus de dispositius:
+	de <emphasis>caràcter</emphasis> i de <emphasis>bloc</emphasis>.
+	Els dispositius de caràcter es poden llegir byte a byte, els 
+	dispositius de bloc no, aquest són llegits per blocs (per exemple
+	4096 bytes cada vegada). Que un dispositiu siga de caràcter o de
+	bloc depén de la naturalesa del dispositiu. Per exemple, la majoria
+	de dispositius d'emmagatzematge són dispositius de bloc, i la majoria de
+	dispositius d'entrada ho són de caràcter. El dispositius de bloc 
+	tenen un avantatge distintiu, diguem que poden utilitzar el cau. 
+	Açò significa que els blocs que es lligen o s'escriuen amb
+	freqüència són emmagatzemats en una zona especial de la memòria del
+	sistema anomenada memòria cau (cache). La memòria és molt més
+	ràpida que la majoria del medis d'emmagatzematge, amb la qual cosa
+	es pot guanyar molt de rendiment realitzant operacions comunes de
+	lectura i escriptura a la memòria. Pressupost que, finalment, els canvis
+	han de ser escrits al medi d'emmagatzematge per a reflectir els canvis
+	fets a la memòria cau.
+	
+        <!--The Linux kernel handles two types of devices:
+        <emphasis>character</emphasis> and <emphasis>block</emphasis>
+        devices. Character devices can be read byte by byte,
+        block devices can not. Block devices are read per block (for example
+        4096 bytes at a time). Whether a device is a character or block device
+        is determined by the nature of the device. For example, most storage
+        media are block devices, and most input devices are character devices.
+        Block devices have one distinctive advantage, namely that they can be
+        cached. This means that commonly read or written blocks are stored in
+        a special area of the system memory, named the cache. Memory is much
+        faster than most storage media, so much performance can be gained
+        by performing common block read and write operations in memory.
+        Of course, eventually changes have to be written to the storage
+        media to reflect the changes that were made in the cache.-->
+      </para>
+    </sect2>
+
+    <sect2 id="concepts-devices-atascsi">
+      <title>Dispositius ATA i SCSI</title>
+
+      <para>
+	Hi ha dos classes de dispositius de bloc que anem a analitzar en detall,
+	perque comprendre l'anomenament d'aquests dispositius és crucial per a 
+	particionar un disc dur i muntar-lo. Quasi tots els ordinadors moderns 
+	amb una	arquitectura x86 utilitzen discs i CD-ROMs ATA. Baix linux 
+	aquests	dispositius s'anomenen de la següent manera:
+        <!--There are two kinds of block devices that we are going to look into
+        in detail, because understanding the naming of these devices is
+        crucial for  partitioning a hard disk and mounting. Almost all modern
+        computers with an x86 architecture use ATA hard disks and CD-ROMs.
+        Under Linux these devices are named in the following manner:-->
+      </para>
+
+      <screen>
+/dev/hda - dispositiu mestre en el primer canal ATA
+/dev/hdb - dispositiu esclau en el primer canal ATA
+/dev/hdc - dispositiu mestre en el segon canal ATA
+/dev/hdd - dispositiu esclau en el segon canal ATA
+      </screen>
+
+      <para>
+	En la majoria d'ordinadors amb un únic disc dur, aquest és el dispositiu 
+	mestre al primer canal ATA (<filename>/dev/hda</filename>), i el CD-ROM
+	és el dispositiu mestre del segon canal ATA. Les particions del
+	disc dur s'anomenen com el nom del disc que les sosté més un número.
+	Per exemple, <filename>/dev/hda1</filename> és la primera partició 
+	del disc representat pel fitxer de dispositiu 
+	<filename>/dev/hda</filename>.
+	
+        <!--On most computers with a single hard disk, the hard disk is the master
+        device on the first ATA channel (<filename>/dev/hda</filename>), and
+        the CD-ROM is the master device on the second ATA channel. Hard disk
+        partitions are named after the disk that holds them plus a number.
+        For example, <filename>/dev/hda1</filename> is the first partition
+        of the disk represented by the <filename>/dev/hda</filename>
+        device file.-->
+      </para>
+
+      <para>
+	Els discs SCSI i els dispostius CD-ROM segueixen una altra convenció
+	de noms. SCSI no és d'ús comú en la majoria de màquines de perfil baix,
+	però les unitats USB i Serial ATA (SATA) són representades com discs
+	SCSI. La següent notació s'utilitza per a les unitats SCSI:
+
+        <!--SCSI hard disks and CD-ROM drives follow an other naming convention.
+        SCSI is not commonly used in most low-end machines, but USB drives
+        and Serial ATA (SATA) drives are also represented as SCSI disks. The
+        following device notation is used for SCSI drives:-->
+      </para>
+
+      <screen>
+/dev/sda - Primer disc SCSI
+/dev/sdb - Segon disc SCSI
+/dev/sdc - Tercer disc SCSI
+/dev/scd0 - Primer CD-ROM
+/dev/scd1 - Segon CD-ROM
+/dev/scd2 - Tercer CD-ROM
+      </screen>
+
+      <para>
+	Els noms de les particions es construeixen de la mateixa manera que 
+	als discs ATA, així <filename>/dev/sda1</filename> és la primera partició
+	en el primer disc SCSI.
+        <!--Partitions names are constructed in the same way as ATA disks;
+        <filename>/dev/sda1</filename> is the first partition on the first
+        SCSI disk.-->
+      </para>
+
+      <para>
+	Si utilitzes la implementació RAID de programari del núcli Linux,
+	els volums RAID estàn disponibles com <filename>/dev/mdn</filename>,
+	on la <emphasis>n</emphasis> és el número de volum començant per 0. 
+        <!--If you use the software RAID implementation of the Linux kernel, RAID
+        volumes are available as <filename>/dev/mdn</filename>, in which
+        <emphasis>n</emphasis> is the volume number starting at 0.-->
+      </para>
+    </sect2>
+  </sect1>
+</chapter>

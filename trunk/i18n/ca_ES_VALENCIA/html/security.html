@@ -1,0 +1,198 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 20. Security</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="sysadmin.html" title="Part V. Administració del sistema">
+<link rel="prev" href="chap-init.html" title="Chapter 19. System initialization">
+<link rel="next" href="miscadmin.html" title="Chapter 21. Miscel·lània">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 20. Security</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="chap-init.html">Prev</a> </td>
+<th width="60%" align="center">Part V. Administració del sistema</th>
+<td width="20%" align="right"> <a accesskey="n" href="miscadmin.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm961694564"></a>Chapter 20. Security</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="security.html#idm961694308">20.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="security.html#idm961693036">20.2. Closing services</a></span></dt>
+</dl>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961694308"></a>20.1. Introduction</h2></div></div></div>
+<p>
+With the increasing usage of the Internet and wireless networks security
+is getting more important every day. It is impossible to cover this subject
+in a single chapter of an introduction to GNU/Linux. This chapter covers
+some basic security techniques that provide a good start for desktop
+and server security.
+</p>
+<p>
+Before we go on to specific subjects, it is a good idea to make some remarks
+about passwords. Computer authorization largely relies on passwords. Be
+sure to use good passwords in all situations. Avoid using words, names,
+birth dates and short passwords. These passwords can easily be cracked
+with dictionary attacks or brute force attacks against hosts or password
+hashes. Use long passwords, ideally eight characters or longer, consisting
+of random letters (including capitals) and numbers.
+</p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961693036"></a>20.2. Closing services</h2></div></div></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm961692844"></a>20.2.1. Introduction</h3></div></div></div>
+<p>
+Many GNU/Linux run some services that are open to a local network or the
+Internet. Other hosts can connect to these services by connecting to specific
+ports. For example, port 80 is used for WWW traffic. The
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/services</code></html:span> file contains a table with all commonly
+used services, and the port numbers that are used for these services.
+</p>
+<p>
+A secure system should only run the services that are necessary. So, suppose
+that a host is acting as a web server, it should not have ports open (thus
+servicing) FTP or SMTP. With more open ports security risks increase very
+fast, because there is a bigger chance that the software servicing a port
+has a vulnerability, or is badly configured. The following few sections
+will help you tracking down which ports are open, and closing them.
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm961691308"></a>20.2.2. Finding open ports</h3></div></div></div>
+<p>
+Open ports can be found using a port scanner. Probably the most famous 
+port scanner for GNU/Linux is <span class="command"><strong>nmap</strong></span>. <span class="command"><strong>nmap</strong></span>
+is available through the <span class="quote">“<span class="quote">n</span>”</span> disk set. 
+</p>
+<p>
+The basic <span class="command"><strong>nmap</strong></span> syntax is: <span class="command"><strong>nmap host</strong></span>. The
+<span class="emphasis"><em>host</em></span> parameter can either be a hostname or IP address.
+Suppose that we would like to scan the host that <span class="command"><strong>nmap</strong></span>
+is installed on. In this case we could specify the 
+<span class="emphasis"><em>localhost</em></span> IP address, <span class="emphasis"><em>127.0.0.1</em></span>:
+</p>
+<pre class="screen">
+$ <span class="command"><strong>nmap 127.0.0.1</strong></span>
+
+Starting nmap V. 3.00 ( www.insecure.org/nmap/ )
+Interesting ports on localhost (127.0.0.1):
+(The 1596 ports scanned but not shown below are in state: closed)
+Port       State       Service
+21/tcp     open        ftp                     
+22/tcp     open        ssh                     
+23/tcp     open        telnet                  
+80/tcp     open        http                    
+6000/tcp   open        X11                     
+
+Nmap run completed -- 1 IP address (1 host up) scanned in 0 seconds
+</pre>
+<p>
+In this example you can see that the host has five open ports that are
+being serviced; ftp, ssh, telnet, http and X11.
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm961687420"></a>20.2.3. inetd</h3></div></div></div>
+<p>
+There are two ways to offer TCP/IP services: by running server
+applications  stand-alone as a daemon or by using the internet super
+server, <span class="command"><strong>inetd</strong></span>. inetd  is a daemon which monitors
+a range of ports. If a client attempts to connect  to a port inetd
+handles the connection and forwards the connection to the  server
+software which handles that kind of connection. The advantage of this
+approach is that it adds an extra layer of security and it makes it
+easier to  log incoming connections. The disadvantage is that it is
+somewhat slower than  using a stand-alone daemon. It is thus a good
+idea to run a stand-alone daemon on, for example, a heavily loaded FTP
+server.
+</p>
+<p>
+You can check whether <span class="command"><strong>inetd</strong></span> is running on a host or
+not with <span class="command"><strong>ps</strong></span>, for example:
+</p>
+<pre class="screen">
+$ <span class="command"><strong>ps ax | grep inetd</strong></span>
+ 2845 ?        S      0:00 /usr/sbin/inetd
+</pre>
+<p>
+In this example inetd is running with PID (process ID) 2845. 
+<span class="command"><strong>inetd</strong></span> can be configured using the
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/inetd.conf</code></html:span> file. Let's have a look at an example 
+line from inetd.conf:
+</p>
+<pre class="screen">
+# File Transfer Protocol (FTP) server:
+ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
+</pre>
+<p>
+This line specifies that inetd should accept FTP connections and pass them to 
+<span class="command"><strong>tcpd</strong></span>. This may seem a bit odd, because 
+<span class="command"><strong>proftpd</strong></span> normally handles FTP connections. You can also 
+specify to use proftpd directly in <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">inetd.conf</code></html:span>, but 
+it is a good idea to give the connection to <span class="command"><strong>tcpd</strong></span>. This 
+program passes the connection to <span class="command"><strong>proftpd</strong></span> in turn, as 
+specified. <span class="command"><strong>tcpd</strong></span> is used to monitor services and to provide 
+host based access control. 
+</p>
+<p>
+Services can be disabled by adding the comment character (#) at the beginning 
+of the line. It is a good idea to disable all services and enable services you 
+need one at a time. After changing <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/inetd.conf</code></html:span> 
+<span class="command"><strong>inetd</strong></span> needs to be restarted to activate the changes. This 
+can be done by sending the HUP signal to the inetd process:
+</p>
+<pre class="screen">
+# <span class="command"><strong>ps ax | grep 'inetd'</strong></span>
+   2845 ?        S      0:00 /usr/sbin/inetd
+# <span class="command"><strong>kill -HUP 2845</strong></span>
+</pre>
+<p>
+If you do not need <span class="command"><strong>inetd</strong></span> at all, it is a good idea to
+remove it. If you want to keep it installed, but do not want Slackware Linux
+to load it at the booting process, execute the following command as root:
+</p>
+<pre class="screen">
+# <span class="command"><strong>chmod a-x /etc/rc.d/rc.inetd</strong></span>
+</pre>
+</div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="chap-init.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="sysadmin.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="miscadmin.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 19. System initialization </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 21. Miscel·lània</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

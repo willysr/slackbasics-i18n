@@ -1,0 +1,1923 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
+  xmlns:xl="http://www.w3.org/1999/xlink" xml:lang="en"
+  xml:id="chap-textproc">
+  <title>Text processing</title>
+
+  <para>
+    Text manipulation is one of the things that UNIX excels at,
+    because it forms the heart of the UNIX philosophy, as described in
+    <xref linkend="chap-intro-unix" />. Most UNIX commands
+    are simple programs that read data from the standard input,
+    performs some operation on the data, and sends the result to the
+    program's standard output. These programs basically act as an
+    filters, that can be connected as a pipeline. This allows the user
+    to put the UNIX tools to uses that the writers never
+    envisioned. In later chapters we will see how you can build simple
+    filters yourself. <!-- XXX - xref -->
+  </para>
+
+  <para>
+    This chapter describes some simple, but important, UNIX commands
+    that can be used to manipulate text. After that, we will dive into
+    regular expressions, a sublanguage that can be used to match text
+    patterns.
+  </para>
+ 
+  <sect1 xml:id="chap-textproc-simple">
+    <title>Simple text manipulation</title>
+
+    <sect2 xml:id="chap-textproc-simple-cat">
+      <title>Repeating what is said</title>
+
+      <para>
+	The most simple text filter is the <command>cat</command>, it
+	does nothing else than sending the data from stdin to stdout:
+      </para>
+
+      <screen>
+$ <userinput>echo "hello world" | cat</userinput>
+hello world
+      </screen>
+
+      <para>
+	Another useful feature is that you can let it send the contents
+	of a file to the standard output:
+      </para>
+
+      <screen>
+$ <userinput>cat file.txt</userinput>
+Hello, this is the content of file.txt
+      </screen>
+
+      <para>
+	<command>cat</command> really lives up to its name when
+	multiple files are added as arguments. This will concatenate
+	the files, in the sense that it will send the contents of all
+	files to the standard output, in the same order as they were
+	specified as an argument. The following screen snippet
+	demonstrates this:
+      </para>
+
+      <screen>
+$ <userinput>cat file.txt file1.txt file2.txt</userinput>
+Hello, this is the content of file.txt
+Hello, this is the content of file1.txt
+Hello, this is the content of file2.txt
+      </screen>
+    </sect2>
+
+    <sect2 xml:id="chap-textproc-simple-wc">
+      <title>Text statistics</title>
+
+      <para>
+	The <command>wc</command> command provides statistics about a
+	text file or text stream. Without any parameters, it will
+	print the number of lines, the number of words, and the number
+	of bytes respectively. A word is delimited by one white space
+	character, or a sequence of whitespace characters.
+      </para>
+
+      <para>
+	The following example shows the number of lines, words, and
+	bytes in the canonical <quote>Hello world!</quote> example:
+      </para>
+
+      <screen>
+$ <userinput>echo "Hello world!" | wc</userinput> 
+       1       2      13
+      </screen>
+
+      <para>
+	If you would like to print just one of these components, you
+	can use one of the <parameter class="command">-l</parameter>
+	(lines), <parameter class="command">-w</parameter> (words), or
+	<parameter class="command">-c</parameter> (bytes) parameters.
+	For instance, adding just the <parameter
+	class="command">-l</parameter> parameter will show the number
+	of lines in a file:
+      </para>
+
+      <screen>
+$ <command>wc -l /usr/share/dict/words</command> 
+  235882 /usr/share/dict/words
+      </screen>
+
+      <para>
+	Or, you can print additional fields by adding a parameter:
+      </para>
+
+      <screen>
+$ <userinput>wc -lc /usr/share/dict/words</userinput>
+ 235882 2493082 /usr/share/dict/words
+      </screen>
+
+      <para>
+	Please note that, no matter the order in which the options
+	were specified, the output order will always be the same
+	(lines, words, bytes).
+      </para>
+
+      <para>
+	Since <parameter class="command">-c</parameter> prints the
+	number bytes, this parameter may not represent the number of
+	characters that a text holds, because the character set in use
+	maybe be wider than one byte. To this end, the <parameter
+	class="command">-m</parameter> parameter has been added which
+	prints the number of characters in a text, independent of the
+	character set. <parameter class="command">-c</parameter> and
+	<parameter class="command">-m</parameter> are substitutes, and
+	can never be used at the same time.
+      </para>
+
+      <para>
+	The statistics that <command>wc</command> provides are more
+	useful than they may seem on the surface. For example, the
+	<parameter class="command">-l</parameter> parameter is often
+	used as a counter for the output of a command. This is
+	convenient, because many commands seperate logical units by a
+	newline.  Suppose that you would like to count the number of
+	files in your home directory having a filename ending with
+	<filename>.txt</filename>. You could do this by combining
+	<command>find</command> to find the relevant files and
+	<command>wc</command> to count the number of occurences:
+      </para>
+
+      <screen>
+$ <userinput>find ~ -name '*.txt' -type f | wc -l</userinput>
+      </screen>
+    </sect2>
+
+    <sect2 xml:id="chap-textproc-simple-tr">
+      <title>Manipulating characters</title>
+
+      <para>
+	The <command>tr</command> command can be used to do common
+	character operations, like swapping characters, deleting
+	characters, and squeezing character sequences. Depending on
+	the operation, one or two sets of characters should be
+	specified. Besides normal characters, there are some special
+	character sequences that can be used:
+      </para>
+
+      <variablelist>
+	<varlistentry>
+	  <term>\character</term>
+	  <listitem>
+	    <para>
+	      This notation is used to specify characters that need
+	      escaping, most notably <emphasis>\n</emphasis>
+	      (newline), <emphasis>\t</emphasis> (horizontal tab), and
+	      <emphasis>\\</emphasis> (backslash).
+	    </para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term>character1-character2</term>
+	  <listitem>
+	    <para>
+	      Implicitly insert all characters from
+	      <emphasis>character1</emphasis> to
+	      <emphasis>character2</emphasis>. This notation should be
+	      used with care, because it does not always give the
+	      expected result. For instance, the sequence
+	      <emphasis>a-d</emphasis> may yield
+	      <emphasis>abcd</emphasis> for the POSIX locale (language
+	      setting), but this may not be true for other locales.
+	      <!-- XXX - locale footnote -->
+	    </para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term>[:class:]</term>
+	  <listitem>
+	    <para>
+	      Match a predefined class of characters. All possible
+	      classes are shown in <xref
+	      linkend="chap-textproc-simple-tr-charclasses" />.
+	    </para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term>[character*]</term>
+	  <listitem>
+	    <para>
+	      Repeat <emphasis>character</emphasis> until the second
+	      set is as long as the first set of characters. This
+	      notation can only be used in the second set.
+	    </para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term>[character*n]</term>
+	  <listitem>
+	    <para>
+	      Repeat <emphasis>character</emphasis>
+	      <emphasis>n</emphasis> times.
+	    </para>
+	  </listitem>
+	</varlistentry>
+      </variablelist>
+
+      <table xml:id="chap-textproc-simple-tr-charclasses">
+	<title>tr character classes</title>
+
+	<tgroup cols="2">
+	  <thead>
+	    <row><entry>Class</entry><entry>Meaning</entry></row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>[:alnum:]</entry>
+	      <entry>All letters and numbers.</entry>
+	    </row>
+	    <row>
+	      <entry>[:alpha:]</entry>
+	      <entry>Letters.</entry>
+	    </row>
+	    <row>
+	      <entry>[:blank:]</entry>
+	      <entry>Horizontal whitespace (e.g. spaces and tabs).</entry>
+	    </row>
+	    <row>
+	      <entry>[:cntrl:]</entry>
+	      <entry>Control characters.</entry>
+	    </row>
+	    <row>
+	      <entry>[:digit:]</entry>
+	      <entry>All digits (0-9).</entry>
+	    </row>
+	    <row>
+	      <entry>[:graph:]</entry>
+	      <entry>All printable characters, except whitespace.</entry>
+	    </row>
+	    <row>
+	      <entry>[:lower:]</entry>
+	      <entry>Lowercase letters.</entry>
+	    </row>
+	    <row>
+	      <entry>[:print:]</entry>
+	      <entry>All printable characters, including horizontal
+	      whitespace, but excluding vertical whitespace.</entry>
+	    </row>
+	    <row>
+	      <entry>[:punct:]</entry>
+	      <entry>Punctuation characters.</entry>
+	    </row>
+	    <row>
+	      <entry>[:space:]</entry>
+	      <entry>All whitespace.</entry>
+	    </row>
+	    <row>
+	      <entry>[:upper:]</entry>
+	      <entry>Uppercase letters.</entry>
+	    </row>
+	    <row>
+	      <entry>[:xdigit:]</entry>
+	      <entry>Hexadecimal digits (0-9, a-f).</entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <sect3 xml:id="chap-textproc-simple-tr-swapping">
+	<title>Swapping characters</title>
+
+	<para>
+	  The default operation of <command>tr</command> is to swap
+	  (translate) characters. This means that the
+	  <emphasis>n</emphasis>-th character in the first set is
+	  replaced with the <emphasis>n</emphasis>-th character in the
+	  second set. For example, you can replace all
+	  <emphasis>e</emphasis>'s with <emphasis>i</emphasis>'s and
+	  <emphasis>o</emphasis>'s with <emphasis>a</emphasis>'s with
+	  one <command>tr</command> operation:
+	</para>
+
+	<screen>
+$ <userinput>echo 'Hello world!' | tr 'eo' 'ia'</userinput>
+Hilla warld!
+	</screen>
+
+	<para>
+	  When the second set is not as large as the first set,
+	  the last character in the second set will be repeated.
+	  Though, this does not necessarily apply to other UNIX
+	  systems. So, if you want to use
+	  <command>tr</command> in a system-independent manner,
+	  explicitly define what character should be repeated. For
+	  instance
+	</para>
+
+	<screen>
+$ <userinput>echo 'Hello world!' | tr 'eaiou' '[@*]'</userinput>
+H@ll@ w@rld!
+	</screen>
+
+	<para>
+	  Another particularity is the use of the repetition syntax in
+	  the middle of the set. Suppose that set 1 is
+	  <emphasis>abcdef</emphasis>, and set 2
+	  <emphasis>@[-*]!</emphasis>. <command>tr</command> will replace
+	  <emphasis>a</emphasis> with <emphasis>@</emphasis>,
+	  <emphasis>b</emphasis>, <emphasis>c</emphasis>,
+	  <emphasis>d</emphasis>, and <emphasis>e</emphasis> with
+	  <emphasis>-</emphasis>, and <emphasis>f</emphasis> with
+	  <emphasis>!</emphasis>.
+	  Though some other UNIX systems follow replace
+	  <emphasis>a</emphasis> with
+	  <emphasis>@</emphasis>, and the rest of the set characters
+	  with <emphasis>-</emphasis>. So, a more correct notation
+	  would be the more explicit <emphasis>@[-*4]!</emphasis>,
+	  which gives the same results on virtually all UNIX systems:
+	</para>
+
+	<screen>
+$ <userinput>echo 'abcdef' | tr 'abcdef' '@[-*4]!'</userinput>
+@----!
+	</screen>
+      </sect3>
+
+      <sect3 xml:id="chap-textproc-simple-tr-squeezing">
+	<title>Squeezing character sequences</title>
+
+	<para>
+	  When the <parameter class="command">-s</parameter> parameter
+	  is used, <command>tr</command> will squeeze all characters
+	  that are in the second set. This means that a sequence of the
+	  same characters will be reduced to one character. Let's
+	  squeeze the character &quot;<emphasis>e</emphasis>&quot;:
+	</para>
+
+	<screen>
+$ <userinput>echo "Let's squeeze this." | tr -s 'e'</userinput>
+Let's squeze this.
+	</screen>
+
+	<para>
+	  We can combine this with translation to show a useful
+	  example of <command>tr</command> in action. Suppose that we
+	  would like to mark all vowels with the
+	  <emphasis>at</emphasis> sign (<emphasis>@</emphasis>), with
+	  consecutive vowels represented by one
+	  <emphasis>at</emphasis> sign. This can easily be done by
+	  piping two <command>tr</command> commands:
+	</para>
+
+	<screen>
+$ <userinput>echo "eenie meenie minie moe" | tr 'aeiou' '[@*]' | tr -s '@'</userinput>
+@n@ m@n@ m@n@ m@
+	</screen>
+      </sect3>
+
+      <sect3 xml:id="chap-textproc-simple-tr-deleting">
+	<title>Deleting characters</title>
+
+	<para>
+	  Finally, <command>tr</command> can be used to delete
+	  characters. If the <parameter class="command">-d</parameter>
+	  parameter is used, all characters from the first set are
+	  removed:
+	</para>
+
+	<screen>
+$ <userinput>echo 'Hello world!' | tr -d 'lr'</userinput>
+Heo wod!
+	</screen>
+      </sect3>
+    </sect2>
+
+    <sect2 xml:id="chap-textproc-cutpaste">
+      <title>Cutting and pasting text columns</title>
+
+      <para>
+	The <command>cut</command> command is provided by UNIX systems
+	to <quote>cut</quote> one or more columns from a file or
+	stream, printing it to the standard output. It is often useful
+	to selectively pick some information from a
+	text. <command>cut</command> provides three approaches to
+	cutting information from files:
+      </para>
+
+      <orderedlist>
+	<listitem>
+	  <para>
+	    By byte.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    By character, which is not the same as cutting by byte on
+	    systems that use a character set that is wider than eight
+	    bits.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    By field, that is delimited by a character.
+	  </para>
+	</listitem>
+      </orderedlist>
+
+      <para>
+	In all three approaches, you can specify the element to choose
+	by its number starting at <emphasis>1</emphasis>. You can
+	specify a range by using a dash (<emphasis>-</emphasis>). So,
+	<emphasis>M-N</emphasis> means the Mth to the Nth
+	element. Leaving M out (<emphasis>-N</emphasis>) selects all
+	elements from the first element to the Nth element. Leaving N
+	out (<emphasis>M-</emphasis>) selects the Mth element to the
+	last element. Multiple elements or ranges can be combined by
+	separating them by commas (<emphasis>,</emphasis>). So, for
+	instance, <emphasis>1,3-</emphasis> selects the first element
+	and the third to the last element.
+      </para>
+
+      <para>
+	Data can be cut by field with the <parameter
+	class="command">-f fields</parameter> parameter. By default,
+	the horizontal tab is used a separator. Let's have a look at
+	<command>cut</command> in action with a tiny Dutch to English
+	dictionary:
+      </para>
+
+      <screen>
+$ <userinput>cat dictionary</userinput>
+appel   apple
+banaan  banana
+peer    pear
+      </screen>
+
+      <para>
+	We can get all English words by selecting the second field:
+      </para>
+
+      <screen>
+$ <userinput>cut -f 2 dictionary</userinput>
+apple
+banana
+pear
+      </screen>
+
+      <para>
+	That was quite easy. Now let's do the same thing with a file
+	that has a colon as the field separator. We can easily try
+	this by converting the dictionary with the
+	<command>tr</command> command that we have seen earlier,
+	replacing all tabs with colons:
+      </para>
+
+      <screen>
+$ <userinput>tr '\t' ':' &lt; dictionary &gt; dictionary-new</userinput>
+$ <userinput>cat dictionary-new</userinput>
+appel:apple
+banaan:banana
+peer:pear
+      </screen>
+
+      <para>
+	If we use the same command as in the previous example, we do
+	not get the correct output:
+      </para>
+
+      <screen>
+$ <userinput>cut -f 2 dictionary-new</userinput>
+appel:apple
+banaan:banana
+peer:pear
+      </screen>
+
+      <para>
+	What happens here is that the delimiter could not be found.
+	If a line does not contain the delimiter that is being used,
+	the default behavior of <command>cut</command> is to print the
+	complete line. You can prevent this with the <parameter
+	class="command">-s</parameter> parameter.
+      </para>
+
+      <para>
+	To use a different delimiter than the horizontal tab, add the
+	<parameter class="command">-d delimter_char</parameter>
+	parameter to set the delimiting character. So, in this case of
+	our <filename>dictionary-new</filename> file, we will ask
+	<command>cut</command> to use the colon as a delimiter:
+      </para>
+
+      <screen>
+$ <userinput>cut -d ':' -f 2 dictionary-new</userinput>
+apple
+banana
+pear
+      </screen>
+
+      <para>
+	If a field that was specified does not exist in a line, that
+	particular field is not printed.
+      </para>
+
+      <para>
+	The <parameter class="command">-b bytes</parameter> and
+	<parameter class="command">-c characters</parameter>
+	respectively select bytes and characters from the text. On
+	older systems a character used to be a byte wide. But newer
+	systems can provide character sets that are wider than one
+	byte. So, if you want to be sure to grab complete characters,
+	use the <parameter class="command">-c</parameter> parameter.
+	An entertaining example of seeing the <parameter
+	class="command">-c</parameter> parameter in action is to find
+	the ten most common sets of the first four characters of a
+	word. Most UNIX systems provide a list of words that are
+	separated by a new line. bsd-games package in Slackware Linux
+	contains /usr/share/dict/words with such a list.
+	We can use <command>cut</command> to
+	get the first four characters of the words in the word list,
+	add <parameter class="command">uniq</parameter> <!-- XXX -
+	where? --> to count identical four character sequences, and
+	use <command>sort</command> to sort them reverse-numerically
+	(<command>sort</command> is described in <xref
+	linkend="chap-textproc-simple-sort" />). Finally, we will use
+	<command>head</command> to get the ten most frequent sequences:
+      </para>
+
+      <screen>
+$ <userinput>cut -c 1-4 /usr/share/dict/words | uniq -c | sort -nr | head</userinput>
+    254 inte
+    206 comp
+    169 cons
+    161 cont
+    150 over
+    125 tran
+    111 comm
+    100 disc
+     99 conf
+     96 reco
+      </screen>
+
+      <para>
+	Having concluded with that nice piece of UNIX commands in
+	action, we will move on to the <command>paste</command>
+	command, which combines files in columns in a single text
+	stream.
+      </para>
+
+      <para>
+	Usage of <command>paste</command> is very simple, it will
+	combine all files given as an argument, separated by a tab.
+	With the list of English and Dutch words, we can generate
+	a tiny dictionary:
+      </para>
+
+      <screen>
+$ <userinput>paste dictionary-en dictionary-nl</userinput>
+apple   appel
+banana  banaan
+pear    peer
+      </screen>
+
+      <para>
+	You can also combine more than two files:
+      </para>
+
+      <screen>
+$ <userinput>paste dictionary-en dictionary-nl dictionary-de</userinput> 
+apple   appel   Apfel
+banana  banaan  Banane
+pear    peer    Birne
+      </screen>
+
+      <para>
+	If one of the files is longer, the column order is maintained,
+	and empty entries are used to fill up the entries of the
+	shorter files.
+      </para>
+
+      <para>
+	You can use another delimiter by adding the <parameter
+	class="command">-d delimiter</parameter> parameter. For
+	example, we can make a colon-separated dictionary:
+      </para>
+
+      <screen>
+$ <userinput>paste -d ':' dictionary-en dictionary-nl</userinput>
+apple:appel
+banana:banaan
+pear:peer
+      </screen>
+
+      <para>
+	Normally, <command>paste</command> combines files as different
+	columns. You can also let <command>paste</command> use the
+	lines of each file as columns, and put the columns of each
+	file on a separate line. This is done with the <parameter
+	class="command">-s</parameter> parameter:
+      </para>
+
+      <screen>
+$ <userinput>paste -s dictionary-en dictionary-nl dictionary-de</userinput>
+apple   banana  pear
+appel   banaan  peer
+Apfel   Banane  Birne
+      </screen>
+    </sect2>
+
+    <sect2 xml:id="chap-textproc-simple-sort">
+      <title>Sorting text</title>
+
+      <para>
+	UNIX offers the <command>sort</command> command to sort
+	text. <command>sort</command> can also check whether a file is
+	in sorted order, and merge two sorted
+	files. <command>sort</command> can sort in dictionary and
+	numerical orders. The default sort order is the dictionary
+	order. This means that text lines are compared character by
+	character, sorted as specified in the current collating
+	sequence (which is specified through the LC_COLLATE
+	environment variable). This has a catch when you are sorting
+	numbers, for instance, if you have the numbers 1 to 10 on
+	different lines, the sequence will be 1, 10, 2, 3, etc.  This
+	is caused by the per-character interpretation of the
+	dictionary sort. If you want to sort lines by number, use the
+	numerical sort.
+      </para>
+
+      <para>
+	If no additional parameters are specified,
+	<command>sort</command> sorts the input lines in dictionary
+	order. For instance:
+      </para>
+
+      <screen>
+$ <userinput>cat &lt;&lt; EOF | sort</userinput>
+orange
+apple
+banana
+EOF
+apple
+banana
+orange
+      </screen>
+
+      <para>
+	As you can see, the input is correctly ordered. Sometimes
+	there are two identical lines. You can merge identical lines
+	by adding the <parameter class="command">-u</parameter>
+	parameter. The two samples listed below illustrate this.
+      </para>
+
+      <screen>
+$ <userinput>cat &lt;&lt; EOF | sort</userinput>
+orange
+apple
+banana
+banana
+EOF
+apple
+banana
+banana
+orange
+$ <userinput>cat &lt;&lt; EOF | sort -u</userinput>
+orange
+apple
+banana
+banana
+EOF
+apple
+banana
+orange
+      </screen>
+
+      <para>
+	There are some additional parameters that can be helpful to
+	modify the results a bit:
+      </para>
+
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    The <parameter class="command">-f</parameter> parameter
+	    makes the sort case-insensitive.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    If <parameter class="command">-d</parameter> is added,
+	    only blanks and alphanumeric characters are used to
+	    determine the order.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The <parameter class="command">-i</parameter> parameter
+	    makes <command>sort</command> ignore non-printable
+	    characters.
+	  </para>
+	</listitem>
+      </itemizedlist>
+
+
+      <para>
+	You can sort files numerically by adding the <parameter
+	class="command">-n</parameter> parameter. This parameter stops
+	reading the input line when a non-numeric character was found.
+	The leading minus sign, decimal point, thousands separator,
+	radix character (that separates an exponential from a normal
+	number), and blanks can be used as a part of a number. These
+	characters are interpreted where applicable.
+      </para>
+
+      <para>
+	The following example shows numerical sort in action, by
+	piping the output of <command>du</command> to
+	<command>sort</command>. This works because
+	<command>du</command> specifies the size of each file as the
+	first field.
+      </para>
+
+      <screen>
+$ <userinput>du -a /bin | sort -n</userinput>
+0       /bin/kernelversion
+0       /bin/ksh
+0       /bin/lsmod.modutils
+0       /bin/lspci
+0       /bin/mt
+0       /bin/netcat
+[...]
+      </screen>
+
+      <para>
+	In this case, the output is probably not useful if you want to
+	read the output in a paginator, because the smallest files are
+	listed first. This is where the <parameter
+	class="command">-r</parameter> parameter becomes handy. This
+	reverses the sort order.
+      </para>
+
+      <screen>
+$ <userinput>du -a /bin | sort -nr</userinput>
+4692    /bin
+1036    /bin/ksh93
+668     /bin/bash
+416     /bin/busybox
+236     /bin/tar
+156     /bin/ip
+[...]
+      </screen>
+
+      <para>
+	The <parameter class="command">-r</parameter> parameter also
+	works with dictionary sorts.
+      </para>
+
+      <para>
+	Quite often, files use a layout with multiple columns, and you
+	may want to sort a file by a different column than the first
+	column. For instance, consider the following score file named
+	<filename>score.txt</filename>:
+      </para>
+
+      <programlisting>
+John:US:4
+Herman:NL:3
+Klaus:DE:5
+Heinz:DE:3
+      </programlisting>
+     
+    <para>
+      Suppose that we would like to sort the entries in this file by
+      the two-letter country name. <command>sort</command> allows us
+      to sort a file by a column with the <parameter
+      class="command">-k col1[,col2]</parameter> parameter.  Where
+      <emphasis>col1</emphasis> up to <emphasis>col2</emphasis> are
+      used as fields for sorting the input. If
+      <emphasis>col2</emphasis> is not specified, all fields up till
+      the end of the line are used. So, if you want to use just one
+      column, use <parameter class="command">-k col1,col1</parameter>.
+      You can also specify the starting character within a column
+      by adding a period (<emphasis>.</emphasis>) and a character
+      index. For instance, <parameter class="command">-k
+      2.3,4.2</parameter> means that the second column starting from
+      the third character, the third column, and the fourth column up
+      to (and including) the second character.
+    </para>
+
+    <!-- XXX - document -b? Mentioned lateron (-k) -->
+
+    <para>
+      There is yet another particularity when it comes to sorting by
+      columns: by default, <command>sort</command> uses a blank as the
+      column separator. If you use a different separator character,
+      you will have to use the <parameter>-t char</parameter>
+      parameter, that is used to specify the field separator.
+    </para>
+
+    <para>
+      With the <parameter class="command">-t</parameter> and
+      <parameter class="command">-k</parameter> parameters combined,
+      we can sort the scores file by country code:
+    </para>
+
+    <screen>
+$ <userinput>sort -t ':' -k 2,2 scores.txt</userinput>
+Heinz:DE:3
+Klaus:DE:5
+Herman:NL:3
+John:US:4
+    </screen>
+
+    <para>
+      So, how can we sort the file by the score? Obviously, we have to
+      ask sort to use the third column. But sort uses a dictionary
+      sort by default<footnote><para>Of course, that will not really
+      matter in this case, because we don't use numbers higher than 9,
+      and virtually all character sets have numbers in a numerical
+      order.</para></footnote>. You could use the <parameter
+      class="command">-n</parameter>, but <command>sort</command> also
+      allows a more sophisticated approach. You can append the one or
+      more of the <emphasis>n</emphasis>, <emphasis>r</emphasis>,
+      <emphasis>f</emphasis>, <emphasis>d</emphasis>,
+      <emphasis>i</emphasis>, or <emphasis>b</emphasis> to the column
+      specifier. These letters represent the <command>sort</command>
+      parameters with the same name. If you add just the starting
+      column, append it to that column, otherwise, add it to the
+      ending column.
+    </para>
+
+    <para>
+      The following command sorts the file by score:
+    </para>
+
+    <screen>
+$ <userinput>sort -t ':' -k 3n /home/daniel/scores.txt</userinput>
+Heinz:DE:3
+Herman:NL:3
+John:US:4
+Klaus:DE:5
+    </screen>
+
+    <para>
+      It is good to follow this approach, rather than using the
+      parameter variants, because <command>sort</command> allows you
+      to use more than one <parameter class="command">-k</parameter>
+      parameter. And, adding these flags to the column specification,
+      will allow you to sort by different columns in different ways.
+      For example using <command>sort</command> with the <parameter
+      class="command">-k 3,3n -k 2,2</parameter> parameters will sort
+      all lines numerically by the third column. If some lines have
+      identical numbers in the third column, these lines can be sorted
+      further with a dictionary sort of the second column.
+    </para>
+
+    <para>
+      If you want to check whether a file is already sorted, you can
+      use the <parameter class="command">-c</parameter> parameter.  If
+      the file was in a sorted order, sort will return the value
+      <emphasis>0</emphasis>, otherwise <emphasis>1</emphasis>. We can
+      check this by echoing the value of the <emphasis>?</emphasis>
+      variable, which holds the return value of the last executed
+      command.
+    </para>
+
+    <screen>
+$ <userinput>sort -c scores.txt ; echo $?</userinput>
+1
+$ <userinput>sort scores.txt | sort -c ; echo $?</userinput>
+0
+    </screen>
+
+    <para>
+      The second command shows that this actually works, by piping the
+      output of the sort of <filename>scores.txt</filename> to
+      <command>sort</command>.
+    </para>
+
+    <para>
+      Finally, you can merge two sorted files with the <parameter
+      class="command">-m</parameter> parameter, keeping the correct
+      sort order. This is faster than concatenating both files, and
+      resorting them.
+    </para>
+
+    <screen>
+# <userinput>sort -m scores-sorted.txt scores-sorted2.txt</userinput>
+    </screen>
+  </sect2>
+
+    <sect2 xml:id="chap-textproc-simple-diff">
+      <title>Differences between files</title>
+
+      <para>
+	Since text streams, and text files are very important in UNIX,
+	it is often useful to show the differences between two text
+	files. The main utilities for working with file differences
+	are <command>diff</command> and
+	<command>patch</command>. <command>diff</command> shows the
+	differences between files. The output of
+	<command>diff</command> can be processed by
+	<command>patch</command> to apply the changes between two
+	files to a file. <quote>diffs</quote> are also form the base
+	of version/source management systems. <!-- XXX - xref to
+	version management chapters --> The following sections
+	describe <command>diff</command> and <command>patch</command>.
+	To have some material to work with, the following two C source
+	files are used to demonstrate these commands. These files are
+	named <filename>hello.c</filename> and
+	<filename>hello2.c</filename> respectively.
+      </para>
+
+      <programlisting>
+<![CDATA[
+#include <stdio.h>
+
+void usage(char *programName);
+
+int main(int argc, char *argv[]) {
+  if (argc == 1) {
+    usage(argv[0]);
+    return 1;
+  }
+
+  printf("Hello %s!\n", argv[1]);
+
+  return 0;
+}
+
+void usage(char *programName) {
+  printf("Usage: %s name\n", programName);
+}
+]]>
+      </programlisting>
+
+      <programlisting>
+#include &lt;stdio.h&gt;
+<emphasis role="bold">#include &lt;time.h&gt;</emphasis>
+
+void usage(char *programName);
+
+int main(int argc, char *argv[]) {
+  if (argc == 1) {
+    usage(argv[0]);
+    return 1;
+  }
+
+  printf("Hello %s!\n", argv[1]);
+
+  <emphasis role="bold">time_t curTime = time(NULL);</emphasis>
+  <emphasis role="bold">printf("The date is %s\n", asctime(localtime(&amp;curTime)));</emphasis>
+
+
+  return 0;
+}
+
+void usage(char *programName) {
+  printf("Usage: %s name\n", programName);
+}
+      </programlisting>
+
+      <sect3 xml:id="chap-textproc-simple-diff-diff">
+	<title>Listing differences between files</title>
+
+	<para>
+	  Suppose that you received the program
+	  <filename>hello.c</filename> from a friend, and you modified
+	  it to give the user the current date and time. You could
+	  just send your friend the updated program. But if a file
+	  grows larger, they can become uncomfortable, because the
+	  changes are harder to spot. Besides that, your friend may
+	  have also received modified program sources from other
+	  persons. This is a typical situation where
+	  <command>diff</command> becomes
+	  handy. <command>diff</command> shows the differences between
+	  two files. Its most basic syntax is <command>diff file
+	  file2</command>, which shows the differences between
+	  <filename>file</filename> and
+	  <filename>file2</filename>. Let's try this with the our
+	  source files:
+	</para>
+
+	<screen>
+$ diff hello.c hello2.c
+1a2 <co xml:id="co-diff-append" />
+> #include &lt;time.h&gt; <co xml:id="co-diff-incoming" />
+12a14,17
+>   time_t curTime = time(NULL);
+>   printf("The date is %s\n", asctime(localtime(&amp;curTime)));
+>
+	</screen>
+
+	<para>
+	  The additions from <filename>hello2.c</filename> are visible
+	  in this output, but the format may look a bit
+	  strange. Actually, these are commands that can be
+	  interpreted by the <command>ed</command> line editor. We will
+	  look at a more comfortable output format after touching the
+	  surface of the default output format.
+	</para>
+
+	<para>
+	  Two different elements can be distilled from this output:
+	</para>
+
+	<calloutlist>
+	  <callout arearefs="co-diff-append">
+	    <para>
+	      This is an <application>ed</application> command that
+	      specified that text should be appended
+	      (<literal>a</literal>) after line <literal>2</literal>.
+	    </para>
+	  </callout>
+	  <callout arearefs="co-diff-incoming">
+	    <para>
+	      This is the actual text to be appended after the second
+	      line. The <quote><emphasis>&gt;</emphasis></quote> sign
+	      is used to mark lines that are added.
+	    </para>
+	  </callout>
+	</calloutlist>
+
+	<para>
+	  The same elements are used to add the second block of text.
+	  What about lines that are removed? We can easily see how
+	  they are represented by swapping the two parameters to
+	  <command>diff</command>, showing the differences between
+	  <filename>hello2.c</filename> and
+	  <filename>hello.c</filename>:
+	</para>
+
+	<screen>
+$ <userinput>diff hello2.c hello.c</userinput>
+2d1 <co xml:id="co-diff-delete" />
+&lt; #include &lt;time.h&gt; <co xml:id="co-diff-outgoing" />
+14,16d12
+&lt;   time_t curTime = time(NULL);
+&lt;   printf("The date is %s\n", asctime(localtime(&amp;curTime)));
+&lt;
+	</screen>
+
+	<para>
+	  The following elements can be distinguished:
+	</para>
+
+	<calloutlist>
+	  <callout arearefs="co-diff-delete">
+	    <para>
+	      This is the <application>ed</application> delete command
+	      (<literal>d</literal>), stating that line 2 should be
+	      deleted. The second delete command uses a range (line 14
+	      to 17).
+	    </para>
+	  </callout>
+	  <callout arearefs="co-diff-outgoing">
+	    <para>
+	      The text that is going to be removed is preceded by the
+	      <quote>&lt;</quote> sign.
+	    </para>
+	  </callout>
+	</calloutlist>
+
+	<!-- XXX - Changed lines? -->
+
+	<para>
+	  That's enough of the <application>ed</application>-style
+	  output. The GNU diff program included in Slackware Linux
+	  supports so-called unified diffs. Unified diffs are very
+	  readable, and provide context by
+	  default. <command>diff</command> can provide unified output
+	  with the <parameter class="command">-u</parameter> flag:
+	</para>
+
+	<screen>
+$ diff -u hello.c hello2.c
+--- hello.c     2006-11-26 20:28:55.000000000 +0100 <co xml:id="co-udiff-origfile" />
++++ hello2.c    2006-11-26 21:27:52.000000000 +0100 <co xml:id="co-udiff-newfile" />
+@@ -1,4 +1,5 @@ <co xml:id="co-udiff-lines" />
+ #include &lt;stdio.h&gt; <co xml:id="co-udiff-unmodified" />
++#include &lt;time.h&gt; <co xml:id="co-udiff-add" />
+
+ void usage(char *programName);
+
+@@ -10,6 +11,9 @@
+
+   printf("Hello %s!\n", argv[1]);
+
++  time_t curTime = time(NULL);
++  printf("The date is %s\n", asctime(localtime(&amp;curTime)));
++
+   return 0;
+ }
+
+	</screen>
+
+	<para>
+	  The following elements can be found in the output
+	</para>
+
+	<calloutlist>
+	  <callout arearefs="co-udiff-origfile">
+	    <para>
+	      The name of the original file, and the timestamp of the
+	      last modification time.
+	    </para>
+	  </callout>
+	  <callout arearefs="co-udiff-newfile">
+	    <para>
+	      The name of the changed file, and the timestamp of the
+	      last modification time.
+	    </para>
+	  </callout>
+	  <callout arearefs="co-udiff-lines">
+	    <para>
+	      This pair of numbers show the location and size of the
+	      chunk that the text below affects in the original file
+	      and the modified file. So, in this case the numbers mean
+	      that in the affected chunk in the original file starts
+	      at line 1, and is four lines long. In the modified file
+	      the affected chunk starts at line 1, and is five lines
+	      long. Different chunks in diff output are started by
+	      this header.
+	    </para>
+	  </callout>
+	  <callout arearefs="co-udiff-unmodified">
+	    <para>
+	      A line that is not preceded by a minus
+	      (<emphasis>-</emphasis>) or plus
+	      (<emphasis>+</emphasis>) sign is unchanged. Unmodified
+	      lines are included because they give contextual
+	      information, and to avoid that too many chunks are
+	      made. If there are only a few unmodified lines between
+	      changes, <command>diff</command> will choose to make
+	      only one chunk, rather than two chunks.
+	    </para>
+	  </callout>
+	  <callout arearefs="co-udiff-add">
+	    <para>
+	      A line that is preceded by a plus sign
+	      (<emphasis>+</emphasis>) is an addition to the modified
+	      file, compared to the original file.
+	    </para>
+	  </callout>
+	</calloutlist>
+
+	<para>
+	  As with the ed-style <command>diff</command> format, we can
+	  see some removals by swapping the file names:
+	</para>
+
+	<screen>
+$ <userinput>diff -u hello2.c hello.c</userinput>
+<![CDATA[
+--- hello2.c    2006-11-26 21:27:52.000000000 +0100
++++ hello.c     2006-11-26 20:28:55.000000000 +0100
+@@ -1,5 +1,4 @@
+ #include <stdio.h>
+-#include <time.h>
+
+ void usage(char *programName);
+
+@@ -11,9 +10,6 @@
+
+   printf("Hello %s!\n", argv[1]);
+
+-  time_t curTime = time(NULL);
+-  printf("The date is %s\n", asctime(localtime(&curTime)));
+-
+   return 0;
+ }
+
+]]>
+	</screen>
+
+	<para>
+	  As you can see from this output, lines that are removed from
+	  the modified file, in contrast to the original file are
+	  preceded by the minus (<emphasis>-</emphasis>) sign.
+	</para>
+
+	<para>
+	  When you are working on larger sets of files, it's often
+	  useful to compare whole directories. For instance, if you
+	  have the original version of a program source in a directory
+	  named <filename>hello.orig</filename>, and the modified
+	  version in a directory named <filename>hello</filename>, you
+	  can use the <parameter class="command">-r</parameter>
+	  parameter to recursively compare both directories. For
+	  instance:
+	</para>
+
+	<screen>
+$ diff -ru hello.orig hello
+diff -ru hello.orig/hello.c hello/hello.c
+<![CDATA[
+--- hello.orig/hello.c  2006-12-04 17:37:14.000000000 +0100
++++ hello/hello.c       2006-12-04 17:37:48.000000000 +0100
+@@ -1,4 +1,5 @@
+ #include <stdio.h>
++#include <time.h>
+
+ void usage(char *programName);
+
+@@ -10,6 +11,9 @@
+
+   printf("Hello %s!\n", argv[1]);
+
++  time_t curTime = time(NULL);
++  printf("The date is %s\n", asctime(localtime(&curTime)));
++
+   return 0;
+ }
+
+]]>
+	</screen>
+
+	<para>
+	  It should be noted that this will only compare files that
+	  are available in both directories. The GNU version of diff,
+	  that is used by Slackware Linux provides the
+	  <parameter class="command">-N</parameter> parameter. This
+	  parameter treats files that exist in only one of both
+	  directories as if it were an empty file. So for instance,
+	  if we have added a file named <filename>Makefile</filename>
+	  to the <filename>hello</filename> directory, using the
+	  <parameter class="command">-N</parameter> parameter will
+	  give the following output:
+	</para>
+
+	<screen>
+$ <userinput>diff -ruN hello.orig hello</userinput>
+<![CDATA[
+diff -ruN hello.orig/hello.c hello/hello.c
+--- hello.orig/hello.c  2006-12-04 17:37:14.000000000 +0100
++++ hello/hello.c       2006-12-04 17:37:48.000000000 +0100
+@@ -1,4 +1,5 @@
+ #include <stdio.h>
++#include <time.h>
+
+ void usage(char *programName);
+
+@@ -10,6 +11,9 @@
+
+   printf("Hello %s!\n", argv[1]);
+
++  time_t curTime = time(NULL);
++  printf("The date is %s\n", asctime(localtime(&curTime)));
++
+   return 0;
+ }
+
+diff -ruN hello.orig/Makefile hello/Makefile
+--- hello.orig/Makefile 1970-01-01 01:00:00.000000000 +0100
++++ hello/Makefile      2006-12-04 17:39:44.000000000 +0100
+@@ -0,0 +1,2 @@
++hello: hello.c
++       gcc -Wall -o $@ $<
+]]>
+	</screen>
+
+	<para>
+	  As you can see the chunk indicator says that the chunk in
+	  the original file starts at line 0, and is 0 lines long.
+	</para>
+
+	<para>
+	  UNIX users often exchange the output of
+	  <command>diff</command>, usually called <quote>diffs</quote>
+	  or <quote>patches</quote>. The next section will show you
+	  how you can handle diffs. But you are now able to create
+	  them yourself, by redirecting the output of diff to a file.
+	  For example:
+	</para>
+
+	<screen>
+$ <userinput>diff -u hello.c hello2.c > hello_add_date.diff</userinput>
+	</screen>
+
+	<para>
+	  If you have multiple diffs, you can easily combine them to
+	  one diff, by concatenating the diffs:
+	</para>
+
+	<screen>
+$ <userinput>cat diff1 diff2 diff3 > combined_diff</userinput>
+	</screen>
+
+	<para>
+	  But make sure that they were created from the same directory
+	  if you want to use the <command>patch</command> utility that
+	  is covered in the next section.
+	</para>
+      </sect3>
+
+      <sect3 xml:id="chap-textproc-simple-diff-patch">
+	<title>Modifying files with diff output</title>
+
+	<para>
+	  Suppose that somebody would send you the output of
+	  <command>diff</command> for a file that you have created. It
+	  would be tedious to manually incorporate all the changes
+	  that were made. Fortunately, the <command>patch</command>
+	  can do this for you. <command>patch</command> accepts diffs
+	  on the standard input, and will try to change the original
+	  file, according to the differences that are registered in
+	  the diff. So, for instance, if we have the
+	  <filename>hello.c</filename> file, and the patch that we
+	  produced previously based on the changes between
+	  <filename>hello.c</filename> and
+	  <filename>hello2.c</filename>, we can patch
+	  <filename>hello.c</filename> to become equal to its
+	  counterpart:
+	</para>
+
+	<screen>
+$ <userinput>patch &lt; hello_add_date.diff</userinput>
+patching file hello.c
+	</screen>
+
+	<para>
+	  If you have <filename>hello2.c</filename>, you can check
+	  whether the files are identical now:
+	</para>
+
+	<screen>
+$ <userinput>diff -u hello.c hello2.c</userinput>
+	</screen>
+
+	<para>
+	  There is no output, so this is the case. One of the nice
+	  features of <command>patch</command> is that it can revert
+	  the changes made through a diff, by using the <parameter
+	  class="command">-R</parameter> parameter:
+	</para>
+
+	<screen>
+$ <userinput>patch -R &lt; hello_add_date.diff</userinput>
+	</screen>
+
+	<para>
+	  In these examples, the original file is patched. Sometimes
+	  you may want to want to apply the patch to a file with a
+	  different name. You can do this by providing the name of
+	  a file as the last argument:
+	</para>
+
+	<screen>
+$ <userinput>patch helloworld.c &lt; hello_add_date.diff</userinput>
+patching file helloworld.c
+	</screen>
+
+	<para>
+	  You can also use <command>patch</command> with diffs that
+	  were generated with the <parameter
+	  class="command">-r</parameter> parameter, but you have to
+	  take a bit of care. Suppose that the header of a particular
+	  file in the diff is as follows:
+	</para>
+
+	<literallayout>
+--------------------------
+|diff -ruN hello.orig/hello.c hello/hello.c
+|--- hello.orig/hello.c 2006-12-04 17:37:14.000000000 +0100
+|+++ hello/hello.c      2006-12-04 17:37:48.000000000 +0100
+--------------------------
+	</literallayout>
+
+	<para>
+	  If you process this diff with <command>patch</command>, it
+	  will attempt to change <filename>hello.c</filename>. So, the
+	  directory that holds this file has to be the active
+	  directory. You can use the full pathname with the <parameter
+	  class="command">-p n</parameter>, where
+	  <emphasis>n</emphasis> is the number of pathname components
+	  that should be stripped. A value of <emphasis>0</emphasis>
+	  will use the path as it is specified in the patch,
+	  <emphasis>1</emphasis> will strip the first pathname
+	  component, etc. In this example, stripping the first
+	  component will result in patching of
+	  <filename>hello.c</filename>. According to the Single UNIX
+	  Specification version 3 standard, the path that is preceded
+	  by <emphasis>---</emphasis> should be used to construct the
+	  file that should be patched. The GNU version of patch does
+	  not follow the standard here. So, it is best to strip off to
+	  the point where both directory names are equal (this is
+	  usually the top directory of the tree being changed). In
+	  most cases where relative paths are used this can be done
+	  by using <emphasis>-p 1</emphasis>. For instance:
+	</para>
+
+	<!-- XXX - add more examples for -p n -->
+
+	<screen>
+$ <userinput>cd hello.orig</userinput>
+$ <userinput>patch -p 1 &lt; ../hello.diff</userinput>
+	</screen>
+
+	<para>
+	  Or, you can use the <parameter
+	  class="command">-d</parameter> parameter to specify in which
+	  directory the change has to be applied:
+	</para>
+
+	<screen>
+$ <userinput>patch -p 1 -d hello.orig &lt; hello.diff</userinput>
+patching file hello.c
+patching file Makefile
+	</screen>
+
+	<para>
+	  If you want to keep a backup when you are changing a file,
+	  you can use the <parameter class="command">-b</parameter>
+	  parameter of <command>patch</command>. This will make a copy
+	  of every affected file named
+	  <filename>filename.orig</filename>, before actually changing
+	  the file:
+	</para>
+
+	<screen>
+$ <userinput>patch -b &lt; hello_add_date.diff</userinput>
+$ <userinput>ls -l hello.c*</userinput>
+-rw-r--r-- 1 daniel daniel 382 2006-12-04 21:41 hello.c
+-rw-r--r-- 1 daniel daniel 272 2006-12-04 21:12 hello.c.orig
+	</screen>
+
+	<para>
+	  Sometimes a file can not be patched. For instance, if it has
+	  already been patched, it has changed too much to apply the
+	  patch cleanly, or if the file does not exist at all. In this
+	  case, the chunks that could not be saved are stored in a
+	  file with the name <filename>filename.rej</filename>, where
+	  <emphasis>filename</emphasis> is the file that
+	  <command>patch</command> tried to modify.
+	</para>
+      </sect3>
+    </sect2>
+  </sect1>
+
+  <sect1 xml:id="chap-textproc-regexps">
+    <title>Regular expressions</title>
+
+    <sect2 xml:id="chap-textproc-regexps-intro">
+      <title>Introduction</title>
+
+      <para> In daily life, you will often want to manipulate some text that
+      matches to a certain pattern, rather than a literal string. Many
+      UNIX utilities implement a language for matching text patterns,
+      <emphasis>regular expressions</emphasis> (regexps). Over time
+      the regular expression language has grown, there are now
+      basically three regular expression syntaxes: </para>
+
+      <itemizedlist>
+        <listitem>
+          <para> Traditional UNIX regular expressions. </para>
+        </listitem>
+        <listitem>
+          <para> POSIX extended regular expressions. </para>
+        </listitem>
+        <listitem>
+          <para> Perl-compatible regular expressions (PCRE). </para>
+        </listitem>
+      </itemizedlist>
+
+      <para>
+	POSIX regexps are mostly a superset of traditional UNIX
+	regexps, and PCREs a superset of POSIX regexps. The syntax
+	that an application supports differs per application, but
+	almost all applications support at least POSIX
+	regexps.
+      </para>
+
+      <para>
+	Each syntactical unit in a regexp expresses one of the
+	following things:
+      </para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+            <emphasis role="bold">A character</emphasis>: this is the
+            basis of every regular expression, a character or a set of
+            characters to be matched. For instance, the letter
+            <emphasis>p</emphasis> or the sign
+            <emphasis>,</emphasis>. </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">Quantification</emphasis>: a
+            quantifier specifies how many times the preceding
+            character or set of characters should be matched. </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">Alternation</emphasis>: alternation
+            is used to match <quote>a or b</quote> in which
+            <emphasis>a</emphasis> and <emphasis>b</emphasis> can be a
+            character or a regexp. </para>
+        </listitem>
+        <listitem>
+          <para>
+            <emphasis role="bold">Grouping</emphasis>: this is used to
+            group subexpressions, so that quantification or
+            alternation can be applied to the group. </para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 xml:id="chap-textproc-regexps-traditional">
+      <title>Traditional UNIX regexps</title>
+
+      <para>
+	This section describes traditional UNIX regexps. Because of a
+	lack of standardisation, the exact syntax may differ a bit per
+	utility. Usually, the manual page of a command provides more
+	detailed information about the supported basic or traditional
+	regular expressions. It is a good idea to learn traditional
+	regexps, but to use POSIX regexps for your own
+	scripts.
+      </para>
+
+      <sect3 xml:id="chap-textproc-regexps-traditional-characters">
+        <title>Matching characters</title>
+
+        <para>
+	  Characters are matched by themselves. If a specific
+	  character is used as a syntactic character for regexps, you
+	  can match that character by adding a backslash. For
+	  instance, <emphasis>\+</emphasis> matches the plus
+	  character. </para>
+
+        <para>
+	  A period (<emphasis>.</emphasis>) matches any character, for
+	  instance, the regexp <emphasis>b.g</emphasis> matches
+	  <emphasis>bag</emphasis>, <emphasis>big</emphasis>, and
+	  <emphasis>blg</emphasis>, but not
+	  <emphasis>bit</emphasis>. </para>
+
+        <para>
+	  The period character, often provides too much freedom. You
+	  can use square brackets (<emphasis>[]</emphasis>) to specify
+	  characters which can be matched. For instance, the regexp
+	  <emphasis>b[aei]g</emphasis> matches
+	  <emphasis>bag</emphasis>, <emphasis>beg</emphasis>, and
+	  <emphasis>big</emphasis>, but nothing else. You can also
+	  match any character but the characters in a set by using the
+	  square brackets, and using the caret
+	  (<emphasis>^</emphasis>) as the first character. For
+	  instance, <emphasis>b[^aei]g</emphasis> matches any three
+	  character string that starts with <emphasis>b</emphasis> and
+	  ends with <emphasis>g</emphasis>, with the exception of
+	  <emphasis>bag</emphasis>, <emphasis>beg</emphasis>, and
+	  <emphasis>big</emphasis>. It is also possible to match a
+	  range of characters with a dash
+	  (<emphasis>-</emphasis>). For example,
+	  <emphasis>a[0-9]</emphasis> matches a followed by a single
+	  number character. </para>
+
+        <para>
+	  Two special characters, the caret (<emphasis>^</emphasis>)
+	  and the dollar sign (<emphasis>$</emphasis>), respectively
+	  match the start and end of a line. This is very handy for
+	  parsing files. For instance, you can match all lines that
+	  start with a hash (<emphasis>#</emphasis>) with the regexp
+	  <emphasis>^#</emphasis>. </para>
+      </sect3>
+
+      <sect3 xml:id="chap-textproc-regexps-traditional-quantification">
+        <title>Quantification</title>
+
+        <para>
+	  The simplest quantification sign that traditional regular
+	  expressions support is the (Kleene) star
+	  (<emphasis>*</emphasis>). This matches zero or arbitrary
+	  instances of the preceding character. For instance,
+	  <emphasis>ba*</emphasis> matches <emphasis>b</emphasis>,
+	  <emphasis>ba</emphasis><emphasis>baa</emphasis>, etc. You
+	  should be aware that a single character folowed by a star
+	  without any context matches every string, because
+	  <emphasis>c*</emphasis> also matches a string that has zero
+	  <emphasis>c</emphasis> characters. </para>
+
+        <para>
+	  More specific repetitions can be specified with
+	  backslash-escaped curly braces.
+	  <emphasis>\{x,y\}</emphasis> matches the preceding character
+	  at least <emphasis>x</emphasis> times, but not more than
+	  <emphasis>y</emphasis> times. So,
+	  <emphasis>ba\{1,3\}</emphasis> matches
+	  <emphasis>ba</emphasis>, <emphasis>baa</emphasis>, and
+	  <emphasis>baaa</emphasis>. </para>
+      </sect3>
+
+      <sect3 xml:id="chap-textproc-regexps-traditional-grouping">
+        <title>Grouping</title>
+
+        <para>
+	  Backslash-escaped parentheses group various characters
+	  together, so that you can apply quantification or
+	  alternation to a group of characters. For instance,
+	  <emphasis>\(ab\)\{1,3\}</emphasis> matches
+	  <emphasis>ab</emphasis>, <emphasis>abab</emphasis>, and
+	  <emphasis>ababab</emphasis>. </para>
+      </sect3>
+
+      <sect3 xml:id="chap-textproc-regexps-traditional-alternation">
+        <title>Alternation</title>
+
+        <para>
+	  A backslash-escaped pipe vertical bar
+	  (<emphasis>\|</emphasis>) allows you to match either of two
+	  expressions. This is not useful for single characters,
+	  because <emphasis>a\|b</emphasis> is equivalent to
+	  <emphasis>[ab]</emphasis>, but it is very useful in
+	  conjunction with grouping. Suppose that you would like an
+	  expression that matches <emphasis>apple</emphasis> and
+	  <emphasis>pear</emphasis>, but nothing else. This can be
+	  done easily with the vertical bar:
+	  <emphasis>(apple)|(pear)</emphasis>. </para>
+      </sect3>
+    </sect2>
+
+      <sect2 xml:id="chap-textproc-regexps-posix">
+	<title>POSIX extended regular expressions</title>
+
+	<para>
+	  POSIX regular expressions build upon traditional regular
+	  expressions, adding some other useful primitives. Another
+	  comforting difference is that grouping parenthesises,
+	  quantification accolades, and the alternation sign
+	  (<emphasis>|</emphasis>) are not backslash-escaped.  If they
+	  are escaped, they will match the literal characters instead,
+	  thus resulting in the opposite behavior of traditional
+	  regular expressions. Most people find POSIX extended regular
+	  expressions much more comfortable, making them more widely
+	  used.
+	</para>
+
+	<sect3 xml:id="chap-textproc-regexps-posix-characters">
+	  <title>Matching characters</title>
+
+	  <para>
+	    Normal character matching has not changed compared to the
+	    traditional regular expressions described in <xref
+	    linkend="chap-textproc-regexps-traditional-characters" />
+	  </para>
+	</sect3>
+
+	<sect3 xml:id="chap-textproc-regexps-posix-quantification">
+	  <title>Quantification</title>
+
+	  <para>
+	    Besides the Kleene star (<emphasis>*</emphasis>), that
+	    matches the preceding character or group zero or more
+	    times, POSIX extended regular expressions add two new
+	    simple quantification primitives. The plus sign
+	    (<emphasis>+</emphasis>) matches the preceding character
+	    or group one or more times. For example,
+	    <emphasis>a+</emphasis>, matches <emphasis>a</emphasis>
+	    (or any string with more consecutive
+	    <emphasis>a</emphasis>'s), but does not match zero
+	    <emphasis>a</emphasis>'s. The questions mark character
+	    (<emphasis>?</emphasis>) matches the preceding character
+	    zero or one time. So, <emphasis>ba?d</emphasis> matches
+	    <emphasis>bd</emphasis> and <emphasis>bad</emphasis>, but
+	    not <emphasis>baad</emphasis> or <emphasis>bed</emphasis>.
+	  </para>
+
+	  <para>
+	    Curly braces are used for repetition, like traditional
+	    regular expressions. Though the backslash should be
+	    omitted. To match <emphasis>ba</emphasis> and
+	    <emphasis>baa</emphasis>, one should use
+	    <emphasis>ba{1,2}</emphasis> rather than
+	    <emphasis>ba\{1,2\}</emphasis>.
+	  </para>
+	</sect3>
+
+	<sect3 xml:id="chap-textproc-regexps-posix-grouping">
+	  <title>Grouping</title>
+
+	  <para>
+	    Grouping is done in the same manner as traditional regular
+	    expressions, leaving out the escape-backslashes before the
+	    parenthesises. For example, <emphasis>(ab){1,3}</emphasis>
+	    matches <emphasis>ab</emphasis>,
+	    <emphasis>abab</emphasis>, and
+	    <emphasis>ababab</emphasis>.
+	  </para>
+	</sect3>
+
+	<sect3 xml:id="chap-textproc-regexps-posix-alternation">
+	  <title>Alternation</title>
+
+	  <para>
+	    Alternation is done in the same manner as with traditional
+	    regular expressions, leaving out the escape-backslashes
+	    before the vertical bar. So,
+	    <emphasis>(apple)|(pear)</emphasis> matches
+	    <emphasis>apple</emphasis> and <emphasis>pear</emphasis>.
+	  </para>
+	</sect3>
+      </sect2>
+
+      <!--      
+      <sect2 xml:id="chap-textproc-regexps-perl"> <title>Perl</title>
+      </sect2>
+    -->
+
+  </sect1>
+
+  <sect1 xml:id="chap-textproc-grep">
+    <title>grep</title>
+
+    <!-- XXX - document -c, -l, -x, -n, -q parameters -->
+
+    <sect2 xml:id="chap-textproc-grep-basic">
+      <title>Basic grep usage</title>
+
+      <para>
+	We have now arrived at one of the most important utilties of
+	the UNIX System, and the first occasion to try and use regular
+	expressions. The <command>grep</command> command is used to
+	search a text stream or a file for a pattern. This pattern is
+	a regular expression, and can either be a basic regular
+	expression or a POSIX extended regular expression (when the
+	<parameter class="command">-E</parameter> parameter is
+	used). By default, <command>grep</command> will write the
+	lines that were matched to the standard output. In the most
+	basic syntax, you can specify a regular expression as an
+	argument, and <command>grep</command> will search matches in
+	the text from the standard input. This is a nice manner to
+	practice a bit with regular expressions.
+      </para>
+
+      <screen>
+$ <userinput>grep '^\(ab\)\{2,3\}$'</userinput>
+<userinput>ab</userinput>
+<userinput>abab</userinput>
+abab
+<userinput>ababab</userinput>
+ababab
+<userinput>abababab</userinput>
+      </screen>
+
+      <para>
+	The example listed above shows a basic regular expression in
+	action, that matches a line solely consisting of two or three
+	times the <emphasis>ab</emphasis> string. You can do the same
+	thing with POSIX extended regular expressions, by adding the
+	<parameter class="command">-E</parameter> (for extended)
+	parameter:
+      </para>
+
+      <screen>
+$ <userinput>grep -E '^(ab){2,3}$'</userinput>
+<userinput>ab</userinput>
+<userinput>abab</userinput>
+abab
+<userinput>ababab</userinput>
+ababab
+<userinput>abababab</userinput>
+      </screen>
+
+      <para>
+	Since the default behavior of <command>grep</command> is to
+	read from the standard input, you can add it to a pipeline to
+	get the interesting parts of the output of the preceding
+	commands in the pipeline. For instance, if you would like to
+	search for the string <emphasis>2006</emphasis> in the third
+	column in a file, you could combine the <command>cut</command>
+	and <command>grep</command> command:
+      </para>
+
+      <screen>
+$ <userinput>cut -f 3 | grep '2006'</userinput>
+      </screen>
+    </sect2>
+
+    <sect2 xml:id="chap-textproc-grep-files">
+      <title>grepping files</title>
+
+      <para>
+	Naturally, <command>grep</command> can also directly read a
+	file, rather than the standard input. As usual, this is done
+	by adding the files to be read as the last arguments. The
+	following example will print all lines from the
+	<filename>/etc/passwd</filename> file that start with the
+	string <emphasis>daniel:</emphasis>.
+      </para>
+
+      <screen>
+$ <userinput>grep "^daniel" /etc/passwd</userinput>
+daniel:*:1001:1001:Daniel de Kok:/home/daniel:/bin/sh
+      </screen>
+
+      <!-- XXX - filename notation when multiple files are specified -->
+
+      <para>
+        With the <parameter class="command">-r</parameter> option,
+	<command>grep</command> will recursively traverse a directory
+	structure, trying to find matches in each file that was encountered
+	during the traversal.
+	Though, it is better to combine <command>grep</command> with
+	<command>find</command> and the <emphasis>-exec</emphasis>
+	operand in scripts that have to be portable.
+      </para>
+
+      <screen>
+$ <userinput>grep -r 'somepattern' somedir</userinput>
+      </screen>
+
+      <para>
+	is the non-portable functional equivalent of
+      </para>
+
+      <screen>
+$ <userinput>find /somedir -type f -exec grep 'somepattern' {} \; -print</userinput>
+      </screen>
+    </sect2>
+
+    <sect2 xml:id="chap-textproc-grep-pattern">
+      <title>Pattern behavior</title>
+
+      <para>
+	<command>grep</command> can also print all lines that do not
+	match the pattern that was used.  This is done by adding the
+	<parameter class="command">-v</parameter> parameter:
+      </para>
+
+      <screen>
+$ <userinput>grep -Ev '^(ab){2,3}$'</userinput>
+<userinput>ab</userinput>
+ab
+<userinput>abab</userinput>
+<userinput>ababab</userinput>
+<userinput>abababab</userinput>
+abababab
+      </screen>
+
+      <para>
+	If you want to use the pattern in a case-insensitive manner,
+	you can add the <parameter class="command">-i</parameter>
+	parameter. For example:
+      </para>
+
+      <screen>
+$ <userinput>grep -i "a"</userinput>
+<userinput>a</userinput>
+a
+<userinput>A</userinput>
+A
+      </screen>
+
+      <para>
+	You can also match a string literally with the <parameter
+	class="command">-F</parameter> parameter:
+      </para>
+
+      <screen>
+$ <userinput>grep -F 'aa*'</userinput>
+<userinput>a</userinput>
+<userinput>aa*</userinput>
+aa*
+      </screen>
+    </sect2>
+
+    <sect2 xml:id="chap-textproc-grep-multiplepatterns">
+      <title>Using multiple patterns</title>
+
+      <para>
+	As we have seen, you can use the alternation character
+	(<emphasis>|</emphasis>) to match either of two or more
+	subpatterns. If two patterns that you would like to match
+	differ a lot, it is often more comfortable to make two
+	separate patterns. <command>grep</command> allows you to use
+	more than one pattern by separating patterns with a newline
+	character. So, for example, if you would like to print lines
+	that match either the <emphasis>a</emphasis> or
+	<emphasis>b</emphasis> pattern, this can be done easily by
+	starting a new line:
+      </para>
+
+      <screen>
+$ <userinput>grep 'a
+b'</userinput>
+<userinput>a</userinput>
+a
+<userinput>b</userinput>
+b
+c
+      </screen>
+
+      <para>
+	This works, because quotes are used, and the shell passes
+	quoted parameters literally. Though, it must be admitted that
+	this is not quite pretty. <command>grep</command> accepts one
+	or more <parameter class="command">-e pattern</parameter>
+	parameters, giving the opportunity to specify more than one
+	parameter on one line. The <command>grep</command> invocation
+	in the previous example could be rewritten as:
+      </para>
+
+      <screen>
+$ <userinput>grep -e 'a' -e 'b'</userinput>
+      </screen>
+    </sect2>
+  </sect1>
+</chapter>

@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Id: printing.xml 283 2007-09-18 20:14:31Z danieldk $ -->
+
+<chapter id="printing"> <?dbhtml filename="printer.html"?>
+  <title>Configuració de impressores <!--Printer configuration--></title>
+
+  <indexterm><primary>impressió<!--printing--></primary></indexterm>
+
+  <sect1 id="printing-intro">
+    <title>Introducció</title>
+
+    <indexterm><primary>instal·lació</primary><secondary>cups</secondary></indexterm>
+
+    <para>
+      GNU/Linux suporta una enorme porció de les impressores USB, paral·lel i 
+      de xarxa disponibles. Slackware Linux proporciona dos sistemes d'impressió,
+      <acronym>CUPS</acronym> (Common UNIX Printing System, Sistema comú de Impressió
+      de UNIX) i <acronym>LPRNG</acronym> (LPR Next Generation, LPR de pròxima 
+      generació). Aquest capítol cobreix el sistema CUPS.
+
+      <!--GNU/Linux supports a large share of the available USB, parallel and
+      network printers. Slackware Linux provides two printing systems,
+      <acronym>CUPS</acronym> (Common UNIX Printing System) and
+      <acronym>LPRNG</acronym> (LPR Next Generation). This chapter covers
+      the CUPS system.-->
+    </para>
+
+    <para>
+      Independentment del sistema d'impressió que vages a utilitzar, és
+      una bona idea instal·lar alguna col·lecció de filtres d'impressora.
+      Aquests es poden trobar al conjunt de disc <quote>ap</quote>. Si
+      vols tindre suport per a la majoria d'impressores, assagura't de
+      que els següents paquets estàn instal·lats.
+      <!--Independent of which printing system you are going to use, it is
+      a good idea to install some printer filter collections. These can
+      be found in the <quote>ap</quote> disk set. If you want to have
+      support for most printers, make sure the following packages are
+      installed:-->
+    </para>
+
+    <screen>
+a2ps
+enscript
+espgs
+gimp-print
+gnu-gs-fonts
+hpijs
+ifhp
+    </screen>
+
+    <para>
+      Ambdós sistemes d'impressió tenen els seus propis avantatges i 
+      inconvenients. Si no tens massa experiència configurant impressores baix 
+      GNU/Linux, és una bona idea utilitzar CUPS, ja que CUPS proporciona una 
+      còmoda interfície web accessible mitjançant un navegador web.
+      <!--Both printing systems have their own advantages and disadvantages. If
+      you do not have much experience with configuring printers under GNU/Linux,
+      it is a good idea to use CUPS, because CUPS provides a comfortable web
+      interface which can be accessed through a web browser.-->
+    </para> 
+
+  </sect1>
+
+  <sect1 id="printing-preparations">
+    <title>Preparatius <!--Preparations--></title>
+
+    <indexterm><primary>començant</primary><secondary>amb cups</secondary></indexterm>
+
+    <para>
+      Per a poder utilitzar CUPS, el paquet <quote>cups</quote> del conjunt
+      de disc <quote>a</quote> ha d'estar instal·lat. Després de la instal·lació
+      CUPS es pot iniciar automàticament durant cada llançament del sistema fent
+      <filename>/etc/rc.d/rc.cups</filename> executable, el que es pot fer amb la
+      ordre següent:
+      
+      <!--To be able to use CUPS the <quote>cups</quote> package from the
+      <quote>a</quote> disk set has to be installed. After the installation
+      CUPS can be started automatically during each system boot by making
+      <filename>/etc/rc.d/rc.cups</filename> executable. This can be
+      done with the following command:-->
+    </para>
+
+    <screen>
+# <command>chmod a+x /etc/rc.d/rc.cups</command>
+    </screen>
+
+    <para>
+      Després de reiniciar el sistema, CUPS serà també reiniciat automàticament.
+      Es pot iniciar CUPS a un sistema en marxa executant la següent ordre:
+      <!--After restarting the system CUPS will also be restarted automatically. 
+      You can start CUPS on a running system by executing the following 
+      command:-->
+    </para>
+
+    <screen>
+# <command>/etc/rc.d/rc.cups start</command>
+    </screen> 
+
+  </sect1>
+
+  <sect1 id="printing-configuration">
+    <title>Configuració</title>
+
+    <indexterm><primary>cups</primary><secondary>configuració</secondary></indexterm>
+
+    <para>
+      CUPS es pot configurar mitjançant una interfície web a la que es pot 
+      accedir amb un navegador web a la següent URL:
+      <ulink url="http://localhost:631/">http://localhost:631/</ulink>.
+      Algunes parts de la interfície web requereixen que t'autentiques. Si 
+      apareix una finestra d'autenticació pots introduir <quote>root</quote>
+      com a nom d'usuari, i omplir la contrassenya del compte root.
+
+      <!--CUPS can be configured via a web interface. The configuration interface
+      can be accessed with a web browser at the following URL:
+      <ulink url="http://localhost:631/">http://localhost:631/</ulink>.
+      Some parts of the web interface require that you authenticate yourself.
+      If an authentication window pops up you can enter <quote>root</quote>
+      as the user name, and fill in the root account password.-->
+    </para>
+
+    <para>
+      Es pot afegir una impressora a la configuració de CUPS fent clic en
+      <quote>Administrate</quote>, i a continuació, fent clic en el botó 
+      <quote>Add Printer</quote>. La intefície web preguntarà per tres 
+      opcions:
+      <!--A printer can be added to the CUPS configuration by clicking on
+      <quote>Administrate</quote>, and clicking on the <quote>Add
+      Printer</quote> button after that. The web interface will ask for 
+      three options:-->
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+	  <emphasis>Nom</emphasis> - el nom de la impressora. Utilitza un 
+	  nom senzill, per exemple <quote>epson</quote>.
+          <!--<emphasis>Name</emphasis> - the name of the printer. Use a simple
+          name, for example <quote>epson</quote>.-->
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+	  <emphasis>Localització</emphasis> - la localització física de la 
+	  impressora. Aquest paràmetre no és crucial, però pràctic per a 
+	  grans organitzacions.
+          <!--<emphasis>Localization</emphasis> - the physical location of the printer.
+          This setting is not crucial, but handy for larger organizations.-->
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+	  <emphasis>Description</emphasis> - una descripció de la impressora,
+	  per exemple <quote>Epson Stylus Color C42UX</quote>.
+          <!--<emphasis>Description</emphasis> - a description of the printer,
+          for example <quote>Epson Stylus Color C42UX</quote>.-->
+        </para>
+      </listitem>
+    </itemizedlist> 
+
+    <para>
+      Pots procedir fent clic al botó <quote>Continue</quote>. A la pàgina
+      següent pots configurar com està connectada la impressora. Si tens 
+      una impressora USB i està encesa, la interfície web mostrarà el nom
+      de la impressora junt al port USB utilitzat. Després de configurar
+      el port de la impressora, pots triar-ne la marca i el model. Després
+      d'això la configuració de la impressora haurà acabat, i aquesta
+      serà afegida a la configuració de CUPS.
+      <!--You can proceed by clicking the <quote>Continue</quote> button. On
+      the next page you can configure how the printer is connected. If you
+      have an USB printer which is turned on, the web interface will show
+      the name of the printer next to the USB port that is used. After
+      configuring the printer port you can select the printer brand and
+      model. After that the printer configuration is finished, and the
+      printer will be added to the CUPS configuration.-->
+    </para>
+
+    <para>
+      Una visió del conjunt d'impressores configurades es pot trobar
+      a la plana <quote>Printers</quote>. En aquesta plana pots, a més,
+      fer algunes operaciones d'impressora. Per exemple, <quote>Print 
+      Test Page</quote> es pot utilitzar per a comprovar la configuració
+      d'una impressora imprimint una pàgina de prova.
+      <!--An overview of the configured printers can be found on the
+      <quote>Printers</quote> page. On this page you can also do some
+      printer operations. For example, <quote>Print Test Page</quote>
+      can be used to check the printer configuration by printing a test
+      page-->
+    </para>
+
+  </sect1>
+  
+  <sect1 id="printing-accesscontrol">
+    <title>Control d'accés <!--Access control--></title>
+
+    <indexterm><primary>cups</primary><secondary>control d'accés</secondary></indexterm>
+    
+    <para>
+      El sistema d'impressió CUPS proporciona una interfície de configuració
+      web, i accés a impressió remota mitjançant el Protocol d'Impressió
+      d'Internet (<acronym>IPP</acronym>, Internet Printing Protocol). Els
+      fitxers de configuració de CUPS et permeten una configuració molt fina
+      del control d'accés a les impressores. L'accés per defecte a impressores
+      està limitat a <emphasis>localhost</emphasis> (<emphasis>127.0.0.1</emphasis>).
+
+      <!--The CUPS printing system provides a web configuration interface, and
+      remote printer access through the Internet Printing Protocol 
+      (<acronym>IPP</acronym>). The CUPS configuration files allow you
+      to configure fine-grained access control to printers. By default access 
+      to printers is limited to <emphasis>localhost</emphasis>
+      (<emphasis>127.0.0.1</emphasis>).-->
+    </para>
+    
+    <para>
+      Es pot refinar el contol d'accés al fitxer de configuració del dimoni
+      central de CUPS, <filename>/etc/cups/cupsd.conf</filename>, que té una
+      sintaxi comparable a la del fitxer de configuració d'Apache. El control
+      d'accés es configura mitjançant seccions <emphasis>Location</emphasis>.
+      Per exemple, la secció global per defecte (el directori arrel d'IPP) 
+      es pareix a açò:
+      <!--You can refine access control in the central CUPS daemon configuration
+      file, <filename>/etc/cups/cupsd.conf</filename>, which has a syntax
+      that is comparable to the Apache configuration file. Access control
+      is configured through <emphasis>Location</emphasis> sections. For
+      example, the default global (IPP root directory) section looks like
+      this:-->
+    </para>
+    
+    <screen>
+&lt;Location /&gt;
+Order Deny,Allow
+Deny From All
+Allow From 127.0.0.1
+&lt;/Location&gt;
+    </screen>
+
+    <para>
+      Com pots veurer les sentències deny es manejen primer, a continuació 
+      les allow. En la configuració per defecte, l'accés és denegat desde 
+      tots els hosts, excepte per a <emphasis>127.0.0.1</emphasis>, 
+      <emphasis>localhost</emphasis>. Ara suposa que t'agradaria permetre
+      als ordinadors de la xarxa local, que utilitzen l'espai d'adreçament
+      <emphasis>192.168.1.0/24</emphasis>, utilitzar les impressores al
+      sistema on estàs configurant el CUPS. En este cas podries afegir
+      la línia que està en negreta:
+      <!--As you can see deny statements are handled first, and then allow
+      statements. In the default configuration access is denied from
+      all hosts, except for <emphasis>127.0.0.1</emphasis>, 
+      <emphasis>localhost</emphasis>. Suppose that you would like to
+      allow hosts from the local network, which uses the 
+      <emphasis>192.168.1.0/24</emphasis> address space, to use the
+      printers on the system you are configuring CUPS on. In this
+      case you could add the line that is bold:-->
+    </para>
+
+    <screen>
+&lt;Location /&gt;
+Order Deny,Allow
+Deny From All
+Allow From 127.0.0.1
+<emphasis role="bold">Allow From 192.168.1.0/24</emphasis>
+&lt;/Location&gt;
+    </screen>
+
+    <para>
+      Pots refinar altres localitzacions en l'espai d'adreçament, afegint
+      seccions location addicionals. Les configuracions per a subdirectoris
+      sobreescriuen les globals. Per exemple, podries restringir l'accés a 
+      la impressora <emphasis>epson</emphasis> als hosts amb adreces IP 
+      <emphasis>127.0.0.1</emphasis> i <emphasis>192.168.1.203</emphasis>
+      afegint la secció següent:
+
+      <!--You can refine other locations in the address space by adding
+      additional location sections. Settings for sub-directories override
+      global settings. For example, you could restrict access to the
+      <emphasis>epson</emphasis> printer to the hosts with IP addresses
+      <emphasis>127.0.0.1</emphasis> and <emphasis>192.168.1.203</emphasis>
+      by adding the following section:-->
+    </para>
+
+    <screen>
+&lt;Location /printers/epson&gt;
+Order Deny,Allow
+Deny From All
+Allow From 127.0.0.1
+Allow From 192.168.1.203
+&lt;/Location&gt;
+    </screen>
+  </sect1>
+
+  <sect1 id="printing-gspapersize">
+    <title>Tamany del paper Ghostscript <!--Ghostscript paper size--></title>
+
+    <indexterm><primary>Ghostscript</primary><secondary>paper size</secondary></indexterm>
+
+    <para>
+      Ghostscript és un intèrpret PostScript i (<acronym>PDF</acronym>) 
+      (Portable Document Format, format portable de documents). Tant
+      el PostScript com el PDF són llenguatges que descriuen dades
+      que es poden imprimir. GhostScript s'utilitza per convertir 
+      PostScript i PDF a un format de trama que es pot mostrar per 
+      pantalla o imprimir. La majoria de programes de UNIX són capaços
+      d'enviar a la eixida PostScript, mentres que la cua d'impressió 
+      de CUPS utilitza GhostScript per a convertir este PostScript al 
+      format de trama que una impressora en particular entén.
+
+      <!--Ghostscript is a PostStript and Portable Document Format
+      (<acronym>PDF</acronym>) interpreter. Both PostScript and
+      PDF are languages that describe data that can be printed.
+      Ghostscript is used to
+      convert PostScript and PDF to raster formats that can be
+      displayed on the screen or printed. Most UNIX programs
+      output PostScript, the CUPS spooler uses GhostScript to convert
+      this PostScript to rasterized format that a particular printer
+      understands.-->
+    </para>
+
+    <para>
+      Hi ha alguns paràmetres de configuració de GhostScript que pot
+      resultar d'utilitat canviar en algunes situacions. Aquesta secció
+      descriu com pots canviar el tamany de paper que GhostScript 
+      utilitza per defecte.
+      <!--There are some Ghostscript configuration settings that may
+      be useful to change in some situations. This section describes
+      how you can change the default paper size that Ghostscript
+      uses.-->
+    </para>
+
+    <note>
+      <para>
+	ALgunes impressores de gamma alta poden interpretar PostScript
+	directament. Convertir a format de trama no és necessari per 
+	aquestes impressores.
+        <!--Some higher-end printers can directly interpret PostScript.
+        Rasterization is not needed for these printers.-->
+      </para>
+    </note>
+
+    <para>
+      Per defecte GhostScript utilitza el paper US letter com a tamany
+      per defecte. El tamany del paper es configura a 
+      <filename>/usr/share/ghostscript/x.xx/lib/gs_init.ps</filename>,
+      on <emphasis>x.xx</emphasis> s'hauria de substituir per el
+      número de versió de GhostScript. No molt lluny del començament del
+      fitxer hi ha dos línies que comentades amb un signe de percent (%),
+      que s'assemblen a açò:
+      <!--By default Ghostscript uses US letter paper as the default
+      paper size. The paper size is configured in
+      <filename>/usr/share/ghostscript/x.xx/lib/gs_init.ps</filename>,
+      in which <emphasis>x.xx</emphasis> should be replaced by
+      the Ghostscript version number. Not far after the beginning
+      of the file there are two lines that are commented out with
+      a percent (%) sign, that look like this:-->
+    </para>
+
+    <screen>
+% Optionally choose a default paper size other than U.S. letter.
+% (a4) /PAPERSIZE where { pop pop } { /PAPERSIZE exch def } ifelse
+    </screen>
+
+    <para>
+      Pots canviar la configuració de GhostScript per a que utilitze
+      A4 com a tamany de paper per defecte esborrant el signe de percent
+      i l'espai a l'inici de la segona línia, canviant-ho a:
+      <!--You can change the Ghostscript configuration to use A4 as the
+      default paper size by removing the percent sign and space that 
+      are at the start of the second line, changing it to:-->
+    </para>
+
+    <screen>
+% Optionally choose a default paper size other than U.S. letter.
+(a4) /PAPERSIZE where { pop pop } { /PAPERSIZE exch def } ifelse
+    </screen>
+
+    <para>
+      També és possible utilitzar un altre tamany de paper a banda
+      de letter o A4 reemplaçant <emphasis>a4</emphasis> a l'exemple
+      de dalt amb el tamany de paper que tú utilitzes. Per exemple,
+      pots definir el tamany de paper per defecte a US Legal amb:
+      <!--It is also possible to use another paper size than Letter or
+      A4 by replacing <emphasis>a4</emphasis> in the example above
+      with the paper size you want to use. For example, you could
+      set the default paper size to US Legal with:-->
+    </para>
+
+    <screen>
+% Optionally choose a default paper size other than U.S. letter.
+(legal) /PAPERSIZE where { pop pop } { /PAPERSIZE exch def } ifelse
+    </screen>
+
+    <para>
+      També es possible definir el tamany del paper en cada invocació de
+      GhostScript utilitzant el paràmetre
+      <parameter class="command">-sPAPERSIZE=size</parameter> de la 
+      ordre <command>gs</command>. Per exemple, pots afegir el paràmetre
+      <emphasis>-sPAPERSIZE=a4</emphasis> quan inicies 
+      <command>gs</command> per a utilitzar A4 com el tamany de paper
+      per a una invocació de GhostScript.
+
+      <!--It is also possible to set the paper size per invocation of
+      Ghostscript by using the
+      <parameter class="command">-sPAPERSIZE=size</parameter> parameter
+      of the <command>gs</command> command. For example, you could
+      add the <emphasis>-sPAPERSIZE=a4</emphasis> parameter when you
+      start <command>gs</command> to use A4 as the paper size for an
+      invocation of Ghostscript.-->
+    </para>
+
+    <para>
+      Un visió de conjunt del tamanys de paper suportat es pot
+      trobar al fitxer <filename>gs_statd.ps</filename>, que es pot
+      trobar en el mateix directori que <filename>gs_init.ps</filename>.
+      <!--An overview of supported paper sizes can be found in the
+      <filename>gs_statd.ps</filename>, that can be found in the
+      same directory as <filename>gs_init.ps</filename>.-->
+    </para>
+  </sect1>
+
+</chapter>

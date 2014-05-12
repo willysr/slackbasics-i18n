@@ -1,0 +1,172 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 24. The Internet super server</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="netadmin.html" title="Part VI. Administració de xarxa">
+<link rel="prev" href="ipsec.html" title="Chapter 23. IPsec">
+<link rel="next" href="apache.html" title="Chapter 25. Apache">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 24. The Internet super server</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="ipsec.html">Prev</a> </td>
+<th width="60%" align="center">Part VI. Administració de xarxa</th>
+<td width="20%" align="right"> <a accesskey="n" href="apache.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm961542540"></a>Chapter 24. The Internet super server</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="inetd.html#idm961542220">24.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="inetd.html#idm961540572">24.2. Configuration</a></span></dt>
+<dt><span class="sect1"><a href="inetd.html#idm961534484">24.3. TCP wrappers</a></span></dt>
+</dl>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961542220"></a>24.1. Introduction</h2></div></div></div>
+<p>
+There are two ways to offer TCP/IP services: by running server
+applications standalone as a daemon or by using the Internet
+super server, <span class="command"><strong>inetd</strong></span>. <span class="command"><strong>inetd</strong></span>
+is a daemon which monitors a range of ports. If a client attempts
+to connect to a port <span class="command"><strong>inetd</strong></span> handles the connection
+and forwards the connection to the server software which handles
+that kind of connection. The advantage of this approach is
+that it adds an extra layer of security and it makes it easier
+to log incoming connections. The disadvantage is that it is
+somewhat slower than using a standalone daemon. It is thus
+a good idea to run a standalone daemon on, for example, 
+a heavily loaded FTP server.
+</p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961540572"></a>24.2. Configuration</h2></div></div></div>
+<p>
+<span class="command"><strong>inetd</strong></span> can be configured using the
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/inetd.conf</code></html:span> file. Let's have a look at
+an example line from <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">inetd.conf</code></html:span>:
+</p>
+<pre class="screen">
+# File Transfer Protocol (FTP) server:
+ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
+</pre>
+<p>
+This line specifies that <span class="command"><strong>inetd</strong></span> should accept
+FTP connections and pass them to <span class="command"><strong>tcpd</strong></span>. This
+may seem a bit odd, because <span class="command"><strong>proftpd</strong></span> normally 
+handles FTP connections. You can also specify to use <span class="command"><strong>proftpd</strong></span>
+directly in <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">inetd.conf</code></html:span>, but Slackware Linux normally
+passes the connection to <span class="command"><strong>tcpd</strong></span>. This program
+passes the connection to <span class="command"><strong>proftpd</strong></span> in turn, as specified.
+<span class="command"><strong>tcpd</strong></span> is used to monitor services and to provide
+host based access control.
+</p>
+<p>
+Services can be disabled by adding the comment character (#) at
+the beginning of the line. It is a good idea to disable all services
+and enable services you need one at a time. After changing
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/inetd.conf</code></html:span> <span class="command"><strong>inetd</strong></span>
+needs to be restarted to activate the changes. This can be done
+by sending the HUP signal to the inetd process:
+</p>
+<pre class="screen">
+# <span class="command"><strong>ps ax | grep 'inetd'</strong></span>
+   64 ?        S      0:00 /usr/sbin/inetd
+# <span class="command"><strong>kill -HUP 64</strong></span>
+</pre>
+<p>
+  Or you can use the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">rc.inetd</code></html:span> initialization script to
+  restart <span class="command"><strong>inetd</strong></span>:
+</p>
+<pre class="screen">
+# <span class="command"><strong>/etc/rc.d/rc.inetd restart</strong></span>
+</pre>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961534484"></a>24.3. TCP wrappers</h2></div></div></div>
+<p>
+As you can see in <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/inetd.conf</code></html:span> connections for most
+protocols are made through <span class="command"><strong>tcpd</strong></span>, instead of directly 
+passing the connection to a service program. For example:
+</p>
+<pre class="screen">
+# File Transfer Protocol (FTP) server:
+ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  proftpd
+</pre>
+<p>
+In this example ftp connections are passed through <span class="command"><strong>tcpd</strong></span>.
+<span class="command"><strong>tcpd</strong></span> logs the connection through syslog and allows for
+additional checks. One of the most used features of <span class="command"><strong>tcpd</strong></span>
+is host-based access control. Hosts that should be denied are controlled
+via <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/hosts.deny</code></html:span>, hosts that should be allowed
+via <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/hosts.allow</code></html:span>. Both files have one rule on
+each line of the following form:
+</p>
+<pre class="screen">
+service: hosts
+</pre>
+<p>
+Hosts can be specified by hostname or IP address. The ALL keyword specifies
+all hosts or all services.
+</p>
+<p>
+Suppose we want to block access to all services managed through 
+<span class="command"><strong>tcpd</strong></span>, except for host 
+<span class="quote">“<span class="quote">trusted.example.org</span>”</span>. To do this the following
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hosts.deny</code></html:span> and <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hosts.allow</code></html:span>
+files should be created.
+</p>
+<p>
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/hosts.deny</code></html:span>:
+</p>
+<pre class="screen">
+ALL: ALL
+</pre>
+<p>
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/hosts.allow</code></html:span>:
+</p>
+<pre class="screen">
+ALL: trusted.example.org
+</pre>
+<p>
+In the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hosts.deny</code></html:span> access is blocked to all (ALL)
+services for all (ALL) hosts. But <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hosts.allow</code></html:span>
+specifies that all (ALL) services should be available to
+<span class="quote">“<span class="quote">trusted.example.org</span>”</span>.
+</p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="ipsec.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="netadmin.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="apache.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 23. IPsec </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 25. Apache</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

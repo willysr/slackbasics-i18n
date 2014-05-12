@@ -1,0 +1,186 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 25. Apache</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="netadmin.html" title="Part VI. Administració de xarxa">
+<link rel="prev" href="inetd.html" title="Chapter 24. The Internet super server">
+<link rel="next" href="bind.html" title="Chapter 26. BIND">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 25. Apache</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="inetd.html">Prev</a> </td>
+<th width="60%" align="center">Part VI. Administració de xarxa</th>
+<td width="20%" align="right"> <a accesskey="n" href="bind.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm961527996"></a>Chapter 25. Apache</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="apache.html#idm961527708">25.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="apache.html#idm961527092">25.2. Installation</a></span></dt>
+<dt><span class="sect1"><a href="apache.html#idm961522100">25.3. User directories</a></span></dt>
+<dt><span class="sect1"><a href="apache.html#idm961519540">25.4. Virtual hosts</a></span></dt>
+</dl>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961527708"></a>25.1. Introduction</h2></div></div></div>
+<p>
+Apache is the most popular web server since April 1996. It was originally
+based on NCSA httpd, and has grown into a full-featured HTTP server.
+Slackware Linux currently uses the 1.3.x branch of Apache. This chapter is 
+based on Apache 1.3.x. 
+</p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961527092"></a>25.2. Installation</h2></div></div></div>
+<p>
+Apache can be installed by
+adding the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">apache</code></html:span> package from the <span class="quote">“<span class="quote">n</span>”</span> disk set.
+If you also want to use PHP, the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">php</code></html:span> (<span class="quote">“<span class="quote">n</span>”</span> disk set)
+and <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">mysql</code></html:span> (<span class="quote">“<span class="quote">ap</span>”</span> disk set) are also required.
+MySQL is required, because the precompiled PHP depends on MySQL shared 
+libraries. You do not have to run MySQL itself. After installing Apache
+it can be started automatically while booting the system by making
+the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.httpd</code></html:span> file executable. You
+can do this by executing: 
+</p>
+<pre class="screen">
+# <span class="command"><strong>chmod a+x /etc/rc.d/rc.httpd</strong></span>
+</pre>
+<p>
+The Apache configuration can be altered in the 
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/apache/httpd.conf</code></html:span> file. Apache can be
+stopped/started/restarted every moment with the <span class="command"><strong>apachectl</strong></span>
+command, and the <em class="parameter"><code>stop</code></em>, 
+<em class="parameter"><code>start</code></em> and 
+<em class="parameter"><code>restart</code></em> parameters. For example,
+execute the following command to restart Apache:
+</p>
+<pre class="screen">
+# <span class="command"><strong>apachectl restart</strong></span>
+/usr/sbin/apachectl restart: httpd restarted
+</pre>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961522100"></a>25.3. User directories</h2></div></div></div>
+<p>
+Apache provides support for so-call user directories. This means every
+user gets web space in the form of <span class="emphasis"><em>http://host/~user/</em></span>. The
+contents of <span class="quote">“<span class="quote">~user/</span>”</span> is stored in a subdirectory in the
+home directory of the user. This directory can be specified using the
+<span class="quote">“<span class="quote">UserDir</span>”</span> option in <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">httpd.conf</code></html:span>, for
+example:
+</p>
+<pre class="screen">
+UserDir public_html
+</pre>
+<p>
+This specifies that the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">public_html</code></html:span> directory should
+be used for storing the web pages. For example, the web pages at URL 
+<span class="emphasis"><em>http://host/~snail/</em></span> are stored in 
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/home/snail/public_html</code></html:span>.
+</p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961519540"></a>25.4. Virtual hosts</h2></div></div></div>
+<p>
+The default documentroot for Apache under Slackware Linux is
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/var/www/htdocs</code></html:span>. Without using virtual hosts
+every client connecting to the Apache server will receive the
+website in this directory. So, if we have two hostnames pointing
+to the server, <span class="quote">“<span class="quote">www.example.org</span>”</span> and 
+<span class="quote">“<span class="quote">forum.example.org</span>”</span>, both will display the same website.
+You can make separate sites for different hostnames by using
+virtual hosts.
+</p>
+<p>
+In this example we are going to look how you can make two virtual
+hosts, one for <span class="quote">“<span class="quote">www.example.org</span>”</span>, with the documentroot
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/var/www/htdocs-www</code></html:span>, and <span class="quote">“<span class="quote">forum.example.org</span>”</span>,
+with the documentroot <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/var/www/htdocs-forum</code></html:span>. First
+of all we have to specify which IP addresses Apache should listen to.
+Somewhere in the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/apache/httpd.conf</code></html:span> configuration
+file you will find the following line:
+</p>
+<pre class="screen">
+#NameVirtualHost *:80
+</pre>
+<p>
+This line has to be commented out to use name-based virtual hosts.
+Remove the comment character
+(#) and change the parameter to <span class="quote">“<span class="quote">BindAddress IP:port</span>”</span>, or
+<span class="quote">“<span class="quote">BindAddress *:port</span>”</span> if you want Apache to bind to all IP addresses
+the host has. Suppose we want to provide virtual hosts for IP address 
+192.168.1.201 port 80 (the default Apache port),
+we would change the line to:
+</p>
+<pre class="screen">
+NameVirtualHost 192.168.1.201:80
+</pre>
+<p>
+Somewhere below the NameVirtualHost line you can find a commented example
+of a virtualhost:
+</p>
+<pre class="screen">
+#&lt;VirtualHost *:80&gt;
+#    ServerAdmin webmaster@dummy-host.example.com
+#    DocumentRoot /www/docs/dummy-host.example.com
+#    ServerName dummy-host.example.com
+#    ErrorLog logs/dummy-host.example.com-error_log
+#    CustomLog logs/dummy-host.example.com-access_log common
+#&lt;/VirtualHost&gt;
+</pre>
+<p>
+You can use this example as a guideline. For example, if we want to use
+all the default values, and we want to write the logs for both virtual
+hosts to the default Apache logs, we would add these lines:
+</p>
+<pre class="screen">
+&lt;VirtualHost 192.168.1.201:80&gt;
+	DocumentRoot /var/www/htdocs-www
+	ServerName www.example.org
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost 192.168.1.201:80&gt;
+	DocumentRoot /var/www/htdocs-forum
+	ServerName forum.example.org
+&lt;/VirtualHost&gt;
+</pre>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="inetd.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="netadmin.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="bind.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 24. The Internet super server </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 26. BIND</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

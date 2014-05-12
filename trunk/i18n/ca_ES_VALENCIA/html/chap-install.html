@@ -1,0 +1,972 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 5. La instal·lació de Slackware Linux</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="getstarted.html" title="Part I. Per començar ??Getting started??">
+<link rel="prev" href="concepts.html" title="Chapter 4. Conceptes generals">
+<link rel="next" href="custom-installation.html" title="Chapter 6. Custom installation">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 5. La instal·lació de Slackware Linux </th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="concepts.html">Prev</a> </td>
+<th width="60%" align="center">Part I. Per començar ??Getting started??</th>
+<td width="20%" align="right"> <a accesskey="n" href="custom-installation.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="chap-install"></a>Chapter 5. La instal·lació de Slackware Linux </h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="chap-install.html#chap-install-bootcd">5.1. Llançar el CD d'instal·lació </a></span></dt>
+<dt><span class="sect1"><a href="chap-install.html#chap-install-partitioning">5.2. Particionar un disc dur </a></span></dt>
+<dt><span class="sect1"><a href="chap-install.html#chap-install-installing">5.3. Instal·lant Slackware Linux</a></span></dt>
+</dl>
+</div>
+  
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-install-bootcd"></a>5.1. Llançar el CD d'instal·lació </h2></div></div></div>
+    
+
+    <p>
+		El mètode més senzill per a llançar el sistema d'instal·lació és
+		mitjançant el CD-ROM d'instal·lació. Aquest és un CD arrencable,
+		el que significa que la BIOS pot llançar el CD, de la mateixa 
+		manera que pot llançar, per exemple, un disquet. La majoria dels
+		sistemes moderns porten una BIOS que suporta la càrrega de CD-ROM.
+		
+      
+    </p>
+
+    <p>
+		Si una vegada inserit el CD, no es carrega al engegar-se el sistema,
+		normalment vol dir que la seqüència de llançament no està 
+		configurada correctament a la BIOS. Accedeix a la configuració 
+		de la BIOS (normalment açò es pot aconseguir pitjant la tecla
+		&lt;Del&gt; o &lt;Esc&gt; quan apareix la pantalla de la BIOS).
+		i assabentar-te que el CD-ROM està dalt de tot en la llista en 
+		la seqüència de llançament. És possible que si estàs utilitzant 
+		un CD-ROM SCSI tingues que configurar la seqüència a la BIOS de
+		SCSI, enlloc de la BIOS del sistema. Per a més informació 
+		consulta el manual de la targeta SCSI.
+      
+    </p> 
+
+    <p>
+		Quan el CD-ROM es carrega, apareix una pantalla de pre-llançament.
+		Normalment, es pot pitjar senzillament &lt;ENTER&gt; per a procedir
+		a la càrrega del núcli Linux per defecte ((<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hugesmp.s
+		</code></html:span>). Este núcli requereix, almenys, una CPU Pentium PRO.
+		Es pot llançar un núcli alternatiu introduïnt el nom del núcli
+		al símbol del sistema i pitjant &lt;ENTER&gt;. La taula següent
+		llista els diferents núclis disponibles al CD/DVD de Slackware 
+		Linux.
+      
+    </p>
+
+    <div class="table">
+<a name="chap-install-bootcd-installkernels"></a><p class="title"><b>Table 5.1. Núclis d'instal·lació</b></p>
+<div class="table-contents">
+      
+
+      <table summary="Núclis d'instal·lació" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Linux</th>
+<th>Descripció</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>huge.s</td>
+<td>
+			Abans, hi havia núclis específics per a les diferents 
+			controladores de disc. Els nous núclis huge(enorme) inclouen
+			suport per a totes les controlades ATA, SATA i SCSI comunes.
+			Este núcli no incorpora suport per a SMP, i funciona en 
+			processadors i486 i més moderns. Si tens una CPU Pentium Pro
+			o més moderna, es recomana utilitzar el núcli <span class="emphasis"><em>
+			hugesmp.s</em></span>, fins i tot en sisteme amb només un 
+			processador.
+		  
+	    </td>
+</tr>
+<tr>
+<td>hugesmp.s</td>
+<td>
+			El núcli <span class="emphasis"><em>hugesmp.s</em></span> té suport per a les
+			controladores ATA, SATA i SCSI més comunes, a més, este núcli
+			incorpora suport SMP. Aquest és el núcli recomanat amb CPUs
+			Pentium PRO i més modernes.
+	      
+	    </td>
+</tr>
+<tr>
+<td>speakup.s</td>
+<td>
+			Aquest núcli és comparabla al <span class="emphasis"><em>huge.s</em></span>,
+			per afegeix suport per a  de maquinari de sistetitzadors de 
+			veu.
+	      
+	    </td>
+</tr>
+</tbody>
+</table>
+    </div>
+</div>
+<br class="table-break">
+
+    <p>
+		Després de llançar el sistema d'instal·lació, se't preguntarà si
+		estàs utilitzant un teclat especial (nacional) o no. Si tens un
+		teclat US/International normal, el què és el més comú, pots
+		pitja senzillament &lt;Enter&gt; en aquesta pregunta. Després
+		d'això apareixerà la pantalla d'inici de sessió. Inicia-la com 
+		<span class="quote">“<span class="quote">root	</span>”</span>, no et demanarà contrasenya. Després 
+		d'iniciar sessió, s'engega l'interpret i ja pots començar a 
+		instal·lar Slackware Linux. Aquest procés s'explica breument en
+		aquest capítol.
+		 
+      
+    </p>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-install-partitioning"></a>5.2. Particionar un disc dur </h2></div></div></div>
+    
+
+    <p>
+		Instalar Slackware Linux requereix almenys una partició de Linux,
+		a més es recomana crear una partició swap (intercanvi). Per a
+		poder crear una partició ha d'haver espai lliure sense particionar
+		al disc. Hi ha alguns programes que poden redimensionar particions.
+		Per exemple, FIPS pot redimensionar particions FAT. Programes
+		comercials com Partition Magic també poden redimensionar altres
+		tipus de particions.
+      
+    </p>
+
+    <p>
+		Després de llançar la el CD-ROM Slackware Linux i de iniciar
+		sessió tens dos programes a la teua disposició: <span class="command"><strong>fdisk
+		</strong></span> i <span class="command"><strong>cfdisk</strong></span>. <span class="command"><strong>cfdisk</strong></span> 
+		és el més senzill dels dos perque es controla mitjaçant una 
+		interfície de menús. Aquesta secció descriu el programa
+		<span class="command"><strong>cfdisk</strong></span>.
+		
+      
+    </p>
+
+    <p>
+		Per a particionar el primer disc dur pots, simplement, executar 
+		<span class="command"><strong>cfdisk</strong></span>. En cas de que vulgues particionar
+		algún altre disc o un disc SCSI, hauràs d'especificar quin disc
+		vols particionar (<span class="command"><strong>cfdisk /dev/device</strong></span>). Els
+		discs durs ATA s'identifiquen mitjançant la següent nomenclatura:
+		<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/hdn</code></html:span>, amb <span class="quote">“<span class="quote">n</span>”</span> reemplaçat
+		per un caràcter, per exemple. el <span class="quote">“<span class="quote">mestre primari</span>”</span> 
+		es diu <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/hda</code></html:span>, l'<span class="quote">“<span class="quote">esclau secundari
+		</span>”</span> es diu <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/hdd</code></html:span>. Els discs SCSI
+		es diuen de la següent manera: <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/sdn</code></html:span>,
+		canviant la <span class="quote">“<span class="quote">n</span>”</span> pel caràcter corresponent(el primer
+		disc SCSI = a, el quart disc SCSI = d).
+		
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-partitioning-cfdisk"></a><p class="title"><b>Figure 5.1. La eina de particionat cfdisk</b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/cfdisk.png" alt="La eina de particionat cfdisk"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Després d'iniciar <span class="command"><strong>cfdisk</strong></span> es mostren les 
+		particions existens així com la quantitat d'espai lliure. La
+		llista de particions pot ser navegada amb les tecles de fletxa 
+		<span class="quote">“<span class="quote">amunt</span>”</span> i fletxa <span class="quote">“<span class="quote">avall</span>”</span>. Baix de tot
+		de la pantalla es mostren algunes ordres, que es poden executar
+		mitjançant la tecla &lt;Enter&gt;.
+		
+      
+    </p>
+
+    <p>
+		Pots crear una partició de Linux seleccionant <span class="quote">“<span class="quote">Free
+      Space</span>”</span> (espai lliure) i executant la ordre <span class="quote">“<span class="quote">New</span>”</span>.
+      <span class="command"><strong>cfdisk</strong></span> preguntará si el que vols crear és una
+      partició primaria o lògica. Es poden crear un màxim de quatre 
+      particions primàries i Linux es pot instal·lar tant en particions
+      primàries con en lògiques. Si tens pensat intal·lar altres sistemes
+      operatius a banda de Slackware Linux que requerisquen particions
+      primàries, és una bona idea que instal·les Slackware Linux en un 
+      lògica. El tipus de la nova partició es posa automàticament com 
+      <span class="quote">“<span class="quote">Linux Native</span>”</span>, així que no és necessari posar-lo.
+      
+      
+    </p>
+
+    <p>
+		La creació d'un partició d'intercanvi (swap) involucra els 
+		mateixos passos que una partició normal de Linux, només que el
+		tipus de la partició s'ha de canviar a <span class="quote">“<span class="quote">Linux Swap</span>”</span>
+		després de crear la partició. El tamany recomanat per a la
+		partició d'intercanvi dependrà de les teues necessitats. La 
+		partició d'intercanvi s'utilitza per a emmagatzemar programes
+		si la memòria principal (RAM) està plena. Si tens un disc dur
+		d'un tamany raonable és bona idea crear-ne una de 256MB o 512MB,
+		el que serà suficient per al funcionament normal. Després de
+		crear la partició, es pot canviar el tipus de partició a 
+		<span class="quote">“<span class="quote">Linux Swap</span>”</span> seleccionant la ordre <span class="quote">“<span class="quote">Type</span>”</span>,
+		<span class="command"><strong>cfdisk</strong></span> et demanarà el nombre de tipus. A les
+		partitions <span class="quote">“<span class="quote">Linux Swap</span>”</span> els correspon el tipus 
+		número 82. Normalment el número 82 ja està triat, pel que pots
+		seguir endavant pitjant la tecla &lt;Enter&gt;.
+      
+      
+    </p> 
+
+    <p>
+		Si estàs satisfet amb el particionament, pots alçar els canvis
+		executant la ordre <span class="quote">“<span class="quote">Write</span>”</span>. Aquesta operació s'ha
+		de confirmar introduïnt <span class="command"><strong>yes</strong></span> (sí). Després de
+		alçar els canvis es pot deixar el <span class="command"><strong>cfdisk</strong></span> amb
+		la ordre <span class="command"><strong>Quit</strong></span>. És una bona idea reiniciar
+		l'ordinador abans d'iniciar la instal·lació, per a assabentar-nos
+		de que els canvis en el particionament estàn actius. Pitja 
+		&lt;ctrl&gt; + &lt;alt&gt; + &lt;del&gt; per a t el Linux
+		i reiniciar l'ordinador.
+      
+      
+    </p>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-install-installing"></a>5.3. Instal·lant Slackware Linux</h2></div></div></div>
+    
+
+    <p>
+		L'instal·lador de Slackware Linux s'inicia executant <span class="command"><strong>
+		setup</strong></span> a l'interpret del disc d'instal·lació. Setup
+		mostrarà un menú amb vàries opcions. Pots veurer una captura de
+		pantalla del instal·lador a <a class="xref" href="chap-install.html#chap-install-installing-setup" title="Figure 5.2. La eina setup">Figure 5.2, “La eina setup ”</a>. 
+		Es requereixen completar totes les opcions per a fer una 
+		instal·lació completa, però una vegada que has començat, el 
+		programa et guiará a través d'elles.
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-setup"></a><p class="title"><b>Figure 5.2. La eina setup </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/setup.png" alt="La eina setup"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		La primera part de la instal·lació s'anomena <span class="quote">“<span class="quote">ADDSWAP
+		</span>”</span>. La eina <span class="command"><strong>setup</strong></span> buscarà una partició
+		del tipus <span class="quote">“<span class="quote">Linux Swap</span>”</span> i et preguntarà si vols 
+		formatar-la i activar-la (mira la figura <a class="xref" href="chap-install.html#chap-install-installing-addswap" title="Figure 5.3. Preparant la partició d'intercanvi">Figure 5.3, “Preparant la partició d'intercanvi ”</a>). Normalment pots,
+		senzillament, contestar <span class="quote">“<span class="quote">Yes</span>”</span>.
+      
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-addswap"></a><p class="title"><b>Figure 5.3. Preparant la partició d'intercanvi </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/addswap.png" alt="Preparant la partició d'intercanvi"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Després de preparar l'espai d'intercanvi, es llança el  menú 
+		<span class="quote">“<span class="quote">TARGET</span>”</span>, que es pot veurer a <a class="xref" href="chap-install.html#chap-install-installing-partselect" title="Figure 5.4. Seleccionant una partició a inicialitzar">Figure 5.4, “Seleccionant una partició a inicialitzar ”</a>. Este apartat 
+		acostuma a inicialitzar les particions de Slackware Linux. Setup 
+		mostrarà totes les particions tipus <span class="quote">“<span class="quote">Linux Native</span>”</span>.
+      
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-partselect"></a><p class="title"><b>Figure 5.4. Seleccionant una partició a inicialitzar </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/partselect.png" alt="Seleccionant una partició a inicialitzar"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Després de triar una partició, la eina setup et preguntarà si 
+		vols formatar la partició o no, i en eixe cas, si vols comprovar
+		si el disc conté sectors defectuosos. (<a class="xref" href="chap-install.html#chap-install-installing-fscheck" title="Figure 5.5. Formatant la partició">Figure 5.5, “Formatant la partició ”</a>). La comprovació de
+		disc pot prendre molt de temps.
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-fscheck"></a><p class="title"><b>Figure 5.5. Formatant la partició </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/fscheck.png" alt="Formatant la partició"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Després de triar que volem formatar una partició, es pot
+		especificar quin sistema de fitxers s'hauria d'utilitzar. 
+		Normalment, pots triar entre ext2, ext3 i reiserfs.	Ext2 va ser 
+		el sistema de fitxers estàndard durant molt anys, pero no 
+		suportava journaling (registres diaris). Un diari (journal) és
+		un fitxer especial o una àrea de una partició en què es registren
+		totes les operacions del sistema de fitxers. Quan el sistema
+		té un accident, el sistema de fitxers es pot arreglar ràpidament,
+		perque el núcli pot utilitzar el diari per a veurer quines 
+		operacions de disc s'havien realitzat. Ext3 és el mateix 
+		sistema de fitxers que ext2, però afig journaling. Reiserfs és 
+		un sistema de fitxers que també	proporciona journaling, però 
+		utilitza arbres balancejats, el que fa que moltes operacions
+		sobre disc siguen més ràpides que amb Ext2 o Ext3, especialment
+		al treballar amb molts fitxers menuts. El defecte és que al ser
+		més nou, pot ser una miqueta més inestable.
+		
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-filesystem"></a><p class="title"><b>Figure 5.6. Triant el tipus de sistema de fitxers </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/filesystem.png" alt="Triant el tipus de sistema de fitxers"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		La primer partició inicialitzada es munta automàticament com 
+		la partició arrel (/). Per a altres particions, es pot triar
+		el punt de muntatge després de la inicialització. Tú pots, 
+		per exemple, crear particions separades per a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/</code></html:span>,
+		<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/var</code></html:span>, <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/tmp</code></html:span>,
+		<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/home</code></html:span> i <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr</code></html:span>. Açò
+		proporciona una protecció extra contra accidents. Com 
+		<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/</code></html:span> es canvia molt rarament després de la 
+		instal·lació, si crees estes particions, la probabilitat de que
+		estiguen enmig d'una operació d'escriptura durant un accident és
+		molt menor. A més, és més segur crear un sistema de fitxers
+		distint per a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/home</code></html:span> ja que si un programa
+		té una vulnerabilitat, un usuari podria crear un enllaç dur al
+		binari d'eixe programa sempre i quan el directori 
+		<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/home</code></html:span> està en el mateix sistema de fitxers 
+		que les carpeta <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/{s}bin</code></html:span>, 
+		<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/{s}bin</code></html:span>, o <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/local/{s}bin
+		</code></html:span>. En aquest cas, l'usuari continuarà podent accedir 
+		al vell i vulnerable binari després de que el programa siga
+		actualitzat.
+      
+    </p>
+
+    <p>
+		El següent pas és seleccionar el medi origen (<a class="xref" href="chap-install.html#chap-install-installing-medium" title="Figure 5.7. Triant el medi origen">Figure 5.7, “Triant el medi origen ”</a>). Este diàleg t'ofereix
+      vàries opcions, com la instal·lació de Slackware Linux des d'un 
+      CD-ROM o via NFS. La primera opció és la més comuna alhora 
+      d'instal·lar Slackware Linux, pel que és el mètode que veurem ací.
+      Després de triar <span class="quote">“<span class="quote">CD-ROM</span>”</span> se't demanarà si vols que 
+      setup localitze el CD-ROM (<span class="quote">“<span class="quote">Auto</span>”</span>) o si per contra
+      vols triar el dispositiu tú mateix (<span class="quote">“<span class="quote">Manual</span>”</span>). Si 
+      tries <span class="quote">“<span class="quote">Manual</span>”</span> la eina setup et mostrarà una llista
+      de dispositius, tria el dispositiu que conté el CD-ROM de Slackware
+      Linux.
+      
+      
+    </p> 
+
+    <div class="figure">
+<a name="chap-install-installing-medium"></a><p class="title"><b>Figure 5.7. Triant el medi origen </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/medium.png" alt="Triant el medi origen"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Després de triar un origen de la instal·lació, la eina setup
+		et demanarà de quins conjunt de discs (series) vols instal·lar 
+		paquets (<a class="xref" href="chap-install.html#chap-install-installing-disksets" title="Figure 5.8. Triant els conjunts de discs">Figure 5.8, “Triant els conjunts de discs”</a>). 
+		Es llista una xicoteta descripció de capa conjunt de discs.
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-disksets"></a><p class="title"><b>Figure 5.8. Triant els conjunts de discs</b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/disksets.png" alt="Triant els conjunts de discs"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Pràcticament ha arribat l'hora de començar la instal·lació real. 
+		La següent pantalla et demana què t'agradaria instalar. Les 
+		opcions	més evidents són <span class="quote">“<span class="quote">full</span>”</span>, <span class="quote">“<span class="quote">menu</span>”</span>
+		o <span class="quote">“<span class="quote">expert</span>”</span>. Si es selecciona <span class="quote">“<span class="quote">full</span>”</span> 
+		instal·larà tots els paquets continguts als conjunts de discs
+		seleccionats. Esta és la manera més senzilla d'instal·lar 
+		Slackware Linux. L'inconvenient d'aquesta tria és que pot 
+		ocupar molt d'espai de disc. La opció <span class="quote">“<span class="quote">menu</span>”</span>
+		preguntarà quins paquets vols instal·lar de cada conjunt de
+		discs. La opció <span class="quote">“<span class="quote">expert</span>”</span> és pràcticament igual que
+		<span class="quote">“<span class="quote">menu</span>”</span>, només que et permet deseleccionar alguns 
+		paquets realment importants del conjunt de discs <span class="quote">“<span class="quote">a</span>”</span>.
+		
+      
+    </p>
+
+    <p>
+		Una vegada s'ha completat la instal·lació l'eina setup et
+		permetrà configurar algunes parts del sistema. El primer diàleg
+		et demanarà des d'on vodries instal·lar el núcli (mira <a class="xref" href="chap-install.html#chap-install-installing-installkernel" title="Figure 5.9. Instal·lant el núcli">Figure 5.9, “Instal·lant el núcli”</a>). Normalment
+		és una bona idea instal·lar el núcli des d'el CD-ROM de 
+		Slackware Linux, açò seleccionarà el núcli amb el que la vas 
+		instal·lar. Pots confirmar açò o triar un altre núcli.
+	
+		
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-installkernel"></a><p class="title"><b>Figure 5.9. Instal·lant el núcli</b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/kernel.png" alt="Instal·lant el núcli"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		En aquest punt pots escollir fer una disc d'arranc (<a class="xref" href="chap-install.html#chap-install-installing-bootdisk" title="Figure 5.10. Creant un disc d'arranc">Figure 5.10, “Creant un disc d'arranc ”</a>). És una bona idea 
+		ja que el pots utilitzar en cas de que la configuració del LILO 
+		es llance a perdre.
+		
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-bootdisk"></a><p class="title"><b>Figure 5.10. Creant un disc d'arranc </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/bootdisk.png" alt="Creant un disc d'arranc"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		El següent diàleg es pot utilitzar per a crear un enllaç, 
+		<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/modem</code></html:span>, que apunta al teu dispositiu
+		módem.(<a class="xref" href="chap-install.html#chap-install-installing-modem" title="Figure 5.11. Seleccionant el modem per defecte">Figure 5.11, “Seleccionant el modem per defecte ”</a>). Si no tens un modem
+		pots seleccionar <span class="emphasis"><em>no modem</em></span>.
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-modem"></a><p class="title"><b>Figure 5.11. Seleccionant el modem per defecte </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/modem.png" alt="Seleccionant el modem per defecte"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		El següent pas és triar si es vol utilitzar hotplug (<a class="xref" href="chap-install.html#chap-install-installing-hotplug" title="Figure 5.12. Habilitant l'endollat en calent">Figure 5.12, “Habilitant l'endollat en calent”</a>). Hotplug s'utilitza
+		per a configurar automàticament dispositius endollables USB,
+		PCMCIA i PCI. En línies generals, és una bona idea habilitat 
+		la connexió en calent (hotplugging), però alguns sistemes poden
+		tindre problemes amb ???el sondeig de guions d'endollat en calent.???
+		
+      The next step is to select whether you would like to use hotplug
+      (<a class="xref" href="chap-install.html#chap-install-installing-hotplug" title="Figure 5.12. Habilitant l'endollat en calent">Figure 5.12, “Habilitant l'endollat en calent”</a>).  Hotplug is used for automatically configuring pluggable
+      USB, PCMCIA and PCI devices. Generally speaking, it is a good
+      idea to enable hotplugging, but some systems may have problems
+      with the probing of the hotplug scripts.
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-hotplug"></a><p class="title"><b>Figure 5.12. Habilitant l'endollat en calent</b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/hotplug.png" alt="Habilitant l'endollat en calent"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Els passos següents són importants ja que ajuden a instal·lar 
+		LILO, el carregador de llançament del Linux. Llevat que tingues
+		experiència configurant LILO és una bona idea triar la opció 
+		<span class="emphasis"><em>simple</em></span>, la qual intenta configurar LILO 
+		automàticament (<a class="xref" href="chap-install.html#chap-install-installing-liloinstall" title="Figure 5.13. Triant el tipus d'instal·lació de LILO">Figure 5.13, “Triant el tipus d'instal·lació de LILO ”</a>).
+		
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-liloinstall"></a><p class="title"><b>Figure 5.13. Triant el tipus d'instal·lació de LILO </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/lilo.png" alt="Triant el tipus d'instal·lació de LILO"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Després d'escollir la opció <span class="emphasis"><em>simple</em></span> la
+		utilitat de configuració del LILO et preguntarà si t'agradaria
+		utilitzar un framebuffer o no (<a class="xref" href="chap-install.html#chap-install-installing-framebuffer" title="Figure 5.14. Triant la resolució framebuffer">Figure 5.14, “Triant la resolució framebuffer ”</a>). Utilitzar
+		un framebuffer et permetrà utilitzar la consola en diferents
+		resolucions, amb unes dimensions diferents a la típica de 80x25
+		cartàcters. Hi ha gent que utilitza molt la consola que prefereix
+		utilitzar un framebuffer perque els permet tindre més text a la
+		pantalla. Si no vols una consola framebuffer, o si no estàs segur,
+		pots triar <span class="emphasis"><em>estàndard</em></span> ací.
+		
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-framebuffer"></a><p class="title"><b>Figure 5.14. Triant la resolució framebuffer </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/framebuffer.png" alt="Triant la resolució framebuffer"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Després de posar el framebuffer li pots passar paràmetres extra
+		al núcli (<a class="xref" href="chap-install.html#chap-install-installing-kernel-param" title="Figure 5.15. Afegint paràmetres al núcli">Figure 5.15, “Afegint paràmetres al núcli”</a>). Açò normalment no és necessari, així que si no vols passar-li
+      paràmetre extra pots senzillament, pitjar la tecla &lt;Enter&gt;.
+      
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-kernel-param"></a><p class="title"><b>Figure 5.15. Afegint paràmetres al núcli</b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/kernel-param.png" alt="Afegint paràmetres al núcli"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		L'últim pas de la configuració del LILO consisteix a seleccionar
+		on volem que s'instal·le 
+		(<a class="xref" href="chap-install.html#chap-install-installing-lilo-dest" title="Figure 5.16. Escollint on s'hauria d'instal·lar el LILO">Figure 5.16, “Escollint on s'hauria d'instal·lar el LILO ”</a>). l'MBR és
+		el registre mestre de llançament (Master Boot Record), el 
+		registre principal de llançament en PCs. Utilitza aquesta opció 
+		si vols utilitzar Slackware Linux com l'únic Sistema Operatiu, o
+		si vols emprar el LILO per a llançar altres sistemes operatius. 
+		La opció <span class="emphasis"><em>Root</em></span> instal·larà LILO en el registre
+		de llançament de la partició <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/</code></html:span> de Slackware
+		Linux. Utilitza aquesta opció si utilitzes un altre carregador de
+		llançament.
+		
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-lilo-dest"></a><p class="title"><b>Figure 5.16. Escollint on s'hauria d'instal·lar el LILO </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/lilo-dest.png" alt="Escollint on s'hauria d'instal·lar el LILO"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Ara se't demanarà que configures el ratolí. Tria el tipus de
+		ratolí al diàleg que apareix (<a class="xref" href="chap-install.html#chap-install-installing-mouse" title="Figure 5.17. Configurant un ratolí">Figure 5.17, “Configurant un ratolí ”</a>).
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-mouse"></a><p class="title"><b>Figure 5.17. Configurant un ratolí </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/mouse.png" alt="Configurant un ratolí"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Aleshores se't preguntarà si el programa <span class="command"><strong>gpm</strong></span>
+		hauria de carregar-se en l'arranc o no 
+		(<a class="xref" href="chap-install.html#chap-install-installing-ask-load-gpm" title="Figure 5.18. Escollint si GPM s'hauria d'iniciar">Figure 5.18, “Escollint si GPM s'hauria d'iniciar”</a>).
+		<span class="command"><strong>gpm</strong></span> és un daemon que permet tallar i enganxar
+		a la consola.
+      
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-ask-load-gpm"></a><p class="title"><b>Figure 5.18. Escollint si GPM s'hauria d'iniciar</b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/ask-load-gpm.png" alt="Escollint si GPM s'hauria d'iniciar"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		A continuació, amb uns pocs passos més,es configura la
+		connectivitat de xarxa. Açò es un requeriment en pràcticament 
+		tots els sistemes en xarxa. La instal·lació de Slackware Linux
+		et preguntarà si vols configurar-la (<a class="xref" href="chap-install.html#chap-install-installing-ask-configure-network" title="Figure 5.19. Escollint si t'agradaria configurar la connectivatat de xarxa">Figure 5.19, “Escollint si t'agradaria configurar la connectivatat de xarxa
+      ”</a>). Si contestes <span class="quote">“<span class="quote">No</span>”</span> pots saltar els passos 
+		següents relatius a la xarxa.
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-ask-configure-network"></a><p class="title"><b>Figure 5.19. Escollint si t'agradaria configurar la connectivatat de xarxa
+      </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/ask-configure-network.png" alt="Escollint si t'agradaria configurar la connectivatat de xarxa"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Ara se't demanarà si vols posar el nom de màquina (<a class="xref" href="chap-install.html#chap-install-installing-hostname" title="Figure 5.20. Posant el nom de host">Figure 5.20, “Posant el nom de host ”</a>). 
+		Per favor tin en compte que aquest no és el nom de domini 
+		plenament qualificat (FQDN, Fully Qualified Domain Name), només
+		la part que representa a l'ordinador (normalment els caràcters
+		abans del primer punt en un FQDN).
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-hostname"></a><p class="title"><b>Figure 5.20. Posant el nom de host </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/hostname.png" alt="Posant el nom de host"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Després de posar el nom del host pots posar la part del domini
+		del nom de domini plenament qualificat (FQDN) (<a class="xref" href="chap-install.html#chap-install-installing-domainname" title="Figure 5.21. Posant el nom de domini">Figure 5.21, “Posant el nom de domini ”</a>).
+      
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-domainname"></a><p class="title"><b>Figure 5.21. Posant el nom de domini </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/domainname.png" alt="Posant el nom de domini"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		La resta de passos per a configurar la xarxa depenen de si els
+		nodes de la xarxa estàn configurats per a utilitzar una adreça
+		IP estàtica o dinàmica. Algunes xarxes tenen un servidor DHCP 
+		que assigna automàticament una adreça IP als nodes en la xarxa.
+		Si aquest és el cas, tria <span class="emphasis"><em>DHCP</em></span> durant el 
+		pas d'instal·lació 
+		(<a class="xref" href="chap-install.html#chap-install-installing-set-ipconfig-type" title="Figure 5.22. Configuració manual o automàtica de l'adreça IP">Figure 5.22, “Configuració manual o automàtica de l'adreça IP
+      ”</a>). Quan es selecciona DHCP només se't preguntarà si s'ha 
+		d'enviar un nom de màquina al servidor, normalment, pots deixar-ho 
+		en blanc. Si utilitzes DHCP pots saltar-te la resta de la
+		configuració de xarxa, descrita a continuació.
+      
+    </p>
+
+    <p>
+		Si la xara no té un servidor DHCP pots triar la opció
+		<span class="emphasis"><em>static IP</em></span>, que et permetrà posar manualment
+		l'adreça IP i la resta de paràmetres relacionats.
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-set-ipconfig-type"></a><p class="title"><b>Figure 5.22. Configuració manual o automàtica de l'adreça IP
+      </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/set-ipconfig-type.png" alt="Configuració manual o automàtica de l'adreça IP"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		El primer paso en la configuració manual és posar l'adreça IP
+		de la primera interfície (eth0) de la màquina (<a class="xref" href="chap-install.html#chap-install-installing-ipaddr" title="Figure 5.23. Posant l'adreça IP">Figure 5.23, “Posant l'adreça IP”</a>).
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-ipaddr"></a><p class="title"><b>Figure 5.23. Posant l'adreça IP</b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/ipaddr.png" alt="Posant l'adreça IP"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Una vegada posada l'adreça IP seràs preguntat per la màscara de
+		subxarxa, que normalment depén de la ????classe???? d'adreça IP
+      (<a class="xref" href="chap-install.html#chap-install-installing-netmask" title="Figure 5.24. Posant la màscara de subxarxa">Figure 5.24, “Posant la màscara de subxarxa”</a>).
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-netmask"></a><p class="title"><b>Figure 5.24. Posant la màscara de subxarxa</b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/netmask.png" alt="Posant la màscara de subxarxa"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Aleshores se't demanarà que poses l'adreça de la porta d'enllaç
+		(gateway) (<a class="xref" href="chap-install.html#chap-install-installing-gateway" title="Figure 5.25. Posant la porta d'enllaç">Figure 5.25, “Posant la porta d'enllaç”</a>).
+		La porta d'enllaç és la màquina en la xarxa que proporciona 
+		accés a altres xarxes mitjançant l'enrutatge de paquets. Si la 
+		teua xarxa no té porta d'enllaç pots, senzillament, colpejar la 
+		tecla &lt;ENTER&gt;.
+		
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-gateway"></a><p class="title"><b>Figure 5.25. Posant la porta d'enllaç</b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/gateway.png" alt="Posant la porta d'enllaç"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		El diàleg següent et preguntarà si vols utilitzar un servidor de
+		noms (<a class="xref" href="chap-install.html#chap-install-installing-ask-nameserver" title="Figure 5.26. Triant si vols emprar un servidor de noms o no">Figure 5.26, “Triant si vols emprar un servidor de noms o no 
+      ”</a>).
+		Un servidor de noms és un servidor que pot proporcionar l'adreça
+		IP associada a un nom de màquina. Per exemple, si naveges fins a
+		<span class="emphasis"><em>www.slackbasics.org</em></span>, el servidor de noms
+		<span class="quote">“<span class="quote">convertirà</span>”</span> el nom <span class="emphasis"><em>www.slackbasics.org
+		</em></span> a la seua adreça IP corresponent.
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-ask-nameserver"></a><p class="title"><b>Figure 5.26. Triant si vols emprar un servidor de noms o no 
+      </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/ask-nameserver.png" alt="Triant si vols emprar un servidor de noms o no"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Si vas escollir utilitzar un servidor de noms, se't donarà la oportunitat
+		de posar la seua adreça IP (<a class="xref" href="chap-install.html#chap-install-installing-nameserver" title="Figure 5.27. Posant el(s) servidor(s) de noms">Figure 5.27, “Posant el(s) servidor(s) de noms”</a>).
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-nameserver"></a><p class="title"><b>Figure 5.27. Posant el(s) servidor(s) de noms</b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/nameserver.png" alt="Posant el(s) servidor(s) de noms"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		La última pantalla de configuració de xarxa en mostra un resum
+		dels paràmetres triats, oferint-nos la oportunitat de corregir 
+		aquells paràmetres que no siguen correctes (<a class="xref" href="chap-install.html#chap-install-installing-network-confirm" title="Figure 5.28. Confirmant els paràmetres de xarxa">Figure 5.28, “Confirmant els paràmetres de xarxa ”</a>).
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-network-confirm"></a><p class="title"><b>Figure 5.28. Confirmant els paràmetres de xarxa </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/network-confirm.png" alt="Confirmant els paràmetres de xarxa"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Després de la configuració de xarxa pots posar quins serveis
+		s'haurien de iniciar (<a class="xref" href="chap-install.html#chap-install-installing-startup-services" title="Figure 5.29. Habilitant/deshabilitant serveis d'inici">Figure 5.29, “Habilitant/deshabilitant serveis d'inici ”</a>). Pots marcar o desmarcar servicis amb la tecla &lt;SPACE&gt;.
+      
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-startup-services"></a><p class="title"><b>Figure 5.29. Habilitant/deshabilitant serveis d'inici </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/startup-services.png" alt="Habilitant/deshabilitant serveis d'inici"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    
+
+    <p>
+		Tradicionalment en sistemes tipus UNIX el rellotge del sistema 
+		es posa amb la zona horària UTC. Si este és el cas, tria 
+		<span class="emphasis"><em>Yes</em></span> al pas següent (<a class="xref" href="chap-install.html#chap-install-installing-ask-clock-utc" title="Figure 5.30. Triant si el rellotge del sistema es posa UTC">Figure 5.30, “Triant si el rellotge del sistema es posa UTC 
+      ”</a>). Si a més utilitzes un SO que no siga tipus UNIX en el
+		mateix sistema, com Windows, sol ser bona idea escollir 
+		<span class="emphasis"><em>No</em></span>, perque alguns sistemes operatius de PC
+		no treballen amb dos rellotges separats, un de sistema i un de 
+		programari.
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-ask-clock-utc"></a><p class="title"><b>Figure 5.30. Triant si el rellotge del sistema es posa UTC 
+      </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/ask-clock-utc.png" alt="Triant si el rellotge del sistema es posa UTC"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Aleshores se't donarà la oportunitat de triar la zona horària
+		You will then be given the opportunity to select the time zone
+		(<a class="xref" href="chap-install.html#chap-install-installing-timezone" title="Figure 5.31. Posnat la zona horària">Figure 5.31, “Posnat la zona horària ”</a>). Açò és especialment important en sistemes que tenen el seu
+		rellotge del sistema posat a UTC, ja que si no es selecciona 
+		la zona horària correcta el rellotge de programari no coincidirà
+		amb l'hora local.
+		
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-timezone"></a><p class="title"><b>Figure 5.31. Posnat la zona horària </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/timezone.png" alt="Posnat la zona horària"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		Si has instal·lat el Sistema de Finestres X, ara pots posar el 
+		gestor de finestres per defecte (<a class="xref" href="chap-install.html#chap-install-installing-defaultwm" title="Figure 5.32. Escollint el gestor de finestres per defecte">Figure 5.32, “Escollint el gestor de finestres per defecte 
+      ”</a>). La funcionalitat més senzilla d'un gestor de finestres és 
+		proporcionar una gestió bàsica de finestres, com barres de títol,
+		però algunes opcions, com KDE, proporcionen un entorn d'escriptori
+		complet.
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-defaultwm"></a><p class="title"><b>Figure 5.32. Escollint el gestor de finestres per defecte 
+      </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/defaultwm.png" alt="Escollint el gestor de finestres per defecte"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		L'últim pas és posar la contrasenya de root (<a class="xref" href="chap-install.html#chap-install-installing-rootpasswd" title="Figure 5.33. Posant la contrasenya de root">Figure 5.33, “Posant la contrasenya de root”</a>).
+      Setup et demanarà si t'agradaria posar una contrasenya o no. No hi
+      ha cap raó per a fer açò, i sense una contrasenya de root el teu
+      sistema és perillosament insegur.
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-rootpasswd"></a><p class="title"><b>Figure 5.33. Posant la contrasenya de root</b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/rootpasswd.png" alt="Posant la contrasenya de root"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+		En aquest punt ja has completat la instal·lació de Slackware Linux.
+		Ara pots reiniciar el sistema per a iniciar el teu recentment 
+		instal·lat sistema Slackware Linux. No ha sigut difícil, 
+		no és així? ;)
+      
+    </p>
+
+    <div class="figure">
+<a name="chap-install-installing-finished"></a><p class="title"><b>Figure 5.34. Finalitzat</b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/finished.png" alt="Finalitzat"></div>
+    </div>
+</div>
+<br class="figure-break">
+  </div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="concepts.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="getstarted.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="custom-installation.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 4. Conceptes generals </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 6. Custom installation</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
