@@ -1,0 +1,1281 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 7. El shell</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="basics.html" title="Part II. Conceptes fonamentals de Slackware Linux">
+<link rel="prev" href="basics.html" title="Part II. Conceptes fonamentals de Slackware Linux">
+<link rel="next" href="chap-filesystem.html" title="Chapter 8. Files and directories">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 7. El shell</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="basics.html">Prev</a> </td>
+<th width="60%" align="center">Part II. Conceptes fonamentals de Slackware Linux</th>
+<td width="20%" align="right"> <a accesskey="n" href="chap-filesystem.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="chap-shell"></a>Chapter 7. El shell</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="chap-shell.html#chap-shell-intro">7.1. Introducció </a></span></dt>
+<dt><span class="sect1"><a href="chap-shell.html#chap-shell-executing">7.2. Executant ordres </a></span></dt>
+<dt><span class="sect1"><a href="chap-shell.html#chap-shell-moving">7.3. Anant amunt i avall </a></span></dt>
+<dt><span class="sect1"><a href="chap-shell.html#chap-shell-history">7.4. Historial d'ordres </a></span></dt>
+<dt><span class="sect1"><a href="chap-shell.html#chap-shell-completion">7.5. Autocompletat</a></span></dt>
+<dt><span class="sect1"><a href="chap-shell.html#chap-shell-wildcards">7.6. Comodins </a></span></dt>
+<dt><span class="sect1"><a href="chap-shell.html#chap-shell-inout">7.7. Redireccions i canonades </a></span></dt>
+</dl>
+</div>
+  
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-shell-intro"></a>7.1. Introducció </h2></div></div></div>
+    
+
+    <p>
+		En aquest capítol vorem l'entorn tradicional de treball als 
+		sistemes UNIX: el shell. El shell és un intèrpret què es pot
+		utilitzar tant de forma interactiva com no. Quan el shell 
+		no s'utilitza de manera interactiva funciona com un simple, però 
+		potent llenguatge de guions (scripting language).
+      
+    </p>
+
+    <p>
+		El procediment per a iniciar un shell depén de si utilitzes un 
+		inici de sessió gràfic o en mode text. Si estàs iniciant sessió
+		en mode text, el shell és iniciat immediatament després de 
+		introduir la contrasenya (correcta). Si per contra, utilitzes un
+		gestor d'inici de sessió gràfic com KDM, inicia sessió com ho
+		faries normalment, i busca al menú d'entorn del teu gestor de 
+		finestres una entrada anomenada <span class="quote">“<span class="quote">XTerm</span>”</span>, 
+		<span class="quote">“<span class="quote">Terminal</span>”</span> o <span class="quote">“<span class="quote">Konsole</span>”</span>. Xterm és un 
+		emulador de terminals, una vegada s'inicia l'emulador de 
+		terminal apareix el shell.
+		
+      
+    </p>
+		
+    <p>
+		Abans de continuar, t'hem d'advertir que Slackware Linux 
+		no proporciona només un shell. Hi han altres sabors de shell que
+		s'han tornat populars amb el temps, el Bourne shell i el C shell.
+		En aquest capítol descriurem els shells Bourne que s'ajusten a
+		l'estàndard IEEE 1003.1. El shell Bash (Bourne Again Shell) i el 
+		ksh (Korn Shell) s'ajusten  bé a aquests estàndards, així què és
+		una bona idea utilitzar un d'aquests shells. Pots veurer 
+		fàcilment quin shell està corrent el sistema executant la ordre
+		<span class="command"><strong>echo $SHELL</strong></span>. Açò és el que el shell Bash
+		podria informar:
+      
+    </p>
+
+    <pre class="screen">
+$ <strong class="userinput"><code>echo $SHELL</code></strong>
+/bin/bash
+    </pre>
+		
+    <p>
+		Si estàs utilitzant un shell distint, pots canviar el teu shell
+		per defecte. Abans de posar un shell diferent, hauràs d'establir
+		el camí complet del shell. Ho pots fer mijançant la ordre
+		<span class="command"><strong>which</strong></span>. Per exemple:
+      
+    </p>
+
+    <pre class="screen">
+$ <strong class="userinput"><code>which bash</code></strong>
+/bin/bash
+$ <strong class="userinput"><code>which ksh</code></strong>
+/bin/ksh
+    </pre>
+
+    <p>
+		En aquest sistema Slackware, el camí complet al shell bash és 
+		<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/bin/bash</code></html:span>, i al shell ksh <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">
+		/bin/ksh</code></html:span>. Amb aquesta informació i la ordre 
+		<span class="command"><strong>chsh</strong></span> pots canviar el shell per defecte. 
+		L'exemple següent posa el bash com a shell per defecte.
+      
+    </p>
+
+    <pre class="screen">
+$ <strong class="userinput"><code>chsh -s /bin/bash</code></strong>
+Changing shell for daniel.
+Password:
+Shell changed.
+    </pre>
+
+    <p>
+		El nou shell s'activar després de tancar la sessió amb el shell 
+		actual (amb les ordres <span class="command"><strong>logout</strong></span> o 
+		<span class="command"><strong>exit</strong></span>), o obrint una nova finestra de terminal
+		X si estàs corrent X11.
+      
+    </p>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-shell-executing"></a>7.2. Executant ordres </h2></div></div></div>
+    
+
+    <p>
+		Un shell interactiu s'utilitza per a iniciar programes mitjançant
+		la execució d'ordres. Hi ha dos tipus d'ordres que un shell pot
+		iniciar:
+      
+    </p>
+
+    <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+	<p>
+		<span class="emphasis"><em>Ordres incorporades:</em></span> estàn integrades en el 
+		shell. Ordres incorporades d'ús comú són: <span class="command"><strong>cd</strong></span>,
+		<span class="command"><strong>fg</strong></span>, <span class="command"><strong>bg</strong></span>, i 
+		<span class="command"><strong>jobs</strong></span>.
+	  
+	</p>
+      </li>
+<li class="listitem">
+	<p>
+		<span class="emphasis"><em>Ordres externes:</em></span> les ordres externes són
+		programes que no formen part del propi programa shell, i que
+		s'emmagatzemen a banda al sistema de fitxers. Ordres externes 
+		d'ús comú són: <span class="command"><strong>ls</strong></span>, <span class="command"><strong>cat</strong></span>,
+		<span class="command"><strong>rm</strong></span>, i <span class="command"><strong>mkdir</strong></span>.
+	  
+	</p>
+      </li>
+</ul></div>
+
+    <p>
+		Al shell totes les ordres s'executen amb la mateixa sintaxi:
+      
+    </p>
+		
+    <pre class="screen">
+<span class="command"><strong>nomordre [argument1 argument2 ... argumentn]</strong></span>
+    </pre>
+
+    <p>
+		El nombre d'arguments és arbitari i es passen sempre a la ordre,
+		qui pot decidir què fa amb ells.
+      
+    </p>
+
+    <p>
+		Totes les ordres incorporades poden executarse sempre perque 
+		formen part del shell, mentres que les ordres exeternes es poden
+		executar pel nom quan el programa està en el camí de búsqueda
+		del shell. D'altra manera, hauràs d'especificar el camí al 
+		programa. El camí de búsqueda del shell és emmagatzemat a una
+		variable anomenada <span class="emphasis"><em>PATH</em></span> (camí). Una 
+		variable és una porció de memòria amb nom, el contingut de la 
+		qual es pot canviar. Es pot veurer el contingut de la variable
+		PATH de la següent manera:
+      
+    </p>
+
+    <pre class="screen">
+$ <strong class="userinput"><code>echo $PATH</code></strong>
+/usr/kerberos/bin:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:/home/daniel/bin
+    </pre>
+
+    <p>
+		Els camins de directori en la variable <span class="emphasis"><em>PATH</em></span>
+		estàn separats per caràcter dos punts (<span class="emphasis"><em>:</em></span>).
+		Es pot utilitzar la ordre <span class="command"><strong>which</strong></span> per a 
+		comprovar si una ordre donada està en el camí actual del shell.
+		Açò es pot fer proporcionant la ordre com a argument a la ordre
+		<span class="command"><strong>which</strong></span>. Per exemple:
+      
+    </p>
+
+    <pre class="screen">
+$ <strong class="userinput"><code>which pwd</code></strong>
+/bin/pwd
+$ <strong class="userinput"><code>which sysstat</code></strong>
+/usr/bin/which: no sysstat in (/usr/kerberos/bin:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:/home/daniel/bin)
+    </pre>
+
+    <p>
+		Si un programa no està en el camí, encara pots executarlo 
+		introduint el seu camí absolut o relatiu.
+      
+    </p>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-shell-moving"></a>7.3. Anant amunt i avall </h2></div></div></div>
+    
+
+    <p>
+		De vegades és necessari saltar entre diverses parts d'una línea
+		i modificar-ho quan estàs editant ordres llargues. Tant 
+		<span class="command"><strong>bash</strong></span> com <span class="command"><strong>ksh</strong></span>  tenen
+		dreceres de teclat per a fer operacions comunes. Hi ha dos modes
+		de shell en els que les dreceres són diferents. Aquests modes es
+		corresponen en el seu comportament amb dos editors populars per 
+		a UNIX, el <span class="command"><strong>vi</strong></span> i l'<span class="command"><strong>emacs</strong></span>.
+		En este llibre només cobrirem les pulsacions de tecla tipus
+		EMACS. Es pot compovar en quin mode està corrent un shell 
+		imprimint la variable <span class="emphasis"><em>SHELLOPTS</em></span>. En el 
+		primer exemple s'utilitza el shell en mode <span class="emphasis"><em>emacs
+		</em></span> mentres que al segon s'empra el mode <span class="emphasis"><em>vi
+		</em></span>. S'identifica el mode buscant la cadena de text
+		<span class="emphasis"><em>emacs</em></span> o <span class="emphasis"><em>vi</em></span> en el 
+		contingut de la variable.
+		
+      
+    </p>
+
+    <pre class="screen">
+$ <strong class="userinput"><code>echo $SHELLOPTS</code></strong>
+braceexpand:emacs:hashall:histexpand:history:interactive-comments:monitor
+    </pre>
+
+    <pre class="screen">
+$ <strong class="userinput"><code>echo $SHELLOPTS</code></strong>
+braceexpand:hashall:histexpand:history:interactive-comments:monitor:vi
+    </pre>
+
+    <p>
+		Si el teu shell en aquest moment, está utilitzant el mode 
+		<span class="emphasis"><em>vi</em></span>, pots canviar al mode <span class="emphasis"><em>emacs
+		</em></span> posant la opció <span class="emphasis"><em>emacs</em></span>:
+      
+    </p>
+
+    <pre class="screen">
+$ <strong class="userinput"><code>set -o emacs</code></strong>
+    </pre>
+
+    <p>
+		Amb el mode d'edició <span class="emphasis"><em>emacs</em></span> activat, pots
+		començar a utilitzar dreceres. Veurem els tres tipus de dreceres:
+		dreceres de manipulació de caràcters, de manipulació  de paraules,
+		i de manipulació de línies. Més avant en aquest capítol, veurem 
+		algunes dreceres que s'utilitzen per a recuperar entrades de 
+		l'historial d'ordres.
+      
+    </p>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-shell-moving-char"></a>7.3.1. Manipulant caràcters </h3></div></div></div>
+      
+
+      <p>
+		  El primer grup de dreceres que empren el caràcter com a unitat
+		  lògica, el que significa que permeten manipular operacions
+		  sobre caràcters a la línea d'ordres. <a class="xref" href="chap-shell.html#chap-shell-moving-char-shortcuts-move" title="Table 7.1. Movent-se per caràcters">Table 7.1, “Movent-se per caràcters ”</a> proporciona
+		un resum de les dreceres que s'utilitzen per a moure's a llarg
+		d'una línia caràcter a caràcter.
+	
+      </p>
+
+      <div class="table">
+<a name="chap-shell-moving-char-shortcuts-move"></a><p class="title"><b>Table 7.1. Movent-se per caràcters </b></p>
+<div class="table-contents">
+	
+
+	<table summary="Movent-se per caràcters " border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Tecles</th>
+<th>Descripció</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Ctrl-b</td>
+<td>Moure un caràcter enrrere </td>
+</tr>
+<tr>
+<td>Ctrl-f</td>
+<td>Moure un caràcter endavant </td>
+</tr>
+</tbody>
+</table>
+      </div>
+</div>
+<br class="table-break">
+
+      <p>
+		  Estes dreceres són senzilles i no fan res inesperat. Suposa que
+		  has teclejat la següent línia:
+	
+      </p>
+
+      <pre class="screen">
+find ~/music -name '*.ogg' - -print<span class="cursor"> </span>
+      </pre>
+
+      <p>
+	El cursor estarà al final i et pots moure't al començament de la línia
+	mantenint pitjat <span class="emphasis"><em>Ctrl-b</em></span>:
+	
+      </p>
+
+      <pre class="screen">
+<span class="cursor">f</span>ind ~/music - -name '*.ogg' -print
+      </pre>
+
+      <p>
+		  De la mateixa manera, pots anar enrerre fins al final mantenint
+		  pitjat <span class="emphasis"><em>Ctrl-f</em></span>. Hi ha una errada en esta
+		  línia, ja que hi ha un guió erroni. Per a esborrar-lo, pots
+		  utilitzar una de les següents dreceres.
+	
+      </p>
+
+      <div class="table">
+<a name="chap-shell-moving-char-shortcuts-delete"></a><p class="title"><b>Table 7.2. Esborrant caràcters </b></p>
+<div class="table-contents">
+	
+
+	<table summary="Esborrant caràcters " border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Tecles</th>
+<th>Descripció</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Ctrl-h</td>
+<td>Esborra el caràcter abans del cursor. Té el mateix
+	      efecte que utilitzar la tecla Backspace en la majoria 
+	      d'ordinadors personals.
+			</td>
+</tr>
+<tr>
+<td>Ctrl-d</td>
+<td>Esborra el caràcter on està el cursor 
+	      </td>
+</tr>
+</tbody>
+</table>
+      </div>
+</div>
+<br class="table-break">
+
+      <p>
+		  Es pot eliminar el guió de dos maneres. La primera és moure
+		  el cursor fins al guió:
+	You can delete the dash in two manners. The first way is to
+	move the cursor to the dash:
+      </p>
+
+      <pre class="screen">
+find ~/music <span class="cursor">-</span> -name '*.ogg' -print
+      </pre>
+
+      <p>
+		  i prémer <span class="emphasis"><em>Ctrl-d</em></span> dos vegades. Açò esborrarà
+		  el guió i l'espai que el segueix.
+	
+      </p>
+
+      <pre class="screen">
+find ~/music <span class="cursor">-</span>name '*.ogg' -print
+      </pre>
+
+      <p>
+		  Observant el fragment original, l'altra aproximació consisteix
+		  a posicionar el cursor a l'espai que hi ha a continuació del 
+		  guió:
+	
+      </p>
+
+      <pre class="screen">
+find ~/music -<span class="cursor"> </span> -name '*.ogg' -print
+      </pre>
+
+      <p>
+		  i prémer <span class="emphasis"><em>Ctrl-h</em></span> dos vegades per a esborrar
+		  els dos caràcters precedents, que són el guió i l'espai previ.
+		  El resultat serà el mateix, excepte que el curso es mourà:
+	
+      </p>
+
+      <pre class="screen">
+find ~/music<span class="cursor"> </span>-name '*.ogg' -print
+      </pre>
+
+      <p>
+		  Una de les característiques més maques dels shells més moderns
+		  és que pots transposar(interncanviar) caràcters. Açò és de 
+		  molta utilitat t'equivoques escrivint i poses dos caràcters 
+		  intercanviats. <a class="xref" href="chap-shell.html#chap-shell-moving-char-shortcuts-swap" title="Table 7.3. Intercanviant caràcters">Table 7.3, “Intercanviant caràcters ”</a> 
+		  llista les dreceres per a transposar caràcters.
+	
+      </p>
+
+      <div class="table">
+<a name="chap-shell-moving-char-shortcuts-swap"></a><p class="title"><b>Table 7.3. Intercanviant caràcters </b></p>
+<div class="table-contents">
+	
+
+	<table summary="Intercanviant caràcters " border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Tecles</th>
+<th>Descripció</th>
+</tr></thead>
+<tbody><tr>
+<td>Ctrl-t</td>
+<td>Intercanviar (transposar) el caràcter sobre els que
+	      està el cursor i el que hi ha abans. Açò va molt bé a l'hora
+	      de corregir ràpidament errors d'escriptura. </td>
+</tr></tbody>
+</table>
+      </div>
+</div>
+<br class="table-break">
+
+      <p>
+		  Suposa que has escrit la ordre següent:
+	
+      </p>
+
+      <pre class="screen">
+cat myreport.ttx
+      </pre>
+
+      <p>
+		  La extensió conté un error d'escriptura si pretenies fer
+		  <span class="command"><strong>cat</strong></span> <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">myreport.txt</code></html:span>. Açò
+		  es pot corregir mitjançant la drecera de transposició de 
+		  caràcters. Primer mou-te al segon caràcter del parell de
+		  caràcters que estàn canviats.
+	
+      </p>
+
+      <pre class="screen">
+cat myreport.tt<span class="cursor">x</span>
+      </pre>
+
+      <p>
+		  Aleshores pots prémer <span class="emphasis"><em>Ctrl-t</em></span>, els 
+		  caràcters s'intercanviaran, i el cursor es col·locarà darrere
+		  d'ells.
+	
+      </p>
+
+      <pre class="screen">
+cat myreport.txt<span class="cursor"> </span>
+      </pre>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-shell-moving-word"></a>7.3.2. Manipulació de paraules </h3></div></div></div>
+      
+
+      <p>
+		  De vegades és tediós moure's a nivell de caràcter. 
+		  Afortunadament els shells Korn i Bash poden moure's també al
+		  llarg de files i a nivell de paraula. Les paraueles són 
+		  seqüències de caràcters separades per un caràcter especial,
+		  com un espai.
+		  <a class="xref" href="chap-shell.html#chap-shell-moving-word-shortcuts-move" title="Table 7.4. Movent-se per paraules">Table 7.4, “Movent-se per paraules ”</a>
+		  resumeix les dreceres que es poden utilitzar per a navegar 
+		  a través de d'una línia per paraules.
+	
+      </p>
+
+      <div class="table">
+<a name="chap-shell-moving-word-shortcuts-move"></a><p class="title"><b>Table 7.4. Movent-se per paraules </b></p>
+<div class="table-contents">
+	
+
+	<table summary="Movent-se per paraules " border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Tecles</th>
+<th>Descripció</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Esc b</td>
+<td>
+			  Moure's arrere fins al començament de la paraula actual
+			  o l'anterior.
+		
+	      </td>
+</tr>
+<tr>
+<td>Esc f</td>
+<td>
+			Moure's avant fins a l'últim caràcter de la actual paraula
+			o la pròxima.
+		
+	      </td>
+</tr>
+</tbody>
+</table>
+      </div>
+</div>
+<br class="table-break">
+
+      <p>
+		  Com pots veurer, les lletres en aquestes dreceres són iguals
+		  que les utilitzades per a moure's avant i arrere per caràcters.
+		  La lògica del moviment és una miqueta curiosa. Moure's avant
+		  col·loca el cursor al final de l'actual paraula, no al primer
+		  caràcter de la paraula següent, com podries haver previst.
+		  Vejam un exemple senzill. Al começament el cursor és en el 
+		  primer caràcter de la línia.
+	
+      </p>
+
+      <pre class="screen">
+<span class="cursor">f</span>ind ~/music -name '*.ogg' -print
+      </pre>
+
+      <p>
+		  Prémer <span class="emphasis"><em>Esc f</em></span> mourà  el cursor darrere de
+		  l'últim caràcter de la primera paraula, què en este cas és 
+		  <span class="emphasis"><em>find</em></span>:
+	
+      </p>
+
+      <pre class="screen">
+find<span class="cursor"> </span>~/music -name '*.ogg' -print
+      </pre>
+
+      <p>
+		  Anant avant una vegada més posará el cursos darrere de 
+		  <span class="emphasis"><em>~/music</em></span>:
+	
+      </p>
+
+      <pre class="screen">
+find ~/music<span class="cursor"> </span>-name '*.ogg' -print
+      </pre>
+
+      <p>
+		  El moviment arrere posa el cursor en el primer caràcter de la
+		  paraula actual, o en el primer caràcter de la paraula anterior
+		  si el cursor ja es troba en el primer caràcter d'una paraula.
+		  Així, moure's arrere una paraula en l'exemple previ posarà el
+		  cursor en la primera lletra de <span class="quote">“<span class="quote">music</span>”</span>:
+	
+      </p>
+
+      <pre class="screen">
+find ~/<span class="cursor">m</span>usic -name '*.ogg' -print
+      </pre>
+
+      <p>
+		  Suprimir paraules funciona igual que moure's per paraules,
+		  però el caràcters que es trobe seràn suprimits. <a class="xref" href="chap-shell.html#chap-shell-moving-word-shortcuts-delete" title="Table 7.5. Eliminar paraules">Table 7.5, “Eliminar paraules ”</a> llista les
+		dreceres que s'empren per a suprimir paraules.
+		  
+	
+      </p>
+
+      <div class="table">
+<a name="chap-shell-moving-word-shortcuts-delete"></a><p class="title"><b>Table 7.5. Eliminar paraules </b></p>
+<div class="table-contents">
+	
+	<table summary="Eliminar paraules " border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Tecles</th>
+<th>Descripció</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+		Alt-d
+	      </td>
+<td>
+			  Suprimir la paraula, començant en la posició actual del 
+			  cursor.
+		
+	      </td>
+</tr>
+<tr>
+<td>
+		Alt-Backspace
+	      </td>
+<td>
+			  Eliminar cada caràcter desde la posició actual del cursor
+			  fins al primer caràcter de la primera paraula què es trobe.
+		
+	      </td>
+</tr>
+</tbody>
+</table>
+      </div>
+</div>
+<br class="table-break">
+
+      <p>
+		  Per a acabar, hi ha algunes dreceres útils per a manipular
+		  parauels. Estes dreceres es llisten a <a class="xref" href="chap-shell.html#chap-shell-moving-word-shortcuts-modify" title="Table 7.6. Modificant paraules">Table 7.6, “Modificant paraules ”</a>.
+	
+      </p>
+
+      <div class="table">
+<a name="chap-shell-moving-word-shortcuts-modify"></a><p class="title"><b>Table 7.6. Modificant paraules </b></p>
+<div class="table-contents">
+	
+	<table summary="Modificant paraules " border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Tecles</th>
+<th>Descripció</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Alt-t</td>
+<td>
+			  Intercanvia (transposa) la paraula actual amb l'anterior.
+		
+	      </td>
+</tr>
+<tr>
+<td>Alt-u</td>
+<td>
+			  Posar la paraula en majúscules, començant a la posició 
+			  actual del cursor.
+		
+	      </td>
+</tr>
+<tr>
+<td>Alt-l</td>
+<td>
+			  Posar la paraula en minúscules, començant a la posició 
+			  actual del cursor.
+		
+	      </td>
+</tr>
+<tr>
+<td>Alt-c</td>
+<td>
+			 Posa en majúscules la lletra actual de la paraula o la
+			 pròxima lletra que trobe.
+		
+	      </td>
+</tr>
+</tbody>
+</table>
+      </div>
+</div>
+<br class="table-break">
+
+      <p>
+		  La transposició intercanvia paraules. Si s'utlitzen paraules
+		  normals el seu comportament es pot predir. Per exemple, is 
+		  tenim la següent línia amb el cursor a <span class="quote">“<span class="quote">two</span>”</span>
+	
+      </p>
+
+      <pre class="screen">
+un <span class="cursor">d</span>os tres
+      </pre>
+
+      <p>
+		  La transposició de paraules intercanviarà <span class="quote">“<span class="quote">dos</span>”</span> 
+		  and <span class="quote">“<span class="quote">un</span>”</span>:
+	
+      </p>
+
+      <pre class="screen">
+dos un tres
+      </pre>
+
+      <p>
+		  Però si hi ha caràcters no alfabètics, el shell intercanviarà
+		  la paraula amb l'anterior paraula preservant l'ordre dels 
+		  caràcters no alfabètics. Açò és molt pràctic per a editar
+		  arguments d'ordres. Suposa que has comés una errada, i has
+		  mesclat la extensió del fitxer que vols buscar i el paràmetre
+		  <span class="emphasis"><em>print</em></span>:
+		  
+	
+      </p>
+
+      <pre class="screen">
+find ~/music -name '*.print' -ogg
+      </pre>
+
+      <p>
+		  Pots arreglar-ho posant el cursor en la segon paraula 
+		  equivocada, en este cas <span class="quote">“<span class="quote">ogg</span>”</span>, i transposar les 
+		  dos paraues. Açò ens donarà el resulta que volem:
+	
+      </p>
+
+      <pre class="screen">
+find ~/music -name '*.ogg' -print
+      </pre>
+
+      <p>
+		  Per a acabar, hi ha algunes dreceres que canvien la 
+		  capitalització de paraules. La drecera Alt-u posa tots els 
+		  caràcters en majúscules, començant per la posició actual del 
+		  cursor, fins el final de la paraula. Així, si tenim el nom 
+		  <span class="quote">“<span class="quote">alícia</span>”</span> en minúscules, al posar-lo en majúscules
+		  amb el cursor a la <span class="quote">“<span class="quote">i</span>”</span> dóna <span class="quote">“<span class="quote">alICE</span>”</span>.
+		  Alt-l té el mateix comportament, però canvia les lletres per
+		  minúscules. Així, si utilitzar Alt-l a <span class="quote">“<span class="quote">alÍCIA</span>”</span>
+		  amb el cursor a <span class="quote">“<span class="quote">Í</span>”</span> canviarà la cadena a 
+		  <span class="quote">“<span class="quote">alícia</span>”</span>. Alt-c posará el caràcter on està el
+		  cursor o el següent caràcter alfabètic que trobe a majúscules.
+		  Per exemple, prement Alt-c amb el cursor sobre l'<span class="quote">“<span class="quote">a</span>”</span> 
+		  a <span class="quote">“<span class="quote">alice</span>”</span> donarà lloc a <span class="quote">“<span class="quote">Alice</span>”</span>.
+	
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-shell-moving-line"></a>7.3.3. Manipulació de línies</h3></div></div></div>
+      
+
+      <p>
+		  El més alt nivell al què podem manipular és la línia mateixa.
+		  <a class="xref" href="chap-shell.html#chap-shell-moving-line-shortcuts-move" title="Table 7.7. Movent-se per línies">Table 7.7, “Movent-se per línies”</a> 
+		  llista les dos dreceres de moviment.
+	
+      </p>
+
+      <div class="table">
+<a name="chap-shell-moving-line-shortcuts-move"></a><p class="title"><b>Table 7.7. Movent-se per línies</b></p>
+<div class="table-contents">
+	
+	<table summary="Movent-se per línies" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Tecles</th>
+<th>Descripció</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Ctrl-a</td>
+<td>
+			  Mou al començament de la línea actual.
+		
+	      </td>
+</tr>
+<tr>
+<td>Ctrl-e</td>
+<td>
+			  Mou al final de la línea actual.
+		
+	      </td>
+</tr>
+</tbody>
+</table>
+      </div>
+</div>
+<br class="table-break">
+
+      <p>
+		  Suposem que el cursor és en algun lloc pel mig de la línia:
+	
+      </p>
+
+      <pre class="screen">
+find ~/music -name<span class="cursor"> </span>'*.ogg' -print
+      </pre>
+
+      <p>
+		  Presionant Ctrl-e una vegada mourá el cursor al final de la
+		  línia:
+	
+      </p>
+
+      <pre class="screen">
+find ~/music -name '*.ogg' -print<span class="cursor"> </span>
+      </pre>
+
+      <p>
+		  Pressionant Ctrl-a mourà el cursor al començament de la línia:
+	
+      </p>
+
+      <pre class="screen">
+<span class="cursor">f</span>ind ~/music -name '*.ogg' -print
+      </pre>
+
+      <p>
+		  Pots, a més, suprimir els caràcters a nivell de línia. Les
+		  dreceres estàn llistades a: <a class="xref" href="chap-shell.html#chap-shell-moving-line-shortcuts-delete" title="Table 7.8. Suprimint línies">Table 7.8, “Suprimint línies”</a>. Estes dreceres
+		funcionen com el moviment, però elimina tots els caràcters que es
+		troba. Ctrl-k suprimirà el caràcter on es troba el cursor, mentres 
+		que	Ctrl-x Backspace no. Moure's al començament de la línia amb 
+		Ctrl-a, seguit de Ctrl-k, és un truc ràpid per a suprimir una línia
+		completament.
+	
+      </p>
+
+      <div class="table">
+<a name="chap-shell-moving-line-shortcuts-delete"></a><p class="title"><b>Table 7.8. Suprimint línies</b></p>
+<div class="table-contents">
+	
+	<table summary="Suprimint línies" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Tecles</th>
+<th>Descripció</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Ctrl-k</td>
+<td>
+			  Suprimeix tots els caràcters de la línia, començant a la
+			  posició del cursor.
+		
+	      </td>
+</tr>
+<tr>
+<td>Ctrl-x Backspace</td>
+<td>
+			 Elimina tots els caràcters de la línia fins al caràcter 
+			 actual
+		
+	      </td>
+</tr>
+</tbody>
+</table>
+      </div>
+</div>
+<br class="table-break">
+    </div>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-shell-history"></a>7.4. Historial d'ordres </h2></div></div></div>
+    
+
+    <p>
+		De vegades passa que has d'executar ordres que ja has executat
+		abans. Afortunadament, no cal que les tecleges totes una altra
+		vegada. Pots buscar a l'historial d'ordres executades amb les
+		fletxes amunt i avall. A més d'això es pot buscar una ordre,
+		prem Control-r i comença a teclejar la ordre que vols executar.
+		Te n'adonaràs de que bash mostra la primera coincidència que 
+		trobe, si esta no és la que busques, pots continuar escrivint
+		la ordre (fins que només aparega una coincidència) o premer
+		Control-r una vegada més per a obtindre la següent coincidència.
+		Quan hages trobat la coincidència que buscàves, pots executar-la
+		prement &lt;Enter&gt;.
+      
+    </p>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-shell-completion"></a>7.5. Autocompletat</h2></div></div></div>
+    
+
+    <p>
+		L'autocompletat és una de les funcionalitats més útils dels 
+		shell tipus UNIX. Suposa que tens un directori amb dos fitxers
+		anomenats <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">websites</code></html:span> i      
+		<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">recepta</code></html:span>. Suposa també que vols fer 
+		<span class="command"><strong>cat</strong></span> del fitxer <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">websites</code></html:span>
+		(<span class="command"><strong>cat</strong></span> mostra el contingut d'un fitxer), 
+		especificant <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">websites</code></html:span> com a paràmetre de
+		cat. En condicions normals, teclejaries 
+		<span class="quote">“<span class="quote">cat websites</span>”</span> i executaries la ordre. Prova a
+		teclejar <span class="quote">“<span class="quote">cat w</span>”</span>, i colpeja la tecla &lt;Tab&gt;.
+		Bash ho expandirà automàticament a <span class="quote">“<span class="quote">cat websites</span>”</span>.
+		
+      
+    </p>
+
+    <p>
+		Però què passa si tens vàris fitxers que començen amb la mateixa
+		lletra? Suposa que tens els fitxers 
+		<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">recepta1.txt</code></html:span> i
+		<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">recepta2.txt</code></html:span>. Tecleja <span class="quote">“<span class="quote">cat r</span>”</span> 
+		i dona-li a &lt;Tab&gt;, Bash completaria el fitxer fins on 
+		puguera, el que et deixaria amb <span class="quote">“<span class="quote">cat recepta</span>”</span>. 
+		Prova a pegar-li a &lt;Tab&gt; de nou i Bash mostrarà una llista
+		de fitxers que començer amb <span class="quote">“<span class="quote">recepta</span>”</span>, en este cas
+		els dos fitxers de recpetes. En este punt has d'ajudar al Bash
+		esrivint el pròxim caràcter del fitxer que necessites. Suposa
+		que vols fer <span class="command"><strong>cat</strong></span> de 
+		<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">recepta2.txt</code></html:span>, pots premer la tecla 
+		&lt;2&gt;. Després d'això no hi ha conflicter per a completar el 
+		nom, i pegant-li a la tecla &lt;Tab&gt; es completa la ordre com
+		<span class="quote">“<span class="quote">cat recipe2.txt</span>”</span>.
+ 		
+      
+    </p>
+
+    <p>
+		No cal dir que autocompletar funciona també amb órdres, però 
+		moltes ordres GNU/Linux són curtes, pel que not resulta massa
+		útil en este cas.
+      
+    </p>
+
+    <p>
+		És una bona idea practicar una miqueta amb l'autocompletat, et
+		pot estalviar moltes pulsacions de tecla si t'hi manejes bé.
+		Pots crear alguns fitxers buits per a practicar mitjançant la
+		ordre <span class="command"><strong>touch</strong></span>. Per exemple, per a crear un 
+		fitxer anomenat <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">recepta3.txt</code></html:span>, executa 
+		<span class="command"><strong>touch recepta3.txt</strong></span>.
+		
+      
+    </p>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-shell-wildcards"></a>7.6. Comodins </h2></div></div></div>
+    
+
+    <p>
+		La majoria de shells, incloent Bash i ksh, suporten comodins.
+		Els comodins són uns caràctera especials que es poden utilitzar
+		per a fer coincidir patrons. La taula de més avall mostra
+		alguns comodins freqüentment utilitzats. Anem a veurer vàris
+		exemples per a donar una idea general de com funcionen els
+		comodins.
+      
+    </p>
+
+    <div class="table">
+<a name="chap-shell-wildcards-thewildcards"></a><p class="title"><b>Table 7.9. Comodins Bash </b></p>
+<div class="table-contents">
+      
+
+      <table summary="Comodins Bash " border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th align="left">Comodí</th>
+<th align="left">Coincideix amb</th>
+</tr></thead>
+<tbody>
+<tr>
+<td align="left">*</td>
+<td align="left">Una cadena de caràcters</td>
+</tr>
+<tr>
+<td align="left">?</td>
+<td align="left">Un únic caràcter </td>
+</tr>
+<tr>
+<td align="left">[]</td>
+<td align="left">Un únic caràcter en una matriu de caràcters 
+	    </td>
+</tr>
+</tbody>
+</table>
+    </div>
+</div>
+<br class="table-break">
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-shell-wildcards-string"></a>7.6.1. Fent coincidir una cadena de caràcters</h3></div></div></div>
+      
+
+      <p>
+		  Com es pot veurer en la taula de damunt, el caràcter 
+		  <span class="quote">“<span class="quote">*</span>”</span> coincideix amb una cadena de caràcters. Per
+		  exemple, <span class="emphasis"><em>*.html</em></span> coincideix amb totes les
+		  cadenes de caràcters acabades en <span class="emphasis"><em>.html</em></span>,
+		  <span class="emphasis"><em>d*.html</em></span> coincideix amb qualsevol cosa
+		  que comence per <span class="emphasis"><em>d</em></span> i que acabe amb
+		  <span class="emphasis"><em>.html</em></span>.
+	
+      </p>
+
+      <p>
+		  Suposem que vos agradaria llistar tots els fitxers del 
+		  directori actual amb l'extensió <span class="emphasis"><em>.html</em></span>, la
+		  órdre següent faria la feina:
+	
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>ls *.html</code></strong>
+book.html        installation.html     pkgmgmt.html  usermgmt.html
+filesystem.html  internet.html         printer.html  xfree86.html
+gfdl.html        introduction.html     proc.html
+help.html        slackware-basics.html shell.html
+      </pre>
+
+      <p>
+		  De la mateixa manera, podriem eliminar tots els fitxers que
+		  comencen per <span class="emphasis"><em>in</em></span>:
+	
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>rm in*</code></strong>
+      </pre>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-shell-wildcards-single"></a>7.6.2. Fent coincidir un caràcter </h3></div></div></div>
+      
+
+      <p>
+		  El comodí <span class="quote">“<span class="quote">?</span>”</span> funciona com el <span class="quote">“<span class="quote">?</span>”</span>, 
+		  però fa coincidir un únic caràcter. Suposem que tenim tres
+		  fitxers <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">fitxer1.txt</code></html:span>,
+		  <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">fitxer2.txt</code></html:span> i
+		  <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">fitxer3.txt</code></html:span>. La cadena 
+		  <span class="emphasis"><em>fitxer?.txt</em></span> coincideix amb els tres
+		  fitxers, però no coincideix amb <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">file10.txt</code></html:span>
+		  (<span class="quote">“<span class="quote">10</span>”</span> són dos caràcters).
+	
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-shell-wildcards-set"></a>7.6.3. Fent coincidir caràcters d'un conjunt </h3></div></div></div>
+      
+
+      <p>
+		  El comodí <span class="quote">“<span class="quote">[]</span>”</span> concideix amb cada caràcter entre
+		  claudàtors. Suposem que tenim els fitxers del exemple anterior
+		  , <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">fitxer1.txt</code></html:span>,
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">fitxer2.txt</code></html:span> and
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">fitxer3.txt</code></html:span>. The string
+	<span class="emphasis"><em>fitxer[23].txt</em></span> coincideix amb
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">file2.txt</code></html:span> i
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">file3.txt</code></html:span>, però no amb
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">file1.txt</code></html:span>.
+	
+	
+      </p>
+    </div>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-shell-inout"></a>7.7. Redireccions i canonades </h2></div></div></div>
+    
+
+    <p>
+		Una de les principals característiques dels shells tipus UNIX
+		són les redireccions i les canonades. Abans de començar amb
+		veurer com funciones les dos tècniques em de mirar com treballen
+		la majoria d'ordres tipus UNIX. Quan una ordre no rep data d'un 
+		fitxer, obrirà un pseudo-fitxer anomenat 
+		<span class="emphasis"><em>stdin</em></span> i quedarà esperant a que hi apareguen
+		dades. El mateix principi es pot aplicar a la eixida d'una ordre
+		, quan no hi ha una raó explícita per a alçar la eixida en un
+		fitxer, el pseudo-fitxer <span class="emphasis"><em>stdout</em></span> serà obert
+		per a enviarli-la. Este principi es mostra de manera esquemàtica
+		a <a class="xref" href="chap-shell.html#fig-shell-inout" title="Figure 7.1. Entrada i eixida estàndar">Figure 7.1, “Entrada i eixida estàndar ”</a>
+      
+    </p>
+
+    <div class="figure">
+<a name="fig-shell-inout"></a><p class="title"><b>Figure 7.1. Entrada i eixida estàndar </b></p>
+<div class="figure-contents">
+      
+      <div class="mediaobject"><img src="../../images/shell-inout.png" alt="Entrada i eixida estàndar"></div>
+    </div>
+</div>
+<br class="figure-break">
+
+    <p>
+	  Pots veurer <span class="emphasis"><em>stdin</em></span> i
+	  <span class="emphasis"><em>stdout</em></span> en acció amb la ordre 
+	  <span class="command"><strong>cat</strong></span>. Si cat s'inicia sense paràmetres aquest
+	  senzillament es quedarà esperant dades a 
+	  <span class="emphasis"><em>stdin</em></span> i les enviarà a 
+	  <span class="emphasis"><em>stdout</em></span>. Si no s'utilitz cap redirecció,
+	  s'utilitzarà la entrada de teclat per a <span class="emphasis"><em>stdin</em></span>
+	  i la eixida de <span class="emphasis"><em>stdout</em></span> serà impresa al
+	  terminal:
+      
+    </p>
+
+    <pre class="screen">
+$ <strong class="userinput"><code>cat</code></strong>
+<span class="command"><strong>Hello world!</strong></span>
+Hello world!
+    </pre>
+
+    <p>
+		Com pots veurer cat imprimirà les dades a <span class="emphasis"><em>stdout
+		</em></span>	després d'introduirli-les a <span class="emphasis"><em>stdin
+		</em></span>	utilitzant el teclat.
+      
+    </p>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-shell-inout-redir"></a>7.7.1. Redirecció </h3></div></div></div>
+      
+
+      <p>
+		  El shell et permet prendre utilització de 
+		  <span class="emphasis"><em>stdin</em></span> i <span class="emphasis"><em>stdout</em></span>
+		  utilitzant <span class="quote">“<span class="quote">&lt;</span>”</span> i <span class="quote">“<span class="quote">&gt;</span>”</span>. En el 
+		  següent exemple redireccionarem els resums md5 calculats per
+		  a un conjunt de fitxers a un fitxer anomenat 
+		  <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">md5sums</code></html:span>:
+		  
+	
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>md5sum * &gt; md5sums</code></strong>
+$ <strong class="userinput"><code>cat md5sums</code></strong> 
+6be249ef5cacb10014740f61793734a8  test1
+220d2cc4d5d5fed2aa52f0f48da38ebe  test2
+631172a1cfca3c7cf9e8d0a16e6e8cfe  test3
+      </pre>
+
+      <p>
+	Com poden veurer en la eixida de <span class="command"><strong>cat</strong></span> la eixida
+	de <span class="command"><strong>md5sum *</strong></span> ha sigut redirigida al fitxer
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">md5sums</code></html:span>. Nosaltres a més podem utilitzar la
+	redirecció per a proporcionar-li l'entrada a una ordre:
+	
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>md5sum &lt; test1</code></strong>
+6be249ef5cacb10014740f61793734a8  -
+      </pre>
+
+      <p>
+	Açò alimenta a <span class="command"><strong>md5sum</strong></span> amb el contingut del fitxer
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">test1</code></html:span>.
+	
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-shell-inout-pipes"></a>7.7.2. Canonades </h3></div></div></div>
+      
+
+      <p>
+	També pots conectar la entrad i la eixida d'ordres utilitzant
+	les anomenades <span class="emphasis"><em>canonades (pipes)</em></span>. Una
+	canonada entre ordres es pot construir amb el caràcter 
+	<span class="quote">“<span class="quote">|</span>”</span>. Dos o més ordres combinades es diu que 
+	formen una <span class="quote">“<span class="quote">conducció (pipiline)</span>”</span>. <a class="xref" href="chap-shell.html#fig-shell-pipeline" title="Figure 7.2. Una conducció">Figure 7.2, “Una conducció ”</a> mostra un resum esquemàtic d'una 
+	conducció consistent en dos ordres.
+	
+	
+      </p>
+
+      <div class="figure">
+<a name="fig-shell-pipeline"></a><p class="title"><b>Figure 7.2. Una conducció </b></p>
+<div class="figure-contents">
+	
+	<div class="mediaobject"><img src="../../images/shell-pipeline.png" alt="Una conducció"></div>
+      </div>
+</div>
+<br class="figure-break">
+
+      <p>
+		  La sintaxi de una conducció és <span class="command"><strong>ordre1 | ordre2 ... 
+		  | ordren</strong></span>. Si conéixes com funcionen la majoria 
+		  d'ordres bàsiques tipus UNIX, ja pots deixar que aquestes
+		  treballen juntes. Vejam un exemple ràpid:
+	
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>cat /usr/share/dict/american-english | grep "aba" | wc -l</code></strong>
+123
+      </pre>
+
+      <p>
+	La primera ordre, <span class="command"><strong>cat</strong></span>, llig el fitxer de 
+	diccionari <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/share/dict/american-english</code></html:span>. La
+	eixida de la ordre <span class="command"><strong>cat</strong></span> es canalitza a la ordre
+	<span class="command"><strong>grep</strong></span>, que imprimeix els fitxers que contenen la 
+	paraula <span class="quote">“<span class="quote">aba</span>”</span>. A continuació, la eixida de 
+	<span class="quote">“<span class="quote">grep</span>”</span> es canalitza cap a <span class="command"><strong>wc -l</strong></span>,
+	que comptabilitza el nombre de línies que rep de 
+	<span class="emphasis"><em>stdin</em></span>. Per acabar, quan el fluxe s'ha acabat
+	<span class="command"><strong>wc</strong></span> imprimeix el nombre de línies que contenen la
+	paraula <span class="quote">“<span class="quote">aba</span>”</span> en este diccionari en particular.
+	
+	
+      </p>
+
+      <p>
+	Hi ha centenars de xicotetes utilitats per a manejar tasques
+	específiques. Com et podràs imaginar, aquestes ordres juntes
+	proporciones una caixa d'eines molt potent fent-hi combinacions
+	mitjançant canonades.
+	
+	
+      </p>
+    </div>
+  </div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="basics.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="basics.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="chap-filesystem.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Part II. Conceptes fonamentals de Slackware Linux </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 8. Files and directories</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

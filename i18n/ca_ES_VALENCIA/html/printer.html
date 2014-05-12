@@ -1,0 +1,331 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 15. Configuració de impressores</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="sysadmin.html" title="Part V. Administració del sistema">
+<link rel="prev" href="chap-usermgmt.html" title="Chapter 14. Gestió d'usuaris">
+<link rel="next" href="chap-x11.html" title="Chapter 16. X11">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 15. Configuració de impressores </th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="chap-usermgmt.html">Prev</a> </td>
+<th width="60%" align="center">Part V. Administració del sistema</th>
+<td width="20%" align="right"> <a accesskey="n" href="chap-x11.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="printing"></a>Chapter 15. Configuració de impressores </h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="printer.html#printing-intro">15.1. Introducció</a></span></dt>
+<dt><span class="sect1"><a href="printer.html#printing-preparations">15.2. Preparatius </a></span></dt>
+<dt><span class="sect1"><a href="printer.html#printing-configuration">15.3. Configuració</a></span></dt>
+<dt><span class="sect1"><a href="printer.html#printing-accesscontrol">15.4. Control d'accés </a></span></dt>
+<dt><span class="sect1"><a href="printer.html#printing-gspapersize">15.5. Tamany del paper Ghostscript </a></span></dt>
+</dl>
+</div>
+<a class="indexterm" name="idm961963860"></a><div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="printing-intro"></a>15.1. Introducció</h2></div></div></div>
+<a class="indexterm" name="idm961963180"></a><p>
+      GNU/Linux suporta una enorme porció de les impressores USB, paral·lel i 
+      de xarxa disponibles. Slackware Linux proporciona dos sistemes d'impressió,
+      <acronym class="acronym">CUPS</acronym> (Common UNIX Printing System, Sistema comú de Impressió
+      de UNIX) i <acronym class="acronym">LPRNG</acronym> (LPR Next Generation, LPR de pròxima 
+      generació). Aquest capítol cobreix el sistema CUPS.
+
+      
+    </p>
+<p>
+      Independentment del sistema d'impressió que vages a utilitzar, és
+      una bona idea instal·lar alguna col·lecció de filtres d'impressora.
+      Aquests es poden trobar al conjunt de disc <span class="quote">“<span class="quote">ap</span>”</span>. Si
+      vols tindre suport per a la majoria d'impressores, assagura't de
+      que els següents paquets estàn instal·lats.
+      
+    </p>
+<pre class="screen">
+a2ps
+enscript
+espgs
+gimp-print
+gnu-gs-fonts
+hpijs
+ifhp
+    </pre>
+<p>
+      Ambdós sistemes d'impressió tenen els seus propis avantatges i 
+      inconvenients. Si no tens massa experiència configurant impressores baix 
+      GNU/Linux, és una bona idea utilitzar CUPS, ja que CUPS proporciona una 
+      còmoda interfície web accessible mitjançant un navegador web.
+      
+    </p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="printing-preparations"></a>15.2. Preparatius </h2></div></div></div>
+<a class="indexterm" name="idm961958764"></a><p>
+      Per a poder utilitzar CUPS, el paquet <span class="quote">“<span class="quote">cups</span>”</span> del conjunt
+      de disc <span class="quote">“<span class="quote">a</span>”</span> ha d'estar instal·lat. Després de la instal·lació
+      CUPS es pot iniciar automàticament durant cada llançament del sistema fent
+      <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.cups</code></html:span> executable, el que es pot fer amb la
+      ordre següent:
+      
+      
+    </p>
+<pre class="screen">
+# <span class="command"><strong>chmod a+x /etc/rc.d/rc.cups</strong></span>
+    </pre>
+<p>
+      Després de reiniciar el sistema, CUPS serà també reiniciat automàticament.
+      Es pot iniciar CUPS a un sistema en marxa executant la següent ordre:
+      
+    </p>
+<pre class="screen">
+# <span class="command"><strong>/etc/rc.d/rc.cups start</strong></span>
+    </pre>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="printing-configuration"></a>15.3. Configuració</h2></div></div></div>
+<a class="indexterm" name="idm961955156"></a><p>
+      CUPS es pot configurar mitjançant una interfície web a la que es pot 
+      accedir amb un navegador web a la següent URL:
+      <a class="ulink" href="http://localhost:631/" target="_top">http://localhost:631/</a>.
+      Algunes parts de la interfície web requereixen que t'autentiques. Si 
+      apareix una finestra d'autenticació pots introduir <span class="quote">“<span class="quote">root</span>”</span>
+      com a nom d'usuari, i omplir la contrassenya del compte root.
+
+      
+    </p>
+<p>
+      Es pot afegir una impressora a la configuració de CUPS fent clic en
+      <span class="quote">“<span class="quote">Administrate</span>”</span>, i a continuació, fent clic en el botó 
+      <span class="quote">“<span class="quote">Add Printer</span>”</span>. La intefície web preguntarà per tres 
+      opcions:
+      
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p>
+	  <span class="emphasis"><em>Nom</em></span> - el nom de la impressora. Utilitza un 
+	  nom senzill, per exemple <span class="quote">“<span class="quote">epson</span>”</span>.
+          
+        </p></li>
+<li class="listitem"><p>
+	  <span class="emphasis"><em>Localització</em></span> - la localització física de la 
+	  impressora. Aquest paràmetre no és crucial, però pràctic per a 
+	  grans organitzacions.
+          
+        </p></li>
+<li class="listitem"><p>
+	  <span class="emphasis"><em>Description</em></span> - una descripció de la impressora,
+	  per exemple <span class="quote">“<span class="quote">Epson Stylus Color C42UX</span>”</span>.
+          
+        </p></li>
+</ul></div>
+<p>
+      Pots procedir fent clic al botó <span class="quote">“<span class="quote">Continue</span>”</span>. A la pàgina
+      següent pots configurar com està connectada la impressora. Si tens 
+      una impressora USB i està encesa, la interfície web mostrarà el nom
+      de la impressora junt al port USB utilitzat. Després de configurar
+      el port de la impressora, pots triar-ne la marca i el model. Després
+      d'això la configuració de la impressora haurà acabat, i aquesta
+      serà afegida a la configuració de CUPS.
+      
+    </p>
+<p>
+      Una visió del conjunt d'impressores configurades es pot trobar
+      a la plana <span class="quote">“<span class="quote">Printers</span>”</span>. En aquesta plana pots, a més,
+      fer algunes operaciones d'impressora. Per exemple, <span class="quote">“<span class="quote">Print 
+      Test Page</span>”</span> es pot utilitzar per a comprovar la configuració
+      d'una impressora imprimint una pàgina de prova.
+      
+    </p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="printing-accesscontrol"></a>15.4. Control d'accés </h2></div></div></div>
+<a class="indexterm" name="idm961945924"></a><p>
+      El sistema d'impressió CUPS proporciona una interfície de configuració
+      web, i accés a impressió remota mitjançant el Protocol d'Impressió
+      d'Internet (<acronym class="acronym">IPP</acronym>, Internet Printing Protocol). Els
+      fitxers de configuració de CUPS et permeten una configuració molt fina
+      del control d'accés a les impressores. L'accés per defecte a impressores
+      està limitat a <span class="emphasis"><em>localhost</em></span> (<span class="emphasis"><em>127.0.0.1</em></span>).
+
+      
+    </p>
+<p>
+      Es pot refinar el contol d'accés al fitxer de configuració del dimoni
+      central de CUPS, <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/cups/cupsd.conf</code></html:span>, que té una
+      sintaxi comparable a la del fitxer de configuració d'Apache. El control
+      d'accés es configura mitjançant seccions <span class="emphasis"><em>Location</em></span>.
+      Per exemple, la secció global per defecte (el directori arrel d'IPP) 
+      es pareix a açò:
+      
+    </p>
+<pre class="screen">
+&lt;Location /&gt;
+Order Deny,Allow
+Deny From All
+Allow From 127.0.0.1
+&lt;/Location&gt;
+    </pre>
+<p>
+      Com pots veurer les sentències deny es manejen primer, a continuació 
+      les allow. En la configuració per defecte, l'accés és denegat desde 
+      tots els hosts, excepte per a <span class="emphasis"><em>127.0.0.1</em></span>, 
+      <span class="emphasis"><em>localhost</em></span>. Ara suposa que t'agradaria permetre
+      als ordinadors de la xarxa local, que utilitzen l'espai d'adreçament
+      <span class="emphasis"><em>192.168.1.0/24</em></span>, utilitzar les impressores al
+      sistema on estàs configurant el CUPS. En este cas podries afegir
+      la línia que està en negreta:
+      
+    </p>
+<pre class="screen">
+&lt;Location /&gt;
+Order Deny,Allow
+Deny From All
+Allow From 127.0.0.1
+<span class="bold"><strong>Allow From 192.168.1.0/24</strong></span>
+&lt;/Location&gt;
+    </pre>
+<p>
+      Pots refinar altres localitzacions en l'espai d'adreçament, afegint
+      seccions location addicionals. Les configuracions per a subdirectoris
+      sobreescriuen les globals. Per exemple, podries restringir l'accés a 
+      la impressora <span class="emphasis"><em>epson</em></span> als hosts amb adreces IP 
+      <span class="emphasis"><em>127.0.0.1</em></span> i <span class="emphasis"><em>192.168.1.203</em></span>
+      afegint la secció següent:
+
+      
+    </p>
+<pre class="screen">
+&lt;Location /printers/epson&gt;
+Order Deny,Allow
+Deny From All
+Allow From 127.0.0.1
+Allow From 192.168.1.203
+&lt;/Location&gt;
+    </pre>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="printing-gspapersize"></a>15.5. Tamany del paper Ghostscript </h2></div></div></div>
+<a class="indexterm" name="idm961937260"></a><p>
+      Ghostscript és un intèrpret PostScript i (<acronym class="acronym">PDF</acronym>) 
+      (Portable Document Format, format portable de documents). Tant
+      el PostScript com el PDF són llenguatges que descriuen dades
+      que es poden imprimir. GhostScript s'utilitza per convertir 
+      PostScript i PDF a un format de trama que es pot mostrar per 
+      pantalla o imprimir. La majoria de programes de UNIX són capaços
+      d'enviar a la eixida PostScript, mentres que la cua d'impressió 
+      de CUPS utilitza GhostScript per a convertir este PostScript al 
+      format de trama que una impressora en particular entén.
+
+      
+    </p>
+<p>
+      Hi ha alguns paràmetres de configuració de GhostScript que pot
+      resultar d'utilitat canviar en algunes situacions. Aquesta secció
+      descriu com pots canviar el tamany de paper que GhostScript 
+      utilitza per defecte.
+      
+    </p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+	ALgunes impressores de gamma alta poden interpretar PostScript
+	directament. Convertir a format de trama no és necessari per 
+	aquestes impressores.
+        
+      </p></td></tr>
+</table></div>
+<p>
+      Per defecte GhostScript utilitza el paper US letter com a tamany
+      per defecte. El tamany del paper es configura a 
+      <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/share/ghostscript/x.xx/lib/gs_init.ps</code></html:span>,
+      on <span class="emphasis"><em>x.xx</em></span> s'hauria de substituir per el
+      número de versió de GhostScript. No molt lluny del començament del
+      fitxer hi ha dos línies que comentades amb un signe de percent (%),
+      que s'assemblen a açò:
+      
+    </p>
+<pre class="screen">
+% Optionally choose a default paper size other than U.S. letter.
+% (a4) /PAPERSIZE where { pop pop } { /PAPERSIZE exch def } ifelse
+    </pre>
+<p>
+      Pots canviar la configuració de GhostScript per a que utilitze
+      A4 com a tamany de paper per defecte esborrant el signe de percent
+      i l'espai a l'inici de la segona línia, canviant-ho a:
+      
+    </p>
+<pre class="screen">
+% Optionally choose a default paper size other than U.S. letter.
+(a4) /PAPERSIZE where { pop pop } { /PAPERSIZE exch def } ifelse
+    </pre>
+<p>
+      També és possible utilitzar un altre tamany de paper a banda
+      de letter o A4 reemplaçant <span class="emphasis"><em>a4</em></span> a l'exemple
+      de dalt amb el tamany de paper que tú utilitzes. Per exemple,
+      pots definir el tamany de paper per defecte a US Legal amb:
+      
+    </p>
+<pre class="screen">
+% Optionally choose a default paper size other than U.S. letter.
+(legal) /PAPERSIZE where { pop pop } { /PAPERSIZE exch def } ifelse
+    </pre>
+<p>
+      També es possible definir el tamany del paper en cada invocació de
+      GhostScript utilitzant el paràmetre
+      <em class="parameter"><code>-sPAPERSIZE=size</code></em> de la 
+      ordre <span class="command"><strong>gs</strong></span>. Per exemple, pots afegir el paràmetre
+      <span class="emphasis"><em>-sPAPERSIZE=a4</em></span> quan inicies 
+      <span class="command"><strong>gs</strong></span> per a utilitzar A4 com el tamany de paper
+      per a una invocació de GhostScript.
+
+      
+    </p>
+<p>
+      Un visió de conjunt del tamanys de paper suportat es pot
+      trobar al fitxer <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">gs_statd.ps</code></html:span>, que es pot
+      trobar en el mateix directori que <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">gs_init.ps</code></html:span>.
+      
+    </p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="chap-usermgmt.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="sysadmin.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="chap-x11.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 14. Gestió d'usuaris  </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 16. X11</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

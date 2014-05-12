@@ -1,0 +1,516 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 22. Networking configuration</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="netadmin.html" title="Part VI. Administració de xarxa">
+<link rel="prev" href="netadmin.html" title="Part VI. Administració de xarxa">
+<link rel="next" href="ipsec.html" title="Chapter 23. IPsec">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 22. Networking configuration</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="netadmin.html">Prev</a> </td>
+<th width="60%" align="center">Part VI. Administració de xarxa</th>
+<td width="20%" align="right"> <a accesskey="n" href="ipsec.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="sysadmin-netconfig"></a>Chapter 22. Networking configuration</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="netconfig.html#sysadmin-netconfig-hardware">22.1. Hardware</a></span></dt>
+<dt><span class="sect1"><a href="netconfig.html#idm961634020">22.2. Configuration of interfaces</a></span></dt>
+<dt><span class="sect1"><a href="netconfig.html#idm961628108">22.3. Configuration of interfaces (IPv6)</a></span></dt>
+<dt><span class="sect1"><a href="netconfig.html#idm961615700">22.4. Wireless interfaces</a></span></dt>
+<dt><span class="sect1"><a href="netconfig.html#idm961615636">22.5. Resolving</a></span></dt>
+<dt><span class="sect1"><a href="netconfig.html#idm961606724">22.6. IPv4 Forwarding</a></span></dt>
+</dl>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sysadmin-netconfig-hardware"></a>22.1. Hardware</h2></div></div></div>
+<h3>
+<a name="idm961637004"></a>Network cards (NICs)</h3>
+<p>
+Drivers for NICs are installed as kernel modules. The module for
+your NIC has to be loaded during the initialization of Slackware Linux.
+On most systems the NIC is automatically detected and configured
+during the installation of Slackware Linux. You can reconfigure
+your NIC with the <span class="command"><strong>netconfig</strong></span> command.
+<span class="command"><strong>netconfig</strong></span> adds the driver (module) for the detected
+card to <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.netdevice</code></html:span>. 
+</p>
+<p>
+It is also possible to manually configure which modules should be
+loaded during the initialization of the system. This can be done
+by adding a <span class="command"><strong>modprobe</strong></span> line to
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.modules</code></html:span>. For example, if you want
+to load the module for 3Com 59x NICs (3c59x.o), add the following
+line to <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.modules</code></html:span> 
+</p>
+<pre class="screen">
+/sbin/modprobe 3c59x
+</pre>
+<h3>
+<a name="idm961634684"></a>PCMCIA cards</h3>
+<p>
+Supported PCMCIA cards are detected automatically by the PCMCIA
+software. The pcmcia-cs packages from the <span class="quote">“<span class="quote">a</span>”</span> disk set provides
+PCMCIA functionality for Slackware Linux.
+</p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961634020"></a>22.2. Configuration of interfaces</h2></div></div></div>
+<p>
+Network cards are available under Linux through so-called <span class="quote">“<span class="quote">interfaces</span>”</span>.
+The <span class="command"><strong>ifconfig</strong></span> command can be used to display the
+available interfaces:
+</p>
+<pre class="screen">
+# <span class="command"><strong>ifconfig -a</strong></span>
+eth0      Link encap:Ethernet  HWaddr 00:20:AF:F6:D4:AD  
+          inet addr:192.168.1.1  Bcast:192.168.1.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1301 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1529 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:1 txqueuelen:100 
+          RX bytes:472116 (461.0 Kb)  TX bytes:280355 (273.7 Kb)
+          Interrupt:10 Base address:0xdc00 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:77 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:77 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:8482 (8.2 Kb)  TX bytes:8482 (8.2 Kb)
+</pre>
+<p>
+Network cards get the name ethn, in which n is a number, starting with
+0. In the example above, the first network card (eth0) already has an
+IP address. But unconfigured interfaces have no IP address, the
+<span class="command"><strong>ifconfig</strong></span> will not show IP addresses for unconfigured
+interfaces. Interfaces can be configured in the 
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.inet1.conf</code></html:span> file. You can simply read
+the comments, and fill in the required information. For example:
+</p>
+<pre class="screen">
+# Config information for eth0:
+IPADDR[0]="192.168.1.1"
+NETMASK[0]="255.255.255.0"
+USE_DHCP[0]=""
+DHCP_HOSTNAME[0]=""
+</pre>
+<p>
+In this example the IP address 192.168.1.1 with the 255.255.255.0
+netmask is assigned to the first ethernet interface (eth0). If you
+are using a DHCP server you can change the <span class="emphasis"><em>USE_DHCP=""</em></span> 
+line to <span class="emphasis"><em>USE_DHP[n]="yes"</em></span> (swap <span class="quote">“<span class="quote">n</span>”</span> with 
+the interface number). Other variables, except <span class="emphasis"><em>DHCP_HOSTNAME</em></span>
+are ignored when using DHCP. For example:
+</p>
+<pre class="screen">
+IPADDR[1]=""
+NETMASK[1]=""
+USE_DHCP[1]="yes"
+DHCP_HOSTNAME[1]=""
+</pre>
+<p>
+The same applies to other interfaces. You can activate the settings
+by rebooting the system or by executing <span class="command"><strong>/etc/rc.d/rc.inet1</strong></span>.
+It is also possible to reconfigure only one interface with
+<span class="command"><strong>/etc/rc.d/rc.inet1 ethX_restart</strong></span>, in which
+<span class="emphasis"><em>ethX</em></span> should be replaced by the name of the interface
+that you would like to reconfigure.
+</p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961628108"></a>22.3. Configuration of interfaces (IPv6)</h2></div></div></div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm961627876"></a>22.3.1. Introduction</h3></div></div></div>
+<p>
+<acronym class="acronym">IPv6</acronym> is the next generation internet protocol. One
+of  the advantages is that it has a much larger address space. In IPv4
+(the internet protocol that is commonly used today) addresses are
+32-bit, this address space is almost completely used right now, and
+there is a lack of IPv4 addresses.  IPv6 uses 128-bit addresses, which
+provides an unimaginable huge address space (2^128 addresses). IPv6
+uses another address notation, first of all hex numbers are used
+instead of decimal numbers, and the address is noted in pairs of
+16-bits, separated by a colon (<span class="quote">“<span class="quote">:</span>”</span>).  Let's have a look
+at an example address: </p>
+<pre class="screen">
+fec0:ffff:a300:2312:0:0:0:1
+</pre>
+<p>
+A block of zeroes can be replaced by two colons (<span class="quote">“<span class="quote">::</span>”</span>). Thus,
+the address above can be written as:
+</p>
+<pre class="screen">
+fec0:ffff:a300:2312::1
+</pre>
+<p>
+Each IPv6 address has a prefix. Normally this consists of two elements:
+32 bits identifying the address space the provider provides you, and a
+16-bit number that specifies the network. These two elements form the
+prefix, and in this case the prefix length is 32 + 16 = 48 bits. Thus,
+if you have a /48 prefix you can make 2^16 subnets and have 2^80 hosts
+on each subnet. The image below shows the structure of an IPv6 address
+with a 48-bit prefix.
+</p>
+<div class="figure">
+<a name="ipv6address"></a><p class="title"><b>Figure 22.1. The anatomy of an IPv6 address</b></p>
+<div class="figure-contents"><div class="mediaobject"><img src="../../images/ipv6addr.png" alt="The anatomy of an IPv6 address"></div></div>
+</div>
+<br class="figure-break"><p>
+There are a some specially reserved prefixes, most notable include:
+</p>
+<div class="table">
+<a name="idm961623780"></a><p class="title"><b>Table 22.1. Important IPv6 Prefixes</b></p>
+<div class="table-contents"><table summary="Important IPv6 Prefixes" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Prefix</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>fe80::</td>
+<td>Link local addresses, which are not routed.</td>
+</tr>
+<tr>
+<td>fec0::</td>
+<td>Site local addresses, which are locally routed, but not on or to the internet.</td>
+</tr>
+<tr>
+<td>2002::</td>
+<td>6to4 addresses, which are used for the transition from IPv4 to IPv6.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<br class="table-break">
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm961621684"></a>22.3.2. Slackware Linux IPv6 support</h3></div></div></div>
+<p>
+The Linux kernel binaries included in Slackware Linux do not support IPv6
+by default, but support is included as a kernel module. This module can be
+loaded using <span class="command"><strong>modprobe</strong></span>:
+</p>
+<pre class="screen">
+# <span class="command"><strong>modprobe ipv6</strong></span>
+</pre>
+<p>
+You can verify if IPv6 support is loaded correctly by looking at the 
+kernel output using the <span class="command"><strong>dmesg</strong></span>:
+</p>
+<pre class="screen">
+$ <span class="command"><strong>dmesg</strong></span>
+[..]
+IPv6 v0.8 for NET4.0
+</pre>
+<p>
+IPv6 support can be enabled permanently by adding the following line to
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.modules</code></html:span>:
+</p>
+<pre class="screen">
+/sbin/modprobe ipv6
+</pre>
+<p>
+Interfaces can be configured using <span class="command"><strong>ifconfig</strong></span>. But it
+is recommended to make IPv6 settings using the <span class="command"><strong>ip</strong></span>
+command, which is part of the <span class="quote">“<span class="quote">iputils</span>”</span> package that can
+be found in the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">extra/</code></html:span> directory of the Slackware Linux 
+tree.
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm961618052"></a>22.3.3. Adding an IPv6 address to an interface</h3></div></div></div>
+<p>
+If there are any router advertisers on a network there is a chance
+that the interfaces on that network already received an IPv6 address
+when the IPv6 kernel support was loaded. If this is not the case
+an IPv6 address can be added to an interface using the <span class="command"><strong>ip</strong></span>
+utility. Suppose we want to add the address <span class="quote">“<span class="quote">fec0:0:0:bebe::1</span>”</span>
+with a prefix length of 64 (meaning <span class="quote">“<span class="quote">fec0:0:0:bebe</span>”</span> is the 
+prefix). This can be done with the following command syntax:
+</p>
+<pre class="screen">
+# <span class="command"><strong>ip -6 addr add &lt;ip6addr&gt;/&lt;prefixlen&gt; dev &lt;device&gt;</strong></span>
+</pre>
+<p>
+For example:
+</p>
+<pre class="screen">
+# <span class="command"><strong>ip -6 addr add fec0:0:0:bebe::1/64 dev eth0</strong></span>
+</pre>
+</div>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961615700"></a>22.4. Wireless interfaces</h2></div></div></div>
+<p>
+Wireless interfaces usually require some additional configuration, like
+setting the ESSID, WEP keys and the wireless mode. Interface settings that
+are specific to wireless interfaces can be set in the 
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.wireless.conf</code></html:span> file. The
+<span class="command"><strong>/etc/rc.d/rc.wireless</strong></span> script configures wireless
+interfaces based on descriptions from
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.wireless.conf</code></html:span>. In
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">rc.wireless.conf</code></html:span> settings are made per interface
+MAC address. By default this file has a section that matches any interface:
+</p>
+<pre class="screen">
+## NOTE : Comment out the following five lines to activate the samples below ...
+## --------- START SECTION TO REMOVE -----------
+## Pick up any Access Point, should work on most 802.11 cards
+*)
+    INFO="Any ESSID"
+    ESSID="any"
+    ;;
+## ---------- END SECTION TO REMOVE ------------
+</pre>
+<p>
+It is generally a good idea to remove this section to make per-card
+settings. If you are lazy and only have one wireless card, you can leave
+this section in and add any configuration parameters you need. Since this
+section matches any wireless interface the wireless card you have will
+be matched and configured. You can now add a sections for your wireless
+interfaces. Each section has the following format:
+</p>
+<pre class="screen">
+&lt;MAC address&gt;)
+    &lt;settings&gt;
+;;
+</pre>
+<p>
+You can find the MAC address of an interface by looking at the 
+<span class="command"><strong>ifconfig</strong></span> output for the interface. For example,
+if a wireless card has the <span class="emphasis"><em>eth1</em></span> interface name,
+you can find the MAC address the following way:
+</p>
+<pre class="screen">
+# <span class="command"><strong>ifconfig eth1</strong></span>
+eth1      Link encap:Ethernet  HWaddr <span class="emphasis"><em>00:01:F4:EC:A5:32</em></span>
+          inet addr:192.168.2.2  Bcast:192.168.2.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:4 errors:1 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 b)  TX bytes:504 (504.0 b)
+          Interrupt:5 Base address:0x100
+</pre>
+<p>
+The hexadecimal address that is printed after <span class="emphasis"><em>HWaddr</em></span>
+is the MAC address, in this case <span class="emphasis"><em>00:01:F4:EC:A5:32</em></span>.
+When you have found the MAC address of the interface you can add a section
+for the device to <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.wireless.conf</code></html:span>. For
+example:
+</p>
+<pre class="screen">
+00:01:F4:EC:A5:32)
+    INFO="Cabletron Roamabout WLAN NIC"
+    ESSID="home"
+    CHANNEL="8"
+    MODE="Managed"
+    KEY="1234-5678-AB"
+    ;;
+</pre>
+<p>
+This will set the interface with MAC address
+<span class="emphasis"><em>00:01:F4:EC:A5:32</em></span> to use the ESSID
+<span class="emphasis"><em>home</em></span>, work in <span class="emphasis"><em>Managed</em></span> mode on
+channel <span class="emphasis"><em>8</em></span>. The key used for WEP encryption is
+<span class="emphasis"><em>1234-5678-AB</em></span>. There are many other parameters
+that can be set. For an overview of all parameters, refer to the last
+example in <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">rc.wireless.conf</code></html:span>.
+</p>
+<p>
+After configuring a wireless interface, you can activate the changes
+by executing the network initialization script
+<span class="command"><strong>/etc/rc.d/rc.inet1</strong></span>. You can see the current wireless
+settings with the <span class="command"><strong>iwconfig</strong></span> command:
+</p>
+<pre class="screen">
+eth1      IEEE 802.11-DS  ESSID:"home"  Nickname:"HERMES I"
+          Mode:Managed  Frequency:2.447 GHz  Access Point: 02:20:6B:75:0C:56   
+          Bit Rate:2 Mb/s   Tx-Power=15 dBm   Sensitivity:1/3  
+          Retry limit:4   RTS thr:off   Fragment thr:off
+          Encryption key:1234-5678-AB
+          Power Management:off
+          Link Quality=0/92  Signal level=134/153  Noise level=134/153
+          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
+          Tx excessive retries:27  Invalid misc:0   Missed beacon:0
+</pre>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961615636"></a>22.5. Resolving</h2></div></div></div>
+<h3>
+<a name="idm961606508"></a>Hostname</h3>
+<p>
+Each computer on the internet has a hostname. If you do not have a
+hostname that is resolvable with DNS, it is still a good idea to
+configure your hostname, because some software uses it. You can
+configure the hostname in <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/HOSTNAME</code></html:span>.
+A single line with the hostname of the machine will suffice. Normally
+a hostname has the following form: host.domain.tld, for example
+darkstar.slackfans.org. Be aware that the hostname has to be resolvable,
+meaning that GNU/Linux should be able to convert the hostname to an IP
+address. You can make sure the hostname is resolvable by adding it
+to <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/hosts</code></html:span>. Read the following section for
+more information about this file.
+</p>
+<h3>
+<a name="idm961605132"></a>/etc/hosts</h3>
+<p>
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/hosts</code></html:span> is a table of IP addresses with
+associated hostnames. This file can be used to name computers
+in a small network. Let's look at an example of the
+<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/hosts</code></html:span> file:
+</p>
+<pre class="screen">
+127.0.0.1               localhost
+192.168.1.1             tazzy.slackfans.org tazzy
+192.168.1.169           flux.slackfans.org
+</pre>
+<p>
+The <span class="emphasis"><em>localhost</em></span> line should always be present. It assigns the name <span class="emphasis"><em>localhost</em></span>
+to a special interface, the loopback. In this example the names
+<span class="emphasis"><em>tazzy.slackfans.org</em></span> and <span class="emphasis"><em>tazzy</em></span> are assigned to the IP address 192.168.1.1,
+and the name <span class="emphasis"><em>flux.slackfans.org</em></span> is assigned to the IP address 192.168.1.169.
+On the system with this file both computers are available via the
+mentioned hostnames.
+</p>
+<p>
+It is also possible to add IPv6 addresses, which will be used if your system
+is configured for IPv6. This is an example of a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/hosts</code></html:span>
+file with IPv4 and IPv6 entries: 
+</p>
+<pre class="screen">
+# IPv4 entries
+127.0.0.1               localhost
+192.168.1.1             tazzy.slackfans.org tazzy
+192.168.1.169           gideon.slackfans.org
+
+# IPv6 entries
+::1			localhost
+fec0:0:0:bebe::2	flux.slackfans.org	
+</pre>
+<p>
+Please note that <span class="quote">“<span class="quote">::1</span>”</span> is the default IPv6 loopback.
+</p>
+<h3>
+<a name="idm961601164"></a>/etc/resolv.conf</h3>
+<p>
+The <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/resolv.conf</code></html:span> file is used to specify
+which nameservers the system should use. A nameserver converts hostnames
+to IP addresses. Your provider should have given you at least two name
+name server addresses (DNS servers). You can add these nameservers
+to <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/resolv.conf</code></html:span> by adding the line
+<span class="emphasis"><em>nameserver ipaddress</em></span> for each nameserver. For example: 
+</p>
+<pre class="screen">
+nameserver 192.168.1.1
+nameserver 192.168.1.169
+</pre>
+<p>
+You can check wether the hostnames are tranlated correctly or not with
+the <span class="command"><strong>host hostname</strong></span> command. Swap <span class="emphasis"><em>hostname</em></span> with an
+existing hostname, for example the website of your internet service
+provider.
+</p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961606724"></a>22.6. IPv4 Forwarding</h2></div></div></div>
+<p>
+IPv4 forwarding connects two or more networks by sending packets
+which arrive on one interface to another interface. This makes it
+possible to let a GNU/Linux machine act as a router. For example, you
+can connect multiple networks, or your home network with the internet.
+Let's have a look at an example:
+</p>
+<div class="figure">
+<a name="router"></a><p class="title"><b>Figure 22.2. Router example</b></p>
+<div class="figure-contents"><div class="mediaobject"><img src="../../images/router.png" alt="Router example"></div></div>
+</div>
+<br class="figure-break"><p>
+In the example there are two networks, 192.168.1.0 and 192.168.2.0. Three
+hosts are connected to both network. One of these hosts is connected to
+both networks with interfaces. The interface on the 192.168.1.0 network
+has IP address 192.168.1.3, the interface on the 192.168.2.0 network has
+IP address 192.168.2.3. If the host acts as a router between both networks
+it forwards packets from the 192.168.1.0 network to the 192.168.2.0 network
+and vise versa. Routing of normal IPv4 TCP/IP packages can be enabled
+by enabling IPv4 forwarding.
+</p>
+<p>
+IPv4 forwarding
+can be enabled or disabled under Slackware Linux by changing the
+executable bit of the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.ip_forward</code></html:span>
+file. If the executable bit is set on this file, IP forwarding will
+be enabled during the system boot, otherwise it will not. You can
+check whether the executable bit is enabled with <span class="command"><strong>ls -l</strong></span>
+(a description of the <span class="command"><strong>ls</strong></span> command can be found in
+<a class="xref" href="chap-filesystem.html#chap-filesystems-analyzing-listing" title="8.2.1. Listing files">Section 8.2.1, “Listing files”</a>). 
+</p>
+<p>
+It is also possible to enable IPv4 forwarding on a running system
+with the following command (0 disables forwarding, 1 enables forwarding):
+</p>
+<pre class="screen">
+# <span class="command"><strong>echo 0 &gt; /proc/sys/net/ipv4/ip_forward</strong></span>
+</pre>
+<p>
+Be cautious! By default there are no active packet filters. This means
+that anyone can access other networks. Traffic can be filtered
+and logged with the iptables kernel packet filter. Iptables can
+be administrated through the <span class="command"><strong>iptables</strong></span> command.
+NAT (Network Address Translation) is also a subset of iptables,
+and can be controlled and enabled through the <span class="command"><strong>iptables</strong></span>
+command. NAT makes it possible to <span class="quote">“<span class="quote">hide</span>”</span> a network behind one
+IP address. This allows you to use the internet on a complete network
+with only one IP address.
+</p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="netadmin.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="netadmin.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="ipsec.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Part VI. Administració de xarxa </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 23. IPsec</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

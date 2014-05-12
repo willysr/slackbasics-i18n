@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
+	 xml:lang="en" xml:id="kernel">
+  <title>Contruïnt un núcli</title>
+
+  <sect1 xml:id="chap-kernel-intro">
+    <title>Introducció</title>
+
+    <para>
+		El núcli Linux s'explica breument a <xref
+		linkend="chap-intro-linux" />. Un dels avantatges de Linux és
+		que el codi font complet està disponible (com passa amb la majoria 
+		del	programari del sistema Slackware Linux). Açò significa que es
+		pot recompilar el nucli. Hi ha situacions en que resulta útil 
+		fer-ho, per exemple:
+      <!--The Linux kernel is shortly discussed in <xref
+      linkend="chap-intro-linux" />. One of the advantages of Linux is
+      that the full sources are available (as most of the Slackware
+      Linux system). This means that you can recompile the
+      kernel. There are many situations in which recompiling the
+      kernel is useful. For example:-->
+    </para> 
+
+    <itemizedlist>
+      <listitem>
+	<para>
+		<emphasis role="bold">Aprimar el nucli</emphasis>:
+		Es poden deshabilitar funcionalitats concretes del núcli per a
+		reduir el seu tamany. Açò és especialment útil en entorns amb 
+		poca memòria RAM.
+	  <!--<emphasis role="bold">Making the kernel leaner</emphasis>:
+	  One can disable certain functionality of the kernel, to
+	  decrease its size. This is especially useful in environments
+	  where memory is scarce.-->
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+		<emphasis role="bold">Optimizing the kernel</emphasis>: és 
+		possible optimitzar el núcli. Per exemple, compilant-lo per a un
+		tipus de processador específic.
+	  <!--<emphasis role="bold">Optimizing the kernel</emphasis>: it
+	  is possible to optimize the kernel. For instance, by
+	  compiling it for a specific processor type.-->
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+		<emphasis role="bold">Suport de maquinari</emphasis>: Hi ha 
+		maquinari que per defecte no està suportat pel núcli proporcionat
+		per Slackware Linux. Un exemple típic és el suport per als 
+		sistemes SMP.
+	  <!--<emphasis role="bold">Hardware support</emphasis>: Support
+	  for some hardware is not enabled by default in the Linux
+	  kernel provided by Slackware Linux. A common example is
+	  support for SMP systems.-->
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+		<emphasis role="bold">Emprant tapas personalitzats</emphasis>:
+		Hi han molts tapats no oficials per al núcli Linux. Per regla 
+		general evitar aquests tapats és una bona idea, però ???cert???
+		programari de tercers, com <ulink url="http://www.win4lin.com">
+		Win4Lin</ulink>, requereix que s'instale un tapat adicional del
+		nucli.
+	  <!--<emphasis role="bold">Using custom patches</emphasis>: There
+	  are many unofficial patches for the Linux kernel. Generally
+	  speaking it is a good idea to avoid unofficial patches. But
+	  some third party software, like <ulink
+	  url="http://www.win4lin.com">Win4Lin</ulink>, require
+	  that you install an additional kernel patch.-->
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+		Crear les capçaleres adequades i muntar una infraestructura
+		disponible per a construir mòduls de tercers.
+	  <!--Making the proper headers and build infrastucture available
+	  to build third-party modules.-->
+	</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>
+		Aquets capítol posa el focus en la sèrie de núclis emprada en 
+		Slackware Linux 12.0, la Linux 2.6. Compilar un núcli no és 
+		realment difícil, simplement tingues a ma una còpia de seguretat 
+		del núcli que pugues utilitzar si alguna cosa anara malament. 
+		La compilació del núcli Linux consta d'aquests	passos:
+      <!--This chapter focuses on the default kernel series used in
+      Slackware Linux 12.0, Linux 2.6. Compiling a kernel is not
+      really difficult, just keep around a backup kernel that you can
+      use when something goes wrong. The Linux kernel compilation involves these
+      steps:-->
+    </para>
+
+    <itemizedlist>
+      <listitem>
+	<para>
+	  Configurar el núcli.<!--Configuring the kernel.-->
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Contruir el núcli. <!--Building the kernel.-->
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Construir els mòduls. <!-- Building modules.-->
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Instal·lar el núcli i els mòduls. <!--Installing the kernel and modules.-->
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  Actualitza la configuració del LILO. <!--Updating the LILO configuration.-->
+	</para>
+      </listitem>
+    </itemizedlist>
+    
+    <para>
+		Al llarg d'aquest capítol, entendrem que els codis font del 
+		núcli es troben a <filename>/usr/src/linux</filename>. Si has
+		instal·lat el paquet kernel-soruces del conjunt de discs 
+		<quote>k</quote>, les fonts del núcli estaràn disponibles al 
+		directori <filename>/usr/src/linux-kernelversion</filename>, i
+		<filename>/usr/src/linux</filename> serà un enllaç simbòlic al 
+		directori real de les fonts. D'aquesta manera, si empres els 
+		paquet estàndard de núclis Linux d'Slackware ets a punt per a 
+		continuar.
+      <!--In this chapter, we suppose that the kernel sources are
+      available in <filename>/usr/src/linux</filename>. If you have
+      installed the kernel-sources from the <quote>k</quote> disk set,
+      the kernel sources are available in
+      <filename>/usr/src/linux-kernelversion</filename>, and
+      <filename>/usr/src/linux</filename> is a symbolic link to the
+      real kernel source directory. So, if you use the standards
+      Slackware Linux kernel package you are set to go.-->
+    </para>
+
+    <para>
+		A diferència de les versions més antigues del núcli,
+		ja no cal l'enllaç simbòlic <filename>/usr/src/linux</filename>. 
+		Si has extet les fonts del nou núcli a <filename>/usr/src</filename>,
+		podràs contruir el núcli a <filename>/usr/src/linux-&lt;version&gt;
+		</filename>, i utilitzar eixe directori en els exemples d'aquest 
+		capítol.
+      <!--In contrast to older kernel versions, it is not necessary to use
+      a <filename>/usr/src/linux</filename> symbolink anymore.  If you
+      have extracted newer kernel sources in 
+      <filename>/usr/src</filename>, you can build the kernel in
+      <filename>/usr/src/linux-&lt;version&gt;</filename>, and use
+      that directory in the examples in this chapter.-->
+    </para>
+  </sect1>
+
+  <sect1 xml:id="chap-kernel-build">
+    <title>Configuració</title>
+
+    <para>
+		Adés em dit, que el primer pas és configurar les 
+		fonts del núcli. Per a facilitar aquesta tasca és convenient
+		copiar la configuració dels fonts del núcli Linux que que venen 
+		per defècte a la distribució a les fonts del núcli. Aquests 
+		fitxers estàn emmagatzemats al medi de la distribució com <filename>
+		kernels/&lt;kernelname&gt;/config</filename>. Suposem que volem 
+		utilitzar la configuració del núcli <filename>hugesmp.s</filename>
+		com a punt de partida (què és el núcli per defecte), i que tenim
+		un CD-ROM de Slackware Linux muntat a <filename>/mnt/cdrom</filename>,
+		llavors podríem copiar la configuració del núcli Linux mitjançant
+		la ordre:
+		
+      <!--As laid out above, the first step is to configure the kernel
+      source. To ease the configuration of the kernel, it is a good
+      idea to copy the default Slackware Linux kernel configuration to
+      the kernel sources. The Slackware Linux kernel configuration
+      files are stored on the distribution medium as
+      <filename>kernels/&lt;kernelname&gt;/config</filename>. Suppose
+      that you want to use the <filename>hugesmp.s</filename> kernel
+      configuration as a starting point (which is the default kernel),
+      and that you have a Slackware Linux CD-ROM mounted at
+      <filename>/mnt/cdrom</filename>, you can copy the Slackware
+      Linux kernel configuration with:-->
+    </para>
+    
+    <screen>
+# <userinput>cp /mnt/cdrom/kernels/hugesmp.s/config /usr/src/linux/.config</userinput>
+    </screen>
+
+    <para>
+		La configuració d'un nucli en execució també es pot obtindre
+		com <filename>/proc/config.gz</filename> sempre i quan el núcli 
+		estiga compilat amb les opcions <emphasis>CONFIG_IKCONFIG</emphasis> 
+		i <emphasis>CONFIG_IKCONFIG_PROC</emphasis>. Els núclis per 
+		defecte de Slackware Linux tenen aquestes opcions activades, 
+		pel que si volguerem utilitzar la configuració del kernel en 
+		execució, podríem executar:
+      <!--The kernel configuration of a running kernel can also be
+      retrieved as <filename>/proc/config.gz</filename> if the kernel
+      was compiled with the <emphasis>CONFIG_IKCONFIG</emphasis> and
+      <emphasis>CONFIG_IKCONFIG_PROC</emphasis> options. The default
+      Slackware Linux kernels have these options enabled. So, if you
+      would like to use the configuration of the running kernel, you
+      could run:-->
+    </para>
+
+    <screen>
+# <userinput>zcat /proc/config.gz > /usr/src/linux/.config</userinput>
+    </screen>
+
+    <para>
+		Si estàs utilitzant un fitxer de configuració d'una versió 
+		diferent a la del núcli que estàs compilant, és molt probable
+		que ambdúes versions no tinguen el mateix conjunt d'opcions. 
+		S'afigen noves opcions sovint (per exemple, perque s'han afegit
+		drivers més nous), i de vegades s'eliminen components del núcli.
+		Es poden configurar noves opcions (i eliminar les que no
+		utilitzes) amb la ordre <command>make oldconfig</command>:
+		
+		<!--If you are using a configuration file that is for another kernel
+      version than you are currently compiling, it is likely that both
+      kernel versions do not have the same set of options. New options
+      are often added (e.g., because newer drivers are added), and
+      sometimes kernel components are removed. You can configure new
+      options (and remove unused options) with the <command>make
+      oldconfig</command> command:-->
+    </para>
+
+    <para>
+# <userinput>cd /usr/src/linux ; make oldconfig</userinput>
+    </para>
+
+    <para>
+		Açò et preguntarà quines opcions vols compilar amb suport, 
+		(<emphasis>Y</emphasis>), quines amb suport com a mòdul 
+		(<emphasis>M</emphasis>), i de quines no vols suport 
+		(<emphasis>N</emphasis>). Per exemple:
+     
+      <!--This will ask you for options whether you would like to compile
+      in support (<emphasis>Y</emphasis>), compile support as a module
+      (<emphasis>M</emphasis>), or not include support
+      (<emphasis>N</emphasis>). For example:-->
+    </para>
+
+    <screen>
+IBM ThinkPad Laptop Extras (ACPI_IBM) [N/m/y/?] (NEW)
+    </screen>
+
+    <para>
+		Com pots veurer, es mostren les possibles opcions, amb la 
+		opció per defècte en majúscules. Si senzillament prems la tecla 
+		&lt;Enter&gt;, la opció en majúscules serà utilitzada i si vols
+		més informació d'una opció, pots introduïr un interrogant
+		(<emphasis>?</emphasis>):
+				
+      <!--As you can see, the possible options are shown, with the default
+      choice as a capital. If you just press &lt;Enter&gt;, the
+      capitalized option will be used. If you want more information
+      about an option, you can enter the question mark
+      (<emphasis>?</emphasis>):-->
+    </para>
+
+    <screen>
+    IBM ThinkPad Laptop Extras (ACPI_IBM) [N/m/y/?] (NEW) <userinput>?</userinput>
+
+This is a Linux ACPI driver for the IBM ThinkPad laptops. It adds
+support for Fn-Fx key combinations, Bluetooth control, video
+output switching, ThinkLight control, UltraBay eject and more.
+For more information about this driver see &lt;file:Documentation/ibm-acpi.txt&gt;
+and &lt;http://ibm-acpi.sf.net/&gt; .
+
+If you have an IBM ThinkPad laptop, say Y or M here.
+
+    IBM ThinkPad Laptop Extras (ACPI_IBM) [N/m/y/?] (NEW)
+    </screen>
+
+    <para>
+		La eixida d'aquest comandament pot ser una miqueta extensa, 
+		perque es mostren les opcions que van ser utilitzades en el 
+		fitxer de configuració i les que estàn disponibles en el núcli 
+		en execució, però la configuració es farceix automàticament 
+		basant-se en el fitxer de configuració.
+		
+      <!--The output of this command can be a bit verbose, because the
+      options that were used in the configuration file, and are
+      available in the running kernel are also shown, but their
+      configuration will be filled in automatically based on the
+      configuration file.-->
+    </para>
+    
+    <para>
+		Arribats a este punt, podem començar a configurar el núcli amb 
+		detall. Hi ha tres ??caretes?? per a la configuració del núcli.
+		La primera és <parameter class="command">config</parameter>, que
+		senzillament ens pregunta què volem fer amb cada opció del núcli.
+		Aquesta opció requereix molt de temps, pel que no és considera
+		una bona manera de configurar el núcli. Una aproximació molt més
+		amigables és la careta <parameter class="command">menuconfig
+		</parameter>, que utilitza un sistema de menús per a fer la tasca.
+		També hi ha una interfície de X, anomenada <parameter
+		class="command">xconfig</parameter>. Per a iniciar una careta
+		canviant al directori de fonts del núcli i executant <command>make
+		&lt;front-end&gt;</command>. Per exemple, per a configurar el
+		núcli amb la interfície de menús, pots utilitzar les següents
+		ordres:
+      <!--At this point you can start to actually configure the kernel in
+      detail. There are three configuration front-ends to the kernel
+      configuration. The first one is <parameter
+      class="command">config</parameter>, which just asks you what you
+      want to do for each kernel option. This takes a lot of time. So,
+      normally this is not a good way to configure the kernel. A more
+      user friendly approach is the <parameter
+      class="command">menuconfig</parameter> front-end, which uses a
+      menuing system that you can use to configure the kernel. There
+      is an X front-end as well, named <parameter
+      class="command">xconfig</parameter>. You can start a
+      configuration front-end by changing to the kernel source
+      directory, and executing <command>make
+      &lt;front-end&gt;</command>. For example, to configure the
+      kernel with the menu front-end you can use the following
+      commands:-->
+    </para>
+    
+    <screen>
+# <userinput>cd /usr/src/linux</userinput>
+# <userinput>make menuconfig</userinput>
+    </screen>
+    
+    <para>
+		Pressupost que, si així ho prefereixes, també pots editar el
+		fitxer <filename>.config</filename> directament amb el teu 
+		editor favorit.
+      <!--Of course, if you prefer, you can also edit the
+      <filename>.config</filename> file directly with your favorite
+      text edtor.-->
+    </para>
+
+    <para>
+		Com hem vist breument abans, en la configuració del núcli hi ha
+		bàsicament tres opcions per a cada elecció: <quote>n</quote>
+		deshabilita la funcionalitat, <quote>y</quote> la habilita, i
+		<quote>m</quote> la compila com a mòdul. La configuració del 
+		núcli Slackware Linux que ve per defecte és una configuració 
+		molt bona, inclou suport per a les controladoes de disk i 
+		sistemes de fitxers més comuns, mentres que la resta ve compilat
+		com a mòdul. Siguen quines siguen les deicisions que prengues, 
+		t'has d'assegurar de que inclous tant el driver per a la 
+		controladora de discs com suport per al tipus de sistema de
+		fitxers en què tens instal·lat el teu sistema de fitxers arrel. 
+		De no és així, el núcli no serà capaç de muntar el sistema de 
+		fitxers arrel, i el núcli "entrarà en pànic" al no poder 
+		entregar-li el control de l'inicialització al programa 
+		<command>init</command>.
+      <!--As we have seen briefly before, in the kernel configuration
+      there are basically three options for each choice:
+      <quote>n</quote> disables functionality, <quote>y</quote>
+      enables functionality, and <quote>m</quote> compiles the
+      functionality as a module. The default Slackware Linux kernel
+      configuration is a very good configuration, it includes the
+      support for most common disk controllers and filesystems, the
+      rest is compiled as a module. Whatever choices you make, you
+      need to make sure that both the driver for the disk controller
+      and support for the filesystem type holding your root filesystem
+      is included. When they are not, the kernel will not able to
+      mount the root filesystem, and the kernel will panic because it
+      can not hand over initialization to the <command>init</command>
+      program.-->
+    </para>
+
+    <note>
+      <para>
+		  Sempre és una bona idea mantindre el teu vell núcli a prop
+		  en mòduls per si comets un error de configuració. Si el núcli a 
+		  compilar té el mateix nombre de versió que el núcli en
+		  funcionament, hauries de considerar seriosament si modificar 
+		  la opció <emphasis>CONFIG_LOCALVERSION</emphasis>. La cadena
+		  especificada en esta opció afegida al final del nom de la
+		  versió. Per exemple, si el núcli té la versió 2.6.21.6, i a
+		  <emphasis>CONFIG_LOCALVERSION</emphasis> està posat 
+		  <emphasis>"-smp-ddk"</emphasis>, la versió del núcli serà
+		  <emphasis>2.6.21.6-smp-ddk</emphasis>.
+	<!--It is always a good idea to keep your old kernel in modules
+	around, in the case that you have made a configuration error.
+	If the to be compiled kernel has the same version number as
+	the running kernel, you should seriously consider modifying
+	the <emphasis>CONFIG_LOCALVERSION</emphasis> option. The
+	string specified in this option is appended to the version
+	name. For example, if the kernel has version 2.6.21.6, and
+	<emphasis>CONFIG_LOCALVERSION</emphasis> is set to
+	<emphasis>"-smp-ddk"</emphasis>, the kernel version will be
+	<emphasis>2.6.21.6-smp-ddk</emphasis>.-->
+      </para>
+
+      <para>
+		  Si no modifiques la versió d'aquesta manera, la instal·lació
+		  dels mòduls del nou núcli sobreescriurà els mòduls del núcli
+		  en execució. Açò és enormement incòmode si necessites tornar
+		  al vell núcli.
+	<!--If you don't modify the version in this manner, the
+	installation of modules from the new kernel will overwrite the
+	modules from the running kernel. This is highly uncomfortable
+	if you need to fall back to the old kernel.-->
+      </para>
+    </note>
+  </sect1>
+  
+  <sect1 xml:id="chap-kernel-compile">
+    <title>La compilació</title>
+
+    <para>
+		La compilació del núcli solia consistir de múltiples passos,
+		però el núclis Linux 2.6 es poden compilar executant 
+		<command>make</command> en el directori dels fonts del núcli.
+		Açò calcularà dependències, construirà el núcli i construirà i 
+		enllaçarà els mòduls del núcli.
+      <!--The kernel compilation used to consist of multiple steps, but
+      2.6 Linux kernels can be compiled be executing <command>make</command>
+      in the kernel source directory. This will calculate dependencies,
+      build the kernel, and will build and link kernel modules.-->
+    </para>
+
+    <screen>
+# <userinput>cd /usr/src/linux</userinput>
+# <userinput>Construcció (make)</userinput>
+    </screen>
+    
+    <para>
+		Una vegada compilat, l'arbre conté els mòduls i un imatge 
+		comprimida del núcli anomenada <filename>bzImage</filename> a 
+		<filename>/usr/src/linux/arch/i386/boot</filename>. Ara es pot
+		continuar amb la instal·lació del núcli i dels mòduls.
+      <!--After the compilation is finished, the tree contains the
+      compiled modules, and a compressed kernel image named
+      <filename>bzImage</filename> in
+      <filename>/usr/src/linux/arch/i386/boot</filename>. You can now
+      continue with the installation of the kernel and its modules.-->
+    </para>
+  </sect1>
+  
+  <sect1 xml:id="chap-kernel-install">
+    <title>Instal·lació</title>
+    
+    <sect2 xml:id="chap-kernel-install-kernel">
+      <title>Instal·lant el núcli</title>
+      
+      <para>
+		  El següent pas és instal·lar el núcli amb els seus mòduls.
+		  S'acomença instal·lant els mòduls perquè açò es pot fer amb
+		  una ordre dins del arbre de fonts:
+	<!--The next step is to install the kernel and the kernel modules.
+	We will start with installing the kernel modules, because this
+	can be done with one command within the kernel source tree:-->
+      </para>
+      
+      <screen>
+# <userinput>make modules_install</userinput>
+      </screen>
+      
+      <para>
+		  Açò instal·larà els moduls a <filename>
+		  /lib/modules/&lt;kernelversion&gt;</filename>. Si s'està 
+		  reemplaçant un núcli amb exactament el mateixa nombre de versió,
+		  és una bona idea eliminar els mòduls antincs abans:
+		  
+		  
+	<!--This will install the modules in 
+	<filename>/lib/modules/&lt;kernelversion&gt;</filename>. If
+	you are replacing a kernel with the exactly the same version
+	number, it is a good idea to remove the old modules before
+	installing the new ones. E.g.:-->
+      </para>
+	
+      <screen>
+# <userinput>rm -rf /lib/modules/2.6.21.5-smp</userinput>
+      </screen>
+      
+      <para>
+		  Es pot <quote>instal·lar</quote> el núcli copiant-lo al directory
+		  <filename>/boot</filename> i li pots donar el nom que vullgues,
+		  només què és una bona idea utilitzar alguna convenció per als
+		  noms, com <filename>vmlinuz-version</filename>. Per exemple, si
+		  l'anomenes <filename>vmlinuz-2.6.21.5-smp-ddk</filename>, el pots
+		  copiar desde l'arbre de fonts del núcli amb la ordre:
+		  
+		  
+	<!--You can <quote>install</quote> the kernel by copying it to the
+	<filename>/boot</filename> directory. You can give it any name
+	you want, but it is a good idea to use some naming
+	convention. E.g.  <filename>vmlinuz-version</filename>. For
+	instance, if you name it
+	<filename>vmlinuz-2.6.21.5-smp-ddk</filename>, you can copy it
+	from within the kernel source tree with:-->
+      </para>
+      
+      <screen>
+# <userinput>cp arch/i386/boot/bzImage /boot/vmlinuz-2.6.21.5-smp-ddk</userinput>
+      </screen>
+      
+      <para>
+		  En este punt, quasi em acabat. L'últim pas és afegir el nou
+		  núcli a la configuració del carregador del llançament de Linux 
+		  (LILO).
+	<!--At this point you are almost finished. The last step is to add
+	the new kernel to the Linux boot loader (LILO) configuration.-->
+      </para>
+    </sect2>
+    
+    <sect2 xml:id="chap-kernel-install-lilo">
+      <title>Configurant LILO</title>
+      
+      <para>
+		<acronym>LILO</acronym> (Linux Loader) és el llançador de la 
+		càrrega de Linux que utilitza Slackware Linux per defecte. La 
+		configuració de LILO funciona en dos passos; primer es modifica
+		la configuració en <filename>/etc/lilo.conf</filename> i després
+		s'executa <command>lilo</command>, qui escriurà la nova configuració
+		en el llançador de càrrega. La configuració de LILO ja té una 
+		entrada per al núcli actualment en funcionament. És molt bona idea
+		deixar esta entrada per si de cas el nou núcli no funciona, si 
+		et mous al final del fitxer <filename>/etc/lilo.conf</filename>
+		la veuràs, i s'assemblarà a açò:
+        <!--<acronym>LILO</acronym> (Linux Loader) is the default boot
+        loader that Slackware Linux uses. The configuration of LILO
+        works in two steps; the first step is to alter the LILO
+        configuration in <filename>/etc/lilo.conf</filename>. The
+        second step is to run the <command>lilo</command>, which will
+        write the LILO configuration to the boot loader. The LILO
+        configuration already has an entry for the current kernel you
+        are running. It is a good idea to keep this entry, as a
+        fall-back option if your new kernel does not work. If you
+        scroll down to the bottom of
+        <filename>/etc/lilo.conf</filename> you will see this entry,
+        it looks comparable to this:-->
+      </para>
+      
+      <screen>
+# Linux bootable partition config begins
+image = /boot/vmlinuz
+  root = /dev/hda5
+  label = Slack
+  read-only # Non-UMSDOS filesystems should be mounted read-only for checking
+# Linux bootable partition config ends
+      </screen>
+      
+      <para>
+		  La forma més senzilla de afegir el nou núcli és duplicar la 
+		  entrada existent i editar la primera entrada, modificant les
+		  opcions <parameter>image</parameter>, i <parameter>label</parameter>.
+		  Després dels canvis l'exemple d'abans es pareixerà a açò:
+		  
+        The easiest way to add the new kernel is to duplicate the
+        existing entry, and then editing the first entry, changing the
+        <parameter>image</parameter>, and <parameter>label</parameter>
+        options. After changing the example above it would look like
+        this:
+      </para>
+      
+      <screen>
+# Linux bootable partition config begins
+image = /boot/vmlinuz-2.6.21.5-smp-ddk
+  root = /dev/hda5
+  label = Slack
+  read-only # Non-UMSDOS filesystems should be mounted read-only for checking
+
+image = /boot/vmlinuz
+  root = /dev/hda5
+  label = SlackOld
+  read-only # Non-UMSDOS filesystems should be mounted read-only for checking
+# Linux bootable partition config ends
+      </screen>
+      
+      <para>
+		Com es pot veurer, la primera entrada de <parameter>image</parameter>
+		apunta al nou núcli, i la etiqueta (label) de la segona s'ha 
+		canviat a <quote>SlackOld</quote>. LILO llançarà automàticament
+		la primera imatge. Ara es pot instal·lar aquesta configuració de
+		LILO amb l'ordre <command>lilo</command>:
+	<!--As you can see the first <parameter>image</parameter> entry
+	points to the new kernel, and the label of the second entry
+	was changed to <quote>SlackOld</quote>. LILO will
+	automatically boot the first image. You can now install this
+	new LILO configuration with the <command>lilo</command>
+	command:-->
+      </para>
+
+      <screen>
+# <userinput>lilo</userinput>
+Added Slack *
+Added SlackOld
+      </screen>
+
+      <para>
+		  La pròxima vegada que incies l'ordinador, les dues entrades
+		  estaràn disponibles, i la entrada <quote>Slack</quote> serà
+		  llançada per defecte.
+	<!--The next time you boot both entries will be available, and the
+	<quote>Slack</quote> entry will be booted by default.-->
+      </para>
+      
+      <note>
+	<para>
+		Si vols que LILO mostre un menú amb les entrades configurades
+		via <filename>lilo.conf</filename> cada vegada que encengues 
+		l'ordinador, assabenta't de que afegeixes una línea que diga:
+	  <!--If you want LILO to show a menu with the entries configured
+	  via <filename>lilo.conf</filename> on each boot, make sure
+	  that you add a line that says-->
+	</para>
+
+	<screen>
+prompt
+	</screen>
+
+	<para>
+		al <filename>lilo.conf</filename>. D'altra manera LILO 
+		llançarà la entrada per defecte què es defineix amb <emphasis>
+		default=&lt;name&gt;</emphasis>, o la primera entrada si no 
+		se n'especifica cap. Sempre es pot accedir al menú mantenint
+		pitjada la tecla &lt;Shift&gt; quan LILO està en marxa.
+		<!--
+	  to <filename>lilo.conf</filename>. Otherwise LILO will boot
+          the default entry that is set with
+          <emphasis>default=&lt;name&gt;</emphasis>,
+          or the first entry when no default kernel is set. You can
+          access the menu with entries at any time by holding the
+          &lt;Shift&gt; key when LILO is started.-->
+	</para>
+      </note>
+    </sect2>
+  </sect1>
+</chapter>

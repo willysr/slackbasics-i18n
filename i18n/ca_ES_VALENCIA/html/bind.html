@@ -1,0 +1,158 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 26. BIND</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="netadmin.html" title="Part VI. Administració de xarxa">
+<link rel="prev" href="apache.html" title="Chapter 25. Apache">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 26. BIND</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="apache.html">Prev</a> </td>
+<th width="60%" align="center">Part VI. Administració de xarxa</th>
+<td width="20%" align="right"> </td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="idm961513788"></a>Chapter 26. BIND</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="bind.html#idm961513500">26.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="bind.html#idm961506092">26.2. Making a caching nameserver</a></span></dt>
+</dl>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961513500"></a>26.1. Introduction</h2></div></div></div>
+<p>
+The domain name system (<acronym class="acronym">DNS</acronym>) is used to convert
+human-friendly host names (for example www.slackware.com) to IP
+addresses. <acronym class="acronym">BIND</acronym> (Berkeley Internet Name Domain) is
+the most widely used DNS daemon, and will be covered in this chapter.
+</p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm961512460"></a>26.1.1. Delegation</h3></div></div></div>
+<p>
+One of the main features is that DNS requests can be delegated. For example,
+suppose that you own the <span class="quote">“<span class="quote">linuxcorp.com</span>”</span> domain. You can provide
+the authorized nameservers for this domain, you nameservers are authoritative
+for the <span class="quote">“<span class="quote">linuxcorp.com</span>”</span>. Suppose that there are different
+branches within your company, and you want to give each branch authority
+over their own zone, that is no problem with DNS. You can delegate DNS
+for e.g. <span class="quote">“<span class="quote">sales.linuxcorp.com</span>”</span> to another nameserver within
+the DNS configuration for the <span class="quote">“<span class="quote">linuxcorp.com</span>”</span> zone.
+</p>
+<p>
+The DNS system has so-called root servers, which delegate the DNS for
+millions of domain names and extensions (for example, country specific
+extensions, like <span class="quote">“<span class="quote">.nl</span>”</span> or <span class="quote">“<span class="quote">.uk</span>”</span>) to authorized
+DNS servers. This system allows a branched tree of delegation, which is
+very flexible, and distributes DNS traffic.
+</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm961509804"></a>26.1.2. DNS records types</h3></div></div></div>
+<p>
+The following types are common DNS record types:
+</p>
+<div class="table">
+<a name="idm961509404"></a><p class="title"><b>Table 26.1. DNS records</b></p>
+<div class="table-contents"><table summary="DNS records" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Prefix</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>An A record points to an IPv4 IP address.</td>
+</tr>
+<tr>
+<td>AAAA</td>
+<td>An AAAA record points to an IPv6 IP address.</td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td>A CNAME record points to another DNS entry.</td>
+</tr>
+<tr>
+<td>MX</td>
+<td>A MX record specifies which should handle mail for 
+the domain.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<br class="table-break">
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="idm961506756"></a>26.1.3. Masters and slaves</h3></div></div></div>
+<p>
+Two kinds of nameservers can be provided for a domain name: a master and
+slaves. The master server DNS records are authoritative. Slave servers download
+their DNS record from the master servers. Using slave servers besides a
+master server is recommended for high availability and can be used for
+load-balancing.
+</p>
+</div>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="idm961506092"></a>26.2. Making a caching nameserver</h2></div></div></div>
+<p>
+A caching nameserver provides DNS services for a machine or a network,
+but does not provide DNS for a domain. That means it can only be used
+to convert hostnames to IP addresses. Setting up a nameserver with
+Slackware Linux is fairly easy, because BIND is configured as a
+caching nameserver by default. Enabling the caching nameserver takes
+just two steps: you have to install BIND and alter the initialization
+scripts. BIND can be installed by adding the bind package from
+the <span class="quote">“<span class="quote">n</span>”</span> disk set. After that bind can be started by executing the
+<span class="command"><strong>named</strong></span> command. If want to start BIND by
+default, make the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.bind</code></html:span> file executable.
+This can be done by executing the following command as root:
+</p>
+<pre class="screen">
+# <span class="command"><strong>chmod a+x /etc/rc.d/rc.bind</strong></span>
+</pre>
+<p>
+If you want to use the nameserver on the machine that runs BIND,
+you also have to alter <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/resolv.conf</code></html:span>.
+</p>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="apache.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="netadmin.html">Up</a></td>
+<td width="40%" align="right"> </td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 25. Apache </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> </td>
+</tr>
+</table>
+</div>
+</body>
+</html>

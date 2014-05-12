@@ -1,0 +1,1439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
+	 xml:id="chap-shell">
+  <title>El shell<!--The shell--></title>
+
+  <sect1 xml:id="chap-shell-intro">
+    <title>Introducció <!--Introduction--></title>
+
+    <para>
+		En aquest capítol vorem l'entorn tradicional de treball als 
+		sistemes UNIX: el shell. El shell és un intèrpret què es pot
+		utilitzar tant de forma interactiva com no. Quan el shell 
+		no s'utilitza de manera interactiva funciona com un simple, però 
+		potent llenguatge de guions (scripting language).
+      <!--In this chapter we will look at the traditional working
+      environment of UNIX systems: the shell. The shell is an
+      interpreter that can be used interactively and
+      non-interactively. When the shell is used non-interactively it
+      functions as a simple, but powerful scripting language.-->
+    </para>
+
+    <para>
+		El procediment per a iniciar un shell depén de si utilitzes un 
+		inici de sessió gràfic o en mode text. Si estàs iniciant sessió
+		en mode text, el shell és iniciat immediatament després de 
+		introduir la contrasenya (correcta). Si per contra, utilitzes un
+		gestor d'inici de sessió gràfic com KDM, inicia sessió com ho
+		faries normalment, i busca al menú d'entorn del teu gestor de 
+		finestres una entrada anomenada <quote>XTerm</quote>, 
+		<quote>Terminal</quote> o <quote>Konsole</quote>. Xterm és un 
+		emulador de terminals, una vegada s'inicia l'emulador de 
+		terminal apareix el shell.
+		
+      <!--The procedure for starting the shell depends on whether you use
+      a graphical or text-mode login. If you are logging on in
+      text-mode the shell is immediately started after entering the
+      (correct) password.  If you use a graphical login manager like
+      KDM, log on as you would normally, and look in your window
+      manager or desktop environment menu for an entry named
+      <quote>XTerm</quote>, <quote>Terminal</quote> or
+      <quote>Konsole</quote>. XTerm is a terminal emulator, after the
+      terminal emulator is started the shell comes up.-->
+    </para>
+		
+    <para>
+		Abans de continuar, t'hem d'advertir que Slackware Linux 
+		no proporciona només un shell. Hi han altres sabors de shell que
+		s'han tornat populars amb el temps, el Bourne shell i el C shell.
+		En aquest capítol descriurem els shells Bourne que s'ajusten a
+		l'estàndard IEEE 1003.1. El shell Bash (Bourne Again Shell) i el 
+		ksh (Korn Shell) s'ajusten  bé a aquests estàndards, així què és
+		una bona idea utilitzar un d'aquests shells. Pots veurer 
+		fàcilment quin shell està corrent el sistema executant la ordre
+		<command>echo $SHELL</command>. Açò és el que el shell Bash
+		podria informar:
+      <!--Before we go any further, we have to warn you that Slackware
+      Linux provides more than just one shell. There are two shell
+      flavors that have become popular over time, the Bourne shell and
+      the C shell.  In this chapter we will describe Bourne shells
+      that conform to the IEEE 1003.1 standard. The Bash (Bourne Again
+      Shell) and ksh (Korn Shell) shells conform well to these
+      standards. So, it is a good idea to use one of these two
+      shells. You can easily see what shell the system is running by
+      executing <command>echo $SHELL</command>.  This is what a Bash
+      shell may report:-->
+    </para>
+
+    <screen>
+$ <userinput>echo $SHELL</userinput>
+/bin/bash
+    </screen>
+		
+    <para>
+		Si estàs utilitzant un shell distint, pots canviar el teu shell
+		per defecte. Abans de posar un shell diferent, hauràs d'establir
+		el camí complet del shell. Ho pots fer mijançant la ordre
+		<command>which</command>. Per exemple:
+      <!--If you are using a different shell, you can change your default
+      shell. Before setting a different shell, you have to establish
+      the full path of the shell. You can do this with the
+      <command>which</command> command. For example:-->
+    </para>
+
+    <screen>
+$ <userinput>which bash</userinput>
+/bin/bash
+$ <userinput>which ksh</userinput>
+/bin/ksh
+    </screen>
+
+    <para>
+		En aquest sistema Slackware, el camí complet al shell bash és 
+		<filename>/bin/bash</filename>, i al shell ksh <filename>
+		/bin/ksh</filename>. Amb aquesta informació i la ordre 
+		<command>chsh</command> pots canviar el shell per defecte. 
+		L'exemple següent posa el bash com a shell per defecte.
+      <!--On this Slackware system, the full path to the bash shell is
+      <filename>/bin/bash</filename>, and to the ksh shell
+      <filename>/bin/ksh</filename>. With this information, and the
+      <command>chsh</command> command you change the default
+      shell. The following example will set the default shell to bash:-->
+    </para>
+
+    <screen>
+$ <userinput>chsh -s /bin/bash</userinput>
+Changing shell for daniel.
+Password:
+Shell changed.
+    </screen>
+
+    <para>
+		El nou shell s'activar després de tancar la sessió amb el shell 
+		actual (amb les ordres <command>logout</command> o 
+		<command>exit</command>), o obrint una nova finestra de terminal
+		X si estàs corrent X11.
+      <!--The new shell will be activated after logging out from the
+      current shell (with <command>logout</command> or
+      <command>exit</command>), or by opening a new X terminal window
+      if you are running X11.-->
+    </para>
+  </sect1>
+
+  <sect1 xml:id="chap-shell-executing">
+    <title>Executant ordres <!--Executing commands--></title>
+
+    <para>
+		Un shell interactiu s'utilitza per a iniciar programes mitjançant
+		la execució d'ordres. Hi ha dos tipus d'ordres que un shell pot
+		iniciar:
+      <!--An interactive shell is used to start programs by executing
+      commands.  There are two kinds of commands that a shell can
+      start:-->
+    </para>
+
+    <itemizedlist>
+      <listitem>
+	<para>
+		<emphasis>Ordres incorporades:</emphasis> estàn integrades en el 
+		shell. Ordres incorporades d'ús comú són: <command>cd</command>,
+		<command>fg</command>, <command>bg</command>, i 
+		<command>jobs</command>.
+	  <!--<emphasis>Built-in commands:</emphasis> built-in commands
+	  are integrated in the shell. Commonly used built-in commands
+	  are: <command>cd</command>, <command>fg</command>,
+	  <command>bg</command>, and <command>jobs</command>.-->
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+		<emphasis>Ordres externes:</emphasis> les ordres externes són
+		programes que no formen part del propi programa shell, i que
+		s'emmagatzemen a banda al sistema de fitxers. Ordres externes 
+		d'ús comú són: <command>ls</command>, <command>cat</command>,
+		<command>rm</command>, i <command>mkdir</command>.
+	  <!--<emphasis>External commands:</emphasis> external commands
+	  are programs that are not part of the shell program, and are
+	  separately stored on the filesystem. Commonly used external
+	  commands are: <command>ls</command>, <command>cat</command>,
+	  <command>rm</command>, and <command>mkdir</command>.-->
+	</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>
+		Al shell totes les ordres s'executen amb la mateixa sintaxi:
+      <!--All shell commands are executed with the same syntax:-->
+    </para>
+		
+    <screen>
+<command>nomordre [argument1 argument2 ... argumentn]</command>
+    </screen>
+
+    <para>
+		El nombre d'arguments és arbitari i es passen sempre a la ordre,
+		qui pot decidir què fa amb ells.
+      <!--The number of arguments is arbitrary, and are always passed to
+      the command. The command can decide what it does with these
+      arguments.-->
+    </para>
+
+    <para>
+		Totes les ordres incorporades poden executarse sempre perque 
+		formen part del shell, mentres que les ordres exeternes es poden
+		executar pel nom quan el programa està en el camí de búsqueda
+		del shell. D'altra manera, hauràs d'especificar el camí al 
+		programa. El camí de búsqueda del shell és emmagatzemat a una
+		variable anomenada <emphasis>PATH</emphasis> (camí). Una 
+		variable és una porció de memòria amb nom, el contingut de la 
+		qual es pot canviar. Es pot veurer el contingut de la variable
+		PATH de la següent manera:
+      <!--All built-in commands can always be executed, because they are
+      part of the shell. External commands can be executed by name
+      when the program is in the search path of the shell. Otherwise,
+      you will have to specify the path to the program. The search
+      path of the shell is stored in a variable named
+      <emphasis>PATH</emphasis>.  A variable is a named piece of
+      memory, of which the contents can be changed. We can see the
+      contents of the PATH variable in the following manner:-->
+    </para>
+
+    <screen>
+$ <userinput>echo $PATH</userinput>
+/usr/kerberos/bin:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:/home/daniel/bin
+    </screen>
+
+    <para>
+		Els camins de directori en la variable <emphasis>PATH</emphasis>
+		estàn separats per caràcter dos punts (<emphasis>:</emphasis>).
+		Es pot utilitzar la ordre <command>which</command> per a 
+		comprovar si una ordre donada està en el camí actual del shell.
+		Açò es pot fer proporcionant la ordre com a argument a la ordre
+		<command>which</command>. Per exemple:
+      <!--The directory paths in the <emphasis>PATH</emphasis> variable
+      are separated with the colon (<emphasis>:</emphasis>)
+      character. You can use the <command>which</command> command to
+      check whether a given command is in the current shell path. You
+      can do this by providing the command as an argument to
+      <command>which</command>. For example:-->
+    </para>
+
+    <screen>
+$ <userinput>which pwd</userinput>
+/bin/pwd
+$ <userinput>which sysstat</userinput>
+/usr/bin/which: no sysstat in (/usr/kerberos/bin:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:/home/daniel/bin)
+    </screen>
+
+    <para>
+		Si un programa no està en el camí, encara pots executarlo 
+		introduint el seu camí absolut o relatiu.
+      <!--If a program is not in the path, you can still run it by
+      entering its absolute or relative path.-->
+    </para>
+  </sect1>
+
+  <sect1 xml:id="chap-shell-moving">
+    <title>Anant amunt i avall <!--Moving around--></title>
+
+    <para>
+		De vegades és necessari saltar entre diverses parts d'una línea
+		i modificar-ho quan estàs editant ordres llargues. Tant 
+		<command>bash</command> com <command>ksh</command>  tenen
+		dreceres de teclat per a fer operacions comunes. Hi ha dos modes
+		de shell en els que les dreceres són diferents. Aquests modes es
+		corresponen en el seu comportament amb dos editors populars per 
+		a UNIX, el <command>vi</command> i l'<command>emacs</command>.
+		En este llibre només cobrirem les pulsacions de tecla tipus
+		EMACS. Es pot compovar en quin mode està corrent un shell 
+		imprimint la variable <emphasis>SHELLOPTS</emphasis>. En el 
+		primer exemple s'utilitza el shell en mode <emphasis>emacs
+		</emphasis> mentres que al segon s'empra el mode <emphasis>vi
+		</emphasis>. S'identifica el mode buscant la cadena de text
+		<emphasis>emacs</emphasis> o <emphasis>vi</emphasis> en el 
+		contingut de la variable.
+		
+      <!--It is often necessary to jump through various parts of a line,
+      and to alter it, when you are editing larger commands. Both
+      <command>bash</command> and <command>ksh</command> have keyboard
+      shortcuts for doing common operations.  There are two shell
+      modes, in which the shortcut keys differ. These modes correspond
+      with two popular editors for UNIX in their behavior.  These
+      editors are <command>vi</command> and
+      <command>emacs</command>. In this book we will only cover the
+      EMACS-like keystrokes. You can check in which mode a shell is
+      running by printing the <emphasis>SHELLOPTS</emphasis>
+      variable. In the first example the shell is used in
+      <emphasis>emacs</emphasis> mode, in the second example the
+      <emphasis>vi</emphasis> mode is used. You identify the mode by
+      looking for the <emphasis>emacs</emphasis> or
+      <emphasis>vi</emphasis> strings in the contents of the variable.-->
+    </para>
+
+    <screen>
+$ <userinput>echo $SHELLOPTS</userinput>
+braceexpand:emacs:hashall:histexpand:history:interactive-comments:monitor
+    </screen>
+
+    <screen>
+$ <userinput>echo $SHELLOPTS</userinput>
+braceexpand:hashall:histexpand:history:interactive-comments:monitor:vi
+    </screen>
+
+    <para>
+		Si el teu shell en aquest moment, está utilitzant el mode 
+		<emphasis>vi</emphasis>, pots canviar al mode <emphasis>emacs
+		</emphasis> posant la opció <emphasis>emacs</emphasis>:
+      <!--If your shell is currently using the <emphasis>vi</emphasis>
+      mode, you can switch to the <emphasis>emacs</emphasis> mode by
+      setting the <emphasis>emacs</emphasis> option:-->
+    </para>
+
+    <screen>
+$ <userinput>set -o emacs</userinput>
+    </screen>
+
+    <para>
+		Amb el mode d'edició <emphasis>emacs</emphasis> activat, pots
+		començar a utilitzar dreceres. Veurem els tres tipus de dreceres:
+		dreceres de manipulació de caràcters, de manipulació  de paraules,
+		i de manipulació de línies. Més avant en aquest capítol, veurem 
+		algunes dreceres que s'utilitzen per a recuperar entrades de 
+		l'historial d'ordres.
+      <!--With the <emphasis>emacs</emphasis> editing mode enabled, you
+      can start using shortcuts. We will look at three kinds of
+      shortcuts: character editing shortcuts, word editing shortcuts,
+      and line editing shortcuts. Later in this chapter, we will also
+      have a look at some shortcuts that are used to retrieve entries
+      from the command history.-->
+    </para>
+
+    <sect2 xml:id="chap-shell-moving-char">
+      <title>Manipulant caràcters <!--Character editing--></title>
+
+      <para>
+		  El primer grup de dreceres que empren el caràcter com a unitat
+		  lògica, el que significa que permeten manipular operacions
+		  sobre caràcters a la línea d'ordres. <xref
+		linkend="chap-shell-moving-char-shortcuts-move" /> proporciona
+		un resum de les dreceres que s'utilitzen per a moure's a llarg
+		d'una línia caràcter a caràcter.
+	<!--The first group of shortcuts have characters as their logic
+	unit, meaning that they allow command line editing operations
+	on characters.  <xref
+	linkend="chap-shell-moving-char-shortcuts-move" /> provides an
+	overview of the shortcuts that are used to move through a line
+	by character.-->
+      </para>
+
+      <table xml:id="chap-shell-moving-char-shortcuts-move">
+	<title>Movent-se per caràcters <!--Moving by character--></title>
+
+	<tgroup cols="2" colsep="1" rowsep="1">
+	  <thead>
+	    <row>
+	      <entry>Tecles</entry><entry>Descripció</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>Ctrl-b</entry>
+	      <entry>Moure un caràcter enrrere <!--Move a character backwards.--></entry>
+	    </row>
+	    <row>
+	      <entry>Ctrl-f</entry>
+	      <entry>Moure un caràcter endavant <!--Move a character forward.--></entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <para>
+		  Estes dreceres són senzilles i no fan res inesperat. Suposa que
+		  has teclejat la següent línia:
+	<!--These shortcuts are simple, and don't do anything unexpected.
+	Suppose that you have typed the following line:-->
+      </para>
+
+      <screen>
+find ~/music -name '*.ogg' - -print<emphasis role="cursor">&#32;</emphasis>
+      </screen>
+
+      <para>
+	El cursor estarà al final i et pots moure't al començament de la línia
+	mantenint pitjat <emphasis>Ctrl-b</emphasis>:
+	<!--The cursor will be at the end. You can now move to the start
+	of the line by holding <emphasis>Ctrl-b</emphasis>:-->
+      </para>
+
+      <screen>
+<emphasis role="cursor">f</emphasis>ind ~/music - -name '*.ogg' -print
+      </screen>
+
+      <para>
+		  De la mateixa manera, pots anar enrerre fins al final mantenint
+		  pitjat <emphasis>Ctrl-f</emphasis>. Hi ha una errada en esta
+		  línia, ja que hi ha un guió erroni. Per a esborrar-lo, pots
+		  utilitzar una de les següents dreceres.
+	<!--Likewise, you can go back again to the end by holding
+	<emphasis>Ctrl-f</emphasis>. There is an error in this line,
+	since there is one erroneous dash. To remove this dash, you
+	can use one of the character deletion shortcuts.-->
+      </para>
+
+      <table xml:id="chap-shell-moving-char-shortcuts-delete">
+	<title>Esborrant caràcters <!--Deleting characters--></title>
+
+	<tgroup cols="2" colsep="1" rowsep="1">
+	  <thead>
+	    <row>
+	      <entry>Tecles</entry><entry>Descripció</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>Ctrl-h</entry>
+	      <entry>Esborra el caràcter abans del cursor. Té el mateix
+	      efecte que utilitzar la tecla Backspace en la majoria 
+	      d'ordinadors personals.
+			<!--Delete a character before the cursor. This has
+	      the same effect as using the Backspace key on most
+	      personal computers.--></entry>
+	    </row>
+	    <row>
+	      <entry>Ctrl-d</entry>
+	      <entry>Esborra el caràcter on està el cursor 
+	      <!--Delete the character the cursor is on.--></entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <para>
+		  Es pot eliminar el guió de dos maneres. La primera és moure
+		  el cursor fins al guió:
+	You can delete the dash in two manners. The first way is to
+	move the cursor to the dash:
+      </para>
+
+      <screen>
+find ~/music <emphasis role="cursor">-</emphasis> -name '*.ogg' -print
+      </screen>
+
+      <para>
+		  i prémer <emphasis>Ctrl-d</emphasis> dos vegades. Açò esborrarà
+		  el guió i l'espai que el segueix.
+	<!--and then press <emphasis>Ctrl-d</emphasis> twice. This will
+	delete the dash character, and the space that follows the
+	dash:-->
+      </para>
+
+      <screen>
+find ~/music <emphasis role="cursor">-</emphasis>name '*.ogg' -print
+      </screen>
+
+      <para>
+		  Observant el fragment original, l'altra aproximació consisteix
+		  a posicionar el cursor a l'espai que hi ha a continuació del 
+		  guió:
+	<!--Looking at the original fragment, the other approach is to
+	position the cursor on the space after the dash:-->
+      </para>
+
+      <screen>
+find ~/music -<emphasis role="cursor">&#32;</emphasis> -name '*.ogg' -print
+      </screen>
+
+      <para>
+		  i prémer <emphasis>Ctrl-h</emphasis> dos vegades per a esborrar
+		  els dos caràcters precedents, que són el guió i l'espai previ.
+		  El resultat serà el mateix, excepte que el curso es mourà:
+	<!--and then press <emphasis>Ctrl-h</emphasis> twice to delete the
+	two preceding characters, namely the dash and the space before
+	the dash. The result will be the same, except that the cursor
+	will move:-->
+      </para>
+
+      <screen>
+find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
+      </screen>
+
+      <para>
+		  Una de les característiques més maques dels shells més moderns
+		  és que pots transposar(interncanviar) caràcters. Açò és de 
+		  molta utilitat t'equivoques escrivint i poses dos caràcters 
+		  intercanviats. <xref 
+		  linkend="chap-shell-moving-char-shortcuts-swap" /> 
+		  llista les dreceres per a transposar caràcters.
+	<!--One of the nice features of most modern shells is that you can
+	transpose (swap) characters. This is handy if you make a
+	typing error in which two characters are swapped.  <xref
+	linkend="chap-shell-moving-char-shortcuts-swap" /> lists the
+	shortcut for transposing characters.-->
+      </para>
+
+      <table xml:id="chap-shell-moving-char-shortcuts-swap">
+	<title>Intercanviant caràcters <!--Swapping characters--></title>
+
+	<tgroup cols="2" colsep="1" rowsep="1">
+	  <thead>
+	    <row>
+	      <entry>Tecles</entry><entry>Descripció</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>Ctrl-t</entry>
+	      <entry>Intercanviar (transposar) el caràcter sobre els que
+	      està el cursor i el que hi ha abans. Açò va molt bé a l'hora
+	      de corregir ràpidament errors d'escriptura. </entry>
+	      <!--Swap (transpose) the characters the cursor is on,
+	      and the character before the cursor. This is handy for
+	      quickly correcting typing errors.</entry>-->
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <para>
+		  Suposa que has escrit la ordre següent:
+	<!--Suppose that you have typed the following command:-->
+      </para>
+
+      <screen>
+cat myreport.ttx
+      </screen>
+
+      <para>
+		  La extensió conté un error d'escriptura si pretenies fer
+		  <command>cat</command> <filename>myreport.txt</filename>. Açò
+		  es pot corregir mitjançant la drecera de transposició de 
+		  caràcters. Primer mou-te al segon caràcter del parell de
+		  caràcters que estàn canviats.
+	<!--The extension contains a typing error if you intended to
+	<command>cat</command> <filename>myreport.txt</filename>. This
+	can be corrected with the character transpose shortcut. First
+	move to the second character of the pair of characters that
+	are in the wrong order:-->
+      </para>
+
+      <screen>
+cat myreport.tt<emphasis role="cursor">x</emphasis>
+      </screen>
+
+      <para>
+		  Aleshores pots prémer <emphasis>Ctrl-t</emphasis>, els 
+		  caràcters s'intercanviaran, i el cursor es col·locarà darrere
+		  d'ells.
+	<!--You can then press <emphasis>Ctrl-t</emphasis>. The characters
+	will be swapped, and the cursor will be put behind the swapped
+	characters:-->
+      </para>
+
+      <screen>
+cat myreport.txt<emphasis role="cursor">&#32;</emphasis>
+      </screen>
+    </sect2>
+
+    <sect2 xml:id="chap-shell-moving-word">
+      <title>Manipulació de paraules <!--Word editing--></title>
+
+      <para>
+		  De vegades és tediós moure's a nivell de caràcter. 
+		  Afortunadament els shells Korn i Bash poden moure's també al
+		  llarg de files i a nivell de paraula. Les paraueles són 
+		  seqüències de caràcters separades per un caràcter especial,
+		  com un espai.
+		  <xref linkend="chap-shell-moving-word-shortcuts-move" />
+		  resumeix les dreceres que es poden utilitzar per a navegar 
+		  a través de d'una línia per paraules.
+	<!--It is often tedious to move at character level. Fortunately
+	the Korn and Bash shells can also move through lines at a word
+	level.  Words are sequences of characters that are separated
+	by a special character, such as a space.
+	<xref linkend="chap-shell-moving-word-shortcuts-move" />
+	summarizes the shortcuts that can be used to navigate through
+	a line by word.-->
+      </para>
+
+      <table xml:id="chap-shell-moving-word-shortcuts-move">
+	<title>Movent-se per paraules <!--Moving by word--></title>
+
+	<tgroup cols="2" colsep="1" rowsep="1">
+	  <thead>
+	    <row>
+	      <entry>Tecles</entry>
+	      <entry>Descripció</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>Esc b</entry>
+	      <entry>
+			  Moure's arrere fins al començament de la paraula actual
+			  o l'anterior.
+		<!--Move back to the start of the current or previous
+		word.-->
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>Esc f</entry>
+	      <entry>
+			Moure's avant fins a l'últim caràcter de la actual paraula
+			o la pròxima.
+		<!--Move forward to the last character of the current or
+		next word.-->
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <para>
+		  Com pots veurer, les lletres en aquestes dreceres són iguals
+		  que les utilitzades per a moure's avant i arrere per caràcters.
+		  La lògica del moviment és una miqueta curiosa. Moure's avant
+		  col·loca el cursor al final de l'actual paraula, no al primer
+		  caràcter de la paraula següent, com podries haver previst.
+		  Vejam un exemple senzill. Al começament el cursor és en el 
+		  primer caràcter de la línia.
+	<!--As you can see the letters in these shortcuts are equal to
+	those of moving forward and backwards by character. The
+	movement logic is a bit curious. Moving forward puts the
+	cursor to the end of the current word, not to the first
+	character of the next word as you may have predicted. Let's
+	look at a quick example. In the beginning the cursor is on the
+	first character of the line.-->
+      </para>
+
+      <screen>
+<emphasis role="cursor">f</emphasis>ind ~/music -name '*.ogg' -print
+      </screen>
+
+      <para>
+		  Prémer <emphasis>Esc f</emphasis> mourà  el cursor darrere de
+		  l'últim caràcter de la primera paraula, què en este cas és 
+		  <emphasis>find</emphasis>:
+	<!--Pressing <emphasis>Esc f</emphasis> will move the cursor
+	behind the last character of the first word, which is
+	<emphasis>find</emphasis> in this case:-->
+      </para>
+
+      <screen>
+find<emphasis role="cursor">&#32;</emphasis>~/music -name '*.ogg' -print
+      </screen>
+
+      <para>
+		  Anant avant una vegada més posará el cursos darrere de 
+		  <emphasis>~/music</emphasis>:
+	<!--Going forward once more will put the cursor behind
+	<emphasis>~/music</emphasis>:-->
+      </para>
+
+      <screen>
+find ~/music<emphasis role="cursor">&#32;</emphasis>-name '*.ogg' -print
+      </screen>
+
+      <para>
+		  El moviment arrere posa el cursor en el primer caràcter de la
+		  paraula actual, o en el primer caràcter de la paraula anterior
+		  si el cursor ja es troba en el primer caràcter d'una paraula.
+		  Així, moure's arrere una paraula en l'exemple previ posarà el
+		  cursor en la primera lletra de <quote>music</quote>:
+	<!--Backwards movement puts the cursor on the first character of
+	the current word, or on the first character of the previous
+	word if the cursor is currently on the first character of a
+	word. So, moving back one word in the previous example will
+	put the cursor on the first letter of <quote>music</quote>:-->
+      </para>
+
+      <screen>
+find ~/<emphasis role="cursor">m</emphasis>usic -name '*.ogg' -print
+      </screen>
+
+      <para>
+		  Suprimir paraules funciona igual que moure's per paraules,
+		  però el caràcters que es trobe seràn suprimits. <xref
+		linkend="chap-shell-moving-word-shortcuts-delete" /> llista les
+		dreceres que s'empren per a suprimir paraules.
+		  
+	<!--Deleting words works equal to moving by word, but the
+	characters that are encountered are deleted.  <xref
+	linkend="chap-shell-moving-word-shortcuts-delete" /> lists the
+	shortcuts that are used to delete words.-->
+      </para>
+
+      <table  xml:id="chap-shell-moving-word-shortcuts-delete">
+	<title>Eliminar paraules <!--Deleting words--></title>
+	<tgroup cols="2" colsep="1" rowsep="1">
+	  <thead>
+	    <row>
+	      <entry>Tecles</entry>
+	      <entry>Descripció</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>
+		Alt-d
+	      </entry>
+	      <entry>
+			  Suprimir la paraula, començant en la posició actual del 
+			  cursor.
+		<!--Delete the word, starting at the current cursor position.-->
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>
+		Alt-Backspace
+	      </entry>
+	      <entry>
+			  Eliminar cada caràcter desde la posició actual del cursor
+			  fins al primer caràcter de la primera paraula què es trobe.
+		<!--Delete every character from the current cursor position
+		to the first character of a word that is encountered.-->
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <para>
+		  Per a acabar, hi ha algunes dreceres útils per a manipular
+		  parauels. Estes dreceres es llisten a <xref
+	linkend="chap-shell-moving-word-shortcuts-modify" />.
+	<!--Finally, there are some shortcuts that are useful to
+	manipulate words. These shortcuts are listed in <xref
+	linkend="chap-shell-moving-word-shortcuts-modify" />.-->
+      </para>
+
+      <table  xml:id="chap-shell-moving-word-shortcuts-modify">
+	<title>Modificant paraules <!--Modifying words--></title>
+	<tgroup cols="2" colsep="1" rowsep="1">
+	  <thead>
+	    <row>
+	      <entry>Tecles</entry>
+	      <entry>Descripció</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>Alt-t</entry>
+	      <entry>
+			  Intercanvia (transposa) la paraula actual amb l'anterior.
+		<!--Swap (transpose) the current word with the previous word.-->
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>Alt-u</entry>
+	      <entry>
+			  Posar la paraula en majúscules, començant a la posició 
+			  actual del cursor.
+		<!--Make the word uppercase, starting at the current cursor
+		position.-->
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>Alt-l</entry>
+	      <entry>
+			  Posar la paraula en minúscules, començant a la posició 
+			  actual del cursor.
+		<!--Make the word lowercase, starting at the current
+		cursor position.-->
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>Alt-c</entry>
+	      <entry>
+			 Posa en majúscules la lletra actual de la paraula o la
+			 pròxima lletra que trobe.
+		<!--Capitalize the current word character or the next word
+		character that is encountered.-->
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <para>
+		  La transposició intercanvia paraules. Si s'utlitzen paraules
+		  normals el seu comportament es pot predir. Per exemple, is 
+		  tenim la següent línia amb el cursor a <quote>two</quote>
+	<!--Transposition swaps words. If normal words are used, it's
+	behavior is predictable. For instance, if we have the
+	following line with the cursor on <quote>two</quote>-->
+      </para>
+
+      <screen>
+un <emphasis role="cursor">d</emphasis>os tres
+      </screen>
+
+      <para>
+		  La transposició de paraules intercanviarà <quote>dos</quote> 
+		  and <quote>un</quote>:
+	<!--Word transposition will swap <quote>two</quote> and
+	<quote>one</quote>:-->
+      </para>
+
+      <screen>
+dos un tres
+      </screen>
+
+      <para>
+		  Però si hi ha caràcters no alfabètics, el shell intercanviarà
+		  la paraula amb l'anterior paraula preservant l'ordre dels 
+		  caràcters no alfabètics. Açò és molt pràctic per a editar
+		  arguments d'ordres. Suposa que has comés una errada, i has
+		  mesclat la extensió del fitxer que vols buscar i el paràmetre
+		  <emphasis>print</emphasis>:
+		  
+	<!--But if there are any non-word characters, the shell will swap
+	the word with the previous word while preserving the order of
+	non-word characters. This is very handy for editing arguments
+	to commands. Suppose that you made an error, and mixed up the
+	file extension you want to look for, and the
+	<emphasis>print</emphasis> parameter:-->
+      </para>
+
+      <screen>
+find ~/music -name '*.print' -ogg
+      </screen>
+
+      <para>
+		  Pots arreglar-ho posant el cursor en la segon paraula 
+		  equivocada, en este cas <quote>ogg</quote>, i transposar les 
+		  dos paraues. Açò ens donarà el resulta que volem:
+	<!--You can fix this by putting the cursor on the second faulty
+	word, in this case <quote>ogg</quote>, and transposing the two
+	words. This will give the result that we want:-->
+      </para>
+
+      <screen>
+find ~/music -name '*.ogg' -print
+      </screen>
+
+      <para>
+		  Per a acabar, hi ha algunes dreceres que canvien la 
+		  capitalització de paraules. La drecera Alt-u posa tots els 
+		  caràcters en majúscules, començant per la posició actual del 
+		  cursor, fins el final de la paraula. Així, si tenim el nom 
+		  <quote>alícia</quote> en minúscules, al posar-lo en majúscules
+		  amb el cursor a la <quote>i</quote> dóna <quote>alICE</quote>.
+		  Alt-l té el mateix comportament, però canvia les lletres per
+		  minúscules. Així, si utilitzar Alt-l a <quote>alÍCIA</quote>
+		  amb el cursor a <quote>Í</quote> canviarà la cadena a 
+		  <quote>alícia</quote>. Alt-c posará el caràcter on està el
+		  cursor o el següent caràcter alfabètic que trobe a majúscules.
+		  Per exemple, prement Alt-c amb el cursor sobre l'<quote>a</quote> 
+		  a <quote>alice</quote> donarà lloc a <quote>Alice</quote>.
+	<!--<quote>Alice</quote>
+	Finally, there are some shortcuts that change the
+	capitalization of words. The Alt-u shortcut makes all
+	characters uppercase, starting at the current cursor position
+	till the end of the word. So, if we have the lowercase name
+	<quote>alice</quote>, uppercasing the name with the cursor on
+	<quote>i</quote> gives <quote>alICE</quote>. Alt-l has the
+	same behavior, but changes letters to lowercase. So, using
+	Alt-l on <quote>alICE</quote> with the cursor on
+	<quote>I</quote> will change the string to
+	<quote>alice</quote>. Alt-c changes just the character the
+	cursor is on, or the next word character that is encountered,
+	to uppercase. For instance, pressing Alt-c with the cursor on
+	<quote>a</quote> in <quote>alice</quote> will yield
+	<quote>Alice</quote>.-->
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-shell-moving-line">
+      <title>Manipulació de línies<!--Line editing--></title>
+
+      <para>
+		  El més alt nivell al què podem manipular és la línia mateixa.
+		  <xref linkend="chap-shell-moving-line-shortcuts-move" /> 
+		  llista les dos dreceres de moviment.
+	<!--The highest level we can edit is the line itself.
+	<xref linkend="chap-shell-moving-line-shortcuts-move" /> 
+	lists the two movement shortcuts.-->
+      </para>
+
+      <table xml:id="chap-shell-moving-line-shortcuts-move">
+	<title>Movent-se per línies<!--Moving through lines--></title>
+	<tgroup cols="2" colsep="1" rowsep="1">
+	  <thead>
+	    <row>
+	      <entry>Tecles</entry>
+	      <entry>Descripció</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>Ctrl-a</entry>
+	      <entry>
+			  Mou al començament de la línea actual.
+		<!--Move to the beginning of the current line.-->
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>Ctrl-e</entry>
+	      <entry>
+			  Mou al final de la línea actual.
+		<!--Move to the end of the current line.-->
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <para>
+		  Suposem que el cursor és en algun lloc pel mig de la línia:
+	<!--Suppose that the cursor is somewhere halfway a line:-->
+      </para>
+
+      <screen>
+find ~/music -name<emphasis role="cursor">&#32;</emphasis>'*.ogg' -print
+      </screen>
+
+      <para>
+		  Presionant Ctrl-e una vegada mourá el cursor al final de la
+		  línia:
+	<!--Pressing Ctrl-e once will move the cursor to the end of the
+	line:-->
+      </para>
+
+      <screen>
+find ~/music -name '*.ogg' -print<emphasis role="cursor">&#32;</emphasis>
+      </screen>
+
+      <para>
+		  Pressionant Ctrl-a mourà el cursor al començament de la línia:
+	<!--Pressing Ctrl-a will move the cursor to the beginning of the line:-->
+      </para>
+
+      <screen>
+<emphasis role="cursor">f</emphasis>ind ~/music -name '*.ogg' -print
+      </screen>
+
+      <para>
+		  Pots, a més, suprimir els caràcters a nivell de línia. Les
+		  dreceres estàn llistades a: <xref
+		linkend="chap-shell-moving-line-shortcuts-delete" />. Estes dreceres
+		funcionen com el moviment, però elimina tots els caràcters que es
+		troba. Ctrl-k suprimirà el caràcter on es troba el cursor, mentres 
+		que	Ctrl-x Backspace no. Moure's al començament de la línia amb 
+		Ctrl-a, seguit de Ctrl-k, és un truc ràpid per a suprimir una línia
+		completament.
+	<!--You can also delete characters by line level. The shortcuts
+	are listed in <xref
+	linkend="chap-shell-moving-line-shortcuts-delete" />.  These
+	shortcuts work like movement, but deletes all characters that
+	are encountered. Ctrl-k will delete the character the cursor
+	is on, but Ctrl-x Backspace will not. Moving to the beginning
+	of the line with Ctrl-a, followed by Ctrl-k, is a fast trick
+	to remove a line completely.-->
+      </para>
+
+      <table xml:id="chap-shell-moving-line-shortcuts-delete">
+	<title>Suprimint línies</title>
+	<tgroup cols="2" colsep="1" rowsep="1">
+	  <thead>
+	    <row>
+	      <entry>Tecles</entry>
+	      <entry>Descripció</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>Ctrl-k</entry>
+	      <entry>
+			  Suprimeix tots els caràcters de la línia, començant a la
+			  posició del cursor.
+		<!--Delete all characters in the line, starting at the
+		cursor position.-->
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>Ctrl-x Backspace</entry>
+	      <entry>
+			 Elimina tots els caràcters de la línia fins al caràcter 
+			 actual
+		<!--Delete all characters in the line up till the current
+		cursor position.-->
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+    </sect2>
+  </sect1>
+
+  <sect1 xml:id="chap-shell-history">
+    <title>Historial d'ordres <!--Command history--></title>
+
+    <para>
+		De vegades passa que has d'executar ordres que ja has executat
+		abans. Afortunadament, no cal que les tecleges totes una altra
+		vegada. Pots buscar a l'historial d'ordres executades amb les
+		fletxes amunt i avall. A més d'això es pot buscar una ordre,
+		prem Control-r i comença a teclejar la ordre que vols executar.
+		Te n'adonaràs de que bash mostra la primera coincidència que 
+		trobe, si esta no és la que busques, pots continuar escrivint
+		la ordre (fins que només aparega una coincidència) o premer
+		Control-r una vegada més per a obtindre la següent coincidència.
+		Quan hages trobat la coincidència que buscàves, pots executar-la
+		prement &lt;Enter&gt;.
+      <!--It often happens that you have to execute commands that you
+      executed earlier. Fortunately, you do not have to type them all
+      over again.  You can browse through the history of executed
+      commands with the up and down arrows. Besides that it is also
+      possible to search for a command. Press Control-r and start
+      typing the command you want to execute. You will notice that
+      bash will display the first match it can find. If this is not
+      the match you were looking for you can continue typing the
+      command (until it is unique and a match appears), or press
+      Control-r once more to get the next match. When you have found
+      the command you were looking for, you can execute it by pressing
+      &lt;Enter&gt;.-->
+    </para>
+  </sect1>
+
+  <sect1 xml:id="chap-shell-completion">
+    <title>Autocompletat<!--Completion--></title>
+
+    <para>
+		L'autocompletat és una de les funcionalitats més útils dels 
+		shell tipus UNIX. Suposa que tens un directori amb dos fitxers
+		anomenats <filename>websites</filename> i      
+		<filename>recepta</filename>. Suposa també que vols fer 
+		<command>cat</command> del fitxer <filename>websites</filename>
+		(<command>cat</command> mostra el contingut d'un fitxer), 
+		especificant <filename>websites</filename> com a paràmetre de
+		cat. En condicions normals, teclejaries 
+		<quote>cat websites</quote> i executaries la ordre. Prova a
+		teclejar <quote>cat w</quote>, i colpeja la tecla &lt;Tab&gt;.
+		Bash ho expandirà automàticament a <quote>cat websites</quote>.
+		
+      <!--Completion is one of the most useful functionalities of
+      UNIX-like shells.  Suppose that you have a directory with two
+      files named <filename>websites</filename> and
+      <filename>recipe</filename>. And suppose you want to
+      <command>cat</command> the file <filename>websites</filename>
+      (<command>cat</command> shows the contents of a file), by
+      specifying <filename>websites</filename> as a parameter to
+      cat. Normally you would type <quote>cat websites</quote>, and
+      execute the command. Try typing <quote>cat w</quote>, and hit
+      the &lt;Tab&gt; key. Bash will automatically expand what you
+      typed to <quote>cat websites</quote>.-->
+    </para>
+
+    <para>
+		Però què passa si tens vàris fitxers que començen amb la mateixa
+		lletra? Suposa que tens els fitxers 
+		<filename>recepta1.txt</filename> i
+		<filename>recepta2.txt</filename>. Tecleja <quote>cat r</quote> 
+		i dona-li a &lt;Tab&gt;, Bash completaria el fitxer fins on 
+		puguera, el que et deixaria amb <quote>cat recepta</quote>. 
+		Prova a pegar-li a &lt;Tab&gt; de nou i Bash mostrarà una llista
+		de fitxers que començer amb <quote>recepta</quote>, en este cas
+		els dos fitxers de recpetes. En este punt has d'ajudar al Bash
+		esrivint el pròxim caràcter del fitxer que necessites. Suposa
+		que vols fer <command>cat</command> de 
+		<filename>recepta2.txt</filename>, pots premer la tecla 
+		&lt;2&gt;. Després d'això no hi ha conflicter per a completar el 
+		nom, i pegant-li a la tecla &lt;Tab&gt; es completa la ordre com
+		<quote>cat recipe2.txt</quote>.
+ 		
+      <!--But what happens if you have files that start with the same
+      letter? Suppose that you have the
+      <filename>recipe1.txt</filename> and
+      <filename>recipe2.txt</filename> files. Type <quote>cat
+      r</quote> and hit &lt;Tab&gt;, Bash will complete the filename
+      as far as it can. It would leave you with <quote>cat
+      recipe</quote>. Try hitting &lt;Tab&gt; again, and Bash will
+      show you a list of filenames that start with
+      <quote>recipe</quote>, in this case both recipe files. At this
+      point you have to help Bash by typing the next character of the
+      file you need.  Suppose you want to <command>cat</command>
+      <filename>recipe2.txt</filename>, you can push the &lt;2&gt;
+      key. After that there are no problems completing the filename,
+      and hitting &lt;Tab&gt; completes the command to <quote>cat
+      recipe2.txt</quote>.-->
+    </para>
+
+    <para>
+		No cal dir que autocompletar funciona també amb órdres, però 
+		moltes ordres GNU/Linux són curtes, pel que not resulta massa
+		útil en este cas.
+      <!--It is worth noting that completion also works with
+      commands. Most GNU/Linux commands are quite short, so it will
+      not be of much use most of the time.-->
+    </para>
+
+    <para>
+		És una bona idea practicar una miqueta amb l'autocompletat, et
+		pot estalviar moltes pulsacions de tecla si t'hi manejes bé.
+		Pots crear alguns fitxers buits per a practicar mitjançant la
+		ordre <command>touch</command>. Per exemple, per a crear un 
+		fitxer anomenat <filename>recepta3.txt</filename>, executa 
+		<command>touch recepta3.txt</command>.
+		
+      <!--It is a good idea to practice a bit with completion, it can save
+      a lot of keystrokes if you can handle completion well. You can
+      make some empty files to practice with using the
+      <command>touch</command> command.  For example, to make a file
+      named <filename>recipe3.txt</filename>, execute <command>touch
+      recipe3.txt</command>.-->
+    </para>
+  </sect1>
+
+  <sect1 xml:id="chap-shell-wildcards">
+    <title>Comodins <!--Wildcards--></title>
+
+    <para>
+		La majoria de shells, incloent Bash i ksh, suporten comodins.
+		Els comodins són uns caràctera especials que es poden utilitzar
+		per a fer coincidir patrons. La taula de més avall mostra
+		alguns comodins freqüentment utilitzats. Anem a veurer vàris
+		exemples per a donar una idea general de com funcionen els
+		comodins.
+      <!--Most shells, including Bash and ksh, support
+      wildcards. Wildcards are special characters that can be used to
+      do pattern matching. The table listed below displays some
+      commonly used wildcards. We are going to look at several
+      examples to give a general idea how wildcards work.-->
+    </para>
+
+    <table xml:id="chap-shell-wildcards-thewildcards">
+      <title>Comodins Bash <!-- Bash wildcards--></title>
+
+      <tgroup cols="2" align="left" colsep="1" rowsep="1">
+	<thead>
+	  <row>
+	    <entry>Comodí<!--Wildcard--></entry> <entry>Coincideix amb<!--Matches--></entry>
+	  </row>
+	</thead>
+	<tbody>
+	  <row>
+	    <entry>*</entry>
+	    <entry>Una cadena de caràcters<!--A string of characters--></entry>
+	  </row>
+	  <row>
+	    <entry>?</entry>
+	    <entry>Un únic caràcter <!-- A single character--></entry>
+	  </row>
+	  <row>
+	    <entry>[]</entry>
+	    <entry>Un únic caràcter en una matriu de caràcters 
+	    <!--A character in an array of characters--></entry>
+	  </row>
+	</tbody>
+      </tgroup>
+    </table>
+
+    <sect2 xml:id="chap-shell-wildcards-string">
+      <title>Fent coincidir una cadena de caràcters<!--Matching a string of characters--></title>
+
+      <para>
+		  Com es pot veurer en la taula de damunt, el caràcter 
+		  <quote>*</quote> coincideix amb una cadena de caràcters. Per
+		  exemple, <emphasis>*.html</emphasis> coincideix amb totes les
+		  cadenes de caràcters acabades en <emphasis>.html</emphasis>,
+		  <emphasis>d*.html</emphasis> coincideix amb qualsevol cosa
+		  que comence per <emphasis>d</emphasis> i que acabe amb
+		  <emphasis>.html</emphasis>.
+	<!--As you can see in the table above the <quote>*</quote>
+	character matches a string of characters. For example,
+	<emphasis>*.html</emphasis> matches everything ending with
+	<emphasis>.html</emphasis>, <emphasis>d*.html</emphasis>
+	matches everything starting with a <emphasis>d</emphasis> and
+	ending with <emphasis>.html</emphasis>.-->
+      </para>
+
+      <para>
+		  Suposem que vos agradaria llistar tots els fitxers del 
+		  directori actual amb l'extensió <emphasis>.html</emphasis>, la
+		  órdre següent faria la feina:
+	<!--Suppose that you would like to list all files in the current
+	directory with the <emphasis>.html</emphasis> extension, the
+	following command will do the job:-->
+      </para>
+
+      <screen>
+$ <userinput>ls *.html</userinput>
+book.html        installation.html     pkgmgmt.html  usermgmt.html
+filesystem.html  internet.html         printer.html  xfree86.html
+gfdl.html        introduction.html     proc.html
+help.html        slackware-basics.html shell.html
+      </screen>
+
+      <para>
+		  De la mateixa manera, podriem eliminar tots els fitxers que
+		  comencen per <emphasis>in</emphasis>:
+	<!--Likewise we could remove all files starting with an
+	<emphasis>in</emphasis>:-->
+      </para>
+
+      <screen>
+$ <userinput>rm in*</userinput>
+      </screen>
+    </sect2>
+
+    <sect2 xml:id="chap-shell-wildcards-single">
+      <title>Fent coincidir un caràcter <!--Matching single characters--></title>
+
+      <para>
+		  El comodí <quote>?</quote> funciona com el <quote>?</quote>, 
+		  però fa coincidir un únic caràcter. Suposem que tenim tres
+		  fitxers <filename>fitxer1.txt</filename>,
+		  <filename>fitxer2.txt</filename> i
+		  <filename>fitxer3.txt</filename>. La cadena 
+		  <emphasis>fitxer?.txt</emphasis> coincideix amb els tres
+		  fitxers, però no coincideix amb <filename>file10.txt</filename>
+		  (<quote>10</quote> són dos caràcters).
+	<!--The <quote>?</quote> wildcard works as the <quote>?</quote>
+	wildcard, but matches single characters. Suppose that we have
+	three files, <filename>file1.txt</filename>,
+	<filename>file2.txt</filename> and
+	<filename>file3.txt</filename>. The string
+	<emphasis>file?.txt</emphasis> matches all three of these
+	files, but it does not match <filename>file10.txt</filename>
+	(<quote>10</quote> are two characters).-->
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-shell-wildcards-set">
+      <title>Fent coincidir caràcters d'un conjunt <!--Matching characters from a set--></title>
+
+      <para>
+		  El comodí <quote>[]</quote> concideix amb cada caràcter entre
+		  claudàtors. Suposem que tenim els fitxers del exemple anterior
+		  , <filename>fitxer1.txt</filename>,
+	<filename>fitxer2.txt</filename> and
+	<filename>fitxer3.txt</filename>. The string
+	<emphasis>fitxer[23].txt</emphasis> coincideix amb
+	<filename>file2.txt</filename> i
+	<filename>file3.txt</filename>, però no amb
+	<filename>file1.txt</filename>.
+	
+	<!--The <quote>[]</quote> wildcard matches every character between
+	the brackets.  Suppose we have the files from the previous
+	example, <filename>file1.txt</filename>,
+	<filename>file2.txt</filename> and
+	<filename>file3.txt</filename>. The string
+	<emphasis>file[23].txt</emphasis> matches
+	<filename>file2.txt</filename> and
+	<filename>file3.txt</filename>, but not
+	<filename>file1.txt</filename>.-->
+      </para>
+    </sect2>
+  </sect1>
+
+  <sect1 xml:id="chap-shell-inout">
+    <title>Redireccions i canonades <!--Redirections and pipes--></title>
+
+    <para>
+		Una de les principals característiques dels shells tipus UNIX
+		són les redireccions i les canonades. Abans de començar amb
+		veurer com funciones les dos tècniques em de mirar com treballen
+		la majoria d'ordres tipus UNIX. Quan una ordre no rep data d'un 
+		fitxer, obrirà un pseudo-fitxer anomenat 
+		<emphasis>stdin</emphasis> i quedarà esperant a que hi apareguen
+		dades. El mateix principi es pot aplicar a la eixida d'una ordre
+		, quan no hi ha una raó explícita per a alçar la eixida en un
+		fitxer, el pseudo-fitxer <emphasis>stdout</emphasis> serà obert
+		per a enviarli-la. Este principi es mostra de manera esquemàtica
+		a <xref linkend="fig-shell-inout" />
+      <!--One of the main features of UNIX-like shells are redirections
+      and pipes.  Before we start to look at both techniques we have
+      to look how most UNIX-like commands work. When a command is not
+      getting data from a file, it will open a special pseudo-file
+      named <emphasis>stdin</emphasis>, and wait for data to appear on
+      it. The same principle can be applied for command output, when
+      there is no explicit reason for saving output to a file, the
+      pseudo-file <emphasis>stdout</emphasis> will be opened for
+      output of data. This principle is shown schematically in <xref
+      linkend="fig-shell-inout" />-->
+    </para>
+
+    <figure xml:id="fig-shell-inout">
+      <title>Entrada i eixida estàndar <!--Standard input and output--></title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="../../images/shell-inout.png" format="PNG"/>
+	</imageobject>
+      </mediaobject>
+    </figure>
+
+    <para>
+	  Pots veurer <emphasis>stdin</emphasis> i
+	  <emphasis>stdout</emphasis> en acció amb la ordre 
+	  <command>cat</command>. Si cat s'inicia sense paràmetres aquest
+	  senzillament es quedarà esperant dades a 
+	  <emphasis>stdin</emphasis> i les enviarà a 
+	  <emphasis>stdout</emphasis>. Si no s'utilitz cap redirecció,
+	  s'utilitzarà la entrada de teclat per a <emphasis>stdin</emphasis>
+	  i la eixida de <emphasis>stdout</emphasis> serà impresa al
+	  terminal:
+      <!--You can see <emphasis>stdin</emphasis> and
+      <emphasis>stdout</emphasis> in action with the
+      <command>cat</command> command. If cat is started without any
+      parameters it will just wait for input on
+      <emphasis>stdin</emphasis> and output the same data on
+      <emphasis>stdout</emphasis>. If no redirection is used keyboard
+      input will be used for <emphasis>stdin</emphasis>, and
+      <emphasis>stdout</emphasis> output will be printed to the
+      terminal:-->
+    </para>
+
+    <screen>
+$ <userinput>cat</userinput>
+<command>Hello world!</command>
+Hello world!
+    </screen>
+
+    <para>
+		Com pots veurer cat imprimirà les dades a <emphasis>stdout
+		</emphasis>	després d'introduirli-les a <emphasis>stdin
+		</emphasis>	utilitzant el teclat.
+      <!--As you can see cat will print data to
+      <emphasis>stdout</emphasis> after inputting data to
+      <emphasis>stdin</emphasis> using the keyboard.-->
+    </para>
+
+    <sect2 xml:id="chap-shell-inout-redir">
+      <title>Redirecció <!--Redirection--></title>
+
+      <para>
+		  El shell et permet prendre utilització de 
+		  <emphasis>stdin</emphasis> i <emphasis>stdout</emphasis>
+		  utilitzant <quote>&lt;</quote> i <quote>&gt;</quote>. En el 
+		  següent exemple redireccionarem els resums md5 calculats per
+		  a un conjunt de fitxers a un fitxer anomenat 
+		  <filename>md5sums</filename>:
+		  
+	<!--The shell allows you to take use of <emphasis>stdin</emphasis>
+	and <emphasis>stdout</emphasis> using the <quote>&lt;</quote>
+	and <quote>&gt;</quote>. Data is redirected in which way the
+	sharp bracket points. In the following example we will
+	redirect the md5 summaries calculated for a set of files to a
+	file named <filename>md5sums</filename>:-->
+      </para>
+
+      <screen>
+$ <userinput>md5sum * &gt; md5sums</userinput>
+$ <userinput>cat md5sums</userinput> 
+6be249ef5cacb10014740f61793734a8  test1
+220d2cc4d5d5fed2aa52f0f48da38ebe  test2
+631172a1cfca3c7cf9e8d0a16e6e8cfe  test3
+      </screen>
+
+      <para>
+	Com poden veurer en la eixida de <command>cat</command> la eixida
+	de <command>md5sum *</command> ha sigut redirigida al fitxer
+	<filename>md5sums</filename>. Nosaltres a més podem utilitzar la
+	redirecció per a proporcionar-li l'entrada a una ordre:
+	<!--As we can see in the <command>cat</command> output the output
+	of the <command>md5sum *</command> output was redirected to
+	the <filename>md5sums</filename> file. We can also use
+	redirection to provide input to a command:-->
+      </para>
+
+      <screen>
+$ <userinput>md5sum &lt; test1</userinput>
+6be249ef5cacb10014740f61793734a8  -
+      </screen>
+
+      <para>
+	Açò alimenta a <command>md5sum</command> amb el contingut del fitxer
+	<filename>test1</filename>.
+	<!--This feeds the contents of the <filename>test1</filename> to
+	<command>md5sum</command>.-->
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-shell-inout-pipes">
+      <title>Canonades <!--Pipes--></title>
+
+      <para>
+	També pots conectar la entrad i la eixida d'ordres utilitzant
+	les anomenades <emphasis>canonades (pipes)</emphasis>. Una
+	canonada entre ordres es pot construir amb el caràcter 
+	<quote>|</quote>. Dos o més ordres combinades es diu que 
+	formen una <quote>conducció (pipiline)</quote>. <xref
+	linkend="fig-shell-pipeline" /> mostra un resum esquemàtic d'una 
+	conducció consistent en dos ordres.
+	
+	<!--You can also connect the input and output of commands using
+	so-called <emphasis>pipes</emphasis>. A pipe between commands
+	can be made with the <quote>|</quote> character. Two or more
+	combined commands are called a
+	<emphasis>pipeline</emphasis>. <xref
+	linkend="fig-shell-pipeline" /> shows a schematic overview of
+	a pipeline consisting of two commands.-->
+      </para>
+
+      <figure xml:id="fig-shell-pipeline">
+	<title>Una conducció <!--A pipeline--></title>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="../../images/shell-pipeline.png" format="PNG"/>
+	  </imageobject>
+	</mediaobject>
+      </figure>
+
+      <para>
+		  La sintaxi de una conducció és <command>ordre1 | ordre2 ... 
+		  | ordren</command>. Si conéixes com funcionen la majoria 
+		  d'ordres bàsiques tipus UNIX, ja pots deixar que aquestes
+		  treballen juntes. Vejam un exemple ràpid:
+	<!--The <quote>syntax</quote> of a pipeline is: <command>command1
+	| command2 ... | commandn</command>. If you know how the most
+	basic UNIX-like commands work you can now let these commands
+	work together. Let's look at a quick example:-->
+      </para>
+
+      <screen>
+$ <userinput>cat /usr/share/dict/american-english | grep "aba" | wc -l</userinput>
+123
+      </screen>
+
+      <para>
+	La primera ordre, <command>cat</command>, llig el fitxer de 
+	diccionari <filename>/usr/share/dict/american-english</filename>. La
+	eixida de la ordre <command>cat</command> es canalitza a la ordre
+	<command>grep</command>, que imprimeix els fitxers que contenen la 
+	paraula <quote>aba</quote>. A continuació, la eixida de 
+	<quote>grep</quote> es canalitza cap a <command>wc -l</command>,
+	que comptabilitza el nombre de línies que rep de 
+	<emphasis>stdin</emphasis>. Per acabar, quan el fluxe s'ha acabat
+	<command>wc</command> imprimeix el nombre de línies que contenen la
+	paraula <quote>aba</quote> en este diccionari en particular.
+	
+	<!--The first command, <command>cat</command>, reads the
+	dictionary file
+	<filename>/usr/share/dict/american-english</filename>. The
+	output of the <command>cat</command> command is piped to
+	<command>grep</command>, which prints out all files containing
+	the phrase <quote>aba</quote>.  In turn, the output of
+	<quote>grep</quote> is piped to <command>wc -l</command>,
+	which counts the number of lines it receives from
+	<emphasis>stdin</emphasis>. Finally, when the stream is
+	finished <command>wc</command> prints the number of lines it
+	counted. So, combined three commands to count the number of
+	lines containing the phrase <quote>aba</quote> in this
+	particular dictionary.-->
+      </para>
+
+      <para>
+	Hi ha centenars de xicotetes utilitats per a manejar tasques
+	específiques. Com et podràs imaginar, aquestes ordres juntes
+	proporciones una caixa d'eines molt potent fent-hi combinacions
+	mitjançant canonades.
+	
+	<!--There are hundreds of small utilities that handle specific
+	tasks. As you can imagine, together these commands provide a
+	very powerful toolbox by making combinations using pipes.-->
+      </para>
+    </sect2>
+  </sect1>
+</chapter>

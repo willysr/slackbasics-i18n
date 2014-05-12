@@ -1,0 +1,379 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 21. Miscel·lània</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="sysadmin.html" title="Part V. Administració del sistema">
+<link rel="prev" href="security.html" title="Chapter 20. Security">
+<link rel="next" href="netadmin.html" title="Part VI. Administració de xarxa">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 21. Miscel·lània</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="security.html">Prev</a> </td>
+<th width="60%" align="center">Part V. Administració del sistema</th>
+<td width="20%" align="right"> <a accesskey="n" href="netadmin.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="sysadmin-misc"></a>Chapter 21. Miscel·lània</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="miscadmin.html#sysadmin-misc-cron">21.1. Planificant tasques amb cron </a></span></dt>
+<dt><span class="sect1"><a href="miscadmin.html#sysadmin-misc-hdparm">21.2. Paràmetres de disc dur </a></span></dt>
+<dt><span class="sect1"><a href="miscadmin.html#sysadmin-memory-hdparm">21.3. Monitorejant  l'ús de la memòria </a></span></dt>
+</dl>
+</div>
+<div class="sect1">
+<div class="titlepage"><div>
+<div><h2 class="title" style="clear: both">
+<a name="sysadmin-misc-cron"></a>21.1. Planificant tasques amb cron </h2></div>
+<div><div class="authorgroup"><div class="author">
+<h3 class="author">
+<span class="firstname">Murray</span> <span class="surname">Stokely</span>
+</h3>
+<span class="contrib">Written by </span> </div></div></div>
+</div></div>
+<a class="indexterm" name="idm961677636"></a><a class="indexterm" name="idm961677444"></a><a class="indexterm" name="idm961677252"></a><p>
+      Slackware Linux inclou una implementació del dimoni clàssic de
+      UNIX cron que permet als usuaris planificar tasques per a que 
+      s'executen a intervals regulars. Cada usuari pot crear, eliminar,
+      o modificar un fitxer crontab individual. Aquest fitxer crontab
+      especifica les ordres o guions a executar a intervals de temps
+      especificats. Les línies en blanc al crontab o les línies que 
+      començen amb un coixinet (<span class="quote">“<span class="quote"><code class="literal">#</code></span>”</span>)
+      són ignorades.
+
+      </p>
+<p>
+      Cada entrada en el fitxer crontab ha de contindre 6 camps
+      separats per espais. Aquests camps són minut, hora, dia, mes,
+      dia de la setmana, i ordre. Cadascún dels primers cinc camps
+      haurien de contindre un temps o el caràcter comodí 
+      <span class="quote">“<span class="quote"><code class="literal">*</code></span>”</span> per a coincidir amb tots els
+      temps per a eixe camp. Per exemple, per a tindre la ordre
+      <span class="command"><strong>date</strong></span> executada cada dia a les 6:10, es
+      pordia utilitzat la següent entrada.
+
+      </p>
+<pre class="programlisting">10 6 * * * date</pre>
+<p>
+      Un crontab d'usuari es pot visualitzar amb la ordre
+      <span class="command"><strong>crontab -l</strong></span>. Per a una introducció més 
+      a fons a la sintaxi del fitxer crontab, examinem el crontab
+      per defecte de l'usuari root.
+      </p>
+<pre class="screen"># <strong class="userinput"><code>crontab -l</code></strong>
+# If you don't want the output of a cron job mailed to you, you have to direct
+# any output to /dev/null.  We'll do this here since these jobs should run
+# properly on a newly installed system, but if they don't the average newbie
+# might get quite perplexed about getting strange mail every 5 minutes. :^)
+#
+# Run the hourly, daily, weekly, and monthly cron jobs.
+# Jobs that need different timing may be entered into the crontab as before,
+# but most really don't need greater granularity than this.  If the exact
+# times of the hourly, daily, weekly, and monthly cron jobs do not suit your
+# needs, feel free to adjust them.
+#
+# Run hourly cron jobs at 47 minutes after the hour:
+47<a name="co-crontab-1"></a><span><img src="../images/callouts/1.png" alt="1" border="0"></span> *<a name="co-crontab-2"></a><span><img src="../images/callouts/2.png" alt="2" border="0"></span> *<a name="co-crontab-3"></a><span><img src="../images/callouts/3.png" alt="3" border="0"></span> *<a name="co-crontab-4"></a><span><img src="../images/callouts/4.png" alt="4" border="0"></span> *<a name="co-crontab-5"></a><span><img src="../images/callouts/5.png" alt="5" border="0"></span> /usr/bin/run-parts /etc/cron.hourly 1&gt; /dev/null<a name="co-crontab-6"></a><span><img src="../images/callouts/6.png" alt="6" border="0"></span>
+#
+# Run daily cron jobs at 4:40 every day:
+40 4 * * * /usr/bin/run-parts /etc/cron.daily 1&gt; /dev/null
+#
+# Run weekly cron jobs at 4:30 on the first day of the week:
+30 4 * * 0 /usr/bin/run-parts /etc/cron.weekly 1&gt; /dev/null
+#
+# Run monthly cron jobs at 4:20 on the first day of the month:
+20 4 1 * * /usr/bin/run-parts /etc/cron.monthly 1&gt; /dev/null</pre>
+<div class="calloutlist"><table border="0" summary="Callout list">
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-crontab-1"><span><img src="../images/callouts/1.png" alt="1" border="0"></span></a> </p></td>
+<td valign="top" align="left"><p>
+	  El primer camp, <code class="literal">47</code>, especifica que este
+	  treball s'huaria de fer 47 minuts després de l'hora.
+	  </p></td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-crontab-2"><span><img src="../images/callouts/2.png" alt="2" border="0"></span></a> </p></td>
+<td valign="top" align="left"><p>
+	  El segon camp, <code class="literal">*</code>, és una comodí, pel que 
+	  aquest treball hauria d'ocórrer <span class="emphasis"><em>cada</em></span> hora.
+	  </p></td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-crontab-3"><span><img src="../images/callouts/3.png" alt="3" border="0"></span></a> </p></td>
+<td valign="top" align="left"><p>
+	  El tercer camp, <code class="literal">*</code>, és un comodí,
+	  pel que aquest treball hauria d'ocórrer <span class="emphasis"><em>cada
+	</em></span> dia.
+	  </p></td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-crontab-4"><span><img src="../images/callouts/4.png" alt="4" border="0"></span></a> </p></td>
+<td valign="top" align="left"><p>
+	  El quart camp, <code class="literal">*</code>, és un comodí,
+	  pel que aquest treball hauria d'ocórrer <span class="emphasis"><em>cada
+	</em></span> mes.
+	</p></td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-crontab-5"><span><img src="../images/callouts/5.png" alt="5" border="0"></span></a> </p></td>
+<td valign="top" align="left"><p>
+	  El cinqué camp, <code class="literal">*</code>, és un comodí,
+	  pel que aquest treball hauria d'ocórrer <span class="emphasis"><em>cada</em></span> 
+	  dia de la setmana.
+	  </p></td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-crontab-6"><span><img src="../images/callouts/6.png" alt="6" border="0"></span></a> </p></td>
+<td valign="top" align="left"><p>
+	  El sisé camp, <span class="command"><strong>/usr/bin/run-parts /etc/cron.hourly 1&gt; 
+	  /dev/null</strong></span>, especifica la ordre que s'hauria d'executar
+	  en el temps especificat en els primers cinc camps.
+	  </p></td>
+</tr>
+</table></div>
+<a class="indexterm" name="idm961663524"></a><a class="indexterm" name="idm961663220"></a><p>
+      El crontab per defecte de root està configurat per a executar els 
+      guions a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/cron.monthly</code></html:span> mensualment,
+      els guions a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/cron.weekly</code></html:span> setmanalment,
+      els que hi ha a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/cron.daily</code></html:span> diàriament,
+      i els continguts a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/cron.hourly</code></html:span> cada hora.
+      Per aquesta raó no és estrictament necessari per a un administrador
+      comprendre el funcionament intern de cron. Amb Slackware Linux,
+      pots senzillament, afegir un script nou a un dels directoris de
+      dalt per a programar una tasca periòdica. De fet, fullejant eixos
+      directoris et faràs una idea de la feina que Slackware Linux fa
+      regularment fora d'escena per a mantidre coses com la base de dades
+      <span class="command"><strong>slocate</strong></span> actualitzades.
+
+      </p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sysadmin-misc-hdparm"></a>21.2. Paràmetres de disc dur </h2></div></div></div>
+<a class="indexterm" name="idm961659780"></a><a class="indexterm" name="idm961659588"></a><p>
+      La majoria de discs ofereixen vàries característiques per a
+      incrementar el rendiment del disc i millorar la integritat. La
+      majoria d'aquestes característiques es poden ajustar amb la ordre
+      <span class="command"><strong>hdparm</strong></span>. Vés amb compte al canviar la configuració
+      del disc amb aquesta utilitat, perque alguns canvis poden estropejar
+      dades al teu disc.
+
+      
+    </p>
+<p>
+      Pots obtindre un resum de la configuració activa per a un disc
+      proporcionanant-li el node de dispositiu d'un disc com a
+      paràmetre a <span class="command"><strong>hdparm</strong></span>:
+      
+    </p>
+<pre class="screen">
+# <span class="command"><strong>hdparm /dev/hda</strong></span>
+
+/dev/hda:
+ multcount    =  0 (off)
+ IO_support   =  1 (32-bit)
+ unmaskirq    =  1 (on)
+ using_dma    =  1 (on)
+ keepsettings =  0 (off)
+ readonly     =  0 (off)
+ readahead    = 256 (on)
+ geometry     = 65535/16/63, sectors = 78165360, start = 0
+    </pre>
+<p>
+      Una raó comuna per a un rendiment baix de disc és que el DMA
+      no és utilitzat automàticament pel núcli per a un disc. DMA
+      accelerarà l'ample de banda de E/E (Entrada/Eixida) i disminueix
+      l'ús del processador, fent possible la transmissió directa de 
+      dades des del disc a la memòria del sistema. Si el DMA s'apaga,
+      el resum de la configuració mostraria aquesta línia:
+
+      
+    </p>
+<pre class="screen">
+using_dma    =  0 (off)
+    </pre>
+<p>
+      Pots encendre el DMA fàcilment per a aquest disc amb el 
+      paràmetre <em class="parameter"><code>-d</code></em> de
+      <span class="command"><strong>hdparm</strong></span>:
+      
+    </p>
+<pre class="screen">
+# <span class="command"><strong>hdparm -d 1 /dev/hda</strong></span>
+
+/dev/hda:
+ setting using_dma to 1 (on)
+ using_dma    =  1 (on)
+    </pre>
+<p>
+      Pots fer açò durant cada inici afegint la ordre
+      hdparm a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.local</code></html:span>.
+      
+    </p>
+<p>
+      El paràmetre <em class="parameter"><code>-i</code></em> de
+      <span class="command"><strong>hdparm</strong></span> és també molt útilm, perque ofereix
+      informació detallada del disc:
+
+      
+    </p>
+<pre class="screen">
+# <span class="command"><strong>hdparm -i /dev/hda</strong></span>
+/dev/hda:
+
+ Model=WDC WD400EB-00CPF0, FwRev=06.04G06, SerialNo=WD-WCAAT6022342
+ Config={ HardSect NotMFM HdSw&gt;15uSec SpinMotCtl Fixed DTR&gt;5Mbs FmtGapReq }
+ RawCHS=16383/16/63, TrkSize=57600, SectSize=600, ECCbytes=40
+ BuffType=DualPortCache, BuffSize=2048kB, MaxMultSect=16, MultSect=off
+ CurCHS=16383/16/63, CurSects=16514064, LBA=yes, LBAsects=78163247
+ IORDY=on/off, tPIO={min:120,w/IORDY:120}, tDMA={min:120,rec:120}
+ PIO modes:  pio0 pio1 pio2 pio3 pio4 
+ DMA modes:  mdma0 mdma1 mdma2 
+ UDMA modes: udma0 udma1 udma2 udma3 udma4 *udma5 
+ AdvancedPM=no WriteCache=enabled
+ Drive conforms to: device does not report version: 
+
+ * signifies the current active mode
+    </pre>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="sysadmin-memory-hdparm"></a>21.3. Monitorejant  l'ús de la memòria </h2></div></div></div>
+<p>
+      En algunes situacions rsulta d'utilitat ls informació de diagnòstic
+      referent a com s'utilitza la memòria. Per exemple, en un servidor
+      amb mal rendiment podries voler veurer si la escassetat de memòria està 
+      causant que el sistema emmagatzeme pàgines a la memòria swap, o potser
+      estàs posant en marxa un servei de xarxa, i vols trobar els
+      paràmetres òptims per a la memòria cau. Slackware Linux 
+      propociona algunes eines que t'ajudaràn a analitzar com s'utilitza
+      la memòria.
+
+      
+    </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="sysadmin-misc-memory-vmstat"></a>21.3.1. vmstat</h3></div></div></div>
+<p>
+	<span class="command"><strong>vmstat</strong></span> és una ordre que proporciona
+	estadístiques sobre vàries parts de la memòria virtual del
+	sistema. Executat sense paràmetres <span class="command"><strong>vmstat</strong></span>
+	proporciona un resum d'algunes estadístiques relevants:
+        
+      </p>
+<pre class="screen">
+# <span class="command"><strong>vmstat</strong></span>
+procs -----------memory---------- ---swap-- -----io---- --system-- ----cpu----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in    cs us sy id wa
+ 0  0      0 286804   7912  98632    0    0   198     9 1189   783  5  1 93  1
+      </pre>
+<p>
+	Com només estem mirant l'ús de memòria en aquesta secció, només
+	ens fixarem en els camps <span class="emphasis"><em>memory</em></span> i
+        <span class="emphasis"><em>swap</em></span>
+        
+      </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p>
+            <span class="emphasis"><em>swpd</em></span>: La quantitat de memòria virtual
+	    sent utilitzada.
+	    
+          </p></li>
+<li class="listitem"><p>
+            <span class="emphasis"><em>free</em></span>: La quantitat de memòria 
+	    lliure en eixe moment.
+
+          </p></li>
+<li class="listitem"><p>
+            <span class="emphasis"><em>buff</em></span>: La quantitat de memòria 
+	    utilitzada com a buffers.
+
+          </p></li>
+<li class="listitem"><p>
+            <span class="emphasis"><em>cache</em></span>: La quantitat de memòria
+	    utilitzada com a cau.
+
+          </p></li>
+<li class="listitem"><p>
+            <span class="emphasis"><em>si</em></span>: La quantitat de memòria que
+	    és intercanviada des del disc per segon.
+
+          </p></li>
+<li class="listitem"><p>
+            <span class="emphasis"><em>so</em></span>: La quantitat de memòria que
+	    és intercanviada cap al disc per segon.
+
+          </p></li>
+</ul></div>
+<p>
+	Sol ser d'utilitat veurer com l'ús de la memòria canvia al llarg
+	del temps. Pots afegir un interval com a paràmetre a 
+	<span class="command"><strong>vmstat</strong></span> per a que aquest s'execute contínuament, 
+	imprimint les estadístiques actuals. Aquest interval és en segons,
+	així que, si vols obtindre estadístiques cada segon, pots executar:
+
+        
+      </p>
+<pre class="screen">
+# <span class="command"><strong>vmstat 1</strong></span>
+procs -----------memory---------- ---swap-- -----io---- --system-- ----cpu----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in    cs us sy id wa
+ 2  0      0 315132   8832  99324    0    0   189    10 1185   767  5  1 93  1
+ 1  0      0 304812   8832  99324    0    0     0     0 1222  6881 24  8 68  0
+ 0  0      0 299948   8836  99312    0    0     0     0 1171  1824 41  9 49  0
+ [...]
+      </pre>
+<p>
+	Addicionalment, pots dir-li a <span class="command"><strong>vmstat</strong></span> cuantes vegades
+	hauria de mostrar les estadístiques (enlloc de fer-ho sense fi).
+	Per exemple, si volguéres imprimir estes estadístiques cada dos segons,
+	i cinc vegades en total, podries executar <span class="command"><strong>vmstat</strong></span> de
+	la següent manera:
+
+        
+      </p>
+<pre class="screen">
+# <span class="command"><strong>vmstat 2 5</strong></span>
+procs -----------memory---------- ---swap-- -----io---- --system-- ----cpu----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in    cs us sy id wa
+ 2  0      0 300996   9172  99360    0    0   186    10 1184   756  5  1 93  1
+ 0  1      0 299012   9848  99368    0    0   336     0 1293  8167 20  8 21 51
+ 1  0      0 294788  11976  99368    0    0  1054     0 1341 12749 14 11  0 76
+ 2  0      0 289996  13916  99368    0    0   960   176 1320 17636 22 14  0 64
+ 2  0      0 284620  16112  99368    0    0  1086   426 1351 21217 25 18  0 58
+      </pre>
+</div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="security.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="sysadmin.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="netadmin.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 20. Security </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Part VI. Administració de xarxa</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

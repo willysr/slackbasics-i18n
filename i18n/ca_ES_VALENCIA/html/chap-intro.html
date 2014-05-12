@@ -1,0 +1,379 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 2. Introducció a Slackware Linux</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="getstarted.html" title="Part I. Per començar ??Getting started??">
+<link rel="prev" href="chap-book.html" title="Chapter 1. Quan a este llibre">
+<link rel="next" href="chap-help.html" title="Chapter 3. Fonts d'ajuda">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 2. Introducció a Slackware Linux</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="chap-book.html">Prev</a> </td>
+<th width="60%" align="center">Part I. Per començar ??Getting started??</th>
+<td width="20%" align="right"> <a accesskey="n" href="chap-help.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="chap-intro"></a>Chapter 2. Introducció a Slackware Linux</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="chap-intro.html#chap-intro-linux">2.1. Què és Linux?</a></span></dt>
+<dt><span class="sect1"><a href="chap-intro.html#chap-intro-gnulinux">2.2. Qu és GNU/Linux?</a></span></dt>
+<dt><span class="sect1"><a href="chap-intro.html#chap-intro-slackware">2.3. Què és Slackware Linux?</a></span></dt>
+<dt><span class="sect1"><a href="chap-intro.html#chap-intro-unix">2.4. La filosofia UNIX</a></span></dt>
+<dt><span class="sect1"><a href="chap-intro.html#free-software">2.5. Programar lliure i de font oberta</a></span></dt>
+<dt><span class="sect1"><a href="chap-intro.html#slackware-features">2.6. Característiques de Slackware Linux 12.0</a></span></dt>
+<dt><span class="sect1"><a href="chap-intro.html#chap-intro-getting">2.7. Com aconseguir Slackware Linux (Getting Slackware Linux)</a></span></dt>
+</dl>
+</div>
+  
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-intro-linux"></a>2.1. Què és Linux?</h2></div></div></div>
+    
+
+    <p>
+	Linux és un núcli tipus UNIX escrit per Linus Torvalds
+	i altres desenvolupadors que corre en moltes arquitectures 
+	diferents, per exemple a màquines IA32, IA64, Alpha, 
+	m68k,SPARC i PowerPC. L'últim nucli així com 
+	informació sobre el nucli Linux es pot trobar al lloc 
+	web del núcli Linux: 
+	<a class="ulink" href="http://www.kernel.org" target="_top">http://www.kernel.org</a>
+      
+    </p>
+
+    <p>
+      S'acostuma a confondre el nucli de Linux amb el sistema operatiu
+      GNU/Linux. Linux é;gs només el nucli, no un sistema operatiu complet,
+      mentres que GNU/Linux consiteix en el sistema operatiu de GNU amb el nucli Linux.
+      La següent secció dóna un descripció més completa
+      de GNU/Linux.
+      
+    </p>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-intro-gnulinux"></a>2.2. Qu és GNU/Linux?</h2></div></div></div>
+    
+
+    <p>
+      En 1984 Richard Stallman encetà un ambiciós projecte 
+      amb l'objectiu
+      d'escriure un sistema operatiu lliure de tipus UNIX. El nom d'aquest 
+      sistema és <acronym class="acronym">GNU</acronym>, què és
+      l'acrònim de <span class="quote">“<span class="quote">GNU's Not UNIX</span>”</span> (GNU no és UNIX). Pel 
+      volts de 1990, la
+      majoria dels components del sistema operatiu GNU estàven escrits,
+      a excepció del núcli. Això es deu a que dos anys abans, en 1988,
+      es va decidir que el projecte GNU basaria el seu núcli en el 
+      micro-núcli Mach 3.0, però no va ser fins el 1991 que el Mach 
+      3.0 va ser alliberat sota una llicència lliure, just el mateix any 
+      que Linus Torvalds va començar a omplir el buit deixat pel núcli
+      al sistema GNU, escrivint el núcli Linux.
+      
+    </p>
+
+    <p>
+      El núcli de GNU, anomenat <span class="quote">“<span class="quote">HURD</span>”</span> es trobava en 
+      desenvolupament quan es va escriure aquest llibre, i està 
+      disponible com el sistema operatiu GNU/HURD. També hi ha alguns 
+      altres núclis portats al sistema operatiu GNU, per exemple, el 
+      projecte Debian ha desenvoupat una versió del sistema operatiu 
+      GNU que treballa amb el núcli NetBSD.
+      
+    </p>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-intro-slackware"></a>2.3. Què és Slackware Linux?</h2></div></div></div>
+    
+
+    <p>
+      Slackware Linux és una distribució de GNU/Linux mantinguda i
+      desenvolupada per Patrick Volkerding. Una distribució és un 
+      col·lecció coherent de programari que proporciona un sistema
+      GNU/Linux funcional. Volkerding va començar a utilitzar GNU/Linux
+      perquè necessitava un intèrpret de LISP per a un projecte i, en 
+      aquell moment, la distribució GNU/Linux dominant era Softlanding 
+      System Linux (SLS Linux). Així Slackware inicialment era una col·lecció
+      privada de pegats de Volkerding per al SLS Linux, i el primer
+      alliberament disponible públicament fou la versió 1.0, alliberada
+      el 16 de Juliol de 1993.
+      
+    </p>
+
+    <p>
+      A diferència de moltes altres distribucions de GNU/Linux, Slackware
+      Linux és fidel al anomenat principi KISS (Keep It Simple Stupid,
+      mantin-ho simple, estúpid),
+      el que significa que no té complexes eines gràfiques per a 
+      configurar el sistema. Per aquesta raó malgrat que la corba d'aprenentatge
+      de Slackware Linux pot ser alta per a l'usuari novell de GNU/Linux,
+      açò proporciona una major transparència i flexibilitat, a més,
+      s'aconsegueix un comprensió més profunda del GNU/Linux amb distribucions
+      sense tantes facilitats, com Slackware Linux.
+      
+      
+    </p>
+
+    <p>
+      Un altre aspecte diferencial de Slackware Linux, que a més
+      <span class="quote">“<span class="quote">compleix</span>”</span> amb el principi KISS és el gestor de paquets. Slackware
+      Linux no té un gestor de paquets com RPM o dpkg, els paquets són
+      fitxers tgz (tar/gzip) corrents, sovint amb un guió d'instal·lació 
+      addicional i un fitxer de descripció del paquet. Per als usuaris
+      novells tgz és molt més potent que RPM, i evita problemes de 
+      dependències. Un altra característica coneguda arreu són els seus
+      scripts d'inicialització. A diferència d'altres distribucions,
+      Slackware Linux no té un directori per a cada nivell d'execució
+      amb enllaços simbòlics als servicis que s'han d'iniciar o matar
+      en cadascún, utilitza una aproximació molt més senzilla en la que 
+      es pot habilitat o deshabilitar servicis canviat el permís d'execució
+      d'un script d'inicialització.
+ 
+      
+    </p>
+
+    <p>
+      Els paquets de Slackware Linux estàn compilats amb tan poques 
+      modificacions com ha sigut possible. Açò vol dir que la major 
+      part de documentació genèrica relativa a GNU/Linux aprofita per 
+      a Slacwkare Linux.
+      
+    </p>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-intro-unix"></a>2.4. La filosofia UNIX</h2></div></div></div>
+    
+
+    <p>
+      Com GNU/Linux és una reimplantació lliure del sistema operatiu UNIX,
+      és una bona idea fer un colp dull a la filosofia que va fer al UNIX
+      estimat arreu. Doug McIlroy va resumir la filosofia UNIX en tres 
+      regles senzilles:
+      
+    </p>
+
+    <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+        <p>
+          Escriu programes que facen una cosa i que la facen ben feta.
+        </p>
+      </li>
+<li class="listitem">
+        <p>
+          Escriu programes per a treballar junts. 
+        </p>
+      </li>
+<li class="listitem">
+        <p>
+	  Escriu programes per a manipular fluxes, perquè això és una
+	  interfície universal.
+          
+        </p>
+      </li>
+</ul></div>
+
+    <p>
+      L'habitual és que no tingues intenció d'escriure programes 
+      per al GNU/Linux. Tanmateix, inclús com a usuari bàsic, les regles
+      bàsiques de UNIX poden significar molt per a tú. Una vegada 
+      aconseguisques conéixer les ordres essencials que han format part
+      d'un sistema UNIX al llarg de molt anys, seràs capaç de combinar
+      programes senzills per a resoldre problemes complexos. Tin açò 
+      en ment mentres aprens Slackware Linux i intenta fer-te una idea
+      de com pots dividir tasques complexes en combinacions d'operacions
+      senzilles.
+
+      
+    </p>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="free-software"></a>2.5. Programar lliure i de font oberta</h2></div></div></div>
+    
+
+    <p>
+      La majoria dels paquets de Slackware Linux estàn publicats sota
+      llicència de programari lliure o de font oberta. Baix aquestes 
+      llicències el programari es pot utilitzar, estudiar, canviar i 
+      distribuïr lliurement. En la pràctica, açò significa que el 
+      programari es troba disponible i redistribuible tant en forma de 
+      codi font com de binari. Malgrat que els moviments del programari 
+      lliure i el de codi obert comparteixen moltes llicències i 
+      principis, hi ha diferències subtils entre ells. El moviment
+      del programari de codi obert tendeix a posar l'accent en els
+      avantatges tècnics i econòmics de compartir el codi font, mentres
+      que el moviment del programari lliure posa l'accent en els aspectes
+      ètics de proporcionar codi font i binaris lliurement. 
+      
+      Com posa al lloc web de GNU:<span class="quote">“<span class="quote">El software lliure és una
+      qüestió de llibretat, no de preu. Per a comprendre el concepte,
+      hauries de pensar en lliure com en llibertat d'expresió i no com 
+      en barra lliure.<a href="#ftn.idm963323772" class="footnote" name="idm963323772"><sup class="footnote">[1]</sup></a></span>”</span>
+    Fidel a l'esperit del programari lliure i al de font oberta, el codi font
+    de quasi tots els paquets està inclòs al conjunt de CDs oficials i al DVD
+    de Slackware Linux.
+      
+    </p>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="slackware-features"></a>2.6. Característiques de Slackware Linux 12.0</h2></div></div></div>
+    
+
+    <p>
+      </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+	  <p>
+	    <span class="bold"><strong>Linux 2.6.21.5</strong></span> -
+	    Sí, Slackware Linux utilitza un núcli Linux així de modern i de
+	    tan alt rendiment. El núcli inclou suport per a totes les 
+	    controladores de disk modernes, LVM, RAID per programari,
+	    discos xifrats, i múltiples processadors/nuclis. Per defecte,
+	    l'<span class="emphasis"><em>udev</em></span> està habilitat per a la gestió 
+	    automàtica de nodes de dispositiu.
+	    
+          </p>
+	</li>
+<li class="listitem">
+	  <p>
+	    <span class="bold"><strong>HAL</strong></span> - Ara, la  HAL (Hardware 
+	    Abstaction Layer, capa d'abstracció de maquinari) està inclosa
+	    també. Açò proporciona una API uniforme per a l'ús del maquinari
+	    per aplicacions d'escriptori, el que fa considerablement més 
+	    senzill el muntatge de discos i CD's sota Xfce i KDE.
+
+	    
+	  </p>
+	</li>
+<li class="listitem">
+	  <p>
+	    <span class="bold"><strong>X11 7.2.0</strong></span> - Aquesta és la
+	    primera versió de Slackware Linux en utilitzar X modular. Açò 
+	    significa que els components que formen X11 estàn separats en
+	    molt paquets menuts per a facilitar el manteniment i alleugerir
+	    les actualitzacions.
+            
+          </p>
+        </li>
+<li class="listitem">
+          <p>
+            <span class="bold"><strong>GCC 4.1.2</strong></span> - Slackware
+            Linux 12.0 inclou un kit d'eines totalment revisat
+	    basat en la GNU Compiler Collection 4.1.2. GCC proporciona 
+	    compiladors de C, C++, Objective-C, Fortran-77/95 i Ada 95.
+	    A més, s'utilitza la versió 2.5 de la llibreria GNU de C.
+	    
+	    
+          </p>
+        </li>
+<li class="listitem">
+	  <p>
+	    <span class="bold"><strong>Apache 2.2.4</strong></span> - Apache
+	    va ser ascendit a una nova versió major. Apache 2.x és
+	    una reescriptura substancial de la antiga serie 1.3.x
+	    
+	  </p>
+	</li>
+<li class="listitem">
+          <p>
+	    <span class="bold"><strong>El K Desktop Environment (KDE)
+            3.5.7</strong></span> - Es proporciona l'entorn KDE al complet, el
+	    que inclou KOffice, el navegador web Konqueror, programes
+	    multimèdia, eines de desenvolupament, i moltes altres
+	    aplicacions útils.
+            
+          </p>
+        </li>
+<li class="listitem">
+          <p>
+	    <span class="bold"><strong>Xfce 4.4.1</strong></span> - Xfce és entorn
+	    d'escriptori lleuger basat en GTK2. Abraça l'esperit UNIX de
+	    modularitat i reusabilitat.
+            
+          </p>
+        </li>
+</ul></div>
+<p>
+    </p> 
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-intro-getting"></a>2.7. Com aconseguir Slackware Linux (Getting Slackware Linux)</h2></div></div></div>
+    
+
+    <p>
+      Slackware Linux es pot descarregar lliurement des dels espills
+      oficials de Slackware. La llista d'espills està disponible a
+       <a class="ulink" href="http://www.slackware.com/getslack/" target="_top">http://www.slackware.com/getslack/</a>.
+    </p>
+
+    <p>
+      També es pot encarregar Slackware Linux com a un conjunt de CD 
+      o un DVD a la botiga de Slackware. Moltes botigues d'Internet 
+      ofereixen Slackware Linux en CD-ROM o DVD més barat que a la botiga oficial,
+      però només estaràs ajudant econòmicament Slackware Linux si compres 
+      un conjunt de CDs oficial, o un DVD. La Slackware Store també ofereix 
+      suscripcions a Slackware Linux. Un suscriptor rep automàticament 
+      els nous alliberaments a un preu reduït.
+      
+    </p>
+
+    <p>
+      Si t'agradaria tindre més informació respecte a la compra de
+      Slackware Linux, visita el lloc web de la Slackware Store a
+      <a class="ulink" href="http://store.slackware.com/" target="_top">http://store.slackware.com/</a>.
+    </p>
+  </div>
+<div class="footnotes">
+<br><hr style="width:100; text-align:left;margin-left: 0">
+<div id="ftn.idm963323772" class="footnote">
+      
+      <p><a href="#idm963323772" class="para"><sup class="para">[1] </sup></a>
+	<a class="ulink" href="http://www.gnu.org/philosophy/free-sw.html" target="_top">http://www.gnu.org/philosophy/free-sw.html</a>
+      </p>
+    </div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="chap-book.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="getstarted.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="chap-help.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 1. Quan a este llibre </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 3. Fonts d'ajuda </td>
+</tr>
+</table>
+</div>
+</body>
+</html>

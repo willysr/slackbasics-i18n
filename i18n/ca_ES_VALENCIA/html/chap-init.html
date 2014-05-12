@@ -1,0 +1,581 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 19. System initialization</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="sysadmin.html" title="Part V. Administració del sistema">
+<link rel="prev" href="kernel.html" title="Chapter 18. Contruïnt un núcli">
+<link rel="next" href="security.html" title="Chapter 20. Security">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 19. System initialization</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="kernel.html">Prev</a> </td>
+<th width="60%" align="center">Part V. Administració del sistema</th>
+<td width="20%" align="right"> <a accesskey="n" href="security.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="chap-init"></a>Chapter 19. System initialization</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="chap-init.html#chap-init-lilo">19.1. The bootloader</a></span></dt>
+<dt><span class="sect1"><a href="chap-init.html#chap-init-init">19.2. init</a></span></dt>
+<dt><span class="sect1"><a href="chap-init.html#chap-init-initscripts">19.3. Initialization scripts</a></span></dt>
+<dt><span class="sect1"><a href="chap-init.html#chap-init-udev">19.4. Hotplugging and device node management</a></span></dt>
+<dt><span class="sect1"><a href="chap-init.html#chap-init-firmware">19.5. Device firmware</a></span></dt>
+</dl>
+</div>
+  
+
+  <p>
+    This chapter describes the initialization of Slackware
+    Linux. Along the way various configuration files that are used to
+    manipulate the initialization process are described.
+  </p>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-init-lilo"></a>19.1. The bootloader</h2></div></div></div>
+    
+
+    <p>
+      Arguably the most important piece of an operating system is the
+      kernel. The kernel manages hardware resources and software
+      processes.  The kernel is started by some tiny glue between the
+      system <acronym class="acronym">BIOS</acronym> (Basic Input/Output System) and
+      the kernel, called the bootloader. The bootloader handles the
+      complications that come with loading a specific (or less
+      specific) kernel.
+    </p>
+
+    <p>
+      Most bootloader actually work in two stages. The first stage
+      loader loads the second stage loader, that does the real
+      work. The boot loader is divided in two stages on x86 machines,
+      because the BIOS only loads one sector (the so-called boot
+      sector) that is 512 bytes in size.
+    </p>
+
+    <p>
+      Slackware Linux uses the <acronym class="acronym">LILO</acronym> (LInux LOader)
+      boot loader. This bootloader has been in development since 1992,
+      and is specifically written to load the Linux kernel. Lately
+      LILO has been replaced by the <acronym class="acronym">GRUB</acronym> (GRand
+      Unified Bootloader) in most GNU/Linux distributions. GRUB is
+      available as an extra package on the Slackware Linux
+      distribution media.
+    </p>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-init-lilo-config"></a>19.1.1. LILO configuration</h3></div></div></div>
+      
+
+      <p>
+	LILO is configured through the
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/lilo.conf</code></html:span> configuration
+	file. Slackware Linux provides an easy tool to configure
+	LILO. This configuration tool can be started with the
+	<span class="command"><strong>liloconfig</strong></span> command, and is described in the
+	installation chapter (<a class="xref" href="chap-install.html#chap-install-installing" title="5.3. Instal·lant Slackware Linux">Section 5.3, “Instal·lant Slackware Linux”</a>).
+      </p>
+
+      <p>
+	Manual configuration of LILO is pretty simple. The LILO
+	configuration file usually starts off with some global
+	settings:
+      </p>
+
+      <pre class="screen">
+# Start LILO global section
+boot = /dev/sda <a name="liloconf-global-1"></a><span><img src="../images/callouts/1.png" alt="1" border="0"></span>
+#compact        # faster, but won't work on all systems.
+prompt <a name="liloconf-global-2"></a><span><img src="../images/callouts/2.png" alt="2" border="0"></span>
+timeout = 50 <a name="liloconf-global-3"></a><span><img src="../images/callouts/3.png" alt="3" border="0"></span>
+# Normal VGA console
+vga = normal <a name="liloconf-global-4"></a><span><img src="../images/callouts/4.png" alt="4" border="0"></span>
+      </pre>
+
+      <div class="calloutlist"><table border="0" summary="Callout list">
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#liloconf-global-1"><span><img src="../images/callouts/1.png" alt="1" border="0"></span></a> </p></td>
+<td valign="top" align="left">
+	  <p>
+	    The <span class="emphasis"><em>boot</em></span> option specifies where the
+	    LILO bootloader should be installed. If you want to use
+	    LILO as the main bootloader for starting Linux and/or
+	    other operating systems, it is a good idea to install LILO
+	    in the <acronym class="acronym">MBR</acronym> (Master Boot Record) of the
+	    hard disk that you use to boot the system. LILO is
+	    installed to the MBR by omitting the partition number, for
+	    instance <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/hda</code></html:span> or
+	    <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/sda</code></html:span>.  If you want to install
+	    LILO to a specific partition, add a partition number, like
+	    <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/sda1</code></html:span>.  Make sure that you have
+	    another bootloader in the MBR, or that the partition is
+	    made active using <span class="command"><strong>fdisk</strong></span>.  Otherwise you
+	    may end up with an unbootable system.
+	  </p>
+
+	  <p>
+	    Be cautious if you use partitions with a XFS filesystem!
+	    Writing LILO to an XFS partition will overwrite a part of
+	    the filesystem. If you use an XFS root
+	    (<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/</code></html:span>) filesystem, create a non-XFS
+	    <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/boot</code></html:span> filesystem to which you install
+	    LILO, or install LILO to the MBR.
+	  </p>
+	</td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#liloconf-global-2"><span><img src="../images/callouts/2.png" alt="2" border="0"></span></a> </p></td>
+<td valign="top" align="left">
+	  <p>
+	    The <span class="emphasis"><em>prompt</em></span> option will set LILO to
+	    show a boot menu. From this menu you can select which
+	    kernel or operating system should be booted. If you do not
+	    have this option enabled, you can still access the
+	    bootloader menu by holding the &lt;Shift&gt; key when the
+	    bootloader is started.
+            </p>
+	</td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#liloconf-global-3"><span><img src="../images/callouts/3.png" alt="3" border="0"></span></a> </p></td>
+<td valign="top" align="left">
+	  <p>
+	    The <span class="emphasis"><em>timeout</em></span> value specifies how long
+	    LILO should wait before the default kernel or OS is
+	    booted.  The time is specified in tenths of a second, so
+	    in the example above LILO will wait 5 seconds before it
+	    proceeds with the boot.
+	  </p>
+	</td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#liloconf-global-4"><span><img src="../images/callouts/4.png" alt="4" border="0"></span></a> </p></td>
+<td valign="top" align="left">
+	  <p>
+	    You can specify which video mode the kernel should use
+	    with the <span class="emphasis"><em>vga</em></span> option. When this is set
+	    to <span class="emphasis"><em>normal</em></span> the kernel will use the
+	    normal 80x25 text mode.
+	  </p>
+	</td>
+</tr>
+</table></div>
+
+      <p>
+	The global options are followed by sections that add Linux
+	kernels or other operating systems. Most Linux kernel sections
+	look like this:
+      </p>
+
+      <pre class="screen">
+image = /boot/vmlinuz <a name="co-liloconf-kernel-1"></a><span><img src="../images/callouts/1.png" alt="1" border="0"></span>
+  root = /dev/sda5 <a name="co-liloconf-kernel-2"></a><span><img src="../images/callouts/2.png" alt="2" border="0"></span> 
+  label = Slack <a name="co-liloconf-kernel-3"></a><span><img src="../images/callouts/3.png" alt="3" border="0"></span>
+  read-only <a name="co-liloconf-kernel-4"></a><span><img src="../images/callouts/4.png" alt="4" border="0"></span>
+      </pre>
+
+      <div class="calloutlist"><table border="0" summary="Callout list">
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-liloconf-kernel-1"><span><img src="../images/callouts/1.png" alt="1" border="0"></span></a> </p></td>
+<td valign="top" align="left">
+	  <p>
+	    The <span class="emphasis"><em>image</em></span> option specifies the kernel
+	    image that should be loaded for this LILO item.
+	  </p>
+	</td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-liloconf-kernel-2"><span><img src="../images/callouts/2.png" alt="2" border="0"></span></a> </p></td>
+<td valign="top" align="left">
+	  <p>
+	    The <span class="emphasis"><em>root</em></span> parameter is passed to the
+	    kernel, and will be used by the kernel as the root
+	    (<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/</code></html:span>) filesystem.
+	  </p>
+	</td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-liloconf-kernel-3"><span><img src="../images/callouts/3.png" alt="3" border="0"></span></a> </p></td>
+<td valign="top" align="left">
+	  <p>
+	    The <span class="emphasis"><em>label</em></span> text is used as the label
+	    for this entry in the LILO boot menu.
+	  </p>
+	</td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#co-liloconf-kernel-4"><span><img src="../images/callouts/4.png" alt="4" border="0"></span></a> </p></td>
+<td valign="top" align="left">
+	  <p>
+	    <span class="emphasis"><em>read-only</em></span> specifies that the root
+	    filesystem should be mounted read-only. The filesystem has
+	    to be mounted in read-only state to conduct a filesystem
+	    check.
+	  </p>
+	</td>
+</tr>
+</table></div>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-init-lilo-installation"></a>19.1.2. LILO installation</h3></div></div></div>
+      
+
+      <p>
+	LILO does not read the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/lilo.conf</code></html:span>
+	file during the second stage. So, you will have to write
+	changes to the second stage loader when you have changed the
+	LILO configuration. This is also necessary if you install a
+	new kernel with the same filename, since the position of the
+	kernel on the disk may have changed. Reinstalling LILO can
+	simply be done with the <span class="command"><strong>lilo</strong></span> command:
+      </p>
+
+      <pre class="screen">
+# <span class="command"><strong>lilo</strong></span>
+Added Slack26 *
+Added Slack
+      </pre>
+    </div>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-init-init"></a>19.2. init</h2></div></div></div>
+    
+
+    <p>
+      After the kernel is loaded and started, the kernel will start
+      the <span class="command"><strong>init</strong></span> command. <span class="command"><strong>init</strong></span> is
+      the parent of all processes, and takes care of starting the
+      system initialization scripts, and spawning login consoles
+      through <span class="command"><strong>agetty</strong></span>. The behavior of
+      <span class="command"><strong>init</strong></span> is configured in
+      <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/inittab</code></html:span>.
+    </p>
+
+    <p>
+      The <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/inittab</code></html:span> file is documented fairly
+      well. It specifies what scripts the system should run for
+      different runlevels. A runlevel is a state the system is running
+      in. For instance, runlevel 1 is single user mode, and runlevel 3
+      is multi-user mode. We will have a short look at a line from
+      <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/inittab</code></html:span> to see how it works:
+    </p>
+
+    <pre class="screen">
+rc:2345:wait:/etc/rc.d/rc.M
+    </pre>
+
+    <p>
+      This line specifies that <span class="command"><strong>/etc/rc.d/rc.M</strong></span>
+      should be started when the system switches to runlevel 2, 3, 4
+      or 5.  The only line you probably ever have to touch is the
+      default runlevel:
+    </p>
+
+    <pre class="screen">
+id:3:initdefault:
+    </pre>
+
+    <p>
+      In this example the default runlevel is set to
+      <span class="emphasis"><em>3</em></span> (multiuser mode). You can set this to
+      another runlevel by replacing 3 with the new default
+      runlevel. Runlevel 4 can particularly be interesting on desktop
+      machines, since Slackware Linux will try to start the GDM, KDM
+      or XDM display manager (in this particular order).  These
+      display managers provide a graphical login, and are respectively
+      part of GNOME, KDE and X11.
+    </p>
+
+    <p>
+      Another interesting section are the lines that specify what
+      command should handle a console. For instance:
+    </p>
+
+    <pre class="screen">
+c1:1235:respawn:/sbin/agetty 38400 tty1 linux
+    </pre>
+
+    <p>
+      This line specifies that <span class="command"><strong>agetty</strong></span> should be
+      started on <span class="emphasis"><em>tty1</em></span> (the first virtual
+      terminal) in runlevels 1, 2, 3 and 5.  The
+      <span class="command"><strong>agetty</strong></span> command opens the tty port, and
+      prompts for a login name. <span class="command"><strong>agetty</strong></span> will then
+      spawn <span class="command"><strong>login</strong></span> to handle the login. As you can
+      see from the entries, Slackware Linux only starts one console in
+      runlevel 6, namely <span class="emphasis"><em>tty6</em></span>. One might ask what
+      happened to <span class="emphasis"><em>tty0</em></span>, <span class="emphasis"><em>tty0</em></span>
+      certainly exists, and represents the active console.
+    </p>
+
+    <p>
+      Since <span class="emphasis"><em>/etc/inittab</em></span> is the right place to
+      spawn <span class="command"><strong>agetty</strong></span> instances to listen for logins,
+      you can also let one or more agetties listen to a serial
+      port. This is especially handy when you have one or more
+      terminals connected to a machine. You can add something like the
+      following line to start an <span class="command"><strong>agetty</strong></span> instance
+      that listens on COM1:
+    </p>
+
+    <pre class="screen">
+s1:12345:respawn:/sbin/agetty -L ttyS0 9600 vt100
+    </pre>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-init-initscripts"></a>19.3. Initialization scripts</h2></div></div></div>
+    
+
+    <p>
+      As explained in the <span class="command"><strong>init</strong></span> (<a class="xref" href="chap-init.html#chap-init-init" title="19.2. init">Section 19.2, “init”</a>) section,
+      <span class="command"><strong>init</strong></span> starts some scripts that handle
+      different runlevels. These scripts perform jobs and change
+      settings that are necessary for a particular runlevel, but they
+      may also start other scripts. Let's look at an example from
+      <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.M</code></html:span>, the script that
+      <span class="command"><strong>init</strong></span> executes when the system switches to a
+      multi-user runlevel:
+    </p>
+
+    <pre class="programlisting">
+# Start the sendmail daemon:
+if [ -x /etc/rc.d/rc.sendmail ]; then
+  . /etc/rc.d/rc.sendmail start
+fi
+    </pre>
+
+    <p>
+      These lines say <span class="quote">“<span class="quote">execute <span class="command"><strong>/etc/rc.d/rc.sendmail
+      start</strong></span> if <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.sendmail</code></html:span> is
+      executable</span>”</span>. This indicates the simplicity of the
+      Slackware Linux initialization scripts. Different functionality,
+      for instance network services, can be turned on or off, by
+      twiddling the executable flag on their initialization script.
+      If the initialization script is executable, the service will be
+      started, otherwise it will not. Setting file flags is described
+      in <a class="xref" href="chap-filesystem.html#chap-filesystem-permissions-permbits" title="8.5.2. Changing file permission bits">Section 8.5.2, “Changing file permission bits”</a>, but
+      we will have a look at a quick example how you can enable and
+      disable sendmail.
+    </p>
+
+    <p>
+      To start sendmail when the system initializes, execute:
+    </p>
+
+    <pre class="screen">
+# <span class="command"><strong>chmod +x /etc/rc.d/rc.sendmail</strong></span>
+    </pre>
+
+    <p>
+      To disable starting of sendmail when the system initializes,
+      execute:
+    </p>
+
+    <pre class="screen">
+# <span class="command"><strong>chmod -x /etc/rc.d/rc.sendmail</strong></span>
+    </pre>
+
+    <p>
+      Most service-specific initialization scripts accept three
+      parameters to change the state of the service:
+      <span class="emphasis"><em>start</em></span>, <span class="emphasis"><em>restart</em></span> and
+      <span class="emphasis"><em>stop</em></span>. These parameters are pretty much self
+      descriptive. For example, if you would like to restart sendmail,
+      you could execute:
+    </p>
+
+    <pre class="screen">
+# <span class="command"><strong>/etc/rc.d/rc.sendmail restart</strong></span>
+    </pre>
+
+    <p>
+      If the script is not executable, you have to tell the shell that
+      you would like to execute the file with
+      <span class="command"><strong>sh</strong></span>. For example:
+    </p>
+
+    <pre class="screen">
+# <span class="command"><strong>sh /etc/rc.d/rc.sendmail start</strong></span>
+    </pre>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-init-udev"></a>19.4. Hotplugging and device node management</h2></div></div></div>
+    
+
+    <p>
+      Slackware Linux has supported hotplugging since Slackware Linux
+      9.1.  When enabled, the kernel passes notifications about device
+      events to a userspace command. Since Slackware Linux 11.0,
+      the <span class="command"><strong>udev</strong></span> set of utilities handle these
+      notifications. <span class="command"><strong>udev</strong></span> manages the dynamic
+      <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev</code></html:span> directory as well.
+    </p>
+
+    <p>
+      The mode of operation of <span class="command"><strong>udev</strong></span> for handling
+      hotplugging of devices is fairly simple. When a device is added
+      to the system, the kernel notifies userspace hotplug event
+      listeners. <span class="command"><strong>udev</strong></span> will receive the notification
+      of the device being added, and looks whether there are any
+      module mappings for the device. If there are, the appropriate
+      device driver module for the device is automatically
+      loaded. <span class="command"><strong>udev</strong></span> will remove the module when it
+      is notified of a device removal, and no devices use the loaded
+      module anymore.
+    </p>
+
+    <p>
+      The udev subsystem is initialized in
+      <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.S</code></html:span> by executing
+      <span class="command"><strong>/etc/rc.d/rc.udev start</strong></span>. As with most
+      functionality, you can enable or disable udev by twiddling the
+      executable flag of the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.udev</code></html:span>
+      script (see <a class="xref" href="chap-init.html#chap-init-initscripts" title="19.3. Initialization scripts">Section 19.3, “Initialization scripts”</a>).
+    </p>
+
+    <p>
+      If udev automatically loads modules that you do not want to
+      load, you can add a <span class="emphasis"><em>blacklist</em></span> in your
+      <span class="command"><strong>modprobe</strong></span> configuration in
+      <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/modprobe.d/blacklist</code></html:span>. For example, if
+      you would like to prevent loading of the
+      <span class="emphasis"><em>8139cp</em></span> module, you can add the following
+      line (actually, this module is already blacklisted in Slackware
+      Linux):
+    </p>
+
+    <pre class="screen">
+blacklist 8139cp
+    </pre>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-init-firmware"></a>19.5. Device firmware</h2></div></div></div>
+    
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-init-firmware-introduction"></a>19.5.1. Introduction</h3></div></div></div>
+      
+
+      <p>
+	Some hardware requires the system to upload firmware. Firmware
+	is a piece of software that is used to control the hardware.
+	Traditionally, the firmware was stored permanently in ROM
+	(read-only memory) or non-volatile media like flash memory.
+	However, many new devices use volatile memory to store
+	firmware, meaning that the firmware needs to be reloaded to
+	the device memory when the system is restarted.
+      </p>
+
+      <p>
+	Drivers for devices that require firmware have a table of the
+	firmware files that it needs. For each firmware file that the
+	driver needs, it will issue a firmware addition event. If udev
+	handles hotplugging events, it will try to handle that event.
+	The udev rules contain an entry for firmware addition events
+	in <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/udev/rules.d/50-udev.rules</code></html:span>:
+      </p>
+
+      <pre class="programlisting">
+# firmware loader
+SUBSYSTEM=="firmware", ACTION=="add", RUN+="/lib/udev/firmware.sh"
+      </pre>
+
+      <p>
+	This means that upon firmware addition events, the
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/lib/udev/firmware.sh</code></html:span> script should be
+	executed. This script searches the
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/lib/firmware</code></html:span> and
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/local/lib/firmware</code></html:span> directories for
+	the requested firmware. If the firmware file exists, it will
+	be loaded by copying the contents of the file to a special
+	sysfs node.
+      </p>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-init-firmware-adding"></a>19.5.2. Adding firmware</h3></div></div></div>
+      
+
+      <p>
+	As described in the previous section, some hardware requires
+	firmware to be uploaded to hardware by the operating system.
+	If this is the case, and no firmware is installed, the kernel
+	will emit an error message when the driver for that hardware
+	is loaded. You can see the kernel output with the
+	<span class="command"><strong>dmesg</strong></span> command or in the
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/var/log/messages</code></html:span> log file. Such error
+	message explicitly says that the firmware could not be loaded,
+	for example:
+      </p>
+
+      <pre class="screen">
+ipw2100: eth1: Firmware 'ipw2100-1.3.fw' not available or load failed.
+ipw2100: eth1: ipw2100_get_firmware failed: -2 
+      </pre>
+
+      <p>
+	In this case you will have to find the firmware for your
+	device. This can usually be found by searching the web for the
+	chipset or driver for the device (in this case
+	<span class="emphasis"><em>ipw2100</em></span>) and the literal term
+	<span class="quote">“<span class="quote">firmware</span>”</span>. The firmware archive often contains a
+	file with installation instructions. Usually you can just copy
+	the firmware files to <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/lib/firmware</code></html:span>.
+      </p>
+
+      <p>
+	After installing the firmware, you can reload the driver with
+	<span class="command"><strong>rmmod</strong></span> and <span class="command"><strong>modprobe</strong></span>, or
+	by restarting the system.
+      </p>
+    </div>
+  </div>
+
+
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="kernel.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="sysadmin.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="security.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 18. Contruïnt un núcli </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 20. Security</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

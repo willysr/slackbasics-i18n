@@ -1,0 +1,556 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 18. Contruïnt un núcli</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="sysadmin.html" title="Part V. Administració del sistema">
+<link rel="prev" href="chap-pkgmgmt.html" title="Chapter 17. Gestió de paquets">
+<link rel="next" href="chap-init.html" title="Chapter 19. System initialization">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 18. Contruïnt un núcli</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="chap-pkgmgmt.html">Prev</a> </td>
+<th width="60%" align="center">Part V. Administració del sistema</th>
+<td width="20%" align="right"> <a accesskey="n" href="chap-init.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div lang="en" class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="kernel"></a>Chapter 18. Contruïnt un núcli</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="kernel.html#chap-kernel-intro">18.1. Introducció</a></span></dt>
+<dt><span class="sect1"><a href="kernel.html#chap-kernel-build">18.2. Configuració</a></span></dt>
+<dt><span class="sect1"><a href="kernel.html#chap-kernel-compile">18.3. La compilació</a></span></dt>
+<dt><span class="sect1"><a href="kernel.html#chap-kernel-install">18.4. Instal·lació</a></span></dt>
+</dl>
+</div>
+  
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-kernel-intro"></a>18.1. Introducció</h2></div></div></div>
+    
+
+    <p>
+		El núcli Linux s'explica breument a <a class="xref" href="chap-intro.html#chap-intro-linux" title="2.1. Què és Linux?">Section 2.1, “Què és Linux?”</a>. Un dels avantatges de Linux és
+		que el codi font complet està disponible (com passa amb la majoria 
+		del	programari del sistema Slackware Linux). Açò significa que es
+		pot recompilar el nucli. Hi ha situacions en que resulta útil 
+		fer-ho, per exemple:
+      
+    </p> 
+
+    <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+	<p>
+		<span class="bold"><strong>Aprimar el nucli</strong></span>:
+		Es poden deshabilitar funcionalitats concretes del núcli per a
+		reduir el seu tamany. Açò és especialment útil en entorns amb 
+		poca memòria RAM.
+	  
+	</p>
+      </li>
+<li class="listitem">
+	<p>
+		<span class="bold"><strong>Optimizing the kernel</strong></span>: és 
+		possible optimitzar el núcli. Per exemple, compilant-lo per a un
+		tipus de processador específic.
+	  
+	</p>
+      </li>
+<li class="listitem">
+	<p>
+		<span class="bold"><strong>Suport de maquinari</strong></span>: Hi ha 
+		maquinari que per defecte no està suportat pel núcli proporcionat
+		per Slackware Linux. Un exemple típic és el suport per als 
+		sistemes SMP.
+	  
+	</p>
+      </li>
+<li class="listitem">
+	<p>
+		<span class="bold"><strong>Emprant tapas personalitzats</strong></span>:
+		Hi han molts tapats no oficials per al núcli Linux. Per regla 
+		general evitar aquests tapats és una bona idea, però ???cert???
+		programari de tercers, com <a class="ulink" href="http://www.win4lin.com" target="_top">
+		Win4Lin</a>, requereix que s'instale un tapat adicional del
+		nucli.
+	  
+	</p>
+      </li>
+<li class="listitem">
+	<p>
+		Crear les capçaleres adequades i muntar una infraestructura
+		disponible per a construir mòduls de tercers.
+	  
+	</p>
+      </li>
+</ul></div>
+
+    <p>
+		Aquets capítol posa el focus en la sèrie de núclis emprada en 
+		Slackware Linux 12.0, la Linux 2.6. Compilar un núcli no és 
+		realment difícil, simplement tingues a ma una còpia de seguretat 
+		del núcli que pugues utilitzar si alguna cosa anara malament. 
+		La compilació del núcli Linux consta d'aquests	passos:
+      
+    </p>
+
+    <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+	<p>
+	  Configurar el núcli.
+	</p>
+      </li>
+<li class="listitem">
+	<p>
+	  Contruir el núcli. 
+	</p>
+      </li>
+<li class="listitem">
+	<p>
+	  Construir els mòduls. 
+	</p>
+      </li>
+<li class="listitem">
+	<p>
+	  Instal·lar el núcli i els mòduls. 
+	</p>
+      </li>
+<li class="listitem">
+	<p>
+	  Actualitza la configuració del LILO. 
+	</p>
+      </li>
+</ul></div>
+    
+    <p>
+		Al llarg d'aquest capítol, entendrem que els codis font del 
+		núcli es troben a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/src/linux</code></html:span>. Si has
+		instal·lat el paquet kernel-soruces del conjunt de discs 
+		<span class="quote">“<span class="quote">k</span>”</span>, les fonts del núcli estaràn disponibles al 
+		directori <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/src/linux-kernelversion</code></html:span>, i
+		<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/src/linux</code></html:span> serà un enllaç simbòlic al 
+		directori real de les fonts. D'aquesta manera, si empres els 
+		paquet estàndard de núclis Linux d'Slackware ets a punt per a 
+		continuar.
+      
+    </p>
+
+    <p>
+		A diferència de les versions més antigues del núcli,
+		ja no cal l'enllaç simbòlic <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/src/linux</code></html:span>. 
+		Si has extet les fonts del nou núcli a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/src</code></html:span>,
+		podràs contruir el núcli a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/src/linux-&lt;version&gt;
+		</code></html:span>, i utilitzar eixe directori en els exemples d'aquest 
+		capítol.
+      
+    </p>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-kernel-build"></a>18.2. Configuració</h2></div></div></div>
+    
+
+    <p>
+		Adés em dit, que el primer pas és configurar les 
+		fonts del núcli. Per a facilitar aquesta tasca és convenient
+		copiar la configuració dels fonts del núcli Linux que que venen 
+		per defècte a la distribució a les fonts del núcli. Aquests 
+		fitxers estàn emmagatzemats al medi de la distribució com <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">
+		kernels/&lt;kernelname&gt;/config</code></html:span>. Suposem que volem 
+		utilitzar la configuració del núcli <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">hugesmp.s</code></html:span>
+		com a punt de partida (què és el núcli per defecte), i que tenim
+		un CD-ROM de Slackware Linux muntat a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/mnt/cdrom</code></html:span>,
+		llavors podríem copiar la configuració del núcli Linux mitjançant
+		la ordre:
+		
+      
+    </p>
+    
+    <pre class="screen">
+# <strong class="userinput"><code>cp /mnt/cdrom/kernels/hugesmp.s/config /usr/src/linux/.config</code></strong>
+    </pre>
+
+    <p>
+		La configuració d'un nucli en execució també es pot obtindre
+		com <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/proc/config.gz</code></html:span> sempre i quan el núcli 
+		estiga compilat amb les opcions <span class="emphasis"><em>CONFIG_IKCONFIG</em></span> 
+		i <span class="emphasis"><em>CONFIG_IKCONFIG_PROC</em></span>. Els núclis per 
+		defecte de Slackware Linux tenen aquestes opcions activades, 
+		pel que si volguerem utilitzar la configuració del kernel en 
+		execució, podríem executar:
+      
+    </p>
+
+    <pre class="screen">
+# <strong class="userinput"><code>zcat /proc/config.gz &gt; /usr/src/linux/.config</code></strong>
+    </pre>
+
+    <p>
+		Si estàs utilitzant un fitxer de configuració d'una versió 
+		diferent a la del núcli que estàs compilant, és molt probable
+		que ambdúes versions no tinguen el mateix conjunt d'opcions. 
+		S'afigen noves opcions sovint (per exemple, perque s'han afegit
+		drivers més nous), i de vegades s'eliminen components del núcli.
+		Es poden configurar noves opcions (i eliminar les que no
+		utilitzes) amb la ordre <span class="command"><strong>make oldconfig</strong></span>:
+		
+		
+    </p>
+
+    <p>
+# <strong class="userinput"><code>cd /usr/src/linux ; make oldconfig</code></strong>
+    </p>
+
+    <p>
+		Açò et preguntarà quines opcions vols compilar amb suport, 
+		(<span class="emphasis"><em>Y</em></span>), quines amb suport com a mòdul 
+		(<span class="emphasis"><em>M</em></span>), i de quines no vols suport 
+		(<span class="emphasis"><em>N</em></span>). Per exemple:
+     
+      
+    </p>
+
+    <pre class="screen">
+IBM ThinkPad Laptop Extras (ACPI_IBM) [N/m/y/?] (NEW)
+    </pre>
+
+    <p>
+		Com pots veurer, es mostren les possibles opcions, amb la 
+		opció per defècte en majúscules. Si senzillament prems la tecla 
+		&lt;Enter&gt;, la opció en majúscules serà utilitzada i si vols
+		més informació d'una opció, pots introduïr un interrogant
+		(<span class="emphasis"><em>?</em></span>):
+				
+      
+    </p>
+
+    <pre class="screen">
+    IBM ThinkPad Laptop Extras (ACPI_IBM) [N/m/y/?] (NEW) <strong class="userinput"><code>?</code></strong>
+
+This is a Linux ACPI driver for the IBM ThinkPad laptops. It adds
+support for Fn-Fx key combinations, Bluetooth control, video
+output switching, ThinkLight control, UltraBay eject and more.
+For more information about this driver see &lt;file:Documentation/ibm-acpi.txt&gt;
+and &lt;http://ibm-acpi.sf.net/&gt; .
+
+If you have an IBM ThinkPad laptop, say Y or M here.
+
+    IBM ThinkPad Laptop Extras (ACPI_IBM) [N/m/y/?] (NEW)
+    </pre>
+
+    <p>
+		La eixida d'aquest comandament pot ser una miqueta extensa, 
+		perque es mostren les opcions que van ser utilitzades en el 
+		fitxer de configuració i les que estàn disponibles en el núcli 
+		en execució, però la configuració es farceix automàticament 
+		basant-se en el fitxer de configuració.
+		
+      
+    </p>
+    
+    <p>
+		Arribats a este punt, podem començar a configurar el núcli amb 
+		detall. Hi ha tres ??caretes?? per a la configuració del núcli.
+		La primera és <em class="parameter"><code>config</code></em>, que
+		senzillament ens pregunta què volem fer amb cada opció del núcli.
+		Aquesta opció requereix molt de temps, pel que no és considera
+		una bona manera de configurar el núcli. Una aproximació molt més
+		amigables és la careta <em class="parameter"><code>menuconfig
+		</code></em>, que utilitza un sistema de menús per a fer la tasca.
+		També hi ha una interfície de X, anomenada <em class="parameter"><code>xconfig</code></em>. Per a iniciar una careta
+		canviant al directori de fonts del núcli i executant <span class="command"><strong>make
+		&lt;front-end&gt;</strong></span>. Per exemple, per a configurar el
+		núcli amb la interfície de menús, pots utilitzar les següents
+		ordres:
+      
+    </p>
+    
+    <pre class="screen">
+# <strong class="userinput"><code>cd /usr/src/linux</code></strong>
+# <strong class="userinput"><code>make menuconfig</code></strong>
+    </pre>
+    
+    <p>
+		Pressupost que, si així ho prefereixes, també pots editar el
+		fitxer <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">.config</code></html:span> directament amb el teu 
+		editor favorit.
+      
+    </p>
+
+    <p>
+		Com hem vist breument abans, en la configuració del núcli hi ha
+		bàsicament tres opcions per a cada elecció: <span class="quote">“<span class="quote">n</span>”</span>
+		deshabilita la funcionalitat, <span class="quote">“<span class="quote">y</span>”</span> la habilita, i
+		<span class="quote">“<span class="quote">m</span>”</span> la compila com a mòdul. La configuració del 
+		núcli Slackware Linux que ve per defecte és una configuració 
+		molt bona, inclou suport per a les controladoes de disk i 
+		sistemes de fitxers més comuns, mentres que la resta ve compilat
+		com a mòdul. Siguen quines siguen les deicisions que prengues, 
+		t'has d'assegurar de que inclous tant el driver per a la 
+		controladora de discs com suport per al tipus de sistema de
+		fitxers en què tens instal·lat el teu sistema de fitxers arrel. 
+		De no és així, el núcli no serà capaç de muntar el sistema de 
+		fitxers arrel, i el núcli "entrarà en pànic" al no poder 
+		entregar-li el control de l'inicialització al programa 
+		<span class="command"><strong>init</strong></span>.
+      
+    </p>
+
+    <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top">
+      <p>
+		  Sempre és una bona idea mantindre el teu vell núcli a prop
+		  en mòduls per si comets un error de configuració. Si el núcli a 
+		  compilar té el mateix nombre de versió que el núcli en
+		  funcionament, hauries de considerar seriosament si modificar 
+		  la opció <span class="emphasis"><em>CONFIG_LOCALVERSION</em></span>. La cadena
+		  especificada en esta opció afegida al final del nom de la
+		  versió. Per exemple, si el núcli té la versió 2.6.21.6, i a
+		  <span class="emphasis"><em>CONFIG_LOCALVERSION</em></span> està posat 
+		  <span class="emphasis"><em>"-smp-ddk"</em></span>, la versió del núcli serà
+		  <span class="emphasis"><em>2.6.21.6-smp-ddk</em></span>.
+	
+      </p>
+
+      <p>
+		  Si no modifiques la versió d'aquesta manera, la instal·lació
+		  dels mòduls del nou núcli sobreescriurà els mòduls del núcli
+		  en execució. Açò és enormement incòmode si necessites tornar
+		  al vell núcli.
+	
+      </p>
+    </td></tr>
+</table></div>
+  </div>
+  
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-kernel-compile"></a>18.3. La compilació</h2></div></div></div>
+    
+
+    <p>
+		La compilació del núcli solia consistir de múltiples passos,
+		però el núclis Linux 2.6 es poden compilar executant 
+		<span class="command"><strong>make</strong></span> en el directori dels fonts del núcli.
+		Açò calcularà dependències, construirà el núcli i construirà i 
+		enllaçarà els mòduls del núcli.
+      
+    </p>
+
+    <pre class="screen">
+# <strong class="userinput"><code>cd /usr/src/linux</code></strong>
+# <strong class="userinput"><code>Construcció (make)</code></strong>
+    </pre>
+    
+    <p>
+		Una vegada compilat, l'arbre conté els mòduls i un imatge 
+		comprimida del núcli anomenada <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">bzImage</code></html:span> a 
+		<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/src/linux/arch/i386/boot</code></html:span>. Ara es pot
+		continuar amb la instal·lació del núcli i dels mòduls.
+      
+    </p>
+  </div>
+  
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-kernel-install"></a>18.4. Instal·lació</h2></div></div></div>
+    
+    
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-kernel-install-kernel"></a>18.4.1. Instal·lant el núcli</h3></div></div></div>
+      
+      
+      <p>
+		  El següent pas és instal·lar el núcli amb els seus mòduls.
+		  S'acomença instal·lant els mòduls perquè açò es pot fer amb
+		  una ordre dins del arbre de fonts:
+	
+      </p>
+      
+      <pre class="screen">
+# <strong class="userinput"><code>make modules_install</code></strong>
+      </pre>
+      
+      <p>
+		  Açò instal·larà els moduls a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">
+		  /lib/modules/&lt;kernelversion&gt;</code></html:span>. Si s'està 
+		  reemplaçant un núcli amb exactament el mateixa nombre de versió,
+		  és una bona idea eliminar els mòduls antincs abans:
+		  
+		  
+	
+      </p>
+	
+      <pre class="screen">
+# <strong class="userinput"><code>rm -rf /lib/modules/2.6.21.5-smp</code></strong>
+      </pre>
+      
+      <p>
+		  Es pot <span class="quote">“<span class="quote">instal·lar</span>”</span> el núcli copiant-lo al directory
+		  <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/boot</code></html:span> i li pots donar el nom que vullgues,
+		  només què és una bona idea utilitzar alguna convenció per als
+		  noms, com <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">vmlinuz-version</code></html:span>. Per exemple, si
+		  l'anomenes <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">vmlinuz-2.6.21.5-smp-ddk</code></html:span>, el pots
+		  copiar desde l'arbre de fonts del núcli amb la ordre:
+		  
+		  
+	
+      </p>
+      
+      <pre class="screen">
+# <strong class="userinput"><code>cp arch/i386/boot/bzImage /boot/vmlinuz-2.6.21.5-smp-ddk</code></strong>
+      </pre>
+      
+      <p>
+		  En este punt, quasi em acabat. L'últim pas és afegir el nou
+		  núcli a la configuració del carregador del llançament de Linux 
+		  (LILO).
+	
+      </p>
+    </div>
+    
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-kernel-install-lilo"></a>18.4.2. Configurant LILO</h3></div></div></div>
+      
+      
+      <p>
+		<acronym class="acronym">LILO</acronym> (Linux Loader) és el llançador de la 
+		càrrega de Linux que utilitza Slackware Linux per defecte. La 
+		configuració de LILO funciona en dos passos; primer es modifica
+		la configuració en <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/lilo.conf</code></html:span> i després
+		s'executa <span class="command"><strong>lilo</strong></span>, qui escriurà la nova configuració
+		en el llançador de càrrega. La configuració de LILO ja té una 
+		entrada per al núcli actualment en funcionament. És molt bona idea
+		deixar esta entrada per si de cas el nou núcli no funciona, si 
+		et mous al final del fitxer <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/lilo.conf</code></html:span>
+		la veuràs, i s'assemblarà a açò:
+        
+      </p>
+      
+      <pre class="screen">
+# Linux bootable partition config begins
+image = /boot/vmlinuz
+  root = /dev/hda5
+  label = Slack
+  read-only # Non-UMSDOS filesystems should be mounted read-only for checking
+# Linux bootable partition config ends
+      </pre>
+      
+      <p>
+		  La forma més senzilla de afegir el nou núcli és duplicar la 
+		  entrada existent i editar la primera entrada, modificant les
+		  opcions <em class="parameter"><code>image</code></em>, i <em class="parameter"><code>label</code></em>.
+		  Després dels canvis l'exemple d'abans es pareixerà a açò:
+		  
+        The easiest way to add the new kernel is to duplicate the
+        existing entry, and then editing the first entry, changing the
+        <em class="parameter"><code>image</code></em>, and <em class="parameter"><code>label</code></em>
+        options. After changing the example above it would look like
+        this:
+      </p>
+      
+      <pre class="screen">
+# Linux bootable partition config begins
+image = /boot/vmlinuz-2.6.21.5-smp-ddk
+  root = /dev/hda5
+  label = Slack
+  read-only # Non-UMSDOS filesystems should be mounted read-only for checking
+
+image = /boot/vmlinuz
+  root = /dev/hda5
+  label = SlackOld
+  read-only # Non-UMSDOS filesystems should be mounted read-only for checking
+# Linux bootable partition config ends
+      </pre>
+      
+      <p>
+		Com es pot veurer, la primera entrada de <em class="parameter"><code>image</code></em>
+		apunta al nou núcli, i la etiqueta (label) de la segona s'ha 
+		canviat a <span class="quote">“<span class="quote">SlackOld</span>”</span>. LILO llançarà automàticament
+		la primera imatge. Ara es pot instal·lar aquesta configuració de
+		LILO amb l'ordre <span class="command"><strong>lilo</strong></span>:
+	
+      </p>
+
+      <pre class="screen">
+# <strong class="userinput"><code>lilo</code></strong>
+Added Slack *
+Added SlackOld
+      </pre>
+
+      <p>
+		  La pròxima vegada que incies l'ordinador, les dues entrades
+		  estaràn disponibles, i la entrada <span class="quote">“<span class="quote">Slack</span>”</span> serà
+		  llançada per defecte.
+	
+      </p>
+      
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top">
+	<p>
+		Si vols que LILO mostre un menú amb les entrades configurades
+		via <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">lilo.conf</code></html:span> cada vegada que encengues 
+		l'ordinador, assabenta't de que afegeixes una línea que diga:
+	  
+	</p>
+
+	<pre class="screen">
+prompt
+	</pre>
+
+	<p>
+		al <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">lilo.conf</code></html:span>. D'altra manera LILO 
+		llançarà la entrada per defecte què es defineix amb <span class="emphasis"><em>
+		default=&lt;name&gt;</em></span>, o la primera entrada si no 
+		se n'especifica cap. Sempre es pot accedir al menú mantenint
+		pitjada la tecla &lt;Shift&gt; quan LILO està en marxa.
+		
+	</p>
+      </td></tr>
+</table></div>
+    </div>
+  </div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="chap-pkgmgmt.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="sysadmin.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="chap-init.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 17. Gestió de paquets </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 19. System initialization</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

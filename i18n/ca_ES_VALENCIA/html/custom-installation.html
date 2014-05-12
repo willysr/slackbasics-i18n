@@ -1,0 +1,739 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 6. Custom installation</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="getstarted.html" title="Part I. Per començar ??Getting started??">
+<link rel="prev" href="chap-install.html" title="Chapter 5. La instal·lació de Slackware Linux">
+<link rel="next" href="basics.html" title="Part II. Conceptes fonamentals de Slackware Linux">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 6. Custom installation</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="chap-install.html">Prev</a> </td>
+<th width="60%" align="center">Part I. Per començar ??Getting started??</th>
+<td width="20%" align="right"> <a accesskey="n" href="basics.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="getstarted-custominstall"></a>Chapter 6. Custom installation</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="custom-installation.html#getstarted-custominstall-partition">6.1. Partitioning a hard disk</a></span></dt>
+<dt><span class="sect1"><a href="custom-installation.html#getstarted-custominstall-initfs">6.2. Initializing and mounting filesystems</a></span></dt>
+<dt><span class="sect1"><a href="custom-installation.html#getstarted-custominstall-packages">6.3. Installing packages</a></span></dt>
+<dt><span class="sect1"><a href="custom-installation.html#getstarted-custominstall-config">6.4. Post-install configuration</a></span></dt>
+<dt><span class="sect1"><a href="custom-installation.html#getstarted-custominstall-script">6.5. Automated installation script</a></span></dt>
+</dl>
+</div>
+<p>
+    Sometimes you may want to do a custom installation of Slackware Linux,
+    for example to get better understanding of how GNU/Linux systems work,
+    or to prepare an automatic installation script. This chapter outlines
+    the steps that are required to install Slackware Linux manually. A
+    sample installation script is also provided in <a class="xref" href="custom-installation.html#getstarted-custominstall-script" title="6.5. Automated installation script">Section 6.5, “Automated installation script”</a>.
+  </p>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="getstarted-custominstall-partition"></a>6.1. Partitioning a hard disk</h2></div></div></div>
+<p>
+      If you have performed a normal installation, you should not
+      have any problems partitioning a disk. You can use the
+      <span class="command"><strong>fdisk</strong></span> and <span class="command"><strong>cfdisk</strong></span>
+      commands to partition disks. If you are scripting the
+      installation of Slackware Linux it is useful to know that
+      you can pipe <span class="command"><strong>fdisk</strong></span> commands to
+      <span class="command"><strong>fdisk</strong></span>. For example:
+    </p>
+<pre class="screen">
+# <span class="command"><strong>fdisk /dev/hda &lt;&lt; EOF
+n
+p
+1
+
++10000M
+n
+p
+2
+
++512M
+t
+2
+82
+w
+EOF</strong></span>
+    </pre>
+<p>
+      These commands create a primary Linux partition of 10000MB, and
+      a primary Linux swap partition of 512MB. You could store the
+      <span class="command"><strong>fdisk</strong></span> commands in different disk profiles,
+      and use one of the profiles based on the specific deployment
+      (e.g.  the disk size). For example:
+    </p>
+<pre class="screen">
+# <span class="command"><strong>cat /usr/share/fdisk-profiles/smalldisk | fdisk</strong></span>
+    </pre>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="getstarted-custominstall-initfs"></a>6.2. Initializing and mounting filesystems</h2></div></div></div>
+<p>
+      After making at least a swap and a Linux partition, you can
+      initialize the filesystem and swap space and make use of this
+      storage. On systems that are short on memory, you should initialize,
+      and use swap first. We will use the partition layout used in
+      the partitioning example listed above in the following examples.
+      To set up and use swap, execute:
+    </p>
+<pre class="screen">
+# <span class="command"><strong>mkswap /dev/hda2</strong></span>
+# <span class="command"><strong>swapon /dev/hda2</strong></span>
+    </pre>
+<p>
+      The meaning of these commands is quite obvious. <span class="command"><strong>mkswap</strong></span>
+      initializes the swap space, and <span class="command"><strong>swapon</strong></span> puts it to
+      use. You will only have to execute <span class="command"><strong>mkswap</strong></span> once,
+      but <span class="command"><strong>swapon</strong></span> has to be executed during every system
+      boot. This can be done automatically by adding an entry for the
+      swap partition to <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/fstab</code></html:span>, which we will
+      do during a later step. 
+    </p>
+<p>
+      For now, it is important to initialize the target partitions. This
+      can be done with the <span class="command"><strong>mkfs</strong></span> command. You can
+      specify which filesystem should be used by adding the <em class="parameter"><code>-t</code></em> parameter. <span class="command"><strong>mkfs</strong></span>
+      will automatically invoke a <span class="command"><strong>mkfs.filesystem</strong></span>
+      command based on the filesystem that you have chosen. Be aware that
+      the filesystems that can be used depends on the installation
+      kernel that you have booted. If you have booted the
+      <span class="emphasis"><em>bare.i</em></span> kernel, you can use the
+      <span class="emphasis"><em>ext2</em></span>, <span class="emphasis"><em>ext3</em></span> and
+      <span class="emphasis"><em>reiserfs</em></span> filesystems.
+    </p>
+<p>
+      To initialize an <span class="emphasis"><em>ext3</em></span> filesystem, and mount it,
+      you should execute the following commands:
+    </p>
+<pre class="screen">
+# <span class="command"><strong>mkfs -t ext3 /dev/hda1</strong></span>
+# <span class="command"><strong>mount /dev/hda1 /mnt</strong></span>
+    </pre>
+<p>
+      If you have made separate partitions for certain directories
+      in the root filesystem, e.g. <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/home</code></html:span>, you
+      can also initialize them and mount them at this point. For
+      example:
+    </p>
+<pre class="screen">
+# <span class="command"><strong>mkfs -t ext3 /dev/hda2</strong></span>
+# <span class="command"><strong>mkdir /mnt/home</strong></span>
+# <span class="command"><strong>mount /dev/hda2 /mnt/home</strong></span>
+    </pre>
+<p>
+      Finally, you will have to mount your source medium. If you use
+      a CD-ROM, this is easy. Suppose that <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/dev/hdc</code></html:span>
+      is the CD-ROM device file, you can mount the CD-ROM with:
+    </p>
+<pre class="screen">
+# <span class="command"><strong>mount /dev/hdc /var/log/mount</strong></span>
+    </pre>
+<p>
+      Using NFS as the installation medium requires some more steps.
+      First of all, you will have to load the network disk.
+      You can do this by running the <span class="command"><strong>network</strong></span>
+      command and inserting a network disk. You can also load
+      this disk from another medium, for example from an USB memory stick.
+      Suppose that you have mounted a USB memory stick on /var/log/mount,
+      you can load the network disk with: <span class="command"><strong>network
+      /var/log/mount/network.dsk</strong></span>. After loading the network
+      disk, you will have to configure the network interface. If the
+      NFS server is on the same network, you will only have to assign
+      an IP address to the network interface. For example, to use
+      the address <span class="emphasis"><em>192.168.2.201</em></span>, you could execute
+      the following command:
+    </p>
+<pre class="screen">
+# <span class="command"><strong>ifconfig eth0 192.168.2.201</strong></span>
+    </pre>
+<p>
+      You can then load the portmapper, which is necessary for the
+      NFS client to function correctly:
+    </p>
+<pre class="screen">
+# <span class="command"><strong>/sbin/rpc.portmap</strong></span>
+    </pre>
+<p>
+      If the portmapper started correctly, you can mount the
+      NFS volume. But, first make sure that you unmount any filesystem
+      that you have previously mounted at <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/var/log/mount</code></html:span>.
+      If no other filesystems are mounted at
+      <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/var/log/mount</code></html:span>, you can proceed with mounting
+      the NFS volume. Suppose, that you want to mount
+      <span class="emphasis"><em>192.168.2.1:/home/pub/slackware-current</em></span>,
+      you should issue the following command:
+    </p>
+<pre class="screen">
+# <span class="command"><strong>mount -r -t nfs -o nolock 192.168.2.1:/home/pub/slackware-current /var/log/mount</strong></span>
+    </pre>
+<p>
+      If no errors where printed when the volume was mounted, it should be
+      accessible through <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/var/log/mount</code></html:span>
+    </p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="getstarted-custominstall-packages"></a>6.3. Installing packages</h2></div></div></div>
+<p>
+      Everything is now set up to start installing packages from the
+      installation medium. Since <span class="command"><strong>installpkg</strong></span> is
+      available from the installation system, you can use it to
+      install Slackware Linux packages. To install packages to the
+      target partition(s) mounted on <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/mnt</code></html:span>, add
+      the <em class="parameter"><code>-root</code></em> option. The
+      following command installs all packages from the source medium:
+    </p>
+<pre class="screen">
+# <span class="command"><strong>installpkg -root /mnt /var/log/mount/slackware/*/*.tgz</strong></span>
+    </pre>
+<p>
+      If you have created tagfiles to define which packages should be
+      installed, then you can use them now (tagfiles are described
+      in <a class="xref" href="chap-pkgmgmt.html#chap-pkgmgmt-tagfiles" title="17.4. Tagfiles (fitxers d'etiquetes)">Section 17.4, “Tagfiles (fitxers d'etiquetes)”</a>). Suppose that you have
+      stored a tagfile for each disk set in
+      <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/share/tagfiles/small-desktop</code></html:span>, you
+      can install packages based on the tagfiles in the following
+      manner:
+    </p>
+<pre class="screen">
+# <span class="command"><strong>for p in a ap d e f k kde kdei l n t tcl x xap y; do
+   installpkg -infobox -root /mnt \
+     -tagfile /usr/share/tagfiles/small-desktop/$p/tagfile \
+     /var/log/mount/slackware/$p/*.tgz
+done</strong></span>
+    </pre>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="getstarted-custominstall-config"></a>6.4. Post-install configuration</h2></div></div></div>
+<p>
+      The next sections describe the bare minimum of configuration that is
+      necessary to get a running system.
+    </p>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="getstarted-custominstall-config-fstab"></a>6.4.1. fstab</h3></div></div></div>
+<p>
+        One of the necessary configuration steps is to create a <span class="command"><strong>fstab</strong></span>
+        file, so that the system can look up what partitions or volumes have
+        to be mounted. The format of the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/fstab</code></html:span> file
+        is described in <a class="xref" href="chap-filesystem.html#basics-filesystem-mounting-fstab" title="8.8.4. The fstab file">Section 8.8.4, “The fstab file”</a>.
+        As a bare minimum you will have to add entries for the
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/</code></html:span> filesystem, the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/proc</code></html:span>
+        pseudo-filesystem, the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">devpts</code></html:span> pseudo-filesystem,
+        and the swap partition.
+      </p>
+<p>
+        With the sample partitioning used earlier in this chapter, you
+        could create a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/fstab</code></html:span> like this:
+      </p>
+<pre class="screen">
+# <span class="command"><strong> cat &gt; /mnt/etc/fstab &lt;&lt; EOF
+/dev/hda2	 swap             swap        defaults         0   0
+/dev/hda1        /                ext3        defaults         1   1
+devpts           /dev/pts         devpts      gid=5,mode=620   0   0
+proc             /proc            proc        defaults         0   0
+EOF</strong></span>
+      </pre>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="getstarted-custominstall-lilo"></a>6.4.2. LILO</h3></div></div></div>
+<p>
+        To make the system bootable you will have to configure and install
+        the Linux Loader (LILO). The configuration of LILO is covered in
+        <a class="xref" href="chap-init.html#chap-init-lilo" title="19.1. The bootloader">Section 19.1, “The bootloader”</a>. For this section we will
+        just show a sample LILO configuration, that can be used with
+        the partition layout described in this chapter. The first step
+        is to create the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/lilo.conf</code></html:span> file:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>cat &gt; /mnt/etc/lilo.conf &lt;&lt; EOF
+boot = /dev/hda
+vga = normal
+timeout = 50
+image = /boot/vmlinuz
+	root = /dev/hda1
+	label = Slackware
+	read-only
+EOF</strong></span>
+      </pre>
+<p>
+        You can then install LILO with <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/mnt</code></html:span> as the
+        LILO root. With <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/mnt</code></html:span> set as the root,
+        LILO will use <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/lilo.conf</code></html:span> from the target
+        partition:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>lilo -r /mnt</strong></span>
+      </pre>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="getstarted-custominstall-config-network"></a>6.4.3. Networking</h3></div></div></div>
+<p>
+        The configuration of networking in Slackware Linux is covered in
+        <a class="xref" href="netconfig.html" title="Chapter 22. Networking configuration">Chapter 22, <i>Networking configuration</i></a>. This section will cover
+        one example of a host that will use DHCP to get an IP address.
+      </p>
+<p>
+        The <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/networks</code></html:span> file contains information
+        about known Internet networks. Because we will get network
+        information via DHCP, we will just use <span class="emphasis"><em>127.0.0.1</em></span>
+        as the local network.
+      </p>
+<pre class="screen">
+# <span class="command"><strong>cat &gt; /mnt/etc/networks &lt;&lt; EOF
+loopback        127.0.0.0
+localnet        127.0.0.0
+EOF</strong></span>
+      </pre>
+<p>
+        Although we will get a hostname via DHCP, we will still set up
+        a temporary hostname:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>cat &gt; /mnt/etc/HOSTNAME &lt;&lt; EOF
+sugaree.example.net
+EOF</strong></span>
+      </pre>
+<p>
+        Now that the hostname is configured, the hostname and 
+        <span class="emphasis"><em>localhost</em></span> should also be made
+        resolvable, by creating a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/hosts</code></html:span>
+        database:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>cat &gt; /mnt/etc/hosts &lt;&lt; EOF
+127.0.0.1	localhost
+127.0.0.1	sugaree.example.net	sugaree	
+EOF</strong></span>
+      </pre>
+<p>
+        We do not have to create a <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/resolv.conf</code></html:span>,
+        since it will be created automatically by <span class="command"><strong>dhcpcd</strong></span>,
+        the DHCP client. So, finally, we can set up the interface
+        in <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/rc.d/rc.inet1.conf</code></html:span>:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>cat &gt; /mnt/etc/rc.d/rc.inet1.conf &lt;&lt; EOF
+IPADDR[0]=""
+NETMASK[0]=""
+USE_DHCP[0]="yes"
+DHCP_HOSTNAME[0]=""
+EOF</strong></span>
+      </pre>
+<p>
+	You may want to make a backup of the old
+	<html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">rc.inet1.conf</code></html:span> file first, because it
+	contains many useful comments. Or you can use
+	<span class="command"><strong>sed</strong></span> to change this specific option:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>sed -i 's/USE_DHCP\[0\]=""/USE_DHCP[0]="yes"/' \
+   /mnt/etc/rc.d/rc.inet1.conf</strong></span>
+      </pre>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="getstarted-custominstall-config-init"></a>6.4.4. Tuning initialization scripts</h3></div></div></div>
+<p>
+        Depending on the purpose of the system that is being installed,
+        it should be decided which initialization scripts should be started.
+        The number of services that are available depends on what packages
+        you have installed. You can get get a list of available scripts
+        with <span class="command"><strong>ls</strong></span>:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>ls -l /mnt/etc/rc.d/rc.*</strong></span>
+      </pre>
+<p>
+        If the executable bits are set on a script, it will be started,
+        otherwise it will not. Obviously you should keep essential scripts
+        executable, including the runlevel-specific scripts. You can set
+        the executable bit on a script with:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>chmod +x /mnt/etc/rc.d/rc.scriptname</strong></span>
+      </pre>
+<p>
+        Or remove it with:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>chmod -x /mnt/etc/rc.d/rc.scriptname</strong></span>
+      </pre>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="getstarted-custominstall-config-ldconfig"></a>6.4.5. Configuring the dynamic linker run-time bindings</h3></div></div></div>
+<p>
+        GNU/Linux uses a cache for loading dynamic libraries. Besides that
+        many programs rely on generic version numbers of libraries
+        (e.g. <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/lib/libgtk-x11-2.0.so</code></html:span>, rather
+        than <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/usr/lib/libgtk-x11-2.0.so.0.600.8</code></html:span>).
+        The cache and library symlinks can be updated in one
+        <span class="command"><strong>ldconfig</strong></span> run:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>chroot /mnt /sbin/ldconfig</strong></span>
+      </pre>
+<p>
+        You may not know the <span class="command"><strong>chroot</strong></span> command; it is
+        a command that executes a command with a different root than
+        the active root. In this example the root directory is changed
+        to <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/mnt</code></html:span>, and from there <span class="command"><strong>chroot</strong></span>
+        runs <span class="command"><strong>/sbin/ldconfig</strong></span> binary. After the command has
+        finished the system will return to the shell, which uses the original
+        root. To use <span class="command"><strong>chroot</strong></span> with other commands this
+        <span class="command"><strong>ldconfig</strong></span> command has to be executed once first,
+        because without initializing the dynamic linker run-time bindings
+        most commands will not execute, due to unresolvable library
+        dependencies.
+      </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="getstarted-custominstall-config-rootpasswd"></a>6.4.6. Setting the root password</h3></div></div></div>
+<p>
+        Now that the dynamic library cache and links are set up, you
+        can execute commands on the installed system. We will make use
+        of this to set the <span class="emphasis"><em>root</em></span> password.  The
+        <span class="command"><strong>passwd</strong></span> command can be used to set the
+        password for an existing user (the <span class="emphasis"><em>root</em></span>
+        user is part of the initial <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/passwd</code></html:span>
+        file). We will use the <span class="command"><strong>chroot</strong></span> command again
+        to execute the command on the target partition:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>chroot /mnt /usr/bin/passwd root</strong></span>
+      </pre>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="getstarted-custominstall-config-timezone"></a>6.4.7. Setting the timezone</h3></div></div></div>
+<p>
+        On UNIX-like systems it is important to set the timezone correctly,
+        because it is used by various parts of the system. For instance,
+        the timezone is used by NTP to synchronize the system time correctly,
+        or by different networking programs to compute the time difference
+        between a client and a server. On Slackware Linux the timezone can be
+        set by linking <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/localtime</code></html:span> to a timezone file.
+        You can find the timezone for your region by browsing the
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/mnt/usr/share/zoneinfo</code></html:span> directory.
+        Most timezones can be found in the subdirectories of their
+        respective regions. For example to use
+        <span class="emphasis"><em>Europe/Amsterdam</em></span> as the timezone, you can
+        execute the following commands:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>cd /mnt</strong></span>
+# <span class="command"><strong>rm -rf etc/localtime</strong></span>
+# <span class="command"><strong>ln -sf /usr/share/zoneinfo/Europe/Amsterdam etc/localtime</strong></span>
+      </pre>
+<p>
+        After setting the time zone, programs still do not know whether
+        the hardware clock is set to the local time, or to the Coordinated
+        Universal Time (UTC) standard. If you use another operating system
+        on the same machine that does not use UTC it is best to set the
+        hardware clock to the local time. On UNIX-like systems it is a
+        custom to set the system time to UTC. You can set what time the
+        system clock uses, by creating the file
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/hardwareclock</code></html:span>, and putting the word
+        <span class="emphasis"><em>localtime</em></span> in it if your clock is set to the
+        local time, or <span class="emphasis"><em>UTC</em></span> when it is set to UTC.
+        For example, to use UTC, you can create
+        <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/hardwareclock</code></html:span> in the following manner:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>echo "UTC" &gt; /mnt/etc/hardwareclock</strong></span>
+      </pre>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="getstarted-custominstall-fonts"></a>6.4.8. Creating the X11 font cache</h3></div></div></div>
+<p>
+        If you are going to use X11, you will have to initialize the
+        font cache for TrueType and Type1 fonts. This can be done
+        with the <span class="command"><strong>fc-cache</strong></span> command:
+      </p>
+<pre class="screen">
+# <span class="command"><strong>chroot /mnt /usr/bin/fc-cache</strong></span>
+      </pre>
+</div>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="getstarted-custominstall-script"></a>6.5. Automated installation script</h2></div></div></div>
+<p>
+      It is easy to combine the steps of a custom installation into
+      one script, which performs the custom steps automatically. This is ideal
+      for making default server installs or conducting mass roll-outs of
+      Linux clients. This sections contains a sample script that was
+      written by William Park. It is easy to add an installation script
+      to the Slackware Linux medium, especially if you use an installation
+      CD-ROM or boot the installation system from an USB flash drive.
+    </p>
+<p>
+      The installation system is stored in one compressed image file,
+      that is available on the distribution medium as
+      <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">isolinux/initrd.img</code></html:span>. You can make a copy
+      of this image to your hard disk, and decompress it with
+      <span class="command"><strong>gunzip</strong></span>:
+    </p>
+<pre class="screen">
+# <span class="command"><strong>mv initrd.img initrd.img.gz</strong></span>
+# <span class="command"><strong>gunzip initrd.img.gz</strong></span>
+    </pre>
+<p>
+      After decompressing the image, you can mount the file as
+      a disk, using the loopback device:
+    </p>
+<pre class="screen">
+# <span class="command"><strong>mount -o loop initrd.img /mnt/hd</strong></span>
+    </pre>
+<p>
+      You can now add a script to the initrd file by adding it to
+      the directory structure that is available under the mount point.
+      After making the necessary changes, you can unmount the
+      filesystem and compress it:
+    </p>
+<pre class="screen">
+# <span class="command"><strong>umount /mnt/hd</strong></span>
+# <span class="command"><strong>gzip initd.img</strong></span>
+# <span class="command"><strong>mv initrd.img.gz initrd.img</strong></span>
+    </pre>
+<p>
+      You can then put the new <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">initrd.img</code></html:span> file on
+      the installation medium, and test the script.
+    </p>
+<pre class="programlisting">
+#! /bin/sh
+# Copyright (c) 2003-2005 by William Park &lt;opengeometry@yahoo.ca&gt;.
+# All rights reserved.
+#
+# Usage: slackware-install.sh
+
+rm_ln ()		# Usage: rm_ln from to
+{
+	rm -rf $2; ln -sf $1 $2
+}
+
+
+###############################################################################
+echo "Partitioning harddisk..."
+
+(   echo -ne "n\np\n1\n\n+1000M\n"	# /dev/hda1 --&gt; 1GB swap
+	echo -ne "n\np\n2\n\n+6000M\n"	# /dev/hda2 --&gt; 6GB /
+	echo -ne "t\n1\n82\nw\n"
+) | fdisk /dev/hda
+
+mkswap /dev/hda1		# swap
+swapon /dev/hda1
+
+mke2fs -c /dev/hda2		# /
+mount /dev/hda2 /mnt
+
+
+###############################################################################
+echo "Installing packages..."
+
+mount -t iso9660 /dev/hdc /cdrom	# actually, /var/log/mount
+cd /cdrom/slackware
+for p in [a-z]*; do		# a, ap, ..., y
+	installpkg -root /mnt -priority ADD $p/*.tgz
+done
+
+cd /mnt
+
+
+###############################################################################
+echo "Configuring /dev/* stuffs..."
+
+rm_ln psaux dev/mouse		# or, 'input/mice' for usb mouse
+rm_ln ttyS0 dev/modem
+rm_ln hdc dev/cdrom
+rm_ln hdc dev/dvd
+
+
+###############################################################################
+echo "Configuring /etc/* stuffs..."
+
+cat &gt; etc/fstab &lt;&lt; EOF
+/dev/hda1   swap         swap     defaults         0  0
+/dev/hda2   /            ext2     defaults         1  1
+devpts      /dev/pts     devpts   gid=5,mode=620   0  0
+proc        /proc        proc     defaults         0  0
+#
+/dev/cdrom  /mnt/cdrom   iso9660  noauto,owner,ro  0  0
+/dev/fd0    /mnt/floppy  auto     noauto,owner     0  0
+tmpfs       /dev/shm     tmpfs    noauto           0  0
+EOF
+
+cat &gt; etc/networks &lt;&lt; EOF
+loopback	127.0.0.0
+localnet	192.168.1.0
+EOF
+cat &gt; etc/hosts &lt;&lt; EOF
+127.0.0.1	localhost
+192.168.1.1	node1.example.net	node1
+EOF
+cat &gt; etc/resolv.conf &lt;&lt; EOF
+search example.net
+nameserver 127.0.0.1
+EOF
+cat &gt; etc/HOSTNAME &lt;&lt; EOF
+node1.example.net
+EOF
+
+## setup.05.fontconfig
+chroot . /sbin/ldconfig		# must be run before other program
+chroot . /usr/X11R6/bin/fc-cache
+
+chroot . /usr/bin/passwd root
+
+## setup.06.scrollkeeper
+chroot . /usr/bin/scrollkeeper-update
+
+## setup.timeconfig
+rm_ln /usr/share/zoneinfo/Canada/Eastern  etc/localtime
+cat &gt; etc/hardwareclock &lt;&lt; EOF
+localtime
+EOF
+
+## setup.liloconfig
+cat &gt; etc/lilo.conf &lt;&lt; EOF
+boot=/dev/hda
+delay=100
+vga=normal	# 80x25 char
+# VESA framebuffer console:
+#   pixel	char	8bit	15bit	16bit	24bit
+#   -----	----	----	-----	-----	-----
+#   1600x1200		796	797	798	799
+#   1280x1024	160x64	775	793	794	795
+#   1024x768	128x48	773	790	791	792
+#   800x600	100x37	771	787	788	789
+#   640x480	80x30	769	784	785	786
+image=/boot/vmlinuz		# Linux
+	root=/dev/hda2
+	label=bare.i
+	read-only
+# other=/dev/hda1		# Windows
+#     label=win
+#     table=/dev/hda
+EOF
+lilo -r .
+
+## setup.xwmconfig
+rm_ln xinitrc.fvwm95  etc/X11/xinit/xinitrc
+
+
+###############################################################################
+echo "Configuring /etc/rc.d/rc.* stuffs..."
+
+cat &gt; etc/rc.d/rc.keymap &lt;&lt; EOF
+#! /bin/sh
+[ -x /usr/bin/loadkeys ] &amp;&amp; /usr/bin/loadkeys us.map
+EOF
+chmod -x etc/rc.d/rc.keymap
+
+## setup.mouse
+cat &gt; etc/rc.d/rc.gpm &lt;&lt; 'EOF'
+#! /bin/sh
+case $1 in
+	stop)
+	    echo "Stopping gpm..."
+	    /usr/sbin/gpm -k
+	    ;;
+	restart)
+	    echo "Restarting gpm..."
+	    /usr/sbin/gpm -k
+	    sleep 1
+	    /usr/sbin/gpm -m /dev/mouse -t ps2
+	    ;;
+	start)
+	    echo "Starting gpm..."
+	    /usr/sbin/gpm -m /dev/mouse -t ps2
+	    ;;
+	*)
+	    echo "Usage $0 {start|stop|restart}"
+	    ;;
+esac
+EOF
+chmod +x etc/rc.d/rc.gpm
+
+## setup.netconfig
+cat &gt; etc/rc.d/rc.inet1.conf &lt;&lt; EOF
+IPADDR=(192.168.1.1)		# array variables
+NETMASK=(255.255.255.0)
+USE_DHCP=()			# "yes" or ""
+DHCP_HOSTNAME=()
+GATEWAY=""
+DEBUG_ETH_UP="no"
+EOF
+
+cat &gt; etc/rc.d/rc.netdevice &lt;&lt; EOF
+/sbin/modprobe 3c59x
+EOF
+chmod +x etc/rc.d/rc.netdevice
+
+## setup.setconsolefont
+mv etc/rc.d/rc.font{.sample,}
+chmod -x etc/rc.d/rc.font
+
+## setup.services
+chmod +x etc/rc.d/rc.bind
+chmod +x etc/rc.d/rc.hotplug
+chmod +x etc/rc.d/rc.inetd
+chmod +x etc/rc.d/rc.portmap
+chmod +x etc/rc.d/rc.sendmail
+#
+chmod -x etc/rc.d/rc.atalk
+chmod -x etc/rc.d/rc.cups
+chmod -x etc/rc.d/rc.httpd
+chmod -x etc/rc.d/rc.ip_forward
+chmod -x etc/rc.d/rc.lprng
+chmod -x etc/rc.d/rc.mysqld
+chmod -x etc/rc.d/rc.pcmcia
+chmod -x etc/rc.d/rc.samba
+chmod -x etc/rc.d/rc.sshd
+    </pre>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="chap-install.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="getstarted.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="basics.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 5. La instal·lació de Slackware Linux  </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Part II. Conceptes fonamentals de Slackware Linux</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

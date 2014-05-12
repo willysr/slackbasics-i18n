@@ -1,0 +1,381 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 11. LaTeX</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="editing.html" title='Part III. Editant i formatant text ??"typesetting"??'>
+<link rel="prev" href="editing.html" title='Part III. Editant i formatant text ??"typesetting"??'>
+<link rel="next" href="email.html" title="Part IV. Correu electrònic">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 11. LaTeX</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="editing.html">Prev</a> </td>
+<th width="60%" align="center">Part III. Editant i formatant text ??"typesetting"??</th>
+<td width="20%" align="right"> <a accesskey="n" href="email.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="editing-latex"></a>Chapter 11. LaTeX</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="latex.html#editing-latex-introduction">11.1. Introduction</a></span></dt>
+<dt><span class="sect1"><a href="latex.html#editing-latex-basic">11.2. Preparing basic LaTeX documents</a></span></dt>
+</dl>
+</div>
+<a class="indexterm" name="idm962119412"></a><a class="indexterm" name="idm962119156"></a><div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="editing-latex-introduction"></a>11.1. Introduction</h2></div></div></div>
+<p>
+      LaTeX is a typesetting system that can be used to produce high-quality
+      articles, books, letters and other publications. LaTeX is based on
+      TeX, a lower-level typesetting language that was designed by Donald
+      E. Knuth. LaTeX does not work like a <acronym class="acronym">WYSIWYG</acronym>
+      (what you see is what you get) word processor, the kind of document
+      preparation system most people are accustomed to. With LaTeX you
+      do not have to care about formatting the document, only about writing
+      the document.
+    </p>
+<p>
+      LaTeX files are plain-text files that contain LaTeX macros. LaTeX
+      formats the document based on the macros that are used. In the
+      beginning using LaTeX may be a bit awkward to a new user. But after
+      a while you will discover that using LaTeX has some distinct
+      advantages. To name a few:
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p>
+          LaTeX-formatted documents look very professional.
+        </p></li>
+<li class="listitem"><p>
+          You do not have to care about the layout of your documents. You
+          just add structure to your documents, and LaTeX takes care of
+          the formatting.
+        </p></li>
+<li class="listitem"><p>
+          LaTeX files are plain text, and can easily be changed using
+          standard UNIX tools, such as <span class="command"><strong>vi</strong></span>,
+          <span class="command"><strong>sed</strong></span> or <span class="command"><strong>awk</strong></span>
+        </p></li>
+<li class="listitem"><p>
+          LaTeX provides very good support for typesetting things like
+          mathematical formula, references and Postscript images.
+        </p></li>
+</ul></div>
+<p>
+      LaTeX is very extensive, so this chapter will only touch the
+      surface of LaTeX. But it should be enough to get you started
+      to be able to make simple documents.
+    </p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="editing-latex-basic"></a>11.2. Preparing basic LaTeX documents</h2></div></div></div>
+<a class="indexterm" name="idm962114404"></a><a class="indexterm" name="idm962114084"></a><div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="editing-latex-basic-minimal"></a>11.2.1. Minimal document structure</h3></div></div></div>
+<p>
+        Each LaTeX document has some basic minimal structure that
+        describes the document. Let's look at an example:
+      </p>
+<pre class="screen">
+\documentclass[10pt,a4paper]{article} <a name="latex-struct-1"></a><span><img src="../images/callouts/1.png" alt="1" border="0"></span>
+
+\title{The history of symmetric ciphers} <a name="latex-struct-2"></a><span><img src="../images/callouts/2.png" alt="2" border="0"></span>
+\author{John Doe} <a name="latex-struct-3"></a><span><img src="../images/callouts/3.png" alt="3" border="0"></span>
+
+\begin{document} <a name="latex-struct-4"></a><span><img src="../images/callouts/4.png" alt="4" border="0"></span>
+
+This is a basic document. <a name="latex-struct-5"></a><span><img src="../images/callouts/5.png" alt="5" border="0"></span>
+
+\end{document} <a name="latex-struct-6"></a><span><img src="../images/callouts/6.png" alt="6" border="0"></span>
+      </pre>
+<p>
+        You can already see the basic syntactical structure of LaTeX
+        commands. A command is started with a backslash, followed by the
+        name of the command. Each macro has a mandatory argument that
+        is placed in accolades, and an optional argument that is placed
+        in square brackets.
+      </p>
+<div class="calloutlist"><table border="0" summary="Callout list">
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#latex-struct-1"><span><img src="../images/callouts/1.png" alt="1" border="0"></span></a> </p></td>
+<td valign="top" align="left"><p>
+            The first command in every document is the
+            <span class="emphasis"><em>documentclass</em></span>. This command specifies
+            what kind of document LaTeX is dealing with. The type of
+            document is specified as a mandatory parameter. You can
+            also specify some optional parameters, such as the font
+            size and the paper size. In this case the font size is changed
+            from the default 12pt to 10pt, and A4 is used as the
+            paper size. The document classes that are available in
+            LaTeX are shown in <a class="xref" href="latex.html#latex-documentclasses" title="Table 11.1. LaTeX document classes">Table 11.1, “LaTeX document classes”</a>.
+          </p></td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#latex-struct-2"><span><img src="../images/callouts/2.png" alt="2" border="0"></span></a> </p></td>
+<td valign="top" align="left"><p>
+            After the documentclass you can add some meta-information
+            to the document, like the title of the document. In this
+            case the title is <span class="emphasis"><em>The history of symmetric 
+            ciphers</em></span>.
+          </p></td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#latex-struct-3"><span><img src="../images/callouts/3.png" alt="3" border="0"></span></a> </p></td>
+<td valign="top" align="left"><p>
+            The author command specifies the author of the book.
+          </p></td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#latex-struct-4"><span><img src="../images/callouts/4.png" alt="4" border="0"></span></a> </p></td>
+<td valign="top" align="left"><p>
+            The <span class="emphasis"><em>\begin</em></span> command marks the beginning
+            of an environment. There are many different environments,
+            but they all implicate certain typesetting conventions for the
+            text that is in an environment. In this case we start an
+            <span class="emphasis"><em>document</em></span> environment. This is a very
+            basic environment, LaTeX interprets everything in this
+            environment as the body of the text.
+          </p></td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#latex-struct-5"><span><img src="../images/callouts/5.png" alt="5" border="0"></span></a> </p></td>
+<td valign="top" align="left"><p>
+            The content of the document can be placed within the
+            <span class="emphasis"><em>document</em></span>, in this case a friendly
+            warning about the nature of the document.
+          </p></td>
+</tr>
+<tr>
+<td width="5%" valign="top" align="left"><p><a href="#latex-struct-6"><span><img src="../images/callouts/6.png" alt="6" border="0"></span></a> </p></td>
+<td valign="top" align="left"><p>
+            All environments eventually have to be closed. The
+            <span class="emphasis"><em>document</em></span> environment is the last
+            environment that is closed, because it denotes the end
+            of the body of the text.
+          </p></td>
+</tr>
+</table></div>
+<div class="table">
+<a name="latex-documentclasses"></a><p class="title"><b>Table 11.1. LaTeX document classes</b></p>
+<div class="table-contents"><table summary="LaTeX document classes" border="1">
+<colgroup><col></colgroup>
+<thead><tr><th>Class</th></tr></thead>
+<tbody>
+<tr><td>article</td></tr>
+<tr><td>book</td></tr>
+<tr><td>letter</td></tr>
+<tr><td>report</td></tr>
+</tbody>
+</table></div>
+</div>
+<br class="table-break">
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="editing-latex-basic-print"></a>11.2.2. Generating printable formats</h3></div></div></div>
+<p>
+        Once you have a LaTeX file, you can use the <span class="command"><strong>latex</strong></span>
+        command to generate a <acronym class="acronym">DVI</acronym> (Device Independent
+        format) file:
+      </p>
+<pre class="screen">
+$ <span class="command"><strong>latex crypto.tex</strong></span>
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4)
+entering extended mode
+(./crypto.tex
+LaTeX2e &lt;2003/12/01&gt;
+Babel &lt;v3.8d&gt; and hyphenation patterns for american, french, german, ngerman, b
+ahasa, basque, bulgarian, catalan, croatian, czech, danish, dutch, esperanto, e
+stonian, finnish, greek, icelandic, irish, italian, latin, magyar, norsk, polis
+h, portuges, romanian, russian, serbian, slovak, slovene, spanish, swedish, tur
+kish, ukrainian, nohyphenation, loaded.
+(/usr/share/texmf/tex/latex/base/article.cls
+Document Class: article 2004/02/16 v1.4f Standard LaTeX document class
+(/usr/share/texmf/tex/latex/base/size10.clo)) (./crypto.aux) [1] (./crypto.aux)
+ )
+ Output written on crypto.dvi (1 page, 248 bytes).
+ Transcript written on crypto.log.
+      </pre>
+<p>
+        As the LaTeX command reports a DVI file is created after running
+        the <span class="command"><strong>latex</strong></span> command. You can view this file with
+        an X viewer for DVI files, <span class="command"><strong>xdvi</strong></span>:
+      </p>
+<pre class="screen">
+$ <span class="command"><strong>xdvi crypto.dvi</strong></span>
+      </pre>
+<p>
+        This file is not directly printable (although DVI files can be
+        printed with <span class="command"><strong>xdvi</strong></span>). An ideal format for
+        printable files is Postscript. You can generate a Postscript
+        file from the DVI file with one simple command:
+      </p>
+<pre class="screen">
+$ <span class="command"><strong>dvips -o crypto.ps crypto.dvi</strong></span>
+      </pre>
+<p>
+        The <em class="parameter"><code>-o</code></em> specifies the output
+        (file) for the Postscript document. If this parameter is not
+        specified, the output will be piped through <span class="command"><strong>lpr</strong></span>,
+        which will schedule the document to be printed.
+      </p>
+<p>
+        <acronym class="acronym">PDF</acronym> (Portable Document Format) is another
+        popular format for electronic documents. PDF can easily be
+        generated from Postscript:
+      </p>
+<pre class="screen">
+$ <span class="command"><strong>ps2pdf crypto.ps</strong></span>
+      </pre>
+<p>
+        The resulting output file will be the same as the input file,
+        with the <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">.ps</code></html:span> extension replaced with
+        <span class="command"><strong>.pdf</strong></span>.
+      </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="editing-latex-basic-sections"></a>11.2.3. Sections</h3></div></div></div>
+<a class="indexterm" name="idm962096420"></a><p>
+        Now that you know how to create a basic LaTeX document, it is
+        a good time to add some more structure. Structure is added using
+        sections, subsections, and subsubsections. These structural
+        elements are made with respectively the <span class="emphasis"><em>\section</em></span>,
+        <span class="emphasis"><em>\subsection</em></span> and
+        <span class="emphasis"><em>\subsubsection</em></span> commands. The mandatory parameter
+        for a section is the title for the section. Normal sections,
+        subsections and subsubsections are automatically numbered, and
+        added to the table of contents. By adding a star after a section
+        command, for example <span class="emphasis"><em>\section*{title}</em></span> section
+        numbering is suppressed, and the section is not added to the
+        table of contents. The following example demonstrates how
+        you can use sections:
+      </p>
+<pre class="screen">
+\documentclass[10pt,a4paper]{article}
+
+\title{The history of symmetric ciphers}
+\author{John Doe}
+
+\begin{document}
+
+\section{Pre-war ciphers}
+
+To be done.
+
+\section{Modern ciphers}
+
+\subsection*{Rijndael}
+
+Rijndael is a modern block cipher that was designed by Joan Daemen and
+Vincent Rijmen. 
+
+In the year 2000 the US National Institute of Standards and Technologies
+selected Rijndael as the winner in the contest for becoming the Advanced
+Encryption Standard, the successor of DES.
+
+\end{document}
+      </pre>
+<p>
+        The example above is pretty straightforward, but this is a good
+        time to look at how LaTeX treats end of line characters and empty
+        lines. Empty lines are ignored by LaTeX, making the text a
+        continuous flow. An empty line starts a new paragraph. All paragraphs
+        but the first paragraph are started with a extra space left of the
+        first word.
+      </p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="editing-latex-basic-fontstyle"></a>11.2.4. Font styles</h3></div></div></div>
+<p>
+        Usually you may want to work with different font styles too. LaTeX
+        has some commands that can be used to change the appearance of the
+        current font. The most commonly used font commands are
+        <span class="emphasis"><em>\emph</em></span> for emphasized text, and
+        <span class="emphasis"><em>\textbf</em></span>. Have a look at <a class="xref" href="latex.html#latex-fontstyles" title="Table 11.2. LaTeX font styles">Table 11.2, “LaTeX font styles”</a> for a more extensive list of font
+        styles. Emphasis and bold text are demonstrated in this example
+        paragraph:
+      </p>
+<pre class="screen">
+Working with font styles is easy. \emp{This text is emphasized} and
+\textbf{this text is bold}.
+      </pre>
+<div class="table">
+<a name="latex-fontstyles"></a><p class="title"><b>Table 11.2. LaTeX font styles</b></p>
+<div class="table-contents"><table summary="LaTeX font styles" border="1">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Command</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>\emph</td>
+<td>Add emphasis to a font.</td>
+</tr>
+<tr>
+<td>\textbf</td>
+<td>Print the text in bold.</td>
+</tr>
+<tr>
+<td>\textit</td>
+<td>Use an italic font.</td>
+</tr>
+<tr>
+<td>\textsl</td>
+<td>Use a font that is slanted.</td>
+</tr>
+<tr>
+<td>\textsc</td>
+<td>Use small capitals.</td>
+</tr>
+<tr>
+<td>\texttt</td>
+<td>Use a typewriter font.</td>
+</tr>
+<tr>
+<td>\textsf</td>
+<td>Use a sans-serif font.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<br class="table-break">
+</div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="editing.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="editing.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="email.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Part III. Editant i formatant text ??"typesetting"?? </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Part IV. Correu electrònic</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<chapter xml:id="chap-book">
+  <title>Quan a este llibre</title>
+
+  <sect1 xml:id="chap-book-availability">
+    <title>Disponibilitat</title>
+
+    <para>
+      Este llibre està escrit en DocBook/XML, i transformat en HTML i 
+      XSL:FO mitjançant <command>xsltproc</command>. La darrera versió
+      del llibre està sempre disponible a: <ulink
+      url="http://www.slackbasics.org/" />.
+    </para>
+  </sect1>
+
+  <sect1 xml:id="chap-book-conventions">
+    <title>Convencions</title>
+
+    <para>
+      Esta secció ofereix un breu resum de les convencions emprades al llibre.
+    </para>
+
+    <sect2 xml:id="chap-book-conventions-filenames">
+      <title>Noms de fitxer</title>
+
+      <para>
+	Els noms de fitxers i de directoris estàn impresos així:
+	<filename>/camí/a/fitxer</filename>.  Per exemple:
+	<filename>/etc/fstab</filename>
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-book-conventions-commands">
+      <title>Comandaments ?Comandes?</title>
+
+      <para>
+	Els comandaments estàn impresos en negreta. Per exemple: <command>ls
+	-l</command>
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-book-conventions-screenoutput">
+      <title>Eixida per pantalla</title>
+
+      <para>
+	Les eixides per pantalla es veuen així:
+      </para>
+
+      <screen>
+Hola Món!
+      </screen>
+
+      <para>
+	Si els comandaments s'estàn introduïnt en la pantalla d'eixida,
+	s'imprimiràn en negreta:
+      </para>
+
+      <screen>
+$ <command>comandament</command>
+Eixida
+      </screen>
+
+      <para>
+	Si s'executa un comandament com a root, l'interpret es mostrarà 
+	com <quote>#</quote>. Si un comandament s'executa amb un usuari normal
+	sense privilegis, l'interpret es mostarà com
+	<quote>$</quote>.
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-book-conventions-notes">
+      <title>Notes</title>
+
+      <para>
+	Algunes seccions contenen notes addicionals. No es necessari conéixer
+	la informació de les notes, però proporcionen informació que pot ser valuosa
+	 o enllaços a informació. Les notes s'imprimeixen així:
+      </para>
+
+      <note>
+	<para>
+	  Açò és una nota.
+	</para>
+      </note>
+    </sect2>
+  </sect1>
+</chapter>

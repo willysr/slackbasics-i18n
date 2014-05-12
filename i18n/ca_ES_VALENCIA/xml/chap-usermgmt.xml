@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
+	 xml:lang="en" xml:id="chap-usermgmt">
+  <title>Gestió d'usuaris <!--User management--></title>
+
+  <sect1 xml:id="chap-usermgmt-intro">
+    <title>Introducció</title>
+
+    <para>
+      GNU/Linux és un sistema opertiu multi-usuari. Açò significa que
+      múltiples usuaris poden utilitzar el sistema, i ho poden fer
+      simultàniament. Els conceptes relatius a gestió d'usuaris del 
+      GNU/Linux són bastant senzills. Primer que res, hi ha diversos
+      comptes d'usuari en cada sistema. Inclús en un sistema d'un
+      únic usuari hi múltiples comptes d'usuari perque GNU/Linux
+      utilitza comptes especials per a algunes tasques. El usuaris
+      poden pertanyer a grups. Els grups s'utilitzen per a augmentar
+      la granularitat dels permisos, per exemple, pots fer un fitxer
+      llegible per a cert grup. Hi ha uns quants usuaris i grups
+      reservats a cada sistema, el més important dels quals és 
+      <emphasis>root</emphasis>. L'usuari <emphasis>root</emphasis>
+      és l'administrador del sistema. Es recomanable evitar 
+      iniciar sessió, perque incrementa enormement els riscos de
+      seguretat, en el seu lloc pots iniciar sessió com un usuari
+      normal i realitzar les tasques d'administració del sistema
+      utilitzant les ordres <command>su</command> i
+      <command>sudo</command>.
+
+      <!--GNU/Linux is a multi-user operating system. This means that
+      multiple users can use the system, and they can use the system
+      simultaneously. The GNU/Linux concepts for user management are
+      quite simple. First of all, there are several user accounts on
+      each system. Even on a single user system there are multiple
+      user accounts, because GNU/Linux uses unique accounts for some
+      tasks. Users can be members of groups. Groups are used for more
+      fine grained permissions, for example, you could make a file
+      readable by a certain group. There are a few reserved users and
+      groups on each system. The most important of these is the
+      <emphasis>root</emphasis> account. The <emphasis>root</emphasis>
+      user is the system administrator. It is a good idea to avoid
+      logging in as root, because this greatly enlarges security
+      risks. You can just log in as a normal user, and perform system
+      administration tasks using the <command>su</command> and
+      <command>sudo</command> commands.-->
+    </para>
+
+    <para>
+      Els comptes d'usuari disponibles estàn especificats al fitxer
+      <filename>/etc/passwd</filename>. Pots fer una ullada a este
+      fitxer per a fer-te una idea de quins comptes d'usuari són
+      obligatoris. Potser ja t'has adonat de que no hi ha
+      contrasenyes en este fitxer. Les contrasenyes es mantenen
+      a un fitxer separat, <filename>/etc/shadow</filename>, com
+      cadenes xifrades. La informació relativa als grups s'emmagatzema
+      al fitxer <filename>/etc/group</filename>. Per norma general
+      no és bona idea modificar aquests fitxers directament, hi ha
+      algunes eines excel·lents que poden ajudar-te amb
+      l'administració de usuaris i groups. Aquest capítol en descriurà
+      algunes.
+
+      <!--The available user accounts are specified in the
+      <filename>/etc/passwd</filename>. You can have a look at this
+      file to get an idea of which user account are mandatory. As you
+      will probably notice, there are no passwords in this
+      file. Passwords are kept in the separate 
+      <filename>/etc/shadow</filename> file, as an encrypted
+      string. Information about groups is stored in
+      <filename>/etc/group</filename>. It is generally speaking not a
+      good idea to edit these files directly. There are some excellent
+      tools that can help you with user and group administration. This
+      chapter will describe some of these tools.-->
+    </para>
+  </sect1>
+
+  <sect1 xml:id="chap-usermgmt-user">
+    <title>Afegint i suprimint usuaris<!--Adding and removing users--></title>
+
+    <sect2 xml:id="chap-usermgmt-user-add">
+      <title>useradd</title>
+
+      <para>
+	<command>useradd</command> s'utilitza per a afegir comptes d'usuari
+	al sistema. Executant <command>useradd</command> amb un nom d'usuari
+	com a paràmetre crearà l'usuari en el sistema. Per exemple:
+	<!--The <command>useradd</command> is used to add user accounts to
+	the system.  Running <command>useradd</command> with a user
+	name as parameter will create the user on the system. For
+	example:-->
+      </para>
+
+      <screen>
+# <userinput>useradd jaume</userinput>
+      </screen>
+
+      <para>
+	Crea el compte d'usuari <emphasis>jaume</emphasis>, Per favor
+	tin en compte que açò no crea un directori llar per a l'usuari.
+	Afegeix el paràmetre <parameter class="command">-m</parameter>
+	per a crear-lo. Per exemple:
+
+	<!--Creates the user account <emphasis>bob</emphasis>. Please be
+	aware that this does not create a home directory for the
+	user. Add the <parameter class="command">-m</parameter>
+	parameter to create a home directory. For example:-->
+      </para>
+
+      <screen>
+# <userinput>useradd -m jaume</userinput>
+      </screen>
+
+      <para>
+	Açò afegiria l'usuari <emphasis>jaume</emphasis> al sistema, i
+	crearia el directori llar <filename>/home/jaume</filename> per
+	a este usuari. Normalment, l'usuari és fet membre del grup
+	<emphasis>users</emphasis>. Suposem que ens agradaria fer que
+	<emphasis>crew</emphasis> fora el grup primari de l'usuari
+	<emphasis>jaume</emphasis>. Açò es pot fer utilitzant el
+	paràmetre <parameter class="command">-g</parameter>. Per
+	exemple:
+
+	<!--This would add the user <emphasis>bob</emphasis> to the
+	system, and create the <filename>/home/bob</filename> home
+	directory for this user.  Normally the user is made a member
+	of the <emphasis>users</emphasis> group. Suppose that we would
+	like to make <emphasis>crew</emphasis> the primary group for
+	the user <emphasis>bob</emphasis>. This can be done using the
+	<parameter class="command">-g</parameter> parameter.  For
+	example:-->
+      </para>
+
+      <screen>
+# <userinput>useradd -g crew -m jordi</userinput>
+      </screen>
+
+      <para>
+	Tmbé és possible afegir a este usuari a grups secundaris
+	durant la creació del compte amb el paràmetre 
+	<emphasis>-G</emphasis>. Els noms de grup es poden separar
+	amb una coma. La ordre següent crearia l'usuari
+	<emphasis>bob</emphasis>, que és un membre del grups
+	<emphasis>crew</emphasis> i dels grups seundaris
+	<emphasis>www-admins</emphasis> i <emphasis>ftp-admins</emphasis>:
+
+	<!--It is also possible to add this user to secondary groups
+	during the creation of the account with the
+	<emphasis>-G</emphasis>. Group names can be separated with a
+	comma. The following command would create the user
+	<emphasis>bob</emphasis>, which is a member of the
+	<emphasis>crew</emphasis> group, and the
+	<emphasis>www-admins</emphasis> and
+	<emphasis>ftp-admins</emphasis> secondary groups:-->
+      </para>
+
+      <screen>
+# <userinput>useradd -g crew -G www-admins,ftp-admins -m jaume</userinput>
+      </screen>
+
+      <para>
+	Per defecte, <command>useradd</command> només afegeix usuaris,
+	no defineix un password per a l'usuari afegit, aquesta tasca
+	es fa mitjançant la ordre <command>passwd</command>.
+
+	<!--By default the <command>useradd</command> only adds users, it
+	does not set a password for the added user. Passwords can be
+	set using the <command>passwd</command> command.-->
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-usermgmt-user-passwd">
+      <title>passwd</title>
+
+      <para>
+	Com hauràs endevinat, la ordre <command>passwd</command> s'utilitza
+	per a definir la contrasenya per a un usuari. Executant esta ordre
+	amb un usuari com a paràmetre canviarà la contrasenya d'este usuari.
+	La ordre <command>passwd</command> demanarà la contrasenya antiga
+	una vegada i dos la nova:
+	<!--As you probably guessed the <command>passwd</command> command
+	is used to set a password for a user. Running this command as
+	a user without a parameter will change the password for this
+	user. The <command>passwd</command> command will ask for the old
+	password,once and twice for the new password:-->
+      </para>
+
+      <screen>
+$ <userinput>passwd</userinput>
+Old password: 
+Enter the new password (minimum of 5, maximum of 127 characters)
+Please use a combination of upper and lower case letters and numbers.
+New password: 
+Re-enter new password: 
+Password changed.
+      </screen>
+
+      <para>
+	L'usuari <emphasis>root</emphasis> pot definir contrasenyes per a
+	usuaris especificant el nom d'usuari com a paràmetre. En este cas,
+	la ordre <command>passwd</command> només demanarà la contrasenya nova.
+	Per exemple:
+	<!--The <emphasis>root</emphasis> user can set passwords for users
+	by specifying the user name as a parameter. The
+	<command>passwd</command> command will only ask for the new
+	password. For example:-->
+      </para>
+
+      <screen>
+# <userinput>passwd jaume</userinput>
+Enter new UNIX password: 
+Retype new UNIX password: 
+passwd: password updated successfully
+      </screen>
+    </sect2>
+
+    <sect2 xml:id="chap-usermgmt-user-adduser">
+      <title>adduser</title>
+
+      <para>
+	La ordre <command>adduser</command> combina les ordres
+	<command>useradd</command> i <command>passwd</command> en un
+	script interactiu. Et demanarà que introduisques la informació
+	relativa al compte a crear i després d'això, crearà un compte
+	basat en la informació proporcionada. A continuació es mostra
+	un exemple de sessió. 
+
+	<!--The <command>adduser</command> command combines
+	<command>useradd</command> and <command>passwd</command> in an
+	interactive script. It will ask you to fill in information
+	about the account to-be created. After that it will create an
+	account based on the information you provided. The screen
+	listing below shows a sample session.-->
+      </para>
+
+      <screen>
+# <userinput>adduser</userinput>
+
+Login name for new user []: <userinput>jhon</userinput>
+
+User ID ('UID') [ defaults to next available ]: <userinput>&lt;Enter&gt;</userinput>
+
+Initial group [ users ]: <userinput>&lt;Enter&gt;</userinput>
+
+Additional groups (comma separated) []: <userinput>staff</userinput>
+
+Home directory [ /home/jhon ] <userinput>&lt;Enter&gt;</userinput>
+
+Shell [ /bin/bash ] <userinput>&lt;Enter&gt;</userinput>
+
+Expiry date (YYYY-MM-DD) []: <userinput>&lt;Enter&gt;</userinput>
+
+New account will be created as follows:
+
+---------------------------------------
+Login name.......:  jhon
+UID..............:  [ Next available ]
+Initial group....:  users
+Additional groups:  [ None ]
+Home directory...:  /home/jhon
+Shell............:  /bin/bash
+Expiry date......:  [ Never ]
+
+This is it... if you want to bail out, hit Control-C.  Otherwise, press
+ENTER to go ahead and make the account.
+<userinput>&lt;Enter&gt;</userinput>
+
+Creating new account...
+
+
+Changing the user information for jhon
+Enter the new value, or press ENTER for the default
+        Full Name []: <userinput>John Doe</userinput>
+        Room Number []: <userinput>&lt;Enter&gt;</userinput>
+        Work Phone []: <userinput>&lt;Enter&gt;</userinput>
+        Home Phone []: <userinput>&lt;Enter&gt;</userinput>
+        Other []: <userinput>&lt;Enter&gt;</userinput>
+Changing password for john
+Enter the new password (minimum of 5, maximum of 127 characters)
+Please use a combination of upper and lower case letters and numbers.
+New password: <userinput>password</userinput>
+Re-enter new password: <userinput>password</userinput>
+
+
+Account setup complete.
+      </screen>
+
+      <para>
+	Pots utilitzar els valos per defecte, o deixar alguns camps buits,
+	donant-li un colpet a la tecla &lt;Enter&gt;
+	<!--You can use the default values, or leave some fields empty, by
+	tapping the &lt;Enter&gt; key.-->
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-usermgmt-user-userdel">
+      <title>userdel</title>
+
+      <para>
+	De vegades és necessari eliminar un compte d'usuari del sistema.
+	GNU/Linux ofereix la eina <command>userdel</command> per a fer açò.
+	Senzillament especifica el nom d'usuari com a paràmetre per a 
+	eliminar a eixe usuari del sistema. Per exemple, la següent ordre
+	eliminarà el compte d'usuari <emphasis>jaume</emphasis> del sistema:
+	<!--Sometimes it is necessary to remove a user account from the
+	system. GNU/Linux offers the <command>userdel</command> tool
+	to do this. Just specify the username as a parameter to remove
+	that user from the system. For example, the following command
+	will remove the user account <emphasis>bob</emphasis> from the
+	system:-->
+      </para>
+
+      <screen>
+# <userinput>userdel jaume</userinput>
+      </screen>
+
+      <para>
+	Açò només elimina el compte d'usuari, no la carpeta llar de l'usuari
+	ni el seu correu. Senzillament, afegeix el paràmetre  
+	<parameter class="command">-r</parameter> per a eliminar també
+	la carpeta llar de l'usuari i el seu correu. Per exemple:
+	<!--This will only remove the user account, not the user's home
+	directory and mail spool. Just add the <parameter
+	class="command">-r</parameter> parameter to delete the user's
+	home directory and mail spool too. For example:-->
+      </para>
+
+      <screen>
+# <userinput>userdel -r jaume</userinput>
+      </screen>
+    </sect2>
+  </sect1>
+
+  <sect1 xml:id="chap-usermgmt-su">
+    <title>Evitant l'ús de root mitjançant su <!--Avoiding root usage with su--></title>
+
+    <para>
+      Evitar inicar sessió com a <emphasis>root</emphasis> és una bona idea.
+      Hi ha moltes raons per a no fer-ho, teclejar una ordre equivocada podria
+      provocar que passaren coses dolentes i programes maliciosos poden fer molt
+      de mal quan has iniciat sessió com a <emphasis>root</emphasis>. Així i
+      tot hi ha moltes situacions en què necessites tindre accés de root. Per
+      exemple per a administrar el sistema o per a instal·lar programai nou.
+      Afortunadament la ordre <command>su</command> pot donar-te temporalment
+      privilegis de root.
+      
+      <!--It is a good idea to avoid logging in as
+      <emphasis>root</emphasis>. There are many reasons for not doing
+      this. Accidentally typing a wrong command could cause bad things
+      to happen, and malicious programs can make a lot of damage when
+      you are logged in as <emphasis>root</emphasis>.  Still, there
+      are many situations in which you need to have root access. For
+      example, to do system administration, or to install new
+      software. Fortunately the <command>su</command> can give you
+      temporal root privileges.-->
+    </para>
+
+    <para>
+      Utilitzar <command>su</command> és molt senzill, només executant
+      <command>su</command> se't demanarà la contrassenya del root, una vegada
+      ben introduïda, s'iniciarà un shell amb privilegis de root:
+
+      <!--Using <command>su</command> is very simple. Just executing
+      <command>su</command> will ask you for the root password, and
+      will start a shell with root privileges after the password is
+      correctly entered:-->
+    </para>
+
+    <screen>
+$ <userinput>whoami</userinput>
+jaume
+$ <userinput>su</userinput>
+Password: 
+# <userinput>whoami</userinput>
+root
+# <userinput>exit</userinput>
+exit
+$ <userinput>whoami</userinput>
+jaume
+    </screen>
+
+    <para>
+      En aquest exemple, l'usuari <emphasis>bob</emphasis> ha iniciat 
+      sessió, la eixida de la ordre <command>whoami</command> així ho 
+      reflecteix. L'usuari executa su i introdueix la contrasenya del
+      root, aleshores <command>su</command> llança un shell amb
+      privilegis de root, així ho confirma la eixida de la ordre 
+      <command>whoami</command>. Despŕes d'eixir del shell de root,
+      el retorna el control al shell en execució originalment amb els
+      privilegis de l'usuari <emphasis>bob</emphasis>.
+
+      <!--In this example the user <emphasis>bob</emphasis> is logged on,
+      the <command>whoami</command> output reflects this. The user
+      executes su and enters the <emphasis>root</emphasis>
+      password. <command>su</command> launches a shell with root
+      privileges, this is confirmed by the <command>whoami</command>
+      output. After exiting the <emphasis>root</emphasis> shell,
+      control is returned to the original running shell running with
+      the privileges of the user <emphasis>bob</emphasis>.-->
+    </para>
+
+    <para>
+      També és possible executar només una ordre com a l'usuari
+      <emphasis>root</emphasis> mitjançant el paràmetre 
+      <parameter class="command">-c</parameter>- El següent exemple
+      executarà el <command>lilo</command>:
+      <!--It is also possible to execute just one command as the
+      <emphasis>root</emphasis> user with the <parameter
+      class="command">-c</parameter> parameter. The following example
+      will run <command>lilo</command>:-->
+    </para>
+
+    <screen>
+$ <userinput>su -c lilo</userinput>
+    </screen>
+
+    <para>
+      Si volguéres passar-li paràmteres a la ordre que t'agradaria executar,
+      utilitza cometes (p. ex. <command>su -c &quot;ls -l /&quot;</command>).
+      Sense cometes la ordre <command>su</command> no pot determinar si els
+      paràmetres s'ha d'utilitzar per la ordre especificada o pel mateix
+      <command>su</command>.
+
+      <!--If you want to give parameters to the command you would like to
+      run, use quotes (e.g. <command>su -c &quot;ls -l
+      /&quot;</command>). Without quotes <command>su</command> cannot
+      determine whether the parameters should be used by the specified
+      command, or by <command>su</command> itself.-->
+    </para>
+
+    <sect2 xml:id="chap-usermgmt-su-restrict">
+      <title>Restingint l'accés de su <!--Restricting su access--></title>
+
+      <para>
+	Pots afinar l'accés a <command>su</command> amb 
+	<emphasis>suauth</emphasis>. És una bon hàbit de seguretat només
+	permetre als usuaris d'un grup especial utilitzar <command>su</command>
+	per a fer-se passar per <emphasis>root</emphasis>. Per exemple,
+	pots restringir l'ús de	<command>su</command> per a fer-se passar per
+	root als membres del grup <emphasis>wheel</emphasis>, a l'estil BSD,
+	afegint la següent línia a <filename>/etc/suauth</filename>:
+
+	<!--You can refine access to <command>su</command> with
+	<emphasis>suauth</emphasis>.  It is a good security practice
+	to only allow members of a special group to
+	<command>su</command> to <emphasis>root</emphasis>. For
+	instance, you can restrict root <command>su</command>-ing in a
+	BSD fashion to members of the <emphasis>wheel</emphasis> group
+	by adding the following line to
+	<filename>/etc/suauth</filename>:-->
+      </para>
+
+      <screen>
+root:ALL EXCEPT GROUP wheel:DENY
+      </screen>
+    </sect2>
+  </sect1>
+
+  <sect1 xml:id="chap-usermgmt-quota">
+    <title>Cuota de disc<!--Disk quota--></title>
+
+    <sect2 xml:id="chap-usermgmt-quota-intro">
+      <title>Introducció</title>
+
+      <para>
+	La cuota de disc és un mecanisme que permet a l'administrador
+	restingir el nombre de blocs de disc i inodes que un usuari
+	i grup particulars poden utilitzar. No tots els sistemes de
+	fitxers suportats pel Linux ofereixen suport per a cutoes de
+	????disc. Alguns sistemes amplament utilitzats que suporten cuotes
+	de disc só ext2, ext3 i XFS. Les cuotes s'activen i es gestionen
+	per a cada sistema de fitxers.????
+	<!--Disk quota is a mechanism that allows the system administrator
+	to restrict the number of disk blocks and inodes that a
+	particular user and group can use. Not all filesystems
+	supported by Linux support quota, widely used filesystems that
+	support quota are ext2, ext3 and XFS. Quota are turned on and
+	managed on a per filesystem basis.-->
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-usermgmt-config">
+      <title>Habilitant cuotes <!--Enabling quota--></title>
+
+      <para>
+	Les cuotes es poden habilitar per sistemes de fitxers a 
+	<filename>/etc/fstab</filename>, mitjançant les opcions
+	de sistema de fitxers <parameter>usrquota</parameter> i
+	<parameter>grpquota</parameter>. Per exemple, suposa que
+	tenim la següent entrada per a la partició 
+	<filename>/home</filename> a <filename>/etc/fstab</filename>:
+
+	<!--Quota can be enabled per filesystem in
+	<filename>/etc/fstab</filename>, by using the
+	<parameter>usrquota</parameter> and
+	<parameter>grpquota</parameter> filesystem options. For
+	example, suppose that we have the following entry for the
+	<filename>/home</filename> partition in
+	<filename>/etc/fstab</filename>:-->
+      </para>
+
+      <screen>
+/dev/hda8        /home            xfs         defaults         1   2
+      </screen>
+
+      <para>
+	Ara podem habilitar la cuota afegint le opció
+	de sistema de fitxers <parameter>usrquota</parameter>:
+
+	<!--We can now enable user quota by adding the
+	<parameter>usrquota</parameter> filesystem option:-->
+      </para>
+
+      <screen>
+/dev/hda8        /home            xfs         defaults<emphasis role="bold">,usrquota</emphasis> 1   2
+      </screen>
+
+      <para>
+	En aquest punt podem reiniciar la màquina, per a permetre
+	als guions d'inicialització de Slackware Linux habilitar les
+	cuotes. També es pot habilitar les cuotes sense reiniciar la
+	máquina, remuntant la partició, i executant la ordre
+	<command>quotaon</command>:
+
+	<!--At this point the machine can be rebooted, to let the
+	Slackware Linux initialization scripts enable quota. You can
+	also enable quota without rebooting the machine, by remounting
+	the partition, and running the <command>quotaon</command>
+	command:-->
+      </para>
+
+      <screen>
+# <userinput>mount -o remount /home</userinput>
+# <userinput>quotaon -avug</userinput>
+      </screen>
+    </sect2>
+
+    <sect2 xml:id="chap-usermgmt-quota-edit">
+      <title>Editant cuotes <!--Editing quota--></title>
+
+      <para>
+	Les cuotes de grup i de usuari es poden editar amb
+	la utilitat <quote>edquota</quote>. Este programar
+	permet editar cuotes interactivament amb l'editor
+	vi. La sintaxi més bàsica d'aquesta ordre és
+	<command>edquota username</command>. Per exemple:
+
+	<!--User and group quotas can be edited with the
+	<quote>edquota</quote> utility. This program allows you to
+	edit quotas interactively with the <command>vi</command>
+	editor. The most basic syntax of this command is
+	<command>edquota username</command>. For example:-->
+      </para>
+
+      <screen>
+# <userinput>edquota joe</userinput>
+      </screen>
+
+      <para>
+	Açò llançarà l'editor <command>vi</command> amb la
+	informació de la cuota per a l'usuari <emphasis>joe</emphasis>.
+	S'asemblarà a açò:
+	
+	<!--This will launch the <command>vi</command> editor with the
+	quota information for the user <emphasis>joe</emphasis>.  It
+	will look like this:-->
+      </para>
+
+      <screen>
+Disk quotas for user joe (uid 1143):
+  Filesystem                   blocks       soft       hard     inodes     soft    hard
+  /dev/hda5                      2136          0          0         64        0       0
+      </screen>
+
+      <para>
+	En este exemple, les cuotes estàn habilitades per a un sistema
+	de fitxers només, el que resideix a <filename>/dev/hda5</filename>.
+	Com es pot vore, hi ha vàries columnes. La columna <emphasis>blocks
+	</emphasis> mostra quants blocs utilitza l'usuari al sistema
+	de fitxers, i la columna <emphasis>inodes</emphasis> el nombre
+	d'inodes ocupats per l'usuari. A més d'això, hi ha les columnes
+	<emphasis>soft</emphasis>(tou) and <emphasis>hard</emphasis>(dur) 
+	després de <emphasis>blocks</emphasis> i
+	<emphasis>inodes</emphasis>. Aquestes columnes especifiquen el
+	límit tou i el dur a blocs i inodes. Un usuari pot excedir el
+	límit tou durant un període de gràcia, però l'usuari no podrà
+	mai excedir el límit dur. Si el valor d'un límit és 
+	<emphasis>0</emphasis>, això és que no n'hi ha.
+	
+
+	<!--In this example quotas are only turned on for one file system,
+	namely the filesystem on <filename>/dev/hda5</filename>. As
+	you can see there are multiple columns. The
+	<emphasis>blocks</emphasis> column shows how many block the
+	user uses on the file system, and the
+	<emphasis>inodes</emphasis> column the number of inodes a user
+	occupies. Besides that there are <emphasis>soft</emphasis> and
+	<emphasis>hard</emphasis> columns after both
+	<emphasis>blocks</emphasis> and
+	<emphasis>inodes</emphasis>. These columns specify the soft
+	and hard limits on blocks and inodes. A user can exceed the
+	soft limit for a grace period, but the user can never exceed
+	the hard limit. If the value of a limit is
+	<emphasis>0</emphasis>, there is no limit.-->
+      </para>
+
+      <note>
+	<para>
+	  El terme <quote>blocs</quote> podria ser una miquet confús en
+	  este context. En els paràmetres de cuota un bloc és 1KB, no
+	  el tamany de bloc del sistema de fitxers.
+
+          <!--The term <quote>blocks</quote> might be a bit confusing in
+          this context. In the quota settings a block is 1KB, not the
+          block size of the file system.-->
+        </para>
+      </note>
+
+      <para>
+	Vejam un exemple senzill. Suposem que ens agradaria posar el 
+	límit tou per a l'usuari <emphasis>joe</emphasis> a 
+	<emphasis>250000</emphasis>, i límit dur a
+	<emphasis>300000</emphasis>. Nosaltre podríem canviar les
+	cuotes llistades més amunt a:
+
+	<!--Let's look at a simple example. Suppose that we would like to
+	set the soft limit for the user <emphasis>joe</emphasis> to
+	<emphasis>250000</emphasis>, and the hard limit to
+	<emphasis>300000</emphasis>. We could change the quotas listed
+	above to:-->
+      </para>
+
+      <screen>
+Disk quotas for user joe (uid 1143):
+  Filesystem                   blocks       soft       hard     inodes     soft    hard
+  /dev/hda5                      2136     <emphasis role="bold">250000</emphasis>     <emphasis role="bold">300000</emphasis>         64        0       0
+      </screen>
+
+      <para>
+	Els nous paràmetres de la cuota d'este usuari estarán actius
+	després d'alár el fitxer, i llevar el <command>vi</command>.
+        <!--The new quota settings for this user will be active after
+        saving the file, and quitting <command>vi</command>.-->
+      </para>
+    </sect2>
+
+    <sect2 xml:id="chap-usermgmt-quota-repquota">
+      <title>Obtenint informació relativa a la cuota <!--Getting information about quota--></title>
+
+      <para> 
+	Sol ser útil obtindre estadístiques relatives a l'ús actual 
+	de la cuota. La ordre <command>repquota</command> es pot
+	utilitzar per a obtindre informació de quines cuotes estan
+	fixades per a cada usuari, i quina quantitat d'aquestes està
+	en ús. Es poden veurer els paràmetres de cuota per a una
+	partició especificada passant-li el nom de la partició com a
+	paràmetre i el paràmetre <parameter class="command">-a</parameter>
+	mostrarà la informació de cuota de totes les particions amb
+	la cuota habilitada. Suposa que t'agradaria veurer la informació 
+	de cuota per a <filename>/dev/hda5</filename>, pots utilitzar
+	la ordre següent:
+
+	<!--It is often useful to get statistics about the current quota
+	usage.  The <command>repquota</command> command can be used to
+	get information about what quotas are set for every user, and
+	how much of each quota is used. You can see the quota settings
+	for a specific partition by giving the name of the partition
+	as a parameter. The <parameter class="command">-a</parameter>
+	parameter will show quota information for all partitions with
+	quota enabled. Suppose that you would like to see quota
+	information for <filename>/dev/hda5</filename>, you can use
+	the following command:-->
+      </para>
+
+      <screen>
+# <userinput>repquota /dev/hda5</userinput>
+*** Report for user quotas on device /dev/hda5
+Block grace time: 7days; Inode grace time: 7days
+                        Block limits                File limits
+User            used    soft    hard  grace    used  soft  hard  grace
+----------------------------------------------------------------------
+root      --       0       0       0              3     0     0       
+[..]
+joe       --    2136  250000  300000             64     0     0       
+[..]
+      </screen>
+    </sect2>
+  </sect1>
+</chapter>

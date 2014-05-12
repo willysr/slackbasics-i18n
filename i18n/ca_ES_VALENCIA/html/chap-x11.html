@@ -1,0 +1,200 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Chapter 16. X11</title>
+<link rel="stylesheet" type="text/css" href="default.css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="Fonaments de Slackware Linux">
+<link rel="up" href="sysadmin.html" title="Part V. Administració del sistema">
+<link rel="prev" href="printer.html" title="Chapter 15. Configuració de impressores">
+<link rel="next" href="chap-pkgmgmt.html" title="Chapter 17. Gestió de paquets">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tr><th colspan="3" align="center">Chapter 16. X11</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="printer.html">Prev</a> </td>
+<th width="60%" align="center">Part V. Administració del sistema</th>
+<td width="20%" align="right"> <a accesskey="n" href="chap-pkgmgmt.html">Next</a>
+</td>
+</tr>
+</table>
+<hr>
+</div>
+<div lang="en" class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="chap-x11"></a>Chapter 16. X11</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="chap-x11.html#chap-x11-config">16.1. Configuració d'X</a></span></dt>
+<dt><span class="sect1"><a href="chap-x11.html#chap-x11-wm">16.2. Gestor de finestres </a></span></dt>
+</dl>
+</div>
+  
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-x11-config"></a>16.1. Configuració d'X</h2></div></div></div>
+    
+
+    <p>
+      La configuració d'X11 s'emmagatzema a 
+      <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/X11/xorg.conf</code></html:span>. La majoria de 
+      distribuciones proporcionen eines especials de configuració per
+      a X, però Slackware Linux només proporciona les eines X11 estàndard
+      (que de fet són molt fàcils d'utilitzar). En la majoria de casos X
+      es pot configurar automàticament, per de vegades és necessari editar 
+      <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/X11/xorg.conf</code></html:span> manualment.
+      
+      
+    </p>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-x11-config-automatic"></a>16.1.1. Configuració automàtica </h3></div></div></div>
+      
+
+      <p>
+	El servidor X11 proporciona una opción per a generar
+	automàticamnet un fitxer de configuració. X11 carregarà tots els
+	mòduls de drivers disponibles, i tractarà de detectar el maquinari,
+	i generar un fitxer de configuració. Executa la ordre següent
+	per a generar un fixer <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">xorg.conf</code></html:span> de 
+	configuració:
+	
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>X -configure</code></strong>
+      </pre>
+
+      <p>
+	Si X no mostra cap error, la configuració generada pot ser
+	copiada al directori <html:span xmlns:html="http://www.w3.org/1999/xhtml" class="filename"><code class="filename">/etc/X11</code></html:span>, i X pot
+	ser iniciat per a provar la configuració:
+	
+      </p>
+
+      <pre class="screen">
+$ <strong class="userinput"><code>cp /root/xorg.conf /etc/X11/</code></strong>
+$ <strong class="userinput"><code>startx</code></strong>
+      </pre>
+    </div>
+
+    <div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="chap-x11-config-interactive"></a>16.1.2. Configuració interactiva </h3></div></div></div>
+      
+
+      <p>
+	X11 proporciona dos eines per a configurar X interactivament,
+	<span class="command"><strong>xorgcfg</strong></span> i <span class="command"><strong>xorgconfig</strong></span>.
+	<span class="command"><strong>xorgcfg</strong></span> intenta detectar la tarjeta de vídeo
+	automàticament, i inicia una eina que pot ser utilitzada per a
+	afinar la configuració. De vegades, <span class="command"><strong>xorgcfg</strong></span>
+	canvia a un mode de vídeo que no està suportat pel monitor.
+	En eixe cas <span class="command"><strong>xorgcfg</strong></span> es pot utilitzar també
+	en mode text, inciant-la amb <span class="command"><strong>xorgcfg -textmode</strong></span>.
+
+	
+      </p>
+
+      <p>
+	<span class="command"><strong>xorgconfig</strong></span> es diferencia de les eines 
+	descrites dalt, aquesta no detecta el maquinari i fara preguntes
+	detallades referents al teu maquinari. Si tens poca experiència
+	configurant X11 és una bona idea evitar 
+	<span class="command"><strong>xorgconfig</strong></span>.
+	
+	
+      </p>
+    </div>
+  </div>
+
+  <div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="chap-x11-wm"></a>16.2. Gestor de finestres </h2></div></div></div>
+    
+
+    <p>
+      El <span class="quote">“<span class="quote">look and feel</span>”</span> de X11 és gestionat per
+      un dels anoments gestor de finestres. Slacware Linux
+      proporciona els següents amplament-utilitzats gestors de
+      finestres.
+      
+    </p>
+
+    <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+	<p>
+	  WindowMaker: Un gestor de finestres relativament lleuger,
+	  que forma part del projecte GNUStep.
+	  
+	</p>
+      </li>
+<li class="listitem">
+	<p>
+	  BlackBox: Gestor de finestres lleuger, BlackBox no té 
+	  dependències més enllà de les llibreries X11.
+	  
+	</p>
+      </li>
+<li class="listitem">
+	<p>
+	  KDE: Un entorn d'escriptori complet, incloent navegador,
+	  porgrama de correu electrònic i una suite ofimàtica (KOffice)
+	  
+	</p>
+      </li>
+<li class="listitem">
+	<p>
+	  Xfce: Un entorn d'escriptori lleuger. Aquest és un entorn 
+	  ideal si vols tindre un escriptori amigable que corre en 
+	  màquines menys capaces.
+	  
+	</p>
+      </li>
+</ul></div>
+
+    <p>
+      Si estàs acostumat a un entorn d'escriptori, utilitzar KDE o Xfce
+      és una tria lògica. Però és una bona idea provar alguns dels 
+      gestors de finestres més lleugers. Són més ràpids, i consumeixen 
+      menys memòria a pesar de que la majoria d'aplicacions KDE i Xfce
+      són perfectament usables baix altres gestors de finestres.
+      
+    </p>
+
+    <p>
+      A Slackware Linux la ordre <span class="command"><strong>xwmconfig</strong></span> pot 
+      utilitzar-se per a definir el gestor de finestres per defecte.
+      Aquest programa mostra els gestors de finestres instal·lats, 
+      dels què en pots triar un. Pots definir el gestor de finestres
+      per defecte globalment executant <span class="command"><strong>xwmconfig</strong></span>
+      com a root.
+      
+    </p>
+  </div>
+</div>
+<div class="navfooter">
+<hr>
+<table width="100%" summary="Navigation footer">
+<tr>
+<td width="40%" align="left">
+<a accesskey="p" href="printer.html">Prev</a> </td>
+<td width="20%" align="center"><a accesskey="u" href="sysadmin.html">Up</a></td>
+<td width="40%" align="right"> <a accesskey="n" href="chap-pkgmgmt.html">Next</a>
+</td>
+</tr>
+<tr>
+<td width="40%" align="left" valign="top">Chapter 15. Configuració de impressores  </td>
+<td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td>
+<td width="40%" align="right" valign="top"> Chapter 17. Gestió de paquets</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
